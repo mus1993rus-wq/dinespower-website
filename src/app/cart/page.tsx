@@ -61,7 +61,7 @@ export default function CartPage() {
     <>
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
-        <div className="max-w-[1340px] mx-auto px-4 pt-8 pb-16">
+        <div className="max-w-[1340px] mx-auto pt-8 pb-16">
           {/* Title */}
           <h1 className="text-[36px] font-extrabold text-[#181818] leading-tight mb-4">
             My Cart ({totalItems} Items)
@@ -71,7 +71,7 @@ export default function CartPage() {
           {amountToDiscount > 0 && (
             <div className="mb-8">
               <p className="text-[14px] text-[#7E7E7E] mb-2">
-                You&apos;re just <span className="font-semibold text-[#FF6701]">{amountToDiscount}&euro;</span> away from getting a <span className="font-semibold text-[#181818]">5% discount</span>
+                You&apos;re just <span className="inline-flex items-center bg-[#181818] text-white text-[13px] font-semibold px-2 py-0.5 rounded mx-1">{amountToDiscount}€</span> away from getting a 5% discount
               </p>
               <div className="w-full h-[6px] bg-[#E7E7E7] rounded-full overflow-hidden">
                 <div
