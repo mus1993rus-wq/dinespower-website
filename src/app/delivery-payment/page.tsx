@@ -38,6 +38,7 @@ const shippingLogos = [
   { name: "DHL", color: "#FFCC00", textColor: "#CC0000" },
   { name: "GLS", color: "#003DA5" },
   { name: "DPD", color: "#DC0032" },
+  { name: "TNT", color: "#FF6600" },
   { name: "FedEx", color: "#4D148C" },
   { name: "UPS", color: "#351C15" },
 ];
@@ -59,7 +60,7 @@ export default function DeliveryPaymentPage() {
         </div>
 
         <div className="max-w-[1340px] mx-auto pb-16">
-          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-10">Shipping &amp; Payment</h1>
+          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-10">Delivery &amp; Payment</h1>
 
           {/* Payment Methods Section */}
           <section className="mb-8">
@@ -224,7 +225,7 @@ export default function DeliveryPaymentPage() {
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full border border-[#E7E7E7] flex items-center justify-center shrink-0">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#7E7E7E" strokeWidth="1.5"/><path d="M6 6C6 4.9 6.9 4 8 4C9.1 4 10 4.9 10 6C10 7.1 8.8 7.4 8.4 8.2C8.2 8.6 8 9 8 9.5" stroke="#7E7E7E" strokeWidth="1.5" strokeLinecap="round"/><circle cx="8" cy="11.5" r="0.75" fill="#7E7E7E"/></svg>
+                        <Image src="/images/shop/faq-question-icon.svg" alt="?" width={16} height={16} unoptimized />
                       </div>
                       <span className="text-base font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
                     </div>

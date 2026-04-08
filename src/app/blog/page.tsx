@@ -97,7 +97,8 @@ export default function BlogPage() {
               {/* Featured article */}
               {featured && (
                 <Link href="/blog" className="relative h-[420px] rounded-[16px] overflow-hidden mb-8 cursor-pointer group block">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460]" />
+                  <Image src="/images/shop/blog-1.png" alt={featured.title} fill className="object-cover" unoptimized />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e]/60 via-[#16213e]/40 to-[#0f3460]/60" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
                   <div className="absolute top-6 left-6 z-20 bg-white rounded-lg px-3 py-2 text-center">
                     <span className="text-2xl font-bold text-[#181818] leading-6 block">12</span>
@@ -125,7 +126,9 @@ export default function BlogPage() {
                     {/* Date badge */}
                     <div className="text-xs text-[#7E7E7E] w-[80px] shrink-0 pt-1">{post.date}</div>
                     {/* Thumbnail */}
-                    <div className="w-[100px] h-[80px] bg-[#F7F7F7] rounded-lg shrink-0 overflow-hidden" />
+                    <div className="w-[100px] h-[80px] bg-[#F7F7F7] rounded-lg shrink-0 overflow-hidden relative">
+                      <Image src={`/images/shop/blog-${((post.id - 1) % 5) + 1}.png`} alt={post.title} fill className="object-cover" unoptimized />
+                    </div>
                     {/* Content */}
                     <div className="flex-1 flex flex-col gap-2">
                       <h3 className="text-[16px] font-extrabold text-[#181818] leading-[22px] line-clamp-2 group-hover:text-[#FF6701] transition-colors">
@@ -172,7 +175,7 @@ export default function BlogPage() {
                 <button className="w-10 h-10 rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </button>
-                {[1, 2, 3].map((page) => (
+                {[1, 2, 3, 4].map((page) => (
                   <button
                     key={page}
                     onClick={() => setCurrentPage(page)}
@@ -181,6 +184,13 @@ export default function BlogPage() {
                     {page}
                   </button>
                 ))}
+                <span className="w-10 h-10 flex items-center justify-center text-sm text-[#7E7E7E]">...</span>
+                <button
+                  onClick={() => setCurrentPage(12)}
+                  className={`w-10 h-10 rounded-lg text-sm font-semibold transition-colors ${currentPage === 12 ? "bg-[#FF6701] text-white" : "border border-[#E7E7E7] text-[#181818] hover:border-[#FF6701]"}`}
+                >
+                  12
+                </button>
                 <button className="w-10 h-10 rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </button>
@@ -211,7 +221,9 @@ export default function BlogPage() {
                   <div className="flex flex-col">
                     {popularPosts.map((post, i) => (
                       <Link key={i} href="/blog" className="flex gap-4 py-3 border-b border-[#E7E7E7] last:border-b-0 cursor-pointer group">
-                        <div className="w-[80px] h-[60px] bg-[#F7F7F7] rounded-lg shrink-0" />
+                        <div className="w-[80px] h-[60px] bg-[#F7F7F7] rounded-lg shrink-0 relative overflow-hidden">
+                          <Image src={`/images/shop/blog-${(i % 5) + 1}.png`} alt={post.title} fill className="object-cover" unoptimized />
+                        </div>
                         <div className="flex-1 flex flex-col gap-1">
                           <p className="text-sm font-semibold text-[#181818] leading-[18px] line-clamp-2 group-hover:text-[#FF6701] transition-colors">
                             {post.title}

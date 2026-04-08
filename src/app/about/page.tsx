@@ -105,16 +105,34 @@ export default function AboutPage() {
         {/* Expert Section */}
         <div className="max-w-[1340px] mx-auto mt-16">
           <div className="flex gap-10 items-center">
-            {/* Left - Expert visual */}
-            <div className="w-[520px] h-[460px] shrink-0 rounded-[16px] bg-gradient-to-br from-[#F7F7F7] to-[#E7E7E7] flex flex-col items-center justify-center gap-4">
-              <div className="w-[100px] h-[100px] rounded-full bg-white/80 flex items-center justify-center shadow-sm">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M9 12L11 14L15 10" stroke="#00B638" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            {/* Left - Expert photo placeholder */}
+            <div className="w-[520px] h-[460px] shrink-0 rounded-[16px] bg-[#F7F7F7] relative overflow-hidden">
+              {/* Person silhouette placeholder */}
+              <div className="absolute inset-0 flex items-end justify-center">
+                <svg width="260" height="320" viewBox="0 0 260 320" fill="none" className="opacity-[0.08]">
+                  <circle cx="130" cy="90" r="60" fill="#181818"/>
+                  <ellipse cx="130" cy="300" rx="110" ry="100" fill="#181818"/>
                 </svg>
               </div>
-              <span className="text-[18px] font-extrabold text-[#181818]/60 uppercase tracking-wider">Expert Support</span>
-              <span className="text-[13px] text-[#7E7E7E] max-w-[260px] text-center leading-5">Verified quality and pharmaceutical-grade standards</span>
+              {/* Decorative badge */}
+              <div className="absolute bottom-6 left-6 bg-white rounded-[12px] px-4 py-3 shadow-sm flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#00B638] flex items-center justify-center shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M9 12L11 14L15 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-[14px] font-bold text-[#181818]">Verified Expert</p>
+                  <p className="text-[12px] text-[#7E7E7E]">Pharmaceutical-grade standards</p>
+                </div>
+              </div>
+              {/* Top-right accent */}
+              <div className="absolute top-6 right-6 w-[48px] h-[48px] rounded-full bg-[#FF6701]/10 flex items-center justify-center">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 7L9.5 17.5L4 12" stroke="#FF6701" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
             </div>
 
             {/* Right - Content */}

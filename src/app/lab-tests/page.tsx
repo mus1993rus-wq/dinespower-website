@@ -171,8 +171,8 @@ export default function LabTestsPage() {
           </div>
         </div>
 
-        <div className="max-w-[1340px] mx-auto py-8">
-          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-8">
+        <div className="max-w-[1340px] mx-auto pb-16">
+          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-10">
             Lab Tests
           </h1>
 
@@ -217,7 +217,7 @@ export default function LabTestsPage() {
                     {category.products.map((product, idx) => (
                       <div key={idx} className="border border-[#E7E7E7] rounded-lg overflow-hidden hover:shadow-md transition-shadow cursor-pointer">
                         <div className="relative h-[140px] bg-[#F7F7F7]">
-                          <Image src={`/images/shop/product-${(idx % 5) + 1}.${(idx % 5) < 2 || (idx % 5) === 4 ? 'webp' : 'jpg'}`} alt={product.name} fill className="object-contain p-2" unoptimized />
+                          <Image src={`/images/shop/product-${(idx % 5) + 1}.${[1,2,5].includes((idx % 5) + 1) ? 'webp' : 'jpg'}`} alt={product.name} fill className="object-contain p-2" unoptimized />
                           <div className="absolute top-2 right-2">
                             {product.passed ? (
                               <div className="w-6 h-6 rounded-full bg-[#00B638] flex items-center justify-center">

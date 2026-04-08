@@ -177,7 +177,7 @@ export default function FAQsPage() {
                         >
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-full border border-[#E7E7E7] flex items-center justify-center shrink-0">
-                              <span className="text-[#7E7E7E] text-sm font-bold">?</span>
+                              <Image src="/images/shop/faq-question-icon.svg" alt="?" width={16} height={16} unoptimized />
                             </div>
                             <span className="text-base font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
                           </div>
