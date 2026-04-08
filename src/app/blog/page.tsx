@@ -96,7 +96,7 @@ export default function BlogPage() {
             <div className="flex-1 min-w-0">
               {/* Featured article */}
               {featured && (
-                <Link href="/blog" className="relative h-[420px] rounded-[16px] overflow-hidden mb-8 cursor-pointer group block">
+                <Link href={`/blog/${featuredPost.id}`} className="relative h-[420px] rounded-[16px] overflow-hidden mb-8 cursor-pointer group block">
                   <Image src="/images/shop/blog-1.png" alt={featured.title} fill className="object-cover" unoptimized />
                   <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e]/60 via-[#16213e]/40 to-[#0f3460]/60" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
@@ -122,7 +122,7 @@ export default function BlogPage() {
               {/* Article list */}
               <div className="flex flex-col">
                 {blogArticles.filter((a) => !a.featured).map((post) => (
-                  <Link key={post.id} href="/blog" className="flex gap-5 py-6 border-b border-[#E7E7E7] cursor-pointer group">
+                  <Link key={post.id} href={`/blog/${post.id}`} className="flex gap-5 py-6 border-b border-[#E7E7E7] cursor-pointer group">
                     {/* Date badge */}
                     <div className="text-xs text-[#7E7E7E] w-[80px] shrink-0 pt-1">{post.date}</div>
                     {/* Thumbnail */}
@@ -205,12 +205,13 @@ export default function BlogPage() {
                   <h3 className="text-[16px] font-extrabold text-[#181818] mb-4">Blog Categories</h3>
                   <div className="flex flex-wrap gap-2">
                     {blogCategories.map((cat) => (
-                      <button
+                      <Link
                         key={cat}
-                        className="px-4 py-2 rounded-lg bg-[#F7F7F7] text-sm font-medium text-[#181818] hover:bg-[#EDEDED] transition-colors"
+                        href={`/blog?category=${cat.toLowerCase()}`}
+                        className="px-4 py-2 rounded-lg bg-[#F7F7F7] text-sm font-medium text-[#181818] hover:bg-[#FF6701] hover:text-white transition-colors"
                       >
                         {cat}
-                      </button>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -220,7 +221,7 @@ export default function BlogPage() {
                   <h3 className="text-[16px] font-extrabold text-[#181818] mb-4">Popular Post</h3>
                   <div className="flex flex-col">
                     {popularPosts.map((post, i) => (
-                      <Link key={i} href="/blog" className="flex gap-4 py-3 border-b border-[#E7E7E7] last:border-b-0 cursor-pointer group">
+                      <Link key={i} href={`/blog/${i + 1}`} className="flex gap-4 py-3 border-b border-[#E7E7E7] last:border-b-0 cursor-pointer group">
                         <div className="w-[80px] h-[60px] bg-[#F7F7F7] rounded-lg shrink-0 relative overflow-hidden">
                           <Image src={`/images/shop/blog-${(i % 5) + 1}.png`} alt={post.title} fill className="object-cover" unoptimized />
                         </div>
