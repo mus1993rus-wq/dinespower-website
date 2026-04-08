@@ -21,12 +21,12 @@ const articleData = {
     {
       type: "heading" as const,
       id: "what-is-recomposition",
-      text: "What Is Body Recomposition?",
+      text: "1. What Is Body Recomposition?",
     },
     {
       type: "paragraph" as const,
       id: "",
-      text: "Body recomposition, often referred to as \"recomp,\" is the process of changing your body composition by simultaneously gaining muscle and losing fat. Unlike traditional bulk-and-cut cycles, recomposition aims to improve your physique without significant changes in overall body weight. The key lies in nutrient partitioning \u2014 directing calories toward muscle protein synthesis while mobilizing stored body fat for energy.",
+      text: 'Body recomposition, often referred to as "recomp," is the process of changing your body composition by simultaneously gaining muscle and losing fat. Unlike traditional bulk-and-cut cycles, recomposition aims to improve your physique without significant changes in overall body weight. The key lies in nutrient partitioning \u2014 directing calories toward muscle protein synthesis while mobilizing stored body fat for energy.',
     },
     {
       type: "paragraph" as const,
@@ -46,9 +46,14 @@ const articleData = {
       alt: "Body recomposition overview",
     },
     {
+      type: "quote" as const,
+      id: "",
+      text: "Body recomposition represents the holy grail of physique transformation \u2014 the ability to build muscle and burn fat simultaneously, challenging the conventional wisdom that you must choose one or the other.",
+    },
+    {
       type: "heading" as const,
       id: "how-sarms-work",
-      text: "How SARMs Support Recomposition",
+      text: "2. How SARMs Support Recomposition",
     },
     {
       type: "paragraph" as const,
@@ -63,7 +68,7 @@ const articleData = {
     {
       type: "heading" as const,
       id: "top-sarms",
-      text: "Top SARMs for Recomposition",
+      text: "3. Top SARMs for Recomposition",
     },
     {
       type: "paragraph" as const,
@@ -73,7 +78,7 @@ const articleData = {
     {
       type: "subheading" as const,
       id: "ostarine",
-      text: "1. Ostarine (MK-2866)",
+      text: "Ostarine (MK-2866)",
     },
     {
       type: "paragraph" as const,
@@ -88,7 +93,7 @@ const articleData = {
     {
       type: "subheading" as const,
       id: "rad140",
-      text: "2. RAD-140 (Testolone)",
+      text: "RAD-140 (Testolone)",
     },
     {
       type: "paragraph" as const,
@@ -103,7 +108,7 @@ const articleData = {
     {
       type: "subheading" as const,
       id: "cardarine",
-      text: "3. Cardarine (GW-501516)",
+      text: "Cardarine (GW-501516)",
     },
     {
       type: "paragraph" as const,
@@ -118,7 +123,7 @@ const articleData = {
     {
       type: "subheading" as const,
       id: "lgd4033",
-      text: "4. LGD-4033 (Ligandrol)",
+      text: "LGD-4033 (Ligandrol)",
     },
     {
       type: "paragraph" as const,
@@ -138,9 +143,19 @@ const articleData = {
       alt: "SARMs compounds for recomposition",
     },
     {
+      type: "comparison-table" as const,
+      id: "comparison",
+      text: "",
+    },
+    {
+      type: "quote" as const,
+      id: "",
+      text: "The most successful recomposition protocols combine the right compounds with disciplined nutrition and progressive training \u2014 pharmacology alone is never the answer.",
+    },
+    {
       type: "heading" as const,
       id: "recommended-stacks",
-      text: "Recommended Stacks for Recomposition",
+      text: "4. Recommended Stacks for Recomposition",
     },
     {
       type: "paragraph" as const,
@@ -155,7 +170,7 @@ const articleData = {
     {
       type: "heading" as const,
       id: "nutrition-training",
-      text: "Nutrition and Training During a Recomp",
+      text: "5. Nutrition and Training During a Recomp",
     },
     {
       type: "paragraph" as const,
@@ -177,7 +192,7 @@ const articleData = {
     {
       type: "heading" as const,
       id: "pct-recovery",
-      text: "Post-Cycle Therapy and Recovery",
+      text: "6. Post-Cycle Therapy and Recovery",
     },
     {
       type: "paragraph" as const,
@@ -192,7 +207,7 @@ const articleData = {
     {
       type: "heading" as const,
       id: "product-quality",
-      text: "Importance of Product Quality and Verification",
+      text: "7. Importance of Product Quality and Verification",
     },
     {
       type: "paragraph" as const,
@@ -207,7 +222,7 @@ const articleData = {
     {
       type: "heading" as const,
       id: "conclusion",
-      text: "Conclusion",
+      text: "8. Conclusion",
     },
     {
       type: "paragraph" as const,
@@ -221,6 +236,13 @@ const articleData = {
     },
   ],
 };
+
+const comparisonData = [
+  { name: "Ostarine (MK-2866)", strength: "Moderate", fatLoss: "Moderate", dosage: "10-25mg/day", cycle: "8-12 weeks", pct: "Optional", level: "Beginner" },
+  { name: "RAD-140 (Testolone)", strength: "High", fatLoss: "Moderate", dosage: "10-20mg/day", cycle: "8 weeks", pct: "Required", level: "Intermediate" },
+  { name: "Cardarine (GW-501516)", strength: "Low", fatLoss: "Very High", dosage: "10-20mg/day", cycle: "8-12 weeks", pct: "Not needed", level: "Any" },
+  { name: "LGD-4033 (Ligandrol)", strength: "Very High", fatLoss: "Low", dosage: "5-10mg/day", cycle: "6-8 weeks", pct: "Required", level: "Intermediate+" },
+];
 
 const relatedArticles = [
   {
@@ -249,33 +271,6 @@ const relatedArticles = [
     views: "5.6k views",
     slug: "post-cycle-therapy-guide",
     image: "/images/shop/blog-4.png",
-  },
-];
-
-const recommendedProducts = [
-  {
-    name: "RAD-140 (Testolone) 10mg",
-    price: "$59.99",
-    image: "/images/shop/blog-2.png",
-    slug: "/shop/rad-140",
-  },
-  {
-    name: "Ostarine (MK-2866) 25mg",
-    price: "$49.99",
-    image: "/images/shop/blog-4.png",
-    slug: "/shop/ostarine",
-  },
-  {
-    name: "Cardarine (GW-501516) 20mg",
-    price: "$54.99",
-    image: "/images/shop/blog-1.png",
-    slug: "/shop/cardarine",
-  },
-  {
-    name: "LGD-4033 (Ligandrol) 10mg",
-    price: "$64.99",
-    image: "/images/shop/blog-3.png",
-    slug: "/shop/lgd-4033",
   },
 ];
 
@@ -324,6 +319,42 @@ export default function BlogArticlePage() {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
+
+  const renderComparisonTable = () => (
+    <div className="bg-white border border-[#E7E7E7] rounded-[16px] overflow-hidden my-8">
+      <div className="bg-[#F7F7F7] px-6 py-4 border-b border-[#E7E7E7]">
+        <h3 className="text-[16px] font-extrabold text-[#181818]">SARMs Comparison Table</h3>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="bg-[#FAFAFA]">
+              <th className="text-left text-xs font-semibold text-[#7E7E7E] uppercase tracking-wider px-4 py-3">Compound</th>
+              <th className="text-center text-xs font-semibold text-[#7E7E7E] uppercase tracking-wider px-4 py-3">Strength</th>
+              <th className="text-center text-xs font-semibold text-[#7E7E7E] uppercase tracking-wider px-4 py-3">Fat Loss</th>
+              <th className="text-center text-xs font-semibold text-[#7E7E7E] uppercase tracking-wider px-4 py-3">Dosage</th>
+              <th className="text-center text-xs font-semibold text-[#7E7E7E] uppercase tracking-wider px-4 py-3">Cycle</th>
+              <th className="text-center text-xs font-semibold text-[#7E7E7E] uppercase tracking-wider px-4 py-3">PCT</th>
+              <th className="text-center text-xs font-semibold text-[#7E7E7E] uppercase tracking-wider px-4 py-3">Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparisonData.map((row, i) => (
+              <tr key={i} className={`border-t border-[#E7E7E7] ${i % 2 === 1 ? "bg-[#FAFAFA]" : ""}`}>
+                <td className="text-sm font-semibold text-[#181818] px-4 py-3 whitespace-nowrap">{row.name}</td>
+                <td className="text-sm text-[#4A4A4A] text-center px-4 py-3">{row.strength}</td>
+                <td className="text-sm text-[#4A4A4A] text-center px-4 py-3">{row.fatLoss}</td>
+                <td className="text-sm text-[#4A4A4A] text-center px-4 py-3">{row.dosage}</td>
+                <td className="text-sm text-[#4A4A4A] text-center px-4 py-3">{row.cycle}</td>
+                <td className="text-sm text-[#4A4A4A] text-center px-4 py-3">{row.pct}</td>
+                <td className="text-sm text-[#4A4A4A] text-center px-4 py-3">{row.level}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -377,6 +408,35 @@ export default function BlogArticlePage() {
             {/* Main content */}
             <div className="flex-1 min-w-0 max-w-[860px]">
               <article className="prose-custom">
+                {/* What's Inside TOC Card - inside content */}
+                <div className="border border-[#E7E7E7] rounded-[16px] p-6 mb-8">
+                  <h3 className="text-[18px] font-extrabold text-[#181818] mb-4 flex items-center gap-2">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <rect x="2" y="2" width="16" height="16" rx="3" stroke="#FF6701" strokeWidth="1.5"/>
+                      <path d="M6 7h8M6 10h8M6 13h5" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                    What&apos;s Inside?
+                  </h3>
+                  <div className="flex flex-col gap-1">
+                    {tocItems.filter(h => h.type === "heading").map((heading, i) => {
+                      const isActive = activeSection === heading.id;
+                      return (
+                        <button
+                          key={i}
+                          onClick={() => scrollToSection(heading.id)}
+                          className={`text-left text-sm leading-7 px-3 py-1 rounded-md transition-all ${
+                            isActive
+                              ? "text-[#FF6701] font-semibold bg-[#FFF5EE]"
+                              : "text-[#4A4A4A] hover:text-[#181818] hover:bg-[#F7F7F7]"
+                          }`}
+                        >
+                          {heading.text}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
                 {articleData.content.map((block, i) => {
                   if (block.type === "heading") {
                     return (
@@ -405,6 +465,19 @@ export default function BlogArticlePage() {
                         />
                       </div>
                     );
+                  }
+                  if (block.type === "quote") {
+                    return (
+                      <div key={i} className="bg-[#F7F7F7] rounded-[12px] p-6 my-8 relative">
+                        <span className="text-[48px] leading-none text-[#FF6701]/30 font-serif absolute top-3 left-5">{"\u275D"}</span>
+                        <p className="text-[15px] text-[#4A4A4A] leading-[26px] italic pl-8 pr-2">
+                          {block.text}
+                        </p>
+                      </div>
+                    );
+                  }
+                  if (block.type === "comparison-table") {
+                    return <div key={i}>{renderComparisonTable()}</div>;
                   }
                   return (
                     <p key={i} className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">
@@ -475,45 +548,59 @@ export default function BlogArticlePage() {
             {/* Sidebar */}
             <div className="w-[340px] shrink-0 hidden lg:block">
               <div className="sticky top-6 flex flex-col gap-6">
-                {/* Table of contents */}
-                <div className="bg-[#F7F7F7] rounded-[12px] p-5">
-                  <h3 className="text-[16px] font-extrabold text-[#181818] mb-4">Table of Contents</h3>
-                  <div className="flex flex-col gap-0.5">
-                    {tocItems.map((heading, i) => {
-                      const isActive = activeSection === heading.id;
-                      return (
-                        <button
-                          key={i}
-                          onClick={() => scrollToSection(heading.id)}
-                          className={`text-left text-sm leading-6 px-3 py-1.5 rounded-md transition-all border-l-2 ${
-                            isActive
-                              ? "border-[#FF6701] text-[#FF6701] font-semibold bg-white"
-                              : "border-transparent text-[#7E7E7E] hover:text-[#181818] hover:bg-white/60"
-                          } ${heading.type === "subheading" ? "pl-6 text-[13px]" : "font-medium"}`}
-                        >
-                          {heading.text}
-                        </button>
-                      );
-                    })}
+                {/* Product Recommendation Card */}
+                <div className="bg-[#F7F7F7] rounded-[12px] p-4">
+                  <div className="bg-white border border-[#E7E7E7] rounded-[8px] overflow-hidden">
+                    {/* Product image */}
+                    <div className="relative h-[200px] bg-[#F0F0F0]">
+                      <Image
+                        src="/images/shop/blog-4.png"
+                        alt="Yohimbine HCL"
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                      <span className="absolute top-3 left-3 bg-[#FF3B30] text-white text-xs font-bold px-2 py-1 rounded-md">
+                        Sale -14%
+                      </span>
+                    </div>
+                    {/* Product info */}
+                    <div className="p-4">
+                      <p className="text-xs text-[#7E7E7E] mb-1 uppercase tracking-wider">DinesPower</p>
+                      <h4 className="text-[15px] font-bold text-[#181818] leading-[20px] mb-2">Yohimbine HCL 10mg</h4>
+                      {/* Stars */}
+                      <div className="flex items-center gap-1 mb-3">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <svg key={star} width="14" height="14" viewBox="0 0 14 14" fill={star <= 4 ? "#FF6701" : "none"}>
+                            <path d="M7 1l1.76 3.57 3.94.57-2.85 2.78.67 3.93L7 10.07l-3.52 1.78.67-3.93L1.3 5.14l3.94-.57L7 1z" stroke="#FF6701" strokeWidth="1" strokeLinejoin="round"/>
+                          </svg>
+                        ))}
+                        <span className="text-xs text-[#7E7E7E] ml-1">4.0</span>
+                      </div>
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="text-[20px] font-extrabold text-[#181818]">30&euro;</span>
+                        <span className="text-[14px] text-[#B6B6B6] line-through">35&euro;</span>
+                      </div>
+                      <Link
+                        href="/shop/yohimbine"
+                        className="block bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold rounded-lg h-[44px] w-full transition-colors text-center leading-[44px]"
+                      >
+                        Learn More
+                      </Link>
+                    </div>
                   </div>
                 </div>
 
-                {/* Product banner - Sex Boost */}
-                <Link href="/shop" className="block rounded-[12px] overflow-hidden hover:opacity-90 transition-opacity">
-                  <Image
-                    src="/images/shop/side-sexboost.png"
-                    alt="Sex Boost supplement"
-                    width={340}
-                    height={180}
-                    className="w-full h-auto"
-                    unoptimized
-                  />
-                </Link>
-
                 {/* Newsletter */}
                 <div className="bg-[#F7F7F7] rounded-[12px] p-5">
-                  <h3 className="text-[16px] font-extrabold text-[#181818] mb-2">Get Fresh Updates</h3>
-                  <p className="text-sm text-[#7E7E7E] mb-4">Subscribe to our newsletter for the latest articles and product news</p>
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <rect x="2" y="4" width="16" height="12" rx="2" stroke="#FF6701" strokeWidth="1.5"/>
+                      <path d="M2 6l8 5 8-5" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <h3 className="text-[16px] font-extrabold text-[#181818]">New Articles By Email</h3>
+                  </div>
+                  <p className="text-sm text-[#7E7E7E] mb-4">Subscribe and get the latest articles delivered to your inbox</p>
                   <input
                     type="email"
                     placeholder="Your email address"
@@ -524,18 +611,47 @@ export default function BlogArticlePage() {
                   </button>
                 </div>
 
-                {/* Product banner - CBD */}
-                <Link href="/shop" className="block rounded-[12px] overflow-hidden hover:opacity-90 transition-opacity">
-                  <Image
-                    src="/images/shop/side-cbd.png"
-                    alt="CBD supplement"
-                    width={340}
-                    height={180}
-                    className="w-full h-auto"
-                    unoptimized
-                  />
-                </Link>
+                {/* Telegram Card */}
+                <div className="bg-[#00A9DE] rounded-[12px] p-5 text-center">
+                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-3">
+                    <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} unoptimized />
+                  </div>
+                  <h3 className="text-[16px] font-extrabold text-white mb-1">Join Our Telegram</h3>
+                  <p className="text-sm text-white/70 mb-4">Get exclusive deals, news and community discussion</p>
+                  <a
+                    href="#"
+                    className="block bg-white text-[#00A9DE] text-sm font-semibold rounded-lg h-[44px] w-full transition-colors text-center leading-[44px] hover:bg-white/90"
+                  >
+                    Go to Telegram
+                  </a>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Still Have Questions Card */}
+        <div className="max-w-[1340px] mx-auto pb-12">
+          <div className="bg-[#F7F7F7] rounded-[16px] p-8 flex items-center justify-between">
+            <div className="flex items-center gap-5">
+              <div className="w-[56px] h-[56px] rounded-full bg-white flex items-center justify-center shrink-0">
+                <Image src="/images/shop/faq-help-icon.png" alt="Help" width={32} height={32} unoptimized />
+              </div>
+              <div>
+                <h3 className="text-[18px] font-extrabold text-[#181818] mb-1">Still Have Questions?</h3>
+                <p className="text-sm text-[#7E7E7E]">Reach out to our manager right away &mdash; we&apos;re happy to help with any questions about SARMs.</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 shrink-0 ml-6">
+              <a href="#" className="w-[48px] h-[48px] rounded-full bg-[#00A9DE] flex items-center justify-center hover:opacity-90 transition-opacity">
+                <Image src="/images/shop/telegram.svg" alt="Telegram" width={22} height={22} unoptimized />
+              </a>
+              <a href="#" className="w-[48px] h-[48px] rounded-full bg-[#00D43F] flex items-center justify-center hover:opacity-90 transition-opacity">
+                <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={22} height={22} unoptimized />
+              </a>
+              <button className="bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold rounded-lg h-[44px] px-6 transition-colors">
+                Ask a Question
+              </button>
             </div>
           </div>
         </div>
@@ -543,36 +659,6 @@ export default function BlogArticlePage() {
         {/* You might also like */}
         <div className="max-w-[1340px] mx-auto pb-12">
           <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-6">You Might Also Like</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            {recommendedProducts.map((product, i) => (
-              <Link
-                key={i}
-                href={product.slug}
-                className="group bg-[#F7F7F7] rounded-[12px] overflow-hidden hover:shadow-md transition-shadow"
-              >
-                <div className="relative h-[160px] overflow-hidden">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    unoptimized
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-[14px] font-bold text-[#181818] leading-[18px] line-clamp-2 mb-2 group-hover:text-[#FF6701] transition-colors">
-                    {product.name}
-                  </h3>
-                  <span className="text-[16px] font-extrabold text-[#FF6701]">{product.price}</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Related Articles */}
-        <div className="max-w-[1340px] mx-auto pb-16">
-          <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-6">Related Articles</h2>
           <div className="grid grid-cols-3 gap-6">
             {relatedArticles.map((article) => (
               <Link
