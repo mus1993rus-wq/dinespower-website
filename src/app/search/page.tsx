@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -17,10 +17,17 @@ const allProducts = [
   { brand: "Deus Medical", name: "MK-677 Ibutamoren growth hormone secretagogue", dosage: "25 mg/tab", price: 58, badges: [] as string[] },
 ];
 
+const popularSearches = ["Ostarine", "Testosterone", "SARMs", "Peptides", "Fat Burner", "CBD"];
+const recentSearches = ["Vaso burn", "MOTS-C", "Deus Medical"];
+
 export default function SearchPage() {
   const [query, setQuery] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const results = query.length >= 2
+  const results = submitted && query.length >= 2
     ? allProducts.filter(
         (p) =>
           p.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -28,7 +35,55 @@ export default function SearchPage() {
       )
     : [];
 
-  const hasSearched = query.length >= 2;
+  const suggestions = !submitted && query.length >= 1
+    ? allProducts
+        .filter(
+          (p) =>
+            p.name.toLowerCase().includes(query.toLowerCase()) ||
+            p.brand.toLowerCase().includes(query.toLowerCase())
+        )
+        .map((p) => p.name)
+        .slice(0, 5)
+    : [];
+
+  const handleSearch = () => {
+    if (query.length >= 2) {
+      setSubmitted(true);
+      setIsFocused(false);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") handleSearch();
+  };
+
+  const handleQueryChange = (value: string) => {
+    setQuery(value);
+    setSubmitted(false);
+  };
+
+  const handleSuggestionClick = (text: string) => {
+    setQuery(text);
+    setSubmitted(true);
+    setIsFocused(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node) &&
+        inputRef.current &&
+        !inputRef.current.contains(e.target as Node)
+      ) {
+        setIsFocused(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const showDropdown = isFocused && !submitted;
 
   return (
     <>
@@ -44,62 +99,133 @@ export default function SearchPage() {
         </div>
 
         <div className="max-w-[1340px] mx-auto pb-16">
-          <h1 className="text-3xl font-extrabold text-[#181818] mb-8">Search Products</h1>
-
           {/* Search input */}
-          <div className="flex gap-3 mb-8 max-w-[700px]">
-            <div className="flex-1 bg-[#F7F7F7] border border-[#E7E7E7] rounded-[16px] flex items-center gap-3 px-6 h-[56px]">
-              <svg width="22" height="22" viewBox="0 0 20 20" fill="none" className="opacity-30 shrink-0">
-                <circle cx="9.17" cy="9.17" r="6.67" stroke="#181818" strokeWidth="1.5" />
-                <path d="M16.67 16.67L14.17 14.17" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-              <input
-                type="text"
-                placeholder="Search for products, brands, categories..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                className="bg-transparent flex-1 text-base text-[#181818] placeholder:text-[#7E7E7E] outline-none"
-                autoFocus
-              />
-              {query && (
-                <button onClick={() => setQuery("")} className="text-[#7E7E7E] hover:text-[#181818] transition-colors">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </button>
-              )}
+          <div className="relative max-w-[700px] mb-8">
+            <div className="flex gap-3">
+              <div className="flex-1 bg-[#F7F7F7] border border-[#E7E7E7] rounded-[16px] flex items-center gap-3 px-6 h-[56px]">
+                <svg width="22" height="22" viewBox="0 0 20 20" fill="none" className="opacity-30 shrink-0">
+                  <circle cx="9.17" cy="9.17" r="6.67" stroke="#181818" strokeWidth="1.5" />
+                  <path d="M16.67 16.67L14.17 14.17" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  placeholder="Search for products, brands, categories..."
+                  value={query}
+                  onChange={(e) => handleQueryChange(e.target.value)}
+                  onFocus={() => setIsFocused(true)}
+                  onKeyDown={handleKeyDown}
+                  className="bg-transparent flex-1 text-base text-[#181818] placeholder:text-[#7E7E7E] outline-none"
+                  autoFocus
+                />
+                {query && (
+                  <button onClick={() => { setQuery(""); setSubmitted(false); }} className="text-[#7E7E7E] hover:text-[#181818] transition-colors">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  </button>
+                )}
+              </div>
+              <button
+                onClick={handleSearch}
+                className="bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold px-6 rounded-[16px] h-[56px] transition-colors shrink-0"
+              >
+                Search
+              </button>
             </div>
-            <button className="bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold px-6 rounded-[16px] h-[56px] transition-colors shrink-0">
-              Search
-            </button>
+
+            {/* Dropdown */}
+            {showDropdown && (
+              <div
+                ref={dropdownRef}
+                className="absolute top-[64px] left-0 right-[90px] bg-white border border-[#E7E7E7] rounded-[12px] shadow-lg z-50 py-4 px-5"
+              >
+                {query.length >= 1 && suggestions.length > 0 ? (
+                  /* Suggestions state */
+                  <div>
+                    <p className="text-[12px] font-semibold text-[#7E7E7E] uppercase tracking-wide mb-3">Suggestions</p>
+                    <div className="flex flex-col">
+                      {suggestions.map((s, i) => (
+                        <button
+                          key={i}
+                          onClick={() => handleSuggestionClick(s)}
+                          className="text-left text-[14px] text-[#181818] py-2 px-2 rounded-[8px] hover:bg-[#F7F7F7] transition-colors"
+                        >
+                          {s}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  /* Default state: Recent + Popular */
+                  <div className="flex flex-col gap-5">
+                    <div>
+                      <p className="text-[12px] font-semibold text-[#7E7E7E] uppercase tracking-wide mb-3">Recent Searches</p>
+                      <div className="flex flex-wrap gap-2">
+                        {recentSearches.map((s) => (
+                          <button
+                            key={s}
+                            onClick={() => handleSuggestionClick(s)}
+                            className="text-[13px] text-[#181818] bg-[#F7F7F7] hover:bg-[#EFEFEF] px-3 py-1.5 rounded-[8px] transition-colors flex items-center gap-1.5"
+                          >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="opacity-40">
+                              <path d="M12 8V12L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                              <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5"/>
+                            </svg>
+                            {s}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-[12px] font-semibold text-[#7E7E7E] uppercase tracking-wide mb-3">Popular Searches</p>
+                      <div className="flex flex-wrap gap-2">
+                        {popularSearches.map((s) => (
+                          <button
+                            key={s}
+                            onClick={() => handleSuggestionClick(s)}
+                            className="text-[13px] text-[#181818] bg-[#F7F7F7] hover:bg-[#EFEFEF] px-3 py-1.5 rounded-[8px] transition-colors"
+                          >
+                            {s}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Results */}
-          {!hasSearched ? (
-            <div className="text-center py-16">
-              <div className="text-5xl mb-4">🔍</div>
-              <h2 className="text-xl font-bold text-[#181818] mb-2">Start Searching</h2>
-              <p className="text-sm text-[#7E7E7E]">Type at least 2 characters to search for products.</p>
-            </div>
-          ) : results.length === 0 ? (
-            <div className="text-center py-16">
-              <div className="text-5xl mb-4">😕</div>
-              <h2 className="text-xl font-bold text-[#181818] mb-2">No Results Found</h2>
-              <p className="text-sm text-[#7E7E7E] mb-6">
-                We couldn&apos;t find any products matching &ldquo;{query}&rdquo;. Try a different search term.
-              </p>
-              <Link href="/" className="inline-flex items-center gap-2 bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold px-8 py-3 rounded-lg transition-colors">
-                Browse All Products
-              </Link>
-            </div>
-          ) : (
-            <>
-              <p className="text-sm text-[#7E7E7E] mb-6">{results.length} result{results.length !== 1 ? "s" : ""} for &ldquo;{query}&rdquo;</p>
-              <div className="flex flex-wrap gap-4">
-                {results.map((p, i) => (
-                  <ProductCard key={i} {...p} />
-                ))}
+          {submitted && query.length >= 2 ? (
+            results.length === 0 ? (
+              <div className="text-center py-16">
+                <h2 className="text-xl font-bold text-[#181818] mb-2">No Results Found</h2>
+                <p className="text-sm text-[#7E7E7E] mb-6">
+                  We couldn&apos;t find any products matching &ldquo;{query}&rdquo;. Try a different search term.
+                </p>
+                <Link href="/" className="inline-flex items-center gap-2 bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold px-8 py-3 rounded-lg transition-colors">
+                  Browse All Products
+                </Link>
               </div>
-            </>
-          )}
+            ) : (
+              <>
+                <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-2">
+                  Search Results &lsquo;{query}&rsquo;
+                </h1>
+                <p className="text-sm text-[#7E7E7E] mb-6">{results.length} result{results.length !== 1 ? "s" : ""} found</p>
+                <div className="flex flex-wrap gap-4">
+                  {results.map((p, i) => (
+                    <ProductCard key={i} {...p} />
+                  ))}
+                </div>
+              </>
+            )
+          ) : !submitted ? (
+            <div className="text-center py-16">
+              <h2 className="text-xl font-bold text-[#181818] mb-2">Start Searching</h2>
+              <p className="text-sm text-[#7E7E7E]">Type at least 2 characters and press Search or Enter.</p>
+            </div>
+          ) : null}
         </div>
       </main>
       <div className="relative z-0">

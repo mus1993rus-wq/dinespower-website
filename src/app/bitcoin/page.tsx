@@ -135,7 +135,7 @@ export default function BitcoinPaymentPage() {
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-[#181818]">Bitcoin Payment</span>
+            <span className="text-[#181818] font-semibold">Bitcoin Payment</span>
           </div>
         </div>
 
