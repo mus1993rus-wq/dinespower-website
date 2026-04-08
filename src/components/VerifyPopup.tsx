@@ -51,7 +51,7 @@ export default function VerifyPopup({ isOpen, onClose }: VerifyPopupProps) {
         </button>
 
         {/* Title */}
-        <h2 className="text-[36px] font-extrabold text-center text-[#181818] mb-2">Verify Authenticity</h2>
+        <h2 className="text-[24px] font-extrabold text-center text-[#181818] mb-2">Verify Authenticity</h2>
         <p className="text-[16px] text-[#7E7E7E] text-center mb-8">
           We work directly with manufacturers, not resellers
         </p>
@@ -63,24 +63,15 @@ export default function VerifyPopup({ isOpen, onClose }: VerifyPopupProps) {
               key={brand.name}
               className="border border-[#E7E7E7] rounded-[16px] overflow-hidden flex flex-col"
             >
-              {/* Image area */}
+              {/* Image area - bg image already contains logo + products */}
               <div className="relative h-[200px] overflow-hidden">
                 <Image
                   src={brand.bgImage}
                   alt={brand.name}
                   fill
                   className="object-cover"
+                  unoptimized
                 />
-                {/* Logo overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Image
-                    src={brand.logo}
-                    alt={`${brand.name} logo`}
-                    width={120}
-                    height={48}
-                    className="object-contain drop-shadow-lg"
-                  />
-                </div>
               </div>
 
               {/* Content area */}
