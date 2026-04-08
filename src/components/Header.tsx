@@ -35,7 +35,7 @@ const categoryData: { name: string; slug: string; brands: string[] }[] = [
   { name: "Fat Burn", slug: "fat-burn", brands: ["Biaxol", "Deus Medical", "Astera Labs"] },
   { name: "Peptides & HGH", slug: "peptides-hgh", brands: ["Deus Medical", "Astera Labs", "Biaxol"] },
   { name: "SARMs", slug: "sarms", brands: ["Biaxol", "Deus Medical", "Astera Labs"] },
-  { name: "PCT", slug: "pct", brands: ["Biaxol PCT", "Deus Medical PCT", "Astera Labs"] },
+  { name: "PCT", slug: "pct", brands: ["Biaxol", "Deus Medical", "Astera Labs"] },
   { name: "Energy", slug: "energy", brands: ["Biaxol"] },
   { name: "Sex Support", slug: "sex-support", brands: ["Deus Medical", "Astera Labs"] },
   { name: "Health", slug: "health", brands: ["Biaxol"] },
