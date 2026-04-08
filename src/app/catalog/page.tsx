@@ -8,7 +8,27 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 
-const brands = ["Astera Labs", "Deus Medical", "Biaxol"];
+const categoryBrands: Record<string, string[]> = {
+  injectable: ["Astera Labs", "Deus Medical"],
+  oral: ["Astera Labs", "Deus Medical"],
+  "fat-burn": ["Biaxol", "Deus Medical", "Astera Labs"],
+  "peptides-hgh": ["Deus Medical", "Astera Labs", "Biaxol"],
+  sarms: ["Biaxol", "Deus Medical", "Astera Labs"],
+  pct: ["Biaxol", "Deus Medical", "Astera Labs"],
+  energy: ["Biaxol"],
+  "sex-support": ["Deus Medical", "Astera Labs"],
+  health: ["Biaxol"],
+  stacks: ["Biaxol", "Deus Medical"],
+  "amino-acids": ["Astera Labs"],
+};
+
+// Categories with only one brand — auto-redirect to that brand
+const singleBrandCategories: Record<string, string> = {
+  energy: "biaxol",
+  health: "biaxol",
+  "amino-acids": "astera-labs",
+};
+
 const sortOptions = ["Most Popular", "Price: Low to High", "Price: High to Low", "Newest"];
 
 const categoryList = [
@@ -298,20 +318,23 @@ function CatalogContent() {
   const currentBrandLabel = brandSlug ? brandSlugToLabel[brandSlug] : null;
   const bannerImage = getBannerImage(categorySlug, brandSlug);
 
+  // Auto-redirect for single-brand categories
+  useEffect(() => {
+    if (categorySlug && singleBrandCategories[categorySlug] && !brandSlug) {
+      router.replace(`/catalog?category=${categorySlug}&brand=${singleBrandCategories[categorySlug]}`);
+    }
+  }, [categorySlug, brandSlug, router]);
+
   const bannerDescription = currentBrandLabel
     ? brandDescriptions[currentBrandLabel] || ""
     : categorySlug
     ? categoryDescriptions[categorySlug] || ""
     : "";
 
-  function handleBrandClick(brand: string | null) {
-    const params = new URLSearchParams();
-    if (categorySlug) params.set("category", categorySlug);
-    if (brand) params.set("brand", brand);
-    router.push(`/catalog?${params.toString()}`);
-  }
+  // Brands available for the current category
+  const brandsForCategory = categorySlug ? (categoryBrands[categorySlug] || []) : ["Astera Labs", "Deus Medical", "Biaxol"];
 
-  // Build active filters list
+  // Build active filters list — brand is navigation, NOT a removable filter
   const activeFilters: { label: string; onRemove: () => void }[] = [];
   if (inStockChecked && !outOfStockChecked) {
     activeFilters.push({ label: "In stock", onRemove: () => setInStockChecked(false) });
@@ -319,20 +342,11 @@ function CatalogContent() {
   if (outOfStockChecked && !inStockChecked) {
     activeFilters.push({ label: "Out of stock", onRemove: () => setOutOfStockChecked(false) });
   }
-  if (currentBrandLabel) {
-    activeFilters.push({
-      label: currentBrandLabel,
-      onRemove: () => handleBrandClick(null),
-    });
-  }
 
   function clearAllFilters() {
     setInStockChecked(true);
     setOutOfStockChecked(false);
     setPriceRange([0, 100000]);
-    const params = new URLSearchParams();
-    if (categorySlug) params.set("category", categorySlug);
-    router.push(`/catalog?${params.toString()}`);
   }
 
   // Filter products
@@ -469,26 +483,40 @@ function CatalogContent() {
         <div className="max-w-[1340px] mx-auto flex gap-6 pb-16">
           {/* Sidebar Filters */}
           <aside className="w-[220px] shrink-0">
-            {/* Brands section */}
+            {/* Brands section — navigation links, not filter toggles */}
             <div className="mb-6">
               <h4 className="text-sm font-semibold text-[#181818] mb-3">Brands</h4>
-              <div className="flex flex-col gap-1">
-                {brands.map((b) => (
-                  <button
-                    key={b}
-                    onClick={() => handleBrandClick(brandSlug === brandLabelToSlug[b] ? null : brandLabelToSlug[b])}
-                    className={`flex items-center gap-2.5 text-left text-sm px-2 py-2 rounded-lg transition-colors ${
-                      brandSlug === brandLabelToSlug[b]
-                        ? "bg-[#FFF3EB] border border-[#FF6701]"
-                        : "hover:bg-[#F7F7F7]"
-                    }`}
+              <div className="flex flex-col gap-0.5">
+                {currentBrandLabel && categorySlug && (
+                  <Link
+                    href={`/catalog?category=${categorySlug}`}
+                    className="flex items-center gap-1.5 text-sm text-[#FF6701] font-semibold px-2 py-1.5 hover:underline"
                   >
-                    <BrandBadge brand={b} />
-                    <span className={`text-sm leading-5 ${brandSlug === brandLabelToSlug[b] ? "text-[#FF6701] font-semibold" : "text-[#181818]"}`}>
-                      {b}
-                    </span>
-                  </button>
-                ))}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                      <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    All {currentCategory?.label}
+                  </Link>
+                )}
+                {brandsForCategory.map((b) => {
+                  const isActive = brandSlug === brandLabelToSlug[b];
+                  return (
+                    <Link
+                      key={b}
+                      href={`/catalog?category=${categorySlug}&brand=${brandLabelToSlug[b]}`}
+                      className={`flex items-center gap-2.5 text-sm px-2 py-2 rounded-lg transition-colors ${
+                        isActive
+                          ? "border-l-2 border-[#FF6701] pl-[6px]"
+                          : "hover:bg-[#F7F7F7]"
+                      }`}
+                    >
+                      <BrandBadge brand={b} />
+                      <span className={`text-sm leading-5 ${isActive ? "text-[#FF6701] font-semibold" : "text-[#181818]"}`}>
+                        {b}
+                      </span>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 
@@ -573,12 +601,14 @@ function CatalogContent() {
                         </svg>
                       </button>
                     ))}
-                    <button
-                      onClick={clearAllFilters}
-                      className="text-sm font-semibold text-[#FF6701] hover:underline ml-1"
-                    >
-                      Clear All
-                    </button>
+                    {activeFilters.length > 1 && (
+                      <button
+                        onClick={clearAllFilters}
+                        className="text-sm font-semibold text-[#FF6701] hover:underline ml-1"
+                      >
+                        Clear All
+                      </button>
+                    )}
                   </>
                 )}
               </div>

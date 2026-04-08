@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 interface PaymentPopupProps {
   isOpen: boolean;
@@ -40,8 +41,8 @@ export default function PaymentPopup({ isOpen, onClose }: PaymentPopupProps) {
         <div className="border border-[#E7E7E7] rounded-[12px] overflow-hidden mb-6">
           {/* Bank Transfer */}
           <div className="p-4 flex items-start gap-3 border-b border-[#E7E7E7]">
-            <div className="w-[40px] h-[40px] bg-[#181818] rounded-[10px] flex items-center justify-center shrink-0">
-              <span className="text-white text-[18px]">🏦</span>
+            <div className="w-[40px] h-[40px] rounded-[10px] overflow-hidden shrink-0">
+              <Image src="/images/shop/popup-icons/bank-transfer.png" alt="Bank" width={40} height={40} className="object-cover" unoptimized />
             </div>
             <div className="flex-1">
               <h3 className="text-[15px] font-extrabold text-[#181818]">Bank transfer</h3>
@@ -56,8 +57,8 @@ export default function PaymentPopup({ isOpen, onClose }: PaymentPopupProps) {
 
           {/* Bitcoin */}
           <div className="p-4 flex items-start gap-3">
-            <div className="w-[40px] h-[40px] bg-[#FF6701] rounded-[10px] flex items-center justify-center shrink-0">
-              <span className="text-white text-[18px] font-bold">&#8383;</span>
+            <div className="w-[40px] h-[40px] rounded-[10px] overflow-hidden shrink-0">
+              <Image src="/images/shop/popup-icons/bitcoin.png" alt="Bitcoin" width={40} height={40} className="object-cover" unoptimized />
             </div>
             <div className="flex-1">
               <h3 className="text-[15px] font-extrabold text-[#181818]">Bitcoin</h3>
