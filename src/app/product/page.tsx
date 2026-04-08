@@ -339,8 +339,9 @@ export default function ProductPage() {
             </div>
 
             {/* 8. Promo code block */}
-            <div className="bg-[#181818] rounded-[12px] p-4 mb-6 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
+            <div className="bg-[#181818] rounded-[12px] p-4 mb-6 flex items-center justify-between gap-4 relative overflow-hidden">
+              <Image src="/images/shop/product-icons/bg.png" alt="" fill className="object-cover opacity-20 absolute inset-0" unoptimized />
+              <div className="flex items-center gap-3 relative z-10">
                 <div className="w-[48px] h-[48px] shrink-0">
                   <Image src="/images/shop/product-icons/discount.png" alt="" width={48} height={48} className="object-contain" unoptimized />
                 </div>
@@ -349,7 +350,7 @@ export default function ProductPage() {
                   <p className="text-xs text-white/60">Use Code &quot;DINES2026&quot; for get 5% Discount</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2 bg-[#2A2A2A] border border-dashed border-[#FF6701] rounded-lg px-4 py-2.5 shrink-0">
+              <div className="flex items-center gap-2 bg-[#2A2A2A] border border-dashed border-[#FF6701] rounded-lg px-4 py-2.5 shrink-0 relative z-10">
                 <span className="text-sm font-bold text-[#FF6701] tracking-wider">DINES2026</span>
                 <button onClick={handleCopy} className="text-white/60 hover:text-white transition-colors">
                   {copied ? (

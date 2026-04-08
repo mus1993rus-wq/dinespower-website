@@ -61,11 +61,11 @@ const proSellerCards = [
 ];
 
 const blogPosts = [
-  { title: "Best SARMs for Body Recomposition: Muscle Gain and Fat Loss", date: "12 Nov", readTime: "7 min read", views: "3.2k views", tags: ["Bodybuilding", "SARMs", "Cutting"] },
-  { title: "Peptides vs SARMs for Cutting: which is more effective for preserving muscle mass", date: "12 Nov 2025", readTime: "7 min read", views: "3.2k views" },
-  { title: "RAD-140 (Testolone): Laboratory Analysis of Its Impact on Anabolism, Androgen Receptors and Safety Markers", date: "12 Nov 2025", readTime: "7 min read", views: "3.2k views" },
-  { title: "Peptides vs SARMs for Cutting: which is more effective for preserving muscle mass", date: "12 Nov 2025", readTime: "7 min read", views: "3.2k views" },
-  { title: "RAD-140 (Testolone): Laboratory Analysis of Its Impact on Anabolism", date: "12 Nov 2025", readTime: "7 min read", views: "3.2k views" },
+  { title: "Best SARMs for Body Recomposition: Muscle Gain and Fat Loss", slug: "best-sarms-body-recomposition", date: "12 Nov", readTime: "7 min read", views: "3.2k views", tags: ["Bodybuilding", "SARMs", "Cutting"] },
+  { title: "Peptides vs SARMs for Cutting: which is more effective for preserving muscle mass", slug: "peptides-vs-sarms-cutting", date: "12 Nov 2025", readTime: "7 min read", views: "2.8k views" },
+  { title: "RAD-140 (Testolone): Laboratory Analysis of Its Impact on Anabolism, Androgen Receptors and Safety Markers", slug: "rad-140-testolone-analysis", date: "8 Nov 2025", readTime: "9 min read", views: "4.1k views" },
+  { title: "Complete Guide to Post Cycle Therapy: When and How to Start PCT", slug: "post-cycle-therapy-guide", date: "5 Nov 2025", readTime: "11 min read", views: "5.6k views" },
+  { title: "RAD-140 (Testolone): Laboratory Analysis of Its Impact on Anabolism", slug: "rad-140-anabolism-impact", date: "3 Nov 2025", readTime: "8 min read", views: "3.5k views" },
 ];
 
 const faqItems = [
@@ -312,7 +312,7 @@ function BlogSection() {
       </ScrollAnimation>
       <div className="flex gap-6">
         {/* Featured post */}
-        <Link href="/blog" className="flex-1 relative h-[534px] rounded-2xl overflow-hidden group cursor-pointer block">
+        <Link href={`/blog/${blogPosts[0].slug}`} className="flex-1 relative h-[534px] rounded-2xl overflow-hidden group cursor-pointer block">
           <Image src="/images/shop/blog-1.png" alt="" fill className="object-cover" unoptimized />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
           <div className="absolute top-6 left-6 z-20 bg-white rounded-lg px-3 py-2 text-center">
@@ -336,7 +336,7 @@ function BlogSection() {
         {/* Side posts */}
         <div className="w-[440px] flex flex-col">
           {blogPosts.slice(1).map((post, i) => (
-            <Link key={i} href="/blog" className="flex gap-4 py-4 border-b border-[#E7E7E7] last:border-b-0 cursor-pointer group">
+            <Link key={i} href={`/blog/${post.slug}`} className="flex gap-4 py-4 border-b border-[#E7E7E7] last:border-b-0 cursor-pointer group">
               <div className="w-[100px] h-[80px] bg-[#F7F7F7] rounded-lg shrink-0 relative overflow-hidden">
                 <Image src={`/images/shop/blog-${i + 2}.png`} alt="" fill className="object-cover" unoptimized />
               </div>
