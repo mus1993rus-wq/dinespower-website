@@ -78,7 +78,8 @@ const trustBadges = [
     desc: "Tiered discounts for partner orders from \u20AC1,500+",
     button: "Read More",
     orangeBg: true,
-    href: "#",
+    href: "https://dinespower.to/partners-landing/",
+    external: true,
   },
 ];
 
@@ -281,11 +282,10 @@ export default function ProductPage() {
               Methenolone Enanthate 200 Injectable Steroid In Vials
             </h1>
 
-            {/* 3. Brand badge */}
-            <div className="flex items-center gap-3 border border-[#E7E7E7] rounded-[8px] p-3 mb-5">
-              <div className="bg-[#F7F7F7] rounded-[6px] px-3 py-2 text-center shrink-0">
-                <span className="text-[12px] font-black text-[#181818] leading-[14px] block">ASTERA</span>
-                <span className="text-[10px] font-bold text-[#7E7E7E] leading-[12px] block">LABS</span>
+            {/* 3. Brand badge with real logo */}
+            <div className="flex items-center gap-4 border border-[#E7E7E7] rounded-[8px] p-3 mb-5">
+              <div className="bg-[#F7F7F7] rounded-[6px] w-[64px] h-[48px] flex items-center justify-center shrink-0 p-1">
+                <Image src="/images/shop/verify-popup/logo-astera.png" alt="Astera Labs" width={56} height={40} className="object-contain" unoptimized />
               </div>
               <div>
                 <p className="text-[14px] font-semibold text-[#181818]">Official Astera Labs Product</p>
@@ -319,7 +319,7 @@ export default function ProductPage() {
               </div>
               <button
                 onClick={handleAddToCart}
-                className="flex-1 bg-[#FF6701] hover:bg-[#E65D00] text-white font-semibold rounded-[8px] h-[48px] flex items-center justify-center gap-2 transition-colors text-base"
+                className="w-[280px] bg-[#FF6701] hover:bg-[#E65D00] text-white font-semibold rounded-[8px] h-[48px] flex items-center justify-center gap-2 transition-colors text-base"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -620,24 +620,24 @@ export default function ProductPage() {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">TOP Injectable</h2>
             <div className="flex gap-2">
-              <button className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
+              <button onClick={() => { const el = document.getElementById('top-injectable-scroll'); if (el) el.scrollBy({ left: -280, behavior: 'smooth' }); }} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors cursor-pointer">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
-              <button className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
+              <button onClick={() => { const el = document.getElementById('top-injectable-scroll'); if (el) el.scrollBy({ left: 280, behavior: 'smooth' }); }} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors cursor-pointer">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
             </div>
           </div>
-          <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
-            {/* Promo banner card */}
-            <div className="w-[240px] shrink-0 rounded-[16px] overflow-hidden relative">
-              <Image src="/images/shop/promo-injectable.png" alt="Injectable Promo" width={240} height={340} className="object-cover w-full h-full" unoptimized />
-              <div className="absolute bottom-4 left-4 right-4">
-                <Link href="/catalog" className="bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold rounded-[8px] h-[40px] flex items-center justify-center transition-colors">
+          <div id="top-injectable-scroll" className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
+            {/* Promo banner card - fixed position */}
+            <Link href="/catalog?category=injectable" className="w-[252px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center cursor-pointer group" style={{ minHeight: '480px' }}>
+              <Image src="/images/shop/promo-injectable.png" alt="Injectable" fill className="object-cover" unoptimized />
+              <div className="relative z-10">
+                <span className="bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] flex items-center justify-center shadow-md group-hover:bg-[#F7F7F7] transition-colors">
                   View All Injectable
-                </Link>
+                </span>
               </div>
-            </div>
+            </Link>
             {topInjectableProducts.map((p, i) => (
               <ProductCard key={i} {...p} />
             ))}
@@ -649,15 +649,15 @@ export default function ProductPage() {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">Related products</h2>
             <div className="flex gap-2">
-              <button className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
+              <button onClick={() => { const el = document.getElementById('related-scroll'); if (el) el.scrollBy({ left: -220, behavior: 'smooth' }); }} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors cursor-pointer">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
-              <button className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
+              <button onClick={() => { const el = document.getElementById('related-scroll'); if (el) el.scrollBy({ left: 220, behavior: 'smooth' }); }} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors cursor-pointer">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
             </div>
           </div>
-          <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
+          <div id="related-scroll" className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
             {relatedProducts.map((p, i) => (
               <div key={i} className="w-[200px] shrink-0 cursor-pointer group">
                 <div className="h-[200px] bg-white rounded-[12px] border border-[#E7E7E7] flex items-center justify-center p-3 mb-3 overflow-hidden">
