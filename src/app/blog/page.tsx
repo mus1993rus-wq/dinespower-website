@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const blogCategories = ["Bodybuilding", "SARMs", "Category 1", "Category 2", "Category 3", "Category 4", "Category 5"];
+const blogCategories = ["Bodybuilding", "SARMs", "Cutting", "PCT", "Peptides", "Fat Burn", "Injectable"];
 
 const blogArticles = [
   {
@@ -26,6 +27,7 @@ const blogArticles = [
     date: "10 Nov 2025",
     readTime: "5 min read",
     views: "2.8k views",
+    tags: ["Peptides", "SARMs", "Cutting"],
   },
   {
     id: 3,
@@ -34,6 +36,7 @@ const blogArticles = [
     date: "8 Nov 2025",
     readTime: "9 min read",
     views: "4.1k views",
+    tags: ["SARMs", "Bodybuilding"],
   },
   {
     id: 4,
@@ -42,6 +45,7 @@ const blogArticles = [
     date: "5 Nov 2025",
     readTime: "11 min read",
     views: "5.6k views",
+    tags: ["PCT", "Bodybuilding"],
   },
   {
     id: 5,
@@ -50,6 +54,7 @@ const blogArticles = [
     date: "2 Nov 2025",
     readTime: "8 min read",
     views: "2.4k views",
+    tags: ["Cutting", "Fat Burn"],
   },
   {
     id: 6,
@@ -58,6 +63,7 @@ const blogArticles = [
     date: "29 Oct 2025",
     readTime: "12 min read",
     views: "6.1k views",
+    tags: ["Injectable", "Bodybuilding"],
   },
 ];
 
@@ -69,11 +75,20 @@ const popularPosts = [
   { title: "BPC-157 Peptide: Recovery and Healing Guide", date: "12 Oct 2025", views: "2.7k" },
 ];
 
-export default function BlogPage() {
+function BlogContent() {
   const [currentPage, setCurrentPage] = useState(1);
   const [email, setEmail] = useState("");
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category");
 
-  const featured = blogArticles.find((p) => p.featured);
+  const filteredPosts = categoryParam
+    ? blogArticles.filter((post) =>
+        post.tags.some((tag) => tag.toLowerCase() === categoryParam.toLowerCase())
+      )
+    : blogArticles;
+
+  const featured = !categoryParam ? filteredPosts.find((p) => p.featured) : null;
+  const listPosts = featured ? filteredPosts.filter((a) => a.id !== featured.id) : filteredPosts;
 
   return (
     <>
@@ -84,19 +99,29 @@ export default function BlogPage() {
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-[#181818] font-semibold">Blog</span>
+            {categoryParam ? (
+              <>
+                <Link href="/blog" className="hover:text-[#181818] transition-colors">Blog</Link>
+                <span>/</span>
+                <span className="text-[#181818] font-semibold capitalize">{categoryParam}</span>
+              </>
+            ) : (
+              <span className="text-[#181818] font-semibold">Blog</span>
+            )}
           </div>
         </div>
 
         <div className="max-w-[1340px] mx-auto pb-16">
-          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-10">Blog Dines Power</h1>
+          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-10">
+            {categoryParam ? `Category: ${categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1)}` : "Blog Dines Power"}
+          </h1>
 
           <div className="flex gap-8">
             {/* LEFT main column */}
             <div className="flex-1 min-w-0">
               {/* Featured article */}
               {featured && (
-                <Link href={`/blog/${featuredPost.id}`} className="relative h-[420px] rounded-[16px] overflow-hidden mb-8 cursor-pointer group block">
+                <Link href={`/blog/${featured.id}`} className="relative h-[420px] rounded-[16px] overflow-hidden mb-8 cursor-pointer group block">
                   <Image src="/images/shop/blog-1.png" alt={featured.title} fill className="object-cover" unoptimized />
                   <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e]/60 via-[#16213e]/40 to-[#0f3460]/60" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
@@ -121,7 +146,7 @@ export default function BlogPage() {
 
               {/* Article list */}
               <div className="flex flex-col">
-                {blogArticles.filter((a) => !a.featured).map((post) => (
+                {listPosts.map((post) => (
                   <Link key={post.id} href={`/blog/${post.id}`} className="flex gap-5 py-6 border-b border-[#E7E7E7] cursor-pointer group">
                     {/* Date badge */}
                     <div className="text-xs text-[#7E7E7E] w-[80px] shrink-0 pt-1">{post.date}</div>
@@ -150,6 +175,14 @@ export default function BlogPage() {
                 ))}
               </div>
 
+              {/* No results message */}
+              {filteredPosts.length === 0 && (
+                <div className="text-center py-16">
+                  <p className="text-[#7E7E7E] text-lg mb-4">No articles found in this category.</p>
+                  <Link href="/blog" className="text-[#FF6701] font-semibold hover:underline">View all articles</Link>
+                </div>
+              )}
+
               {/* Newsletter */}
               <div className="bg-[#F7F7F7] rounded-[16px] p-6 mt-8 flex items-center justify-between gap-6">
                 <div>
@@ -171,30 +204,32 @@ export default function BlogPage() {
               </div>
 
               {/* Pagination */}
-              <div className="flex items-center justify-center gap-2 mt-10">
-                <button className="w-10 h-10 rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </button>
-                {[1, 2, 3, 4].map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    className={`w-10 h-10 rounded-lg text-sm font-semibold transition-colors ${currentPage === page ? "bg-[#FF6701] text-white" : "border border-[#E7E7E7] text-[#181818] hover:border-[#FF6701]"}`}
-                  >
-                    {page}
+              {!categoryParam && (
+                <div className="flex items-center justify-center gap-2 mt-10">
+                  <button className="w-10 h-10 rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </button>
-                ))}
-                <span className="w-10 h-10 flex items-center justify-center text-sm text-[#7E7E7E]">...</span>
-                <button
-                  onClick={() => setCurrentPage(12)}
-                  className={`w-10 h-10 rounded-lg text-sm font-semibold transition-colors ${currentPage === 12 ? "bg-[#FF6701] text-white" : "border border-[#E7E7E7] text-[#181818] hover:border-[#FF6701]"}`}
-                >
-                  12
-                </button>
-                <button className="w-10 h-10 rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </button>
-              </div>
+                  {[1, 2, 3, 4].map((page) => (
+                    <button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      className={`w-10 h-10 rounded-lg text-sm font-semibold transition-colors ${currentPage === page ? "bg-[#FF6701] text-white" : "border border-[#E7E7E7] text-[#181818] hover:border-[#FF6701]"}`}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                  <span className="w-10 h-10 flex items-center justify-center text-sm text-[#7E7E7E]">...</span>
+                  <button
+                    onClick={() => setCurrentPage(12)}
+                    className={`w-10 h-10 rounded-lg text-sm font-semibold transition-colors ${currentPage === 12 ? "bg-[#FF6701] text-white" : "border border-[#E7E7E7] text-[#181818] hover:border-[#FF6701]"}`}
+                  >
+                    12
+                  </button>
+                  <button className="w-10 h-10 rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* RIGHT sidebar */}
@@ -208,7 +243,11 @@ export default function BlogPage() {
                       <Link
                         key={cat}
                         href={`/blog?category=${cat.toLowerCase()}`}
-                        className="px-4 py-2 rounded-lg bg-[#F7F7F7] text-sm font-medium text-[#181818] hover:bg-[#FF6701] hover:text-white transition-colors"
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                          categoryParam?.toLowerCase() === cat.toLowerCase()
+                            ? "bg-[#FF6701] text-white"
+                            : "bg-[#F7F7F7] text-[#181818] hover:bg-[#FF6701] hover:text-white"
+                        }`}
                       >
                         {cat}
                       </Link>
@@ -247,5 +286,23 @@ export default function BlogPage() {
         <Footer />
       </div>
     </>
+  );
+}
+
+export default function BlogPage() {
+  return (
+    <Suspense fallback={
+      <>
+        <Header />
+        <main className="min-h-screen relative z-10 bg-white">
+          <div className="max-w-[1340px] mx-auto py-16 text-center">
+            <p className="text-[#7E7E7E]">Loading...</p>
+          </div>
+        </main>
+        <Footer />
+      </>
+    }>
+      <BlogContent />
+    </Suspense>
   );
 }

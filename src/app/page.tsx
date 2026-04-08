@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
@@ -168,20 +168,29 @@ function PromoBanner({ categoryName }: { categoryName: string }) {
 }
 
 function ProductSection({ title, products, className = "", promoCategoryName }: { title: string; products: typeof popularProducts; className?: string; promoCategoryName?: string }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    scrollRef.current?.scrollBy({ left: -280, behavior: "smooth" });
+  };
+  const scrollRight = () => {
+    scrollRef.current?.scrollBy({ left: 280, behavior: "smooth" });
+  };
+
   return (
     <section className={`max-w-[1340px] mx-auto ${className}`}>
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">{title}</h2>
         <div className="flex gap-2">
-          <button className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
+          <button onClick={scrollLeft} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
-          <button className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
+          <button onClick={scrollRight} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
         </div>
       </div>
-      <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
+      <div ref={scrollRef} className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
         {promoCategoryName && <PromoBanner categoryName={promoCategoryName} />}
         {products.map((p, i) => (
           <ProductCard key={i} {...p} />

@@ -34,12 +34,12 @@ const shippingFAQs = [
 ];
 
 const shippingLogos = [
-  { name: "EMS", color: "#0066CC" },
+  { name: "EMS", image: "/images/shop/popup-icons/logo-ems.png" },
   { name: "DHL", color: "#FFCC00", textColor: "#CC0000" },
-  { name: "GLS", color: "#003DA5" },
-  { name: "DPD", color: "#DC0032" },
-  { name: "TNT", color: "#FF6600" },
-  { name: "FedEx", color: "#4D148C" },
+  { name: "GLS", image: "/images/shop/popup-icons/logo-gls.png" },
+  { name: "DPD", image: "/images/shop/popup-icons/logo-dpd.png" },
+  { name: "TNT", image: "/images/shop/popup-icons/logo-tnt.png" },
+  { name: "FedEx", image: "/images/shop/popup-icons/logo-fedex.png" },
   { name: "UPS", color: "#351C15" },
 ];
 
@@ -203,11 +203,15 @@ export default function DeliveryPaymentPage() {
                 <div
                   key={logo.name}
                   className="h-[52px] px-5 rounded-[10px] flex items-center justify-center"
-                  style={{ backgroundColor: logo.color }}
+                  style={logo.image ? undefined : { backgroundColor: logo.color }}
                 >
-                  <span className="text-sm font-extrabold tracking-wide" style={{ color: logo.textColor || "#FFFFFF" }}>
-                    {logo.name}
-                  </span>
+                  {logo.image ? (
+                    <Image src={logo.image} alt={logo.name} width={80} height={40} className="object-contain h-[40px] w-auto" unoptimized />
+                  ) : (
+                    <span className="text-sm font-extrabold tracking-wide" style={{ color: logo.textColor || "#FFFFFF" }}>
+                      {logo.name}
+                    </span>
+                  )}
                 </div>
               ))}
             </div>
