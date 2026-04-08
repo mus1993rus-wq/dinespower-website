@@ -72,45 +72,45 @@ export default function DeliveryPaymentPage() {
 
                 <div className="flex flex-col gap-6">
                   {/* Bank Transfer Card */}
-                  <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-6">
-                    <div className="flex items-center gap-3 mb-5">
-                      <Image src="/images/shop/delivery-bank.png" alt="Bank transfer" width={64} height={64} className="rounded-full object-contain" unoptimized />
-                      <h3 className="text-[18px] font-extrabold text-[#181818]">Bank transfer</h3>
+                  <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-8 flex items-start gap-6">
+                    <Image src="/images/shop/delivery-bank.png" alt="Bank transfer" width={80} height={80} className="object-contain shrink-0" unoptimized />
+                    <div className="flex-1">
+                      <h3 className="text-[18px] font-extrabold text-[#181818] mb-3">Bank transfer</h3>
+                      <ul className="flex flex-col gap-2">
+                        {[
+                          "The preferred and most reliable payment method",
+                          "Always available \u2013 never suspended or restricted",
+                          "Fast processing with instant network confirmation",
+                          "Contact your manager for the wallet address and assistance",
+                        ].map((item, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <div className="w-[5px] h-[5px] rounded-full bg-[#181818] mt-[8px] shrink-0" />
+                            <span className="text-[14px] text-[#7E7E7E] leading-[22px]">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <ul className="flex flex-col gap-3">
-                      {[
-                        "Telegraphic Transfer (wire) to company bank account",
-                        "Processing time: 1-5 business days",
-                        "Note: may be temporarily suspended without prior notice",
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <div className="w-[6px] h-[6px] rounded-full bg-[#FF6701] mt-[7px] shrink-0" />
-                          <span className="text-sm text-[#7E7E7E] leading-[22px]">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
 
                   {/* Bitcoin Card */}
-                  <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-6">
-                    <div className="flex items-center gap-3 mb-5">
-                      <Image src="/images/shop/delivery-bitcoin.png" alt="Bitcoin" width={64} height={64} className="rounded-full object-contain" unoptimized />
-                      <h3 className="text-[18px] font-extrabold text-[#181818]">Bitcoin</h3>
-                      <span className="bg-[#FF6701] text-white text-xs font-semibold px-3 py-1 rounded-full ml-2">We recommend!</span>
+                  <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-8 flex items-start gap-6">
+                    <Image src="/images/shop/delivery-bitcoin.png" alt="Bitcoin" width={80} height={80} className="object-contain shrink-0" unoptimized />
+                    <div className="flex-1">
+                      <h3 className="text-[18px] font-extrabold text-[#181818] mb-3">Bitcoin</h3>
+                      <ul className="flex flex-col gap-2">
+                        {[
+                          "Telegraphic Transfer (wire) to company bank account",
+                          "Processing time: 1\u20133 business days",
+                          "Note: may be temporarily suspended without prior notice",
+                        ].map((item, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <div className="w-[5px] h-[5px] rounded-full bg-[#181818] mt-[8px] shrink-0" />
+                            <span className="text-[14px] text-[#7E7E7E] leading-[22px]">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <ul className="flex flex-col gap-3">
-                      {[
-                        "The preferred and most reliable payment method",
-                        "Always available \u2013 never suspended or restricted",
-                        "Fast processing with instant network confirmation",
-                        "Contact your manager for the wallet address and assistance",
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <div className="w-[6px] h-[6px] rounded-full bg-[#FF6701] mt-[7px] shrink-0" />
-                          <span className="text-sm text-[#7E7E7E] leading-[22px]">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <span className="bg-[#FFF3EB] text-[#FF6701] text-[13px] font-semibold px-4 py-2 rounded-full shrink-0 whitespace-nowrap">We recommend</span>
                   </div>
                 </div>
               </section>
@@ -262,22 +262,22 @@ export default function DeliveryPaymentPage() {
                 </div>
 
                 {/* Wholesale Banner */}
-                <div className="bg-[#181818] rounded-[12px] p-6 text-center">
-                  <div className="w-12 h-12 rounded-full bg-[#FF6701]/20 flex items-center justify-center mx-auto mb-3">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path d="M20 12V22H4V12" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M22 7H2V12H22V7Z" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M12 22V7" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M12 7H7.5C6.83696 7 6.20107 6.73661 5.73223 6.26777C5.26339 5.79893 5 5.16304 5 4.5C5 3.83696 5.26339 3.20107 5.73223 2.73223C6.20107 2.26339 6.83696 2 7.5 2C11 2 12 7 12 7Z" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                <div className="rounded-[12px] overflow-hidden relative">
+                  <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" unoptimized />
+                  <div className="relative z-10 p-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-[32px]">📦</span>
+                      <div>
+                        <p className="text-white text-[16px] font-extrabold leading-[22px]">
+                          Save up to <span className="text-[#FF6701]">50%</span> on shipping
+                        </p>
+                        <p className="text-white/60 text-[13px] mt-1 leading-[18px]">Wholesale orders unlock better shipping rates and partner discounts.</p>
+                      </div>
+                    </div>
+                    <button className="bg-white hover:bg-[#F7F7F7] text-[#181818] text-[14px] font-semibold rounded-[8px] h-[44px] w-full transition-colors">
+                      Get Wholesale Prices
+                    </button>
                   </div>
-                  <p className="text-white text-[18px] font-extrabold leading-[24px]">
-                    Save up to <span className="text-[#FF6701]">50%</span> on shipping
-                  </p>
-                  <p className="text-white/50 text-sm mt-2 leading-5">Order wholesale and get discounted shipping rates across Europe</p>
-                  <button className="bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold rounded-lg h-[44px] w-full mt-4 transition-colors">
-                    Get Wholesale Prices
-                  </button>
                 </div>
               </div>
             </div>
