@@ -25,6 +25,26 @@ const specs = [
   { label: "Volume", value: "10 mL vial" },
 ];
 
+// Brand-specific verification URLs
+const brandVerifyUrls: Record<string, { partner: string; product: string }> = {
+  "Deus Medical": {
+    partner: "https://deusmedical.com/verify/verifyseller/",
+    product: "https://deusmedical.com/verify/verify-product/",
+  },
+  "Astera Labs": {
+    partner: "https://asteralabs.org/verify-seller/",
+    product: "https://asteracheck.com",
+  },
+  "Biaxol": {
+    partner: "https://biaxol.com/verify-seller/",
+    product: "https://biaxol.com/check/",
+  },
+};
+
+// Current product brand (would come from product data in real app)
+const productBrand = "Astera Labs";
+const verifyUrls = brandVerifyUrls[productBrand] || brandVerifyUrls["Astera Labs"];
+
 const trustBadges = [
   {
     icon: "/images/shop/product-icons/icon-1.png",
@@ -32,23 +52,25 @@ const trustBadges = [
     desc: "Third-party lab test + batch authenticity code WHO-GMP / EU-GMP / UK-MHRA",
     button: "See Lab Test",
     orangeBg: false,
-    popup: "labtest",
+    href: "/lab-tests",
   },
   {
     icon: "/images/shop/product-icons/icon-2.png",
     title: "Official Brand Partner",
-    desc: "Dinespower.com is an official Astera reseller (since 2019)",
+    desc: `Dinespower.com is an official ${productBrand} reseller (since 2019)`,
     button: "Verify Partner",
     orangeBg: false,
-    popup: "verify",
+    href: verifyUrls.partner,
+    external: true,
   },
   {
     icon: "/images/shop/product-icons/icon-3.png",
     title: "Verify Authenticity",
-    desc: "Enter your code to confirm the product on Astera Labs",
+    desc: `Enter your code to confirm the product on ${productBrand}`,
     button: "Verify Product",
     orangeBg: false,
-    popup: "verify",
+    href: verifyUrls.product,
+    external: true,
   },
   {
     icon: "/images/shop/product-icons/icon-4.png",
@@ -56,7 +78,7 @@ const trustBadges = [
     desc: "Tiered discounts for partner orders from \u20AC1,500+",
     button: "Read More",
     orangeBg: true,
-    popup: "wholesale",
+    href: "#",
   },
 ];
 
@@ -357,16 +379,31 @@ export default function ProductPage() {
                     <p className="text-sm font-bold text-[#181818]">{badge.title}</p>
                     <p className="text-xs text-[#7E7E7E] mt-0.5">{badge.desc}</p>
                   </div>
-                  <button
-                    onClick={() => handleTrustBadgeClick(badge.popup)}
-                    className={`text-sm font-semibold whitespace-nowrap shrink-0 border rounded-[8px] px-4 py-2 transition-colors ${
-                      badge.orangeBg
-                        ? "text-[#FF6701] border-transparent hover:underline"
-                        : "text-[#181818] border-[#E7E7E7] hover:border-[#FF6701] hover:text-[#FF6701]"
-                    }`}
-                  >
-                    {badge.button}
-                  </button>
+                  {badge.external ? (
+                    <a
+                      href={badge.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`text-sm font-semibold whitespace-nowrap shrink-0 border rounded-[8px] px-4 py-2 transition-colors ${
+                        badge.orangeBg
+                          ? "text-[#FF6701] border-transparent hover:underline"
+                          : "text-[#181818] border-[#E7E7E7] hover:border-[#FF6701] hover:text-[#FF6701]"
+                      }`}
+                    >
+                      {badge.button}
+                    </a>
+                  ) : (
+                    <Link
+                      href={badge.href || "#"}
+                      className={`text-sm font-semibold whitespace-nowrap shrink-0 border rounded-[8px] px-4 py-2 transition-colors ${
+                        badge.orangeBg
+                          ? "text-[#FF6701] border-transparent hover:underline"
+                          : "text-[#181818] border-[#E7E7E7] hover:border-[#FF6701] hover:text-[#FF6701]"
+                      }`}
+                    >
+                      {badge.button}
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>
