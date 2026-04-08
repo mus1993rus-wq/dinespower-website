@@ -233,7 +233,7 @@ function BlogContent() {
             </div>
 
             {/* RIGHT sidebar */}
-            <div className="w-[340px] shrink-0">
+            <div className="w-[440px] shrink-0">
               <div className="sticky top-4 flex flex-col gap-8">
                 {/* Blog Categories */}
                 <div>

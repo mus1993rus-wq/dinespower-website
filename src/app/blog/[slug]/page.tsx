@@ -546,7 +546,7 @@ export default function BlogArticlePage() {
             </div>
 
             {/* Sidebar */}
-            <div className="w-[340px] shrink-0 hidden lg:block">
+            <div className="w-[440px] shrink-0 hidden lg:block">
               <div className="sticky top-6 flex flex-col gap-6">
                 {/* Product Recommendation Card */}
                 <div className="bg-[#F7F7F7] rounded-[12px] p-4">

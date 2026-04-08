@@ -120,7 +120,7 @@ export default function FAQsPage() {
 
           <div className="flex gap-8">
             {/* LEFT sidebar */}
-            <div className="w-[300px] shrink-0">
+            <div className="w-[440px] shrink-0">
               <div className="sticky top-4 flex flex-col gap-6">
                 {/* Category tabs */}
                 <div className="flex flex-col gap-1">

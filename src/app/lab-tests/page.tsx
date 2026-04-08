@@ -309,17 +309,19 @@ export default function LabTestsPage() {
   const [activeCategory, setActiveCategory] = useState<string>("Injectable");
   const [modalIndex, setModalIndex] = useState<number | null>(null);
 
-  const filteredData = activeCategory
-    ? productData.filter((cat) => cat.title === activeCategory)
-    : productData;
-
-  // Build flat list of all visible products for modal navigation
+  // All products shown at once (no filtering)
   const allVisibleProducts: { product: Product; catTitle: string }[] = [];
-  filteredData.forEach((cat) => {
+  productData.forEach((cat) => {
     cat.products.forEach((p) => {
       allVisibleProducts.push({ product: p, catTitle: cat.title });
     });
   });
+
+  const scrollToCategory = (cat: string) => {
+    setActiveCategory(cat);
+    const el = document.getElementById(`lab-section-${cat.replace(/\s+/g, '-').replace(/&/g, 'and')}`);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   // Track global index offset per category section for clicking
   let globalIndex = 0;
@@ -343,13 +345,13 @@ export default function LabTestsPage() {
           </h1>
 
           <div className="flex gap-8">
-            {/* Sidebar */}
+            {/* Sidebar - sticky anchor navigation */}
             <div className="w-[220px] shrink-0">
-              <div className="flex flex-col">
+              <div className="sticky top-6 flex flex-col">
                 {sidebarCategories.map((cat) => (
                   <button
                     key={cat}
-                    onClick={() => setActiveCategory(cat)}
+                    onClick={() => scrollToCategory(cat)}
                     className={`text-left px-0 py-2.5 text-[14px] transition-colors flex items-center justify-between ${
                       activeCategory === cat
                         ? "text-[#181818] font-bold"
@@ -367,9 +369,9 @@ export default function LabTestsPage() {
               </div>
             </div>
 
-            {/* Main Content */}
+            {/* Main Content - ALL categories shown */}
             <div className="flex-1 min-w-0">
-              {filteredData.map((category) => {
+              {productData.map((category) => {
                 const startIndex = globalIndex;
                 const items = category.products.map((product, idx) => {
                   const thisIndex = startIndex + idx;
@@ -399,8 +401,10 @@ export default function LabTestsPage() {
                 });
                 globalIndex += category.products.length;
 
+                const sectionId = `lab-section-${category.title.replace(/\s+/g, '-').replace(/&/g, 'and')}`;
+
                 return (
-                  <div key={category.title} className="mb-10">
+                  <div key={category.title} id={sectionId} className="mb-10 scroll-mt-6">
                     <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-5">
                       {category.title}
                     </h2>

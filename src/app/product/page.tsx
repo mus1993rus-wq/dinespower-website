@@ -305,9 +305,9 @@ export default function ProductPage() {
 
             {/* 5. Price row */}
             <div className="flex items-center gap-3 mb-6">
-              <span className="text-[36px] font-extrabold text-[#FF6701] leading-[42px]">44 &euro;</span>
+              <span className="text-[36px] font-extrabold text-[#FF3B30] leading-[42px]">44 &euro;</span>
               <span className="text-lg text-[#B6B6B6] line-through">56 &euro;</span>
-              <span className="bg-[#FF6701]/10 text-[#FF6701] text-xs font-bold px-2.5 py-1 rounded-[4px]">Sale -14%</span>
+              <span className="bg-[#FF3B30]/10 text-[#FF3B30] text-xs font-bold px-2.5 py-1 rounded-[4px]">Sale -14%</span>
             </div>
 
             {/* 6. Qty + Add To Cart */}
@@ -387,7 +387,7 @@ export default function ProductPage() {
                       rel="noopener noreferrer"
                       className={`text-sm font-semibold whitespace-nowrap shrink-0 border rounded-[8px] px-4 py-2 transition-colors ${
                         badge.orangeBg
-                          ? "text-[#FF6701] border-transparent hover:underline"
+                          ? "text-[#FF6701] border-[#E7E7E7] hover:border-[#FF6701]"
                           : "text-[#181818] border-[#E7E7E7] hover:border-[#FF6701] hover:text-[#FF6701]"
                       }`}
                     >
@@ -398,7 +398,7 @@ export default function ProductPage() {
                       href={badge.href || "#"}
                       className={`text-sm font-semibold whitespace-nowrap shrink-0 border rounded-[8px] px-4 py-2 transition-colors ${
                         badge.orangeBg
-                          ? "text-[#FF6701] border-transparent hover:underline"
+                          ? "text-[#FF6701] border-[#E7E7E7] hover:border-[#FF6701]"
                           : "text-[#181818] border-[#E7E7E7] hover:border-[#FF6701] hover:text-[#FF6701]"
                       }`}
                     >
@@ -412,27 +412,27 @@ export default function ProductPage() {
             {/* 10. Help Cards - 3 in a row */}
             <div className="grid grid-cols-3 gap-3">
               <button onClick={() => setHelpOpen(true)} className="border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col items-center text-center cursor-pointer hover:border-[#FF6701] transition-colors">
-                <div className="w-[48px] h-[48px] mb-3">
-                  <Image src="/images/shop/product-icons/icon-5.png" alt="" width={48} height={48} className="object-contain" unoptimized />
+                <div className="w-[56px] h-[56px] mb-3">
+                  <Image src="/images/shop/product-icons/icon-5.png" alt="" width={56} height={56} className="object-contain" unoptimized />
                 </div>
                 <p className="text-sm font-bold text-[#181818] mb-1">Need Help?</p>
-                <p className="text-xs text-[#7E7E7E] mb-3">Ask about dosing, shipping, or verification</p>
+                <p className="text-xs text-[#181818] mb-3">Ask about dosing, shipping, or verification</p>
                 <span className="text-xs font-semibold text-[#181818] underline">Ask a Question</span>
               </button>
               <button onClick={() => setShippingOpen(true)} className="border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col items-center text-center cursor-pointer hover:border-[#FF6701] transition-colors">
-                <div className="w-[48px] h-[48px] mb-3">
-                  <Image src="/images/shop/product-icons/icon-6.png" alt="" width={48} height={48} className="object-contain" unoptimized />
+                <div className="w-[56px] h-[56px] mb-3">
+                  <Image src="/images/shop/product-icons/icon-6.png" alt="" width={56} height={56} className="object-contain" unoptimized />
                 </div>
                 <p className="text-sm font-bold text-[#181818] mb-1">Shipping Methods</p>
-                <p className="text-xs text-[#7E7E7E] mb-3">Delivery times, tracking, discreet packaging</p>
+                <p className="text-xs text-[#181818] mb-3">Delivery times, tracking, discreet packaging</p>
                 <span className="text-xs font-semibold text-[#181818] underline">Learn more</span>
               </button>
               <button onClick={() => setPaymentOpen(true)} className="border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col items-center text-center cursor-pointer hover:border-[#FF6701] transition-colors">
-                <div className="w-[48px] h-[48px] mb-3">
-                  <Image src="/images/shop/product-icons/icon-7.png" alt="" width={48} height={48} className="object-contain" unoptimized />
+                <div className="w-[56px] h-[56px] mb-3">
+                  <Image src="/images/shop/product-icons/icon-7.png" alt="" width={56} height={56} className="object-contain" unoptimized />
                 </div>
                 <p className="text-sm font-bold text-[#181818] mb-1">Payment Methods</p>
-                <p className="text-xs text-[#7E7E7E] mb-3">Bitcoin, bank transfer</p>
+                <p className="text-xs text-[#181818] mb-3">Bitcoin, bank transfer</p>
                 <span className="text-xs font-semibold text-[#181818] underline">Learn more</span>
               </button>
             </div>
@@ -708,7 +708,7 @@ export default function ProductPage() {
                     >
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full border border-[#E7E7E7] flex items-center justify-center shrink-0">
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#7E7E7E" strokeWidth="1.5"/><path d="M6 6C6 4.9 6.9 4 8 4C9.1 4 10 4.9 10 6C10 7.1 8.8 7.4 8.4 8.2C8.2 8.6 8 9 8 9.5" stroke="#7E7E7E" strokeWidth="1.5" strokeLinecap="round"/><circle cx="8" cy="11.5" r="0.75" fill="#7E7E7E"/></svg>
+                          <Image src="/images/shop/faq-question-icon.svg" alt="?" width={16} height={16} unoptimized />
                         </div>
                         <span className="text-base font-semibold text-[#181818] text-left leading-6">{q}</span>
                       </div>

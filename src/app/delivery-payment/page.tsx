@@ -121,7 +121,6 @@ export default function DeliveryPaymentPage() {
 
               {/* Payment FAQ */}
               <section className="mb-8">
-                <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-6">Payment FAQ</h2>
                 <div className="flex flex-col">
                   {[
                     { q: "Which payment method is the most reliable?", a: "Bitcoin is our most reliable payment method. It is always available, never suspended, and offers fast processing with instant network confirmation. We highly recommend using Bitcoin for all orders." },
@@ -167,17 +166,32 @@ export default function DeliveryPaymentPage() {
                     </thead>
                     <tbody>
                       <tr className="border-t border-[#E7E7E7]">
-                        <td className="text-sm text-[#181818] font-semibold px-6 py-4">Europe</td>
+                        <td className="text-sm text-[#181818] font-semibold px-6 py-4">
+                          <div className="flex items-center gap-2">
+                            <Image src="/images/shop/popup-icons/flag-eu.png" alt="EU" width={24} height={24} className="object-contain" unoptimized />
+                            Europe
+                          </div>
+                        </td>
                         <td className="text-sm text-[#7E7E7E] text-center px-6 py-4">5-14 Days</td>
                         <td className="text-sm text-[#FF6701] font-semibold text-right px-6 py-4">From 29&euro;</td>
                       </tr>
                       <tr className="border-t border-[#E7E7E7] bg-[#FAFAFA]">
-                        <td className="text-sm text-[#181818] font-semibold px-6 py-4">USA</td>
+                        <td className="text-sm text-[#181818] font-semibold px-6 py-4">
+                          <div className="flex items-center gap-2">
+                            <Image src="/images/shop/popup-icons/flag-usa.png" alt="USA" width={24} height={24} className="object-contain" unoptimized />
+                            USA
+                          </div>
+                        </td>
                         <td className="text-sm text-[#7E7E7E] text-center px-6 py-4">7-21 Days</td>
                         <td className="text-sm text-[#FF6701] font-semibold text-right px-6 py-4">From 29&euro;</td>
                       </tr>
                       <tr className="border-t border-[#E7E7E7]">
-                        <td className="text-sm text-[#181818] font-semibold px-6 py-4">World &amp; Islands</td>
+                        <td className="text-sm text-[#181818] font-semibold px-6 py-4">
+                          <div className="flex items-center gap-2">
+                            <Image src="/images/shop/popup-icons/flag-world.png" alt="World" width={24} height={24} className="object-contain" unoptimized />
+                            World &amp; Islands
+                          </div>
+                        </td>
                         <td className="text-sm text-[#7E7E7E] text-center px-6 py-4">7-21 Days</td>
                         <td className="text-sm text-[#FF6701] font-semibold text-right px-6 py-4">From 29&euro;</td>
                       </tr>
@@ -196,7 +210,7 @@ export default function DeliveryPaymentPage() {
                       {logo.image ? (
                         <Image src={logo.image} alt={logo.name} width={80} height={40} className="object-contain h-[40px] w-auto" unoptimized />
                       ) : (
-                        <span className="text-sm font-extrabold tracking-wide" style={{ color: logo.textColor || "#FFFFFF" }}>
+                        <span className="text-[20px] font-extrabold tracking-wider" style={{ color: logo.textColor || "#FFFFFF" }}>
                           {logo.name}
                         </span>
                       )}
@@ -207,7 +221,6 @@ export default function DeliveryPaymentPage() {
 
               {/* Shipping FAQ */}
               <section>
-                <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-6">Frequently Asked Questions</h2>
                 <div className="flex flex-col">
                   {shippingFAQs.map((faq, i) => (
                     <div key={i} className="border-b border-[#E7E7E7]">
@@ -235,12 +248,12 @@ export default function DeliveryPaymentPage() {
             </div>
 
             {/* Right sidebar - sticky */}
-            <div className="w-[340px] shrink-0">
+            <div className="w-[440px] shrink-0">
               <div className="sticky top-6 flex flex-col gap-6 self-start">
                 {/* Still Have Questions Card */}
                 <div className="bg-[#F7F7F7] rounded-[12px] p-4">
                   <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-6 flex flex-col items-center gap-4">
-                    <Image src="/images/shop/faq-help-icon.png" alt="Help" width={48} height={48} unoptimized />
+                    <Image src="/images/shop/faq-help-icon.png" alt="Help" width={80} height={80} unoptimized />
                     <h3 className="text-[16px] font-semibold text-black text-center">Still Have Questions?</h3>
                     <p className="text-[14px] text-[#1E1E1E] text-center leading-[22px]">
                       Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.
