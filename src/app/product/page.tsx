@@ -232,7 +232,7 @@ export default function ProductPage() {
         {/* Product Detail: Two Columns */}
         <div className="max-w-[1340px] mx-auto flex gap-[60px] pb-10">
           {/* LEFT COLUMN - Thumbnails + Main Image */}
-          <div className="w-[560px] shrink-0 flex gap-3 sticky top-[180px] self-start">
+          <div className="w-[560px] shrink-0 flex gap-3 sticky top-[24px] self-start">
             {/* Vertical thumbnails */}
             <div className="flex flex-col gap-2 w-[64px] shrink-0">
               {thumbnails.map((src, i) => (
