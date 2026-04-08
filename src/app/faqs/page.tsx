@@ -12,75 +12,111 @@ const faqSections: Record<string, { q: string; a: string }[]> = {
   Product: [
     {
       q: "How do we know that these products are genuine?",
-      a: "All our products come directly from authorized manufacturers including Deus Medical, Biaxol, and Astera Labs. Each product includes a unique verification code that you can check on our Verify Authenticity page or on the manufacturer's website.",
+      a: "All our products are manufactured in full compliance with global quality standards and are fully certified by WHO-GMP and EU-GMP. We are an official worldwide distributor of the Deus Medical brand. You can verify our status by entering our website name 'dinespower.to' here or by sending an email to 'info@dinespower.info'. deusmedical.com/verify/verifyseller. Furthermore, every Deus Medical product has a unique product code. You can use this code to check your product here: deusmedical.com/verify/verifyproduct",
     },
     {
       q: "Do you accept returns or exchanges?",
-      a: "Due to the nature of our products, we cannot accept returns of opened items. However, if you receive a damaged or incorrect product, we will gladly provide a replacement or full refund. Contact us within 14 days of delivery.",
+      a: "Due to the nature of pharmaceutical products, we do not accept returns or exchanges once the order has been shipped. However, if you receive a damaged or incorrect product, please contact our support team within 48 hours of delivery.",
     },
     {
       q: "Are third party laboratory test reports available for all products?",
-      a: "Yes, every batch of products we sell undergoes independent third-party laboratory testing. You can view all lab test certificates on our Lab Tests page. We test for purity, concentration, and the absence of harmful contaminants.",
+      a: "Yes, we provide third-party laboratory test reports for all our products. You can view these reports on our Lab Tests page or request specific reports by contacting our support team.",
     },
     {
       q: "How should I store my products?",
-      a: "Store products in a cool, dry place away from direct sunlight. Most products should be kept at room temperature (15-25\u00B0C). Peptides and certain compounds may require refrigeration \u2014 please check the product label for specific storage instructions.",
+      a: "Most products should be stored at room temperature (15-25\u00B0C) in a dry place away from direct sunlight. Injectable products should be stored upright. Always check the specific storage instructions on the product packaging.",
     },
   ],
   Account: [
     {
       q: "Do I need an account to place an order?",
-      a: "While you can browse our catalog without an account, you will need to create one to place an order. This allows us to provide you with order tracking, order history, and faster checkout for future purchases.",
+      a: "No, you can place an order as a guest. However, creating an account allows you to track your orders, save your shipping details, and access your order history.",
     },
     {
       q: "Is my data secure?",
-      a: "We take your privacy very seriously. All data is encrypted using SSL and we never share personal information with third parties. We use discreet packaging with no product descriptions on the outside. Please see our Privacy Policy for full details.",
+      a: "Yes, we use industry-standard SSL encryption and security measures to protect all personal and payment information.",
     },
   ],
   Orders: [
     {
       q: "Can I change or cancel my order?",
-      a: "You can change or cancel your order within 12 hours of placing it by contacting our support team. After that window, the order may already be in processing and changes may not be possible.",
+      a: "You can change or cancel your order within 24 hours of placement by contacting our support team. Once the order has been processed and shipped, changes cannot be made.",
     },
     {
-      q: "What is the minimum order amount?",
-      a: "The minimum order amount for first-time customers is 50\u20AC. This allows us to ensure proper packaging and shipping for your products. Returning customers have no minimum order requirement.",
+      q: "I entered the wrong delivery address. How can I change it?",
+      a: "Contact our support team immediately with your order number and the correct address. If the order hasn't been shipped yet, we can update the delivery address.",
     },
     {
-      q: "How can I track my order?",
-      a: "Once your order is dispatched, you will receive a tracking number via email. You can also find it in your account dashboard under 'My Orders'. Tracking information is usually updated within 24-48 hours of dispatch.",
+      q: "I didn't receive an email confirmation after placing my order?",
+      a: "Please check your spam/junk folder. If you still can't find it, contact our support team with your order details and we'll resend the confirmation.",
+    },
+    {
+      q: "My package has been confiscated or lost. What can I do?",
+      a: "If your package is confiscated by customs or lost during transit, please contact our support team. We offer a free reship or full refund for all lost/confiscated packages.",
+    },
+    {
+      q: "What happens if I receive the wrong, missing, or defective product?",
+      a: "Contact our support team within 48 hours of delivery with photos of the product. We will arrange a replacement shipment at no additional cost.",
     },
   ],
   Shipment: [
     {
       q: "Where do you ship from?",
-      a: "We ship from our warehouse located in the European Union. This allows us to provide fast delivery to most European countries while ensuring compliance with EU regulations.",
+      a: "We ship from our warehouses in Europe and India, depending on the product brand and destination.",
     },
     {
       q: "Which countries do you ship to?",
-      a: "We currently ship to most European countries including Germany, UK, France, Netherlands, Poland, Spain, Italy, and many more. We also ship to the USA and selected countries worldwide. Please check our Delivery & Payment page for a full list.",
+      a: "We ship worldwide, including all European countries, USA, UK, Canada, Australia, and many more. Contact us for specific country availability.",
     },
     {
-      q: "How long does delivery take?",
-      a: "Standard delivery to Europe takes 5-14 business days. USA delivery takes 7-21 business days. Delivery times depend on your location and the shipping method selected. All orders include tracking numbers.",
+      q: "How much are the shipping costs?",
+      a: "Shipping starts from 29\u20AC for Europe and worldwide. Express shipping is available for 45\u20AC. Free shipping on orders over 500\u20AC.",
     },
     {
-      q: "Is the packaging discreet?",
-      a: "All orders are shipped in plain, unmarked packaging with no product descriptions or branding on the outside. The sender name on the label is a generic business name for complete discretion.",
+      q: "How long will it take for me to receive my package?",
+      a: "Europe: 5-14 business days. USA: 7-21 business days. Rest of world: 7-21 business days.",
+    },
+    {
+      q: "What are your shipping costs?",
+      a: "Standard shipping: from 29\u20AC. Express shipping: 45\u20AC. Free shipping on orders over 500\u20AC to EU destinations.",
+    },
+    {
+      q: "What are your return policies in case of damage/loss/confiscation?",
+      a: "We offer 100% reship guarantee. If your package is lost, damaged, or confiscated, we will reship your order for free or provide a full refund.",
+    },
+    {
+      q: "Do you ship to P.O. boxes?",
+      a: "We generally do not ship to P.O. boxes as our carriers require a physical address for delivery.",
+    },
+    {
+      q: "Do you use discreet packaging?",
+      a: "Yes, all orders are shipped in plain, unmarked packaging with no indication of the contents. The sender name is generic.",
+    },
+    {
+      q: "Will I receive a tracking number?",
+      a: "Yes, you will receive a tracking number via email within 1-3 business days after payment confirmation.",
+    },
+    {
+      q: "When will my package be shipped?",
+      a: "Orders are typically shipped within 1-3 business days after payment is confirmed.",
+    },
+    {
+      q: "What are your return policies?",
+      a: "Due to the nature of our products, we do not accept returns. However, we offer a 100% reship guarantee for lost, damaged, or confiscated packages.",
     },
   ],
   Payment: [
     {
       q: "Which payment methods do you accept?",
-      a: "We accept bank transfers (SEPA and SWIFT) and cryptocurrency payments including Bitcoin. Cryptocurrency payments are our recommended method as they are always available and process quickly.",
+      a: "We accept bank transfers (SEPA/SWIFT) and cryptocurrency (Bitcoin, Ethereum, USDT). Bitcoin is our recommended payment method.",
     },
     {
       q: "How do I send the payment?",
-      a: "After placing your order, you will receive payment instructions via email. For bank transfers, we provide our bank details. For Bitcoin, we provide a wallet address. Contact your manager if you need assistance.",
+      a: "After placing your order, you'll receive payment instructions via email. For bank transfers, use the provided bank details. For crypto, send to the provided wallet address.",
     },
     {
       q: "Is there a minimum payment or order quantity?",
-      a: "The minimum order amount for first-time customers is 50\u20AC. There is no minimum for returning customers. Wholesale orders have separate minimums \u2014 contact our sales team for details.",
+      a: "There is no minimum order amount for regular customers. For wholesale orders, the minimum is \u20AC1,500.",
     },
   ],
 };
@@ -176,17 +212,15 @@ export default function FAQsPage() {
                           className="w-full flex items-center justify-between py-5 cursor-pointer"
                         >
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full border border-[#E7E7E7] flex items-center justify-center shrink-0">
-                              <Image src="/images/shop/faq-question-icon.svg" alt="?" width={16} height={16} unoptimized />
-                            </div>
-                            <span className="text-base font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
+                            <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
+                            <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
                           </div>
-                          <span className="text-xl text-[#181818] shrink-0 ml-4">
-                            {openIndices[section] === i ? "\u2212" : "+"}
-                          </span>
+                          <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openIndices[section] === i ? 'bg-[#FF6701] text-white' : 'text-[#181818]'}`}>
+                            <span className="text-[20px] leading-none">{openIndices[section] === i ? '−' : '+'}</span>
+                          </div>
                         </button>
                         {openIndices[section] === i && (
-                          <div className="pb-5 pl-11 text-sm text-[#7E7E7E] leading-6">{faq.a}</div>
+                          <div className="pb-5 pl-[40px] text-sm text-[#7E7E7E] leading-6">{faq.a}</div>
                         )}
                       </div>
                     ))}

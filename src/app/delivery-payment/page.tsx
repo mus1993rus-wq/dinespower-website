@@ -34,13 +34,13 @@ const shippingFAQs = [
 ];
 
 const shippingLogos = [
-  { name: "EMS", image: "/images/shop/popup-icons/logo-ems.png" },
-  { name: "DHL", color: "#FFCC00", textColor: "#CC0000" },
-  { name: "GLS", image: "/images/shop/popup-icons/logo-gls.png" },
-  { name: "DPD", image: "/images/shop/popup-icons/logo-dpd.png" },
-  { name: "TNT", image: "/images/shop/popup-icons/logo-tnt.png" },
-  { name: "FedEx", image: "/images/shop/popup-icons/logo-fedex.png" },
-  { name: "UPS", color: "#351C15" },
+  { name: "EMS", image: "/images/shop/delivery-logos/ems.png" },
+  { name: "DHL", image: "/images/shop/delivery-logos/dhl.png" },
+  { name: "GLS", image: "/images/shop/delivery-logos/gls.png" },
+  { name: "DPD", image: "/images/shop/delivery-logos/dpd.png" },
+  { name: "TNT", image: "/images/shop/delivery-logos/tnt.png" },
+  { name: "FedEx", image: "/images/shop/delivery-logos/fedex.png" },
+  { name: "UPS", image: "/images/shop/delivery-logos/ups.png" },
 ];
 
 export default function DeliveryPaymentPage() {
@@ -74,9 +74,7 @@ export default function DeliveryPaymentPage() {
                   {/* Bank Transfer Card */}
                   <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-6">
                     <div className="flex items-center gap-3 mb-5">
-                      <div className="w-[64px] h-[64px] rounded-full bg-[#181818] flex items-center justify-center">
-                        <span className="text-white text-[28px] leading-none">🏦</span>
-                      </div>
+                      <Image src="/images/shop/delivery-bank.png" alt="Bank transfer" width={64} height={64} className="rounded-full object-contain" unoptimized />
                       <h3 className="text-[18px] font-extrabold text-[#181818]">Bank transfer</h3>
                     </div>
                     <ul className="flex flex-col gap-3">
@@ -96,9 +94,7 @@ export default function DeliveryPaymentPage() {
                   {/* Bitcoin Card */}
                   <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-6">
                     <div className="flex items-center gap-3 mb-5">
-                      <div className="w-[64px] h-[64px] rounded-full bg-[#FF6701] flex items-center justify-center">
-                        <span className="text-white text-[32px] font-bold leading-none">{"\u20BF"}</span>
-                      </div>
+                      <Image src="/images/shop/delivery-bitcoin.png" alt="Bitcoin" width={64} height={64} className="rounded-full object-contain" unoptimized />
                       <h3 className="text-[18px] font-extrabold text-[#181818]">Bitcoin</h3>
                       <span className="bg-[#FF6701] text-white text-xs font-semibold px-3 py-1 rounded-full ml-2">We recommend!</span>
                     </div>
@@ -133,15 +129,15 @@ export default function DeliveryPaymentPage() {
                         className="w-full flex items-center justify-between py-5 cursor-pointer"
                       >
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full border border-[#E7E7E7] flex items-center justify-center shrink-0">
-                            <Image src="/images/shop/faq-question-icon.svg" alt="?" width={16} height={16} unoptimized />
-                          </div>
-                          <span className="text-base font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
+                          <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
+                          <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
                         </div>
-                        <span className="text-xl text-[#181818] shrink-0 ml-4">{openFAQ === 100 + i ? "\u2212" : "+"}</span>
+                        <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openFAQ === 100 + i ? 'bg-[#FF6701] text-white' : 'text-[#181818]'}`}>
+                          <span className="text-[20px] leading-none">{openFAQ === 100 + i ? '−' : '+'}</span>
+                        </div>
                       </button>
                       {openFAQ === 100 + i && (
-                        <div className="pb-5 pl-11 text-sm text-[#7E7E7E] leading-6">
+                        <div className="pb-5 pl-[40px] text-sm text-[#7E7E7E] leading-6">
                           {faq.a}
                         </div>
                       )}
@@ -204,16 +200,9 @@ export default function DeliveryPaymentPage() {
                   {shippingLogos.map((logo) => (
                     <div
                       key={logo.name}
-                      className="h-[52px] px-5 rounded-[10px] flex items-center justify-center"
-                      style={logo.image ? undefined : { backgroundColor: logo.color }}
+                      className="h-[52px] px-5 rounded-[10px] border border-[#E7E7E7] flex items-center justify-center"
                     >
-                      {logo.image ? (
-                        <Image src={logo.image} alt={logo.name} width={80} height={40} className="object-contain h-[40px] w-auto" unoptimized />
-                      ) : (
-                        <span className="text-[20px] font-extrabold tracking-wider" style={{ color: logo.textColor || "#FFFFFF" }}>
-                          {logo.name}
-                        </span>
-                      )}
+                      <Image src={logo.image} alt={logo.name} width={80} height={40} className="object-contain h-[40px] w-auto" unoptimized />
                     </div>
                   ))}
                 </div>
@@ -229,15 +218,15 @@ export default function DeliveryPaymentPage() {
                         className="w-full flex items-center justify-between py-5 cursor-pointer"
                       >
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full border border-[#E7E7E7] flex items-center justify-center shrink-0">
-                            <Image src="/images/shop/faq-question-icon.svg" alt="?" width={16} height={16} unoptimized />
-                          </div>
-                          <span className="text-base font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
+                          <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
+                          <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
                         </div>
-                        <span className="text-xl text-[#181818] shrink-0 ml-4">{openFAQ === i ? "\u2212" : "+"}</span>
+                        <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#FF6701] text-white' : 'text-[#181818]'}`}>
+                          <span className="text-[20px] leading-none">{openFAQ === i ? '−' : '+'}</span>
+                        </div>
                       </button>
                       {openFAQ === i && (
-                        <div className="pb-5 pl-11 text-sm text-[#7E7E7E] leading-6">
+                        <div className="pb-5 pl-[40px] text-sm text-[#7E7E7E] leading-6">
                           {faq.a}
                         </div>
                       )}

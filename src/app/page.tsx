@@ -424,15 +424,15 @@ function FAQSection() {
                   className="w-full flex items-center justify-between py-5 cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 flex items-center justify-center shrink-0">
-                      <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized />
-                    </div>
-                    <span className="text-base font-semibold text-[#181818] text-left leading-6">{q}</span>
+                    <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
+                    <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{q}</span>
                   </div>
-                  <span className="text-xl text-[#181818] shrink-0 ml-4">{openIndex === i ? "\u2212" : "+"}</span>
+                  <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openIndex === i ? 'bg-[#FF6701] text-white' : 'text-[#181818]'}`}>
+                    <span className="text-[20px] leading-none">{openIndex === i ? '−' : '+'}</span>
+                  </div>
                 </button>
                 {openIndex === i && (
-                  <div className="pb-5 pl-11 text-sm text-[#7E7E7E] leading-6">
+                  <div className="pb-5 pl-[40px] text-sm text-[#7E7E7E] leading-6">
                     These boots provide good water resistance for light rain, wet grass, and damp trails, helping keep your feet dry in everyday hiking conditions. However, they are not fully waterproof and do not include a waterproof membrane like GORE-TEX.
                     <br/><br/>
                     They are best suited for dry to moderately wet environments. For heavy rain or very wet terrain, a fully waterproof model would be a better choice.
