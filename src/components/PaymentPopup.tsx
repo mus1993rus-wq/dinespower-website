@@ -1,65 +1,144 @@
 "use client";
 
+import { useState } from "react";
+
 interface PaymentPopupProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
 export default function PaymentPopup({ isOpen, onClose }: PaymentPopupProps) {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   if (!isOpen) return null;
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center">
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <div className="relative bg-white rounded-[16px] p-8 max-w-[600px] w-full mx-4 z-10">
-        <button onClick={onClose} className="absolute top-4 right-4 text-[#7E7E7E] hover:text-[#181818]">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
+      <div className="relative bg-white rounded-[16px] p-8 max-w-[500px] w-full mx-4 z-10 max-h-[90vh] overflow-y-auto">
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-[#7E7E7E] hover:text-[#181818] transition-colors"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
         </button>
-        <h2 className="text-[24px] font-extrabold text-center mb-2">Payment Methods</h2>
-        <p className="text-[14px] text-[#7E7E7E] text-center mb-6">Choose your preferred payment method</p>
 
-        <div className="flex flex-col gap-4">
-          <div className="border border-[#E7E7E7] rounded-[12px] p-5 flex items-start gap-4">
-            <div className="w-[48px] h-[48px] bg-[#181818] rounded-[12px] flex items-center justify-center shrink-0">
-              <span className="text-white text-[20px]">🏦</span>
-            </div>
-            <div>
-              <h3 className="text-[16px] font-extrabold text-[#181818]">Bank Transfer</h3>
-              <p className="text-[13px] text-[#7E7E7E] mt-1">Telegraphic Transfer (wire) to company bank account. Processing time: 1-5 business days.</p>
-            </div>
-          </div>
+        {/* Title */}
+        <h2 className="text-[24px] font-extrabold text-center text-[#181818] mb-1">Payment Methods</h2>
+        <p className="text-[14px] text-[#7E7E7E] text-center mb-6">
+          Everything You Need To Know Before Placing An Order
+        </p>
 
-          <div className="border border-[#FF6701] bg-[#FFF8F4] rounded-[12px] p-5 flex items-start gap-4">
-            <div className="w-[48px] h-[48px] bg-[#FF6701] rounded-[12px] flex items-center justify-center shrink-0">
-              <span className="text-white text-[20px] font-bold">&#8383;</span>
+        {/* Payment cards */}
+        <div className="border border-[#E7E7E7] rounded-[12px] overflow-hidden mb-6">
+          {/* Bank Transfer */}
+          <div className="p-4 flex items-start gap-3 border-b border-[#E7E7E7]">
+            <div className="w-[40px] h-[40px] bg-[#181818] rounded-[10px] flex items-center justify-center shrink-0">
+              <span className="text-white text-[18px]">🏦</span>
             </div>
             <div className="flex-1">
-              <div className="flex items-center gap-2">
-                <h3 className="text-[16px] font-extrabold text-[#181818]">Bitcoin (BTC)</h3>
-                <span className="bg-[#FF6701] text-white text-[11px] font-semibold px-2 py-0.5 rounded">Recommended</span>
+              <h3 className="text-[15px] font-extrabold text-[#181818]">Bank transfer</h3>
+              <p className="text-[13px] text-[#7E7E7E] mt-0.5">
+                Telegraphic Transfer (wire) to company bank account.
+              </p>
+              <p className="text-[12px] text-[#7E7E7E] mt-0.5">
+                Processing time: 1-3 business days
+              </p>
+            </div>
+          </div>
+
+          {/* Bitcoin */}
+          <div className="p-4 flex items-start gap-3">
+            <div className="w-[40px] h-[40px] bg-[#FF6701] rounded-[10px] flex items-center justify-center shrink-0">
+              <span className="text-white text-[18px] font-bold">&#8383;</span>
+            </div>
+            <div className="flex-1">
+              <h3 className="text-[15px] font-extrabold text-[#181818]">Bitcoin</h3>
+              <p className="text-[13px] text-[#7E7E7E] mt-0.5">
+                The preferred and most reliable payment method.
+              </p>
+              <p className="text-[12px] text-[#7E7E7E] mt-0.5">
+                Fast processing, instant network confirmation
+              </p>
+            </div>
+            <span className="bg-[#FF6701] text-white text-[11px] font-semibold px-2.5 py-1 rounded-[6px] whitespace-nowrap shrink-0">
+              We recommend
+            </span>
+          </div>
+        </div>
+
+        {/* How Payment Works */}
+        <div className="mb-6">
+          <h3 className="text-[16px] font-bold text-[#181818] text-center mb-4">How Payment Works</h3>
+          <div className="flex flex-col gap-3">
+            <div className="flex items-start gap-3">
+              <div className="w-[24px] h-[24px] bg-[#F5F5F5] rounded-full flex items-center justify-center shrink-0">
+                <span className="text-[12px] font-bold text-[#181818]">1</span>
               </div>
-              <p className="text-[13px] text-[#7E7E7E] mt-1">The preferred and most reliable payment method. Always available, fast processing with instant network confirmation.</p>
+              <p className="text-[13px] text-[#4A4A4A]">Place your order via manager or the website</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-[24px] h-[24px] bg-[#F5F5F5] rounded-full flex items-center justify-center shrink-0">
+                <span className="text-[12px] font-bold text-[#181818]">2</span>
+              </div>
+              <p className="text-[13px] text-[#4A4A4A]">Payment instructions are sent by email after order placement</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-[24px] h-[24px] bg-[#F5F5F5] rounded-full flex items-center justify-center shrink-0">
+                <span className="text-[12px] font-bold text-[#181818]">3</span>
+              </div>
+              <p className="text-[13px] text-[#4A4A4A]">Orders are processed only after payment confirmation</p>
             </div>
           </div>
+        </div>
 
-          <div className="border border-[#E7E7E7] rounded-[12px] p-5 flex items-start gap-4">
-            <div className="w-[48px] h-[48px] bg-[#627EEA] rounded-[12px] flex items-center justify-center shrink-0">
-              <span className="text-white text-[20px] font-bold">&Xi;</span>
-            </div>
-            <div>
-              <h3 className="text-[16px] font-extrabold text-[#181818]">Ethereum (ETH)</h3>
-              <p className="text-[13px] text-[#7E7E7E] mt-1">Pay with Ethereum. Fast confirmation times and widely supported.</p>
-            </div>
-          </div>
+        {/* No minimum order */}
+        <p className="text-[13px] text-[#7E7E7E] text-center mb-6">No Minimum Order Required</p>
 
-          <div className="border border-[#E7E7E7] rounded-[12px] p-5 flex items-start gap-4">
-            <div className="w-[48px] h-[48px] bg-[#26A17B] rounded-[12px] flex items-center justify-center shrink-0">
-              <span className="text-white text-[16px] font-bold">USDT</span>
+        {/* FAQ accordion */}
+        <div className="border border-[#E7E7E7] rounded-[12px] overflow-hidden">
+          {[
+            {
+              question: "How do I send the payment?",
+              answer:
+                "After placing your order, you will receive an email with detailed payment instructions including bank account details or a Bitcoin wallet address. Simply follow the instructions to complete your payment.",
+            },
+            {
+              question: "Bitcoin Payment",
+              answer:
+                "Bitcoin payments are processed instantly upon network confirmation. You will receive a unique wallet address for each order. We recommend using a reputable Bitcoin wallet for the transaction.",
+            },
+          ].map((faq, index) => (
+            <div key={index} className={index > 0 ? "border-t border-[#E7E7E7]" : ""}>
+              <button
+                onClick={() => toggleFaq(index)}
+                className="w-full flex items-center justify-between p-4 text-left"
+              >
+                <span className="text-[14px] font-semibold text-[#181818]">{faq.question}</span>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  className={`shrink-0 transition-transform ${openFaq === index ? "rotate-45" : ""}`}
+                >
+                  <path d="M10 4V16M4 10H16" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </button>
+              {openFaq === index && (
+                <div className="px-4 pb-4">
+                  <p className="text-[13px] text-[#7E7E7E] leading-relaxed">{faq.answer}</p>
+                </div>
+              )}
             </div>
-            <div>
-              <h3 className="text-[16px] font-extrabold text-[#181818]">USDT (Tether)</h3>
-              <p className="text-[13px] text-[#7E7E7E] mt-1">Stablecoin payment. No price volatility, instant settlement.</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

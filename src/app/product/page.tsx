@@ -10,12 +10,11 @@ import { useCart } from "@/context/CartContext";
 import PaymentPopup from "@/components/PaymentPopup";
 import ShippingPopup from "@/components/ShippingPopup";
 import NeedHelpPopup from "@/components/NeedHelpPopup";
+import VerifyPopup from "@/components/VerifyPopup";
 
 const thumbnails = [
   "/images/shop/product-1.webp",
   "/images/shop/product-2.webp",
-  "/images/shop/product-3.jpg",
-  "/images/shop/product-4.jpg",
 ];
 
 const specs = [
@@ -28,93 +27,102 @@ const specs = [
 
 const trustBadges = [
   {
-    emoji: "\u{1F4CB}",
+    icon: "/images/shop/product-icons/icon-1.png",
     title: "Certified & Lab Tested",
     desc: "Third-party lab test + batch authenticity code WHO-GMP / EU-GMP / UK-MHRA",
     button: "See Lab Test",
     orangeBg: false,
+    popup: "labtest",
   },
   {
-    emoji: "\u{1F6E1}\uFE0F",
+    icon: "/images/shop/product-icons/icon-2.png",
     title: "Official Brand Partner",
     desc: "Dinespower.com is an official Astera reseller (since 2019)",
     button: "Verify Partner",
     orangeBg: false,
+    popup: "verify",
   },
   {
-    emoji: "\u2705",
+    icon: "/images/shop/product-icons/icon-3.png",
     title: "Verify Authenticity",
     desc: "Enter your code to confirm the product on Astera Labs",
     button: "Verify Product",
     orangeBg: false,
+    popup: "verify",
   },
   {
-    emoji: "\u{1F4B0}",
+    icon: "/images/shop/product-icons/icon-4.png",
     title: "Wholesale Prices (B2B)",
     desc: "Tiered discounts for partner orders from \u20AC1,500+",
     button: "Read More",
     orangeBg: true,
+    popup: "wholesale",
   },
 ];
 
-const helpCards = [
+const benefitsData = [
   {
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    title: "Need Help?",
-    desc: "Ask about dosing, shipping, or verification",
-    link: "Ask a Question",
-    href: "/contact",
+    title: "Muscle Growth",
+    desc: "Promotes lean muscle gains without significant water retention, making it ideal for quality mass building.",
+    color: "#FF6701",
   },
   {
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-        <rect x="1" y="3" width="15" height="13" rx="2" stroke="#FF6701" strokeWidth="1.5"/>
-        <path d="M16 8L22 5V16L16 13V8Z" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    title: "Shipping Methods",
-    desc: "Delivery times, tracking, discreet packaging",
-    link: "Learn more",
-    href: "/delivery-payment",
+    title: "Increased Strength",
+    desc: "Improves overall strength and physical performance through enhanced protein synthesis.",
+    color: "#00B638",
   },
   {
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-        <rect x="1" y="4" width="22" height="16" rx="2" stroke="#FF6701" strokeWidth="1.5"/>
-        <path d="M1 10H23" stroke="#FF6701" strokeWidth="1.5"/>
-      </svg>
-    ),
-    title: "Payment Methods",
-    desc: "Bitcoin, bank transfer",
-    link: "Learn more",
-    href: "/delivery-payment",
+    title: "Improved Recovery",
+    desc: "Accelerates recovery between training sessions, reducing muscle soreness and fatigue.",
+    color: "#00A9DE",
   },
-];
-
-const benefits = [
-  "Muscle Growth - Promotes lean muscle gains without significant water retention",
-  "Enhanced Strength - Improves overall strength and physical performance",
-  "Fat Loss Support - Helps preserve muscle tissue during cutting phases",
-  "Low Side Effects - Mild androgenic properties with low estrogenic risk",
-  "Long-Acting Formula - Enanthate ester provides sustained release over weeks",
-  "Versatile Use - Suitable for both bulking and cutting cycles",
+  {
+    title: "Hormone Replacement",
+    desc: "Used in hormone replacement therapy to maintain healthy testosterone levels and well-being.",
+    color: "#FF6701",
+  },
 ];
 
 const reviews = [
-  { name: "John Doe", stars: 5, date: "12 Nov 2025", text: "This is amazing! Tried everything and this is the best product I have used. Highly recommend for anyone looking to boost performance." },
-  { name: "Mike Silva", stars: 5, date: "8 Nov 2025", text: "Great quality. The delivery was fast and the results speak for themselves. Will order again." },
-  { name: "Alex Meier", stars: 4, date: "2 Nov 2025", text: "Good product overall. Packaging was discreet and arrived on time. The quality is noticeably better than competitors." },
+  {
+    name: "Mary Ellen",
+    stars: 5,
+    timeAgo: "4d ago",
+    text: "This is amazing! Tried everything and this is the best product I have used. Highly recommend for anyone looking to boost performance. The quality is outstanding and shipping was discreet.",
+    image: "/images/shop/product-1.webp",
+  },
+  {
+    name: "John Doe",
+    stars: 5,
+    timeAgo: "1w ago",
+    text: "Great quality. The delivery was fast and the results speak for themselves. Will order again.",
+    image: null,
+  },
+  {
+    name: "Alex Meier",
+    stars: 4,
+    timeAgo: "2w ago",
+    text: "Good product overall. Packaging was discreet and arrived on time. The quality is noticeably better than competitors.",
+    image: null,
+  },
+];
+
+const customerPhotos = [
+  "/images/shop/product-1.webp",
+  "/images/shop/product-2.webp",
+  "/images/shop/product-3.jpg",
+  "/images/shop/product-4.jpg",
+  "/images/shop/product-5.webp",
+  "/images/shop/product-1.webp",
+  "/images/shop/product-2.webp",
+  "/images/shop/product-3.jpg",
 ];
 
 const topInjectableProducts = [
-  { brand: "Deus Medical", name: "Testosterone Enanthate 250 Injectable Steroid In Vials", dosage: "250 mg/ml", price: 38, badges: ["top"], image: "/images/shop/product-1.webp" },
-  { brand: "Astera Labs", name: "Nandrolone Decanoate 300 Injectable Steroid In Vials", dosage: "300 mg/ml", price: 52, badges: ["new"], image: "/images/shop/product-2.webp" },
-  { brand: "Deus Medical", name: "Boldenone Undecylenate 250 Injectable Steroid In Vials", dosage: "250 mg/ml", price: 44, oldPrice: 56, badges: ["sale", "top"], image: "/images/shop/product-3.jpg" },
-  { brand: "Astera Labs", name: "Trenbolone Enanthate 200 Injectable Steroid In Vials", dosage: "200 mg/ml", price: 62, badges: ["top"], image: "/images/shop/product-4.jpg" },
+  { brand: "Deus Medical", name: "Testosterone Enanthate 250 Injectable Steroid In Vials", dosage: "250 mg/ml", price: 38, badges: ["top"], image: "/images/shop/injectable-1.jpg" },
+  { brand: "Astera Labs", name: "Nandrolone Decanoate 300 Injectable Steroid In Vials", dosage: "300 mg/ml", price: 52, badges: ["new"], image: "/images/shop/injectable-2.jpg" },
+  { brand: "Deus Medical", name: "Boldenone Undecylenate 250 Injectable Steroid In Vials", dosage: "250 mg/ml", price: 44, oldPrice: 56, badges: ["sale", "top"], image: "/images/shop/injectable-3.jpg" },
+  { brand: "Astera Labs", name: "Trenbolone Enanthate 200 Injectable Steroid In Vials", dosage: "200 mg/ml", price: 62, badges: ["top"], image: "/images/shop/injectable-4.jpg" },
   { brand: "Deus Medical", name: "Masteron Propionate 100 Injectable Steroid In Vials", dosage: "100 mg/ml", price: 40, badges: ["new"], image: "/images/shop/product-5.webp" },
 ];
 
@@ -137,12 +145,18 @@ const faqItems = [
 export default function ProductPage() {
   const [qty, setQty] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
-  const [openAccordion, setOpenAccordion] = useState<number | null>(0);
+  const [openAccordions, setOpenAccordions] = useState<Record<string, boolean>>({
+    overview: true,
+    benefits: true,
+    reviews: true,
+  });
   const [openFAQ, setOpenFAQ] = useState<number | null>(2);
   const [copied, setCopied] = useState(false);
   const [paymentOpen, setPaymentOpen] = useState(false);
   const [shippingOpen, setShippingOpen] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
+  const [verifyOpen, setVerifyOpen] = useState(false);
+  const [overviewExpanded, setOverviewExpanded] = useState(false);
   const { addItem } = useCart();
 
   const handleCopy = () => {
@@ -164,75 +178,24 @@ export default function ProductPage() {
     );
   };
 
-  const accordionSections = [
-    {
-      title: "Product overview",
-      content: (
-        <div className="text-sm text-[#7E7E7E] leading-6 space-y-3">
-          <p>Methenolone Enanthate, commonly known as Primobolan Depot, is a long-acting injectable anabolic steroid. It is widely considered one of the safer anabolic steroids, with relatively mild androgenic properties and low risk of estrogenic side effects.</p>
-          <p>Originally developed for medical use, including treating muscle-wasting conditions, Methenolone Enanthate has become popular in bodybuilding for its ability to promote lean muscle gains without significant water retention.</p>
-          <p>The enanthate ester attached to the methenolone base provides a sustained release of the hormone, allowing for less frequent injections compared to shorter-acting compounds. This makes it a convenient option for athletes and bodybuilders looking for steady, quality gains over time.</p>
-        </div>
-      ),
-    },
-    {
-      title: "Benefits",
-      content: (
-        <ul className="flex flex-col gap-3">
-          {benefits.map((benefit, i) => {
-            const dotColors = ["#FF6701", "#00B638", "#00A9DE", "#FF6701", "#00B638", "#00A9DE"];
-            return (
-              <li key={i} className="flex items-start gap-3">
-                <div className="w-[8px] h-[8px] rounded-full mt-[7px] shrink-0" style={{ backgroundColor: dotColors[i % dotColors.length] }} />
-                <span className="text-sm text-[#7E7E7E] leading-6">{benefit}</span>
-              </li>
-            );
-          })}
-        </ul>
-      ),
-    },
-    {
-      title: "Reviews (323 Reviews)",
-      content: (
-        <div>
-          <div className="flex items-center gap-4 mb-6">
-            <div className="flex items-center gap-1">
-              {[1, 2, 3, 4, 5].map((s) => (
-                <svg key={s} width="20" height="20" viewBox="0 0 24 24" fill="#FF6701"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-              ))}
-            </div>
-            <span className="text-sm font-semibold">4.9</span>
-            <span className="text-sm text-[#7E7E7E]">(323 Reviews)</span>
-            <button className="ml-auto bg-[#FF6701] text-white text-sm font-semibold px-6 py-2.5 rounded-lg hover:bg-[#E65D00] transition-colors">Write a review</button>
-          </div>
-          {reviews.map((r, i) => (
-            <div key={i} className="border-b border-[#E7E7E7] py-4">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 rounded-full bg-[#F7F7F7] flex items-center justify-center text-sm font-semibold text-[#181818]">
-                  {r.name.charAt(0)}
-                </div>
-                <div className="flex">
-                  {[1, 2, 3, 4, 5].map((s) => (
-                    <svg key={s} width="14" height="14" viewBox="0 0 24 24" fill={s <= r.stars ? "#FF6701" : "#E7E7E7"}><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                  ))}
-                </div>
-                <span className="text-sm font-semibold text-[#181818]">{r.name}</span>
-                <span className="text-xs text-[#7E7E7E] ml-auto">{r.date}</span>
-              </div>
-              <p className="text-sm text-[#7E7E7E] leading-5 pl-10">{r.text}</p>
-            </div>
-          ))}
-        </div>
-      ),
-    },
-  ];
+  const toggleAccordion = (key: string) => {
+    setOpenAccordions((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleTrustBadgeClick = (popup: string) => {
+    if (popup === "verify" || popup === "labtest") {
+      setVerifyOpen(true);
+    } else if (popup === "wholesale") {
+      // scroll or navigate
+    }
+  };
 
   return (
     <>
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto px-4 py-3">
+        <div className="max-w-[1340px] mx-auto py-3">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818]">Home</Link>
             <span>/</span>
@@ -245,20 +208,20 @@ export default function ProductPage() {
         </div>
 
         {/* Product Detail: Two Columns */}
-        <div className="max-w-[1340px] mx-auto px-4 flex gap-10 pb-10">
+        <div className="max-w-[1340px] mx-auto flex gap-[60px] pb-10">
           {/* LEFT COLUMN - Thumbnails + Main Image */}
-          <div className="w-[600px] shrink-0 flex gap-4">
+          <div className="w-[560px] shrink-0 flex gap-3 sticky top-[180px] self-start">
             {/* Vertical thumbnails */}
-            <div className="flex flex-col gap-3 w-[100px] shrink-0">
+            <div className="flex flex-col gap-2 w-[64px] shrink-0">
               {thumbnails.map((src, i) => (
                 <button
                   key={i}
                   onClick={() => setSelectedImage(i)}
-                  className={`w-[100px] h-[100px] rounded-[8px] bg-white border-2 transition-colors flex items-center justify-center overflow-hidden ${
+                  className={`w-[64px] h-[64px] rounded-[8px] bg-white border-2 transition-colors flex items-center justify-center overflow-hidden ${
                     selectedImage === i ? "border-[#FF6701]" : "border-[#E7E7E7]"
                   }`}
                 >
-                  <Image src={src} alt={`Thumbnail ${i + 1}`} width={70} height={70} className="object-contain" unoptimized />
+                  <Image src={src} alt={`Thumbnail ${i + 1}`} width={56} height={56} className="object-contain" unoptimized />
                 </button>
               ))}
             </div>
@@ -280,8 +243,8 @@ export default function ProductPage() {
           </div>
 
           {/* RIGHT COLUMN - Product Info */}
-          <div className="flex-1 max-w-[560px]">
-            {/* Stars rating */}
+          <div className="flex-1">
+            {/* 1. Rating row - 5 orange stars + (325 Reviews) */}
             <div className="flex items-center gap-2 mb-3">
               <div className="flex">
                 {[1, 2, 3, 4, 5].map((s) => (
@@ -291,12 +254,12 @@ export default function ProductPage() {
               <span className="text-sm text-[#7E7E7E]">(325 Reviews)</span>
             </div>
 
-            {/* Product name */}
+            {/* 2. Title */}
             <h1 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-4">
               Methenolone Enanthate 200 Injectable Steroid In Vials
             </h1>
 
-            {/* Brand badge */}
+            {/* 3. Brand badge */}
             <div className="flex items-center gap-3 border border-[#E7E7E7] rounded-[8px] p-3 mb-5">
               <div className="bg-[#F7F7F7] rounded-[6px] px-3 py-2 text-center shrink-0">
                 <span className="text-[12px] font-black text-[#181818] leading-[14px] block">ASTERA</span>
@@ -308,7 +271,7 @@ export default function ProductPage() {
               </div>
             </div>
 
-            {/* Specs as bullet list */}
+            {/* 4. Specs bullet list */}
             <ul className="flex flex-col gap-2 mb-6">
               {specs.map((spec) => (
                 <li key={spec.label} className="flex items-start gap-2 text-sm">
@@ -318,14 +281,14 @@ export default function ProductPage() {
               ))}
             </ul>
 
-            {/* Price row */}
+            {/* 5. Price row */}
             <div className="flex items-center gap-3 mb-6">
               <span className="text-[36px] font-extrabold text-[#FF6701] leading-[42px]">44 &euro;</span>
               <span className="text-lg text-[#B6B6B6] line-through">56 &euro;</span>
               <span className="bg-[#FF6701]/10 text-[#FF6701] text-xs font-bold px-2.5 py-1 rounded-[4px]">Sale -14%</span>
             </div>
 
-            {/* Quantity + Add to Cart */}
+            {/* 6. Qty + Add To Cart */}
             <div className="flex items-center gap-4 mb-4">
               <div className="flex items-center border border-[#E7E7E7] rounded-[8px] h-[48px]">
                 <button onClick={() => setQty(Math.max(1, qty - 1))} className="w-12 h-full flex items-center justify-center text-[#B6B6B6] hover:text-[#181818] transition-colors text-xl">&#8722;</button>
@@ -345,7 +308,7 @@ export default function ProductPage() {
               </button>
             </div>
 
-            {/* In Stock */}
+            {/* 7. In Stock */}
             <div className="flex items-center gap-2 mb-6">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <path d="M20 6L9 17L4 12" stroke="#00B638" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -353,17 +316,11 @@ export default function ProductPage() {
               <span className="text-sm font-medium text-[#00B638]">In Stock (5-20 days)</span>
             </div>
 
-            {/* Promo code section */}
+            {/* 8. Promo code block */}
             <div className="bg-[#181818] rounded-[12px] p-4 mb-6 flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#FF6701]/20 flex items-center justify-center shrink-0">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M20 12V22H4V12" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M22 7H2V12H22V7Z" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M12 22V7" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M12 7H7.5C6.83696 7 6.20107 6.73661 5.73223 6.26777C5.26339 5.79893 5 5.16304 5 4.5C5 3.83696 5.26339 3.20107 5.73223 2.73223C6.20107 2.26339 6.83696 2 7.5 2C11 2 12 7 12 7Z" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M12 7H16.5C17.163 7 17.7989 6.73661 18.2678 6.26777C18.7366 5.79893 19 5.16304 19 4.5C19 3.83696 18.7366 3.20107 18.2678 2.73223C17.7989 2.26339 17.163 2 16.5 2C13 2 12 7 12 7Z" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+                <div className="w-[48px] h-[48px] shrink-0">
+                  <Image src="/images/shop/product-icons/discount.png" alt="" width={48} height={48} className="object-contain" unoptimized />
                 </div>
                 <div>
                   <p className="text-sm font-bold text-white">Get 5% Off Your First Order</p>
@@ -382,8 +339,8 @@ export default function ProductPage() {
               </div>
             </div>
 
-            {/* Trust Badges */}
-            <div className="flex flex-col gap-3 mb-6">
+            {/* 9. Trust Badges */}
+            <div className="flex flex-col gap-2 mb-6">
               {trustBadges.map((badge, i) => (
                 <div
                   key={i}
@@ -393,76 +350,236 @@ export default function ProductPage() {
                       : "bg-white border-[#E7E7E7]"
                   }`}
                 >
-                  <div className="w-[48px] h-[48px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0">
-                    <span className="text-[24px]">{badge.emoji}</span>
+                  <div className="w-[80px] h-[80px] shrink-0 flex items-center justify-center">
+                    <Image src={badge.icon} alt={badge.title} width={80} height={80} className="object-contain" unoptimized />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-bold text-[#181818]">{badge.title}</p>
                     <p className="text-xs text-[#7E7E7E] mt-0.5">{badge.desc}</p>
                   </div>
-                  <button className="text-sm font-semibold text-[#FF6701] hover:underline whitespace-nowrap shrink-0">
+                  <button
+                    onClick={() => handleTrustBadgeClick(badge.popup)}
+                    className={`text-sm font-semibold whitespace-nowrap shrink-0 border rounded-[8px] px-4 py-2 transition-colors ${
+                      badge.orangeBg
+                        ? "text-[#FF6701] border-transparent hover:underline"
+                        : "text-[#181818] border-[#E7E7E7] hover:border-[#FF6701] hover:text-[#FF6701]"
+                    }`}
+                  >
                     {badge.button}
                   </button>
                 </div>
               ))}
             </div>
 
-            {/* Help Cards - 3 in a row */}
+            {/* 10. Help Cards - 3 in a row */}
             <div className="grid grid-cols-3 gap-3">
               <button onClick={() => setHelpOpen(true)} className="border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col items-center text-center cursor-pointer hover:border-[#FF6701] transition-colors">
-                <div className="mb-3">{helpCards[0].icon}</div>
-                <p className="text-sm font-bold text-[#181818] mb-1">{helpCards[0].title}</p>
-                <p className="text-xs text-[#7E7E7E] mb-3">{helpCards[0].desc}</p>
-                <span className="text-xs font-semibold text-[#FF6701] underline">{helpCards[0].link}</span>
+                <div className="w-[48px] h-[48px] mb-3">
+                  <Image src="/images/shop/product-icons/icon-5.png" alt="" width={48} height={48} className="object-contain" unoptimized />
+                </div>
+                <p className="text-sm font-bold text-[#181818] mb-1">Need Help?</p>
+                <p className="text-xs text-[#7E7E7E] mb-3">Ask about dosing, shipping, or verification</p>
+                <span className="text-xs font-semibold text-[#181818] underline">Ask a Question</span>
               </button>
               <button onClick={() => setShippingOpen(true)} className="border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col items-center text-center cursor-pointer hover:border-[#FF6701] transition-colors">
-                <div className="mb-3">{helpCards[1].icon}</div>
-                <p className="text-sm font-bold text-[#181818] mb-1">{helpCards[1].title}</p>
-                <p className="text-xs text-[#7E7E7E] mb-3">{helpCards[1].desc}</p>
-                <span className="text-xs font-semibold text-[#FF6701] underline">{helpCards[1].link}</span>
+                <div className="w-[48px] h-[48px] mb-3">
+                  <Image src="/images/shop/product-icons/icon-6.png" alt="" width={48} height={48} className="object-contain" unoptimized />
+                </div>
+                <p className="text-sm font-bold text-[#181818] mb-1">Shipping Methods</p>
+                <p className="text-xs text-[#7E7E7E] mb-3">Delivery times, tracking, discreet packaging</p>
+                <span className="text-xs font-semibold text-[#181818] underline">Learn more</span>
               </button>
               <button onClick={() => setPaymentOpen(true)} className="border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col items-center text-center cursor-pointer hover:border-[#FF6701] transition-colors">
-                <div className="mb-3">{helpCards[2].icon}</div>
-                <p className="text-sm font-bold text-[#181818] mb-1">{helpCards[2].title}</p>
-                <p className="text-xs text-[#7E7E7E] mb-3">{helpCards[2].desc}</p>
-                <span className="text-xs font-semibold text-[#FF6701] underline">{helpCards[2].link}</span>
+                <div className="w-[48px] h-[48px] mb-3">
+                  <Image src="/images/shop/product-icons/icon-7.png" alt="" width={48} height={48} className="object-contain" unoptimized />
+                </div>
+                <p className="text-sm font-bold text-[#181818] mb-1">Payment Methods</p>
+                <p className="text-xs text-[#7E7E7E] mb-3">Bitcoin, bank transfer</p>
+                <span className="text-xs font-semibold text-[#181818] underline">Learn more</span>
               </button>
             </div>
-          </div>
-        </div>
 
-        {/* Description Section - Accordion style */}
-        <div className="max-w-[1340px] mx-auto px-4 pb-10">
-          <div className="flex flex-col">
-            {accordionSections.map((section, i) => (
-              <div key={i} className="border-b border-[#E7E7E7]">
+            {/* 11. Product Overview Accordion */}
+            <div className="mt-6">
+              <div className="border-b border-[#E7E7E7]">
                 <button
-                  onClick={() => setOpenAccordion(openAccordion === i ? null : i)}
+                  onClick={() => toggleAccordion("overview")}
                   className="w-full flex items-center justify-between py-5 cursor-pointer"
                 >
-                  <span className="text-base font-semibold text-[#181818]">{section.title}</span>
+                  <span className="text-base font-semibold text-[#181818]">Product overview</span>
                   <svg
                     width="20"
                     height="20"
                     viewBox="0 0 24 24"
                     fill="none"
-                    className={`transition-transform ${openAccordion === i ? "rotate-180" : ""}`}
+                    className={`transition-transform ${openAccordions.overview ? "rotate-180" : ""}`}
                   >
                     <path d="M6 9L12 15L18 9" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
-                {openAccordion === i && (
+                {openAccordions.overview && (
                   <div className="pb-6">
-                    {section.content}
+                    <h3 className="text-base font-bold text-[#181818] mb-3">What Is The Methenolone Enanthate 200mg Used For</h3>
+                    <div className={`text-sm text-[#7E7E7E] leading-6 space-y-3 ${!overviewExpanded ? "max-h-[180px] overflow-hidden relative" : ""}`}>
+                      <p>Methenolone Enanthate, commonly known as Primobolan Depot, is a long-acting injectable anabolic steroid. It is widely considered one of the safer anabolic steroids, with relatively mild androgenic properties and low risk of estrogenic side effects.</p>
+                      <p>Originally developed for medical use, including treating muscle-wasting conditions, Methenolone Enanthate has become popular in bodybuilding for its ability to promote lean muscle gains without significant water retention.</p>
+                      <p>The enanthate ester attached to the methenolone base provides a sustained release of the hormone, allowing for less frequent injections compared to shorter-acting compounds. This makes it a convenient option for athletes and bodybuilders looking for steady, quality gains over time.</p>
+                      <p>Methenolone Enanthate is often preferred during cutting cycles, where the goal is to preserve lean muscle mass while reducing body fat. Its mild nature makes it a suitable choice for both men and women, though dosages differ significantly between the sexes.</p>
+                      <p>The compound has a favorable safety profile compared to many other anabolic steroids. It does not aromatize to estrogen, meaning users are less likely to experience water retention, gynecomastia, or other estrogen-related side effects. This characteristic makes it particularly popular among athletes who want to avoid the bloated appearance associated with some other steroids.</p>
+                      {!overviewExpanded && (
+                        <div className="absolute bottom-0 left-0 right-0 h-[60px] bg-gradient-to-t from-white to-transparent" />
+                      )}
+                    </div>
+                    <button
+                      onClick={() => setOverviewExpanded(!overviewExpanded)}
+                      className="w-full bg-[#F7F7F7] rounded-[8px] py-3 text-center text-sm font-semibold text-[#181818] hover:bg-[#EDEDED] transition-colors mt-4 flex items-center justify-center gap-2"
+                    >
+                      {overviewExpanded ? "Show less" : "Read more"}
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        className={`transition-transform ${overviewExpanded ? "rotate-180" : ""}`}
+                      >
+                        <path d="M6 9L12 15L18 9" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </button>
                   </div>
                 )}
               </div>
-            ))}
+            </div>
+
+            {/* 12. Benefits Accordion */}
+            <div>
+              <div className="border-b border-[#E7E7E7]">
+                <button
+                  onClick={() => toggleAccordion("benefits")}
+                  className="w-full flex items-center justify-between py-5 cursor-pointer"
+                >
+                  <span className="text-base font-semibold text-[#181818]">Benefits</span>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className={`transition-transform ${openAccordions.benefits ? "rotate-180" : ""}`}
+                  >
+                    <path d="M6 9L12 15L18 9" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                {openAccordions.benefits && (
+                  <div className="pb-6">
+                    <div className="flex flex-col gap-4">
+                      {benefitsData.map((benefit, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <div
+                            className="w-[28px] h-[28px] rounded-full flex items-center justify-center shrink-0 mt-0.5"
+                            style={{ backgroundColor: `${benefit.color}15` }}
+                          >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                              <path d="M20 6L9 17L4 12" stroke={benefit.color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </div>
+                          <div>
+                            <p className="text-sm font-bold text-[#181818]">{benefit.title}</p>
+                            <p className="text-sm text-[#7E7E7E] mt-0.5">{benefit.desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* 13. Reviews Accordion */}
+            <div className="pb-4">
+              <div className="border-b border-[#E7E7E7]">
+                <button
+                  onClick={() => toggleAccordion("reviews")}
+                  className="w-full flex items-center justify-between py-5 cursor-pointer"
+                >
+                  <span className="text-base font-semibold text-[#181818]">Reviews (325 Reviews)</span>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className={`transition-transform ${openAccordions.reviews ? "rotate-180" : ""}`}
+                  >
+                    <path d="M6 9L12 15L18 9" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                {openAccordions.reviews && (
+                  <div className="pb-6">
+                    {/* Large stars */}
+                    <div className="flex items-center gap-1 mb-6">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <svg key={s} width="32" height="32" viewBox="0 0 24 24" fill="#FF6701"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      ))}
+                    </div>
+
+                    {/* Review This Product */}
+                    <div className="mb-6">
+                      <h3 className="text-base font-bold text-[#181818] mb-1">Review This Product</h3>
+                      <p className="text-sm text-[#7E7E7E] mb-3">Share your thoughts with other customers</p>
+                      <button className="bg-[#181818] hover:bg-[#333] text-white text-sm font-semibold px-6 py-3 rounded-[8px] transition-colors">
+                        Write a customer review
+                      </button>
+                    </div>
+
+                    {/* Photos And Videos From Customers */}
+                    <div className="mb-6">
+                      <h3 className="text-base font-bold text-[#181818] mb-3">Photos And Videos From Customers</h3>
+                      <div className="flex gap-2 flex-wrap">
+                        {customerPhotos.map((photo, i) => (
+                          <div key={i} className="w-[72px] h-[72px] rounded-[8px] overflow-hidden border border-[#E7E7E7] shrink-0">
+                            <Image src={photo} alt={`Customer photo ${i + 1}`} width={72} height={72} className="object-cover w-full h-full" unoptimized />
+                          </div>
+                        ))}
+                        <div className="w-[72px] h-[72px] rounded-[8px] bg-[#F7F7F7] border border-[#E7E7E7] flex items-center justify-center shrink-0">
+                          <span className="text-sm font-semibold text-[#7E7E7E]">+24</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Review Cards */}
+                    {reviews.map((r, i) => (
+                      <div key={i} className="border-b border-[#E7E7E7] py-5">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-10 h-10 rounded-full bg-[#F7F7F7] flex items-center justify-center text-sm font-semibold text-[#181818]">
+                            {r.name.charAt(0)}
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-semibold text-[#181818]">{r.name}</span>
+                              <span className="text-xs text-[#7E7E7E]">{r.timeAgo}</span>
+                            </div>
+                            <div className="flex mt-0.5">
+                              {[1, 2, 3, 4, 5].map((s) => (
+                                <svg key={s} width="14" height="14" viewBox="0 0 24 24" fill={s <= r.stars ? "#FF6701" : "#E7E7E7"}><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                        <p className="text-sm text-[#7E7E7E] leading-6">{r.text}</p>
+                        {r.image && (
+                          <div className="mt-3 w-[80px] h-[80px] rounded-[8px] overflow-hidden border border-[#E7E7E7]">
+                            <Image src={r.image} alt="Review" width={80} height={80} className="object-cover w-full h-full" unoptimized />
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* TOP Injectable */}
-        <div className="max-w-[1340px] mx-auto px-4 pb-10">
+        {/* 14. TOP Injectable */}
+        <div className="max-w-[1340px] mx-auto pb-10">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">TOP Injectable</h2>
             <div className="flex gap-2">
@@ -475,14 +592,23 @@ export default function ProductPage() {
             </div>
           </div>
           <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
+            {/* Promo banner card */}
+            <div className="w-[240px] shrink-0 rounded-[16px] overflow-hidden relative">
+              <Image src="/images/shop/promo-injectable.png" alt="Injectable Promo" width={240} height={340} className="object-cover w-full h-full" unoptimized />
+              <div className="absolute bottom-4 left-4 right-4">
+                <Link href="/catalog" className="bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold rounded-[8px] h-[40px] flex items-center justify-center transition-colors">
+                  View All Injectable
+                </Link>
+              </div>
+            </div>
             {topInjectableProducts.map((p, i) => (
               <ProductCard key={i} {...p} />
             ))}
           </div>
         </div>
 
-        {/* Related Products */}
-        <div className="max-w-[1340px] mx-auto px-4 pb-10">
+        {/* 15. Related Products */}
+        <div className="max-w-[1340px] mx-auto pb-10">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">Related products</h2>
             <div className="flex gap-2">
@@ -496,13 +622,19 @@ export default function ProductPage() {
           </div>
           <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
             {relatedProducts.map((p, i) => (
-              <ProductCard key={i} {...p} />
+              <div key={i} className="w-[200px] shrink-0 cursor-pointer group">
+                <div className="h-[200px] bg-white rounded-[12px] border border-[#E7E7E7] flex items-center justify-center p-3 mb-3 overflow-hidden">
+                  <Image src={p.image} alt={p.name} width={160} height={160} className="object-contain" unoptimized />
+                </div>
+                <p className="text-xs text-[#7E7E7E]">{p.brand}</p>
+                <p className="text-sm font-semibold text-[#181818] line-clamp-2 group-hover:text-[#FF6701] transition-colors">{p.name}</p>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* FAQ Section */}
-        <section className="max-w-[1340px] mx-auto px-4 pb-16">
+        {/* 16. FAQ Section */}
+        <section className="max-w-[1340px] mx-auto pb-16">
           <div className="flex gap-[80px]">
             {/* Left column - Still Have Questions Card */}
             <div className="w-[440px] shrink-0">
@@ -568,6 +700,7 @@ export default function ProductPage() {
       <PaymentPopup isOpen={paymentOpen} onClose={() => setPaymentOpen(false)} />
       <ShippingPopup isOpen={shippingOpen} onClose={() => setShippingOpen(false)} />
       <NeedHelpPopup isOpen={helpOpen} onClose={() => setHelpOpen(false)} />
+      <VerifyPopup isOpen={verifyOpen} onClose={() => setVerifyOpen(false)} />
     </>
   );
 }

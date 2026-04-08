@@ -137,7 +137,7 @@ function CategoriesRow() {
           <Link key={cat.name} href={`/catalog?category=${cat.name.toLowerCase().replace(/ & /g, '-')}`}>
             <ScrollAnimation animation="animate-fade-in-up" className="flex flex-col items-center gap-2 cursor-pointer group">
               <div className="w-[116px] h-[116px] rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center group-hover:bg-[#EDEDED] transition-all duration-300">
-                <Image src={cat.img} alt={cat.name} width={116} height={116} className="object-cover transition-transform duration-300 group-hover:scale-105" unoptimized />
+                <Image src={cat.img} alt={cat.name} width={116} height={116} className="object-cover" unoptimized />
               </div>
               <span className="text-[14px] font-semibold text-[#181818] leading-5 group-hover:text-[#FF6701] transition-colors">{cat.name}</span>
             </ScrollAnimation>
@@ -240,8 +240,8 @@ function FatBurningBanner() {
         <Image src="/images/shop/banner-dark-1.png" alt="" fill className="object-cover" unoptimized />
         <div className="absolute left-[80px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-6 max-w-[400px]">
           <div>
-            <h2 className="text-[48px] font-black italic text-[#FF6701] uppercase leading-[52px]">Fat Burning</h2>
-            <h2 className="text-[48px] font-black text-white uppercase leading-[52px]">Stack</h2>
+            <h2 className="text-[48px] font-black italic text-[#FF6701] uppercase leading-[56px]">Fat Burning</h2>
+            <h2 className="text-[48px] font-black text-white uppercase leading-[56px]">Stack</h2>
           </div>
           <p className="text-[16px] text-white/80 leading-[24px]">
             This combination of powerful fat burners works synergistically.
@@ -250,8 +250,8 @@ function FatBurningBanner() {
             See More
           </button>
         </div>
-        <div className="absolute right-0 top-0 h-full w-[600px] z-10 flex items-center justify-center">
-          <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" width={600} height={400} className="object-contain" unoptimized />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 h-[85%] w-[55%] z-10 flex items-center justify-center">
+          <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-right" unoptimized />
         </div>
       </div>
     </section>
@@ -266,7 +266,7 @@ function ProSellersSection() {
         <ScrollAnimation animation="animate-fade-in-up">
           <div className="text-center mb-[60px]">
             <p className="text-[14px] text-[#B6B6B6] uppercase tracking-[2px] mb-4 font-semibold">Built to Scale</p>
-            <h2 className="text-[48px] font-extrabold text-white leading-[56px]">Built for Professional Sellers</h2>
+            <h2 className="text-[36px] font-extrabold text-white leading-[44px]">Built for Professional Sellers</h2>
             <p className="text-[14px] text-[#7E7E7E] mt-4 leading-5">We support partners who need reliable supply, stable margins, and fast operations.</p>
           </div>
         </ScrollAnimation>
@@ -274,11 +274,11 @@ function ProSellersSection() {
         <div className="flex gap-[16px]">
           {proSellerCards.map((card, i) => (
             <ScrollAnimation key={i} animation="animate-fade-in-up" className="flex-1" delay={i * 100}>
-              <div className="bg-[#212121] border border-white/[0.08] rounded-[16px] p-[32px] flex flex-col gap-5 h-full">
-                <div className="w-[100px] h-[100px] shrink-0">
-                  <Image src={card.icon} alt={card.title} width={100} height={100} className="object-contain" unoptimized />
+              <div className="bg-[#212121] border border-white/[0.08] rounded-[12px] p-[25px] flex flex-col items-center gap-6 h-full text-center">
+                <div className="w-[80px] h-[80px] shrink-0">
+                  <Image src={card.icon} alt={card.title} width={80} height={80} className="object-contain" unoptimized />
                 </div>
-                <h3 className="text-[20px] font-extrabold text-white leading-[26px]">{card.title}</h3>
+                <h3 className="text-[18px] font-extrabold text-white leading-[24px] capitalize">{card.title}</h3>
                 <p className="text-[14px] text-[#B6B6B6] leading-5">{card.desc}</p>
                 <Link href="#" className="text-[14px] font-semibold text-[#FF6701] hover:underline mt-auto leading-5 flex items-center gap-1">
                   {card.link}
@@ -357,12 +357,12 @@ function WholesaleBanner() {
       <div className="relative h-[400px] rounded-[16px] overflow-hidden">
         <Image src="/images/shop/banner-dark-2.png" alt="" fill className="object-cover" unoptimized />
         {/* Left text */}
-        <div className="absolute left-[80px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-4 max-w-[400px]">
+        <div className="absolute left-[80px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-5 max-w-[420px]">
           <div>
-            <h2 className="text-[48px] font-black italic text-[#FF6701] uppercase leading-[52px]">Save Up To 70%</h2>
-            <h2 className="text-[48px] font-extrabold text-white uppercase leading-[52px]">With Wholesale<br/>Pricing</h2>
+            <h2 className="text-[48px] font-black italic text-[#FF6701] uppercase leading-[56px]">Save Up To 70%</h2>
+            <h2 className="text-[48px] font-extrabold text-white uppercase leading-[56px]">With Wholesale<br/>Pricing</h2>
           </div>
-          <p className="text-[16px] text-white/80 font-semibold">Become a Wholesale Partner in Europe</p>
+          <p className="text-[16px] text-white/80">Become a Wholesale Partner in Europe</p>
           <button className="bg-white hover:bg-[#F7F7F7] text-[#181818] text-[14px] font-semibold px-8 py-3 rounded-[8px] w-fit transition-colors">
             Start as a Partner
           </button>

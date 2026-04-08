@@ -40,7 +40,7 @@ const categoryDescriptions: Record<string, string> = {
 };
 
 const brandDescriptions: Record<string, string> = {
-  "Deus Medical": "DEUS MEDICAL is one of the leading Pharmaceutical manufacturing brands in India with state-of-the-art manufacturing facility.",
+  "Deus Medical": "DEUS MEDICAL is one of the leading Pharmaceutical manufacturing brands in India with state-of-the-art manufacturing facility situated at Kolkata.",
   "Astera Labs": "Astera Labs is one of the leading pharmaceutical companies in India.",
   "Biaxol": "Biaxol Supplements is one of the leading sports supplement stores in Europe, providing quality and trust at every step.",
 };
@@ -55,6 +55,18 @@ const brandLabelToSlug: Record<string, string> = {
   "Deus Medical": "deus-medical",
   "Astera Labs": "astera-labs",
   "Biaxol": "biaxol",
+};
+
+const brandColors: Record<string, string> = {
+  "Astera Labs": "#FF6701",
+  "Deus Medical": "#C0202F",
+  "Biaxol": "#00709F",
+};
+
+const brandBgColors: Record<string, string> = {
+  "Astera Labs": "#F5ECE6",
+  "Deus Medical": "#F7F3F4",
+  "Biaxol": "#F2F6F7",
 };
 
 // Maps category slug + brand slug to banner image filenames
@@ -396,7 +408,7 @@ function CatalogContent() {
         {/* Banner */}
         {bannerImage ? (
           <div className="max-w-[1340px] mx-auto mb-8">
-            <div className="relative h-[200px] rounded-[16px] overflow-hidden bg-white">
+            <div className="relative h-[278px] rounded-[16px] overflow-hidden" style={{ backgroundColor: currentBrandLabel ? (brandBgColors[currentBrandLabel] || '#F7F7F7') : '#F7F7F7' }}>
               <Image
                 src={bannerImage}
                 alt={`${currentCategory?.label || "Catalog"}${currentBrandLabel ? ` - ${currentBrandLabel}` : ""}`}
@@ -408,8 +420,16 @@ function CatalogContent() {
                 <h1 className="text-[40px] font-black text-[#181818] uppercase leading-[44px]">
                   {currentCategory?.label || "All Products"}
                 </h1>
+                {currentBrandLabel && (
+                  <h2
+                    className="text-[40px] font-extrabold italic uppercase leading-[44px] mt-1"
+                    style={{ color: brandColors[currentBrandLabel] || "#FF6701" }}
+                  >
+                    {currentBrandLabel}
+                  </h2>
+                )}
                 {bannerDescription && (
-                  <p className="text-[16px] text-[#4A4A4A] leading-[22px] mt-2">
+                  <p className="text-[16px] text-[#000000] leading-[22px] mt-3 max-w-[400px] capitalize">
                     {bannerDescription}
                   </p>
                 )}
@@ -418,7 +438,7 @@ function CatalogContent() {
           </div>
         ) : (categorySlug && !bannerImage) ? (
           <div className="max-w-[1340px] mx-auto mb-8">
-            <div className="relative h-[200px] rounded-[16px] overflow-hidden bg-white border border-[#E7E7E7]">
+            <div className="relative h-[278px] rounded-[16px] overflow-hidden bg-white border border-[#E7E7E7]">
               <div className="absolute left-[60px] top-1/2 -translate-y-1/2 max-w-[50%]">
                 <h1 className="text-[40px] font-black text-[#181818] uppercase leading-[44px]">
                   {currentCategory?.label}
@@ -433,7 +453,7 @@ function CatalogContent() {
           </div>
         ) : (
           <div className="max-w-[1340px] mx-auto mb-8">
-            <div className="relative h-[200px] rounded-[16px] overflow-hidden bg-[#1A1A1A]">
+            <div className="relative h-[278px] rounded-[16px] overflow-hidden bg-[#1A1A1A]">
               <div className="absolute left-[60px] top-1/2 -translate-y-1/2">
                 <h1 className="text-[40px] font-black text-white uppercase leading-[44px]">
                   All Products
