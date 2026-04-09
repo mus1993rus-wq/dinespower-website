@@ -106,55 +106,8 @@ export default function AboutPage() {
         <div className="max-w-[1340px] mx-auto mt-16">
           <div className="flex gap-10 items-center">
             {/* Left - Expert photo placeholder */}
-            <div className="w-[520px] h-[460px] shrink-0 rounded-[16px] bg-gradient-to-br from-[#F0E6D3] to-[#E8DCC8] relative overflow-hidden">
-              {/* Subtle pattern overlay */}
-              <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #181818 1px, transparent 0)', backgroundSize: '24px 24px' }} />
-              {/* Professional silhouette - person with headset */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <svg width="180" height="220" viewBox="0 0 180 220" fill="none" className="opacity-[0.12] mt-6">
-                  {/* Head */}
-                  <circle cx="90" cy="60" r="40" fill="#4A3728"/>
-                  {/* Headset band */}
-                  <path d="M45 55C45 30 135 30 135 55" stroke="#4A3728" strokeWidth="6" strokeLinecap="round" fill="none"/>
-                  {/* Headset ear pieces */}
-                  <rect x="38" y="48" width="14" height="22" rx="7" fill="#4A3728"/>
-                  <rect x="128" y="48" width="14" height="22" rx="7" fill="#4A3728"/>
-                  {/* Microphone arm */}
-                  <path d="M48 65C48 65 40 75 42 85L55 80" stroke="#4A3728" strokeWidth="4" strokeLinecap="round" fill="none"/>
-                  {/* Mic */}
-                  <circle cx="42" cy="88" r="5" fill="#4A3728"/>
-                  {/* Body / shoulders */}
-                  <path d="M90 100C90 100 50 110 30 140C20 158 15 180 15 220H165C165 180 160 158 150 140C130 110 90 100 90 100Z" fill="#4A3728"/>
-                </svg>
-              </div>
-              {/* Floating badge - 24/7 Support (top-right) */}
-              <div className="absolute top-6 right-6 bg-white rounded-[12px] px-4 py-3 shadow-lg shadow-black/5 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#FF6701] flex items-center justify-center shrink-0">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M22 16.92V19.92C22 20.48 21.56 20.93 21 20.97C20.73 20.99 20.46 21 20.18 21C10.63 21 3 13.37 3 3.82C3 3.54 3.01 3.27 3.03 3C3.07 2.44 3.52 2 4.08 2H7.08C7.56 2 7.97 2.35 8.05 2.82C8.14 3.41 8.3 3.98 8.54 4.51L7.03 6.02C8.36 8.57 10.43 10.64 12.98 11.97L14.49 10.46C15.02 10.7 15.59 10.86 16.18 10.95C16.65 11.03 17 11.44 17 11.92V14.92" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-[14px] font-bold text-[#181818]">24/7 Support</p>
-                  <p className="text-[12px] text-[#7E7E7E]">Always available for you</p>
-                </div>
-              </div>
-              {/* Floating badge - Expert Team (bottom-left) */}
-              <div className="absolute bottom-6 left-6 bg-white rounded-[12px] px-4 py-3 shadow-lg shadow-black/5 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#00B638] flex items-center justify-center shrink-0">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M9 12L11 14L15 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-[14px] font-bold text-[#181818]">Expert Team</p>
-                  <p className="text-[12px] text-[#7E7E7E]">Pharmaceutical-grade standards</p>
-                </div>
-              </div>
-              {/* Decorative circles */}
-              <div className="absolute top-10 left-10 w-[60px] h-[60px] rounded-full border-2 border-[#D4C4A8]/40" />
-              <div className="absolute bottom-16 right-16 w-[40px] h-[40px] rounded-full border-2 border-[#D4C4A8]/30" />
+            <div className="w-[520px] h-[460px] shrink-0 rounded-[16px] relative overflow-hidden">
+              <Image src="/images/shop/expert-photo.png" alt="Expert Support" fill className="object-cover" unoptimized />
             </div>
 
             {/* Right - Content */}

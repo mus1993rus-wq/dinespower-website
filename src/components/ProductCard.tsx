@@ -26,7 +26,7 @@ export default function ProductCard({ brand, name, dosage, price, oldPrice, imag
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
           {badges.includes("sale") && (
-            <span className="bg-[#FF6701] text-white text-[11px] font-semibold px-3 py-1 rounded-[6px]">Sale -14%</span>
+            <span className="bg-[#FF3B30] text-white text-[11px] font-semibold px-3 py-1 rounded-[6px]">Sale -14%</span>
           )}
           {badges.includes("top") && (
             <span className="bg-[#00B638] text-white text-[11px] font-semibold px-3 py-1 rounded-[6px]">Top</span>
@@ -49,8 +49,8 @@ export default function ProductCard({ brand, name, dosage, price, oldPrice, imag
         <p className="text-xs text-[#B6B6B6] leading-[18px]">{dosage}</p>
 
         {/* Price badge */}
-        <div className={`flex items-center justify-center gap-2 mt-2 py-2 rounded-[8px] ${oldPrice ? 'bg-[#FFE8E0]' : 'bg-[#F7F7F7]'}`}>
-          <span className={`text-[18px] font-extrabold leading-[24px] ${oldPrice ? 'text-[#FF6701]' : 'text-[#181818]'}`}>{price} €</span>
+        <div className={`flex items-center justify-center gap-2 mt-2 py-2 rounded-[8px] ${oldPrice ? 'bg-[#FFE8E8]' : 'bg-[#F7F7F7]'}`}>
+          <span className={`text-[18px] font-extrabold leading-[24px] ${oldPrice ? 'text-[#FF3B30]' : 'text-[#181818]'}`}>{price} €</span>
           {oldPrice && (
             <span className="text-[14px] text-[#B6B6B6] line-through leading-5">{oldPrice} €</span>
           )}

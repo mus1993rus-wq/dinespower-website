@@ -407,7 +407,7 @@ function FAQSection() {
               <Image src="/images/shop/faq-help-icon.png" alt="Help" width={80} height={80} className="object-contain" unoptimized />
               <h3 className="text-[16px] font-semibold text-black text-center">Still have questions?</h3>
               <p className="text-[14px] text-[#1E1E1E] text-center">Reach out to our manager right away — we&apos;re happy to help with any questions.</p>
-              <button className="bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center">
+              <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:bg-[#F7F7F7] transition-colors">
                 Ask a Question
               </button>
               <div className="flex gap-4">
@@ -436,7 +436,7 @@ function FAQSection() {
                     <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
                     <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{q}</span>
                   </div>
-                  <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openIndex === i ? 'bg-[#FF6701] text-white' : 'text-[#181818]'}`}>
+                  <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openIndex === i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>
                     <span className="text-[20px] leading-none">{openIndex === i ? '−' : '+'}</span>
                   </div>
                 </button>

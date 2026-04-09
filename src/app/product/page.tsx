@@ -367,14 +367,14 @@ export default function ProductPage() {
               {trustBadges.map((badge, i) => (
                 <div
                   key={i}
-                  className={`flex items-center gap-4 p-4 rounded-[12px] border ${
+                  className={`flex items-center gap-4 p-5 rounded-[16px] ${
                     badge.orangeBg
-                      ? "bg-[#FFF8F4] border-[#FF6701]"
-                      : "bg-white border-[#E7E7E7]"
+                      ? "bg-[#FFF5EE] border border-[#FF6701]/30"
+                      : "bg-[#F7F7F7]"
                   }`}
                 >
-                  <div className="w-[80px] h-[80px] shrink-0 flex items-center justify-center">
-                    <Image src={badge.icon} alt={badge.title} width={80} height={80} className="object-contain" unoptimized />
+                  <div className="w-[64px] h-[64px] shrink-0 flex items-center justify-center">
+                    <Image src={badge.icon} alt={badge.title} width={64} height={64} className="object-contain" unoptimized />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-bold text-[#181818]">{badge.title}</p>
@@ -385,7 +385,7 @@ export default function ProductPage() {
                       href={badge.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`text-sm font-semibold whitespace-nowrap shrink-0 border rounded-[8px] px-4 py-2 transition-colors ${
+                      className={`text-sm font-semibold whitespace-nowrap shrink-0 border bg-white rounded-[8px] px-5 py-2.5 transition-colors ${
                         badge.orangeBg
                           ? "text-[#FF6701] border-[#E7E7E7] hover:border-[#FF6701]"
                           : "text-[#181818] border-[#E7E7E7] hover:border-[#FF6701] hover:text-[#FF6701]"
@@ -396,7 +396,7 @@ export default function ProductPage() {
                   ) : (
                     <Link
                       href={badge.href || "#"}
-                      className={`text-sm font-semibold whitespace-nowrap shrink-0 border rounded-[8px] px-4 py-2 transition-colors ${
+                      className={`text-sm font-semibold whitespace-nowrap shrink-0 border bg-white rounded-[8px] px-5 py-2.5 transition-colors ${
                         badge.orangeBg
                           ? "text-[#FF6701] border-[#E7E7E7] hover:border-[#FF6701]"
                           : "text-[#181818] border-[#E7E7E7] hover:border-[#FF6701] hover:text-[#FF6701]"
@@ -681,7 +681,7 @@ export default function ProductPage() {
                   <Image src="/images/shop/faq-help-icon.png" alt="Help" width={64} height={64} className="object-contain" unoptimized />
                   <h3 className="text-[16px] font-semibold text-black text-center">Still have questions?</h3>
                   <p className="text-[14px] text-[#1E1E1E] text-center">Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.</p>
-                  <button className="bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center">
+                  <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:bg-[#F7F7F7] transition-colors">
                     Ask a Question
                   </button>
                   <div className="flex gap-4">
@@ -710,7 +710,7 @@ export default function ProductPage() {
                         <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
                         <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{q}</span>
                       </div>
-                      <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#FF6701] text-white' : 'text-[#181818]'}`}>
+                      <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>
                         <span className="text-[20px] leading-none">{openFAQ === i ? '−' : '+'}</span>
                       </div>
                     </button>

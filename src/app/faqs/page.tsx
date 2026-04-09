@@ -215,7 +215,7 @@ export default function FAQsPage() {
                             <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
                             <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
                           </div>
-                          <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openIndices[section] === i ? 'bg-[#FF6701] text-white' : 'text-[#181818]'}`}>
+                          <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openIndices[section] === i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>
                             <span className="text-[20px] leading-none">{openIndices[section] === i ? '−' : '+'}</span>
                           </div>
                         </button>

@@ -132,7 +132,7 @@ export default function DeliveryPaymentPage() {
                           <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
                           <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
                         </div>
-                        <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openFAQ === 100 + i ? 'bg-[#FF6701] text-white' : 'text-[#181818]'}`}>
+                        <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openFAQ === 100 + i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>
                           <span className="text-[20px] leading-none">{openFAQ === 100 + i ? '−' : '+'}</span>
                         </div>
                       </button>
@@ -221,7 +221,7 @@ export default function DeliveryPaymentPage() {
                           <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
                           <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
                         </div>
-                        <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#FF6701] text-white' : 'text-[#181818]'}`}>
+                        <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>
                           <span className="text-[20px] leading-none">{openFAQ === i ? '−' : '+'}</span>
                         </div>
                       </button>
@@ -247,7 +247,7 @@ export default function DeliveryPaymentPage() {
                     <p className="text-[14px] text-[#1E1E1E] text-center leading-[22px]">
                       Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.
                     </p>
-                    <button className="bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:bg-[#F7F7F7] transition-colors">
+                    <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:bg-[#F7F7F7] transition-colors">
                       Ask a Question
                     </button>
                     <div className="flex gap-4">
