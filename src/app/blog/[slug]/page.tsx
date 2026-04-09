@@ -155,46 +155,45 @@ export default function BlogArticlePage() {
           </div>
         </div>
 
-        {/* Hero image */}
+        {/* Title + Meta + Tags (NOT on hero image) */}
         <div className="max-w-[1340px] mx-auto">
-          <div className="relative h-[420px] rounded-[16px] overflow-hidden">
-            <Image
-              src="/images/shop/blog-1.png"
-              alt={articleData.title}
-              fill
-              className="object-cover"
-              unoptimized
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 z-10" />
-            <div className="absolute bottom-0 left-0 right-0 p-10 z-20">
-              <div className="flex gap-2 mb-4">
-                {articleData.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="bg-white/20 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <h1 className="text-[36px] font-extrabold text-white leading-[44px] max-w-[800px]">
-                {articleData.title}
-              </h1>
-              <div className="flex items-center gap-4 mt-4 text-sm text-white/60">
-                <span>{articleData.date}</span>
-                <span>{articleData.readTime}</span>
-                <span>{articleData.views}</span>
-              </div>
-            </div>
+          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-4">
+            {articleData.title}
+          </h1>
+          <div className="flex items-center gap-4 mb-4 text-sm text-[#7E7E7E]">
+            <span className="flex items-center gap-1.5">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M16 2V6M8 2V6M3 10H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+              {articleData.date}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5"/><path d="M12 7V12L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+              {articleData.readTime}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z" stroke="currentColor" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/></svg>
+              {articleData.views}
+            </span>
+          </div>
+          <div className="flex gap-2 mb-8">
+            {["Bodybuilding", "Nutrition", "Nutrition"].map((tag, i) => (
+              <span key={i} className="border border-[#E7E7E7] text-[#181818] text-sm px-4 py-1.5 rounded-full">
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
 
         {/* Article content */}
-        <div className="max-w-[1340px] mx-auto py-10">
+        <div className="max-w-[1340px] mx-auto pb-10">
           <div className="flex gap-10">
             {/* Main content - LEFT COLUMN */}
             <div className="flex-1 min-w-0 max-w-[780px]">
               <article>
+                {/* Hero image - separate, not overlay */}
+                <div className="relative h-[480px] rounded-[16px] overflow-hidden mb-8">
+                  <Image src="/images/shop/blog-1.png" alt={articleData.title} fill className="object-cover" unoptimized />
+                </div>
+
                 {/* TOC Card */}
                 <div className="border border-[#E7E7E7] rounded-[16px] p-6 mb-8">
                   <h3 className="text-[18px] font-extrabold text-[#181818] mb-4 flex items-center gap-2">
@@ -854,10 +853,10 @@ export default function BlogArticlePage() {
             <div className="w-[440px] shrink-0 hidden lg:block">
               <div className="sticky top-[24px] flex flex-col gap-6">
                 {/* Product Recommendation Card */}
-                <div className="bg-[#F7F7F7] rounded-[12px] p-4">
-                  <div className="bg-white border border-[#E7E7E7] rounded-[8px] overflow-hidden">
+                <div className="bg-[#181818] rounded-[12px] p-4">
+                  <div className="bg-[#181818] rounded-[8px] overflow-hidden">
                     {/* Product image */}
-                    <div className="relative h-[200px] bg-[#F0F0F0]">
+                    <div className="relative h-[200px] bg-[#252525]">
                       <Image
                         src="/images/shop/product-1.webp"
                         alt="Yohimbine Fat Burner Capsules"
@@ -871,10 +870,10 @@ export default function BlogArticlePage() {
                     </div>
                     {/* Product info */}
                     <div className="p-4">
-                      <p className="text-xs text-[#7E7E7E] mb-1 uppercase tracking-wider">
+                      <p className="text-xs text-[#999] mb-1 uppercase tracking-wider">
                         Biaxol
                       </p>
-                      <h4 className="text-[15px] font-bold text-[#181818] leading-[20px] mb-2">
+                      <h4 className="text-[15px] font-bold text-white leading-[20px] mb-2">
                         Yohimbine Fat Burner Capsules
                       </h4>
                       {/* Stars */}
