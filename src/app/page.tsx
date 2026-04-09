@@ -190,11 +190,15 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
           </button>
         </div>
       </div>
-      <div ref={scrollRef} className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
+      <div className="flex gap-4">
+        {/* Fixed promo banner - doesn't scroll */}
         {promoCategoryName && <PromoBanner categoryName={promoCategoryName} />}
-        {products.map((p, i) => (
-          <ProductCard key={i} {...p} />
-        ))}
+        {/* Scrollable product cards */}
+        <div ref={scrollRef} className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 flex-1 min-w-0">
+          {products.map((p, i) => (
+            <ProductCard key={i} {...p} />
+          ))}
+        </div>
       </div>
     </section>
   );
