@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 
 interface CartPopupProps {
@@ -10,6 +12,8 @@ interface CartPopupProps {
 
 export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
   const { items, removeItem, updateQty, totalItems, totalPrice } = useCart();
+  const [promoOpen, setPromoOpen] = useState(false);
+  const [shippingOpen, setShippingOpen] = useState(false);
 
   if (!isOpen) return null;
 
@@ -107,24 +111,50 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
               <div className="py-4">
                 <h3 className="text-[16px] font-extrabold mb-3">You might also like</h3>
                 <div className="flex gap-3">
-                  {[1, 2].map((i) => (
-                    <div key={i} className="flex-1 border border-[#E7E7E7] rounded-[8px] p-3">
-                      <div className="w-full h-[80px] bg-[#F7F7F7] rounded-[6px] mb-2" />
-                      <p className="text-xs text-[#7E7E7E]">Deus Medical</p>
-                      <p className="text-xs font-semibold line-clamp-2 mt-0.5">Andarine S4 SARM</p>
-                      <p className="text-sm font-extrabold text-[#FF6701] mt-1">44&euro;</p>
-                    </div>
+                  {[
+                    { brand: "Deus Medical", name: "Andarine S4 SARM", price: "44", image: "/images/shop/product-1.webp" },
+                    { brand: "Deus Medical", name: "Andarine S4 SARM", price: "44", image: "/images/shop/product-2.webp" },
+                  ].map((p, i) => (
+                    <Link key={i} href="/product" onClick={onClose} className="flex-1 border border-[#E7E7E7] rounded-[8px] p-3 hover:border-[#FF6701] transition-colors">
+                      <div className="w-full h-[80px] bg-[#F7F7F7] rounded-[6px] mb-2 relative overflow-hidden">
+                        <Image src={p.image} alt={p.name} fill className="object-contain p-1" unoptimized />
+                      </div>
+                      <p className="text-xs text-[#7E7E7E]">{p.brand}</p>
+                      <p className="text-xs font-semibold line-clamp-2 mt-0.5">{p.name}</p>
+                      <p className="text-sm font-extrabold text-[#FF6701] mt-1">{p.price}&euro;</p>
+                    </Link>
                   ))}
                 </div>
               </div>
 
-              {/* Promo code */}
-              <button className="w-full flex items-center justify-between py-3 border-t border-[#E7E7E7] text-sm font-semibold">
-                Do You Have A Promo Code? <span className="text-lg">+</span>
-              </button>
-              <button className="w-full flex items-center justify-between py-3 border-t border-[#E7E7E7] text-sm font-semibold">
-                Calculate Shipping Rate <span className="text-lg">+</span>
-              </button>
+              {/* Promo code - expandable */}
+              <div className="border-t border-[#E7E7E7]">
+                <button onClick={() => setPromoOpen(!promoOpen)} className="w-full flex items-center justify-between py-4 text-sm font-semibold cursor-pointer">
+                  Do You Have A Promo Code?
+                  <span className="text-lg">{promoOpen ? '−' : '+'}</span>
+                </button>
+                {promoOpen && (
+                  <div className="pb-4 flex gap-2">
+                    <input type="text" placeholder="Promocode" className="flex-1 border border-[#E7E7E7] rounded-[8px] h-[40px] px-3 text-sm outline-none focus:border-[#FF6701]" />
+                    <button className="bg-[#181818] text-white text-sm font-semibold px-4 h-[40px] rounded-[8px] hover:bg-[#333] transition-colors">Apply</button>
+                  </div>
+                )}
+              </div>
+
+              {/* Shipping rate - expandable */}
+              <div className="border-t border-[#E7E7E7]">
+                <button onClick={() => setShippingOpen(!shippingOpen)} className="w-full flex items-center justify-between py-4 text-sm font-semibold cursor-pointer">
+                  Calculate Shipping Rate
+                  <span className="text-lg">{shippingOpen ? '−' : '+'}</span>
+                </button>
+                {shippingOpen && (
+                  <div className="pb-4 text-sm text-[#7E7E7E]">
+                    <p>Europe: from 29€ (5-14 days)</p>
+                    <p>USA: from 29€ (7-21 days)</p>
+                    <p>Free shipping on orders over 500€</p>
+                  </div>
+                )}
+              </div>
             </>
           )}
         </div>
@@ -140,12 +170,12 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
               <span>Total</span>
               <span>{totalPrice}&euro;</span>
             </div>
-            <button className="w-full bg-[#FF6701] hover:bg-[#E65D00] text-white font-semibold h-[48px] rounded-[8px] mb-2 transition-colors">
+            <Link href="/checkout" onClick={onClose} className="w-full bg-[#FF6701] hover:bg-[#E65D00] text-white font-semibold h-[48px] rounded-[8px] mb-2 transition-colors flex items-center justify-center">
               Check Out
-            </button>
-            <button onClick={onClose} className="w-full text-[14px] font-semibold text-[#181818] h-[40px] hover:text-[#FF6701] transition-colors">
-              Continue Shopping
-            </button>
+            </Link>
+            <Link href="/cart" onClick={onClose} className="w-full text-[14px] font-semibold text-[#181818] h-[40px] hover:text-[#FF6701] transition-colors flex items-center justify-center">
+              Open Cart
+            </Link>
           </div>
         )}
       </div>
