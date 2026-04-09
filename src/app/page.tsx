@@ -27,6 +27,11 @@ const popularProducts = [
   { brand: "Astera Labs", name: "Night Blend - recovery formula for deep sleep", dosage: "60 caps", price: 33, badges: ["top"], image: "/images/shop/product-3.jpg" },
   { brand: "Deus Medical", name: "BPC-157 - peptide for tissue repair", dosage: "5mg/vial", price: 50, badges: ["top", "new"], image: "/images/shop/product-4.jpg" },
   { brand: "Deus Medical", name: "Day Blend - energy, focus and performance", dosage: "60 caps", price: 44, badges: ["new"], image: "/images/shop/product-5.webp" },
+  { brand: "Deus Medical", name: "Testosterone Enanthate 250mg injectable", dosage: "250 mg/ml", price: 38, badges: ["top"], image: "/images/shop/injectable-1.jpg" },
+  { brand: "Deus Medical", name: "Boldenone Undecylenate 250mg injectable", dosage: "250 mg/ml", price: 44, oldPrice: 56, badges: ["sale", "top"], image: "/images/shop/injectable-2.jpg" },
+  { brand: "Biaxol", name: "Ostarine MK-2866 SARM capsules", dosage: "25 mg/cap", price: 44, badges: ["top"], image: "/images/shop/product-1.webp" },
+  { brand: "Biaxol", name: "RAD-140 Testolone SARM capsules", dosage: "10 mg/cap", price: 48, badges: ["new"], image: "/images/shop/product-2.webp" },
+  { brand: "Deus Medical", name: "Sustanon 250mg injectable steroid", dosage: "250 mg/ml", price: 42, badges: ["top"], image: "/images/shop/injectable-3.jpg" },
 ];
 
 const topOralProducts = [
