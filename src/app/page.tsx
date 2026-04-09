@@ -324,7 +324,7 @@ function BlogSection() {
         <Link href={`/blog/${blogPosts[0].slug}`} className="flex-1 relative h-[534px] rounded-2xl overflow-hidden group cursor-pointer block">
           <Image src="/images/shop/blog-1.png" alt="" fill className="object-cover" unoptimized />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
-          <div className="absolute top-6 left-6 z-20 bg-white rounded-lg px-3 py-2 text-center">
+          <div className="absolute top-6 left-6 z-20 bg-white rounded-[8px] w-[48px] h-[48px] flex flex-col items-center justify-center">
             <span className="text-2xl font-bold text-[#181818] leading-6 block">12</span>
             <span className="text-xs text-[#7E7E7E]">Nov</span>
           </div>

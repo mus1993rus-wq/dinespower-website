@@ -81,7 +81,10 @@ export default function ProductCard({ brand, name, dosage, price, oldPrice, imag
           </button>
         </div>
 
-        <button className="text-[13px] text-[#7E7E7E] hover:text-[#FF6701] transition-colors mt-2 text-center leading-5">
+        <button
+          onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))}
+          className="text-[13px] text-[#7E7E7E] hover:text-[#FF6701] transition-colors mt-2 text-center leading-5 cursor-pointer"
+        >
           Ask a Question
         </button>
       </div>
