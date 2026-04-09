@@ -62,9 +62,9 @@ export default function DeliveryPaymentPage() {
         <div className="max-w-[1340px] mx-auto pb-16">
           <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-10">Delivery &amp; Payment</h1>
 
-          <div className="flex gap-6">
+          <div className="flex gap-[80px]">
             {/* Left column - all content */}
-            <div className="flex-1 min-w-0">
+            <div className="w-[820px] min-w-0">
               {/* Payment Methods Section */}
               <section className="mb-8">
                 <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-2">Payment Methods</h2>

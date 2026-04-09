@@ -21,6 +21,17 @@ const recentSearches = [
   "Fat Burner",
 ];
 
+const searchProducts = [
+  { name: "Methenolon Enanthat Injektionssteroid In Vials", price: "125 \u20AC", image: "/images/shop/product-1.webp" },
+  { name: "Trembolon Enanthate, Injizierbares Steroid In Ampullen", price: "55 \u20AC", image: "/images/shop/injectable-1.jpg" },
+  { name: "Bakteriostatisches Wasser In Fl\u00E4schchen", price: "11 \u20AC", image: "/images/shop/product-2.webp" },
+  { name: "L-Carnitin In Vials", price: "16 \u20AC", image: "/images/shop/product-3.jpg" },
+  { name: "Nandrolonphenylpropionat (Npp) Injizierbares Steroid In Ampullen", price: "34 \u20AC", image: "/images/shop/injectable-2.jpg" },
+  { name: "Methenolone Enanthate 100 Injektierbares Steroid In Fl\u00E4schchen", price: "65 \u20AC", image: "/images/shop/product-4.jpg" },
+  { name: "Ostarine MK-2866 Capsules", price: "44 \u20AC", image: "/images/shop/product-5.webp" },
+  { name: "Andarine S4 SARM Capsules", price: "42 \u20AC", image: "/images/shop/product-1.webp" },
+];
+
 const topLinks = [
   { label: "FAQs", href: "/faqs" },
   { label: "Delivery & Payment", href: "/delivery-payment" },
@@ -122,41 +133,80 @@ export default function Header() {
           {/* Search dropdown */}
           {searchFocused && (
             <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-[#E7E7E7] rounded-[12px] shadow-lg z-50 p-4">
-              {recentSearches.length > 0 && (
-                <div className="mb-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-semibold text-[#7E7E7E] uppercase tracking-wider">Recent Searches</span>
-                    <button className="text-xs text-[#FF6701] hover:underline">Clear</button>
+              {searchQuery.trim() ? (
+                <>
+                  {/* Product results */}
+                  <div className="flex flex-col">
+                    {searchProducts
+                      .filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase()))
+                      .slice(0, 5)
+                      .map((product, i) => (
+                        <Link
+                          key={i}
+                          href={`/catalog`}
+                          onClick={() => setSearchFocused(false)}
+                          className="flex items-center gap-3 py-3 border-b border-[#F0F0F0] last:border-b-0 hover:bg-[#F7F7F7] rounded-lg px-2 transition-colors"
+                        >
+                          <div className="w-[60px] h-[60px] bg-[#F7F7F7] rounded-lg shrink-0 relative overflow-hidden">
+                            <Image src={product.image} alt={product.name} fill className="object-cover" unoptimized />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-[#181818] leading-[18px] line-clamp-2">{product.name}</p>
+                            <p className="text-sm font-bold text-[#FF6701] mt-1">{product.price}</p>
+                          </div>
+                        </Link>
+                      ))}
+                    {searchProducts.filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
+                      <p className="text-sm text-[#7E7E7E] py-4 text-center">No products found</p>
+                    )}
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {recentSearches.map((term) => (
-                      <button
-                        key={term}
-                        onClick={() => { setSearchQuery(term); setSearchFocused(false); }}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F7F7] text-sm text-[#181818] hover:bg-[#EDEDED] transition-colors"
-                      >
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="opacity-40"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                        {term}
-                      </button>
-                    ))}
+                  <Link
+                    href={`/search?q=${encodeURIComponent(searchQuery)}`}
+                    onClick={() => setSearchFocused(false)}
+                    className="flex items-center justify-center w-full h-[44px] bg-[#181818] hover:bg-[#333333] text-white text-sm font-semibold rounded-[8px] mt-3 transition-colors"
+                  >
+                    See All
+                  </Link>
+                </>
+              ) : (
+                <>
+                  {recentSearches.length > 0 && (
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-semibold text-[#7E7E7E] uppercase tracking-wider">Recent Searches</span>
+                        <button className="text-xs text-[#FF6701] hover:underline">Clear</button>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {recentSearches.map((term) => (
+                          <button
+                            key={term}
+                            onClick={() => { setSearchQuery(term); }}
+                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F7F7] text-sm text-[#181818] hover:bg-[#EDEDED] transition-colors"
+                          >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="opacity-40"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                            {term}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <div>
+                    <span className="text-xs font-semibold text-[#7E7E7E] uppercase tracking-wider mb-2 block">Popular Searches</span>
+                    <div className="flex flex-wrap gap-2">
+                      {popularSearches.map((term) => (
+                        <button
+                          key={term}
+                          onClick={() => { setSearchQuery(term); }}
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F7F7] text-sm text-[#181818] hover:bg-[#EDEDED] hover:text-[#FF6701] transition-colors"
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="opacity-40"><path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                          {term}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </>
               )}
-              <div>
-                <span className="text-xs font-semibold text-[#7E7E7E] uppercase tracking-wider mb-2 block">Popular Searches</span>
-                <div className="flex flex-wrap gap-2">
-                  {popularSearches.map((term) => (
-                    <button
-                      key={term}
-                      onClick={() => { setSearchQuery(term); setSearchFocused(false); }}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F7F7] text-sm text-[#181818] hover:bg-[#EDEDED] hover:text-[#FF6701] transition-colors"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="opacity-40"><path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                      {term}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
           )}
         </div>

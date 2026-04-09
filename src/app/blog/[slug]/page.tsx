@@ -185,9 +185,9 @@ export default function BlogArticlePage() {
 
         {/* Article content */}
         <div className="max-w-[1340px] mx-auto pb-10">
-          <div className="flex gap-10">
+          <div className="flex gap-[80px]">
             {/* Main content - LEFT COLUMN */}
-            <div className="flex-1 min-w-0 max-w-[780px]">
+            <div className="flex-1 min-w-0 max-w-[820px]">
               <article>
                 {/* Hero image - separate, not overlay */}
                 <div className="relative h-[480px] rounded-[16px] overflow-hidden mb-8">

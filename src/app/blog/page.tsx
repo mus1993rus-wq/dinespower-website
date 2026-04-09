@@ -116,7 +116,7 @@ function BlogContent() {
             {categoryParam ? `Category: ${categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1)}` : "Blog Dines Power"}
           </h1>
 
-          <div className="flex gap-8">
+          <div className="flex gap-[80px]">
             {/* LEFT main column */}
             <div className="flex-1 min-w-0">
               {/* Featured article */}
@@ -146,32 +146,55 @@ function BlogContent() {
 
               {/* Article list */}
               <div className="flex flex-col">
-                {listPosts.map((post) => (
-                  <Link key={post.id} href={`/blog/${post.id}`} className="flex gap-5 py-6 border-b border-[#E7E7E7] cursor-pointer group">
-                    {/* Date badge */}
-                    <div className="text-xs text-[#7E7E7E] w-[80px] shrink-0 pt-1">{post.date}</div>
-                    {/* Thumbnail */}
-                    <div className="w-[100px] h-[80px] bg-[#F7F7F7] rounded-lg shrink-0 overflow-hidden relative">
-                      <Image src={`/images/shop/blog-${((post.id - 1) % 5) + 1}.png`} alt={post.title} fill className="object-cover" unoptimized />
-                    </div>
-                    {/* Content */}
-                    <div className="flex-1 flex flex-col gap-2">
-                      <h3 className="text-[16px] font-extrabold text-[#181818] leading-[22px] line-clamp-2 group-hover:text-[#FF6701] transition-colors">
-                        {post.title}
-                      </h3>
-                      <p className="text-sm text-[#7E7E7E] leading-[20px] line-clamp-2">{post.description}</p>
-                      <div className="flex items-center gap-4 text-xs text-[#7E7E7E] mt-auto">
-                        <span>{post.readTime}</span>
-                        <span>{post.views}</span>
-                        {/* Share icons */}
-                        <div className="flex gap-2 ml-auto">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="opacity-40 hover:opacity-70 cursor-pointer">
-                            <path d="M18 8C19.6569 8 21 6.65685 21 5C21 3.34315 19.6569 2 18 2C16.3431 2 15 3.34315 15 5C15 5.12548 15.0077 5.24917 15.0227 5.37061L8.08261 9.17906C7.54305 8.45793 6.6694 8 5.68182 8C4.20541 8 3 9.20541 3 10.6818C3 12.1582 4.20541 13.3636 5.68182 13.3636C6.6694 13.3636 7.54305 12.9057 8.08261 12.1846L15.0227 15.993C15.0077 16.1144 15 16.2381 15 16.3636C15 18.0205 16.3431 19.3636 18 19.3636C19.6569 19.3636 21 18.0205 21 16.3636C21 14.7068 19.6569 13.3636 18 13.3636C17.0124 13.3636 16.1388 13.8216 15.5992 14.5427L8.65909 10.7342C8.67413 10.6128 8.68182 10.4891 8.68182 10.3636C8.68182 10.2381 8.67413 10.1144 8.65909 9.99301L15.5992 6.18456C16.1388 6.90569 17.0124 7.36364 18 7.36364" stroke="#181818" strokeWidth="1.5"/>
-                          </svg>
+                {listPosts.map((post, index) => (
+                  <div key={post.id}>
+                    <Link href={`/blog/${post.id}`} className="flex gap-5 py-6 border-b border-[#E7E7E7] cursor-pointer group">
+                      {/* Date badge */}
+                      <div className="text-xs text-[#7E7E7E] w-[80px] shrink-0 pt-1">{post.date}</div>
+                      {/* Thumbnail */}
+                      <div className="w-[100px] h-[80px] bg-[#F7F7F7] rounded-lg shrink-0 overflow-hidden relative">
+                        <Image src={`/images/shop/blog-${((post.id - 1) % 5) + 1}.png`} alt={post.title} fill className="object-cover" unoptimized />
+                      </div>
+                      {/* Content */}
+                      <div className="flex-1 flex flex-col gap-2">
+                        <h3 className="text-[16px] font-extrabold text-[#181818] leading-[22px] line-clamp-2 group-hover:text-[#FF6701] transition-colors">
+                          {post.title}
+                        </h3>
+                        <p className="text-sm text-[#7E7E7E] leading-[20px] line-clamp-2">{post.description}</p>
+                        <div className="flex items-center gap-4 text-xs text-[#7E7E7E] mt-auto">
+                          <span>{post.readTime}</span>
+                          <span>{post.views}</span>
+                          {/* Share icons */}
+                          <div className="flex gap-2 ml-auto">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="opacity-40 hover:opacity-70 cursor-pointer">
+                              <path d="M18 8C19.6569 8 21 6.65685 21 5C21 3.34315 19.6569 2 18 2C16.3431 2 15 3.34315 15 5C15 5.12548 15.0077 5.24917 15.0227 5.37061L8.08261 9.17906C7.54305 8.45793 6.6694 8 5.68182 8C4.20541 8 3 9.20541 3 10.6818C3 12.1582 4.20541 13.3636 5.68182 13.3636C6.6694 13.3636 7.54305 12.9057 8.08261 12.1846L15.0227 15.993C15.0077 16.1144 15 16.2381 15 16.3636C15 18.0205 16.3431 19.3636 18 19.3636C19.6569 19.3636 21 18.0205 21 16.3636C21 14.7068 19.6569 13.3636 18 13.3636C17.0124 13.3636 16.1388 13.8216 15.5992 14.5427L8.65909 10.7342C8.67413 10.6128 8.68182 10.4891 8.68182 10.3636C8.68182 10.2381 8.67413 10.1144 8.65909 9.99301L15.5992 6.18456C16.1388 6.90569 17.0124 7.36364 18 7.36364" stroke="#181818" strokeWidth="1.5"/>
+                            </svg>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+
+                    {/* Telegram inline card after 5th article */}
+                    {index === 4 && (
+                      <a
+                        href="https://t.me/dinespower"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-4 border border-[#E7E7E7] rounded-[12px] p-4 my-6 hover:border-[#0088CC] transition-colors"
+                      >
+                        <div className="w-12 h-12 rounded-full bg-[#0088CC] flex items-center justify-center shrink-0">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" fill="white"/>
+                          </svg>
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-[16px] font-extrabold text-[#181818]">Telegram Dinespower</p>
+                          <p className="text-sm text-[#7E7E7E]">Get quick help with payment, delivery, or bulk orders.</p>
+                        </div>
+                        <span className="text-sm font-semibold text-[#0088CC] shrink-0">Go to Telegram &gt;</span>
+                      </a>
+                    )}
+                  </div>
                 ))}
               </div>
 
@@ -276,6 +299,55 @@ function BlogContent() {
                       </Link>
                     ))}
                   </div>
+                </div>
+
+                {/* Sex Boost Banner */}
+                <Link href="/catalog?category=sex-support" className="block rounded-[12px] overflow-hidden">
+                  <Image src="/images/shop/side-sexboost.png" alt="Sex Boost" width={440} height={0} className="w-full h-auto rounded-[12px]" unoptimized />
+                </Link>
+
+                {/* CBD Banner */}
+                <Link href="/catalog?category=health" className="block rounded-[12px] overflow-hidden">
+                  <Image src="/images/shop/side-cbd.png" alt="CBD" width={440} height={0} className="w-full h-auto rounded-[12px]" unoptimized />
+                </Link>
+
+                {/* Product Card */}
+                <div className="bg-[#181818] rounded-[12px] p-5 flex flex-col items-center text-center">
+                  <span className="bg-[#FF3B30] text-white text-xs font-bold px-3 py-1 rounded-full self-start">Sale -14%</span>
+                  <div className="w-[160px] h-[160px] relative my-4">
+                    <Image src="/images/shop/product-1.webp" alt="Yohimbine Fat Burner" fill className="object-contain" unoptimized />
+                  </div>
+                  <p className="text-xs text-[#7E7E7E] mb-1">Biaxol</p>
+                  <p className="text-[15px] font-bold text-white leading-[20px] mb-2">Yohimbine Fat Burner Capsules</p>
+                  <div className="flex items-center gap-1 mb-2">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#FF6701">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                    ))}
+                    <span className="text-xs text-[#7E7E7E] ml-1">(325 Reviews)</span>
+                  </div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-sm text-[#7E7E7E] line-through">30 &euro;</span>
+                    <span className="text-[18px] font-bold text-white">24 &euro;</span>
+                  </div>
+                  <button className="w-full h-[44px] bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold rounded-lg transition-colors">
+                    Learn More
+                  </button>
+                </div>
+
+                {/* Telegram Card */}
+                <div className="border border-[#E7E7E7] rounded-[12px] p-5">
+                  <p className="text-[16px] font-extrabold text-[#181818] mb-2">Telegram Dinespower</p>
+                  <p className="text-sm text-[#7E7E7E] leading-[20px] mb-4">Get fast support via Telegram &ndash; payment, delivery, or wholesale details in minutes.</p>
+                  <a
+                    href="https://t.me/dinespower"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-full h-[44px] border border-[#181818] rounded-lg text-sm font-semibold text-[#181818] hover:bg-[#181818] hover:text-white transition-colors"
+                  >
+                    Open Telegram &gt;
+                  </a>
                 </div>
               </div>
             </div>

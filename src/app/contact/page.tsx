@@ -30,9 +30,9 @@ export default function ContactPage() {
         <div className="max-w-[1340px] mx-auto pb-16">
           <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-10">Contact Us</h1>
 
-          <div className="flex gap-8">
+          <div className="flex gap-[80px]">
             {/* LEFT sidebar - Contact Info */}
-            <div className="w-[360px] shrink-0 flex flex-col gap-6">
+            <div className="w-[440px] shrink-0 flex flex-col gap-6">
               {/* Instant Support */}
               <div>
                 <h3 className="text-[14px] font-semibold text-[#7E7E7E] uppercase tracking-wider mb-3">For Instant Support</h3>

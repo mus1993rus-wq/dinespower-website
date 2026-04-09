@@ -154,7 +154,7 @@ export default function FAQsPage() {
         <div className="max-w-[1340px] mx-auto pb-16">
           <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-10">Frequently Asked Questions</h1>
 
-          <div className="flex gap-8">
+          <div className="flex gap-[80px]">
             {/* LEFT sidebar */}
             <div className="w-[440px] shrink-0">
               <div className="sticky top-4 flex flex-col gap-6">

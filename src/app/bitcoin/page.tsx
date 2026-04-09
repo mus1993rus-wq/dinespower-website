@@ -139,9 +139,9 @@ export default function BitcoinPaymentPage() {
           </div>
         </div>
 
-        <div className="max-w-[1340px] mx-auto flex gap-10 pb-16">
+        <div className="max-w-[1340px] mx-auto flex gap-[80px] pb-16">
           {/* Main content */}
-          <div className="flex-1 max-w-[880px]">
+          <div className="flex-1 max-w-[820px]">
             <h1 className="text-[36px] font-extrabold text-[#181818] leading-[42px] mb-8">
               Bitcoin payment guideline
             </h1>
@@ -188,7 +188,7 @@ export default function BitcoinPaymentPage() {
           </div>
 
           {/* Right sidebar */}
-          <div className="w-[320px] shrink-0">
+          <div className="w-[440px] shrink-0">
             {/* Still Have Questions card */}
             <div className="bg-[#F7F7F7] rounded-[12px] p-4 mb-4">
               <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-5 flex flex-col items-center gap-4">

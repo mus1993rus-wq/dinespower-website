@@ -108,9 +108,9 @@ export default function CartPage() {
               </Link>
             </div>
           ) : (
-            <div className="flex gap-8">
+            <div className="flex gap-[80px]">
               {/* LEFT - Cart items + suggestions */}
-              <div className="flex-1 min-w-0">
+              <div className="w-[820px] min-w-0">
                 {/* Cart items list */}
                 <div className="flex flex-col">
                   {items.map((item) => (
@@ -192,7 +192,7 @@ export default function CartPage() {
               </div>
 
               {/* RIGHT sidebar */}
-              <div className="w-[340px] shrink-0">
+              <div className="w-[440px] shrink-0">
                 <div className="sticky top-4 flex flex-col gap-5">
                   {/* Promo code */}
                   <div className="bg-[#F7F7F7] rounded-[12px] p-5">
