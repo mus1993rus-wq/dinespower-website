@@ -28,124 +28,98 @@ export default function ContactPage() {
         </div>
 
         <div className="max-w-[1340px] mx-auto pb-16">
-          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-10">Contact Us</h1>
+          <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-10">Contact Us</h1>
 
           <div className="flex gap-[80px]">
-            {/* LEFT sidebar - Contact Info */}
-            <div className="w-[440px] shrink-0 flex flex-col gap-6">
-              {/* Instant Support */}
-              <div>
-                <h3 className="text-[14px] font-semibold text-[#7E7E7E] uppercase tracking-wider mb-3">For Instant Support</h3>
-                <div className="flex flex-col gap-3">
-                  <a href="#" className="flex items-center gap-3 bg-[#F7F7F7] hover:bg-[#EDEDED] rounded-[12px] p-4 transition-colors">
-                    <div className="w-[44px] h-[44px] rounded-full bg-[#00D43F] flex items-center justify-center shrink-0">
-                      <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={22} height={22} />
+            {/* LEFT sidebar - Contact Info (Figma style) */}
+            <div className="w-[440px] shrink-0">
+              <div className="bg-[#F7F7F7] rounded-[16px] p-4 flex flex-col gap-4">
+                {/* Card 1: For Instant Support */}
+                <div className="bg-white rounded-[12px] p-4 flex flex-col gap-3">
+                  <p className="text-[12px] text-[#7E7E7E] leading-4">For Instant Support</p>
+                  <div className="flex flex-col gap-4">
+                    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                      <div className="w-10 h-10 rounded-full bg-[#00D43F] flex items-center justify-center shrink-0">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                          <path d="M15.25 13.28c-.19-.13-.38-.19-.56.06l-.75 1c-.19.13-.31.19-.56.06-.94-.5-2.25-1.06-3.38-2.94-.06-.25.06-.38.19-.5l.56-.88c.13-.12.06-.25 0-.37l-.75-1.82c-.19-.5-.38-.43-.56-.43h-.5c-.13 0-.38.06-.63.31-1.37 1.38-.81 3.31.19 4.56.19.25 1.44 2.5 4.12 3.69 2 .88 2.44.75 3 .63.69-.07 1.38-.63 1.69-1.2.06-.18.38-1 .12-1.1z" fill="white"/>
+                          <path d="M12.5 20.22c-2.56 0-4.5-1.38-4.5-1.38l-3.06.81.75-3c0 0-1.25-1.94-1.25-4.37 0-4.5 3.69-8.25 8.25-8.25 4.25 0 7.88 3.31 7.88 7.94 0 4.5-3.63 8.19-8.06 8.25zm-9.94 1.81 5.19-1.44c1.5.77 3.17 1.14 4.86 1.08 1.69-.07 3.33-.56 4.77-1.44 1.44-.88 2.64-2.11 3.47-3.58.83-1.47 1.27-3.13 1.28-4.81 0-5.38-4.25-9.69-9.63-9.69-1.72.01-3.42.46-4.91 1.32-1.5.86-2.74 2.1-3.61 3.59-.86 1.49-1.32 3.18-1.33 4.91 0 1.72.44 3.42 1.29 4.92z" fill="white"/>
+                        </svg>
+                      </div>
+                      <p className="text-[14px] font-semibold text-[#181818] leading-5">WhatsApp</p>
+                    </a>
+                    <a href="https://t.me/dinespower" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                      <div className="w-10 h-10 rounded-full bg-[#00A9DE] flex items-center justify-center shrink-0">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                          <path d="M3.32 11.87 18.75 5.92c.72-.26 1.34.17 1.11 1.26L17.23 19.55c-.19.88-.71 1.09-1.44.68l-4-2.95-1.93 1.86c-.21.21-.39.39-.81.39l.29-4.07 7.41-6.7c.32-.28-.07-.44-.5-.16l-9.16 5.77-3.95-1.23c-.86-.27-.88-.86.18-1.27z" fill="white"/>
+                        </svg>
+                      </div>
+                      <p className="text-[14px] font-semibold text-[#181818] leading-5">Telegram</p>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Card 2: Follow us */}
+                <div className="bg-white rounded-[12px] p-4 flex flex-col gap-3">
+                  <p className="text-[12px] text-[#7E7E7E] leading-4">Follow us</p>
+                  <a href="https://instagram.com/dinespower_shop" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ background: "linear-gradient(138deg, #FAE100 19%, #FCB720 9%, #FF7950 36%, #FF1C74 73%, #6C1CD1 165%)" }}>
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.8.31-1.47.72-2.14 1.39C1.33 2.69.92 3.36.61 4.16c-.3.76-.5 1.64-.56 2.91C0 8.35-.01 8.76-.01 12s.01 3.65.07 4.93c.06 1.27.26 2.15.56 2.91.31.8.72 1.47 1.39 2.14.67.67 1.34 1.08 2.14 1.39.76.3 1.64.5 2.91.56 1.28.06 1.69.07 4.95.07s3.65-.01 4.93-.07c1.27-.06 2.15-.26 2.91-.56.8-.31 1.47-.72 2.14-1.39.67-.67 1.08-1.34 1.39-2.14.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.93s-.01-3.65-.07-4.93c-.06-1.27-.26-2.15-.56-2.91-.31-.8-.72-1.47-1.39-2.14C21.31 1.33 20.64.92 19.84.61c-.76-.3-1.64-.5-2.91-.56C15.65.01 15.24 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z" fill="white"/>
+                      </svg>
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[#181818]">WhatsApp</p>
-                      <p className="text-xs text-[#7E7E7E]">Chat with us instantly</p>
+                    <div className="flex flex-col">
+                      <p className="text-[14px] font-semibold text-[#181818] leading-5">Instagram</p>
+                      <p className="text-[12px] text-[#7E7E7E] leading-4">dinespower_shop</p>
                     </div>
                   </a>
-                  <a href="#" className="flex items-center gap-3 bg-[#F7F7F7] hover:bg-[#EDEDED] rounded-[12px] p-4 transition-colors">
-                    <div className="w-[44px] h-[44px] rounded-full bg-[#00A9DE] flex items-center justify-center shrink-0">
-                      <Image src="/images/shop/telegram.svg" alt="Telegram" width={22} height={22} />
+                  <a href="https://t.me/dinespower" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    <div className="w-10 h-10 rounded-full bg-[#00A9DE] flex items-center justify-center shrink-0">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M3.32 11.87 18.75 5.92c.72-.26 1.34.17 1.11 1.26L17.23 19.55c-.19.88-.71 1.09-1.44.68l-4-2.95-1.93 1.86c-.21.21-.39.39-.81.39l.29-4.07 7.41-6.7c.32-.28-.07-.44-.5-.16l-9.16 5.77-3.95-1.23c-.86-.27-.88-.86.18-1.27z" fill="white"/>
+                      </svg>
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[#181818]">Telegram</p>
-                      <p className="text-xs text-[#7E7E7E]">@dinespower</p>
+                    <div className="flex flex-col">
+                      <p className="text-[14px] font-semibold text-[#181818] leading-5">Dinespower</p>
+                      <p className="text-[12px] text-[#7E7E7E] leading-4">For Instant Support</p>
                     </div>
                   </a>
                 </div>
-              </div>
 
-              {/* Follow Us */}
-              <div>
-                <h3 className="text-[14px] font-semibold text-[#7E7E7E] uppercase tracking-wider mb-3">Follow us</h3>
-                <div className="flex flex-col gap-3">
-                  <a href="#" className="flex items-center gap-3 bg-[#F7F7F7] hover:bg-[#EDEDED] rounded-[12px] p-4 transition-colors">
-                    <div className="w-[44px] h-[44px] rounded-full flex items-center justify-center shrink-0" style={{ background: "linear-gradient(138deg, #FAE100, #FCB720, #FF7950, #FF1C74, #6C1CD1)" }}>
-                      <Image src="/images/shop/instagram.svg" alt="Instagram" width={22} height={22} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[#181818]">Instagram</p>
-                      <p className="text-xs text-[#7E7E7E]">@dinespower.shop</p>
-                    </div>
-                  </a>
-                  <a href="#" className="flex items-center gap-3 bg-[#F7F7F7] hover:bg-[#EDEDED] rounded-[12px] p-4 transition-colors">
-                    <div className="w-[44px] h-[44px] rounded-full bg-[#00A9DE] flex items-center justify-center shrink-0">
-                      <Image src="/images/shop/telegram.svg" alt="Telegram" width={22} height={22} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[#181818]">Dinespower</p>
-                      <p className="text-xs text-[#7E7E7E]">For Instant Support</p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-
-              {/* For All Questions */}
-              <div>
-                <h3 className="text-[14px] font-semibold text-[#7E7E7E] uppercase tracking-wider mb-3">For All Questions</h3>
-                <div className="bg-[#F7F7F7] rounded-[12px] p-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-[44px] h-[44px] rounded-full bg-[#181818] flex items-center justify-center shrink-0">
+                {/* Card 3: For All Questions */}
+                <div className="bg-white rounded-[12px] p-4 flex flex-col gap-3">
+                  <p className="text-[12px] text-[#7E7E7E] leading-4">For All Questions</p>
+                  <a href="mailto:info@dinespower.info" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center shrink-0">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M22 6L12 13L2 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <p className="text-sm font-semibold text-[#181818]">info@dinespower.info</p>
-                  </div>
+                    <p className="text-[14px] font-semibold text-[#181818] leading-5">info@dinespower.info</p>
+                  </a>
                 </div>
-              </div>
 
-              {/* Wholesale Orders */}
-              <div>
-                <h3 className="text-[14px] font-semibold text-[#7E7E7E] uppercase tracking-wider mb-3">Wholesale orders</h3>
-                <div className="bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-[44px] h-[44px] rounded-full bg-[#181818] flex items-center justify-center shrink-0">
+                {/* Card 4: Wholesale orders */}
+                <div className="bg-white rounded-[12px] p-4 flex flex-col gap-3">
+                  <p className="text-[12px] text-[#7E7E7E] leading-4">Wholesale orders</p>
+                  <a href="mailto:sales@dinespower.info" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center shrink-0">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M22 6L12 13L2 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[#181818]">sales@dinespower.info</p>
-                      <p className="text-xs text-[#7E7E7E]">Sales inquiries</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-[44px] h-[44px] rounded-full bg-[#181818] flex items-center justify-center shrink-0">
+                    <p className="text-[14px] font-semibold text-[#181818] leading-5">sales@dinespower.info</p>
+                  </a>
+                  <a href="mailto:support@dinespower.info" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center shrink-0">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M22 6L12 13L2 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[#181818]">support@dinespower.info</p>
-                      <p className="text-xs text-[#7E7E7E]">Support</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Sales Managers */}
-              <div>
-                <h3 className="text-[14px] font-semibold text-[#7E7E7E] uppercase tracking-wider mb-3">Sales Managers</h3>
-                <div className="bg-[#F7F7F7] rounded-[12px] p-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-[44px] h-[44px] rounded-full bg-[#181818] flex items-center justify-center shrink-0">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M22 6L12 13L2 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[#181818]">oliver@dinespower.info</p>
-                      <p className="text-xs text-[#7E7E7E]">Oliver - Sales Manager</p>
-                    </div>
-                  </div>
+                    <p className="text-[14px] font-semibold text-[#181818] leading-5">support@dinespower.info</p>
+                  </a>
                 </div>
               </div>
             </div>

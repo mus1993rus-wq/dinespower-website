@@ -196,13 +196,13 @@ export default function DeliveryPaymentPage() {
                 </div>
 
                 {/* Shipping logos */}
-                <div className="flex items-center gap-4 py-4">
+                <div className="flex items-center gap-4 py-6 flex-wrap">
                   {shippingLogos.map((logo) => (
                     <div
                       key={logo.name}
-                      className="h-[52px] px-5 rounded-[10px] border border-[#E7E7E7] flex items-center justify-center"
+                      className="h-[88px] px-8 rounded-[12px] border border-[#E7E7E7] flex items-center justify-center min-w-[160px]"
                     >
-                      <Image src={logo.image} alt={logo.name} width={80} height={40} className="object-contain h-[40px] w-auto" />
+                      <Image src={logo.image} alt={logo.name} width={140} height={64} className="object-contain h-[64px] w-auto" />
                     </div>
                   ))}
                 </div>
