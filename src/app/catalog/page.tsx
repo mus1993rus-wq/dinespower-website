@@ -31,6 +31,14 @@ const singleBrandCategories: Record<string, string> = {
 
 const sortOptions = ["Most Popular", "Price: Low to High", "Price: High to Low", "Newest"];
 
+const faqItems = [
+  { q: "What is the minimum amount for the first order?", a: "There is no minimum order amount for retail customers. For wholesale/partner orders, please contact our sales team." },
+  { q: "How long does delivery take?", a: "Europe: 5-14 days. USA & Worldwide: 7-21 days. We ship discreetly and provide tracking information." },
+  { q: "How do we know that these products are genuine?", a: "Every product comes with a unique verification code and can be checked on the manufacturer's official website. All items are sourced directly from authorized manufacturers." },
+  { q: "What if the package is lost or damaged?", a: "We offer reshipment guarantee for any packages that are lost or damaged during shipping. Contact our support team with your order details." },
+  { q: "Are all products really tested in laboratories?", a: "Yes, every batch is independently tested by third-party laboratories. Lab reports are available on our Lab Tests page." },
+];
+
 const categoryList = [
   { slug: "injectable", label: "Injectable" },
   { slug: "oral", label: "Oral" },
@@ -313,6 +321,8 @@ function CatalogContent() {
   const [priceRange, setPriceRange] = useState([0, 100000]);
   const [inStockChecked, setInStockChecked] = useState(true);
   const [outOfStockChecked, setOutOfStockChecked] = useState(false);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(2);
+  const [seoExpanded, setSeoExpanded] = useState(false);
 
   const currentCategory = categoryList.find((c) => c.slug === categorySlug);
   const currentBrandLabel = brandSlug ? brandSlugToLabel[brandSlug] : null;
@@ -481,39 +491,41 @@ function CatalogContent() {
         <div className="max-w-[1340px] mx-auto flex gap-6 pb-16">
           {/* Sidebar Filters — Figma 1249:5311 card style */}
           <aside className="w-[256px] shrink-0 flex flex-col gap-4">
-            {/* Brands card — Figma: simple list, chevron on active, See All */}
-            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col">
-              {brandsForCategory.map((b) => {
-                const isActive = brandSlug === brandLabelToSlug[b];
-                return (
-                  <Link
-                    key={b}
-                    href={`/catalog?category=${categorySlug}&brand=${brandLabelToSlug[b]}`}
-                    className={`flex items-center justify-between px-4 py-3 rounded-[8px] transition-colors ${
-                      isActive ? "bg-[#F7F7F7]" : "hover:bg-[#F7F7F7]"
-                    }`}
-                  >
-                    <span className="text-[14px] font-semibold text-[#181818] leading-5">{b}</span>
-                    {isActive && (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M9 6l6 6-6 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    )}
-                  </Link>
-                );
-              })}
-              {currentBrandLabel && (
-                <>
-                  <div className="h-px bg-[#E7E7E7] mx-4 my-1" />
-                  <Link
-                    href={`/catalog?category=${categorySlug}`}
-                    className="flex items-center px-4 py-3 rounded-[8px] text-[14px] font-semibold text-[#181818] leading-5 hover:bg-[#F7F7F7] transition-colors"
-                  >
-                    See All
-                  </Link>
-                </>
-              )}
-            </div>
+            {/* Brands card — only if more than 1 brand */}
+            {brandsForCategory.length > 1 && (
+              <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col">
+                {brandsForCategory.map((b) => {
+                  const isActive = brandSlug === brandLabelToSlug[b];
+                  return (
+                    <Link
+                      key={b}
+                      href={`/catalog?category=${categorySlug}&brand=${brandLabelToSlug[b]}`}
+                      className={`flex items-center justify-between px-4 py-3 rounded-[8px] transition-colors ${
+                        isActive ? "bg-[#F7F7F7]" : "hover:bg-[#F7F7F7]"
+                      }`}
+                    >
+                      <span className="text-[14px] font-semibold text-[#181818] leading-5">{b}</span>
+                      {isActive && (
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                          <path d="M9 6l6 6-6 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      )}
+                    </Link>
+                  );
+                })}
+                {currentBrandLabel && (
+                  <>
+                    <div className="h-px bg-[#E7E7E7] mx-4 my-1" />
+                    <Link
+                      href={`/catalog?category=${categorySlug}`}
+                      className="flex items-center px-4 py-3 rounded-[8px] text-[14px] font-semibold text-[#181818] leading-5 hover:bg-[#F7F7F7] transition-colors"
+                    >
+                      See All
+                    </Link>
+                  </>
+                )}
+              </div>
+            )}
 
             {/* Availability card */}
             <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4">
@@ -560,7 +572,7 @@ function CatalogContent() {
                   <input
                     type="number"
                     value={priceRange[0]}
-                    onChange={(e) => setPriceRange([+e.target.value, priceRange[1]])}
+                    onChange={(e) => setPriceRange([Math.min(+e.target.value, priceRange[1]), priceRange[1]])}
                     className="w-full text-[14px] text-[#181818] outline-none bg-transparent text-center"
                   />
                 </div>
@@ -568,19 +580,44 @@ function CatalogContent() {
                   <input
                     type="number"
                     value={priceRange[1]}
-                    onChange={(e) => setPriceRange([priceRange[0], +e.target.value])}
+                    onChange={(e) => setPriceRange([priceRange[0], Math.max(+e.target.value, priceRange[0])])}
                     className="w-full text-[14px] text-[#181818] outline-none bg-transparent text-center"
                   />
                 </div>
               </div>
-              <input
-                type="range"
-                min={0}
-                max={100000}
-                value={priceRange[1]}
-                onChange={(e) => setPriceRange([priceRange[0], +e.target.value])}
-                className="w-full mt-4 accent-[#181818]"
-              />
+              {/* Dual-range slider */}
+              <div className="relative h-6 mt-4">
+                {/* Track background */}
+                <div className="absolute top-1/2 -translate-y-1/2 w-full h-1 bg-[#E7E7E7] rounded-full" />
+                {/* Active range */}
+                <div
+                  className="absolute top-1/2 -translate-y-1/2 h-1 bg-[#181818] rounded-full"
+                  style={{
+                    left: `${(priceRange[0] / 100000) * 100}%`,
+                    right: `${100 - (priceRange[1] / 100000) * 100}%`,
+                  }}
+                />
+                {/* Min handle */}
+                <input
+                  type="range"
+                  min={0}
+                  max={100000}
+                  value={priceRange[0]}
+                  onChange={(e) => setPriceRange([Math.min(+e.target.value, priceRange[1]), priceRange[1]])}
+                  className="dual-range absolute top-0 left-0 w-full h-6 appearance-none bg-transparent pointer-events-none"
+                  style={{ zIndex: priceRange[0] > 95000 ? 5 : 3 }}
+                />
+                {/* Max handle */}
+                <input
+                  type="range"
+                  min={0}
+                  max={100000}
+                  value={priceRange[1]}
+                  onChange={(e) => setPriceRange([priceRange[0], Math.max(+e.target.value, priceRange[0])])}
+                  className="dual-range absolute top-0 left-0 w-full h-6 appearance-none bg-transparent pointer-events-none"
+                  style={{ zIndex: 4 }}
+                />
+              </div>
             </div>
           </aside>
 
@@ -683,6 +720,88 @@ function CatalogContent() {
               </div>
             )}
           </div>
+        </div>
+
+        {/* FAQ + SEO section */}
+        <div className="max-w-[1340px] mx-auto pb-12">
+          <div className="flex gap-20">
+            {/* Still Have Questions card */}
+            <div className="w-[440px] shrink-0">
+              <div className="bg-[#F7F7F7] rounded-[12px] p-4">
+                <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
+                  <Image src="/images/shop/faq-help-icon.png" alt="Help" width={80} height={80} className="object-contain" />
+                  <h3 className="text-[16px] font-semibold text-black text-center">Still have questions?</h3>
+                  <p className="text-[14px] text-[#1E1E1E] text-center">Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.</p>
+                  <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="cursor-pointer bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+                    Ask a Question
+                  </button>
+                  <div className="flex gap-4">
+                    <a href="https://t.me/dinespower" target="_blank" rel="noopener noreferrer" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center hover:opacity-90 transition-opacity">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M3.32 11.87 18.75 5.92c.72-.26 1.34.17 1.11 1.26L17.23 19.55c-.19.88-.71 1.09-1.44.68l-4-2.95-1.93 1.86c-.21.21-.39.39-.81.39l.29-4.07 7.41-6.7c.32-.28-.07-.44-.5-.16l-9.16 5.77-3.95-1.23c-.86-.27-.88-.86.18-1.27z" fill="white"/>
+                      </svg>
+                    </a>
+                    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="w-[56px] h-[56px] rounded-full bg-[#00D43F] flex items-center justify-center hover:opacity-90 transition-opacity">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12.5 20.22c-2.56 0-4.5-1.38-4.5-1.38l-3.06.81.75-3c0 0-1.25-1.94-1.25-4.37 0-4.5 3.69-8.25 8.25-8.25 4.25 0 7.88 3.31 7.88 7.94 0 4.5-3.63 8.19-8.06 8.25zm-9.94 1.81 5.19-1.44c1.5.77 3.17 1.14 4.86 1.08 1.69-.07 3.33-.56 4.77-1.44 1.44-.88 2.64-2.11 3.47-3.58.83-1.47 1.27-3.13 1.28-4.81 0-5.38-4.25-9.69-9.63-9.69-1.72.01-3.42.46-4.91 1.32-1.5.86-2.74 2.1-3.61 3.59-.86 1.49-1.32 3.18-1.33 4.91 0 1.72.44 3.42 1.29 4.92z" fill="white"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* FAQ accordion */}
+            <div className="flex-1 min-w-0">
+              <h2 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">Frequently Asked Questions</h2>
+              <div className="flex flex-col">
+                {faqItems.map((item, i) => (
+                  <div key={i} className="border-b border-[#E7E7E7]">
+                    <button
+                      onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
+                      className="w-full flex items-center justify-between py-5 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
+                        <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{item.q}</span>
+                      </div>
+                      <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#E7E7E7]' : ''}`}>
+                        <span className="text-[20px] leading-none text-[#181818]">{openFAQ === i ? '−' : '+'}</span>
+                      </div>
+                    </button>
+                    {openFAQ === i && (
+                      <div className="pb-5 pl-[36px] pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
+                        {item.a}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <Link href="/faqs" className="mt-6 flex items-center justify-center w-full h-[52px] bg-[#F7F7F7] hover:bg-[#E7E7E7] rounded-[8px] text-[14px] font-semibold text-[#181818] transition-colors gap-2">
+                See All Questions And Answers
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* SEO text block */}
+        <div className="max-w-[1340px] mx-auto pb-12">
+          <h3 className="text-[20px] font-extrabold text-[#181818] leading-[26px] mb-4">
+            Dinespower is the best distributor of bodybuilding preparations in Europe
+          </h3>
+          <div className={`relative text-[14px] text-[#7E7E7E] leading-[22px] flex flex-col gap-3 ${!seoExpanded ? "max-h-[72px] overflow-hidden" : ""}`}>
+            <p>DinesPower is a leading distributor of high-quality bodybuilding products such as steroids, testosterone, and anabolic steroids in Europe. We offer high-quality performance enhancers and nutritional supplements. If you are looking for muscle gain and fat loss simultaneously, you will find the right products, such as anabolic steroids, with us.</p>
+            <p>As the sole worldwide distributor of DEUS MEDICAL® testosterone and steroids, a renowned brand from Kolkata and India, we are committed to the highest standards. Do you want to build muscle quickly? We have exactly what you need to achieve your goals.</p>
+            <p>What sets us apart? Our absolute reliability, our outstanding service, and our attention to detail. If you are considering buying anabolic steroids or anabolic steroids, you can rely on the quality of our legal anabolic steroids or testosterone.</p>
+            {!seoExpanded && <div className="absolute bottom-0 left-0 right-0 h-[40px] bg-gradient-to-t from-white to-transparent" />}
+          </div>
+          <button onClick={() => setSeoExpanded(!seoExpanded)} className="cursor-pointer flex items-center gap-1 text-[14px] font-semibold text-[#181818] mt-4 hover:underline">
+            {seoExpanded ? 'Show Less' : 'Read More'}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`transition-transform ${seoExpanded ? 'rotate-180' : ''}`}>
+              <path d="M4 6L8 10L12 6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
         </div>
       </main>
       <div className="relative z-0">

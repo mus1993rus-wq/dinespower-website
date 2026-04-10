@@ -88,3 +88,34 @@
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 }
+
+/* Dual-range slider — independent min/max thumbs overlaid on same track */
+.dual-range::-webkit-slider-thumb {
+  pointer-events: auto;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #181818;
+  cursor: pointer;
+  border: none;
+}
+.dual-range::-moz-range-thumb {
+  pointer-events: auto;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #181818;
+  cursor: pointer;
+  border: none;
+}
+.dual-range::-webkit-slider-runnable-track {
+  background: transparent;
+  height: 24px;
+}
+.dual-range::-moz-range-track {
+  background: transparent;
+  height: 24px;
+}
+.dual-range:focus { outline: none; }
