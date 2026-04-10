@@ -61,8 +61,8 @@ const topStackProducts = [
 const proSellerCards = [
   { icon: "/images/shop/pro-partner.svg", title: "Official Brand Partner", desc: "We are an authorized partner of Astera, Deus Medical & Biaxol", link: "View Verification" },
   { icon: "/images/shop/pro-labtest.png", title: "Lab Tests & Verification", desc: "Browse lab reports, batch checks, and product verification details.", link: "See All Lab Tests" },
-  { icon: "/images/shop/pro-delivery.png", title: "Delivery & Payment", desc: "Shipping options, delivery times, tracking, and payment methods", link: "View Details" },
-  { icon: "/images/shop/pro-support.png", title: "Customer Support 24/7", desc: "Get help with orders, shipping, payments, and product questions", link: "Contact Us" },
+  { icon: "/images/shop/pro-support.png", title: "Delivery & Payment", desc: "Shipping options, delivery times, tracking, and payment methods", link: "View Details" },
+  { icon: "/images/shop/pro-delivery.png", title: "Customer Support 24/7", desc: "Get help with orders, shipping, payments, and product questions", link: "Contact Us" },
 ];
 
 const blogPosts = [
@@ -187,10 +187,10 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">{title}</h2>
         <div className="flex gap-2">
-          <button onClick={scrollLeft} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
+          <button onClick={scrollLeft} className="cursor-pointer w-[40px] h-[40px] rounded-lg border border-[#CBCBCB] bg-white flex items-center justify-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
-          <button onClick={scrollRight} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
+          <button onClick={scrollRight} className="cursor-pointer w-[40px] h-[40px] rounded-lg border border-[#CBCBCB] bg-white flex items-center justify-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
         </div>
@@ -268,8 +268,8 @@ function FatBurningBanner() {
             See More
           </button>
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 h-[85%] w-[55%] z-10 flex items-center justify-center">
-          <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-right" />
+        <div className="absolute right-[40px] top-1/2 -translate-y-1/2 h-[90%] w-[60%] z-10">
+          <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-center" />
         </div>
       </div>
     </section>
@@ -293,8 +293,14 @@ function ProSellersSection() {
           {proSellerCards.map((card, i) => (
             <ScrollAnimation key={i} animation="animate-fade-in-up" className="flex-1" delay={i * 100}>
               <div className="bg-[#212121] border border-white/[0.08] rounded-[12px] p-[25px] flex flex-col items-center gap-6 h-full text-center">
-                <div className="w-[80px] h-[80px] shrink-0">
-                  <Image src={card.icon} alt={card.title} width={80} height={80} className="object-contain" />
+                <div className="w-[80px] h-[80px] shrink-0 flex items-center justify-center">
+                  <Image
+                    src={card.icon}
+                    alt={card.title}
+                    width={120}
+                    height={120}
+                    className={`object-contain ${card.icon.endsWith("pro-delivery.png") ? "w-[100px] h-[100px]" : "w-20 h-20"}`}
+                  />
                 </div>
                 <h3 className="text-[18px] font-extrabold text-white leading-[24px] capitalize">{card.title}</h3>
                 <p className="text-[14px] text-[#B6B6B6] leading-5">{card.desc}</p>
