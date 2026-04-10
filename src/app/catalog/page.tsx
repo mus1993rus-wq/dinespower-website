@@ -286,29 +286,6 @@ const allProducts: Product[] = [
 /*  Brand badge component                                              */
 /* ------------------------------------------------------------------ */
 
-function BrandBadge({ brand }: { brand: string }) {
-  if (brand === "Astera Labs") {
-    return (
-      <div className="w-[32px] h-[32px] rounded-[6px] bg-[#FF8C38] flex items-center justify-center shrink-0">
-        <span className="text-white text-[10px] font-bold leading-none">ASTERA</span>
-      </div>
-    );
-  }
-  if (brand === "Deus Medical") {
-    return (
-      <div className="w-[32px] h-[32px] rounded-[6px] bg-[#1A1A1A] flex items-center justify-center shrink-0">
-        <span className="text-white text-[9px] font-bold leading-none">DM</span>
-      </div>
-    );
-  }
-  // Biaxol
-  return (
-    <div className="w-[32px] h-[32px] rounded-[6px] bg-[#F0F0F0] flex items-center justify-center shrink-0">
-      <span className="text-[#181818] text-[8px] font-bold leading-none">Biaxol</span>
-    </div>
-  );
-}
-
 function CatalogContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -342,35 +319,7 @@ function CatalogContent() {
     }
   }, [categorySlug, router]);
 
-  if (!categorySlug) {
-    return null;
-  }
-
-  const bannerDescription = currentBrandLabel
-    ? brandDescriptions[currentBrandLabel] || ""
-    : categorySlug
-    ? categoryDescriptions[categorySlug] || ""
-    : "";
-
-  // Brands available for the current category
-  const brandsForCategory = categorySlug ? (categoryBrands[categorySlug] || []) : ["Astera Labs", "Deus Medical", "Biaxol"];
-
-  // Build active filters list — brand is navigation, NOT a removable filter
-  const activeFilters: { label: string; onRemove: () => void }[] = [];
-  if (inStockChecked && !outOfStockChecked) {
-    activeFilters.push({ label: "In stock", onRemove: () => setInStockChecked(false) });
-  }
-  if (outOfStockChecked && !inStockChecked) {
-    activeFilters.push({ label: "Out of stock", onRemove: () => setOutOfStockChecked(false) });
-  }
-
-  function clearAllFilters() {
-    setInStockChecked(true);
-    setOutOfStockChecked(false);
-    setPriceRange([0, 100000]);
-  }
-
-  // Filter products
+  // Filter products (hook must be before any early return)
   const filteredProducts = useMemo(() => {
     let list = allProducts;
 
@@ -401,6 +350,34 @@ function CatalogContent() {
 
     return list;
   }, [categorySlug, currentBrandLabel, activeSort, inStockChecked, outOfStockChecked, priceRange]);
+
+  if (!categorySlug) {
+    return null;
+  }
+
+  const bannerDescription = currentBrandLabel
+    ? brandDescriptions[currentBrandLabel] || ""
+    : categorySlug
+    ? categoryDescriptions[categorySlug] || ""
+    : "";
+
+  // Brands available for the current category
+  const brandsForCategory = categorySlug ? (categoryBrands[categorySlug] || []) : ["Astera Labs", "Deus Medical", "Biaxol"];
+
+  // Build active filters list — brand is navigation, NOT a removable filter
+  const activeFilters: { label: string; onRemove: () => void }[] = [];
+  if (inStockChecked && !outOfStockChecked) {
+    activeFilters.push({ label: "In stock", onRemove: () => setInStockChecked(false) });
+  }
+  if (outOfStockChecked && !inStockChecked) {
+    activeFilters.push({ label: "Out of stock", onRemove: () => setOutOfStockChecked(false) });
+  }
+
+  function clearAllFilters() {
+    setInStockChecked(true);
+    setOutOfStockChecked(false);
+    setPriceRange([0, 100000]);
+  }
 
   return (
     <>
@@ -699,20 +676,34 @@ function CatalogContent() {
               </div>
             )}
 
-            {/* Pagination */}
+            {/* Pagination — Figma 1249:6504 style: Prev / nums / Next */}
             {filteredProducts.length > 0 && (
-              <div className="flex items-center justify-center gap-2 mt-10">
-                {[1, 2, 3, "...", 12].map((p, i) => (
-                  <button
-                    key={i}
-                    className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-semibold transition-colors ${
-                      p === 1 ? "bg-[#FF6701] text-white" : "border border-[#E7E7E7] text-[#181818] hover:border-[#FF6701]"
-                    }`}
-                  >
-                    {p === "..." ? "..." : p}
-                  </button>
-                ))}
-                <button className="w-10 h-10 rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
+              <div className="flex items-center justify-between mt-10">
+                <button className="cursor-pointer flex items-center gap-2 h-10 px-4 rounded-[8px] text-sm font-semibold text-[#181818] hover:bg-[#F7F7F7] transition-colors">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Prev
+                </button>
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5, 6, 7, 8, "...", 12].map((p, i) => (
+                    <button
+                      key={i}
+                      disabled={p === "..."}
+                      className={`w-10 h-10 rounded-[8px] flex items-center justify-center text-sm font-semibold transition-colors ${
+                        p === 1
+                          ? "bg-[#181818] text-white"
+                          : p === "..."
+                            ? "text-[#7E7E7E] cursor-default"
+                            : "text-[#181818] hover:bg-[#F7F7F7] cursor-pointer"
+                      }`}
+                    >
+                      {p === "..." ? "..." : p}
+                    </button>
+                  ))}
+                </div>
+                <button className="cursor-pointer flex items-center gap-2 h-10 px-4 rounded-[8px] text-sm font-semibold text-[#181818] hover:bg-[#F7F7F7] transition-colors">
+                  Next
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                     <path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -741,7 +732,7 @@ function CatalogContent() {
           </button>
         </div>
 
-        {/* FAQ full-width section */}
+        {/* FAQ full-width section — Figma 1249:6504 with message-question icon */}
         <div className="max-w-[1340px] mx-auto pb-16">
           <h2 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">Frequently Asked Questions</h2>
           <div className="flex flex-col">
@@ -751,13 +742,16 @@ function CatalogContent() {
                   onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
                   className="w-full flex items-center justify-between py-5 cursor-pointer gap-4"
                 >
-                  <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{item.q}</span>
+                  <div className="flex items-center gap-3">
+                    <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
+                    <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{item.q}</span>
+                  </div>
                   <div className={`w-[40px] h-[40px] rounded-[8px] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#E7E7E7]' : 'bg-[#F7F7F7]'}`}>
                     <span className="text-[20px] leading-none text-[#181818]">{openFAQ === i ? '−' : '+'}</span>
                   </div>
                 </button>
                 {openFAQ === i && (
-                  <div className="pb-5 pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
+                  <div className="pb-5 pl-[36px] pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
                     {item.a}
                   </div>
                 )}
