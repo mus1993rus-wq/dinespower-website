@@ -297,49 +297,54 @@ export default function ProductPage() {
               ))}
             </ul>
 
-            {/* 5. Price row */}
+            {/* 5. Price row — Figma: 28px red extrabold + 22px gray strikethrough + red Sale tag rounded-6 */}
             <div className="flex items-center gap-3 mb-6">
-              <span className="text-[36px] font-extrabold text-[#FF3B30] leading-[42px]">44 &euro;</span>
-              <span className="text-lg text-[#B6B6B6] line-through">56 &euro;</span>
-              <span className="bg-[#FF3B30]/10 text-[#FF3B30] text-xs font-bold px-2.5 py-1 rounded-[4px]">Sale -14%</span>
+              <span className="text-[28px] font-extrabold text-[#FB2F2F] leading-[34px]">44 &euro;</span>
+              <span className="text-[22px] text-[#7E7E7E] line-through leading-none">56 &euro;</span>
+              <span className="bg-[#FB2F2F] text-white text-[12px] font-semibold px-3 py-1 rounded-[6px] leading-4">Sale -14%</span>
             </div>
 
-            {/* 6. Qty + Add To Cart */}
+            {/* 6. Qty + Add To Cart — Figma: qty 140×48 border #C3C3C3 rounded-12, orange btn 266×48 rounded-8 */}
             <div className="flex items-center gap-4 mb-4">
-              <div className="flex items-center border border-[#E7E7E7] rounded-[8px] h-[48px]">
-                <button onClick={() => setQty(Math.max(1, qty - 1))} className="w-12 h-full flex items-center justify-center text-[#B6B6B6] hover:text-[#181818] transition-colors text-xl">&#8722;</button>
-                <span className="w-8 text-center text-base font-semibold">{qty}</span>
-                <button onClick={() => setQty(qty + 1)} className="w-12 h-full flex items-center justify-center text-[#B6B6B6] hover:text-[#181818] transition-colors text-xl">+</button>
+              <div className="flex items-center border border-[#C3C3C3] rounded-[12px] h-[48px] w-[140px] px-3 justify-between">
+                <button onClick={() => setQty(Math.max(1, qty - 1))} className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818] transition-colors">
+                  <svg width="20" height="2" viewBox="0 0 20 2"><path d="M1 1H19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                </button>
+                <span className="text-[16px] font-semibold text-[#181818] leading-6">{qty}</span>
+                <button onClick={() => setQty(qty + 1)} className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818] transition-colors">
+                  <svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2V18M2 10H18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                </button>
               </div>
               <button
                 onClick={handleAddToCart}
-                className="group cursor-pointer relative w-[280px] bg-[#FF6701] hover:bg-[#E65D00] text-white font-semibold rounded-[8px] h-[48px] flex items-center justify-center gap-2 overflow-hidden transition-colors text-base"
+                className="group cursor-pointer relative w-[266px] bg-[#FF6701] hover:bg-[#E65D00] text-white font-semibold rounded-[8px] h-[48px] flex items-center justify-center gap-3 overflow-hidden transition-colors text-[16px]"
               >
-                <span className="flex items-center gap-2 transition-all duration-300 ease-out group-hover:-translate-y-[200%]">
+                <span className="flex items-center gap-3 transition-all duration-300 ease-out group-hover:translate-y-[200%]">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  Add To Cart
+                  Add to cart
                 </span>
-                <span className="absolute flex items-center gap-2 -translate-y-[200%] transition-all duration-300 ease-out group-hover:translate-y-0">
+                <span className="absolute flex items-center gap-3 -translate-y-[200%] transition-all duration-300 ease-out group-hover:translate-y-0">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  Add To Cart
+                  Add to cart
                 </span>
               </button>
             </div>
 
-            {/* 7. In Stock */}
-            <div className="flex items-center gap-2 mb-6">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M20 6L9 17L4 12" stroke="#00B638" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            {/* 7. In Stock — Figma: green check-all icon + black text */}
+            <div className="flex items-center gap-3 mb-6">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M3 12L8 17L21 4" stroke="#00B638" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M8 12L13 17" stroke="#00B638" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              <span className="text-sm font-medium text-[#00B638]">In Stock (5-20 days)</span>
+              <span className="text-[14px] text-black leading-5">In Stock (5-20 days)</span>
             </div>
 
             {/* 8. Promo code block — Figma 1430:28181, h-96 */}
@@ -399,31 +404,31 @@ export default function ProductPage() {
               ))}
             </div>
 
-            {/* 10. Help Cards - 3 in a row */}
-            <div className="grid grid-cols-3 gap-3">
-              <button onClick={() => setHelpOpen(true)} className="border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col items-center text-center cursor-pointer hover:border-[#FF6701] transition-colors">
-                <div className="w-[56px] h-[56px] mb-3">
-                  <Image src="/images/shop/product-icons/icon-5.png" alt="" width={56} height={56} className="object-contain" />
+            {/* 10. Help Cards — Figma 1430:28293: single box with dividers, 48px icons, 16px titles */}
+            <div className="bg-white border border-[#E3E3E3] rounded-[12px] flex items-stretch">
+              <button onClick={() => setHelpOpen(true)} className="cursor-pointer flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 border-r border-[#E6E6E6] hover:bg-[#F7F7F7] transition-colors rounded-l-[12px]">
+                <div className="w-12 h-12 relative">
+                  <Image src="/images/shop/product-icons/icon-5.png" alt="" fill className="object-contain" />
                 </div>
-                <p className="text-sm font-bold text-[#181818] mb-1">Need Help?</p>
-                <p className="text-xs text-[#181818] mb-3">Ask about dosing, shipping, or verification</p>
-                <span className="text-xs font-semibold text-[#181818] underline">Ask a Question</span>
+                <p className="text-[16px] font-semibold text-black leading-6">Need Help?</p>
+                <p className="text-[14px] text-[#1E1E1E] leading-5">Ask about dosing, shipping, or verification</p>
+                <span className="text-[14px] font-semibold text-black underline leading-5">Ask a Question</span>
               </button>
-              <button onClick={() => setShippingOpen(true)} className="border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col items-center text-center cursor-pointer hover:border-[#FF6701] transition-colors">
-                <div className="w-[56px] h-[56px] mb-3">
-                  <Image src="/images/shop/product-icons/icon-6.png" alt="" width={56} height={56} className="object-contain" />
+              <button onClick={() => setShippingOpen(true)} className="cursor-pointer flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 border-r border-[#E6E6E6] hover:bg-[#F7F7F7] transition-colors">
+                <div className="w-12 h-12 relative">
+                  <Image src="/images/shop/product-icons/icon-6.png" alt="" fill className="object-contain" />
                 </div>
-                <p className="text-sm font-bold text-[#181818] mb-1">Shipping Methods</p>
-                <p className="text-xs text-[#181818] mb-3">Delivery times, tracking, discreet packaging</p>
-                <span className="text-xs font-semibold text-[#181818] underline">Learn more</span>
+                <p className="text-[16px] font-semibold text-[#1E1E1E] leading-6">Shipping Methods</p>
+                <p className="text-[14px] text-[#1E1E1E] leading-5">Delivery times, tracking, discreet packaging</p>
+                <span className="text-[14px] font-semibold text-black underline leading-5">Learn more</span>
               </button>
-              <button onClick={() => setPaymentOpen(true)} className="border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col items-center text-center cursor-pointer hover:border-[#FF6701] transition-colors">
-                <div className="w-[56px] h-[56px] mb-3">
-                  <Image src="/images/shop/product-icons/icon-7.png" alt="" width={56} height={56} className="object-contain" />
+              <button onClick={() => setPaymentOpen(true)} className="cursor-pointer flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 hover:bg-[#F7F7F7] transition-colors rounded-r-[12px]">
+                <div className="w-12 h-12 relative">
+                  <Image src="/images/shop/product-icons/icon-7.png" alt="" fill className="object-contain" />
                 </div>
-                <p className="text-sm font-bold text-[#181818] mb-1">Payment Methods</p>
-                <p className="text-xs text-[#181818] mb-3">Bitcoin, bank transfer</p>
-                <span className="text-xs font-semibold text-[#181818] underline">Learn more</span>
+                <p className="text-[16px] font-semibold text-[#1E1E1E] leading-6">Payment Methods</p>
+                <p className="text-[14px] text-[#1E1E1E] leading-5">Bitcoin, bank transfer</p>
+                <span className="text-[14px] font-semibold text-black underline leading-5">Learn more</span>
               </button>
             </div>
 
