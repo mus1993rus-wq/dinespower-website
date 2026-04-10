@@ -261,23 +261,37 @@ export default function DeliveryPaymentPage() {
                   </div>
                 </div>
 
-                {/* Wholesale Banner */}
-                <div className="rounded-[12px] overflow-hidden relative">
-                  <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
-                  <div className="relative z-10 p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-[32px]">📦</span>
-                      <div>
-                        <p className="text-white text-[16px] font-extrabold leading-[22px]">
-                          Save up to <span className="text-[#FF6701]">50%</span> on shipping
-                        </p>
-                        <p className="text-white/60 text-[13px] mt-1 leading-[18px]">Wholesale orders unlock better shipping rates and partner discounts.</p>
-                      </div>
+                {/* Wholesale Banner — Figma node 1721:27648 */}
+                <div className="bg-[#181818] rounded-[16px] overflow-hidden relative p-6 flex flex-col gap-4">
+                  {/* Textured background */}
+                  <Image
+                    src="/images/shop/wholesale-banner-bg.png"
+                    alt=""
+                    fill
+                    className="object-cover opacity-50 mix-blend-lighten pointer-events-none"
+                  />
+                  {/* Content */}
+                  <div className="relative z-10 flex items-start gap-4">
+                    <div className="w-14 h-14 relative shrink-0">
+                      <Image
+                        src="/images/shop/wholesale-banner-icon.png"
+                        alt=""
+                        fill
+                        className="object-contain"
+                      />
                     </div>
-                    <button className="bg-white hover:bg-[#F7F7F7] text-[#181818] text-[14px] font-semibold rounded-[8px] h-[44px] w-full transition-colors">
-                      Get Wholesale Prices
-                    </button>
+                    <div className="flex-1 flex flex-col gap-1">
+                      <p className="text-[#FF6701] text-[20px] font-extrabold leading-6">
+                        Save up to 50% on shipping
+                      </p>
+                      <p className="text-white/70 text-[16px] leading-6">
+                        Wholesale orders unlock better shipping rates and partner discounts.
+                      </p>
+                    </div>
                   </div>
+                  <button className="relative z-10 bg-white border border-[#CBCBCB] hover:bg-[#F7F7F7] text-black text-[14px] font-semibold rounded-[8px] h-12 w-full transition-colors">
+                    Get Wholesale Prices
+                  </button>
                 </div>
               </div>
             </div>
