@@ -665,7 +665,7 @@ export default function BlogArticlePage() {
                         <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      <span className="absolute text-[14px] font-semibold text-white whitespace-nowrap transition-all duration-300 ease-out translate-y-[150%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+                      <span className="absolute text-[14px] font-semibold text-white whitespace-nowrap transition-all duration-300 ease-out -translate-y-[150%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
                         Add to cart
                       </span>
                     </button>
