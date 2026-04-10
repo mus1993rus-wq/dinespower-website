@@ -463,7 +463,7 @@ function CatalogContent() {
           </div>
         ) : (
           <div className="max-w-[1340px] mx-auto mb-8">
-            <div className="relative h-[278px] rounded-[16px] overflow-hidden bg-white border border-[#E7E7E7]">
+            <div className="relative h-[278px] rounded-[16px] overflow-hidden bg-[#F7F7F7]">
               <div className="absolute left-[60px] top-1/2 -translate-y-1/2 max-w-[50%]">
                 <h1 className="text-[40px] font-black text-[#181818] uppercase leading-[44px]">
                   {currentCategory?.label}

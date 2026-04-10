@@ -342,69 +342,55 @@ export default function ProductPage() {
               <span className="text-sm font-medium text-[#00B638]">In Stock (5-20 days)</span>
             </div>
 
-            {/* 8. Promo code block */}
-            <div className="bg-[#181818] rounded-[12px] p-4 mb-6 flex items-center justify-between gap-4 relative overflow-hidden">
+            {/* 8. Promo code block — Figma 1430:28181, h-96 */}
+            <button onClick={handleCopy} className="cursor-pointer bg-[#181818] rounded-[12px] p-4 mb-6 flex items-center justify-between gap-4 relative overflow-hidden w-full text-left">
               <Image src="/images/shop/product-icons/bg.png" alt="" fill className="object-cover opacity-20 absolute inset-0" />
-              <div className="flex items-center gap-3 relative z-10">
-                <div className="w-[48px] h-[48px] shrink-0">
-                  <Image src="/images/shop/product-icons/discount.png" alt="" width={48} height={48} className="object-contain" />
+              <div className="flex items-center gap-4 relative z-10">
+                <div className="w-[80px] h-[80px] shrink-0">
+                  <Image src="/images/shop/product-icons/discount.png" alt="" width={80} height={80} className="object-contain" />
                 </div>
-                <div>
-                  <p className="text-sm font-bold text-white">Get 5% Off Your First Order</p>
-                  <p className="text-xs text-white/60">Use Code &quot;DINES2026&quot; for get 5% Discount</p>
+                <div className="flex flex-col gap-1">
+                  <p className="text-[16px] font-extrabold text-white leading-6">Get 5% Off Your First Order</p>
+                  <p className="text-[14px] text-white/60 leading-5">Use Code &quot;DINES2026&quot; for get 5% Discount</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2 bg-[#2A2A2A] border border-dashed border-[#FF6701] rounded-lg px-4 py-2.5 shrink-0 relative z-10">
-                <span className="text-sm font-bold text-[#FF6701] tracking-wider">DINES2026</span>
-                <button onClick={handleCopy} className="text-white/60 hover:text-white transition-colors">
-                  {copied ? (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  ) : (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M5 15H4C2.89543 15 2 14.1046 2 13V4C2 2.89543 2.89543 2 4 2H13C14.1046 2 15 2.89543 15 4V5" stroke="currentColor" strokeWidth="1.5"/></svg>
-                  )}
-                </button>
+              <div className="flex items-center gap-2 bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] px-4 h-11 shrink-0 relative z-10 transition-colors">
+                <span className="text-[14px] font-semibold text-white tracking-wider">DINES2026</span>
+                {copied ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" stroke="white" strokeWidth="1.5"/><path d="M5 15H4C2.89543 15 2 14.1046 2 13V4C2 2.89543 2.89543 2 4 2H13C14.1046 2 15 2.89543 15 4V5" stroke="white" strokeWidth="1.5"/></svg>
+                )}
               </div>
-            </div>
+            </button>
 
-            {/* 9. Trust Badges */}
+            {/* 9. Trust Badges — Figma 1430:29209, each h-96 */}
             <div className="flex flex-col gap-2 mb-6">
               {trustBadges.map((badge, i) => (
                 <div
                   key={i}
-                  className={`flex items-center gap-4 p-5 rounded-[16px] ${
-                    badge.orangeBg
-                      ? "bg-[#FFF5EE] border border-[#FF6701]/30"
-                      : "bg-[#F7F7F7]"
-                  }`}
+                  className="bg-[#F7F7F7] rounded-[12px] p-2 flex items-center gap-4"
                 >
-                  <div className="w-[64px] h-[64px] shrink-0 flex items-center justify-center">
-                    <Image src={badge.icon} alt={badge.title} width={64} height={64} className="object-contain" />
+                  <div className="w-20 h-20 shrink-0 flex items-center justify-center">
+                    <Image src={badge.icon} alt={badge.title} width={80} height={80} className="w-full h-full object-contain" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold text-[#181818]">{badge.title}</p>
-                    <p className="text-xs text-[#7E7E7E] mt-0.5">{badge.desc}</p>
+                    <p className="text-[16px] font-extrabold text-[#181818] leading-6">{badge.title}</p>
+                    <p className="text-[14px] text-[#7E7E7E] leading-5 mt-1">{badge.desc}</p>
                   </div>
                   {badge.external ? (
                     <a
                       href={badge.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`text-sm font-semibold whitespace-nowrap shrink-0 border bg-white rounded-[8px] px-5 py-2.5 transition-colors ${
-                        badge.orangeBg
-                          ? "text-[#FF6701] border-[#E7E7E7] hover:border-[#FF6701]"
-                          : "text-[#181818] border-[#E7E7E7] hover:border-[#FF6701] hover:text-[#FF6701]"
-                      }`}
+                      className="cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 flex items-center text-[#181818] hover:bg-[#E7E7E7] hover:border-transparent transition-colors"
                     >
                       {badge.button}
                     </a>
                   ) : (
                     <Link
                       href={badge.href || "#"}
-                      className={`text-sm font-semibold whitespace-nowrap shrink-0 border bg-white rounded-[8px] px-5 py-2.5 transition-colors ${
-                        badge.orangeBg
-                          ? "text-[#FF6701] border-[#E7E7E7] hover:border-[#FF6701]"
-                          : "text-[#181818] border-[#E7E7E7] hover:border-[#FF6701] hover:text-[#FF6701]"
-                      }`}
+                      className="cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 flex items-center text-[#181818] hover:bg-[#E7E7E7] hover:border-transparent transition-colors"
                     >
                       {badge.button}
                     </Link>
