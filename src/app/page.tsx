@@ -161,7 +161,7 @@ function PromoBanner({ categoryName }: { categoryName: string }) {
   };
   const bgImage = imageMap[categoryName] || "/images/shop/promo-oral.png";
   return (
-    <Link href={`/catalog?category=${categoryName.toLowerCase()}`} className="w-[252px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center group cursor-pointer hover:shadow-lg transition-shadow">
+    <Link href={`/catalog?category=${categoryName.toLowerCase()}`} className="w-[255px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center group cursor-pointer hover:shadow-lg transition-shadow">
       <Image src={bgImage} alt={`View All ${categoryName}`} fill className="object-cover" />
       <div className="relative z-10">
         <button className="bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] hover:bg-[#EDEDED] transition-colors shadow-md">
@@ -187,10 +187,10 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">{title}</h2>
         <div className="flex gap-2">
-          <button onClick={scrollLeft} className="cursor-pointer w-[40px] h-[40px] rounded-lg border border-[#CBCBCB] bg-white flex items-center justify-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+          <button onClick={scrollLeft} className="cursor-pointer w-[40px] h-[40px] rounded-lg bg-[#F7F7F7] flex items-center justify-center hover:bg-[#E7E7E7] transition-colors">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
-          <button onClick={scrollRight} className="cursor-pointer w-[40px] h-[40px] rounded-lg border border-[#CBCBCB] bg-white flex items-center justify-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+          <button onClick={scrollRight} className="cursor-pointer w-[40px] h-[40px] rounded-lg bg-[#F7F7F7] flex items-center justify-center hover:bg-[#E7E7E7] transition-colors">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
         </div>
@@ -454,8 +454,8 @@ function WholesaleBanner() {
           </button>
         </div>
         {/* Bars on right */}
-        <div className="absolute right-0 top-0 h-full w-[550px] z-[5] flex items-center justify-center">
-          <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" width={550} height={400} className="object-contain" />
+        <div className="absolute right-[40px] top-0 h-full w-[640px] z-[5]">
+          <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" fill className="object-contain object-right" />
         </div>
       </div>
     </section>
@@ -475,7 +475,7 @@ function FAQSection() {
               <Image src="/images/shop/faq-help-icon.png" alt="Help" width={80} height={80} className="object-contain" />
               <h3 className="text-[16px] font-semibold text-black text-center">Still have questions?</h3>
               <p className="text-[14px] text-[#1E1E1E] text-center">Reach out to our manager right away — we&apos;re happy to help with any questions.</p>
-              <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:bg-[#F7F7F7] transition-colors">
+              <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="cursor-pointer bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
                 Ask a Question
               </button>
               <div className="flex gap-4">
@@ -540,10 +540,10 @@ function SEOSection() {
         <p>Whether you are a professional athlete, bodybuilder, or fitness enthusiast, DinesPower offers competitive wholesale pricing with discounts up to 70% for bulk orders. Contact our team to learn more about partnership opportunities.</p>
         {!expanded && <div className="absolute bottom-0 left-0 right-0 h-[60px] bg-gradient-to-t from-white to-transparent" />}
       </div>
-      <button onClick={() => setExpanded(!expanded)} className="flex items-center gap-1 text-[14px] font-semibold text-[#FF6701] mt-4 hover:underline">
+      <button onClick={() => setExpanded(!expanded)} className="cursor-pointer flex items-center gap-1 text-[14px] font-semibold text-[#181818] mt-4 hover:underline">
         {expanded ? 'Show Less' : 'Read More'}
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`transition-transform duration-200 ${expanded ? 'rotate-180' : ''}`}>
-          <path d="M4 6L8 10L12 6" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M4 6L8 10L12 6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </button>
     </section>

@@ -130,7 +130,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[#292929] mt-10 pt-6 flex items-center justify-between">
+        <div className="border-t border-[#292929] mt-[100px] pt-6 flex items-center justify-between">
           <p className="text-sm text-[#7E7E7E] leading-[18px]">
             © 2026 DINESPOWER.TO is the best place to buy steroids online. We are authorized distributor of brand DEUSMEDICAL (INDIA).
           </p>

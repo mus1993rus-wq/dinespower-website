@@ -20,7 +20,7 @@ export default function ProductCard({ brand, name, dosage, price, oldPrice, imag
   const { addItem } = useCart();
 
   return (
-    <div className="bg-white border border-[#E7E7E7] rounded-[16px] overflow-hidden flex flex-col w-[252px] shrink-0 hover:shadow-lg transition-shadow">
+    <div className="bg-white border border-[#E7E7E7] rounded-[16px] overflow-hidden flex flex-col w-[255px] shrink-0 hover:shadow-lg transition-shadow">
       {/* Image - WHITE background, clickable */}
       <Link href="/product" className="relative h-[252px] bg-white flex items-center justify-center p-6 block">
         {/* Tag ribbons — Figma 1249:6845: flush to left edge, right corners rounded */}
