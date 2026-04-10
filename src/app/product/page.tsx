@@ -243,7 +243,7 @@ export default function ProductPage() {
               ))}
             </div>
 
-            {/* Main image — 480x480 per Figma, no search button */}
+            {/* Main image — 480x480 per Figma, no search button, no sale tag overlay */}
             <div className="w-[480px] h-[480px] bg-white rounded-[16px] flex items-center justify-center relative overflow-hidden border border-[#E7E7E7]">
               <Image
                 src={thumbnails[selectedImage]}
@@ -252,10 +252,6 @@ export default function ProductPage() {
                 height={416}
                 className="object-contain"
               />
-              {/* Sale tag overlay */}
-              <div className="absolute top-4 left-4 bg-[#FF3B30] text-white text-xs font-bold px-2.5 py-1 rounded-[4px]">
-                Sale -14%
-              </div>
             </div>
           </div>
 
@@ -347,34 +343,38 @@ export default function ProductPage() {
               <span className="text-[14px] text-black leading-5">In Stock (5-20 days)</span>
             </div>
 
-            {/* 8. Promo code block — Figma 1430:28181, h-96 */}
-            <button onClick={handleCopy} className="cursor-pointer bg-[#181818] rounded-[12px] p-4 mb-6 flex items-center justify-between gap-4 relative overflow-hidden w-full text-left">
-              <Image src="/images/shop/product-icons/bg.png" alt="" fill className="object-cover opacity-20 absolute inset-0" />
-              <div className="flex items-center gap-4 relative z-10">
-                <div className="w-[80px] h-[80px] shrink-0">
+            {/* 8. Promo code block — Figma 1430:28181: black bg, yellow title, dark button */}
+            <button onClick={handleCopy} className="cursor-pointer bg-black rounded-[12px] p-2 mb-6 flex items-center gap-2 relative overflow-hidden w-full text-left">
+              <Image src="/images/shop/product-icons/bg.png" alt="" fill className="object-cover opacity-50 mix-blend-lighten absolute inset-0 pointer-events-none" />
+              <div className="flex-1 flex items-center gap-4 relative z-10 pr-2">
+                <div className="w-[80px] h-[80px] shrink-0 rounded-[9px] overflow-hidden">
                   <Image src="/images/shop/product-icons/discount.png" alt="" width={80} height={80} className="object-contain" />
                 </div>
-                <div className="flex flex-col gap-1">
-                  <p className="text-[16px] font-extrabold text-white leading-6">Get 5% Off Your First Order</p>
-                  <p className="text-[14px] text-white/60 leading-5">Use Code &quot;DINES2026&quot; for get 5% Discount</p>
+                <div className="flex-1 flex flex-col gap-1">
+                  <p className="text-[20px] font-extrabold text-[#FECA37] leading-6">Get 5% Off Your First Order</p>
+                  <p className="text-[14px] text-white leading-5">
+                    Use Code <span className="font-bold">&ldquo;DINES2026&rdquo;</span> for get 5% Discount
+                  </p>
                 </div>
               </div>
-              <div className="flex items-center gap-2 bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] px-4 h-11 shrink-0 relative z-10 transition-colors">
-                <span className="text-[14px] font-semibold text-white tracking-wider">DINES2026</span>
+              <div className="flex items-center gap-3 bg-[#292929] hover:bg-[#383838] rounded-[8px] px-4 h-11 shrink-0 relative z-10 transition-colors">
+                <span className="text-[18px] font-semibold text-white leading-[26px]">DINES2026</span>
                 {copied ? (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 ) : (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" stroke="white" strokeWidth="1.5"/><path d="M5 15H4C2.89543 15 2 14.1046 2 13V4C2 2.89543 2.89543 2 4 2H13C14.1046 2 15 2.89543 15 4V5" stroke="white" strokeWidth="1.5"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" stroke="white" strokeWidth="1.5"/><path d="M5 15H4C2.89543 15 2 14.1046 2 13V4C2 2.89543 2.89543 2 4 2H13C14.1046 2 15 2.89543 15 4V5" stroke="white" strokeWidth="1.5"/></svg>
                 )}
               </div>
             </button>
 
-            {/* 9. Trust Badges — Figma 1430:29209, each h-96 */}
+            {/* 9. Trust Badges — Figma 1430:29209, each h-96; last one peach bg */}
             <div className="flex flex-col gap-2 mb-6">
               {trustBadges.map((badge, i) => (
                 <div
                   key={i}
-                  className="bg-[#F7F7F7] rounded-[12px] p-2 flex items-center gap-4"
+                  className={`rounded-[12px] p-2 flex items-center gap-4 ${
+                    badge.orangeBg ? "bg-[#F5ECE6]" : "bg-[#F7F7F7]"
+                  }`}
                 >
                   <div className="w-20 h-20 shrink-0 flex items-center justify-center">
                     <Image src={badge.icon} alt={badge.title} width={80} height={80} className="w-full h-full object-contain" />

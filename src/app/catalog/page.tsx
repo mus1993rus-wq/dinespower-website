@@ -710,53 +710,53 @@ function CatalogContent() {
                 </button>
               </div>
             )}
-          </div>
-        </div>
 
-        {/* SEO text block — above FAQ */}
-        <div className="max-w-[1340px] mx-auto pt-8 pb-12">
-          <h3 className="text-[20px] font-extrabold text-[#181818] leading-[26px] mb-4">
-            Dinespower is the best distributor of bodybuilding preparations in Europe
-          </h3>
-          <div className={`relative text-[14px] text-[#7E7E7E] leading-[22px] flex flex-col gap-3 ${!seoExpanded ? "max-h-[72px] overflow-hidden" : ""}`}>
-            <p>DinesPower is a leading distributor of high-quality bodybuilding products such as steroids, testosterone, and anabolic steroids in Europe. We offer high-quality performance enhancers and nutritional supplements. If you are looking for muscle gain and fat loss simultaneously, you will find the right products, such as anabolic steroids, with us.</p>
-            <p>As the sole worldwide distributor of DEUS MEDICAL® testosterone and steroids, a renowned brand from Kolkata and India, we are committed to the highest standards. Do you want to build muscle quickly? We have exactly what you need to achieve your goals.</p>
-            <p>What sets us apart? Our absolute reliability, our outstanding service, and our attention to detail. If you are considering buying anabolic steroids or anabolic steroids, you can rely on the quality of our legal anabolic steroids or testosterone.</p>
-            {!seoExpanded && <div className="absolute bottom-0 left-0 right-0 h-[40px] bg-gradient-to-t from-white to-transparent" />}
-          </div>
-          <button onClick={() => setSeoExpanded(!seoExpanded)} className="cursor-pointer flex items-center gap-1 text-[14px] font-semibold text-[#181818] mt-4 hover:underline">
-            {seoExpanded ? 'Show Less' : 'Read More'}
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`transition-transform ${seoExpanded ? 'rotate-180' : ''}`}>
-              <path d="M4 6L8 10L12 6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        </div>
-
-        {/* FAQ full-width section — Figma 1249:6504 with message-question icon */}
-        <div className="max-w-[1340px] mx-auto pb-16">
-          <h2 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">Frequently Asked Questions</h2>
-          <div className="flex flex-col">
-            {faqItems.map((item, i) => (
-              <div key={i} className="border-b border-[#E7E7E7]">
-                <button
-                  onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
-                  className="w-full flex items-center justify-between py-5 cursor-pointer gap-4"
-                >
-                  <div className="flex items-center gap-3">
-                    <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
-                    <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{item.q}</span>
-                  </div>
-                  <div className={`w-[40px] h-[40px] rounded-[8px] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#E7E7E7]' : 'bg-[#F7F7F7]'}`}>
-                    <span className="text-[20px] leading-none text-[#181818]">{openFAQ === i ? '−' : '+'}</span>
-                  </div>
-                </button>
-                {openFAQ === i && (
-                  <div className="pb-5 pl-[36px] pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
-                    {item.a}
-                  </div>
-                )}
+            {/* SEO text block — inside right column */}
+            <div className="pt-12 pb-8">
+              <h3 className="text-[20px] font-extrabold text-[#181818] leading-[26px] mb-4">
+                Dinespower is the best distributor of bodybuilding preparations in Europe
+              </h3>
+              <div className={`relative text-[14px] text-[#7E7E7E] leading-[22px] flex flex-col gap-3 ${!seoExpanded ? "max-h-[72px] overflow-hidden" : ""}`}>
+                <p>DinesPower is a leading distributor of high-quality bodybuilding products such as steroids, testosterone, and anabolic steroids in Europe. We offer high-quality performance enhancers and nutritional supplements. If you are looking for muscle gain and fat loss simultaneously, you will find the right products, such as anabolic steroids, with us.</p>
+                <p>As the sole worldwide distributor of DEUS MEDICAL® testosterone and steroids, a renowned brand from Kolkata and India, we are committed to the highest standards. Do you want to build muscle quickly? We have exactly what you need to achieve your goals.</p>
+                <p>What sets us apart? Our absolute reliability, our outstanding service, and our attention to detail. If you are considering buying anabolic steroids or anabolic steroids, you can rely on the quality of our legal anabolic steroids or testosterone.</p>
+                {!seoExpanded && <div className="absolute bottom-0 left-0 right-0 h-[40px] bg-gradient-to-t from-white to-transparent" />}
               </div>
-            ))}
+              <button onClick={() => setSeoExpanded(!seoExpanded)} className="cursor-pointer flex items-center gap-1 text-[14px] font-semibold text-[#181818] mt-4 hover:underline">
+                {seoExpanded ? 'Show Less' : 'Read More'}
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`transition-transform ${seoExpanded ? 'rotate-180' : ''}`}>
+                  <path d="M4 6L8 10L12 6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            {/* FAQ section — inside right column */}
+            <div className="pb-16">
+              <h2 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">Frequently Asked Questions</h2>
+              <div className="flex flex-col">
+                {faqItems.map((item, i) => (
+                  <div key={i} className="border-b border-[#E7E7E7]">
+                    <button
+                      onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
+                      className="w-full flex items-center justify-between py-5 cursor-pointer gap-4"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
+                        <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{item.q}</span>
+                      </div>
+                      <div className={`w-[40px] h-[40px] rounded-[8px] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#E7E7E7]' : 'bg-[#F7F7F7]'}`}>
+                        <span className="text-[20px] leading-none text-[#181818]">{openFAQ === i ? '−' : '+'}</span>
+                      </div>
+                    </button>
+                    {openFAQ === i && (
+                      <div className="pb-5 pl-[36px] pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
+                        {item.a}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </main>
