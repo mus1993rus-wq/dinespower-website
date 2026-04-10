@@ -142,7 +142,7 @@ function CategoriesRow() {
           <Link key={cat.name} href={`/catalog?category=${cat.name.toLowerCase().replace(/ & /g, '-')}`}>
             <ScrollAnimation animation="animate-fade-in-up" className="flex flex-col items-center gap-2 cursor-pointer group">
               <div className="w-[116px] h-[116px] rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center transition-colors duration-300">
-                <Image src={cat.img} alt={cat.name} width={116} height={116} className="object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+                <Image src={cat.img} alt={cat.name} width={116} height={116} className="object-cover transition-transform duration-300 group-hover:scale-[1.05]" />
               </div>
               <span className="text-[14px] font-semibold text-[#181818] leading-5">{cat.name}</span>
             </ScrollAnimation>
@@ -221,7 +221,7 @@ function CategoryBanners() {
               <span className="text-[#FF6701]">Faster Muscle<br />Recovery &</span>{" "}
               <span className="text-white">Reduced Body Fat</span>
             </h3>
-            <button className="w-fit h-[44px] px-[32px] rounded-[8px] border border-[#E7E7E7] bg-white text-black text-[14px] font-semibold hover:bg-[#F7F7F7] hover:bg-white hover:text-[#FF6701] hover:border-[#FF6701] transition-all duration-200">
+            <button className="cursor-pointer w-fit h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[14px] font-semibold hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
               See More
             </button>
           </div>
@@ -238,7 +238,7 @@ function CategoryBanners() {
               <span className="text-[#FF6701]">Stacks For<br />High Libido </span>
               <span className="text-white">And Fat Burning</span>
             </h3>
-            <button className="w-fit h-[44px] px-[32px] rounded-[8px] border border-[#E7E7E7] bg-white text-black text-[14px] font-semibold hover:bg-[#F7F7F7] hover:bg-white hover:text-[#FF6701] hover:border-[#FF6701] transition-all duration-200">
+            <button className="cursor-pointer w-fit h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[14px] font-semibold hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
               See More
             </button>
           </div>
@@ -264,7 +264,7 @@ function FatBurningBanner() {
           <p className="text-[16px] text-white/80 leading-[24px]">
             This combination of powerful fat burners works synergistically.
           </p>
-          <button className="h-[44px] px-[32px] rounded-[8px] border border-[#E7E7E7] bg-white text-[#181818] text-[14px] font-semibold w-fit hover:bg-[#F7F7F7] transition-colors">
+          <button className="cursor-pointer h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[14px] font-semibold w-fit hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
             See More
           </button>
         </div>
