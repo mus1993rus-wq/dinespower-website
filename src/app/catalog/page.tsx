@@ -198,6 +198,112 @@ function getBannerImage(categorySlug: string | null, brandSlug: string | null): 
 }
 
 /* ------------------------------------------------------------------ */
+/*  SEO content per category (from dinespower.to)                     */
+/* ------------------------------------------------------------------ */
+
+const categorySEO: Record<string, { heading: string; paragraphs: string[] }> = {
+  injectable: {
+    heading: "What is an injectable form of preparation?",
+    paragraphs: [
+      "An injection in bodybuilding is a procedure that involves the introduction of a preparation into the tissues of the body using a syringe and needle. This manipulation is the most common procedure in strength sports. The quality of its implementation directly affects the athlete's appearance, physiological capabilities, and condition.",
+      "Unlike tablets, injectable supplements for bodybuilding enter the bloodstream unchanged and in full. Due to this, preparations are used in a smaller dosage, their excess does not accumulate in the tissues and does not harm the body.",
+      "In the Dinespower online store, you can order injectable steroids for sale online with delivery throughout Europe. We offer only proven products with a quality guarantee. All products in our catalog have undergone comprehensive laboratory testing for purity and effectiveness.",
+      "We are interested in our customers consistently achieving the expected result. We provide not only fast and reliable goods sales but also an appropriate level of consulting support.",
+    ],
+  },
+  oral: {
+    heading: "What is the oral form of preparations?",
+    paragraphs: [
+      "Oral steroids are taken orally and then swallowed. This is the most common and convenient way to take pharmacological preparations in bodybuilding. Tablets, capsules, powders, syrups, etc., are often taken this way. Steroid tablets dissolve well and are absorbed in the stomach cavity, providing maximum effect from the intake.",
+      "Many athletes note the convenience of this method of taking steroids. After all, to achieve the desired result, they do not need to resort to injections and the help of medical personnel. In addition, steroid tablets for bodybuilding are usually easy to swallow.",
+      "In our online store, you can buy oral steroids for bodybuilding in Europe. We have everything that professional bodybuilders and people involved in sports need. We offer the best steroid tablets and deliver them throughout Europe.",
+      "If you want to buy oral steroids, contact Dinespower. We offer original, high-quality products from leading global manufacturers. Our products will help you maintain or increase muscle mass, lose excess weight, get a boost of energy, and add endurance.",
+    ],
+  },
+  "fat-burn": {
+    heading: "What are fat burners, and why are they needed?",
+    paragraphs: [
+      "Fat burner supplements are preparations that reduce fat deposits in the body. They speed up metabolism, suppress appetite, and improve thermogenesis. The best fat burning supplements include active components of natural and synthetic origin. They help improve physical activity and endurance.",
+      "Natural ingredients are most often used to produce fat loss supplements: guarana, yohimbe, dietary fiber, green tea extract, raspberry ketone, etc. All this helps to burn belly fat faster and in other parts of the body. If these factors are supplemented with daily training, the body's fat mass will begin to decrease rapidly.",
+      "If you want high-quality body relief with a low percentage of subcutaneous fat, you should prefer fat loss injections. They will help you achieve the desired result faster without losing muscle mass.",
+      "To achieve maximum effect, you can combine bodybuilding fat burner with other types of sports nutrition. Experts recommend taking body fat burning supplements no more than twice a day: the first time in the morning, half an hour before breakfast, and the second, half an hour before training.",
+    ],
+  },
+  "peptides-hgh": {
+    heading: "For what bodybuilding purposes can growth hormone be used?",
+    paragraphs: [
+      "Human growth hormone (HGH) is a peptide hormone the pituitary gland produces. During life, the level of growth hormone production changes depending on age. It peaks in childhood, usually between 10 and 14 years. After that, it begins to decline gradually. By the age of 30, HGH levels drop by about 14% compared to their peak. That is why many athletes take HGH supplements.",
+      "Peptides are the most important components of many body processes. They are actively involved in regulating the nervous, digestive, musculoskeletal, hormonal, circulatory, and other systems. An improper diet can cause a peptide deficiency and sharply decrease the body's capabilities.",
+      "You can buy peptides for muscle growth through injection in our online store. We are responsible for the quality of goods and offer only 100% original products. We offer many pharmacological preparations necessary for athletes of different sports, experiences, and training levels.",
+      "Original products, professional staff, and reasonable prices allow us to remain the best in the sports supplements industry. We carefully check each batch so you have a pleasant experience when buying human growth hormones.",
+    ],
+  },
+  sarms: {
+    heading: "What are SARMs, and why do you need them?",
+    paragraphs: [
+      "SARMs are a special class of compounds that interact with androgen receptors in the body. Unlike traditional anabolic steroids, the safest SARMs selectively affect specific muscles and bones without affecting other organs (liver or prostate). This selectivity makes SARMs an attractive option for those who want to improve endurance and achieve impressive athletic results.",
+      "If you want to improve your athletic performance, we recommend buying SARMs supplements for sale and personal use. This is a great solution for weightlifters, bodybuilders, and fitness enthusiasts. Athletes in various sports use SARMs for muscle growth as a way to gain a competitive advantage without resorting to banned substances.",
+      "If you do not know where to buy SARMs in Europe, contact the Dinespower online store. We work only with trusted suppliers and brands. All products in our online store have undergone complete examinations and do not contain prohibited components.",
+      "On the Dinespower website, you can buy SARMs online in just a few minutes. With Dinespower, you can make your dreams of a beautiful and fit body come true. Many of our customers call us the best SARMs shop Europe.",
+    ],
+  },
+  pct: {
+    heading: "What is Post Cycle Therapy (PCT)?",
+    paragraphs: [
+      "Post cycle therapy PCT is a complex of preparations and sports supplements that are used in bodybuilding and strength sports to minimize side effects and complications after a cycle of steroid hormones or prohormones. PCT is especially important for athletes who simultaneously take large doses of hormones or several anabolic preparations.",
+      "Without PCT steroids, restoring your natural testosterone levels can be slow and difficult. Once you stop taking steroids, you will have little or no testosterone left in your body. This sudden drop can cause fatigue, muscle loss, mood swings, low libido, and anxiety. Ignoring PCT drugs makes it difficult for your body to recover fully.",
+      "You need to start taking PCT pills immediately after completing the anabolic steroid course. There is no need to delay because this will only make things worse for the body. If you plan to stop taking anabolics for more than three months, then natural PCT post cycle therapy will help you fully restore your body.",
+      "In the Dinespower online store, you can buy the best post cycle therapy for SARMs. We are responsible for the quality of goods and offer only genuine preparations with quality certificates. Every athlete, from a beginner to a professional bodybuilder, will find the best PCT supplement on the Dinespower website.",
+    ],
+  },
+  energy: {
+    heading: "What are human endurance and energy reserves?",
+    paragraphs: [
+      "Endurance in sports is the ability of muscles to maintain the force of contractions during prolonged intensive work. In bodybuilding, endurance plays a vital role since the more muscle fibers you can use during training, the faster you will achieve the desired results.",
+      "A lack of energy is a severe test for an athlete, especially during intense physical activity. Both beginners and experienced athletes can feel a loss of strength. Energy boosting supplements can help compensate for the lack of strength and significantly increase endurance.",
+      "Modern manufacturers of pharmacological products offer many supplements for focus and energy. Some of them are designed for vigor and rapid strength gain. Others help stabilize metabolic processes in the muscles. Before taking increase energy supplements, carefully study their properties, composition, and dosages.",
+      "If you want to order high energy supplements with delivery across Europe, contact the Dinespower online store. We offer our customers a quality guarantee, regular product updates, promotions, discounts, and convenient payment methods.",
+    ],
+  },
+  "sex-support": {
+    heading: "What is potency?",
+    paragraphs: [
+      "Potency is an integral part of male sexual health, covering various aspects, including libido, erectile function, ejaculation, and reproductive health. This is the ability of a man to perform sexual intercourse, that is, to maintain an erection and achieve ejaculation.",
+      "Potency is affected by factors such as testosterone levels, hormonal balance, physical activity, nutrition, psychological state, and chronic diseases. Potency problems, such as erectile dysfunction, can occur due to stress, depression, hormonal imbalances, cardiovascular diseases, excessive physical activity, and medication.",
+      "Steroids and sex drive are interrelated concepts. Excessively intense training can lead to serious problems with erection. In addition, anabolic steroids can negatively affect potency. The only correct solution is safe sex supplements, which will help quickly restore lost sexual functions without harm to health.",
+      "Certified supplements for sexual desire and libido are an essential part of taking steroids. In the Dinespower online store, you can buy the best supplements to increase sex drive. We deliver throughout Europe.",
+    ],
+  },
+  health: {
+    heading: "How is a person's well-being formed?",
+    paragraphs: [
+      "The absence of diseases does not mean that a person is healthy. Good health depends on a complex of factors. Only an integrated approach will improve a person's well-being and protect against adverse external factors.",
+      "The immune system is a complex of cells, tissues, and organs that work together to protect the body from viruses, infections, and bacteria. To cope with the constant onslaught of negative factors, it needs adequate nutrition, including vitamins, minerals, and probiotics. Health supplements, which contain concentrated forms of various nutrients, can solve this problem.",
+      "Health supplements are an excellent solution for professional athletes who must saturate their bodies with beneficial micro and macroelements. They increase the effectiveness of training, speed up the body's recovery from injuries, and replenish energy reserves.",
+      "At Dinespower, you can buy original, certified, effective health supplements online. We deliver throughout Europe. We value our reputation and work only with reputable manufacturers. The Dinespower team will help you become more beautiful, achieve sports victories, improve your health, and find the best version of yourself.",
+    ],
+  },
+  stacks: {
+    heading: "The best bodybuilding stacks in the Dinespower online store",
+    paragraphs: [
+      "When you want to gain muscle mass, increase strength and improve your physical fitness, it is important to use not just one drug, but a well-chosen combination. That is why bodybuilding supplements stack is a great solution for you if you want to take drugs as effectively as possible. In the Dinespower online store you will find the best stack for bodybuilding that will help you achieve your goals in the shortest possible time.",
+      "A well-composed bodybuilding stack is a well-thought-out set of components, where each enhances the effect of the other. The site has a bodybuilding steroid stack for professionals, as well as the best natural stack assemblies for those who prefer legal and safe solutions.",
+      "Each athlete is unique. Someone needs to build up dry muscle mass as quickly as possible, someone needs to increase strength and volume, and someone strives for an ideal relief. That is why Dinespower offers a free consultation. They will help you choose the best stack for bodybuilding, which will best suit your goals and level of training.",
+      "When you buy bodybuilding stacks in Dinespower, you get not only high-quality products, but also high-quality service. You can buy a bodybuilding stack online without leaving your home, and be sure that you will receive only a quality product.",
+    ],
+  },
+  "amino-acids": {
+    heading: "Amino Acids: High-Quality and Reliable Products at Dinespower",
+    paragraphs: [
+      "Sports demand a deep understanding of the body's biochemistry from every athlete. At the core of athletic success are amino acids — the fundamental building blocks from which all protein structures of the body are formed. Properly structured nutrition allows you to optimize metabolism and ensures stable progress in performance.",
+      "Under conditions of intense physical load, sports place serious stress on all systems of the body. The main burden falls on the skeletal framework and muscle tissues, where amino acids act as the primary recovery resource. Professional bodybuilding has proven that timely recovery directly depends on the concentration of leucine and valine in the blood.",
+      "The biological growth of new muscle fibers is initiated through the activation of signaling pathways, where amino acids serve as key triggers. The core mechanism behind bodybuilding is the stimulation of protein synthesis. Strength sports require a continuous supply of arginine (a vasodilator) to improve blood flow.",
+      "Dinespower offers a wide selection of essential products for everyone whose priority is sports and health. In the store, you can buy certified supplements that have passed strict quality control. Our amino acids help ensure stable muscle growth and eliminate prolonged soreness.",
+    ],
+  },
+};
+
+/* ------------------------------------------------------------------ */
 /*  Real product data per category                                     */
 /* ------------------------------------------------------------------ */
 
@@ -766,24 +872,30 @@ function CatalogContent() {
               </div>
             )}
 
-            {/* SEO text block — inside right column */}
-            <div className="pt-12 pb-8">
-              <h3 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">
-                Dinespower is the best distributor of bodybuilding preparations in Europe
-              </h3>
-              <div className={`relative text-[14px] text-[#7E7E7E] leading-[22px] flex flex-col gap-3 ${!seoExpanded ? "max-h-[72px] overflow-hidden" : ""}`}>
-                <p>DinesPower is a leading distributor of high-quality bodybuilding products such as steroids, testosterone, and anabolic steroids in Europe. We offer high-quality performance enhancers and nutritional supplements. If you are looking for muscle gain and fat loss simultaneously, you will find the right products, such as anabolic steroids, with us.</p>
-                <p>As the sole worldwide distributor of DEUS MEDICAL® testosterone and steroids, a renowned brand from Kolkata and India, we are committed to the highest standards. Do you want to build muscle quickly? We have exactly what you need to achieve your goals.</p>
-                <p>What sets us apart? Our absolute reliability, our outstanding service, and our attention to detail. If you are considering buying anabolic steroids or anabolic steroids, you can rely on the quality of our legal anabolic steroids or testosterone.</p>
-                {!seoExpanded && <div className="absolute bottom-0 left-0 right-0 h-[40px] bg-gradient-to-t from-white to-transparent" />}
-              </div>
-              <button onClick={() => setSeoExpanded(!seoExpanded)} className="cursor-pointer flex items-center gap-1 text-[14px] font-semibold text-[#181818] mt-4 hover:underline">
-                {seoExpanded ? 'Show Less' : 'Read More'}
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`transition-transform ${seoExpanded ? 'rotate-180' : ''}`}>
-                  <path d="M4 6L8 10L12 6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-            </div>
+            {/* SEO text block — inside right column (per category from dinespower.to) */}
+            {(() => {
+              const seo = categorySlug ? categorySEO[categorySlug] : null;
+              if (!seo) return null;
+              return (
+                <div className="pt-12 pb-8">
+                  <h3 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">
+                    {seo.heading}
+                  </h3>
+                  <div className={`relative text-[14px] text-[#7E7E7E] leading-[22px] flex flex-col gap-3 ${!seoExpanded ? "max-h-[72px] overflow-hidden" : ""}`}>
+                    {seo.paragraphs.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
+                    {!seoExpanded && <div className="absolute bottom-0 left-0 right-0 h-[40px] bg-gradient-to-t from-white to-transparent" />}
+                  </div>
+                  <button onClick={() => setSeoExpanded(!seoExpanded)} className="cursor-pointer flex items-center gap-1 text-[14px] font-semibold text-[#181818] mt-4 hover:underline">
+                    {seoExpanded ? 'Show Less' : 'Read More'}
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`transition-transform ${seoExpanded ? 'rotate-180' : ''}`}>
+                      <path d="M4 6L8 10L12 6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              );
+            })()}
 
             {/* FAQ section — inside right column */}
             <div className="pb-16">
