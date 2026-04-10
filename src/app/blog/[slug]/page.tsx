@@ -532,17 +532,9 @@ export default function BlogArticlePage() {
                       Shop Now
                     </Link>
                   </div>
-                  {/* Product bottle Andarine S4 — tilted ~6deg per Figma */}
-                  <div className="absolute right-[110px] top-[-30px] w-[340px] h-[340px] z-0 pointer-events-none">
-                    <div className="relative w-full h-full rotate-[6deg]">
-                      <Image src="/images/shop/andarine-s4.png" alt="Andarine S4" fill className="object-contain drop-shadow-[-18px_60px_30px_rgba(0,0,0,0.35)]" />
-                    </div>
-                  </div>
-                  {/* Right: 3 quality badges 60x60 stacked */}
-                  <div className="absolute right-6 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-2">
-                    <Image src="/icons/badge-quality.svg" alt="3rd Party Quality Tested" width={60} height={60} />
-                    <Image src="/icons/badge-gluten.svg" alt="Gluten Free" width={60} height={60} />
-                    <Image src="/icons/badge-nongmo.svg" alt="Non-GMO" width={60} height={60} />
+                  {/* Right: Andarine S4 bottle + 3 quality badges — Figma composite asset */}
+                  <div className="absolute right-0 top-0 h-[260px] w-[400px] z-0 pointer-events-none">
+                    <Image src="/images/shop/banner-bottle-badges.png" alt="Andarine S4 with quality badges" fill className="object-cover" />
                   </div>
                 </div>
 

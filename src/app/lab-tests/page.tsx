@@ -233,50 +233,15 @@ function TestReportModal({
 
         {/* Large document preview */}
         <div className="p-8 pt-6">
-          <div className="w-full aspect-[3/4] bg-white border border-[#E0E0E0] rounded-lg flex flex-col p-6 select-none">
-            <div className="text-[13px] font-bold tracking-[0.2em] uppercase text-[#333] mb-4 text-center border-b border-[#E0E0E0] pb-3">
-              TEST REPORT
-            </div>
-            <div className="text-[11px] text-[#666] mb-3">{product.name}</div>
-            <div className="text-[10px] text-[#999] mb-4">{product.brand}</div>
-            <div className="flex-1 flex flex-col gap-2">
-              <div className="h-[4px] bg-[#EBEBEB] rounded-full w-full" />
-              <div className="h-[4px] bg-[#EBEBEB] rounded-full w-[85%]" />
-              <div className="h-[4px] bg-[#EBEBEB] rounded-full w-[92%]" />
-              <div className="mt-3 border border-[#EBEBEB] rounded">
-                <div className="flex border-b border-[#EBEBEB]">
-                  <div className="flex-1 h-[10px] bg-[#F5F5F5] border-r border-[#EBEBEB]" />
-                  <div className="flex-1 h-[10px] bg-[#F5F5F5] border-r border-[#EBEBEB]" />
-                  <div className="flex-1 h-[10px] bg-[#F5F5F5]" />
-                </div>
-                {[0, 1, 2, 3, 4, 5].map((i) => (
-                  <div key={i} className="flex border-b border-[#EBEBEB] last:border-b-0">
-                    <div className="flex-1 h-[8px] border-r border-[#EBEBEB]" />
-                    <div className="flex-1 h-[8px] border-r border-[#EBEBEB]" />
-                    <div className="flex-1 h-[8px]" />
-                  </div>
-                ))}
-              </div>
-              <div className="mt-2 h-[4px] bg-[#EBEBEB] rounded-full w-[70%]" />
-              <div className="h-[4px] bg-[#EBEBEB] rounded-full w-[55%]" />
-              <div className="h-[4px] bg-[#EBEBEB] rounded-full w-[65%]" />
-              <div className="mt-auto flex justify-between items-end">
-                <div className="h-[4px] bg-[#D0D0D0] rounded-full w-[40%]" />
-                <div className="w-[20px] h-[20px] rounded-full border border-[#D0D0D0] flex items-center justify-center">
-                  <div className="w-[8px] h-[8px] rounded-full bg-[#D0D0D0]" />
-                </div>
-              </div>
-            </div>
+          <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden border border-[#E0E0E0] bg-white">
+            <Image
+              src="/images/shop/lab-test-report.png"
+              alt={`Lab test report for ${product.name}`}
+              fill
+              className="object-contain"
+              sizes="520px"
+            />
           </div>
-        </div>
-
-        {/* Verify text */}
-        <div className="px-8 pb-6 text-center">
-          <p className="text-[12px] text-[#7E7E7E] leading-[18px]">
-            Verify this test at{" "}
-            <span className="text-[#FF6701] font-medium">www.janoshik.com/verify/</span>{" "}
-            with the following unique key
-          </p>
         </div>
       </div>
     </div>

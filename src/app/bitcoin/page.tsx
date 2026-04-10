@@ -26,20 +26,10 @@ function InfoBox({ children, variant = "info" }: { children: React.ReactNode; va
   );
 }
 
-function ScreenshotPlaceholder({ label }: { label: string }) {
+function StepScreenshot({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="mt-4 w-full h-[418px] rounded-[16px] bg-gradient-to-br from-[#F7F7F7] to-[#EDEDED] border border-[#E7E7E7] flex items-center justify-center relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "repeating-linear-gradient(45deg, #000 0 2px, transparent 2px 20px)" }} />
-      <div className="relative z-10 flex flex-col items-center gap-3 text-center px-8">
-        <div className="w-16 h-16 rounded-full bg-[#FF6701]/10 flex items-center justify-center">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-            <rect x="3" y="3" width="18" height="18" rx="2" stroke="#FF6701" strokeWidth="2"/>
-            <circle cx="8.5" cy="8.5" r="1.5" fill="#FF6701"/>
-            <path d="M21 15l-5-5L5 21" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-        <p className="text-[14px] text-[#7E7E7E] font-medium">{label}</p>
-      </div>
+    <div className="mt-4 w-full rounded-[16px] overflow-hidden border border-[#E7E7E7] relative bg-[#F7F7F7]" style={{ aspectRatio: "820/418" }}>
+      <Image src={src} alt={alt} fill className="object-contain" />
     </div>
   );
 }
@@ -70,7 +60,7 @@ const steps = [
         <InfoBox variant="info">
           The amount is fixed for a limited time based on the current exchange rate.
         </InfoBox>
-        <ScreenshotPlaceholder label="Example of payment details email" />
+        <StepScreenshot src="/images/shop/bitcoin/step2.png" alt="Payment details email" />
       </>
     ),
   },
@@ -91,7 +81,7 @@ const steps = [
         <p className="text-[16px] text-[#1E1E1E] leading-[24px] mt-2">
           Go to <strong>Send / Withdraw BTC</strong>.
         </p>
-        <ScreenshotPlaceholder label="Example: Send / Withdraw BTC screen" />
+        <StepScreenshot src="/images/shop/bitcoin/step3.png" alt="Send / Withdraw BTC" />
       </>
     ),
   },
@@ -110,7 +100,7 @@ const steps = [
         <InfoBox variant="warning">
           <strong>Important:</strong> Do not round the amount. Do not subtract network fees. Send the exact value shown in your instructions.
         </InfoBox>
-        <ScreenshotPlaceholder label="Example: Paste address and enter amount" />
+        <StepScreenshot src="/images/shop/bitcoin/step4.png" alt="Paste address and enter amount" />
       </>
     ),
   },
@@ -139,7 +129,7 @@ const steps = [
         <p className="text-[16px] text-[#1E1E1E] leading-[24px]">
           Double-check all details, then click <strong>Send / Confirm</strong> in your wallet. Your transaction will be broadcast to the blockchain.
         </p>
-        <ScreenshotPlaceholder label="Example: Confirmation screen" />
+        <StepScreenshot src="/images/shop/bitcoin/step6.png" alt="Confirmation screen" />
       </>
     ),
   },
@@ -155,7 +145,7 @@ const steps = [
           <li>Typical time: 10&ndash;30 minutes</li>
           <li>May take longer depending on network load</li>
         </ul>
-        <ScreenshotPlaceholder label="Example: Transaction confirmation" />
+        <StepScreenshot src="/images/shop/bitcoin/step7.png" alt="Transaction confirmation" />
       </>
     ),
   },
@@ -172,7 +162,7 @@ const steps = [
           <li>Processing starts within 1&ndash;3 business days</li>
           <li>You will receive status updates via email</li>
         </ul>
-        <ScreenshotPlaceholder label="Example: Order status update email" />
+        <StepScreenshot src="/images/shop/bitcoin/step8.png" alt="Order status update email" />
       </>
     ),
   },
@@ -211,14 +201,11 @@ export default function BitcoinPaymentPage() {
             {/* Steps */}
             <div className="flex flex-col gap-10">
               {steps.map((step) => (
-                <div key={step.number} className="flex gap-5">
-                  <div className="w-10 h-10 rounded-full bg-[#FF6701] flex items-center justify-center shrink-0 mt-1">
-                    <span className="text-white text-[16px] font-bold">{step.number}</span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-[20px] font-extrabold text-[#181818] leading-[28px] mb-3">
-                      {step.title}
-                    </h3>
+                <div key={step.number}>
+                  <h3 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-4">
+                    {step.number}. {step.title}
+                  </h3>
+                  <div className="text-[16px] text-[#1E1E1E] leading-6">
                     {step.content}
                   </div>
                 </div>
@@ -238,8 +225,9 @@ export default function BitcoinPaymentPage() {
             </div>
           </div>
 
-          {/* Right sidebar */}
-          <div className="w-[440px] shrink-0 flex flex-col gap-4">
+          {/* Right sidebar — sticky */}
+          <div className="w-[440px] shrink-0">
+           <div className="sticky top-4 flex flex-col gap-4">
             {/* Still Have Questions card — Figma style */}
             <div className="bg-[#F7F7F7] rounded-[12px] p-4">
               <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
@@ -270,34 +258,27 @@ export default function BitcoinPaymentPage() {
             </div>
 
             {/* 100% Secure Payment badge */}
-            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-5 flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-[#E8F7EE] flex items-center justify-center shrink-0">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2L4 5v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V5l-8-3z" fill="#00B638"/>
-                  <path d="M9 12l2 2 4-4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+            <div className="bg-[#F7F7F7] rounded-[12px] px-6 py-5 flex items-center gap-6">
+              <div className="w-14 h-14 relative shrink-0">
+                <Image src="/images/shop/bitcoin/badge-secure.png" alt="" fill className="object-contain" />
               </div>
-              <div>
-                <p className="text-[16px] font-extrabold text-[#181818] leading-6">100% Secure Payment</p>
-                <p className="text-[13px] text-[#7E7E7E] leading-5 mt-0.5">Your transactions are protected</p>
+              <div className="flex-1 flex flex-col gap-2">
+                <p className="text-[16px] font-semibold text-[#181818] leading-6">100% Secure Payment</p>
+                <p className="text-[12px] text-[#4D4D4D] leading-4">Encrypted checkout. Your data is fully protected.</p>
               </div>
             </div>
 
             {/* Fast & Discreet Delivery badge */}
-            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-5 flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-[#FFF0E6] flex items-center justify-center shrink-0">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                  <path d="M16 3H1v13h15V3z" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M16 8h4l3 3v5h-7V8z" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <circle cx="5.5" cy="18.5" r="2.5" stroke="#FF6701" strokeWidth="2"/>
-                  <circle cx="18.5" cy="18.5" r="2.5" stroke="#FF6701" strokeWidth="2"/>
-                </svg>
+            <div className="bg-[#F7F7F7] rounded-[12px] px-6 py-5 flex items-center gap-6">
+              <div className="w-14 h-14 relative shrink-0">
+                <Image src="/images/shop/bitcoin/badge-delivery.png" alt="" fill className="object-contain" />
               </div>
-              <div>
-                <p className="text-[16px] font-extrabold text-[#181818] leading-6">Fast &amp; Discreet Delivery</p>
-                <p className="text-[13px] text-[#7E7E7E] leading-5 mt-0.5">Shipped quickly and privately</p>
+              <div className="flex-1 flex flex-col gap-2">
+                <p className="text-[16px] font-semibold text-[#181818] leading-6">Fast &amp; Discreet Delivery</p>
+                <p className="text-[12px] text-[#4D4D4D] leading-4">Shipping from EU &amp; USA warehouses.</p>
               </div>
             </div>
+           </div>
           </div>
         </div>
       </main>
