@@ -61,25 +61,26 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Hero Banner */}
-        <div className="w-full bg-[#181818] relative overflow-hidden">
-          <Image
-            src="/images/shop/banner-texture.png"
-            alt=""
-            fill
-            className="object-cover opacity-20"
-           
-          />
-          <div className="max-w-[1340px] mx-auto py-16 relative z-10 text-center">
-            <p className="text-[14px] text-[#FF6701] font-semibold uppercase tracking-wider mb-3">
-              Who we are
-            </p>
-            <h1 className="text-[36px] font-extrabold italic text-white uppercase leading-[44px] max-w-[700px] mx-auto">
-              Official Distributor Of Trusted Brands In Europe
-            </h1>
-            <p className="text-[14px] text-[#B6B6B6] mt-4 max-w-[560px] mx-auto leading-6">
-              We are an authorized representative of leading pharmaceutical and supplement brands, delivering verified products directly to athletes across Europe.
-            </p>
+        {/* Hero Banner — rounded card, Figma style */}
+        <div className="max-w-[1340px] mx-auto">
+          <div className="relative bg-[#181818] rounded-[16px] overflow-hidden">
+            <Image
+              src="/images/shop/wholesale-banner-bg.png"
+              alt=""
+              fill
+              className="object-cover opacity-60 mix-blend-lighten pointer-events-none"
+            />
+            <div className="relative z-10 py-20 px-8 text-center flex flex-col items-center gap-4">
+              <p className="text-[14px] text-white/80 leading-5">Who we are</p>
+              <h1 className="font-extrabold italic uppercase leading-[52px] text-[42px]">
+                <span className="text-white">Official Distributor</span>
+                <br />
+                <span className="text-[#FF6701]">Of Trusted Brands In Europe</span>
+              </h1>
+              <p className="text-[14px] text-white/70 max-w-[620px] leading-6">
+                Dinespower is an official worldwide distributor of Astera Labs and Deus Medical — pharmaceutical manufacturers based in India.
+              </p>
+            </div>
           </div>
         </div>
 
