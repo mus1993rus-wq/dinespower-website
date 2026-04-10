@@ -35,9 +35,9 @@ const searchProducts = [
 ];
 
 const topLinks = [
-  { label: "FAQs", href: "/faqs" },
   { label: "Delivery & Payment", href: "/delivery-payment" },
   { label: "Blog", href: "/blog" },
+  { label: "FAQs", href: "/faqs" },
   { label: "Contact", href: "/contact" },
 ];
 

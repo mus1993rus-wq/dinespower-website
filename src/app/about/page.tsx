@@ -107,7 +107,7 @@ export default function AboutPage() {
           <div className="flex gap-10 items-center">
             {/* Left - Manager photo */}
             <div className="w-[520px] h-[460px] shrink-0 rounded-[16px] relative overflow-hidden bg-[#F7F7F7]">
-              <Image src="/images/shop/manager.png" alt="Expert Support" fill className="object-cover object-top" />
+              <Image src="/images/shop/expert-manager.png" alt="Expert Support" fill className="object-cover object-top" />
             </div>
 
             {/* Right - Content */}
@@ -125,11 +125,9 @@ export default function AboutPage() {
               <div className="flex flex-col gap-3">
                 {checkItems.map((item) => (
                   <div key={item} className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full bg-[#00B638] flex items-center justify-center shrink-0">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                        <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                      <path d="M20 6L9 17L4 12" stroke="#181818" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                     <span className="text-[14px] font-semibold text-[#181818]">{item}</span>
                   </div>
                 ))}

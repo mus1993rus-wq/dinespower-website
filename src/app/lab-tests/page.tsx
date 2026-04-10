@@ -194,52 +194,54 @@ function TestReportModal({
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
       onClick={onClose}
     >
-      <div
-        className="relative bg-white rounded-2xl shadow-2xl max-w-[520px] w-full mx-4 overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
+      {/* Close button — top-right of screen, white */}
+      <button
+        onClick={onClose}
+        className="absolute top-6 right-6 z-20 w-11 h-11 rounded-full bg-white hover:bg-[#F0F0F0] flex items-center justify-center transition-colors shadow-md cursor-pointer"
       >
-        {/* Close button */}
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M18 6L6 18" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M6 6L18 18" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+
+      {/* Navigation arrows — at screen edges */}
+      {hasPrev && (
         <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-[#F0F0F0] hover:bg-[#E0E0E0] flex items-center justify-center transition-colors"
+          onClick={(e) => { e.stopPropagation(); onNavigate(currentIndex - 1); }}
+          className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white hover:bg-[#F0F0F0] shadow-md flex items-center justify-center transition-colors cursor-pointer"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path d="M18 6L6 18" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M6 6L18 18" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
+      )}
+      {hasNext && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onNavigate(currentIndex + 1); }}
+          className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white hover:bg-[#F0F0F0] shadow-md flex items-center justify-center transition-colors cursor-pointer"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+      )}
 
-        {/* Navigation arrows */}
-        {hasPrev && (
-          <button
-            onClick={() => onNavigate(currentIndex - 1)}
-            className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/90 shadow-md hover:bg-white flex items-center justify-center transition-colors"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        )}
-        {hasNext && (
-          <button
-            onClick={() => onNavigate(currentIndex + 1)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/90 shadow-md hover:bg-white flex items-center justify-center transition-colors"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        )}
-
-        {/* Large document preview */}
-        <div className="p-8 pt-6">
-          <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden border border-[#E0E0E0] bg-white">
+      {/* Larger modal, no inner border */}
+      <div
+        className="relative bg-white rounded-2xl shadow-2xl overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+        style={{ width: "min(680px, calc(100vw - 160px))", maxHeight: "calc(100vh - 80px)" }}
+      >
+        {/* Large document preview — no inner border */}
+        <div className="p-6">
+          <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden bg-white">
             <Image
               src="/images/shop/lab-test-report.png"
               alt={`Lab test report for ${product.name}`}
               fill
               className="object-contain"
-              sizes="520px"
+              sizes="680px"
             />
           </div>
         </div>
