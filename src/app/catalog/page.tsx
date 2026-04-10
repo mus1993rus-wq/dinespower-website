@@ -11,14 +11,14 @@ import ProductCard from "@/components/ProductCard";
 const categoryBrands: Record<string, string[]> = {
   injectable: ["Astera Labs", "Deus Medical"],
   oral: ["Astera Labs", "Deus Medical"],
-  "fat-burn": ["Biaxol", "Deus Medical", "Astera Labs"],
-  "peptides-hgh": ["Deus Medical", "Astera Labs", "Biaxol"],
-  sarms: ["Biaxol", "Deus Medical", "Astera Labs"],
-  pct: ["Biaxol", "Deus Medical", "Astera Labs"],
+  "fat-burn": ["Astera Labs", "Deus Medical", "Biaxol"],
+  "peptides-hgh": ["Astera Labs", "Deus Medical", "Biaxol"],
+  sarms: ["Astera Labs", "Deus Medical", "Biaxol"],
+  pct: ["Astera Labs", "Deus Medical", "Biaxol"],
   energy: ["Biaxol"],
-  "sex-support": ["Deus Medical", "Astera Labs"],
+  "sex-support": ["Astera Labs", "Deus Medical"],
   health: ["Biaxol"],
-  stacks: ["Biaxol", "Deus Medical"],
+  stacks: ["Deus Medical", "Biaxol"],
   "amino-acids": ["Astera Labs"],
 };
 

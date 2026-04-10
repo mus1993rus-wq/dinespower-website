@@ -44,14 +44,14 @@ const topLinks = [
 const categoryData: { name: string; slug: string; brands: string[] }[] = [
   { name: "Injectable", slug: "injectable", brands: ["Astera Labs", "Deus Medical"] },
   { name: "Oral", slug: "oral", brands: ["Astera Labs", "Deus Medical"] },
-  { name: "Fat Burn", slug: "fat-burn", brands: ["Biaxol", "Deus Medical", "Astera Labs"] },
-  { name: "Peptides & HGH", slug: "peptides-hgh", brands: ["Deus Medical", "Astera Labs", "Biaxol"] },
-  { name: "SARMs", slug: "sarms", brands: ["Biaxol", "Deus Medical", "Astera Labs"] },
-  { name: "PCT", slug: "pct", brands: ["Biaxol", "Deus Medical", "Astera Labs"] },
+  { name: "Fat Burn", slug: "fat-burn", brands: ["Astera Labs", "Deus Medical", "Biaxol"] },
+  { name: "Peptides & HGH", slug: "peptides-hgh", brands: ["Astera Labs", "Deus Medical", "Biaxol"] },
+  { name: "SARMs", slug: "sarms", brands: ["Astera Labs", "Deus Medical", "Biaxol"] },
+  { name: "PCT", slug: "pct", brands: ["Astera Labs", "Deus Medical", "Biaxol"] },
   { name: "Energy", slug: "energy", brands: ["Biaxol"] },
-  { name: "Sex Support", slug: "sex-support", brands: ["Deus Medical", "Astera Labs"] },
+  { name: "Sex Support", slug: "sex-support", brands: ["Astera Labs", "Deus Medical"] },
   { name: "Health", slug: "health", brands: ["Biaxol"] },
-  { name: "Stacks", slug: "stacks", brands: ["Biaxol", "Deus Medical"] },
+  { name: "Stacks", slug: "stacks", brands: ["Deus Medical", "Biaxol"] },
   { name: "Amino Acids", slug: "amino-acids", brands: ["Astera Labs"] },
 ];
 
