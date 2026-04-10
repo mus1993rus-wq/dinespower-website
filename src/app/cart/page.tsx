@@ -25,14 +25,14 @@ interface SuggestedProduct {
 
 const initialItems: CartItem[] = [
   { id: 1, brand: "Biaxol", name: "Eca Xtreme (Extreme Fat Burner) In Capsules", price: 44, oldPrice: 55, qty: 1, image: "/images/shop/product-1.webp" },
-  { id: 2, brand: "Astera Labs", name: "Dietary Supplements For Fat Burning And Energy Supply", price: 88, qty: 2, image: "/images/shop/product-2.webp" },
+  { id: 2, brand: "Astera Labs", name: "Dietary Supplements For Fat Burning And Energy Supply", price: 44, qty: 2, image: "/images/shop/product-2.webp" },
 ];
 
 const suggestedProducts: SuggestedProduct[] = [
-  { brand: "Deus Medical", name: "Winimed 50 Injectable Steroid In Ampoules", price: 17, image: "/images/shop/injectable-1.jpg" },
-  { brand: "Deus Medical", name: "Winimed 50 Injectable Steroid In Ampoules", price: 17, image: "/images/shop/injectable-2.jpg" },
-  { brand: "Deus Medical", name: "Viamed 100 (Seldenafilcitrat 100mg Oral Jelly - Viagra)", price: 17, image: "/images/shop/product-3.jpg" },
-  { brand: "Deus Medical", name: "Dietary Supplements For Fat Burning And Energy Supply", price: 17, image: "/images/shop/product-4.jpg" },
+  { brand: "Deus Medical", name: "Winimed 50 Injectible Steroid In Ampoules", price: 17, image: "/images/shop/product-3.webp" },
+  { brand: "Deus Medical", name: "Winimed 50 Injectible Steroid In Ampoules", price: 17, image: "/images/shop/product-4.webp" },
+  { brand: "Deus Medical", name: "Viamed 100 (Seldenafilcitrat 100mg Oral Jelly - Viagra)", price: 17, image: "/images/shop/product-5.webp" },
+  { brand: "Deus Medical", name: "Dietary Supplements For Fat Burning And Energy Supply", price: 17, image: "/images/shop/product-1.webp" },
 ];
 
 export default function CartPage() {
@@ -62,39 +62,10 @@ export default function CartPage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         <div className="max-w-[1340px] mx-auto pt-8 pb-16">
-          {/* Title */}
-          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-6">
-            My Cart ({totalItems} Items)
-          </h1>
-
-          {/* Discount progress bar */}
-          {amountToDiscount > 0 && (
-            <div className="mb-8">
-              <p className="text-[14px] text-[#7E7E7E] mb-2">
-                You&apos;re just <span className="inline-flex items-center bg-[#181818] text-white text-[13px] font-semibold px-2 py-0.5 rounded mx-1">{amountToDiscount}€</span> away from getting a 5% discount
-              </p>
-              <div className="w-full h-[6px] bg-[#E7E7E7] rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-[#FF6701] rounded-full transition-all duration-500"
-                  style={{ width: `${progressPercent}%` }}
-                />
-              </div>
-            </div>
-          )}
-          {amountToDiscount <= 0 && (
-            <div className="mb-8">
-              <p className="text-[14px] text-[#00B638] font-semibold mb-2">
-                You&apos;ve unlocked a 5% discount!
-              </p>
-              <div className="w-full h-[6px] bg-[#E7E7E7] rounded-full overflow-hidden">
-                <div className="h-full bg-[#00B638] rounded-full w-full" />
-              </div>
-            </div>
-          )}
-
           {items.length === 0 ? (
             <div className="text-center py-20">
-              <div className="text-6xl mb-4">
+              <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">My Cart</h1>
+              <div className="mb-4">
                 <svg width="64" height="64" viewBox="0 0 24 24" fill="none" className="mx-auto text-[#B6B6B6]">
                   <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   <path d="M3 6H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -108,154 +79,194 @@ export default function CartPage() {
               </Link>
             </div>
           ) : (
-            <div className="flex gap-[80px]">
-              {/* LEFT - Cart items + suggestions */}
-              <div className="w-[820px] min-w-0">
-                {/* Cart items list */}
-                <div className="flex flex-col">
-                  {items.map((item) => (
-                    <div key={item.id} className="flex items-center gap-4 py-5 border-b border-[#E7E7E7]">
-                      {/* Trash icon */}
-                      <button
-                        onClick={() => removeItem(item.id)}
-                        className="w-8 h-8 flex items-center justify-center text-[#B6B6B6] hover:text-[#FF3B30] transition-colors shrink-0"
-                      >
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                          <path d="M3 6H5H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M10 11V17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M14 11V17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </button>
+            <div className="flex gap-20">
+              {/* LEFT - 820px */}
+              <div className="w-[820px] shrink-0 flex flex-col gap-4">
+                {/* Title */}
+                <div className="flex items-baseline gap-2">
+                  <h1 className="text-[18px] font-semibold text-black leading-[26px]">My Cart</h1>
+                  <span className="text-[16px] text-[#7E7E7E] leading-6 capitalize">({totalItems} items)</span>
+                </div>
 
-                      {/* Product image */}
-                      <div className="w-[80px] h-[80px] bg-[#F7F7F7] rounded-lg shrink-0 overflow-hidden">
-                        <Image src={item.image} alt={item.name} width={80} height={80} className="object-cover w-full h-full" />
-                      </div>
+                {/* Progress bar */}
+                {amountToDiscount > 0 ? (
+                  <div className="rounded-[12px] py-3 flex flex-col items-center gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[14px] text-[#181818] leading-5">You&apos;re just</span>
+                      <span className="bg-[#1E1E1E] text-[#F7F7F7] text-[14px] font-semibold leading-5 px-2 py-1 rounded-[8px]">{amountToDiscount}€</span>
+                      <span className="text-[14px] text-[#181818] leading-5">away from getting a <span className="font-semibold">5% discount</span></span>
+                    </div>
+                    <div className="w-full h-2 bg-[#E9E9E9] rounded-full overflow-hidden">
+                      <div className="h-full bg-black rounded-[4px] transition-all" style={{ width: `${progressPercent}%` }} />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="bg-[#E8F8EE] rounded-[12px] px-4 py-3 flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full bg-[#00B638] flex items-center justify-center shrink-0">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                        <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                    <p className="text-[14px] text-[#181818] leading-5">You have received a 5% discount</p>
+                  </div>
+                )}
 
-                      {/* Info */}
-                      <div className="flex-1 min-w-0">
-                        <p className="text-[12px] text-[#7E7E7E]">{item.brand}</p>
-                        <p className="text-[14px] font-semibold text-[#181818] leading-[18px] line-clamp-2 mt-0.5">{item.name}</p>
-                        {/* Qty controls */}
-                        <div className="flex items-center gap-3 mt-2">
-                          <div className="flex items-center border border-[#E7E7E7] rounded-[8px] h-[32px]">
-                            <button onClick={() => updateQty(item.id, -1)} className="w-8 h-full flex items-center justify-center text-[#B6B6B6] hover:text-[#181818] transition-colors">
-                              <svg width="12" height="2" viewBox="0 0 12 2"><path d="M1 1H11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
-                            </button>
-                            <span className="w-7 text-center text-[13px] font-semibold">{item.qty}</span>
-                            <button onClick={() => updateQty(item.id, 1)} className="w-8 h-full flex items-center justify-center text-[#B6B6B6] hover:text-[#181818] transition-colors">
-                              <svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1V11M1 6H11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
-                            </button>
+                {/* Cart items */}
+                <div className="flex flex-col py-2">
+                  {items.map((item, i) => (
+                    <div key={item.id}>
+                      <div className="flex items-center gap-4 py-2">
+                        {/* Trash icon */}
+                        <button
+                          onClick={() => removeItem(item.id)}
+                          className="cursor-pointer w-6 h-6 flex items-center justify-center text-[#7E7E7E] hover:text-[#FB2F2F] transition-colors shrink-0"
+                        >
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 3v1H4v2h1v13a2 2 0 002 2h10a2 2 0 002-2V6h1V4h-5V3H9zm0 5h2v9H9V8zm4 0h2v9h-2V8z" />
+                          </svg>
+                        </button>
+                        {/* Image */}
+                        <div className="w-[120px] h-[120px] bg-[#F7F7F7] rounded-[8px] shrink-0 overflow-hidden p-2">
+                          <Image src={item.image} alt={item.name} width={100} height={100} className="object-contain w-full h-full" />
+                        </div>
+                        {/* Info */}
+                        <div className="flex-1 flex flex-col gap-4 justify-center">
+                          <div>
+                            <p className="text-[12px] text-[#7E7E7E] leading-4">{item.brand}</p>
+                            <p className="text-[16px] font-semibold text-[#181818] leading-6 capitalize mt-1">{item.name}</p>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            {/* Qty */}
+                            <div className="flex items-center border border-[#E7E7E7] rounded-[8px] h-9 w-[111px] px-2 justify-between">
+                              <button onClick={() => updateQty(item.id, -1)} className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818]">
+                                <svg width="16" height="2" viewBox="0 0 16 2"><path d="M1 1H15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                              </button>
+                              <span className="text-[14px] font-semibold text-[#181818]">{item.qty}</span>
+                              <button onClick={() => updateQty(item.id, 1)} className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818]">
+                                <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 2V14M2 8H14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                              </button>
+                            </div>
+                            {/* Price */}
+                            <div className="flex items-baseline gap-2">
+                              {item.oldPrice ? (
+                                <>
+                                  <span className="text-[18px] font-semibold text-[#FB2F2F] leading-[26px]">{item.price * item.qty} €</span>
+                                  <span className="text-[12px] text-[#7E7E7E] line-through leading-4">{item.oldPrice * item.qty} €</span>
+                                </>
+                              ) : (
+                                <span className="text-[18px] font-semibold text-black leading-[26px]">{item.price * item.qty} €</span>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </div>
-
-                      {/* Price */}
-                      <div className="text-right shrink-0">
-                        <p className="text-[16px] font-extrabold text-[#181818]">{item.price * item.qty}&euro;</p>
-                        {item.oldPrice && (
-                          <p className="text-[13px] text-[#B6B6B6] line-through">{item.oldPrice * item.qty}&euro;</p>
-                        )}
-                      </div>
+                      {i < items.length - 1 && <div className="h-px bg-[#E7E7E7]" />}
                     </div>
                   ))}
                 </div>
 
                 {/* You might also like */}
-                <div className="mt-10">
-                  <h2 className="text-[20px] font-extrabold text-[#181818] mb-5">You might also like</h2>
-                  <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
-                    {suggestedProducts.map((p, i) => (
-                      <div key={i} className="w-[220px] shrink-0 border border-[#E7E7E7] rounded-[12px] overflow-hidden group cursor-pointer hover:shadow-md transition-shadow">
-                        <div className="w-full h-[160px] bg-[#F7F7F7] relative overflow-hidden">
-                          <Image src={p.image} alt={p.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
-                        </div>
-                        <div className="p-3">
-                          <p className="text-[11px] text-[#7E7E7E]">{p.brand}</p>
-                          <p className="text-[13px] font-semibold text-[#181818] leading-[16px] line-clamp-2 mt-0.5 min-h-[32px]">{p.name}</p>
-                          <div className="flex items-center justify-between mt-2">
-                            <p className="text-[15px] font-extrabold text-[#181818]">{p.price}&euro;</p>
-                            <button className="w-[32px] h-[32px] bg-[#F7F7F7] hover:bg-[#FF6701] rounded-[6px] flex items-center justify-center transition-colors group/btn">
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-[#181818] group-hover/btn:text-white transition-colors">
-                                <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M3 6H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                              </svg>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
+                <div className="flex flex-col py-2 gap-[10px]">
+                  <div className="flex items-center">
+                    <p className="text-[18px] font-semibold text-black leading-[26px] flex-1">You might also like</p>
                   </div>
+                  {suggestedProducts.map((p, i) => (
+                    <div key={i}>
+                      <div className="flex items-center gap-4">
+                        <div className="w-[120px] h-[120px] bg-[#F7F7F7] rounded-[8px] shrink-0 overflow-hidden p-2">
+                          <Image src={p.image} alt={p.name} width={100} height={100} className="object-contain w-full h-full" />
+                        </div>
+                        <div className="flex-1 flex flex-col gap-1.5 justify-center">
+                          <p className="text-[12px] text-[#7E7E7E] leading-4">{p.brand}</p>
+                          <p className="text-[16px] font-semibold text-[#181818] leading-6 capitalize">{p.name}</p>
+                        </div>
+                        <div className="flex items-center justify-center h-9 w-[140px] bg-[#F7F7F7] rounded-[8px]">
+                          <span className="text-[14px] font-semibold text-[#181818]">{p.price}€</span>
+                        </div>
+                        <button className="cursor-pointer group relative h-9 w-[140px] bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center transition-colors overflow-hidden">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transition-all duration-300 ease-out group-hover:translate-y-[150%] group-hover:opacity-0">
+                            <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                          <span className="absolute text-[14px] font-semibold text-white whitespace-nowrap transition-all duration-300 ease-out -translate-y-[150%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100">Add to cart</span>
+                        </button>
+                      </div>
+                      {i < suggestedProducts.length - 1 && <div className="h-px bg-[#E7E7E7] mt-[10px]" />}
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* RIGHT sidebar */}
+              {/* RIGHT - 440px sticky sidebar */}
               <div className="w-[440px] shrink-0">
-                <div className="sticky top-4 flex flex-col gap-5">
-                  {/* Promo code */}
-                  <div className="bg-[#F7F7F7] rounded-[12px] p-5">
-                    <h3 className="text-[14px] font-semibold text-[#181818] mb-3">Do You Have A Promo Code?</h3>
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        placeholder="Enter code"
-                        value={promo}
-                        onChange={(e) => setPromo(e.target.value)}
-                        className="flex-1 h-[44px] bg-white border border-[#E7E7E7] rounded-[8px] px-4 text-[13px] text-[#181818] placeholder:text-[#B6B6B6] outline-none focus:border-[#FF6701] transition-colors"
-                      />
-                      <button className="bg-[#181818] hover:bg-[#292929] text-white text-[13px] font-semibold px-5 rounded-[8px] h-[44px] transition-colors">
-                        Apply
-                      </button>
+                <div className="sticky top-4 flex flex-col gap-4">
+                  {/* Promo + Total card wrapper */}
+                  <div className="bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
+                    {/* Promo code */}
+                    <div className="bg-white border border-[#EDEDED] rounded-[12px] p-4 flex flex-col gap-2">
+                      <div className="flex items-center gap-3">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                          <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          <circle cx="7" cy="7" r="1" fill="#181818" />
+                        </svg>
+                        <p className="flex-1 text-[16px] font-semibold text-[#181818] leading-6 capitalize">Do you have a Promo Code?</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          placeholder="Promocode"
+                          value={promo}
+                          onChange={(e) => setPromo(e.target.value)}
+                          className="flex-1 h-12 bg-[#F7F7F7] border border-[#E0E0E0] rounded-[8px] pl-4 pr-2 text-[14px] text-[#181818] placeholder:text-[#7E7E7E] outline-none focus:border-[#181818] transition-colors"
+                        />
+                        <button className="cursor-pointer bg-black hover:bg-[#292929] text-[#F7F7F7] text-[14px] font-normal px-6 h-12 rounded-[8px] transition-colors">
+                          Apply
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Total card */}
+                    <div className="bg-white border border-[#EDEDED] rounded-[12px] overflow-hidden">
+                      <div className="h-px bg-[#E7E7E7]" />
+                      <div className="flex flex-col gap-3 p-4">
+                        <div className="flex items-center gap-3 py-[3px]">
+                          <span className="flex-1 text-[14px] text-[#7E7E7E] leading-5">Products</span>
+                          <span className="text-[14px] text-[#181818] leading-5">{productsTotal.toFixed(2)} €</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-[18px] font-semibold text-black leading-[26px]">Total</span>
+                          <span className="text-[18px] font-semibold text-black leading-[26px]">{productsTotal.toFixed(2)} €</span>
+                        </div>
+                        <Link
+                          href="/checkout"
+                          className="bg-[#FF6701] hover:bg-[#E65D00] text-white text-[16px] font-semibold text-center rounded-[8px] h-12 flex items-center justify-center capitalize transition-colors"
+                        >
+                          Proceed to Checkout
+                        </Link>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Summary */}
-                  <div className="bg-[#F7F7F7] rounded-[12px] p-5">
-                    <div className="flex justify-between text-[14px] mb-3">
-                      <span className="text-[#7E7E7E]">Products total</span>
-                      <span className="font-semibold text-[#181818]">{productsTotal}&euro;</span>
+                  {/* 100% Secure Payment */}
+                  <div className="bg-[#F7F7F7] rounded-[12px] px-6 py-5 flex items-center gap-6">
+                    <div className="w-14 h-14 relative shrink-0">
+                      <Image src="/images/shop/bitcoin/badge-secure.png" alt="" fill className="object-contain" />
                     </div>
-                    <div className="border-t border-[#E7E7E7] pt-3 flex justify-between">
-                      <span className="text-[16px] font-extrabold text-[#181818]">Total</span>
-                      <span className="text-[20px] font-extrabold text-[#181818]">{productsTotal}&euro;</span>
+                    <div className="flex-1 flex flex-col gap-2">
+                      <p className="text-[16px] font-semibold text-[#181818] leading-6">100% Secure Payment</p>
+                      <p className="text-[12px] text-[#4D4D4D] leading-4">Encrypted checkout. Your data is fully protected.</p>
                     </div>
                   </div>
 
-                  {/* Checkout button */}
-                  <Link
-                    href="/checkout"
-                    className="w-full bg-[#FF6701] hover:bg-[#E65D00] text-white text-[14px] font-semibold rounded-[8px] h-[48px] flex items-center justify-center transition-colors"
-                  >
-                    Proceed To Checkout
-                  </Link>
-
-                  {/* Trust badges */}
-                  <div className="flex flex-col gap-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-[36px] h-[36px] bg-[#F7F7F7] rounded-full flex items-center justify-center shrink-0">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                          <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="#00B638" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M9 12L11 14L15 10" stroke="#00B638" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-[13px] font-semibold text-[#181818]">100% Secure Payment</p>
-                        <p className="text-[11px] text-[#7E7E7E]">Your data is protected</p>
-                      </div>
+                  {/* Fast & Discreet Delivery */}
+                  <div className="bg-[#F7F7F7] rounded-[12px] px-6 py-5 flex items-center gap-6">
+                    <div className="w-14 h-14 relative shrink-0">
+                      <Image src="/images/shop/bitcoin/badge-delivery.png" alt="" fill className="object-contain" />
                     </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-[36px] h-[36px] bg-[#F7F7F7] rounded-full flex items-center justify-center shrink-0">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                          <path d="M5 12H19" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M12 5L19 12L12 19" stroke="#FF6701" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-[13px] font-semibold text-[#181818]">Fast &amp; Discreet Delivery</p>
-                        <p className="text-[11px] text-[#7E7E7E]">Shipped in plain packaging</p>
-                      </div>
+                    <div className="flex-1 flex flex-col gap-2">
+                      <p className="text-[16px] font-semibold text-[#181818] leading-6">Fast &amp; Discreet Delivery</p>
+                      <p className="text-[12px] text-[#4D4D4D] leading-4">Shipping from EU &amp; USA warehouses.</p>
                     </div>
                   </div>
                 </div>
