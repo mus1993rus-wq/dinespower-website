@@ -97,15 +97,17 @@ function HeroBanner() {
   return (
     <section className="max-w-[1340px] mx-auto mt-6">
       <div className="flex gap-[16px]">
-        {/* Main banner - just an image, 884x467 */}
+        {/* Main banner - clickable hero, links to product */}
         <div className="w-[884px] h-[467px] relative rounded-[16px] overflow-hidden shrink-0 group">
-          <Image src="/images/shop/hero-banner.png" alt="Weekly Bestseller - Lean Muscle Growth" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
+          <Link href="/product" aria-label="Lean Muscle Growth" className="absolute inset-0 z-0">
+            <Image src="/images/shop/hero-banner.png" alt="Weekly Bestseller - Lean Muscle Growth" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
+          </Link>
           {/* Left arrow */}
-          <button onClick={() => setActiveSlide((activeSlide - 1 + totalSlides) % totalSlides)} className="absolute left-0 top-1/2 -translate-y-1/2 w-[48px] h-[48px] bg-black hover:bg-[#181818] transition-colors border border-[#5C5C5C] border-l-0 rounded-r-lg flex items-center justify-center z-20">
+          <button onClick={() => setActiveSlide((activeSlide - 1 + totalSlides) % totalSlides)} className="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 w-[48px] h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-l-0 rounded-r-lg flex items-center justify-center z-20">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
           {/* Right arrow */}
-          <button onClick={() => setActiveSlide((activeSlide + 1) % totalSlides)} className="absolute right-0 top-1/2 -translate-y-1/2 w-[48px] h-[48px] bg-black hover:bg-[#181818] transition-colors border border-[#5C5C5C] border-r-0 rounded-l-lg flex items-center justify-center z-20">
+          <button onClick={() => setActiveSlide((activeSlide + 1) % totalSlides)} className="cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 w-[48px] h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-r-0 rounded-l-lg flex items-center justify-center z-20">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
           {/* Slider dots */}
@@ -120,14 +122,14 @@ function HeroBanner() {
           </div>
         </div>
 
-        {/* Side banners - just images, 440px wide */}
+        {/* Side banners - clickable, 440px wide */}
         <div className="w-[440px] flex flex-col gap-[16px] shrink-0">
-          <div className="h-[225px] rounded-[16px] overflow-hidden relative group">
+          <Link href="/catalog?category=sex-support" className="h-[225px] rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-sexboost.png" alt="Sex Boost" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
-          </div>
-          <div className="h-[226px] rounded-[16px] overflow-hidden relative group">
+          </Link>
+          <Link href="/catalog?category=health" className="h-[226px] rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-cbd.png" alt="CBD" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
-          </div>
+          </Link>
         </div>
       </div>
     </section>
@@ -214,35 +216,39 @@ function CategoryBanners() {
     <section className="max-w-[1340px] mx-auto mt-[65px]">
       <div className="flex gap-[16px]">
         {/* Left banner - Recovery */}
-        <div className="flex-1 h-[272px] rounded-[16px] overflow-hidden relative cursor-pointer group">
-          <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
-          <div className="absolute left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-[32px] w-[250px]">
+        <div className="flex-1 h-[272px] rounded-[16px] overflow-hidden relative group">
+          <Link href="/catalog?category=sarms" aria-label="Faster Muscle Recovery" className="absolute inset-0 z-0">
+            <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
+          </Link>
+          <div className="absolute left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-[32px] w-[250px] pointer-events-none">
             <h3 className="text-[28px] font-extrabold italic leading-[1.22] capitalize">
               <span className="text-[#FF6701]">Faster Muscle<br />Recovery &</span>{" "}
               <span className="text-white">Reduced Body Fat</span>
             </h3>
-            <button className="cursor-pointer w-fit h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[14px] font-semibold hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+            <Link href="/catalog?category=sarms" className="pointer-events-auto cursor-pointer w-fit h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
               See More
-            </button>
+            </Link>
           </div>
-          <div className="absolute right-0 top-0 h-full w-[350px] z-10">
+          <div className="absolute right-0 top-0 h-full w-[350px] z-10 pointer-events-none">
             <Image src="/images/shop/banner-product-recovery.png" alt="Recovery products" fill className="object-contain object-right-bottom" />
           </div>
         </div>
 
         {/* Right banner - Libido */}
-        <div className="flex-1 h-[272px] rounded-[16px] overflow-hidden relative cursor-pointer group">
-          <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
-          <div className="absolute left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-[32px] w-[250px]">
+        <div className="flex-1 h-[272px] rounded-[16px] overflow-hidden relative group">
+          <Link href="/catalog?category=sex-support" aria-label="Stacks For High Libido" className="absolute inset-0 z-0">
+            <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
+          </Link>
+          <div className="absolute left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-[32px] w-[250px] pointer-events-none">
             <h3 className="text-[28px] font-extrabold italic leading-[1.22] capitalize">
               <span className="text-[#FF6701]">Stacks For<br />High Libido </span>
               <span className="text-white">And Fat Burning</span>
             </h3>
-            <button className="cursor-pointer w-fit h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[14px] font-semibold hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+            <Link href="/catalog?category=sex-support" className="pointer-events-auto cursor-pointer w-fit h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
               See More
-            </button>
+            </Link>
           </div>
-          <div className="absolute right-0 top-0 h-full w-[350px] z-10">
+          <div className="absolute right-0 top-0 h-full w-[350px] z-10 pointer-events-none">
             <Image src="/images/shop/banner-product-libido.png" alt="Libido products" fill className="object-contain object-right-bottom" />
           </div>
         </div>
@@ -255,8 +261,11 @@ function FatBurningBanner() {
   return (
     <section className="max-w-[1340px] mx-auto mt-[65px]">
       <div className="relative h-[400px] rounded-[16px] overflow-hidden">
-        <Image src="/images/shop/banner-dark-1.png" alt="" fill className="object-cover" />
-        <div className="absolute left-[80px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-6 max-w-[400px]">
+        <Link href="/catalog?category=fat-burn" aria-label="Fat Burning Stack" className="absolute inset-0 z-0">
+          <Image src="/images/shop/banner-dark-1.png" alt="" fill className="object-cover" />
+        </Link>
+        {/* Text block: 100px left pad, 480px wide */}
+        <div className="absolute left-[100px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-6 w-[480px] pointer-events-none">
           <div>
             <h2 className="text-[48px] font-black italic text-[#FF6701] uppercase leading-[56px]">Fat Burning</h2>
             <h2 className="text-[48px] font-black text-white uppercase leading-[56px]">Stack</h2>
@@ -264,11 +273,12 @@ function FatBurningBanner() {
           <p className="text-[16px] text-white/80 leading-[24px]">
             This combination of powerful fat burners works synergistically.
           </p>
-          <button className="cursor-pointer h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[14px] font-semibold w-fit hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+          <Link href="/catalog?category=fat-burn" className="pointer-events-auto cursor-pointer h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[14px] font-semibold w-fit flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
             See More
-          </button>
+          </Link>
         </div>
-        <div className="absolute right-[40px] top-1/2 -translate-y-1/2 h-[90%] w-[60%] z-10">
+        {/* Image: 100px right pad, 600px wide */}
+        <div className="absolute right-[100px] top-0 h-full w-[600px] z-[5] pointer-events-none">
           <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-center" />
         </div>
       </div>
@@ -293,13 +303,13 @@ function ProSellersSection() {
           {proSellerCards.map((card, i) => (
             <ScrollAnimation key={i} animation="animate-fade-in-up" className="flex-1" delay={i * 100}>
               <div className="bg-[#212121] border border-white/[0.08] rounded-[12px] p-[25px] flex flex-col items-center gap-6 h-full text-center">
-                <div className="w-[80px] h-[80px] shrink-0 flex items-center justify-center">
+                <div className={`shrink-0 flex items-center justify-center ${card.icon.endsWith("pro-delivery.png") ? "w-[120px] h-[80px]" : "w-[80px] h-[80px]"}`}>
                   <Image
                     src={card.icon}
                     alt={card.title}
                     width={120}
                     height={120}
-                    className={`object-contain ${card.icon.endsWith("pro-delivery.png") ? "w-[100px] h-[100px]" : "w-20 h-20"}`}
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <h3 className="text-[18px] font-extrabold text-white leading-[24px] capitalize">{card.title}</h3>
@@ -442,20 +452,20 @@ function WholesaleBanner() {
     <section className="max-w-[1340px] mx-auto mt-[65px]">
       <div className="relative h-[400px] rounded-[16px] overflow-hidden">
         <Image src="/images/shop/banner-dark-2.png" alt="" fill className="object-cover" />
-        {/* Left text */}
-        <div className="absolute left-[80px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-5 max-w-[420px]">
+        {/* Text block: 100px left pad, 480px wide */}
+        <div className="absolute left-[100px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-5 w-[480px]">
           <div>
             <h2 className="text-[48px] font-black italic text-[#FF6701] uppercase leading-[56px]">Save Up To 70%</h2>
             <h2 className="text-[48px] font-extrabold text-white uppercase leading-[56px]">With Wholesale<br/>Pricing</h2>
           </div>
           <p className="text-[16px] text-white/80">Become a Wholesale Partner in Europe</p>
-          <button className="bg-white hover:bg-[#F7F7F7] text-[#181818] text-[14px] font-semibold px-8 py-3 rounded-[8px] w-fit transition-colors">
+          <a href="https://dinespower.to/partners-landing/" target="_blank" rel="noopener noreferrer" className="cursor-pointer h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[14px] font-semibold w-fit flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
             Start as a Partner
-          </button>
+          </a>
         </div>
-        {/* Bars on right */}
-        <div className="absolute right-[40px] top-0 h-full w-[640px] z-[5]">
-          <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" fill className="object-contain object-right" />
+        {/* Image: 100px right pad, 600px wide */}
+        <div className="absolute right-[100px] top-0 h-full w-[600px] z-[5]">
+          <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" fill className="object-contain object-center" />
         </div>
       </div>
     </section>
