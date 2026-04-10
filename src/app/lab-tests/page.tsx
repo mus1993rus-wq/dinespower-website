@@ -288,7 +288,7 @@ export default function LabTestsPage() {
         </div>
 
         <div className="max-w-[1340px] mx-auto pb-16">
-          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-10">
+          <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">
             Lab Tests
           </h1>
 

@@ -312,6 +312,19 @@ function ProSellersSection() {
 }
 
 function BlogSection() {
+  const [slideIndex, setSlideIndex] = useState(0);
+  const featuredSlides = blogPosts.slice(0, 4);
+  const currentSlide = featuredSlides[slideIndex];
+
+  // Auto-advance every 10s
+  useEffect(() => {
+    if (featuredSlides.length < 2) return;
+    const t = setInterval(() => {
+      setSlideIndex((i) => (i + 1) % featuredSlides.length);
+    }, 10000);
+    return () => clearInterval(t);
+  }, [featuredSlides.length]);
+
   return (
     <section className="max-w-[1340px] mx-auto mt-[65px]">
       <ScrollAnimation animation="animate-fade-in-up">
@@ -320,27 +333,76 @@ function BlogSection() {
         </div>
       </ScrollAnimation>
       <div className="flex gap-6">
-        {/* Featured post */}
-        <Link href={`/blog/${blogPosts[0].slug}`} className="flex-1 relative h-[534px] rounded-2xl overflow-hidden group cursor-pointer block">
-          <Image src="/images/shop/blog-1.png" alt="" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
-          <div className="absolute top-6 left-6 z-20 bg-white rounded-[8px] w-[48px] h-[48px] flex flex-col items-center justify-center">
-            <span className="text-2xl font-bold text-[#181818] leading-6 block">12</span>
-            <span className="text-xs text-[#7E7E7E]">Nov</span>
+        {/* Featured slider */}
+        <div className="flex-1 relative h-[534px] rounded-[16px] overflow-hidden">
+          {featuredSlides.map((slide, i) => (
+            <Image
+              key={slide.slug}
+              src={`/images/shop/blog-${i + 1}.png`}
+              alt={slide.title}
+              fill
+              className={`object-cover transition-opacity duration-700 ${i === slideIndex ? "opacity-100" : "opacity-0"}`}
+              priority={i === 0}
+            />
+          ))}
+          {/* Full-card click target */}
+          <Link href={`/blog/${currentSlide.slug}`} aria-label={currentSlide.title} className="absolute inset-0 z-0" />
+          {/* Date badge */}
+          <div className="absolute top-2 left-2 z-20 bg-white rounded-[8px] w-[72px] h-[72px] flex flex-col items-center justify-center px-3 py-2 pointer-events-none">
+            <span className="text-[24px] font-extrabold text-black leading-none">{currentSlide.date.split(" ")[0]}</span>
+            <span className="text-[12px] font-semibold text-black leading-4 mt-0.5">{currentSlide.date.split(" ")[1]}</span>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-            <div className="flex gap-2 mb-3">
-              {blogPosts[0].tags?.map((tag) => (
-                <span key={tag} className="bg-white/20 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">{tag}</span>
-              ))}
-            </div>
-            <h3 className="text-2xl font-extrabold text-white leading-[30px]">{blogPosts[0].title}</h3>
-            <div className="flex gap-4 mt-3 text-sm text-white/60">
-              <span>{blogPosts[0].readTime}</span>
-              <span>{blogPosts[0].views}</span>
+          {/* Bottom gradient overlay with content */}
+          <div className="absolute bottom-0 left-0 right-0 pt-[100px] pb-8 px-8 z-10 bg-gradient-to-b from-transparent to-[#232323] pointer-events-none">
+            <div className="flex flex-col gap-4">
+              {currentSlide.tags && (
+                <div className="flex flex-wrap gap-2 pointer-events-auto">
+                  {currentSlide.tags.map((tag) => (
+                    <Link
+                      key={tag}
+                      href={`/blog?category=${tag.toLowerCase()}`}
+                      className="backdrop-blur-[50px] bg-white/10 border border-white/20 rounded-[8px] px-3 py-1.5 text-[14px] text-white leading-5 hover:bg-white/20 hover:border-white/40 transition-colors"
+                    >
+                      {tag}
+                    </Link>
+                  ))}
+                </div>
+              )}
+              <Link href={`/blog/${currentSlide.slug}`} className="pointer-events-auto relative z-10">
+                <h3 className="text-[28px] font-extrabold text-white leading-[34px]">{currentSlide.title}</h3>
+              </Link>
+              <div className="flex items-center justify-between">
+                <div className="flex gap-4 items-center">
+                  <div className="flex gap-2 items-center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="opacity-50"><circle cx="12" cy="12" r="9" stroke="white" strokeWidth="1.5"/><path d="M12 7v5l3 2" stroke="white" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                    <span className="text-[16px] text-white leading-6">{currentSlide.readTime}</span>
+                  </div>
+                  <div className="flex gap-2 items-center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="opacity-50"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="white" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="white" strokeWidth="1.5"/></svg>
+                    <span className="text-[16px] text-white leading-6">{currentSlide.views}</span>
+                  </div>
+                </div>
+                {/* Prev / Next arrow buttons */}
+                <div className="flex gap-2 items-center pointer-events-auto">
+                  <button
+                    onClick={() => setSlideIndex((i) => (i - 1 + featuredSlides.length) % featuredSlides.length)}
+                    aria-label="Previous slide"
+                    className="cursor-pointer w-12 h-12 rounded-[8px] bg-black border border-[#5C5C5C] flex items-center justify-center hover:bg-[#181818] transition-colors"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </button>
+                  <button
+                    onClick={() => setSlideIndex((i) => (i + 1) % featuredSlides.length)}
+                    aria-label="Next slide"
+                    className="cursor-pointer w-12 h-12 rounded-[8px] bg-black border border-[#5C5C5C] flex items-center justify-center hover:bg-[#181818] transition-colors"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </Link>
+        </div>
 
         {/* Side posts */}
         <div className="w-[440px] flex flex-col">

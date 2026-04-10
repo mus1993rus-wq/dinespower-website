@@ -10,14 +10,14 @@ const partnerLogos = [
   { src: "/images/shop/eroids.svg", alt: "Eroids" },
 ];
 
-const menuLinks = [
+const menuLinks: { label: string; href: string; external?: boolean }[] = [
   { label: "About Us", href: "/about" },
   { label: "Lab Tests", href: "/lab-tests" },
   { label: "Shipping & Payment", href: "/delivery-payment" },
   { label: "Payment in Bitcoin", href: "/bitcoin" },
   { label: "Blog", href: "/blog" },
   { label: "FAQs", href: "/faqs" },
-  { label: "Wholesale & Dropshipping", href: "#" },
+  { label: "Wholesale & Dropshipping", href: "https://dinespower.to/partners-landing/", external: true },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -58,11 +58,23 @@ export default function Footer() {
           <div className="w-[305px] flex flex-col gap-6">
             <h4 className="text-lg font-semibold text-white uppercase">Menu</h4>
             <div className="flex flex-col gap-2">
-              {menuLinks.map((l) => (
-                <Link key={l.label} href={l.href} className="text-sm text-[#B6B6B6] hover:text-white transition-colors leading-5">
-                  {l.label}
-                </Link>
-              ))}
+              {menuLinks.map((l) =>
+                l.external ? (
+                  <a
+                    key={l.label}
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[#B6B6B6] hover:text-white transition-colors leading-5"
+                  >
+                    {l.label}
+                  </a>
+                ) : (
+                  <Link key={l.label} href={l.href} className="text-sm text-[#B6B6B6] hover:text-white transition-colors leading-5">
+                    {l.label}
+                  </Link>
+                )
+              )}
             </div>
           </div>
 

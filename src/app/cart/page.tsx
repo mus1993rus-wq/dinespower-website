@@ -63,7 +63,7 @@ export default function CartPage() {
       <main className="min-h-screen relative z-10 bg-white">
         <div className="max-w-[1340px] mx-auto pt-8 pb-16">
           {/* Title */}
-          <h1 className="text-[36px] font-extrabold text-[#181818] leading-tight mb-4">
+          <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">
             My Cart ({totalItems} Items)
           </h1>
 

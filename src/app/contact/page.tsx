@@ -28,14 +28,14 @@ export default function ContactPage() {
         </div>
 
         <div className="max-w-[1340px] mx-auto pb-16">
-          <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-10">Contact Us</h1>
+          <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">Contact Us</h1>
 
           <div className="flex gap-[80px]">
             {/* LEFT sidebar - Contact Info (Figma style) */}
             <div className="w-[440px] shrink-0">
               <div className="bg-[#F7F7F7] rounded-[16px] p-4 flex flex-col gap-4">
                 {/* Card 1: For Instant Support */}
-                <div className="bg-white rounded-[12px] p-4 flex flex-col gap-3">
+                <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col gap-3">
                   <p className="text-[12px] text-[#7E7E7E] leading-4">For Instant Support</p>
                   <div className="flex flex-col gap-4">
                     <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
@@ -59,7 +59,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Card 2: Follow us */}
-                <div className="bg-white rounded-[12px] p-4 flex flex-col gap-3">
+                <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col gap-3">
                   <p className="text-[12px] text-[#7E7E7E] leading-4">Follow us</p>
                   <a href="https://instagram.com/dinespower_shop" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
                     <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ background: "linear-gradient(138deg, #FAE100 19%, #FCB720 9%, #FF7950 36%, #FF1C74 73%, #6C1CD1 165%)" }}>
@@ -86,7 +86,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Card 3: For All Questions */}
-                <div className="bg-white rounded-[12px] p-4 flex flex-col gap-3">
+                <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col gap-3">
                   <p className="text-[12px] text-[#7E7E7E] leading-4">For All Questions</p>
                   <a href="mailto:info@dinespower.info" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
                     <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center shrink-0">
@@ -100,7 +100,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Card 4: Wholesale orders */}
-                <div className="bg-white rounded-[12px] p-4 flex flex-col gap-3">
+                <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col gap-3">
                   <p className="text-[12px] text-[#7E7E7E] leading-4">Wholesale orders</p>
                   <a href="mailto:sales@dinespower.info" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
                     <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center shrink-0">

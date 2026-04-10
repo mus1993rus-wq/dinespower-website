@@ -60,7 +60,7 @@ export default function DeliveryPaymentPage() {
         </div>
 
         <div className="max-w-[1340px] mx-auto pb-16">
-          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-10">Delivery &amp; Payment</h1>
+          <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">Delivery &amp; Payment</h1>
 
           <div className="flex gap-[80px]">
             {/* Left column - all content */}
