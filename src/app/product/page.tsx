@@ -276,14 +276,14 @@ export default function ProductPage() {
               Methenolone Enanthate 200 Injectable Steroid In Vials
             </h1>
 
-            {/* 3. Brand badge with real logo */}
-            <div className="flex items-center gap-4 border border-[#E7E7E7] rounded-[8px] p-3 mb-5">
-              <div className="bg-[#F7F7F7] rounded-[6px] w-[64px] h-[48px] flex items-center justify-center shrink-0 p-1">
-                <Image src="/images/shop/verify-popup/logo-astera.png" alt="Astera Labs" width={56} height={40} className="object-contain" />
+            {/* 3. Brand badge — Figma 1875:19159, Astera = peach bg */}
+            <div className="flex items-center gap-[17px] bg-[#F5ECE6] rounded-[8px] px-6 py-3 mb-5 w-fit">
+              <div className="w-[107px] h-[42px] relative shrink-0">
+                <Image src="/images/shop/verify-popup/logo-astera.png" alt="Astera Labs" fill className="object-contain" />
               </div>
-              <div>
-                <p className="text-[14px] font-semibold text-[#181818]">Official Astera Labs Product</p>
-                <p className="text-[12px] text-[#7E7E7E]">Certified &amp; Lab Tested</p>
+              <div className="flex flex-col gap-0.5">
+                <p className="text-[14px] font-semibold text-black leading-5">Official Astera Labs Product</p>
+                <p className="text-[14px] text-black leading-5">Certified &amp; Lab Tested</p>
               </div>
             </div>
 
