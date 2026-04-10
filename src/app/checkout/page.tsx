@@ -20,7 +20,6 @@ const inputClass = "w-full h-[53px] bg-white border border-[#E7E7E7] rounded-[8p
 export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState<"bank" | "bitcoin">("bitcoin");
   const [promo, setPromo] = useState("");
-  const [suggestIndex, setSuggestIndex] = useState(0);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
@@ -36,13 +35,12 @@ export default function CheckoutPage() {
   const discount = productsTotal >= 200 ? 11.5 : 0;
   const total = productsTotal - discount;
   const formValid = firstName && lastName && email && country && city && street && zip;
-  const currentSuggest = suggestedProducts[suggestIndex];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      {/* Header bar */}
-      <div className="w-full bg-[#181818] h-[82px] shrink-0">
-        <div className="max-w-[1340px] mx-auto h-full flex items-center justify-between px-[170px]">
+    <div className="min-h-screen flex flex-col bg-[#181818]">
+      {/* Black header bar — content has rounded top corners that overlap it */}
+      <div className="w-full bg-[#181818] h-[104px] shrink-0">
+        <div className="max-w-[1340px] mx-auto h-[76px] flex items-center justify-between px-[170px]">
           <Link href="/cart" className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-11 w-[140px] rounded-[8px] justify-center text-[#B6B6B6] text-[14px] font-semibold transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -62,8 +60,9 @@ export default function CheckoutPage() {
         </div>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 max-w-[1340px] mx-auto w-full pt-8 pb-16">
+      {/* White content area — full-width with rounded top corners, overlaps black header by 28px */}
+      <div className="flex-1 bg-white rounded-t-[16px] -mt-[28px] relative z-10 pt-8 pb-16">
+        <div className="max-w-[1340px] mx-auto w-full px-[185px]">
         <div className="flex gap-20">
           {/* LEFT — 820px form */}
           <div className="w-[820px] shrink-0 flex flex-col gap-8">
@@ -201,45 +200,34 @@ export default function CheckoutPage() {
           {/* RIGHT — 440px sidebar */}
           <div className="w-[440px] shrink-0">
             <div className="sticky top-4 flex flex-col gap-4">
-              {/* You might also like */}
+              {/* You might also like — list of products */}
               <div className="flex flex-col gap-3 px-4 py-2">
-                <div className="flex items-center gap-2">
-                  <p className="flex-1 text-[18px] font-semibold text-black leading-[26px]">You might also like</p>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => setSuggestIndex((i) => (i - 1 + suggestedProducts.length) % suggestedProducts.length)}
-                      className="cursor-pointer w-10 h-10 rounded-[8px] bg-[#F7F7F7] border border-[#E7E7E7] hover:bg-[#E7E7E7] flex items-center justify-center transition-colors"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                    </button>
-                    <button
-                      onClick={() => setSuggestIndex((i) => (i + 1) % suggestedProducts.length)}
-                      className="cursor-pointer w-10 h-10 rounded-[8px] bg-[#F7F7F7] border border-[#E7E7E7] hover:bg-[#E7E7E7] flex items-center justify-center transition-colors"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                    </button>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-[120px] h-[120px] bg-[#F7F7F7] rounded-[8px] shrink-0 p-2 flex items-center justify-center">
-                    <Image src={currentSuggest.image} alt={currentSuggest.name} width={100} height={100} className="object-contain" />
-                  </div>
-                  <div className="flex-1 flex flex-col gap-1.5">
-                    <p className="text-[12px] text-[#7E7E7E] leading-4">{currentSuggest.brand}</p>
-                    <p className="text-[16px] font-semibold text-[#181818] leading-6 capitalize line-clamp-2">{currentSuggest.name}</p>
-                    <div className="flex gap-2 mt-1">
-                      <div className="flex-1 h-9 bg-[#F7F7F7] rounded-[8px] flex items-center justify-center">
-                        <span className="text-[14px] font-semibold text-[#181818]">{currentSuggest.price}€</span>
+                <p className="text-[18px] font-semibold text-black leading-[26px]">You might also like</p>
+                <div className="flex flex-col">
+                  {suggestedProducts.map((p, i) => (
+                    <div key={i}>
+                      <div className="flex items-center gap-4 py-3">
+                        <div className="w-20 h-20 bg-[#F7F7F7] rounded-[8px] shrink-0 p-1.5 flex items-center justify-center">
+                          <Image src={p.image} alt={p.name} width={68} height={68} className="object-contain" />
+                        </div>
+                        <div className="flex-1 flex flex-col gap-1 min-w-0">
+                          <p className="text-[12px] text-[#7E7E7E] leading-4">{p.brand}</p>
+                          <p className="text-[14px] font-semibold text-[#181818] leading-5 line-clamp-2">{p.name}</p>
+                          <div className="flex items-center justify-between mt-1 gap-2">
+                            <span className="text-[14px] font-semibold text-[#181818]">{p.price}€</span>
+                            <button className="cursor-pointer h-8 px-3 bg-[#FF6701] hover:bg-[#E65D00] rounded-[6px] flex items-center justify-center transition-colors shrink-0">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                      <button className="cursor-pointer flex-1 h-9 bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center transition-colors">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                          <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </button>
+                      {i < suggestedProducts.length - 1 && <div className="h-px bg-[#E7E7E7]" />}
                     </div>
-                  </div>
+                  ))}
                 </div>
               </div>
 
@@ -342,6 +330,7 @@ export default function CheckoutPage() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
 
