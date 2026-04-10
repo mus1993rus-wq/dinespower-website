@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
@@ -65,27 +65,27 @@ const comparisonData = [
 const recommendedProducts = [
   {
     id: 1,
-    title: "Ostarine MK-2866",
-    image: "/images/shop/blog-3.png",
-    price: "38",
-    oldPrice: "44",
-    slug: "ostarine-mk2866",
+    brand: "Deus Medical",
+    title: "Winimed 50 Injectible Steroid In Ampoules",
+    image: "/images/shop/winimed-50.png",
+    price: "17",
+    slug: "winimed-50",
   },
   {
     id: 2,
-    title: "Ligandrol LGD-4033",
-    image: "/images/shop/blog-4.png",
-    price: "42",
-    oldPrice: "49",
-    slug: "ligandrol-lgd4033",
+    brand: "Deus Medical",
+    title: "Winimed 50 Injectible Steroid In Ampoules",
+    image: "/images/shop/winimed-50.png",
+    price: "17",
+    slug: "winimed-50",
   },
   {
     id: 3,
-    title: "Testolone RAD-140",
-    image: "/images/shop/blog-5.png",
-    price: "45",
-    oldPrice: "52",
-    slug: "testolone-rad140",
+    brand: "Deus Medical",
+    title: "Winimed 50 Injectible Steroid In Ampoules",
+    image: "/images/shop/winimed-50.png",
+    price: "17",
+    slug: "winimed-50",
   },
 ];
 
@@ -94,9 +94,11 @@ const relatedArticles = [
     id: 1,
     title:
       "How Growth Hormone Secretagogues Work: CJC-1295, Ipamorelin, GHRP-2 and GHRP-6",
-    date: "10 Nov 2025",
-    readTime: "5 min read",
-    views: "2.8k views",
+    description:
+      "The issue with most startups is that too many resources are spent on ideas that don't work. How can you deliver a product with minimum risk and receive max...",
+    date: "12 Nov",
+    readTime: "7 min read",
+    views: "3.2k views",
     slug: "growth-hormone-secretagogues",
     image: "/images/shop/blog-4.png",
   },
@@ -104,9 +106,11 @@ const relatedArticles = [
     id: 2,
     title:
       "Peptides vs SARMs for Cutting: Which Is More Effective for Preserving Muscle Mass",
-    date: "8 Nov 2025",
-    readTime: "9 min read",
-    views: "4.1k views",
+    description:
+      "The issue with most startups is that too many resources are spent on ideas that don't work. How can you deliver a product with minimum risk and receive max...",
+    date: "12 Nov",
+    readTime: "7 min read",
+    views: "3.2k views",
     slug: "peptides-vs-sarms-cutting",
     image: "/images/shop/blog-5.png",
   },
@@ -115,6 +119,11 @@ const relatedArticles = [
 export default function BlogArticlePage() {
   const [copied, setCopied] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+  const [pageUrl, setPageUrl] = useState("");
+
+  useEffect(() => {
+    setPageUrl(window.location.href);
+  }, []);
 
   const handleCopyLink = () => {
     if (typeof window !== "undefined") {
@@ -174,11 +183,15 @@ export default function BlogArticlePage() {
               {articleData.views}
             </span>
           </div>
-          <div className="flex gap-2 mb-8">
-            {["Bodybuilding", "Nutrition", "Nutrition"].map((tag, i) => (
-              <span key={i} className="border border-[#E7E7E7] text-[#181818] text-sm px-4 py-1.5 rounded-full">
+          <div className="flex flex-wrap gap-2 mb-8">
+            {["Bodybuilding", "SARMs", "Cutting"].map((tag) => (
+              <Link
+                key={tag}
+                href={`/blog?category=${tag.toLowerCase()}`}
+                className="px-3 py-2 rounded-[8px] border border-[#D8D8D8] bg-white text-[14px] font-semibold text-[#181818] leading-5 hover:bg-[#E7E7E7] hover:border-transparent transition-colors"
+              >
                 {tag}
-              </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -194,45 +207,24 @@ export default function BlogArticlePage() {
                   <Image src="/images/shop/blog-1.png" alt={articleData.title} fill className="object-cover" unoptimized />
                 </div>
 
-                {/* TOC Card */}
-                <div className="border border-[#E7E7E7] rounded-[16px] p-6 mb-8">
-                  <h3 className="text-[18px] font-extrabold text-[#181818] mb-4 flex items-center gap-2">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <rect
-                        x="2"
-                        y="2"
-                        width="16"
-                        height="16"
-                        rx="3"
-                        stroke="#FF6701"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M6 7h8M6 10h8M6 13h5"
-                        stroke="#FF6701"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                    What&apos;s Inside?
-                  </h3>
-                  <div className="flex flex-col gap-1">
-                    {tocItems.map((item, i) => {
-                      const isActive = activeSection === item.id;
-                      return (
-                        <button
-                          key={i}
-                          onClick={() => scrollToSection(item.id)}
-                          className={`text-left text-sm leading-7 px-3 py-1 rounded-md transition-all ${
-                            isActive
-                              ? "text-[#FF6701] font-semibold bg-[#FFF5EE]"
-                              : "text-[#4A4A4A] hover:text-[#181818] hover:bg-[#F7F7F7]"
-                          }`}
-                        >
-                          {item.text}
-                        </button>
-                      );
-                    })}
+                {/* TOC Card — What's Inside (Figma 1608:17013) */}
+                <div className="bg-[#F7F7F7] rounded-[16px] p-2 mb-8">
+                  <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col">
+                    <div className="px-2 py-2">
+                      <p className="text-[16px] text-[#7E7E7E] leading-6 capitalize">What&apos;s Inside?</p>
+                    </div>
+                    <ol className="flex flex-col list-decimal list-inside">
+                      {tocItems.map((item, i) => (
+                        <li key={i} className="px-3 py-2 rounded-[8px]">
+                          <button
+                            onClick={() => scrollToSection(item.id)}
+                            className="cursor-pointer text-left text-[14px] font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors"
+                          >
+                            {item.text}
+                          </button>
+                        </li>
+                      ))}
+                    </ol>
                   </div>
                 </div>
 
@@ -264,6 +256,42 @@ export default function BlogArticlePage() {
                   and the laboratory analysis of Testolone available at the
                   Dinespower store confirms the safety of the compound.
                 </p>
+
+                {/* Product Card — horizontal Figma layout */}
+                <Link href="/catalog" className="relative block bg-[#181818] rounded-[16px] p-6 my-10 overflow-hidden group">
+                  <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" unoptimized />
+                  <div className="absolute top-[10px] left-0 z-10 pt-2">
+                    <span className="inline-flex items-center bg-[#FB2F2F] rounded-tr-[6px] rounded-br-[6px] px-3 py-1 text-[12px] font-semibold text-white leading-4">Sale -14%</span>
+                  </div>
+                  <div className="relative z-10 flex gap-4 items-center">
+                    <div className="w-[120px] h-[120px] shrink-0 relative">
+                      <Image src="/images/shop/eca-xtreme.png" alt="ECA Xtreme Fat Burner" fill className="object-contain" unoptimized />
+                    </div>
+                    <div className="flex-1 flex flex-col gap-1 min-w-0">
+                      <p className="text-[14px] text-[#B6B6B6] leading-5">Biaxol</p>
+                      <p className="text-[18px] font-semibold text-white leading-[26px]">Yohimbine Fat Burner Capsules</p>
+                      <div className="flex gap-3 items-center">
+                        <div className="flex items-center">
+                          {[...Array(5)].map((_, i) => (
+                            <svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="#FF6701">
+                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                          ))}
+                        </div>
+                        <p className="text-[14px] text-white/70 leading-5">(325 Reviews)</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4 shrink-0">
+                      <div className="flex gap-2 items-center">
+                        <span className="text-[20px] font-extrabold text-[#FB2F2F] leading-6">24 €</span>
+                        <span className="text-[16px] text-[#7E7E7E] line-through">30 €</span>
+                      </div>
+                      <span className="inline-flex items-center justify-center bg-[#FF6701] group-hover:bg-[#E65D00] rounded-[8px] px-5 py-3 text-[14px] font-semibold text-white transition-colors">
+                        Learn More
+                      </span>
+                    </div>
+                  </div>
+                </Link>
 
                 {/* Section 1 */}
                 <h2
@@ -306,19 +334,17 @@ export default function BlogArticlePage() {
                   </li>
                 </ul>
 
-                {/* Quote */}
-                <div className="bg-[#F7F7F7] rounded-[12px] p-6 my-8 relative">
-                  <span className="text-[48px] leading-none text-[#FF6701]/30 font-serif absolute top-3 left-5">
-                    {"\u275D"}
-                  </span>
-                  <p className="text-[15px] text-[#4A4A4A] leading-[26px] italic pl-8 pr-2">
-                    It is impossible to name the best technology out of these
-                    two. Each option is good in its own way, and the choice
-                    depends on the specific needs and context of the project.
-                  </p>
-                  <p className="text-sm text-[#7E7E7E] mt-3 pl-8">
-                    &mdash; Sergii Opanasenko, co-founder of Greenice
-                  </p>
+                {/* Quote — Light wrapped */}
+                <div className="bg-[#F7F7F7] rounded-[16px] p-4 my-8">
+                  <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-6 flex flex-col gap-4">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                      <path d="M16 12c-5 0-9 4-9 9v7h9v-8h-4c0-2 2-4 4-4v-4zm14 0c-5 0-9 4-9 9v7h9v-8h-4c0-2 2-4 4-4v-4z" fill="#FF6701"/>
+                    </svg>
+                    <p className="text-[16px] font-semibold text-black leading-7">
+                      &ldquo;It is impossible to name the best technology out of these two. First of all, the best technology is the one that your developer is familiar with. Secondly, both frameworks are from the new generation of technologies and bring the same results - help create modern, dynamic, and fast apps.&rdquo;
+                    </p>
+                    <p className="text-[14px] text-[#7E7E7E] leading-5">&mdash; Sergii Opanasenko, co-founder of Greenice</p>
+                  </div>
                 </div>
 
                 <p className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">
@@ -328,42 +354,27 @@ export default function BlogArticlePage() {
                   maximum confidence in quality.
                 </p>
 
-                {/* Read Also Card */}
-                <div className="border border-[#E7E7E7] rounded-[12px] p-5 my-8 flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-[#FFF5EE] flex items-center justify-center shrink-0">
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M4 19V5a2 2 0 012-2h8l6 6v10a2 2 0 01-2 2H6a2 2 0 01-2-2z"
-                        stroke="#FF6701"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M14 3v6h6"
-                        stroke="#FF6701"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                {/* Read Also Card — dark Figma style */}
+                <Link
+                  href="/blog/growth-hormone-secretagogues"
+                  className="relative block bg-[#181818] rounded-[16px] p-6 my-8 overflow-hidden group"
+                >
+                  <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" unoptimized />
+                  <div className="relative z-10 flex items-center gap-5">
+                    <div className="w-[120px] h-[80px] rounded-[8px] overflow-hidden shrink-0 relative">
+                      <Image src="/images/shop/blog-4.png" alt="Read Also" fill className="object-cover" unoptimized />
+                    </div>
+                    <div className="flex-1 flex flex-col gap-1 min-w-0">
+                      <p className="text-[14px] text-white/60 leading-5">Read Also:</p>
+                      <p className="text-[18px] font-extrabold text-white leading-[24px]">
+                        How Growth Hormone Secretagogues Work: CJC-1295, Ipamorelin, GHRP-2 and GHRP-6
+                      </p>
+                    </div>
+                    <span className="inline-flex items-center justify-center shrink-0 h-11 px-6 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black group-hover:bg-[#E7E7E7] group-hover:border-transparent transition-colors">
+                      Read More
+                    </span>
                   </div>
-                  <div>
-                    <p className="text-xs text-[#FF6701] font-semibold mb-1">
-                      Read Also
-                    </p>
-                    <Link
-                      href="/blog/growth-hormone-secretagogues"
-                      className="text-[15px] font-bold text-[#181818] hover:text-[#FF6701] transition-colors leading-[20px]"
-                    >
-                      How Growth Hormone Secretagogues Work: CJC-1295,
-                      Ipamorelin, GHRP-2 and GHRP-6
-                    </Link>
-                  </div>
-                </div>
+                </Link>
 
                 {/* Section 2 */}
                 <h2
@@ -497,40 +508,45 @@ export default function BlogArticlePage() {
                 </ul>
 
                 {/* Quote */}
-                <div className="bg-[#F7F7F7] rounded-[12px] p-6 my-8 relative">
-                  <span className="text-[48px] leading-none text-[#FF6701]/30 font-serif absolute top-3 left-5">
-                    {"\u275D"}
-                  </span>
-                  <p className="text-[15px] text-[#4A4A4A] leading-[26px] italic pl-8 pr-2">
-                    It is impossible to name the best technology out of these
-                    two. Each option is good in its own way, and the choice
-                    depends on the specific needs and context of the project.
-                  </p>
-                  <p className="text-sm text-[#7E7E7E] mt-3 pl-8">
-                    &mdash; Sergii Opanasenko, co-founder of Greenice
-                  </p>
+                {/* Quote — Light wrapped */}
+                <div className="bg-[#F7F7F7] rounded-[16px] p-4 my-8">
+                  <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-6 flex flex-col gap-4">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                      <path d="M16 12c-5 0-9 4-9 9v7h9v-8h-4c0-2 2-4 4-4v-4zm14 0c-5 0-9 4-9 9v7h9v-8h-4c0-2 2-4 4-4v-4z" fill="#FF6701"/>
+                    </svg>
+                    <p className="text-[16px] font-semibold text-black leading-7">
+                      &ldquo;It is impossible to name the best technology out of these two. Each option is good in its own way, and the choice depends on the specific needs and context of the project.&rdquo;
+                    </p>
+                    <p className="text-[14px] text-[#7E7E7E] leading-5">&mdash; Sergii Opanasenko, co-founder of Greenice</p>
+                  </div>
                 </div>
 
-                {/* Banner */}
-                <div className="relative w-full h-[200px] rounded-[16px] overflow-hidden my-10">
-                  <Image
-                    src="/images/shop/hero-banner.png"
-                    alt="Lean Muscle Growth"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                  <div className="absolute inset-0 bg-black/50 z-10" />
-                  <div className="absolute inset-0 z-20 flex items-center justify-between px-10">
-                    <h3 className="text-[28px] font-extrabold text-white leading-[36px]">
-                      LEAN MUSCLE GROWTH
-                    </h3>
+                {/* Banner — WEEKLY BESTSELLER Figma 1513:15754 */}
+                <div className="relative w-full h-[260px] rounded-[16px] overflow-hidden my-10 bg-[#181818]">
+                  <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" unoptimized />
+                  {/* Left: text block — 340px wide at left 40 */}
+                  <div className="absolute left-10 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3 w-[340px]">
+                    <p className="text-[18px] font-semibold text-[#FF6701] leading-[26px] uppercase">Weekly bestseller</p>
+                    <h3 className="text-[28px] font-black italic text-white leading-[34px]">Lean Muscle Growth</h3>
+                    <p className="text-[16px] text-[#F7F7F7] leading-6">Non-steroidal selective androgen receptor modulator</p>
                     <Link
                       href="/shop"
-                      className="bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold rounded-lg h-[44px] px-8 transition-colors flex items-center"
+                      className="cursor-pointer inline-flex items-center justify-center h-11 px-8 bg-white border border-[#E7E7E7] rounded-[8px] text-[14px] font-semibold text-black self-start hover:bg-[#E7E7E7] hover:border-transparent transition-colors mt-1"
                     >
                       Shop Now
                     </Link>
+                  </div>
+                  {/* Product bottle Andarine S4 — tilted ~6deg per Figma */}
+                  <div className="absolute right-[110px] top-[-30px] w-[340px] h-[340px] z-0 pointer-events-none">
+                    <div className="relative w-full h-full rotate-[6deg]">
+                      <Image src="/images/shop/andarine-s4.png" alt="Andarine S4" fill className="object-contain drop-shadow-[-18px_60px_30px_rgba(0,0,0,0.35)]" unoptimized />
+                    </div>
+                  </div>
+                  {/* Right: 3 quality badges 60x60 stacked */}
+                  <div className="absolute right-6 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-2">
+                    <Image src="/icons/badge-quality.svg" alt="3rd Party Quality Tested" width={60} height={60} unoptimized />
+                    <Image src="/icons/badge-gluten.svg" alt="Gluten Free" width={60} height={60} unoptimized />
+                    <Image src="/icons/badge-nongmo.svg" alt="Non-GMO" width={60} height={60} unoptimized />
                   </div>
                 </div>
 
@@ -560,290 +576,197 @@ export default function BlogArticlePage() {
                   optimization and recovery support.
                 </p>
 
-                {/* Categories Tags */}
-                <div className="flex items-center gap-3 mt-10 pt-8 border-t border-[#E7E7E7]">
-                  <span className="text-sm font-semibold text-[#181818]">
-                    Tags:
-                  </span>
-                  <div className="flex gap-2">
-                    {["Bodybuilding", "SARMs", "Nutrition"].map((tag) => (
+                {/* Popular Categories */}
+                <div className="mt-10 pt-8 border-t border-[#E7E7E7]">
+                  <p className="text-[14px] text-[#7E7E7E] mb-3">Popular Categories</p>
+                  <div className="flex flex-wrap gap-2">
+                    {["Bodybuilding", "SARMs", "Cutting", "PCT", "Peptides", "Fat Burn", "Injectable"].map((cat) => (
                       <Link
-                        key={tag}
-                        href={`/blog?tag=${tag.toLowerCase()}`}
-                        className="px-4 py-2 rounded-lg bg-[#F7F7F7] text-sm font-medium text-[#181818] hover:bg-[#EDEDED] transition-colors"
+                        key={cat}
+                        href={`/blog?category=${cat.toLowerCase()}`}
+                        className="px-3 py-2 rounded-[8px] border border-[#D8D8D8] bg-white text-[14px] font-semibold text-[#181818] leading-5 hover:bg-[#E7E7E7] hover:border-transparent transition-colors"
                       >
-                        {tag}
+                        {cat}
                       </Link>
                     ))}
                   </div>
                 </div>
 
-                {/* Share buttons */}
-                <div className="flex items-center gap-4 mt-6 pt-6 border-t border-[#E7E7E7]">
-                  <span className="text-sm font-semibold text-[#181818]">
-                    Share:
-                  </span>
-                  <div className="flex gap-3">
+                {/* Share buttons — pill style with colored icon circles */}
+                <div className="mt-8 pt-8 border-t border-[#E7E7E7]">
+                  <p className="text-[14px] text-[#7E7E7E] mb-3">Share:</p>
+                  <div className="grid grid-cols-4 gap-3">
                     {/* Facebook */}
                     <a
-                      href={`https://www.facebook.com/sharer/sharer.php?u=${typeof window !== "undefined" ? encodeURIComponent(window.location.href) : ""}`}
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-[40px] h-[40px] rounded-lg bg-[#F7F7F7] hover:bg-[#EDEDED] flex items-center justify-center transition-colors"
+                      suppressHydrationWarning
+                      className="cursor-pointer flex items-center justify-center gap-3 h-14 px-4 bg-white border border-[#E7E7E7] rounded-[12px] hover:bg-[#F7F7F7] hover:border-transparent transition-colors"
                     >
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z"
-                          fill="#181818"
-                        />
-                      </svg>
+                      <span className="w-8 h-8 rounded-full bg-[#1877F2] flex items-center justify-center shrink-0">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                          <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+                        </svg>
+                      </span>
+                      <span className="text-[14px] font-semibold text-[#181818]">Facebook</span>
                     </a>
-                    {/* Twitter */}
+                    {/* Twitter / X */}
                     <a
                       href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(articleData.title)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-[40px] h-[40px] rounded-lg bg-[#F7F7F7] hover:bg-[#EDEDED] flex items-center justify-center transition-colors"
+                      className="cursor-pointer flex items-center justify-center gap-3 h-14 px-4 bg-white border border-[#E7E7E7] rounded-[12px] hover:bg-[#F7F7F7] hover:border-transparent transition-colors"
                     >
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M22 4.01c-1 .49-2.01.73-3.04.86 1.1-.66 1.94-1.7 2.33-2.94-1.03.61-2.17 1.05-3.38 1.29C17 2.29 15.73 1.7 14.32 1.7c-2.7 0-4.87 2.18-4.87 4.87 0 .38.04.75.13 1.1C6.24 7.48 3.42 5.56 1.56 2.84c-.42.72-.66 1.56-.66 2.46 0 1.69.86 3.18 2.17 4.06-.8-.03-1.55-.25-2.2-.61v.06c0 2.36 1.68 4.33 3.9 4.77-.41.11-.84.17-1.28.17-.31 0-.62-.03-.92-.09.62 1.95 2.43 3.37 4.57 3.41-1.67 1.31-3.78 2.09-6.07 2.09-.39 0-.78-.02-1.17-.07 2.17 1.39 4.74 2.2 7.5 2.2 9.01 0 13.93-7.46 13.93-13.93 0-.21 0-.42-.01-.63.96-.69 1.79-1.56 2.45-2.55z"
-                          fill="#181818"
-                        />
-                      </svg>
+                      <span className="w-8 h-8 rounded-full bg-black flex items-center justify-center shrink-0">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                      </span>
+                      <span className="text-[14px] font-semibold text-[#181818]">Twitter</span>
                     </a>
                     {/* Telegram */}
                     <a
-                      href={`https://t.me/share/url?url=${typeof window !== "undefined" ? encodeURIComponent(window.location.href) : ""}`}
+                      href={`https://t.me/share/url?url=${encodeURIComponent(pageUrl)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-[40px] h-[40px] rounded-lg bg-[#F7F7F7] hover:bg-[#EDEDED] flex items-center justify-center transition-colors"
+                      suppressHydrationWarning
+                      className="cursor-pointer flex items-center justify-center gap-3 h-14 px-4 bg-white border border-[#E7E7E7] rounded-[12px] hover:bg-[#F7F7F7] hover:border-transparent transition-colors"
                     >
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.66-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49 1.02-.74 3.99-1.74 6.65-2.89 7.99-3.44 3.81-1.58 4.6-1.86 5.12-1.87.11 0 .37.03.53.17.14.12.18.28.2.47-.01.06.01.24 0 .37z"
-                          fill="#181818"
-                        />
-                      </svg>
+                      <span className="w-8 h-8 rounded-full bg-[#00A9DE] flex items-center justify-center shrink-0">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                          <path d="M3.32168 11.8714L18.7484 5.92338C19.4644 5.66472 20.0897 6.09805 19.8577 7.18072L19.859 7.17938L17.2323 19.5541C17.0377 20.4314 16.5164 20.6447 15.787 20.2314L11.787 17.2834L9.85768 19.1421C9.64435 19.3554 9.46435 19.5354 9.05102 19.5354L9.33502 15.4647L16.7483 8.76738C17.071 8.48338 16.6763 8.32338 16.251 8.60605L7.08968 14.374L3.14035 13.1421C2.28302 12.8701 2.26435 12.2847 3.32168 11.8714Z" fill="white"/>
+                        </svg>
+                      </span>
+                      <span className="text-[14px] font-semibold text-[#181818]">Telegram</span>
                     </a>
                     {/* Email */}
                     <a
-                      href={`mailto:?subject=${encodeURIComponent(articleData.title)}&body=${typeof window !== "undefined" ? encodeURIComponent(window.location.href) : ""}`}
-                      className="w-[40px] h-[40px] rounded-lg bg-[#F7F7F7] hover:bg-[#EDEDED] flex items-center justify-center transition-colors"
+                      href={`mailto:?subject=${encodeURIComponent(articleData.title)}&body=${encodeURIComponent(pageUrl)}`}
+                      className="cursor-pointer flex items-center justify-center gap-3 h-14 px-4 bg-white border border-[#E7E7E7] rounded-[12px] hover:bg-[#F7F7F7] hover:border-transparent transition-colors"
+                      suppressHydrationWarning
                     >
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <rect
-                          x="2"
-                          y="4"
-                          width="20"
-                          height="16"
-                          rx="2"
-                          stroke="#181818"
-                          strokeWidth="1.5"
-                        />
-                        <path
-                          d="M2 6l10 7 10-7"
-                          stroke="#181818"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
+                      <span className="w-8 h-8 rounded-full bg-[#FF6701] flex items-center justify-center shrink-0">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                          <rect x="2" y="4" width="20" height="16" rx="2" stroke="white" strokeWidth="2"/>
+                          <path d="M2 6l10 7 10-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </span>
+                      <span className="text-[14px] font-semibold text-[#181818]">Email</span>
                     </a>
-                    {/* Copy Link */}
-                    <button
-                      onClick={handleCopyLink}
-                      className="w-[40px] h-[40px] rounded-lg bg-[#F7F7F7] hover:bg-[#EDEDED] flex items-center justify-center transition-colors relative"
-                    >
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"
-                          stroke="#181818"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"
-                          stroke="#181818"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      {copied && (
-                        <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#181818] text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                          Copied!
-                        </span>
-                      )}
-                    </button>
                   </div>
+                  {copied && (
+                    <p className="text-[13px] text-[#FF6701] font-semibold mt-2">Link copied!</p>
+                  )}
                 </div>
               </article>
 
-              {/* You might also like - Product Cards */}
-              <div className="mt-12">
-                <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-6">
-                  You Might Also Like
-                </h2>
-                <div className="grid grid-cols-3 gap-4">
-                  {recommendedProducts.map((product) => (
-                    <Link
-                      key={product.id}
-                      href={`/shop/${product.slug}`}
-                      className="group border border-[#E7E7E7] rounded-[12px] overflow-hidden hover:shadow-md transition-shadow"
-                    >
-                      <div className="relative h-[160px] bg-[#F0F0F0]">
-                        <Image
-                          src={product.image}
-                          alt={product.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          unoptimized
-                        />
-                      </div>
-                      <div className="p-3">
-                        <h4 className="text-sm font-bold text-[#181818] leading-[18px] mb-2 line-clamp-2">
-                          {product.title}
-                        </h4>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[16px] font-extrabold text-[#181818]">
-                            {product.price}&euro;
-                          </span>
-                          <span className="text-[13px] text-[#B6B6B6] line-through">
-                            {product.oldPrice}&euro;
-                          </span>
-                        </div>
-                      </div>
+              {/* You might also like — Figma Option 3 */}
+              <div className="mt-12 bg-[#F7F7F7] rounded-[16px] p-2 flex flex-col gap-2">
+                {recommendedProducts.map((product) => (
+                  <div key={product.id} className="bg-white border border-[#E7E7E7] rounded-[16px] px-4 flex items-center gap-4">
+                    <Link href={`/shop/${product.slug}`} className="w-[120px] h-[120px] shrink-0 relative">
+                      <Image
+                        src={product.image}
+                        alt={product.title}
+                        fill
+                        className="object-contain"
+                        unoptimized
+                      />
                     </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* Still Have Questions */}
-              <div className="mt-12">
-                <div className="bg-[#F7F7F7] rounded-[16px] p-8 flex items-center justify-between">
-                  <div className="flex items-center gap-5">
-                    <div className="w-[56px] h-[56px] rounded-full bg-white flex items-center justify-center shrink-0">
-                      <svg
-                        width="28"
-                        height="28"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <circle
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="#FF6701"
-                          strokeWidth="1.5"
-                        />
-                        <path
-                          d="M12 16v-4M12 8h.01"
-                          stroke="#FF6701"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="text-[18px] font-extrabold text-[#181818] mb-1">
-                        Still Have Questions?
-                      </h3>
-                      <p className="text-sm text-[#7E7E7E]">
-                        Reach out to our manager right away &mdash; we&apos;re
-                        happy to help with any questions about SARMs.
+                    <Link href={`/shop/${product.slug}`} className="flex-1 min-w-0 group flex flex-col gap-1.5">
+                      <p className="text-[12px] text-[#7E7E7E] leading-4">{product.brand}</p>
+                      <p className="text-[16px] font-semibold text-[#181818] leading-6 capitalize line-clamp-2 group-hover:text-[#FF6701] transition-colors">
+                        {product.title}
                       </p>
+                    </Link>
+                    <div className="flex items-center justify-center py-2 w-[140px] bg-[#F7F7F7] rounded-[8px] shrink-0">
+                      <span className="text-[14px] font-semibold text-[#181818] leading-5">{product.price}€</span>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-3 shrink-0 ml-6">
-                    <a
-                      href="#"
-                      className="w-[48px] h-[48px] rounded-full bg-[#00A9DE] flex items-center justify-center hover:opacity-90 transition-opacity"
-                    >
-                      <svg
-                        width="22"
-                        height="22"
-                        viewBox="0 0 24 24"
-                        fill="white"
-                      >
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.66-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49 1.02-.74 3.99-1.74 6.65-2.89 7.99-3.44 3.81-1.58 4.6-1.86 5.12-1.87.11 0 .37.03.53.17.14.12.18.28.2.47-.01.06.01.24 0 .37z" />
+                    <button className="group cursor-pointer relative h-9 w-[140px] bg-[#FF6701] hover:bg-[#D65800] rounded-[8px] flex items-center justify-center shrink-0 overflow-hidden transition-colors">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="white" className="transition-all duration-300 ease-out group-hover:translate-y-[150%] group-hover:opacity-0">
+                        <path d="M7 4h-1l-1 1v15a1 1 0 001 1h12a1 1 0 001-1V5l-1-1h-1v2a1 1 0 01-2 0V4H9v2a1 1 0 11-2 0V4z"/>
                       </svg>
-                    </a>
-                    <a
-                      href="#"
-                      className="w-[48px] h-[48px] rounded-full bg-[#00D43F] flex items-center justify-center hover:opacity-90 transition-opacity"
-                    >
-                      <svg
-                        width="22"
-                        height="22"
-                        viewBox="0 0 24 24"
-                        fill="white"
-                      >
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                        <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
-                      </svg>
-                    </a>
+                      <span className="absolute text-[14px] font-semibold text-white whitespace-nowrap transition-all duration-300 ease-out -translate-y-[150%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+                        Add to cart
+                      </span>
+                    </button>
                   </div>
+                ))}
+              </div>
+
+              {/* Still Have Questions — Figma 1504:14818 */}
+              <div className="mt-12 bg-[#F7F7F7] rounded-[12px] p-2">
+                <div className="bg-white border border-[#E7E7E7] rounded-[8px] pl-6 pr-8 flex items-center gap-8 overflow-hidden">
+                  <div className="relative w-[145px] h-[150px] shrink-0 overflow-hidden">
+                    <Image src="/images/shop/manager.png" alt="Manager" fill className="object-cover object-top scale-110" unoptimized />
+                  </div>
+                  <div className="flex-1 flex flex-col gap-2 min-w-0">
+                    <p className="text-[24px] font-extrabold text-black leading-[30px]">Still have questions?</p>
+                    <p className="text-[14px] text-[#1E1E1E] leading-5">
+                      Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.
+                    </p>
+                  </div>
+                  <button className="cursor-pointer inline-flex items-center justify-center h-11 px-4 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black shrink-0 hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+                    Ask a Question
+                  </button>
                 </div>
               </div>
 
-              {/* Read Also */}
+              {/* Read Also — horizontal rows matching Figma News Card - Vertical */}
               <div className="mt-12 mb-4">
                 <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-6">
                   Read Also
                 </h2>
-                <div className="grid grid-cols-2 gap-6">
-                  {relatedArticles.map((article) => (
-                    <Link
-                      key={article.id}
-                      href={`/blog/${article.slug}`}
-                      className="group cursor-pointer"
-                    >
-                      <div className="h-[180px] rounded-[12px] overflow-hidden relative mb-4">
-                        <Image
-                          src={article.image}
-                          alt={article.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          unoptimized
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                      </div>
-                      <h3 className="text-[16px] font-extrabold text-[#181818] leading-[22px] line-clamp-2 group-hover:text-[#FF6701] transition-colors">
-                        {article.title}
-                      </h3>
-                      <div className="flex items-center gap-3 text-xs text-[#7E7E7E] mt-2">
-                        <span>{article.date}</span>
-                        <span>{article.readTime}</span>
-                        <span>{article.views}</span>
-                      </div>
-                    </Link>
+                <div className="flex flex-col">
+                  {relatedArticles.map((article, idx) => (
+                    <div key={article.id}>
+                      {idx > 0 && <div className="h-px bg-[#E7E7E7] my-8" />}
+                      <Link
+                        href={`/blog/${article.slug}`}
+                        className="flex gap-6 items-start cursor-pointer group"
+                      >
+                        <div className="relative w-[300px] h-[188px] rounded-[8px] shrink-0 overflow-hidden bg-[#F7F7F7]">
+                          <Image
+                            src={article.image}
+                            alt={article.title}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            unoptimized
+                          />
+                          <div className="absolute top-2 left-2 bg-white rounded-[8px] w-12 h-12 flex flex-col items-center justify-center px-3 py-2">
+                            <span className="text-[20px] font-extrabold text-black leading-6">{article.date.split(" ")[0]}</span>
+                            <span className="text-[12px] font-semibold text-black leading-4">{article.date.split(" ")[1]}</span>
+                          </div>
+                        </div>
+                        <div className="flex-1 flex flex-col justify-center gap-4 self-stretch min-w-0">
+                          <div className="flex flex-col gap-3">
+                            <h3 className="text-[20px] font-extrabold text-black leading-[24px] line-clamp-2 group-hover:text-[#FF6701] transition-colors">
+                              {article.title}
+                            </h3>
+                            <p className="text-[14px] text-[#7E7E7E] leading-[20px] line-clamp-2">
+                              {article.description}
+                            </p>
+                          </div>
+                          <div className="flex gap-4 items-start">
+                            <div className="flex gap-2 items-center">
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="9" stroke="#7E7E7E" strokeWidth="1.5" />
+                                <path d="M12 7v5l3 2" stroke="#7E7E7E" strokeWidth="1.5" strokeLinecap="round" />
+                              </svg>
+                              <span className="text-[14px] text-[#7E7E7E] leading-5">{article.readTime}</span>
+                            </div>
+                            <div className="flex gap-2 items-center">
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="#7E7E7E" strokeWidth="1.5" />
+                                <circle cx="12" cy="12" r="3" stroke="#7E7E7E" strokeWidth="1.5" />
+                              </svg>
+                              <span className="text-[14px] text-[#7E7E7E] leading-5">{article.views}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -852,137 +775,67 @@ export default function BlogArticlePage() {
             {/* RIGHT SIDEBAR */}
             <div className="w-[440px] shrink-0 hidden lg:block">
               <div className="sticky top-[24px] flex flex-col gap-6">
-                {/* Product Recommendation Card */}
-                <div className="bg-[#181818] rounded-[12px] p-4">
-                  <div className="bg-[#181818] rounded-[8px] overflow-hidden">
-                    {/* Product image */}
-                    <div className="relative h-[200px] bg-[#252525]">
-                      <Image
-                        src="/images/shop/product-1.webp"
-                        alt="Yohimbine Fat Burner Capsules"
-                        fill
-                        className="object-cover"
-                        unoptimized
-                      />
-                      <span className="absolute top-3 left-3 bg-[#FF3B30] text-white text-xs font-bold px-2 py-1 rounded-md">
-                        Sale -14%
-                      </span>
+                {/* Product Recommendation Card — horizontal Figma layout */}
+                <Link href="/catalog" className="relative block bg-[#181818] rounded-[16px] p-6 overflow-hidden group">
+                  <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" unoptimized />
+                  <div className="absolute top-[10px] left-0 z-10 pt-2">
+                    <span className="inline-flex items-center bg-[#FB2F2F] rounded-tr-[6px] rounded-br-[6px] px-3 py-1 text-[12px] font-semibold text-white leading-4">Sale -14%</span>
+                  </div>
+                  <div className="relative z-10 flex gap-4 items-center">
+                    <div className="w-[120px] h-[120px] shrink-0 relative">
+                      <Image src="/images/shop/eca-xtreme.png" alt="ECA Xtreme Fat Burner" fill className="object-contain" unoptimized />
                     </div>
-                    {/* Product info */}
-                    <div className="p-4">
-                      <p className="text-xs text-[#999] mb-1 uppercase tracking-wider">
-                        Biaxol
-                      </p>
-                      <h4 className="text-[15px] font-bold text-white leading-[20px] mb-2">
-                        Yohimbine Fat Burner Capsules
-                      </h4>
-                      {/* Stars */}
-                      <div className="flex items-center gap-1 mb-3">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <svg
-                            key={star}
-                            width="14"
-                            height="14"
-                            viewBox="0 0 14 14"
-                            fill="#FF6701"
-                          >
-                            <path
-                              d="M7 1l1.76 3.57 3.94.57-2.85 2.78.67 3.93L7 10.07l-3.52 1.78.67-3.93L1.3 5.14l3.94-.57L7 1z"
-                              stroke="#FF6701"
-                              strokeWidth="1"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        ))}
-                        <span className="text-xs text-[#7E7E7E] ml-1">
-                          (325 Reviews)
+                    <div className="flex-1 flex flex-col gap-3 min-w-0">
+                      <div className="flex flex-col gap-1">
+                        <p className="text-[14px] text-[#B6B6B6] leading-5">Biaxol</p>
+                        <p className="text-[18px] font-semibold text-white leading-[26px]">Yohimbine Fat Burner Capsules</p>
+                        <div className="flex gap-3 items-center">
+                          <div className="flex items-center">
+                            {[...Array(5)].map((_, i) => (
+                              <svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="#FF6701">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                              </svg>
+                            ))}
+                          </div>
+                          <p className="text-[14px] text-white/70 leading-5">(325 Reviews)</p>
+                        </div>
+                      </div>
+                      <div className="flex gap-3 items-center">
+                        <div className="flex-1 flex gap-2 items-center min-w-0">
+                          <span className="text-[20px] font-extrabold text-[#FB2F2F] leading-6">24 €</span>
+                          <span className="text-[16px] text-[#7E7E7E] line-through">30 €</span>
+                        </div>
+                        <span className="inline-flex items-center justify-center bg-[#FF6701] group-hover:bg-[#E65D00] rounded-[8px] px-4 py-3 text-[14px] font-semibold text-white transition-colors">
+                          Learn More
                         </span>
                       </div>
-                      <div className="flex items-center gap-2 mb-4">
-                        <span className="text-[14px] text-[#B6B6B6] line-through">
-                          30&euro;
-                        </span>
-                        <span className="text-[20px] font-extrabold text-[#181818]">
-                          24&euro;
-                        </span>
-                      </div>
-                      <Link
-                        href="/shop/yohimbine"
-                        className="block bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold rounded-lg h-[44px] w-full transition-colors text-center leading-[44px]"
-                      >
-                        Learn More
-                      </Link>
                     </div>
                   </div>
-                </div>
+                </Link>
 
-                {/* Newsletter */}
-                <div className="bg-[#F7F7F7] rounded-[12px] p-5">
-                  <div className="flex items-center gap-2 mb-2">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                      fill="none"
+                {/* Telegram Subscription — Figma 1940:19238 */}
+                <div className="bg-[#F7F7F7] rounded-[16px] p-4">
+                  <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-6 flex flex-col gap-4">
+                    <div className="flex gap-4 items-start">
+                      <div className="w-12 h-12 rounded-full bg-[#00A9DE] flex items-center justify-center shrink-0">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                          <path d="M3.32168 11.8714L18.7484 5.92338C19.4644 5.66472 20.0897 6.09805 19.8577 7.18072L19.859 7.17938L17.2323 19.5541C17.0377 20.4314 16.5164 20.6447 15.787 20.2314L11.787 17.2834L9.85768 19.1421C9.64435 19.3554 9.46435 19.5354 9.05102 19.5354L9.33502 15.4647L16.7483 8.76738C17.071 8.48338 16.6763 8.32338 16.251 8.60605L7.08968 14.374L3.14035 13.1421C2.28302 12.8701 2.26435 12.2847 3.32168 11.8714Z" fill="white"/>
+                        </svg>
+                      </div>
+                      <div className="flex-1 flex flex-col gap-1 min-w-0">
+                        <p className="text-[16px] font-semibold text-black leading-6 capitalize">Official Telegram channel</p>
+                        <p className="text-[14px] text-[#1E1E1E] leading-5">Get instant updates on new articles and limited offers</p>
+                      </div>
+                    </div>
+                    <a
+                      href="https://t.me/dinespower"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cursor-pointer flex items-center justify-center w-full h-11 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black hover:bg-[#E7E7E7] hover:border-transparent transition-colors"
                     >
-                      <rect
-                        x="2"
-                        y="4"
-                        width="16"
-                        height="12"
-                        rx="2"
-                        stroke="#FF6701"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M2 6l8 5 8-5"
-                        stroke="#FF6701"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <h3 className="text-[16px] font-extrabold text-[#181818]">
-                      New Articles By Email
-                    </h3>
+                      Join Channel
+                    </a>
                   </div>
-                  <p className="text-sm text-[#7E7E7E] mb-4">
-                    Subscribe and get the latest articles delivered to your inbox
-                  </p>
-                  <input
-                    type="email"
-                    placeholder="Your email address"
-                    className="w-full h-[44px] bg-white border border-[#E7E7E7] rounded-lg px-4 text-sm text-[#181818] placeholder:text-[#B6B6B6] outline-none focus:border-[#FF6701] transition-colors mb-3"
-                  />
-                  <button className="w-full bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold rounded-lg h-[44px] transition-colors">
-                    Get updates
-                  </button>
-                </div>
-
-                {/* Telegram Card */}
-                <div className="bg-[#00A9DE] rounded-[12px] p-5 text-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-3">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="white"
-                    >
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.66-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49 1.02-.74 3.99-1.74 6.65-2.89 7.99-3.44 3.81-1.58 4.6-1.86 5.12-1.87.11 0 .37.03.53.17.14.12.18.28.2.47-.01.06.01.24 0 .37z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-[16px] font-extrabold text-white mb-1">
-                    Telegram Dinespower
-                  </h3>
-                  <p className="text-sm text-white/70 mb-4">
-                    Get exclusive deals, news and community discussion
-                  </p>
-                  <a
-                    href="#"
-                    className="block bg-white text-[#00A9DE] text-sm font-semibold rounded-lg h-[44px] w-full transition-colors text-center leading-[44px] hover:bg-white/90"
-                  >
-                    Go to Telegram
-                  </a>
                 </div>
               </div>
             </div>

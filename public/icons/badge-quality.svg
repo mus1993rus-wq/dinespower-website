@@ -1,0 +1,16 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="30" cy="30" r="29.5" fill="white" stroke="#181818" stroke-width="1"/>
+  <defs>
+    <path id="topArc" d="M 10 30 A 20 20 0 0 1 50 30" fill="none"/>
+    <path id="bottomArc" d="M 10 30 A 20 20 0 0 0 50 30" fill="none"/>
+  </defs>
+  <text fill="#181818" font-family="Inter, sans-serif" font-size="6" font-weight="600">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">3rd Party</textPath>
+  </text>
+  <text fill="#181818" font-family="Inter, sans-serif" font-size="6" font-weight="600">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">TESTED</textPath>
+  </text>
+  <rect x="10" y="25" width="40" height="10" fill="white"/>
+  <rect x="10" y="25" width="40" height="10" fill="none" stroke="#181818" stroke-width="0.8"/>
+  <text x="30" y="32" text-anchor="middle" fill="#181818" font-family="Inter, sans-serif" font-size="7" font-weight="700">QUALITY</text>
+</svg>

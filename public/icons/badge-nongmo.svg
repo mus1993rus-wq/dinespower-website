@@ -1,0 +1,14 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="30" cy="30" r="29.5" fill="white" stroke="#181818" stroke-width="1"/>
+  <defs>
+    <path id="nTop" d="M 12 30 A 18 18 0 0 1 48 30" fill="none"/>
+    <path id="nBot" d="M 14 30 A 16 16 0 0 0 46 30" fill="none"/>
+  </defs>
+  <text fill="#181818" font-family="Inter, sans-serif" font-size="5.5" font-weight="600">
+    <textPath href="#nTop" startOffset="50%" text-anchor="middle">Made with</textPath>
+  </text>
+  <text fill="#181818" font-family="Inter, sans-serif" font-size="5" font-weight="600">
+    <textPath href="#nBot" startOffset="50%" text-anchor="middle">Ingredients</textPath>
+  </text>
+  <text x="30" y="32" text-anchor="middle" fill="#181818" font-family="Inter, sans-serif" font-size="6.5" font-weight="700">NON-GMO</text>
+</svg>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -344,32 +345,63 @@ export default function LabTestsPage() {
             Lab Tests
           </h1>
 
-          <div className="flex gap-8">
-            {/* Sidebar - sticky anchor navigation */}
-            <div className="w-[220px] shrink-0">
-              <div className="sticky top-6 flex flex-col">
-                {sidebarCategories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => scrollToCategory(cat)}
-                    className={`text-left px-0 py-2.5 text-[14px] transition-colors flex items-center justify-between ${
-                      activeCategory === cat
-                        ? "text-[#181818] font-bold"
-                        : "text-[#7E7E7E] hover:text-[#181818] font-medium"
-                    }`}
-                  >
-                    <span>{cat}</span>
-                    {activeCategory === cat && (
-                      <svg width="7" height="12" viewBox="0 0 7 12" fill="none">
-                        <path d="M1 1L6 6L1 11" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    )}
+          <div className="flex gap-[80px]">
+            {/* LEFT sidebar — Figma FAQ style */}
+            <div className="w-[440px] shrink-0">
+              <div className="sticky top-4 bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
+                {/* Category menu card */}
+                <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col gap-2">
+                  {sidebarCategories.map((cat) => {
+                    const active = activeCategory === cat;
+                    return (
+                      <button
+                        key={cat}
+                        onClick={() => scrollToCategory(cat)}
+                        className={`cursor-pointer flex items-center justify-center gap-2 px-4 py-2 rounded-[8px] w-full transition-colors ${
+                          active ? "bg-[#F7F7F7]" : "hover:bg-[#F7F7F7]"
+                        }`}
+                      >
+                        <span className="flex-1 text-left text-[14px] font-semibold text-[#181818] leading-5">{cat}</span>
+                        {active && (
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                            <path d="M9 6l6 6-6 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Still Have Questions Card */}
+                <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
+                  <div className="w-12 h-12 relative shrink-0">
+                    <Image src="/icons/question-bubble.png" alt="" fill className="object-contain" unoptimized />
+                  </div>
+                  <p className="text-[16px] font-semibold text-black leading-6 capitalize">Still have questions?</p>
+                  <p className="text-[14px] text-[#1E1E1E] leading-5 text-center">
+                    Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.
+                  </p>
+                  <button className="cursor-pointer flex items-center justify-center h-11 w-full bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+                    Ask a Question
                   </button>
-                ))}
+                  <div className="flex gap-4 items-center">
+                    <a href="https://t.me/dinespower" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full bg-[#00A9DE] flex items-center justify-center hover:opacity-90 transition-opacity">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M3.32168 11.8714L18.7484 5.92338C19.4644 5.66472 20.0897 6.09805 19.8577 7.18072L19.859 7.17938L17.2323 19.5541C17.0377 20.4314 16.5164 20.6447 15.787 20.2314L11.787 17.2834L9.85768 19.1421C9.64435 19.3554 9.46435 19.5354 9.05102 19.5354L9.33502 15.4647L16.7483 8.76738C17.071 8.48338 16.6763 8.32338 16.251 8.60605L7.08968 14.374L3.14035 13.1421C2.28302 12.8701 2.26435 12.2847 3.32168 11.8714Z" fill="white"/>
+                      </svg>
+                    </a>
+                    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full bg-[#00D43F] flex items-center justify-center hover:opacity-90 transition-opacity">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15.25 13.2808C15.0625 13.1558 14.875 13.0933 14.6875 13.3433L13.9375 14.3433C13.75 14.4683 13.625 14.5308 13.375 14.4058C12.4375 13.9058 11.125 13.3433 10 11.4683C9.93753 11.2183 10.0625 11.0933 10.1875 10.9683L10.75 10.0933C10.875 9.96832 10.8125 9.84332 10.75 9.71832L10 7.90582C9.81253 7.40582 9.62503 7.46832 9.43753 7.46832H8.93753C8.81253 7.46832 8.56253 7.53082 8.31253 7.78082C6.93753 9.15582 7.50003 11.0933 8.50003 12.3433C8.68753 12.5933 9.93753 14.8433 12.625 16.0308C14.625 16.9058 15.0625 16.7808 15.625 16.6558C16.3125 16.5933 17 16.0308 17.3125 15.4683C17.375 15.2808 17.6875 14.4683 17.4375 14.3433" fill="white"/>
+                        <path d="M12.5 20.2183C9.9375 20.2183 8 18.8433 8 18.8433L4.9375 19.6558L5.6875 16.6558C5.6875 16.6558 4.4375 14.7183 4.4375 12.2808C4.4375 7.78076 8.125 4.03076 12.6875 4.03076C16.9375 4.03076 20.5625 7.34326 20.5625 11.9683C20.5625 16.4683 16.9375 20.1558 12.5 20.2183ZM2.5625 22.0308L7.75 20.5933C9.25239 21.3624 10.9268 21.7336 12.6135 21.6715C14.3002 21.6094 15.9428 21.116 17.3846 20.2384C18.8263 19.3608 20.019 18.1284 20.8489 16.6587C21.6788 15.189 22.1182 13.5311 22.125 11.8433C22.125 6.46826 17.875 2.15576 12.5 2.15576C10.7748 2.16018 9.08091 2.61647 7.58694 3.4792C6.09297 4.34194 4.85109 5.58101 3.98497 7.07301C3.11884 8.56502 2.65871 10.2579 2.65038 11.9831C2.64205 13.7082 3.08582 15.4055 3.9375 16.9058" fill="white"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Main Content - ALL categories shown */}
+            {/* Main Content — categories with 5-column grid */}
             <div className="flex-1 min-w-0">
               {productData.map((category) => {
                 const startIndex = globalIndex;
@@ -381,20 +413,14 @@ export default function LabTestsPage() {
                       className="group cursor-pointer"
                       onClick={() => setModalIndex(thisIndex)}
                     >
-                      <div className="relative w-full aspect-[160/220] rounded-lg overflow-hidden border border-[#EBEBEB] hover:border-[#D0D0D0] transition-colors">
+                      <div className="relative w-full aspect-[157/242] rounded-[12px] overflow-hidden border border-[#EBEBEB] hover:border-[#D0D0D0] transition-colors">
                         <TestReportThumbnail />
                         {/* Hover overlay with eye icon */}
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg">
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                           <div className="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
                             <EyeIcon />
                           </div>
                         </div>
-                      </div>
-                      <div className="mt-2">
-                        <p className="text-[13px] font-semibold text-[#181818] leading-[18px] line-clamp-2">
-                          {product.name}
-                        </p>
-                        <p className="text-[12px] text-[#7E7E7E] mt-0.5">{product.brand}</p>
                       </div>
                     </div>
                   );
@@ -405,10 +431,10 @@ export default function LabTestsPage() {
 
                 return (
                   <div key={category.title} id={sectionId} className="mb-10 scroll-mt-6">
-                    <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-5">
+                    <h2 className="text-[22px] font-extrabold text-[#181818] leading-[28px] mb-5">
                       {category.title}
                     </h2>
-                    <div className="grid grid-cols-6 gap-4">
+                    <div className="grid grid-cols-5 gap-2">
                       {items}
                     </div>
                   </div>

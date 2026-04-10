@@ -1,0 +1,21 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="30" cy="30" r="29.5" fill="white" stroke="#181818" stroke-width="1"/>
+  <defs>
+    <path id="gTop" d="M 12 30 A 18 18 0 0 1 48 30" fill="none"/>
+    <path id="gBot" d="M 14 30 A 16 16 0 0 0 46 30" fill="none"/>
+  </defs>
+  <text fill="#181818" font-family="Inter, sans-serif" font-size="6.5" font-weight="700" letter-spacing="0.5">
+    <textPath href="#gTop" startOffset="50%" text-anchor="middle">GLUTEN</textPath>
+  </text>
+  <text fill="#181818" font-family="Inter, sans-serif" font-size="6.5" font-weight="700" letter-spacing="0.5">
+    <textPath href="#gBot" startOffset="50%" text-anchor="middle">FREE</textPath>
+  </text>
+  <!-- wheat icon -->
+  <path d="M30 23 L30 37" stroke="#181818" stroke-width="1" stroke-linecap="round"/>
+  <ellipse cx="28" cy="26" rx="1.5" ry="2.2" fill="#181818"/>
+  <ellipse cx="32" cy="26" rx="1.5" ry="2.2" fill="#181818"/>
+  <ellipse cx="28" cy="29" rx="1.5" ry="2.2" fill="#181818"/>
+  <ellipse cx="32" cy="29" rx="1.5" ry="2.2" fill="#181818"/>
+  <ellipse cx="28" cy="32" rx="1.5" ry="2.2" fill="#181818"/>
+  <ellipse cx="32" cy="32" rx="1.5" ry="2.2" fill="#181818"/>
+</svg>
