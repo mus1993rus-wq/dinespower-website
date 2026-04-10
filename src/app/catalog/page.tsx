@@ -325,6 +325,17 @@ function CatalogContent() {
     }
   }, [categorySlug, brandSlug, router]);
 
+  // No "All Products" page — redirect to home if no category
+  useEffect(() => {
+    if (!categorySlug) {
+      router.replace("/");
+    }
+  }, [categorySlug, router]);
+
+  if (!categorySlug) {
+    return null;
+  }
+
   const bannerDescription = currentBrandLabel
     ? brandDescriptions[currentBrandLabel] || ""
     : categorySlug
@@ -450,7 +461,7 @@ function CatalogContent() {
               </div>
             </div>
           </div>
-        ) : (categorySlug && !bannerImage) ? (
+        ) : (
           <div className="max-w-[1340px] mx-auto mb-8">
             <div className="relative h-[278px] rounded-[16px] overflow-hidden bg-white border border-[#E7E7E7]">
               <div className="absolute left-[60px] top-1/2 -translate-y-1/2 max-w-[50%]">
@@ -465,107 +476,88 @@ function CatalogContent() {
               </div>
             </div>
           </div>
-        ) : (
-          <div className="max-w-[1340px] mx-auto mb-8">
-            <div className="relative h-[278px] rounded-[16px] overflow-hidden bg-[#1A1A1A]">
-              <div className="absolute left-[60px] top-1/2 -translate-y-1/2">
-                <h1 className="text-[40px] font-black text-white uppercase leading-[44px]">
-                  All Products
-                </h1>
-                <p className="text-[16px] text-[#A0A0A0] leading-[22px] mt-2">
-                  Browse our complete catalog of premium products
-                </p>
-              </div>
-            </div>
-          </div>
         )}
 
         <div className="max-w-[1340px] mx-auto flex gap-6 pb-16">
-          {/* Sidebar Filters */}
-          <aside className="w-[220px] shrink-0">
-            {/* Brands section — navigation links, not filter toggles */}
-            <div className="mb-6">
-              <h4 className="text-sm font-semibold text-[#181818] mb-3">Brands</h4>
-              <div className="flex flex-col gap-0.5">
-                {currentBrandLabel && categorySlug && (
-                  <Link
-                    href={`/catalog?category=${categorySlug}`}
-                    className="flex items-center gap-1.5 text-sm text-[#FF6701] font-semibold px-2 py-1.5 hover:underline"
-                  >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="shrink-0">
-                      <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    All {currentCategory?.label}
-                  </Link>
-                )}
+          {/* Sidebar Filters — Figma 1249:5311 card style */}
+          <aside className="w-[256px] shrink-0 flex flex-col gap-4">
+            {/* Brands card */}
+            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4">
+              <h4 className="text-[12px] text-[#7E7E7E] leading-4 mb-3">Brands</h4>
+              <div className="flex flex-col gap-1">
                 {brandsForCategory.map((b) => {
                   const isActive = brandSlug === brandLabelToSlug[b];
                   return (
                     <Link
                       key={b}
                       href={`/catalog?category=${categorySlug}&brand=${brandLabelToSlug[b]}`}
-                      className={`flex items-center gap-2.5 text-sm px-2 py-2 rounded-lg transition-colors ${
-                        isActive
-                          ? "border-l-2 border-[#FF6701] pl-[6px]"
-                          : "hover:bg-[#F7F7F7]"
+                      className={`flex items-center gap-3 px-2 py-2 rounded-[8px] transition-colors ${
+                        isActive ? "bg-[#F7F7F7]" : "hover:bg-[#F7F7F7]"
                       }`}
                     >
                       <BrandBadge brand={b} />
-                      <span className={`text-sm leading-5 ${isActive ? "text-[#FF6701] font-semibold" : "text-[#181818]"}`}>
-                        {b}
-                      </span>
+                      <span className="text-[14px] font-semibold text-[#181818] leading-5">{b}</span>
                     </Link>
                   );
                 })}
               </div>
             </div>
 
-            {/* Availability */}
-            <div className="mb-6">
-              <h4 className="text-sm font-semibold text-[#181818] mb-3">Availability</h4>
-              <div className="flex flex-col gap-2.5">
-                <label className="flex items-center gap-2.5 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={inStockChecked}
-                    onChange={(e) => setInStockChecked(e.target.checked)}
-                    className="w-[18px] h-[18px] rounded border-[#E7E7E7] accent-[#FF6701]"
-                  />
-                  <span className="text-sm text-[#181818] leading-5">In Stock</span>
+            {/* Availability card */}
+            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4">
+              <h4 className="text-[12px] text-[#7E7E7E] leading-4 mb-3">Availability</h4>
+              <div className="flex flex-col gap-3">
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <span
+                    onClick={() => setInStockChecked(!inStockChecked)}
+                    className={`w-5 h-5 rounded-[4px] flex items-center justify-center shrink-0 transition-colors ${
+                      inStockChecked ? "bg-[#181818]" : "border border-[#CBCBCB] bg-white"
+                    }`}
+                  >
+                    {inStockChecked && (
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                        <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    )}
+                  </span>
+                  <span className="text-[14px] text-[#181818] leading-5">In Stock</span>
                 </label>
-                <label className="flex items-center gap-2.5 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={outOfStockChecked}
-                    onChange={(e) => setOutOfStockChecked(e.target.checked)}
-                    className="w-[18px] h-[18px] rounded border-[#E7E7E7] accent-[#FF6701]"
-                  />
-                  <span className="text-sm text-[#181818] leading-5">Out of Stock</span>
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <span
+                    onClick={() => setOutOfStockChecked(!outOfStockChecked)}
+                    className={`w-5 h-5 rounded-[4px] flex items-center justify-center shrink-0 transition-colors ${
+                      outOfStockChecked ? "bg-[#181818]" : "border border-[#CBCBCB] bg-white"
+                    }`}
+                  >
+                    {outOfStockChecked && (
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                        <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    )}
+                  </span>
+                  <span className="text-[14px] text-[#181818] leading-5">Out of Stock</span>
                 </label>
               </div>
             </div>
 
-            {/* Price range */}
-            <div className="mb-6">
-              <h4 className="text-sm font-semibold text-[#181818] mb-3">Price</h4>
+            {/* Price card */}
+            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4">
+              <h4 className="text-[12px] text-[#7E7E7E] leading-4 mb-3">Price</h4>
               <div className="flex gap-2 items-center">
-                <div className="flex items-center border border-[#E7E7E7] rounded-lg px-3 h-9 flex-1">
-                  <span className="text-sm text-[#7E7E7E]">&euro;</span>
+                <div className="flex items-center border border-[#E7E7E7] rounded-[8px] h-10 flex-1 px-3">
                   <input
                     type="number"
                     value={priceRange[0]}
                     onChange={(e) => setPriceRange([+e.target.value, priceRange[1]])}
-                    className="w-full text-sm outline-none ml-1 bg-transparent"
+                    className="w-full text-[14px] text-[#181818] outline-none bg-transparent text-center"
                   />
                 </div>
-                <span className="text-[#B6B6B6]">&mdash;</span>
-                <div className="flex items-center border border-[#E7E7E7] rounded-lg px-3 h-9 flex-1">
-                  <span className="text-sm text-[#7E7E7E]">&euro;</span>
+                <div className="flex items-center border border-[#E7E7E7] rounded-[8px] h-10 flex-1 px-3">
                   <input
                     type="number"
                     value={priceRange[1]}
                     onChange={(e) => setPriceRange([priceRange[0], +e.target.value])}
-                    className="w-full text-sm outline-none ml-1 bg-transparent"
+                    className="w-full text-[14px] text-[#181818] outline-none bg-transparent text-center"
                   />
                 </div>
               </div>
@@ -575,7 +567,7 @@ function CatalogContent() {
                 max={100000}
                 value={priceRange[1]}
                 onChange={(e) => setPriceRange([priceRange[0], +e.target.value])}
-                className="w-full mt-3 accent-[#FF6701]"
+                className="w-full mt-4 accent-[#181818]"
               />
             </div>
           </aside>
