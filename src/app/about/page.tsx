@@ -104,14 +104,14 @@ export default function AboutPage() {
 
         {/* Expert Section */}
         <div className="max-w-[1340px] mx-auto mt-16">
-          <div className="flex gap-10 items-center">
-            {/* Left - Manager photo */}
-            <div className="w-[520px] h-[460px] shrink-0 rounded-[16px] relative overflow-hidden bg-[#F7F7F7]">
+          <div className="flex gap-20 items-stretch">
+            {/* Left - Manager photo — equal column, 80px gap */}
+            <div className="flex-1 rounded-[16px] relative overflow-hidden bg-[#F7F7F7] self-stretch min-h-[460px]">
               <Image src="/images/shop/expert-manager.png" alt="Expert Support" fill className="object-cover object-top" />
             </div>
 
             {/* Right - Content */}
-            <div className="flex-1">
+            <div className="flex-1 flex flex-col justify-center">
               <p className="text-[14px] text-[#FF6701] font-semibold mb-2">
                 Europe&apos;s trusted distributor of premium sports supplements
               </p>
