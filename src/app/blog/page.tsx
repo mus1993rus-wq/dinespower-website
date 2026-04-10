@@ -373,7 +373,7 @@ function BlogContent() {
                       <>
                         <div className="h-px bg-[#E7E7E7] my-8" />
                         <div className="bg-[#F7F7F7] rounded-[12px] p-4">
-                          <div className="bg-white border border-[#E7E7E7] rounded-[8px] px-4 py-6 flex items-center justify-center gap-4">
+                          <div className="bg-white border border-[#E7E7E7] rounded-[8px] px-6 py-4 flex items-center justify-center gap-4">
                             <div className="flex-1 flex items-center gap-4 min-w-0">
                               <div className="w-12 h-12 rounded-full bg-[#00A9DE] flex items-center justify-center shrink-0">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -389,7 +389,7 @@ function BlogContent() {
                               href="https://t.me/dinespower"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="cursor-pointer flex items-center justify-center h-11 w-[179px] bg-white border border-[#CBCBCB] rounded-[8px] px-4 text-[14px] font-semibold text-black shrink-0 hover:bg-[#E7E7E7] hover:border-transparent transition-colors"
+                              className="cursor-pointer flex items-center justify-center h-11 px-5 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black shrink-0 hover:bg-[#E7E7E7] hover:border-transparent transition-colors"
                             >
                               Join Channel
                             </a>
