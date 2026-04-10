@@ -5,14 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 
 const orderItems = [
-  { brand: "Biaxol", name: "Eca Xtreme (Extreme Fat Burner) In Capsules", price: 44, oldPrice: 55, qty: 2, image: "/images/shop/product-1.webp" },
-  { brand: "Astera Labs", name: "Dietary Supplements For Fat Burning And Energy Supply", price: 44, qty: 1, image: "/images/shop/product-2.webp" },
+  { brand: "Deus Medical", name: "3-Trenbomed 150 Injectable Steroid In Ampoules", price: 57, oldPrice: 65, qty: 2, image: "/images/shop/products/injectable-trenbomed-150.jpg" },
+  { brand: "Biaxol", name: "Yohimbine Fat Burner Capsules", price: 24, qty: 1, image: "/images/shop/products/fat-burn-yohimbine.png" },
 ];
 
 const suggestedProducts = [
-  { brand: "Deus Medical", name: "Viamed 100 (Seldenafilcitrat 100mg Oral Jelly - Viagra)", price: 17, image: "/images/shop/product-3.webp" },
-  { brand: "Deus Medical", name: "Winimed 50 Injectible Steroid In Ampoules", price: 17, image: "/images/shop/product-4.webp" },
-  { brand: "Astera Labs", name: "Dietary Supplements For Fat Burning And Energy Supply", price: 44, image: "/images/shop/product-5.webp" },
+  { brand: "Deus Medical", name: "Viamed 100 (Sildenafil) 100mg Oral Jelly", price: 17, image: "/images/shop/products/sex-support-viamed-100.webp" },
+  { brand: "Biaxol", name: "ECA Fat Burner Capsules", price: 40, image: "/images/shop/products/fat-burn-eca-xtreme-new.png" },
+  { brand: "Astera Labs", name: "BCAA Supplements For Muscle Recovery", price: 28, image: "/images/shop/products/amino-acids-bcaa.webp" },
 ];
 
 const inputClass = "w-full h-[53px] bg-white border border-[#E7E7E7] rounded-[8px] px-4 text-[14px] text-[#181818] placeholder:text-[#8A8A8A] outline-none focus:border-[#181818] transition-colors";

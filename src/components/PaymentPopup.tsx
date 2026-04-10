@@ -2,144 +2,140 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface PaymentPopupProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+const faqs = [
+  {
+    q: "How do I send the payment?",
+    a: "We provide all necessary payment instructions via email after you place your order. If you have any further questions or have not received an email with payment instructions after placing your order, please contact us.",
+  },
+  {
+    q: "Bitcoin Payment",
+    a: "All our products are manufactured in full compliance with global quality standards and are fully certified by WHO-GMP and comply with EU GMP and UK MHRA.",
+    action: { label: "See Detail Instruction", href: "/bitcoin" },
+  },
+];
+
 export default function PaymentPopup({ isOpen, onClose }: PaymentPopupProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   if (!isOpen) return null;
 
-  const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
-
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center">
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <div className="relative bg-white rounded-[16px] p-8 max-w-[500px] w-full mx-4 z-10 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/60" onClick={onClose} />
+      <div className="relative bg-white rounded-[16px] w-full max-w-[680px] max-h-[90vh] overflow-y-auto z-10">
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-[#7E7E7E] hover:text-[#181818] transition-colors"
+          className="cursor-pointer absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-[#181818] hover:opacity-60 transition-opacity z-10"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </button>
 
-        {/* Title */}
-        <h2 className="text-[24px] font-extrabold text-center text-[#181818] mb-1">Payment Methods</h2>
-        <p className="text-[14px] text-[#7E7E7E] text-center mb-6">
-          Everything You Need To Know Before Placing An Order
-        </p>
-
-        {/* Payment cards */}
-        <div className="border border-[#E7E7E7] rounded-[12px] overflow-hidden mb-6">
-          {/* Bank Transfer */}
-          <div className="p-4 flex items-start gap-3 border-b border-[#E7E7E7]">
-            <div className="w-[40px] h-[40px] rounded-[10px] overflow-hidden shrink-0">
-              <Image src="/images/shop/popup-icons/bank-transfer.png" alt="Bank" width={40} height={40} className="object-cover" />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-[15px] font-extrabold text-[#181818]">Bank transfer</h3>
-              <p className="text-[13px] text-[#7E7E7E] mt-0.5">
-                Telegraphic Transfer (wire) to company bank account.
-              </p>
-              <p className="text-[12px] text-[#7E7E7E] mt-0.5">
-                Processing time: 1-3 business days
-              </p>
-            </div>
+        <div className="p-10 flex flex-col gap-7">
+          {/* Title */}
+          <div>
+            <h2 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-2">Payment Methods</h2>
+            <p className="text-[16px] text-[#7E7E7E] leading-6">Everything you need to know before placing an order</p>
           </div>
 
-          {/* Bitcoin */}
-          <div className="p-4 flex items-start gap-3">
-            <div className="w-[40px] h-[40px] rounded-[10px] overflow-hidden shrink-0">
-              <Image src="/images/shop/popup-icons/bitcoin.png" alt="Bitcoin" width={40} height={40} className="object-cover" />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-[15px] font-extrabold text-[#181818]">Bitcoin</h3>
-              <p className="text-[13px] text-[#7E7E7E] mt-0.5">
-                The preferred and most reliable payment method.
-              </p>
-              <p className="text-[12px] text-[#7E7E7E] mt-0.5">
-                Fast processing, instant network confirmation
-              </p>
-            </div>
-            <span className="bg-[#FF6701] text-white text-[11px] font-semibold px-2.5 py-1 rounded-[6px] whitespace-nowrap shrink-0">
-              We recommend
-            </span>
-          </div>
-        </div>
-
-        {/* How Payment Works */}
-        <div className="mb-6">
-          <h3 className="text-[16px] font-bold text-[#181818] text-center mb-4">How Payment Works</h3>
-          <div className="flex flex-col gap-3">
-            <div className="flex items-start gap-3">
-              <div className="w-[24px] h-[24px] bg-[#F5F5F5] rounded-full flex items-center justify-center shrink-0">
-                <span className="text-[12px] font-bold text-[#181818]">1</span>
-              </div>
-              <p className="text-[13px] text-[#4A4A4A]">Place your order via manager or the website</p>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="w-[24px] h-[24px] bg-[#F5F5F5] rounded-full flex items-center justify-center shrink-0">
-                <span className="text-[12px] font-bold text-[#181818]">2</span>
-              </div>
-              <p className="text-[13px] text-[#4A4A4A]">Payment instructions are sent by email after order placement</p>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="w-[24px] h-[24px] bg-[#F5F5F5] rounded-full flex items-center justify-center shrink-0">
-                <span className="text-[12px] font-bold text-[#181818]">3</span>
-              </div>
-              <p className="text-[13px] text-[#4A4A4A]">Orders are processed only after payment confirmation</p>
-            </div>
-          </div>
-        </div>
-
-        {/* No minimum order */}
-        <p className="text-[13px] text-[#7E7E7E] text-center mb-6">No Minimum Order Required</p>
-
-        {/* FAQ accordion */}
-        <div className="border border-[#E7E7E7] rounded-[12px] overflow-hidden">
-          {[
-            {
-              question: "How do I send the payment?",
-              answer:
-                "After placing your order, you will receive an email with detailed payment instructions including bank account details or a Bitcoin wallet address. Simply follow the instructions to complete your payment.",
-            },
-            {
-              question: "Bitcoin Payment",
-              answer:
-                "Bitcoin payments are processed instantly upon network confirmation. You will receive a unique wallet address for each order. We recommend using a reputable Bitcoin wallet for the transaction.",
-            },
-          ].map((faq, index) => (
-            <div key={index} className={index > 0 ? "border-t border-[#E7E7E7]" : ""}>
-              <button
-                onClick={() => toggleFaq(index)}
-                className="w-full flex items-center justify-between p-4 text-left"
-              >
-                <span className="text-[14px] font-semibold text-[#181818]">{faq.question}</span>
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  className={`shrink-0 transition-transform ${openFaq === index ? "rotate-45" : ""}`}
-                >
-                  <path d="M10 4V16M4 10H16" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-              </button>
-              {openFaq === index && (
-                <div className="px-4 pb-4">
-                  <p className="text-[13px] text-[#7E7E7E] leading-relaxed">{faq.answer}</p>
+          {/* Payment cards */}
+          <div className="bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
+            {/* Bank transfer + Bitcoin card */}
+            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col">
+              {/* Bank transfer */}
+              <div className="flex items-start gap-4 pb-3">
+                <div className="w-16 h-16 rounded-[8px] overflow-hidden shrink-0 bg-[#F7F7F7] flex items-center justify-center">
+                  <Image src="/images/shop/popup-icons/bank-transfer.png" alt="Bank" width={54} height={28} className="object-contain" />
                 </div>
-              )}
+                <div className="flex-1">
+                  <h3 className="text-[16px] font-semibold text-[#181818] leading-6">Bank transfer</h3>
+                  <p className="text-[14px] text-[#7E7E7E] leading-5 mt-1">
+                    Telegraphic Transfer (wire) to company bank account. Processing time: 1–3 business days
+                  </p>
+                </div>
+              </div>
+              <div className="h-px bg-[#E7E7E7]" />
+              {/* Bitcoin */}
+              <div className="flex items-start gap-4 pt-3">
+                <div className="w-16 h-16 rounded-[8px] shrink-0 flex items-center justify-center">
+                  <div className="w-[46px] h-[46px] rounded-full bg-[#F7931A] flex items-center justify-center">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+                      <path d="M17.06 11.57c.84-.57 1.34-1.48 1.2-2.83-.17-1.85-1.77-2.47-3.79-2.65l-.01-2.57h-1.57l-.01 2.5c-.41 0-.83.01-1.25.02l.01-2.52H10.1l.01 2.57c-.34 0-.67.01-1 .01v-.01H7v1.68s1.18-.02 1.16 0c.65 0 .86.38.92.71L9.07 11.6l.01 4.09c-.03.19-.14.5-.57.5.02.02-1.16 0-1.16 0l-.32 1.87h2c.37 0 .73.01 1.09.01l.01 2.6h1.57l-.01-2.57h1.25l.01 2.57h1.57v-2.59c2.64-.15 4.49-.81 4.72-3.28.19-1.99-.75-2.88-2.18-3.24zM12.38 8.13c1 0 4.15-.32 4.15 1.5 0 1.75-3.15 1.55-4.15 1.55V8.13zm0 8.8v-3.4c1.21 0 4.9-.34 4.9 1.7 0 1.97-3.69 1.7-4.9 1.7z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="flex-1 flex items-start justify-between gap-2">
+                  <div>
+                    <h3 className="text-[16px] font-semibold text-[#181818] leading-6">Bitcoin</h3>
+                    <p className="text-[14px] text-[#7E7E7E] leading-5 mt-1">
+                      The preferred and most reliable payment method. Fast processing, instant network confirmation
+                    </p>
+                  </div>
+                  <span className="bg-[#FF6701]/10 text-[#FF6701] text-[14px] font-semibold px-4 py-1 rounded-full whitespace-nowrap shrink-0">Recommended</span>
+                </div>
+              </div>
             </div>
-          ))}
+
+            {/* How Payment Works */}
+            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col gap-3">
+              <p className="text-[16px] font-semibold text-[#181818] leading-6 text-center">How Payment Works</p>
+              <div className="flex flex-col gap-2">
+                {[
+                  "Place your order via manager or the website",
+                  "Payment instructions are sent by email after order placement",
+                  "Orders are processed only after payment confirmation",
+                ].map((step, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                      <path d="M20 6L9 17L4 12" stroke="#00B638" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span className="text-[14px] text-[#181818] leading-5">{step}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <p className="text-[14px] text-[#7E7E7E] text-center leading-5">No minimum order required</p>
+          </div>
+
+          {/* FAQs */}
+          <div className="flex flex-col">
+            {faqs.map((faq, i) => (
+              <div key={i} className="border-t border-[#E7E7E7] last:border-b">
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="cursor-pointer w-full flex items-center justify-between py-4 gap-4"
+                >
+                  <div className="flex items-center gap-3">
+                    <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
+                    <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
+                  </div>
+                  <div className={`w-10 h-10 rounded-[8px] flex items-center justify-center shrink-0 transition-colors ${openFaq === i ? "bg-[#E7E7E7]" : "bg-[#F7F7F7]"}`}>
+                    <span className="text-[20px] leading-none text-[#181818]">{openFaq === i ? "−" : "+"}</span>
+                  </div>
+                </button>
+                {openFaq === i && (
+                  <div className="pb-4 pl-[36px] flex flex-col gap-3">
+                    <p className="text-[14px] text-[#7E7E7E] leading-5">{faq.a}</p>
+                    {faq.action && (
+                      <Link href={faq.action.href} onClick={onClose} className="inline-flex items-center justify-center h-11 px-6 w-fit bg-[#FF6701] hover:bg-[#E65D00] text-white text-[14px] font-semibold rounded-[8px] transition-colors">
+                        {faq.action.label}
+                      </Link>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

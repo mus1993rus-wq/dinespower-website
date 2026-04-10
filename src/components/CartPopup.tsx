@@ -11,11 +11,11 @@ interface CartPopupProps {
 }
 
 const suggestedProducts = [
-  { brand: "Deus Medical", name: "Winimed 50 Injectible Steroid In Ampoules", price: 17, oldPrice: 20, image: "/images/shop/winimed-50.png" },
-  { brand: "Biaxol", name: "Eca Xtreme (Extreme Fat Burner) In Capsules", price: 44, oldPrice: 55, image: "/images/shop/eca-xtreme.png" },
-  { brand: "Deus Medical", name: "Trenbolone Hex 76.5mg injectible", price: 62, image: "/images/shop/product-1.webp" },
-  { brand: "Astera Labs", name: "Andarine S4 injectible ampoules", price: 44, image: "/images/shop/product-2.webp" },
-  { brand: "Deus Medical", name: "Equimed 250 injectible steroid", price: 48, oldPrice: 58, image: "/images/shop/product-5.webp" },
+  { brand: "Deus Medical", name: "Viamed 100 (Sildenafil) 100mg Oral Jelly - Viagra", price: 17, image: "/images/shop/products/sex-support-viamed-100.webp" },
+  { brand: "Biaxol", name: "Yohimbine Fat Burner Capsules", price: 24, oldPrice: 30, image: "/images/shop/products/fat-burn-yohimbine.png" },
+  { brand: "Deus Medical", name: "Dianamed 10 Oral Steroid In Tablets", price: 13, oldPrice: 17, image: "/images/shop/products/oral-dianamed-10.jpg" },
+  { brand: "Astera Labs", name: "BCAA Supplements For Muscle Recovery", price: 28, image: "/images/shop/products/amino-acids-bcaa.webp" },
+  { brand: "Deus Medical", name: "BPC-157 Peptide In Vials", price: 39, oldPrice: 43, image: "/images/shop/products/peptides-hgh-bpc-157.jpg" },
 ];
 
 const countries = ["France", "Germany", "Italy", "Spain", "Netherlands", "Poland", "United Kingdom", "USA"];

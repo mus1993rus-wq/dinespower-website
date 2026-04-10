@@ -24,15 +24,16 @@ interface SuggestedProduct {
 }
 
 const initialItems: CartItem[] = [
-  { id: 1, brand: "Biaxol", name: "Eca Xtreme (Extreme Fat Burner) In Capsules", price: 44, oldPrice: 55, qty: 1, image: "/images/shop/product-1.webp" },
-  { id: 2, brand: "Astera Labs", name: "Dietary Supplements For Fat Burning And Energy Supply", price: 44, qty: 2, image: "/images/shop/product-2.webp" },
+  { id: 1, brand: "Deus Medical", name: "3-Trenbomed 150 Injectable Steroid In Ampoules", price: 57, oldPrice: 65, qty: 1, image: "/images/shop/products/injectable-trenbomed-150.jpg" },
+  { id: 2, brand: "Biaxol", name: "Yohimbine Fat Burner Capsules", price: 24, oldPrice: 30, qty: 2, image: "/images/shop/products/fat-burn-yohimbine.png" },
 ];
 
 const suggestedProducts: SuggestedProduct[] = [
-  { brand: "Deus Medical", name: "Winimed 50 Injectible Steroid In Ampoules", price: 17, image: "/images/shop/product-3.webp" },
-  { brand: "Deus Medical", name: "Winimed 50 Injectible Steroid In Ampoules", price: 17, image: "/images/shop/product-4.webp" },
-  { brand: "Deus Medical", name: "Viamed 100 (Seldenafilcitrat 100mg Oral Jelly - Viagra)", price: 17, image: "/images/shop/product-5.webp" },
-  { brand: "Deus Medical", name: "Dietary Supplements For Fat Burning And Energy Supply", price: 17, image: "/images/shop/product-1.webp" },
+  { brand: "Deus Medical", name: "Viamed 100 (Sildenafil) 100mg Oral Jelly", price: 17, image: "/images/shop/products/sex-support-viamed-100.webp" },
+  { brand: "Biaxol", name: "ECA Fat Burner Capsules", price: 40, image: "/images/shop/products/fat-burn-eca-xtreme-new.png" },
+  { brand: "Deus Medical", name: "Dianamed 10 Oral Steroid In Tablets", price: 13, image: "/images/shop/products/oral-dianamed-10.jpg" },
+  { brand: "Astera Labs", name: "BCAA Supplements For Muscle Recovery", price: 28, image: "/images/shop/products/amino-acids-bcaa.webp" },
+  { brand: "Deus Medical", name: "BPC-157 Peptide In Vials", price: 39, image: "/images/shop/products/peptides-hgh-bpc-157.jpg" },
 ];
 
 export default function CartPage() {

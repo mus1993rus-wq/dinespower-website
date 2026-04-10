@@ -8,92 +8,144 @@ interface ShippingPopupProps {
   onClose: () => void;
 }
 
+const regions = [
+  { flag: "🇪🇺", name: "Europe", time: "5–14 days", price: "From 29 €" },
+  { flag: "🇺🇸", name: "USA", time: "7–21 days", price: "From 29 €" },
+  { flag: "🌍", name: "World & Islands", time: "7–21 days", price: "From 29 €" },
+];
+
+const carriers = [
+  { src: "/images/shop/delivery-logos/dhl.png", alt: "DHL" },
+  { src: "/images/shop/delivery-logos/fedex.png", alt: "FedEx" },
+  { src: "/images/shop/delivery-logos/gls.png", alt: "GLS" },
+  { src: "/images/shop/delivery-logos/dpd.png", alt: "DPD" },
+  { src: "/images/shop/delivery-logos/tnt.png", alt: "TNT" },
+  { src: "/images/shop/delivery-logos/ems.png", alt: "EMS" },
+  { src: "/images/shop/delivery-logos/ups.png", alt: "UPS" },
+];
+
+const faqs: Array<{ q: string; a?: string; bullets?: string[]; info?: string }> = [
+  {
+    q: "Do you ship to P.O. boxes?",
+    a: "Yes, we ship to PO boxes. Just make sure you've entered the delivery address in the correct format.",
+  },
+  {
+    q: "Privacy & delivery guarantees",
+    bullets: [
+      "Discreet (stealth) packaging for safe delivery",
+      "Orders carefully packed and manually checked before shipping",
+      "Trusted transport companies used for delivery",
+      "Orders are non-returnable",
+    ],
+  },
+  {
+    q: "Reship Policy",
+    bullets: [
+      "Free reship (once) if parcel is seized (EU)",
+      "Free reship if not delivered within 45 days (after review)",
+    ],
+    info: "Reshipping is not available for certain countries (Canada, Australia, UAE, etc.).",
+  },
+];
+
 export default function ShippingPopup({ isOpen, onClose }: ShippingPopupProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center">
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <div className="relative bg-white rounded-[16px] p-8 max-w-[500px] w-full mx-4 z-10 max-h-[90vh] overflow-y-auto">
-        <button onClick={onClose} className="absolute top-4 right-4 text-[#7E7E7E] hover:text-[#181818] transition-colors">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/60" onClick={onClose} />
+      <div className="relative bg-white rounded-[16px] w-full max-w-[680px] max-h-[90vh] overflow-y-auto z-10">
+        <button
+          onClick={onClose}
+          className="cursor-pointer absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-[#181818] hover:opacity-60 transition-opacity z-10"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
         </button>
 
-        <h2 className="text-[24px] font-extrabold text-center text-[#181818] mb-1">Shipping Methods</h2>
-        <p className="text-[14px] text-[#7E7E7E] text-center mb-6">All You Need To Know About Shipping Before You Order</p>
-
-        {/* Shipping table */}
-        <div className="border border-[#E7E7E7] rounded-[12px] overflow-hidden mb-5">
-          <div className="flex items-center justify-between p-4 border-b border-[#E7E7E7]">
-            <div className="flex items-center gap-3">
-              <Image src="/images/shop/popup-icons/flag-eu.png" alt="EU" width={32} height={22} className="rounded-[4px]" />
-              <span className="text-[14px] font-semibold text-[#181818]">Europe</span>
-            </div>
-            <div className="flex items-center gap-6">
-              <span className="text-[13px] text-[#7E7E7E]">5-14 Days</span>
-              <span className="text-[14px] font-semibold text-[#181818]">From 29 &euro;</span>
-            </div>
+        <div className="p-10 flex flex-col gap-7">
+          <div>
+            <h2 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-2">Shipping Methods</h2>
+            <p className="text-[16px] text-[#7E7E7E] leading-6">All you need to know about shipping before you order</p>
           </div>
-          <div className="flex items-center justify-between p-4 border-b border-[#E7E7E7]">
-            <div className="flex items-center gap-3">
-              <Image src="/images/shop/popup-icons/flag-usa.png" alt="USA" width={32} height={22} className="rounded-[4px]" />
-              <span className="text-[14px] font-semibold text-[#181818]">USA</span>
-            </div>
-            <div className="flex items-center gap-6">
-              <span className="text-[13px] text-[#7E7E7E]">7-21 Days</span>
-              <span className="text-[14px] font-semibold text-[#181818]">From 29 &euro;</span>
-            </div>
-          </div>
-          <div className="flex items-center justify-between p-4">
-            <div className="flex items-center gap-3">
-              <Image src="/images/shop/popup-icons/flag-world.png" alt="World" width={32} height={22} className="rounded-[4px]" />
-              <span className="text-[14px] font-semibold text-[#181818]">World & Islands</span>
-            </div>
-            <div className="flex items-center gap-6">
-              <span className="text-[13px] text-[#7E7E7E]">7-21 Days</span>
-              <span className="text-[14px] font-semibold text-[#181818]">From 29 &euro;</span>
-            </div>
-          </div>
-        </div>
 
-        {/* Shipping company logos - real images */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-5">
-          <Image src="/images/shop/popup-icons/logo-ems.png" alt="EMS" width={48} height={24} className="object-contain" />
-          <span className="text-[12px] font-extrabold text-[#C8102E] bg-[#FFCC00] rounded px-2 py-1">DHL</span>
-          <Image src="/images/shop/popup-icons/logo-gls.png" alt="GLS" width={48} height={24} className="object-contain" />
-          <Image src="/images/shop/popup-icons/logo-dpd.png" alt="DPD" width={48} height={24} className="object-contain" />
-          <Image src="/images/shop/popup-icons/logo-tnt.png" alt="TNT" width={48} height={24} className="object-contain" />
-          <Image src="/images/shop/popup-icons/logo-fedex.png" alt="FedEx" width={48} height={24} className="object-contain" />
-          <span className="text-[12px] font-extrabold text-[#644117] bg-[#FFB500] rounded px-2 py-1">UPS</span>
-        </div>
-
-        <p className="text-[13px] text-[#FF6701] font-semibold text-center mb-6">
-          Orders Shipped Within 1-3 Business Days After Payment
-        </p>
-
-        {/* FAQ accordion */}
-        <div className="border border-[#E7E7E7] rounded-[12px] overflow-hidden">
-          {[
-            { question: "Do you ship to P.O. boxes?", answer: "We generally do not ship to P.O. boxes as our carriers require a physical address for delivery. Please provide a street address for your order to ensure smooth delivery." },
-            { question: "Privacy & delivery guarantees", answer: "All packages are shipped in discreet, unmarked packaging. We guarantee delivery to the address provided. In case of any issues, our support team will assist you immediately." },
-            { question: "Reship Policy", answer: "If your package is lost, seized, or damaged during transit, we offer a free reship or full refund. Please contact our support team with your order number for assistance." },
-          ].map((faq, index) => (
-            <div key={index} className={index > 0 ? "border-t border-[#E7E7E7]" : ""}>
-              <button onClick={() => setOpenFaq(openFaq === index ? null : index)} className="w-full flex items-center justify-between p-4 text-left cursor-pointer">
-                <span className="text-[14px] font-semibold text-[#181818]">{faq.question}</span>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className={`shrink-0 transition-transform ${openFaq === index ? "rotate-45" : ""}`}>
-                  <path d="M10 4V16M4 10H16" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-              </button>
-              {openFaq === index && (
-                <div className="px-4 pb-4">
-                  <p className="text-[13px] text-[#7E7E7E] leading-relaxed">{faq.answer}</p>
+          <div className="bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
+            {/* Regions table */}
+            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col">
+              {regions.map((r, i) => (
+                <div key={r.name}>
+                  <div className="flex items-center py-2">
+                    <div className="flex items-center gap-3 flex-1">
+                      <span className="text-[20px]">{r.flag}</span>
+                      <span className="text-[16px] font-semibold text-[#181818] leading-6">{r.name}</span>
+                    </div>
+                    <span className="text-[14px] text-[#7E7E7E] leading-5 w-[100px] text-right">{r.time}</span>
+                    <span className="text-[14px] font-semibold text-[#FF6701] leading-5 w-[110px] text-right">{r.price}</span>
+                  </div>
+                  {i < regions.length - 1 && <div className="h-px bg-[#E7E7E7]" />}
                 </div>
-              )}
+              ))}
             </div>
-          ))}
+
+            {/* Carrier logos */}
+            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex items-center justify-between gap-2 flex-wrap">
+              {carriers.map((c) => (
+                <div key={c.alt} className="h-[42px] w-[70px] flex items-center justify-center">
+                  <Image src={c.src} alt={c.alt} width={70} height={42} className="object-contain h-full w-auto" />
+                </div>
+              ))}
+            </div>
+
+            <p className="text-[14px] text-[#7E7E7E] text-center leading-5">Orders shipped within 1–3 business days after payment</p>
+          </div>
+
+          {/* FAQs */}
+          <div className="flex flex-col">
+            {faqs.map((faq, i) => (
+              <div key={i} className="border-t border-[#E7E7E7] last:border-b">
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="cursor-pointer w-full flex items-center justify-between py-4 gap-4"
+                >
+                  <div className="flex items-center gap-3">
+                    <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
+                    <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
+                  </div>
+                  <div className={`w-10 h-10 rounded-[8px] flex items-center justify-center shrink-0 transition-colors ${openFaq === i ? "bg-[#E7E7E7]" : "bg-[#F7F7F7]"}`}>
+                    <span className="text-[20px] leading-none text-[#181818]">{openFaq === i ? "−" : "+"}</span>
+                  </div>
+                </button>
+                {openFaq === i && (
+                  <div className="pb-4 pl-[36px] flex flex-col gap-3">
+                    {faq.a && <p className="text-[14px] text-[#7E7E7E] leading-5">{faq.a}</p>}
+                    {faq.bullets && (
+                      <div className="flex flex-col gap-2">
+                        {faq.bullets.map((b, bi) => (
+                          <div key={bi} className="flex items-center gap-2">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                              <path d="M20 6L9 17L4 12" stroke="#00B638" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                            <span className="text-[14px] text-[#181818] leading-5">{b}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {faq.info && (
+                      <div className="flex items-start gap-3 bg-[#FFF5EE] border border-[#FF6701]/20 rounded-[8px] p-3">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF6701" className="shrink-0">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                        </svg>
+                        <p className="text-[14px] text-[#181818] leading-5">{faq.info}</p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
