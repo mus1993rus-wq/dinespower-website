@@ -11,9 +11,11 @@ interface CartPopupProps {
 }
 
 const suggestedProducts = [
-  { brand: "Astera Labs", name: "Bacteriostatic Water In Vials", price: 11, oldPrice: 15, image: "/images/shop/product-3.webp" },
-  { brand: "Deus Medical", name: "Viamed 100 (Seldenafilcitrat 100mg Oral Jelly - Viagra)", price: 17, image: "/images/shop/product-4.webp" },
-  { brand: "Deus Medical", name: "Andarine S4 SARM", price: 44, image: "/images/shop/product-1.webp" },
+  { brand: "Deus Medical", name: "Winimed 50 Injectible Steroid In Ampoules", price: 17, oldPrice: 20, image: "/images/shop/winimed-50.png" },
+  { brand: "Biaxol", name: "Eca Xtreme (Extreme Fat Burner) In Capsules", price: 44, oldPrice: 55, image: "/images/shop/eca-xtreme.png" },
+  { brand: "Deus Medical", name: "Trenbolone Hex 76.5mg injectible", price: 62, image: "/images/shop/product-1.webp" },
+  { brand: "Astera Labs", name: "Andarine S4 injectible ampoules", price: 44, image: "/images/shop/product-2.webp" },
+  { brand: "Deus Medical", name: "Equimed 250 injectible steroid", price: 48, oldPrice: 58, image: "/images/shop/product-5.webp" },
 ];
 
 const countries = ["France", "Germany", "Italy", "Spain", "Netherlands", "Poland", "United Kingdom", "USA"];
@@ -39,7 +41,8 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
   const promoDiscount = appliedPromo === "Dines2026" ? totalPrice * 0.05 : 0;
   const discount5 = qualifiesForDiscount ? totalPrice * 0.05 : 0;
   const shippingCost = country ? shippingRates[country] || 0 : 0;
-  const finalTotal = totalPrice - promoDiscount - discount5 + shippingCost;
+  // Shipping shown as info only in "Calculate shipping rate" — not added to cart total
+  const finalTotal = totalPrice - promoDiscount - discount5;
 
   const handleApplyPromo = () => {
     if (promoCode.trim().toLowerCase() === "dines2026") {
@@ -76,13 +79,13 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
           {totalPrice > 0 && (
             <div className="px-8 pb-4">
               {qualifiesForDiscount ? (
-                <div className="bg-[#E8F8EE] rounded-[8px] px-4 py-3 flex items-center gap-2">
-                  <div className="w-5 h-5 rounded-full bg-[#00B638] flex items-center justify-center shrink-0">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                <div className="bg-[#E8F8EE] rounded-[12px] px-6 py-4 flex items-center justify-center gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#00B638] flex items-center justify-center shrink-0">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                       <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <p className="text-[14px] text-[#181818] leading-5">You have received a 5% discount</p>
+                  <p className="text-[16px] font-semibold text-[#181818] leading-6">You have received a 5% discount</p>
                 </div>
               ) : (
                 <>
@@ -115,11 +118,9 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
             <div className="px-6 pt-4">
               {items.map((item, index) => (
                 <div key={index} className="flex gap-4 pb-4 mb-4 border-b border-[#E7E7E7] last:border-b-0">
-                  <div className="w-[120px] h-[120px] bg-[#F7F7F7] rounded-[8px] shrink-0 flex items-center justify-center overflow-hidden p-2">
-                    {item.image ? (
+                  <div className="w-[120px] h-[120px] rounded-[8px] shrink-0 flex items-center justify-center overflow-hidden p-2">
+                    {item.image && (
                       <Image src={item.image} alt={item.name} width={100} height={100} className="object-contain" />
-                    ) : (
-                      <div className="w-full h-full bg-[#F7F7F7]" />
                     )}
                   </div>
                   <div className="flex-1 flex flex-col">
@@ -179,28 +180,31 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
                   </div>
                 </div>
                 <div className="flex gap-4 items-center">
-                  <div className="w-[120px] h-[120px] bg-[#F7F7F7] rounded-[8px] shrink-0 flex items-center justify-center overflow-hidden p-2">
+                  <div className="w-[120px] h-[120px] rounded-[8px] shrink-0 flex items-center justify-center overflow-hidden p-2">
                     <Image src={currentSuggest.image} alt={currentSuggest.name} width={100} height={100} className="object-contain" />
                   </div>
                   <div className="flex-1 flex flex-col">
                     <p className="text-[12px] text-[#7E7E7E] leading-4">{currentSuggest.brand}</p>
                     <p className="text-[14px] font-semibold text-[#181818] leading-5 line-clamp-2 mt-1">{currentSuggest.name}</p>
-                    <div className="flex items-center gap-3 mt-3">
-                      <div className="flex-1 h-9 bg-[#F7F7F7] rounded-[8px] flex items-center justify-center">
+                    <div className="flex items-center gap-2 mt-3">
+                      <div className="flex-1 h-9 bg-[#F7F7F7] rounded-[8px] flex items-center justify-center gap-2">
                         <span className="text-[14px] font-semibold text-[#181818]">{currentSuggest.price}€</span>
                         {currentSuggest.oldPrice && (
-                          <span className="text-[12px] text-[#7E7E7E] line-through ml-2">{currentSuggest.oldPrice} €</span>
+                          <span className="text-[12px] text-[#7E7E7E] line-through">{currentSuggest.oldPrice} €</span>
                         )}
                       </div>
                       <button
                         onClick={() => handleAddSuggested(currentSuggest)}
-                        className="cursor-pointer w-[72px] h-9 bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center transition-colors shrink-0"
+                        className="group cursor-pointer relative flex-1 h-9 bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center transition-colors overflow-hidden"
                       >
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transition-all duration-300 ease-out group-hover:translate-y-[150%] group-hover:opacity-0">
                           <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                           <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                           <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
+                        <span className="absolute text-[14px] font-semibold text-white whitespace-nowrap transition-all duration-300 ease-out -translate-y-[150%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+                          Add to cart
+                        </span>
                       </button>
                     </div>
                   </div>
@@ -211,8 +215,12 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
               <div className="px-6 border-t border-[#E7E7E7]">
                 <button onClick={() => setPromoOpen(!promoOpen)} className="cursor-pointer w-full flex items-center justify-between py-4 text-[16px] font-semibold text-[#181818]">
                   <div className="flex items-center gap-3">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82zM7 7h.01" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    {/* Figma promo seal icon */}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#181818">
+                      <path d="M20.89 10.31l-1.05-1.22c-.2-.23-.36-.66-.36-.97V6.8c0-.82-.67-1.49-1.49-1.49h-1.32c-.3 0-.74-.16-.97-.36l-1.22-1.05c-.53-.45-1.4-.45-1.94 0l-1.21 1.06c-.23.19-.67.35-.97.35H8.01c-.82 0-1.49.67-1.49 1.49v1.33c0 .3-.16.73-.35.96l-1.04 1.23c-.44.53-.44 1.39 0 1.92l1.04 1.23c.19.23.35.66.35.96v1.33c0 .82.67 1.49 1.49 1.49h1.34c.3 0 .74.16.97.36l1.22 1.05c.53.45 1.4.45 1.94 0l1.22-1.05c.23-.2.66-.36.97-.36h1.32c.82 0 1.49-.67 1.49-1.49v-1.32c0-.3.16-.74.36-.97l1.05-1.22c.44-.54.44-1.42-.01-1.96z" />
+                      <path d="M9.17 15.58a.95.95 0 01-.67-.28.97.97 0 010-1.34l5.66-5.66c.37-.37.97-.37 1.34 0 .37.37.37.97 0 1.34l-5.66 5.66a.96.96 0 01-.67.28z" fill="white" />
+                      <circle cx="9.5" cy="9.5" r="1.25" fill="white" />
+                      <circle cx="14.5" cy="14.5" r="1.25" fill="white" />
                     </svg>
                     Do you have a Promo Code?
                   </div>
@@ -333,12 +341,6 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
                     </span>
                     <span className="text-[#FB2F2F] ml-1">-{promoDiscount.toFixed(2)} €</span>
                   </span>
-                </div>
-              )}
-              {country && shippingCost > 0 && (
-                <div className="flex justify-between text-[14px]">
-                  <span className="text-[#7E7E7E]">Shipping ({country})</span>
-                  <span className="text-[#181818]">+{shippingCost.toFixed(2)} €</span>
                 </div>
               )}
             </div>

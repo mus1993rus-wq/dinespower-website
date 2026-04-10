@@ -713,7 +713,7 @@ function CatalogContent() {
 
             {/* SEO text block — inside right column */}
             <div className="pt-12 pb-8">
-              <h3 className="text-[20px] font-extrabold text-[#181818] leading-[26px] mb-4">
+              <h3 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">
                 Dinespower is the best distributor of bodybuilding preparations in Europe
               </h3>
               <div className={`relative text-[14px] text-[#7E7E7E] leading-[22px] flex flex-col gap-3 ${!seoExpanded ? "max-h-[72px] overflow-hidden" : ""}`}>

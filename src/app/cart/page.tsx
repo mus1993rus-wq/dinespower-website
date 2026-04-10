@@ -101,13 +101,13 @@ export default function CartPage() {
                     </div>
                   </div>
                 ) : (
-                  <div className="bg-[#E8F8EE] rounded-[12px] px-4 py-3 flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full bg-[#00B638] flex items-center justify-center shrink-0">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                  <div className="bg-[#E8F8EE] rounded-[12px] px-6 py-4 flex items-center justify-center gap-3">
+                    <div className="w-6 h-6 rounded-full bg-[#00B638] flex items-center justify-center shrink-0">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                         <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
-                    <p className="text-[14px] text-[#181818] leading-5">You have received a 5% discount</p>
+                    <p className="text-[16px] font-semibold text-[#181818] leading-6">You have received a 5% discount</p>
                   </div>
                 )}
 
@@ -116,13 +116,13 @@ export default function CartPage() {
                   {items.map((item, i) => (
                     <div key={item.id}>
                       <div className="flex items-center gap-4 py-2">
-                        {/* Trash icon */}
+                        {/* Trash icon — Figma vuesax/bold/trash */}
                         <button
                           onClick={() => removeItem(item.id)}
                           className="cursor-pointer w-6 h-6 flex items-center justify-center text-[#7E7E7E] hover:text-[#FB2F2F] transition-colors shrink-0"
                         >
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M9 3v1H4v2h1v13a2 2 0 002 2h10a2 2 0 002-2V6h1V4h-5V3H9zm0 5h2v9H9V8zm4 0h2v9h-2V8z" />
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 5.98c-3.33-.33-6.68-.5-10.02-.5-1.98 0-3.96.1-5.94.3L3 5.98M8.5 4.97l.22-1.31C8.88 2.71 9 2 10.69 2h2.62c1.69 0 1.82.75 1.97 1.67l.22 1.3M18.85 9.14l-.65 10.07c-.11 1.58-.2 2.79-3 2.79H8.8c-2.8 0-2.89-1.21-3-2.79L5.15 9.14M10.33 16.5h3.33M9.5 12.5h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
                           </svg>
                         </button>
                         {/* Image */}
