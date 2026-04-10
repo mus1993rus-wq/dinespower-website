@@ -73,7 +73,7 @@ export default function DeliveryPaymentPage() {
                 <div className="flex flex-col gap-6">
                   {/* Bank Transfer Card */}
                   <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-8 flex items-start gap-6">
-                    <Image src="/images/shop/delivery-bank.png" alt="Bank transfer" width={80} height={80} className="object-contain shrink-0" unoptimized />
+                    <Image src="/images/shop/delivery-bank.png" alt="Bank transfer" width={80} height={80} className="object-contain shrink-0" />
                     <div className="flex-1">
                       <h3 className="text-[18px] font-extrabold text-[#181818] mb-3">Bank transfer</h3>
                       <ul className="flex flex-col gap-2">
@@ -94,7 +94,7 @@ export default function DeliveryPaymentPage() {
 
                   {/* Bitcoin Card */}
                   <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-8 flex items-start gap-6">
-                    <Image src="/images/shop/delivery-bitcoin.png" alt="Bitcoin" width={80} height={80} className="object-contain shrink-0" unoptimized />
+                    <Image src="/images/shop/delivery-bitcoin.png" alt="Bitcoin" width={80} height={80} className="object-contain shrink-0" />
                     <div className="flex-1">
                       <h3 className="text-[18px] font-extrabold text-[#181818] mb-3">Bitcoin</h3>
                       <ul className="flex flex-col gap-2">
@@ -129,7 +129,7 @@ export default function DeliveryPaymentPage() {
                         className="w-full flex items-center justify-between py-5 cursor-pointer"
                       >
                         <div className="flex items-center gap-3">
-                          <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
+                          <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
                           <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
                         </div>
                         <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openFAQ === 100 + i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>
@@ -164,7 +164,7 @@ export default function DeliveryPaymentPage() {
                       <tr className="border-t border-[#E7E7E7]">
                         <td className="text-sm text-[#181818] font-semibold px-6 py-4">
                           <div className="flex items-center gap-2">
-                            <Image src="/images/shop/popup-icons/flag-eu.png" alt="EU" width={24} height={24} className="object-contain" unoptimized />
+                            <Image src="/images/shop/popup-icons/flag-eu.png" alt="EU" width={24} height={24} className="object-contain" />
                             Europe
                           </div>
                         </td>
@@ -174,7 +174,7 @@ export default function DeliveryPaymentPage() {
                       <tr className="border-t border-[#E7E7E7] bg-[#FAFAFA]">
                         <td className="text-sm text-[#181818] font-semibold px-6 py-4">
                           <div className="flex items-center gap-2">
-                            <Image src="/images/shop/popup-icons/flag-usa.png" alt="USA" width={24} height={24} className="object-contain" unoptimized />
+                            <Image src="/images/shop/popup-icons/flag-usa.png" alt="USA" width={24} height={24} className="object-contain" />
                             USA
                           </div>
                         </td>
@@ -184,7 +184,7 @@ export default function DeliveryPaymentPage() {
                       <tr className="border-t border-[#E7E7E7]">
                         <td className="text-sm text-[#181818] font-semibold px-6 py-4">
                           <div className="flex items-center gap-2">
-                            <Image src="/images/shop/popup-icons/flag-world.png" alt="World" width={24} height={24} className="object-contain" unoptimized />
+                            <Image src="/images/shop/popup-icons/flag-world.png" alt="World" width={24} height={24} className="object-contain" />
                             World &amp; Islands
                           </div>
                         </td>
@@ -202,7 +202,7 @@ export default function DeliveryPaymentPage() {
                       key={logo.name}
                       className="h-[52px] px-5 rounded-[10px] border border-[#E7E7E7] flex items-center justify-center"
                     >
-                      <Image src={logo.image} alt={logo.name} width={80} height={40} className="object-contain h-[40px] w-auto" unoptimized />
+                      <Image src={logo.image} alt={logo.name} width={80} height={40} className="object-contain h-[40px] w-auto" />
                     </div>
                   ))}
                 </div>
@@ -218,7 +218,7 @@ export default function DeliveryPaymentPage() {
                         className="w-full flex items-center justify-between py-5 cursor-pointer"
                       >
                         <div className="flex items-center gap-3">
-                          <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
+                          <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
                           <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
                         </div>
                         <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>
@@ -242,7 +242,7 @@ export default function DeliveryPaymentPage() {
                 {/* Still Have Questions Card */}
                 <div className="bg-[#F7F7F7] rounded-[12px] p-4">
                   <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-6 flex flex-col items-center gap-4">
-                    <Image src="/images/shop/faq-help-icon.png" alt="Help" width={80} height={80} unoptimized />
+                    <Image src="/images/shop/faq-help-icon.png" alt="Help" width={80} height={80} />
                     <h3 className="text-[16px] font-semibold text-black text-center">Still Have Questions?</h3>
                     <p className="text-[14px] text-[#1E1E1E] text-center leading-[22px]">
                       Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.
@@ -252,10 +252,10 @@ export default function DeliveryPaymentPage() {
                     </button>
                     <div className="flex gap-4">
                       <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center hover:opacity-90 transition-opacity">
-                        <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} unoptimized />
+                        <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} />
                       </a>
                       <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00D43F] flex items-center justify-center hover:opacity-90 transition-opacity">
-                        <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={24} height={24} unoptimized />
+                        <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
                       </a>
                     </div>
                   </div>
@@ -263,7 +263,7 @@ export default function DeliveryPaymentPage() {
 
                 {/* Wholesale Banner */}
                 <div className="rounded-[12px] overflow-hidden relative">
-                  <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" unoptimized />
+                  <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
                   <div className="relative z-10 p-6">
                     <div className="flex items-center gap-3 mb-3">
                       <span className="text-[32px]">📦</span>

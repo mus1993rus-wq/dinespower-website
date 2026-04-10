@@ -39,7 +39,7 @@ export default function ContactPage() {
                 <div className="flex flex-col gap-3">
                   <a href="#" className="flex items-center gap-3 bg-[#F7F7F7] hover:bg-[#EDEDED] rounded-[12px] p-4 transition-colors">
                     <div className="w-[44px] h-[44px] rounded-full bg-[#00D43F] flex items-center justify-center shrink-0">
-                      <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={22} height={22} unoptimized />
+                      <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={22} height={22} />
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-[#181818]">WhatsApp</p>
@@ -48,7 +48,7 @@ export default function ContactPage() {
                   </a>
                   <a href="#" className="flex items-center gap-3 bg-[#F7F7F7] hover:bg-[#EDEDED] rounded-[12px] p-4 transition-colors">
                     <div className="w-[44px] h-[44px] rounded-full bg-[#00A9DE] flex items-center justify-center shrink-0">
-                      <Image src="/images/shop/telegram.svg" alt="Telegram" width={22} height={22} unoptimized />
+                      <Image src="/images/shop/telegram.svg" alt="Telegram" width={22} height={22} />
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-[#181818]">Telegram</p>
@@ -64,7 +64,7 @@ export default function ContactPage() {
                 <div className="flex flex-col gap-3">
                   <a href="#" className="flex items-center gap-3 bg-[#F7F7F7] hover:bg-[#EDEDED] rounded-[12px] p-4 transition-colors">
                     <div className="w-[44px] h-[44px] rounded-full flex items-center justify-center shrink-0" style={{ background: "linear-gradient(138deg, #FAE100, #FCB720, #FF7950, #FF1C74, #6C1CD1)" }}>
-                      <Image src="/images/shop/instagram.svg" alt="Instagram" width={22} height={22} unoptimized />
+                      <Image src="/images/shop/instagram.svg" alt="Instagram" width={22} height={22} />
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-[#181818]">Instagram</p>
@@ -73,7 +73,7 @@ export default function ContactPage() {
                   </a>
                   <a href="#" className="flex items-center gap-3 bg-[#F7F7F7] hover:bg-[#EDEDED] rounded-[12px] p-4 transition-colors">
                     <div className="w-[44px] h-[44px] rounded-full bg-[#00A9DE] flex items-center justify-center shrink-0">
-                      <Image src="/images/shop/telegram.svg" alt="Telegram" width={22} height={22} unoptimized />
+                      <Image src="/images/shop/telegram.svg" alt="Telegram" width={22} height={22} />
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-[#181818]">Dinespower</p>
@@ -173,7 +173,7 @@ export default function ContactPage() {
                       <label className="text-sm text-[#7E7E7E] mb-1.5 block">Phone</label>
                       <div className="flex">
                         <div className="h-[48px] bg-[#F7F7F7] border border-[#E7E7E7] border-r-0 rounded-l-lg px-4 flex items-center gap-2 shrink-0">
-                          <Image src="/images/shop/uk-flag.svg" alt="Flag" width={20} height={14} unoptimized />
+                          <Image src="/images/shop/uk-flag.svg" alt="Flag" width={20} height={14} />
                           <span className="text-sm text-[#181818] font-medium">+1</span>
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                         </div>

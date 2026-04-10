@@ -34,7 +34,7 @@ export default function Footer() {
         <div className="max-w-[1340px] mx-auto flex items-center justify-between h-[80px]">
           {partnerLogos.map((logo) => (
             <div key={logo.alt} className="h-16 w-[164px] relative flex items-center justify-center">
-              <Image src={logo.src} alt={logo.alt} width={164} height={64} className="object-contain" unoptimized />
+              <Image src={logo.src} alt={logo.alt} width={164} height={64} className="object-contain" />
             </div>
           ))}
         </div>
@@ -46,12 +46,12 @@ export default function Footer() {
           {/* Logo column */}
           <div className="w-[305px] shrink-0 flex flex-col gap-7">
             <Link href="/" className="block">
-              <Image src="/images/shop/logo-footer.svg" alt="Dines Power" width={226} height={94} unoptimized />
+              <Image src="/images/shop/logo-footer.svg" alt="Dines Power" width={226} height={94} />
             </Link>
             <p className="text-sm font-semibold text-[#B6B6B6] leading-5">
               Official Representative Of<br/>Deus Medical, Biaxol, Astera Labs
             </p>
-            <Image src="/images/shop/verified-seller.svg" alt="Verified Seller" width={124} height={124} unoptimized />
+            <Image src="/images/shop/verified-seller.svg" alt="Verified Seller" width={124} height={124} />
           </div>
 
           {/* Menu */}
@@ -87,27 +87,27 @@ export default function Footer() {
             {/* Social */}
             <div className="flex gap-2">
               <a href="#" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)" }}>
-                <Image src="/images/shop/instagram.svg" alt="Instagram" width={24} height={24} unoptimized />
+                <Image src="/images/shop/instagram.svg" alt="Instagram" width={24} height={24} />
               </a>
               <a href="#" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full bg-[#00A9DE] flex items-center justify-center">
-                <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} unoptimized />
+                <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} />
               </a>
               <a href="#" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full bg-[#00D43F] flex items-center justify-center">
-                <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={24} height={24} unoptimized />
+                <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
               </a>
             </div>
             <p className="text-sm text-[#7E7E7E] leading-5">Or write to us by emails</p>
             {/* Emails */}
             <div className="flex flex-col gap-4">
               <div className="flex gap-3 items-start">
-                <Image src="/images/shop/email-icon.svg" alt="" width={20} height={20} className="mt-0.5" unoptimized />
+                <Image src="/images/shop/email-icon.svg" alt="" width={20} height={20} className="mt-0.5" />
                 <div>
                   <a href="mailto:info@dinespower.info" className="text-sm text-white leading-5 hover:text-[#FF6701] transition-colors">info@dinespower.info</a>
                   <p className="text-sm text-[#7E7E7E] leading-5">For All Questions</p>
                 </div>
               </div>
               <div className="flex gap-3 items-start">
-                <Image src="/images/shop/email-sales.svg" alt="" width={20} height={20} className="mt-0.5" unoptimized />
+                <Image src="/images/shop/email-sales.svg" alt="" width={20} height={20} className="mt-0.5" />
                 <div>
                   <a href="mailto:sales@dinespower.info" className="text-sm text-white leading-5 hover:text-[#FF6701] transition-colors">sales@dinespower.info</a>
                   <p className="text-sm text-[#7E7E7E] leading-5">Wholesale orders</p>

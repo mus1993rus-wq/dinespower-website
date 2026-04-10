@@ -3,8 +3,10 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import VerifyPopup from "@/components/VerifyPopup";
+import dynamic from "next/dynamic";
 import { useCart } from "@/context/CartContext";
+
+const VerifyPopup = dynamic(() => import("@/components/VerifyPopup"), { ssr: false });
 
 const popularSearches = [
   "Ostarine MK-2866",
@@ -88,12 +90,12 @@ export default function Header() {
             ))}
           </div>
           <div className="flex items-center gap-2">
-            <Image src="/images/shop/shield-check.svg" alt="" width={24} height={24} unoptimized />
+            <Image src="/images/shop/shield-check.svg" alt="" width={24} height={24} />
             <span className="text-sm text-white leading-[18px]">All Products Certified & Lab Tested</span>
             <Link href="/lab-tests" className="text-sm font-semibold text-white underline leading-5 ml-1">See Lab Test</Link>
           </div>
           <div className="flex-1 flex items-center justify-end gap-1.5">
-            <Image src="/images/shop/uk-flag.svg" alt="EN" width={20} height={12} unoptimized />
+            <Image src="/images/shop/uk-flag.svg" alt="EN" width={20} height={12} />
             <span className="text-xs text-[#F7F7F7] leading-4">English</span>
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="#F7F7F7" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </div>
@@ -104,7 +106,7 @@ export default function Header() {
       <div className="w-full flex items-center gap-[40px] h-[44px]">
         <div className="flex items-center gap-[24px] shrink-0">
           <Link href="/" className="shrink-0">
-            <Image src="/images/shop/logo-header.svg" alt="Dines Power" width={106} height={44} unoptimized />
+            <Image src="/images/shop/logo-header.svg" alt="Dines Power" width={106} height={44} />
           </Link>
           <span className="text-xs text-[#7E7E7E] leading-4">
             Official Representative Of<br/>Deus Medical, Biaxol, Astera Labs
@@ -148,7 +150,7 @@ export default function Header() {
                           className="flex items-center gap-3 py-3 border-b border-[#F0F0F0] last:border-b-0 hover:bg-[#F7F7F7] rounded-lg px-2 transition-colors"
                         >
                           <div className="w-[60px] h-[60px] bg-[#F7F7F7] rounded-lg shrink-0 relative overflow-hidden">
-                            <Image src={product.image} alt={product.name} fill className="object-cover" unoptimized />
+                            <Image src={product.image} alt={product.name} fill className="object-cover" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-[#181818] leading-[18px] line-clamp-2">{product.name}</p>
@@ -212,12 +214,12 @@ export default function Header() {
         </div>
         <div className="flex items-center gap-[24px] shrink-0">
           <button onClick={() => setVerifyOpen(true)} className="flex items-center gap-2 h-[44px] cursor-pointer">
-            <Image src="/images/shop/verify-icon.svg" alt="" width={20} height={20} unoptimized />
+            <Image src="/images/shop/verify-icon.svg" alt="" width={20} height={20} />
             <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors">Verify Authenticity</span>
           </button>
           <div className="relative" ref={helpRef}>
             <button onClick={() => setHelpDropdownOpen(!helpDropdownOpen)} className="flex items-center gap-2 h-[44px] cursor-pointer">
-              <Image src="/images/shop/help-icon.svg" alt="" width={20} height={20} unoptimized />
+              <Image src="/images/shop/help-icon.svg" alt="" width={20} height={20} />
               <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors">Need Help?</span>
             </button>
             {helpDropdownOpen && (
@@ -261,12 +263,12 @@ export default function Header() {
             )}
           </div>
           <Link href="/login" className="flex items-center gap-2 h-[44px]">
-            <Image src="/images/shop/user-icon.svg" alt="" width={20} height={20} unoptimized />
+            <Image src="/images/shop/user-icon.svg" alt="" width={20} height={20} />
             <span className="text-sm font-semibold text-[#181818] leading-5">Login</span>
           </Link>
           <button onClick={openCart} className="flex items-center gap-2 h-[44px] cursor-pointer">
             <div className="relative">
-              <Image src="/images/shop/cart-icon.svg" alt="" width={20} height={20} unoptimized />
+              <Image src="/images/shop/cart-icon.svg" alt="" width={20} height={20} />
               {totalItems > 0 && (
                 <span className="absolute -top-1.5 -right-2 bg-[#FF6701] text-white text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center leading-none">{totalItems}</span>
               )}

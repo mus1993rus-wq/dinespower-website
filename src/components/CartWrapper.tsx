@@ -1,11 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { CartProvider, useCart } from "@/context/CartContext";
-import CartPopup from "./CartPopup";
-import NeedHelpPopup from "./NeedHelpPopup";
+
+const CartPopup = dynamic(() => import("./CartPopup"), { ssr: false });
+const NeedHelpPopup = dynamic(() => import("./NeedHelpPopup"), { ssr: false });
 
 function CartPopupConnected() {
   const { isOpen, closeCart } = useCart();
+  if (!isOpen) return null;
   return <CartPopup isOpen={isOpen} onClose={closeCart} />;
 }
 
@@ -18,6 +21,7 @@ function GlobalHelpPopup() {
     return () => window.removeEventListener("open-help-popup", handler);
   }, []);
 
+  if (!helpOpen) return null;
   return <NeedHelpPopup isOpen={helpOpen} onClose={() => setHelpOpen(false)} />;
 }
 

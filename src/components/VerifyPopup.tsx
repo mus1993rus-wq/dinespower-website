@@ -67,7 +67,7 @@ export default function VerifyPopup({ isOpen, onClose }: VerifyPopupProps) {
                   alt={brand.name}
                   fill
                   className="object-cover"
-                  unoptimized
+                 
                 />
               </div>
 

@@ -3,14 +3,16 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { useCart } from "@/context/CartContext";
-import PaymentPopup from "@/components/PaymentPopup";
-import ShippingPopup from "@/components/ShippingPopup";
-import NeedHelpPopup from "@/components/NeedHelpPopup";
-import VerifyPopup from "@/components/VerifyPopup";
+
+const PaymentPopup = dynamic(() => import("@/components/PaymentPopup"), { ssr: false });
+const ShippingPopup = dynamic(() => import("@/components/ShippingPopup"), { ssr: false });
+const NeedHelpPopup = dynamic(() => import("@/components/NeedHelpPopup"), { ssr: false });
+const VerifyPopup = dynamic(() => import("@/components/VerifyPopup"), { ssr: false });
 
 const thumbnails = [
   "/images/shop/product-1.webp",
@@ -205,14 +207,6 @@ export default function ProductPage() {
     setOpenAccordions((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
-  const handleTrustBadgeClick = (popup: string) => {
-    if (popup === "verify" || popup === "labtest") {
-      setVerifyOpen(true);
-    } else if (popup === "wholesale") {
-      // scroll or navigate
-    }
-  };
-
   return (
     <>
       <Header />
@@ -244,7 +238,7 @@ export default function ProductPage() {
                     selectedImage === i ? "border-[#FF6701]" : "border-[#E7E7E7]"
                   }`}
                 >
-                  <Image src={src} alt={`Thumbnail ${i + 1}`} width={56} height={56} className="object-contain" unoptimized />
+                  <Image src={src} alt={`Thumbnail ${i + 1}`} width={56} height={56} className="object-contain" />
                 </button>
               ))}
             </div>
@@ -257,7 +251,7 @@ export default function ProductPage() {
                 width={380}
                 height={380}
                 className="object-contain"
-                unoptimized
+               
               />
               <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-lg shadow flex items-center justify-center hover:bg-[#F7F7F7] transition-colors">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#181818" strokeWidth="1.5"/><path d="M21 21L16.65 16.65" stroke="#181818" strokeWidth="1.5" strokeLinecap="round"/><path d="M11 8V14M8 11H14" stroke="#181818" strokeWidth="1.5" strokeLinecap="round"/></svg>
@@ -285,7 +279,7 @@ export default function ProductPage() {
             {/* 3. Brand badge with real logo */}
             <div className="flex items-center gap-4 border border-[#E7E7E7] rounded-[8px] p-3 mb-5">
               <div className="bg-[#F7F7F7] rounded-[6px] w-[64px] h-[48px] flex items-center justify-center shrink-0 p-1">
-                <Image src="/images/shop/verify-popup/logo-astera.png" alt="Astera Labs" width={56} height={40} className="object-contain" unoptimized />
+                <Image src="/images/shop/verify-popup/logo-astera.png" alt="Astera Labs" width={56} height={40} className="object-contain" />
               </div>
               <div>
                 <p className="text-[14px] font-semibold text-[#181818]">Official Astera Labs Product</p>
@@ -340,10 +334,10 @@ export default function ProductPage() {
 
             {/* 8. Promo code block */}
             <div className="bg-[#181818] rounded-[12px] p-4 mb-6 flex items-center justify-between gap-4 relative overflow-hidden">
-              <Image src="/images/shop/product-icons/bg.png" alt="" fill className="object-cover opacity-20 absolute inset-0" unoptimized />
+              <Image src="/images/shop/product-icons/bg.png" alt="" fill className="object-cover opacity-20 absolute inset-0" />
               <div className="flex items-center gap-3 relative z-10">
                 <div className="w-[48px] h-[48px] shrink-0">
-                  <Image src="/images/shop/product-icons/discount.png" alt="" width={48} height={48} className="object-contain" unoptimized />
+                  <Image src="/images/shop/product-icons/discount.png" alt="" width={48} height={48} className="object-contain" />
                 </div>
                 <div>
                   <p className="text-sm font-bold text-white">Get 5% Off Your First Order</p>
@@ -374,7 +368,7 @@ export default function ProductPage() {
                   }`}
                 >
                   <div className="w-[64px] h-[64px] shrink-0 flex items-center justify-center">
-                    <Image src={badge.icon} alt={badge.title} width={64} height={64} className="object-contain" unoptimized />
+                    <Image src={badge.icon} alt={badge.title} width={64} height={64} className="object-contain" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-bold text-[#181818]">{badge.title}</p>
@@ -413,7 +407,7 @@ export default function ProductPage() {
             <div className="grid grid-cols-3 gap-3">
               <button onClick={() => setHelpOpen(true)} className="border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col items-center text-center cursor-pointer hover:border-[#FF6701] transition-colors">
                 <div className="w-[56px] h-[56px] mb-3">
-                  <Image src="/images/shop/product-icons/icon-5.png" alt="" width={56} height={56} className="object-contain" unoptimized />
+                  <Image src="/images/shop/product-icons/icon-5.png" alt="" width={56} height={56} className="object-contain" />
                 </div>
                 <p className="text-sm font-bold text-[#181818] mb-1">Need Help?</p>
                 <p className="text-xs text-[#181818] mb-3">Ask about dosing, shipping, or verification</p>
@@ -421,7 +415,7 @@ export default function ProductPage() {
               </button>
               <button onClick={() => setShippingOpen(true)} className="border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col items-center text-center cursor-pointer hover:border-[#FF6701] transition-colors">
                 <div className="w-[56px] h-[56px] mb-3">
-                  <Image src="/images/shop/product-icons/icon-6.png" alt="" width={56} height={56} className="object-contain" unoptimized />
+                  <Image src="/images/shop/product-icons/icon-6.png" alt="" width={56} height={56} className="object-contain" />
                 </div>
                 <p className="text-sm font-bold text-[#181818] mb-1">Shipping Methods</p>
                 <p className="text-xs text-[#181818] mb-3">Delivery times, tracking, discreet packaging</p>
@@ -429,7 +423,7 @@ export default function ProductPage() {
               </button>
               <button onClick={() => setPaymentOpen(true)} className="border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col items-center text-center cursor-pointer hover:border-[#FF6701] transition-colors">
                 <div className="w-[56px] h-[56px] mb-3">
-                  <Image src="/images/shop/product-icons/icon-7.png" alt="" width={56} height={56} className="object-contain" unoptimized />
+                  <Image src="/images/shop/product-icons/icon-7.png" alt="" width={56} height={56} className="object-contain" />
                 </div>
                 <p className="text-sm font-bold text-[#181818] mb-1">Payment Methods</p>
                 <p className="text-xs text-[#181818] mb-3">Bitcoin, bank transfer</p>
@@ -573,7 +567,7 @@ export default function ProductPage() {
                       <div className="flex gap-2 flex-wrap">
                         {customerPhotos.map((photo, i) => (
                           <div key={i} className="w-[72px] h-[72px] rounded-[8px] overflow-hidden border border-[#E7E7E7] shrink-0">
-                            <Image src={photo} alt={`Customer photo ${i + 1}`} width={72} height={72} className="object-cover w-full h-full" unoptimized />
+                            <Image src={photo} alt={`Customer photo ${i + 1}`} width={72} height={72} className="object-cover w-full h-full" />
                           </div>
                         ))}
                         <div className="w-[72px] h-[72px] rounded-[8px] bg-[#F7F7F7] border border-[#E7E7E7] flex items-center justify-center shrink-0">
@@ -604,7 +598,7 @@ export default function ProductPage() {
                         <p className="text-sm text-[#7E7E7E] leading-6">{r.text}</p>
                         {r.image && (
                           <div className="mt-3 w-[80px] h-[80px] rounded-[8px] overflow-hidden border border-[#E7E7E7]">
-                            <Image src={r.image} alt="Review" width={80} height={80} className="object-cover w-full h-full" unoptimized />
+                            <Image src={r.image} alt="Review" width={80} height={80} className="object-cover w-full h-full" />
                           </div>
                         )}
                       </div>
@@ -632,7 +626,7 @@ export default function ProductPage() {
           <div id="top-injectable-scroll" className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
             {/* Promo banner card - fixed position */}
             <Link href="/catalog?category=injectable" className="w-[252px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center cursor-pointer group" style={{ minHeight: '480px' }}>
-              <Image src="/images/shop/promo-injectable.png" alt="Injectable" fill className="object-cover" unoptimized />
+              <Image src="/images/shop/promo-injectable.png" alt="Injectable" fill className="object-cover" />
               <div className="relative z-10">
                 <span className="bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] flex items-center justify-center shadow-md group-hover:bg-[#F7F7F7] transition-colors">
                   View All Injectable
@@ -662,7 +656,7 @@ export default function ProductPage() {
             {relatedProducts.map((p, i) => (
               <div key={i} className="w-[200px] shrink-0 cursor-pointer group">
                 <div className="h-[200px] bg-white rounded-[12px] border border-[#E7E7E7] flex items-center justify-center p-3 mb-3 overflow-hidden">
-                  <Image src={p.image} alt={p.name} width={160} height={160} className="object-contain" unoptimized />
+                  <Image src={p.image} alt={p.name} width={160} height={160} className="object-contain" />
                 </div>
                 <p className="text-xs text-[#7E7E7E]">{p.brand}</p>
                 <p className="text-sm font-semibold text-[#181818] line-clamp-2 group-hover:text-[#FF6701] transition-colors">{p.name}</p>
@@ -678,7 +672,7 @@ export default function ProductPage() {
             <div className="w-[440px] shrink-0">
               <div className="bg-[#F7F7F7] rounded-[12px] p-4">
                 <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
-                  <Image src="/images/shop/faq-help-icon.png" alt="Help" width={64} height={64} className="object-contain" unoptimized />
+                  <Image src="/images/shop/faq-help-icon.png" alt="Help" width={64} height={64} className="object-contain" />
                   <h3 className="text-[16px] font-semibold text-black text-center">Still have questions?</h3>
                   <p className="text-[14px] text-[#1E1E1E] text-center">Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.</p>
                   <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:bg-[#F7F7F7] transition-colors">
@@ -686,10 +680,10 @@ export default function ProductPage() {
                   </button>
                   <div className="flex gap-4">
                     <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center">
-                      <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} unoptimized />
+                      <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} />
                     </a>
                     <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00D43F] flex items-center justify-center">
-                      <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={24} height={24} unoptimized />
+                      <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
                     </a>
                   </div>
                 </div>
@@ -707,7 +701,7 @@ export default function ProductPage() {
                       className="w-full flex items-center justify-between py-5 cursor-pointer"
                     >
                       <div className="flex items-center gap-3">
-                        <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
+                        <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
                         <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{q}</span>
                       </div>
                       <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>

@@ -99,7 +99,7 @@ function HeroBanner() {
       <div className="flex gap-[16px]">
         {/* Main banner - just an image, 884x467 */}
         <div className="w-[884px] h-[467px] relative rounded-[16px] overflow-hidden shrink-0 group">
-          <Image src="/images/shop/hero-banner.png" alt="Weekly Bestseller - Lean Muscle Growth" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" unoptimized />
+          <Image src="/images/shop/hero-banner.png" alt="Weekly Bestseller - Lean Muscle Growth" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           {/* Left arrow */}
           <button onClick={() => setActiveSlide((activeSlide - 1 + totalSlides) % totalSlides)} className="absolute left-0 top-1/2 -translate-y-1/2 w-[48px] h-[48px] bg-black hover:bg-[#181818] transition-colors border border-[#5C5C5C] border-l-0 rounded-r-lg flex items-center justify-center z-20">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -123,10 +123,10 @@ function HeroBanner() {
         {/* Side banners - just images, 440px wide */}
         <div className="w-[440px] flex flex-col gap-[16px] shrink-0">
           <div className="h-[225px] rounded-[16px] overflow-hidden relative group">
-            <Image src="/images/shop/side-sexboost.png" alt="Sex Boost" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" unoptimized />
+            <Image src="/images/shop/side-sexboost.png" alt="Sex Boost" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </div>
           <div className="h-[226px] rounded-[16px] overflow-hidden relative group">
-            <Image src="/images/shop/side-cbd.png" alt="CBD" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" unoptimized />
+            <Image src="/images/shop/side-cbd.png" alt="CBD" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </div>
         </div>
       </div>
@@ -142,7 +142,7 @@ function CategoriesRow() {
           <Link key={cat.name} href={`/catalog?category=${cat.name.toLowerCase().replace(/ & /g, '-')}`}>
             <ScrollAnimation animation="animate-fade-in-up" className="flex flex-col items-center gap-2 cursor-pointer group">
               <div className="w-[116px] h-[116px] rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center group-hover:bg-[#EDEDED] transition-all duration-300">
-                <Image src={cat.img} alt={cat.name} width={116} height={116} className="object-cover" unoptimized />
+                <Image src={cat.img} alt={cat.name} width={116} height={116} className="object-cover" />
               </div>
               <span className="text-[14px] font-semibold text-[#181818] leading-5 group-hover:text-[#FF6701] transition-colors">{cat.name}</span>
             </ScrollAnimation>
@@ -162,7 +162,7 @@ function PromoBanner({ categoryName }: { categoryName: string }) {
   const bgImage = imageMap[categoryName] || "/images/shop/promo-oral.png";
   return (
     <Link href={`/catalog?category=${categoryName.toLowerCase()}`} className="w-[252px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center group cursor-pointer hover:shadow-lg transition-shadow">
-      <Image src={bgImage} alt={`View All ${categoryName}`} fill className="object-cover" unoptimized />
+      <Image src={bgImage} alt={`View All ${categoryName}`} fill className="object-cover" />
       <div className="relative z-10">
         <button className="bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] hover:bg-[#EDEDED] transition-colors shadow-md">
           View All {categoryName}
@@ -215,7 +215,7 @@ function CategoryBanners() {
       <div className="flex gap-[16px]">
         {/* Left banner - Recovery */}
         <div className="flex-1 h-[272px] rounded-[16px] overflow-hidden relative cursor-pointer group">
-          <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" unoptimized />
+          <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
           <div className="absolute left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-[32px] w-[250px]">
             <h3 className="text-[28px] font-extrabold italic leading-[1.22] capitalize">
               <span className="text-[#FF6701]">Faster Muscle<br />Recovery &</span>{" "}
@@ -226,13 +226,13 @@ function CategoryBanners() {
             </button>
           </div>
           <div className="absolute right-0 top-0 h-full w-[350px] z-10">
-            <Image src="/images/shop/banner-product-recovery.png" alt="Recovery products" fill className="object-contain object-right-bottom" unoptimized />
+            <Image src="/images/shop/banner-product-recovery.png" alt="Recovery products" fill className="object-contain object-right-bottom" />
           </div>
         </div>
 
         {/* Right banner - Libido */}
         <div className="flex-1 h-[272px] rounded-[16px] overflow-hidden relative cursor-pointer group">
-          <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" unoptimized />
+          <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
           <div className="absolute left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-[32px] w-[250px]">
             <h3 className="text-[28px] font-extrabold italic leading-[1.22] capitalize">
               <span className="text-[#FF6701]">Stacks For<br />High Libido </span>
@@ -243,7 +243,7 @@ function CategoryBanners() {
             </button>
           </div>
           <div className="absolute right-0 top-0 h-full w-[350px] z-10">
-            <Image src="/images/shop/banner-product-libido.png" alt="Libido products" fill className="object-contain object-right-bottom" unoptimized />
+            <Image src="/images/shop/banner-product-libido.png" alt="Libido products" fill className="object-contain object-right-bottom" />
           </div>
         </div>
       </div>
@@ -255,7 +255,7 @@ function FatBurningBanner() {
   return (
     <section className="max-w-[1340px] mx-auto mt-[65px]">
       <div className="relative h-[400px] rounded-[16px] overflow-hidden">
-        <Image src="/images/shop/banner-dark-1.png" alt="" fill className="object-cover" unoptimized />
+        <Image src="/images/shop/banner-dark-1.png" alt="" fill className="object-cover" />
         <div className="absolute left-[80px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-6 max-w-[400px]">
           <div>
             <h2 className="text-[48px] font-black italic text-[#FF6701] uppercase leading-[56px]">Fat Burning</h2>
@@ -269,7 +269,7 @@ function FatBurningBanner() {
           </button>
         </div>
         <div className="absolute right-0 top-1/2 -translate-y-1/2 h-[85%] w-[55%] z-10 flex items-center justify-center">
-          <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-right" unoptimized />
+          <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-right" />
         </div>
       </div>
     </section>
@@ -279,7 +279,7 @@ function FatBurningBanner() {
 function ProSellersSection() {
   return (
     <section className="w-full mt-[65px] relative overflow-hidden">
-      <Image src="/images/shop/pro-sellers-bg.png" alt="" fill className="object-cover" unoptimized />
+      <Image src="/images/shop/pro-sellers-bg.png" alt="" fill className="object-cover" />
       <div className="max-w-[1340px] mx-auto py-[80px] relative z-10">
         <ScrollAnimation animation="animate-fade-in-up">
           <div className="text-center mb-[60px]">
@@ -294,7 +294,7 @@ function ProSellersSection() {
             <ScrollAnimation key={i} animation="animate-fade-in-up" className="flex-1" delay={i * 100}>
               <div className="bg-[#212121] border border-white/[0.08] rounded-[12px] p-[25px] flex flex-col items-center gap-6 h-full text-center">
                 <div className="w-[80px] h-[80px] shrink-0">
-                  <Image src={card.icon} alt={card.title} width={80} height={80} className="object-contain" unoptimized />
+                  <Image src={card.icon} alt={card.title} width={80} height={80} className="object-contain" />
                 </div>
                 <h3 className="text-[18px] font-extrabold text-white leading-[24px] capitalize">{card.title}</h3>
                 <p className="text-[14px] text-[#B6B6B6] leading-5">{card.desc}</p>
@@ -322,7 +322,7 @@ function BlogSection() {
       <div className="flex gap-6">
         {/* Featured post */}
         <Link href={`/blog/${blogPosts[0].slug}`} className="flex-1 relative h-[534px] rounded-2xl overflow-hidden group cursor-pointer block">
-          <Image src="/images/shop/blog-1.png" alt="" fill className="object-cover" unoptimized />
+          <Image src="/images/shop/blog-1.png" alt="" fill className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
           <div className="absolute top-6 left-6 z-20 bg-white rounded-[8px] w-[48px] h-[48px] flex flex-col items-center justify-center">
             <span className="text-2xl font-bold text-[#181818] leading-6 block">12</span>
@@ -347,7 +347,7 @@ function BlogSection() {
           {blogPosts.slice(1).map((post, i) => (
             <Link key={i} href={`/blog/${post.slug}`} className="flex gap-4 py-4 border-b border-[#E7E7E7] last:border-b-0 cursor-pointer group">
               <div className="w-[100px] h-[80px] bg-[#F7F7F7] rounded-lg shrink-0 relative overflow-hidden">
-                <Image src={`/images/shop/blog-${i + 2}.png`} alt="" fill className="object-cover" unoptimized />
+                <Image src={`/images/shop/blog-${i + 2}.png`} alt="" fill className="object-cover" />
               </div>
               <div className="flex-1 flex flex-col gap-1">
                 <p className="text-xs text-[#7E7E7E]">{post.date}</p>
@@ -373,7 +373,7 @@ function WholesaleBanner() {
   return (
     <section className="max-w-[1340px] mx-auto mt-[65px]">
       <div className="relative h-[400px] rounded-[16px] overflow-hidden">
-        <Image src="/images/shop/banner-dark-2.png" alt="" fill className="object-cover" unoptimized />
+        <Image src="/images/shop/banner-dark-2.png" alt="" fill className="object-cover" />
         {/* Left text */}
         <div className="absolute left-[80px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-5 max-w-[420px]">
           <div>
@@ -387,7 +387,7 @@ function WholesaleBanner() {
         </div>
         {/* Bars on right */}
         <div className="absolute right-0 top-0 h-full w-[550px] z-[5] flex items-center justify-center">
-          <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" width={550} height={400} className="object-contain" unoptimized />
+          <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" width={550} height={400} className="object-contain" />
         </div>
       </div>
     </section>
@@ -404,7 +404,7 @@ function FAQSection() {
         <div className="w-[440px] shrink-0">
           <div className="bg-[#F7F7F7] rounded-[12px] p-4">
             <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
-              <Image src="/images/shop/faq-help-icon.png" alt="Help" width={80} height={80} className="object-contain" unoptimized />
+              <Image src="/images/shop/faq-help-icon.png" alt="Help" width={80} height={80} className="object-contain" />
               <h3 className="text-[16px] font-semibold text-black text-center">Still have questions?</h3>
               <p className="text-[14px] text-[#1E1E1E] text-center">Reach out to our manager right away — we&apos;re happy to help with any questions.</p>
               <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:bg-[#F7F7F7] transition-colors">
@@ -412,10 +412,10 @@ function FAQSection() {
               </button>
               <div className="flex gap-4">
                 <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center">
-                  <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} unoptimized />
+                  <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} />
                 </a>
                 <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00D43F] flex items-center justify-center">
-                  <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={24} height={24} unoptimized />
+                  <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
                 </a>
               </div>
             </div>
@@ -433,7 +433,7 @@ function FAQSection() {
                   className="w-full flex items-center justify-between py-5 cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
-                    <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
+                    <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
                     <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{q}</span>
                   </div>
                   <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openIndex === i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>

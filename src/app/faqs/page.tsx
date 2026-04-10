@@ -184,7 +184,7 @@ export default function FAQsPage() {
                 {/* Still Have Questions Card */}
                 <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
                   <div className="w-12 h-12 relative shrink-0">
-                    <Image src="/icons/question-bubble.png" alt="" fill className="object-contain" unoptimized />
+                    <Image src="/icons/question-bubble.png" alt="" fill className="object-contain" />
                   </div>
                   <p className="text-[16px] font-semibold text-black leading-6 capitalize">Still have questions?</p>
                   <p className="text-[14px] text-[#1E1E1E] leading-5 text-center">
@@ -223,7 +223,7 @@ export default function FAQsPage() {
                           className="w-full flex items-center justify-between py-5 cursor-pointer"
                         >
                           <div className="flex items-center gap-3">
-                            <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} unoptimized className="shrink-0" />
+                            <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
                             <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{faq.q}</span>
                           </div>
                           <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openIndices[section] === i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>

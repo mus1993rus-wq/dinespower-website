@@ -36,7 +36,7 @@ export default function ProductCard({ brand, name, dosage, price, oldPrice, imag
           )}
         </div>
         {image ? (
-          <Image src={image} alt={name} width={180} height={180} className="object-contain" unoptimized />
+          <Image src={image} alt={name} width={180} height={180} className="object-contain" />
         ) : (
           <div className="w-[180px] h-[180px] bg-[#F7F7F7] rounded-lg" />
         )}

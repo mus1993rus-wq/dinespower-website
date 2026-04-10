@@ -130,7 +130,7 @@ export default function CartPage() {
 
                       {/* Product image */}
                       <div className="w-[80px] h-[80px] bg-[#F7F7F7] rounded-lg shrink-0 overflow-hidden">
-                        <Image src={item.image} alt={item.name} width={80} height={80} className="object-cover w-full h-full" unoptimized />
+                        <Image src={item.image} alt={item.name} width={80} height={80} className="object-cover w-full h-full" />
                       </div>
 
                       {/* Info */}
@@ -169,7 +169,7 @@ export default function CartPage() {
                     {suggestedProducts.map((p, i) => (
                       <div key={i} className="w-[220px] shrink-0 border border-[#E7E7E7] rounded-[12px] overflow-hidden group cursor-pointer hover:shadow-md transition-shadow">
                         <div className="w-full h-[160px] bg-[#F7F7F7] relative overflow-hidden">
-                          <Image src={p.image} alt={p.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" unoptimized />
+                          <Image src={p.image} alt={p.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
                         </div>
                         <div className="p-3">
                           <p className="text-[11px] text-[#7E7E7E]">{p.brand}</p>

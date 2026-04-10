@@ -66,7 +66,7 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
             <div key={index} className="flex gap-4 py-4 border-b border-[#E7E7E7]">
               <div className="w-[80px] h-[80px] bg-[#F7F7F7] rounded-[8px] shrink-0 flex items-center justify-center overflow-hidden">
                 {item.image ? (
-                  <Image src={item.image} alt={item.name} width={60} height={60} className="object-contain" unoptimized />
+                  <Image src={item.image} alt={item.name} width={60} height={60} className="object-contain" />
                 ) : (
                   <div className="w-full h-full bg-[#F7F7F7]" />
                 )}
@@ -117,7 +117,7 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
                   ].map((p, i) => (
                     <Link key={i} href="/product" onClick={onClose} className="flex-1 border border-[#E7E7E7] rounded-[8px] p-3 hover:border-[#FF6701] transition-colors">
                       <div className="w-full h-[80px] bg-[#F7F7F7] rounded-[6px] mb-2 relative overflow-hidden">
-                        <Image src={p.image} alt={p.name} fill className="object-contain p-1" unoptimized />
+                        <Image src={p.image} alt={p.name} fill className="object-contain p-1" />
                       </div>
                       <p className="text-xs text-[#7E7E7E]">{p.brand}</p>
                       <p className="text-xs font-semibold line-clamp-2 mt-0.5">{p.name}</p>

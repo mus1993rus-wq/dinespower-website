@@ -428,7 +428,7 @@ function CatalogContent() {
                 alt={`${currentCategory?.label || "Catalog"}${currentBrandLabel ? ` - ${currentBrandLabel}` : ""}`}
                 fill
                 className="object-cover"
-                unoptimized
+               
               />
               <div className="absolute left-[60px] top-1/2 -translate-y-1/2 max-w-[50%]">
                 <h1 className="text-[40px] font-black text-[#181818] uppercase leading-[44px]">

@@ -42,7 +42,7 @@ export default function PaymentPopup({ isOpen, onClose }: PaymentPopupProps) {
           {/* Bank Transfer */}
           <div className="p-4 flex items-start gap-3 border-b border-[#E7E7E7]">
             <div className="w-[40px] h-[40px] rounded-[10px] overflow-hidden shrink-0">
-              <Image src="/images/shop/popup-icons/bank-transfer.png" alt="Bank" width={40} height={40} className="object-cover" unoptimized />
+              <Image src="/images/shop/popup-icons/bank-transfer.png" alt="Bank" width={40} height={40} className="object-cover" />
             </div>
             <div className="flex-1">
               <h3 className="text-[15px] font-extrabold text-[#181818]">Bank transfer</h3>
@@ -58,7 +58,7 @@ export default function PaymentPopup({ isOpen, onClose }: PaymentPopupProps) {
           {/* Bitcoin */}
           <div className="p-4 flex items-start gap-3">
             <div className="w-[40px] h-[40px] rounded-[10px] overflow-hidden shrink-0">
-              <Image src="/images/shop/popup-icons/bitcoin.png" alt="Bitcoin" width={40} height={40} className="object-cover" unoptimized />
+              <Image src="/images/shop/popup-icons/bitcoin.png" alt="Bitcoin" width={40} height={40} className="object-cover" />
             </div>
             <div className="flex-1">
               <h3 className="text-[15px] font-extrabold text-[#181818]">Bitcoin</h3>

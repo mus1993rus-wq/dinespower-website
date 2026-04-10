@@ -200,7 +200,7 @@ export default function BlogArticlePage() {
               <article>
                 {/* Hero image - separate, not overlay */}
                 <div className="relative h-[480px] rounded-[16px] overflow-hidden mb-8">
-                  <Image src="/images/shop/blog-1.png" alt={articleData.title} fill className="object-cover" unoptimized />
+                  <Image src="/images/shop/blog-1.png" alt={articleData.title} fill className="object-cover" />
                 </div>
 
                 {/* TOC Card — What's Inside (Figma 1608:17013) */}
@@ -255,13 +255,13 @@ export default function BlogArticlePage() {
 
                 {/* Product Card — horizontal Figma layout */}
                 <Link href="/catalog" className="relative block bg-[#181818] rounded-[16px] p-6 my-10 overflow-hidden group">
-                  <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" unoptimized />
+                  <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
                   <div className="absolute top-[10px] left-0 z-10 pt-2">
                     <span className="inline-flex items-center bg-[#FB2F2F] rounded-tr-[6px] rounded-br-[6px] px-3 py-1 text-[12px] font-semibold text-white leading-4">Sale -14%</span>
                   </div>
                   <div className="relative z-10 flex gap-4 items-center">
                     <div className="w-[120px] h-[120px] shrink-0 relative">
-                      <Image src="/images/shop/eca-xtreme.png" alt="ECA Xtreme Fat Burner" fill className="object-contain" unoptimized />
+                      <Image src="/images/shop/eca-xtreme.png" alt="ECA Xtreme Fat Burner" fill className="object-contain" />
                     </div>
                     <div className="flex-1 flex flex-col gap-1 min-w-0">
                       <p className="text-[14px] text-[#B6B6B6] leading-5">Biaxol</p>
@@ -303,7 +303,7 @@ export default function BlogArticlePage() {
                     alt="RAD-140 mechanism of action"
                     fill
                     className="object-cover"
-                    unoptimized
+                   
                   />
                 </div>
 
@@ -355,10 +355,10 @@ export default function BlogArticlePage() {
                   href="/blog/growth-hormone-secretagogues"
                   className="relative block bg-[#181818] rounded-[16px] p-6 my-8 overflow-hidden group"
                 >
-                  <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" unoptimized />
+                  <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
                   <div className="relative z-10 flex items-center gap-5">
                     <div className="w-[120px] h-[80px] rounded-[8px] overflow-hidden shrink-0 relative">
-                      <Image src="/images/shop/blog-4.png" alt="Read Also" fill className="object-cover" unoptimized />
+                      <Image src="/images/shop/blog-4.png" alt="Read Also" fill className="object-cover" />
                     </div>
                     <div className="flex-1 flex flex-col gap-1 min-w-0">
                       <p className="text-[14px] text-white/60 leading-5">Read Also:</p>
@@ -519,7 +519,7 @@ export default function BlogArticlePage() {
 
                 {/* Banner — WEEKLY BESTSELLER Figma 1513:15754 */}
                 <div className="relative w-full h-[260px] rounded-[16px] overflow-hidden my-10 bg-[#181818]">
-                  <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" unoptimized />
+                  <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
                   {/* Left: text block — 340px wide at left 40 */}
                   <div className="absolute left-10 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3 w-[340px]">
                     <p className="text-[18px] font-semibold text-[#FF6701] leading-[26px] uppercase">Weekly bestseller</p>
@@ -535,14 +535,14 @@ export default function BlogArticlePage() {
                   {/* Product bottle Andarine S4 — tilted ~6deg per Figma */}
                   <div className="absolute right-[110px] top-[-30px] w-[340px] h-[340px] z-0 pointer-events-none">
                     <div className="relative w-full h-full rotate-[6deg]">
-                      <Image src="/images/shop/andarine-s4.png" alt="Andarine S4" fill className="object-contain drop-shadow-[-18px_60px_30px_rgba(0,0,0,0.35)]" unoptimized />
+                      <Image src="/images/shop/andarine-s4.png" alt="Andarine S4" fill className="object-contain drop-shadow-[-18px_60px_30px_rgba(0,0,0,0.35)]" />
                     </div>
                   </div>
                   {/* Right: 3 quality badges 60x60 stacked */}
                   <div className="absolute right-6 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-2">
-                    <Image src="/icons/badge-quality.svg" alt="3rd Party Quality Tested" width={60} height={60} unoptimized />
-                    <Image src="/icons/badge-gluten.svg" alt="Gluten Free" width={60} height={60} unoptimized />
-                    <Image src="/icons/badge-nongmo.svg" alt="Non-GMO" width={60} height={60} unoptimized />
+                    <Image src="/icons/badge-quality.svg" alt="3rd Party Quality Tested" width={60} height={60} />
+                    <Image src="/icons/badge-gluten.svg" alt="Gluten Free" width={60} height={60} />
+                    <Image src="/icons/badge-nongmo.svg" alt="Non-GMO" width={60} height={60} />
                   </div>
                 </div>
 
@@ -655,7 +655,7 @@ export default function BlogArticlePage() {
                         alt={product.title}
                         fill
                         className="object-contain"
-                        unoptimized
+                       
                       />
                     </Link>
                     <Link href={`/shop/${product.slug}`} className="flex-1 min-w-0 group flex flex-col gap-1.5">
@@ -683,7 +683,7 @@ export default function BlogArticlePage() {
               <div className="mt-12 bg-[#F7F7F7] rounded-[12px] p-2">
                 <div className="bg-white border border-[#E7E7E7] rounded-[8px] pl-6 pr-8 flex items-center gap-8 overflow-hidden">
                   <div className="relative w-[145px] h-[150px] shrink-0 overflow-hidden">
-                    <Image src="/images/shop/manager.png" alt="Manager" fill className="object-cover object-top scale-110" unoptimized />
+                    <Image src="/images/shop/manager.png" alt="Manager" fill className="object-cover object-top scale-110" />
                   </div>
                   <div className="flex-1 flex flex-col gap-2 min-w-0">
                     <p className="text-[24px] font-extrabold text-black leading-[30px]">Still have questions?</p>
@@ -716,7 +716,7 @@ export default function BlogArticlePage() {
                             alt={article.title}
                             fill
                             className="object-cover transition-transform duration-500 group-hover:scale-105"
-                            unoptimized
+                           
                           />
                           <div className="absolute top-2 left-2 bg-white rounded-[8px] w-12 h-12 flex flex-col items-center justify-center px-3 py-2">
                             <span className="text-[20px] font-extrabold text-black leading-6">{article.date.split(" ")[0]}</span>
@@ -761,13 +761,13 @@ export default function BlogArticlePage() {
               <div className="sticky top-[24px] flex flex-col gap-6">
                 {/* Product Recommendation Card — horizontal Figma layout */}
                 <Link href="/catalog" className="relative block bg-[#181818] rounded-[16px] p-6 overflow-hidden group">
-                  <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" unoptimized />
+                  <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
                   <div className="absolute top-[10px] left-0 z-10 pt-2">
                     <span className="inline-flex items-center bg-[#FB2F2F] rounded-tr-[6px] rounded-br-[6px] px-3 py-1 text-[12px] font-semibold text-white leading-4">Sale -14%</span>
                   </div>
                   <div className="relative z-10 flex gap-4 items-center">
                     <div className="w-[120px] h-[120px] shrink-0 relative">
-                      <Image src="/images/shop/eca-xtreme.png" alt="ECA Xtreme Fat Burner" fill className="object-contain" unoptimized />
+                      <Image src="/images/shop/eca-xtreme.png" alt="ECA Xtreme Fat Burner" fill className="object-contain" />
                     </div>
                     <div className="flex-1 flex flex-col gap-3 min-w-0">
                       <div className="flex flex-col gap-1">

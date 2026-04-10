@@ -231,7 +231,7 @@ export default function CheckoutPage() {
                         alt={suggestedProducts[suggestIndex].name}
                         fill
                         className="object-cover"
-                        unoptimized
+                       
                       />
                     </div>
                     {/* Nav arrows */}
@@ -279,7 +279,7 @@ export default function CheckoutPage() {
                   {orderItems.map((item, i) => (
                     <div key={i} className="flex gap-3 items-center">
                       <div className="w-[52px] h-[52px] bg-white rounded-[8px] border border-[#E7E7E7] shrink-0 overflow-hidden">
-                        <Image src={item.image} alt={item.name} width={52} height={52} className="object-cover w-full h-full" unoptimized />
+                        <Image src={item.image} alt={item.name} width={52} height={52} className="object-cover w-full h-full" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-[11px] text-[#7E7E7E]">{item.brand}</p>

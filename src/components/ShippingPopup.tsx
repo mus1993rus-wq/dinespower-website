@@ -28,7 +28,7 @@ export default function ShippingPopup({ isOpen, onClose }: ShippingPopupProps) {
         <div className="border border-[#E7E7E7] rounded-[12px] overflow-hidden mb-5">
           <div className="flex items-center justify-between p-4 border-b border-[#E7E7E7]">
             <div className="flex items-center gap-3">
-              <Image src="/images/shop/popup-icons/flag-eu.png" alt="EU" width={32} height={22} className="rounded-[4px]" unoptimized />
+              <Image src="/images/shop/popup-icons/flag-eu.png" alt="EU" width={32} height={22} className="rounded-[4px]" />
               <span className="text-[14px] font-semibold text-[#181818]">Europe</span>
             </div>
             <div className="flex items-center gap-6">
@@ -38,7 +38,7 @@ export default function ShippingPopup({ isOpen, onClose }: ShippingPopupProps) {
           </div>
           <div className="flex items-center justify-between p-4 border-b border-[#E7E7E7]">
             <div className="flex items-center gap-3">
-              <Image src="/images/shop/popup-icons/flag-usa.png" alt="USA" width={32} height={22} className="rounded-[4px]" unoptimized />
+              <Image src="/images/shop/popup-icons/flag-usa.png" alt="USA" width={32} height={22} className="rounded-[4px]" />
               <span className="text-[14px] font-semibold text-[#181818]">USA</span>
             </div>
             <div className="flex items-center gap-6">
@@ -48,7 +48,7 @@ export default function ShippingPopup({ isOpen, onClose }: ShippingPopupProps) {
           </div>
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-3">
-              <Image src="/images/shop/popup-icons/flag-world.png" alt="World" width={32} height={22} className="rounded-[4px]" unoptimized />
+              <Image src="/images/shop/popup-icons/flag-world.png" alt="World" width={32} height={22} className="rounded-[4px]" />
               <span className="text-[14px] font-semibold text-[#181818]">World & Islands</span>
             </div>
             <div className="flex items-center gap-6">
@@ -60,12 +60,12 @@ export default function ShippingPopup({ isOpen, onClose }: ShippingPopupProps) {
 
         {/* Shipping company logos - real images */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-5">
-          <Image src="/images/shop/popup-icons/logo-ems.png" alt="EMS" width={48} height={24} className="object-contain" unoptimized />
+          <Image src="/images/shop/popup-icons/logo-ems.png" alt="EMS" width={48} height={24} className="object-contain" />
           <span className="text-[12px] font-extrabold text-[#C8102E] bg-[#FFCC00] rounded px-2 py-1">DHL</span>
-          <Image src="/images/shop/popup-icons/logo-gls.png" alt="GLS" width={48} height={24} className="object-contain" unoptimized />
-          <Image src="/images/shop/popup-icons/logo-dpd.png" alt="DPD" width={48} height={24} className="object-contain" unoptimized />
-          <Image src="/images/shop/popup-icons/logo-tnt.png" alt="TNT" width={48} height={24} className="object-contain" unoptimized />
-          <Image src="/images/shop/popup-icons/logo-fedex.png" alt="FedEx" width={48} height={24} className="object-contain" unoptimized />
+          <Image src="/images/shop/popup-icons/logo-gls.png" alt="GLS" width={48} height={24} className="object-contain" />
+          <Image src="/images/shop/popup-icons/logo-dpd.png" alt="DPD" width={48} height={24} className="object-contain" />
+          <Image src="/images/shop/popup-icons/logo-tnt.png" alt="TNT" width={48} height={24} className="object-contain" />
+          <Image src="/images/shop/popup-icons/logo-fedex.png" alt="FedEx" width={48} height={24} className="object-contain" />
           <span className="text-[12px] font-extrabold text-[#644117] bg-[#FFB500] rounded px-2 py-1">UPS</span>
         </div>
 

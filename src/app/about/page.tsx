@@ -68,7 +68,7 @@ export default function AboutPage() {
             alt=""
             fill
             className="object-cover opacity-20"
-            unoptimized
+           
           />
           <div className="max-w-[1340px] mx-auto py-16 relative z-10 text-center">
             <p className="text-[14px] text-[#FF6701] font-semibold uppercase tracking-wider mb-3">
@@ -107,7 +107,7 @@ export default function AboutPage() {
           <div className="flex gap-10 items-center">
             {/* Left - Manager photo */}
             <div className="w-[520px] h-[460px] shrink-0 rounded-[16px] relative overflow-hidden bg-[#F7F7F7]">
-              <Image src="/images/shop/manager.png" alt="Expert Support" fill className="object-cover object-top" unoptimized />
+              <Image src="/images/shop/manager.png" alt="Expert Support" fill className="object-cover object-top" />
             </div>
 
             {/* Right - Content */}
@@ -163,7 +163,7 @@ export default function AboutPage() {
                     width={160}
                     height={160}
                     className="object-contain relative z-10 drop-shadow-lg"
-                    unoptimized
+                   
                   />
                   <span className="absolute bottom-3 left-4 text-[14px] font-bold text-white/70 tracking-wide">
                     {brand.name}
