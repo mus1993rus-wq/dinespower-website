@@ -26,24 +26,24 @@ const brands = [
     origin: "India",
     badge: "Pharmaceutical Grade",
     description: "Largest line of injectable and oral preparations. Official representative in Europe.",
-    gradient: "from-[#FF6701] to-[#FF8C3A]",
-    image: "/images/shop/winimed-50.png",
+    logo: "/images/brand-deus-logo.png",
+    bg: "/images/brand-deus-bg.png",
   },
   {
     name: "BIAXOL",
     origin: "Czech Republic",
     badge: "Lab Testing",
     description: "SARMS and fat burner specialist. All products with laboratory quality tests.",
-    gradient: "from-[#00A9DE] to-[#5BC4F0]",
-    image: "/images/shop/eca-xtreme.png",
+    logo: "/images/brand-biaxol-logo.png",
+    bg: "/images/brand-biaxol-bg.png",
   },
   {
     name: "ASTERA LABS",
     origin: "India",
     badge: "Premium Injectables & Orals",
     description: "Premium peptide and health line. Innovative formulas for athletes.",
-    gradient: "from-[#FF8A6C] to-[#FFB199]",
-    image: "/images/shop/andarine-s4.png",
+    logo: "/images/brand-astera-logo.png",
+    bg: "/images/brand-astera-bg.png",
   },
 ];
 
@@ -152,35 +152,38 @@ export default function AboutPage() {
             {brands.map((brand) => (
               <div
                 key={brand.name}
-                className="border border-[#E7E7E7] rounded-2xl overflow-hidden hover:shadow-lg transition-shadow"
+                className="bg-[#F7F7F7] rounded-[16px] p-4 hover:shadow-lg transition-shadow flex flex-col gap-4"
               >
-                {/* Top gradient area with brand product image */}
-                <div className={`h-[200px] bg-gradient-to-br ${brand.gradient} flex items-center justify-center relative overflow-hidden`}>
+                {/* Top area with bg texture + centered brand logo */}
+                <div className="h-[220px] rounded-[12px] relative overflow-hidden bg-white">
                   <Image
-                    src={brand.image}
-                    alt={brand.name}
-                    width={160}
-                    height={160}
-                    className="object-contain relative z-10 drop-shadow-lg"
-                   
+                    src={brand.bg}
+                    alt=""
+                    fill
+                    className="object-cover"
                   />
-                  <span className="absolute bottom-3 left-4 text-[14px] font-bold text-white/70 tracking-wide">
-                    {brand.name}
-                  </span>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="relative w-[200px] h-[60px]">
+                      <Image
+                        src={brand.logo}
+                        alt={brand.name}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-[18px] font-extrabold text-[#181818] mb-1">{brand.name}</h3>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[13px] text-[#7E7E7E]">{brand.origin}</span>
-                    <span className="text-[#E7E7E7]">·</span>
-                    <span className="text-[13px] text-[#7E7E7E]">{brand.badge}</span>
-                  </div>
-                  <p className="text-[14px] text-[#7E7E7E] leading-6 mb-5">
+                <div className="bg-white rounded-[12px] p-6 text-center flex flex-col gap-3">
+                  <h3 className="text-[20px] font-extrabold text-[#181818] leading-6">{brand.name}</h3>
+                  <p className="text-[13px] text-[#7E7E7E] leading-5">
+                    {brand.origin} &middot; {brand.badge}
+                  </p>
+                  <p className="text-[14px] text-[#181818] leading-6">
                     {brand.description}
                   </p>
-                  <button className="w-full h-[44px] bg-[#181818] hover:bg-[#333333] text-white text-[14px] font-semibold rounded-lg transition-colors">
+                  <button className="cursor-pointer w-full h-[44px] bg-[#181818] hover:bg-[#333] text-white text-[14px] font-semibold rounded-[8px] transition-colors">
                     Verify Partner
                   </button>
                 </div>
