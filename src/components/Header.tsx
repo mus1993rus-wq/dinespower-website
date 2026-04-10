@@ -137,24 +137,24 @@ export default function Header() {
             <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-[#E7E7E7] rounded-[12px] shadow-lg z-50 p-4">
               {searchQuery.trim() ? (
                 <>
-                  {/* Product results */}
+                  {/* Product results — Figma 1726:45581 style */}
                   <div className="flex flex-col">
                     {searchProducts
                       .filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase()))
-                      .slice(0, 5)
-                      .map((product, i) => (
+                      .slice(0, 6)
+                      .map((product, i, arr) => (
                         <Link
                           key={i}
-                          href={`/catalog`}
+                          href={`/product`}
                           onClick={() => setSearchFocused(false)}
-                          className="flex items-center gap-3 py-3 border-b border-[#F0F0F0] last:border-b-0 hover:bg-[#F7F7F7] rounded-lg px-2 transition-colors"
+                          className={`flex items-center gap-4 py-3 hover:bg-[#F7F7F7] rounded-lg px-2 transition-colors ${i < arr.length - 1 ? "border-b border-[#F0F0F0]" : ""}`}
                         >
                           <div className="w-[60px] h-[60px] bg-[#F7F7F7] rounded-lg shrink-0 relative overflow-hidden">
                             <Image src={product.image} alt={product.name} fill className="object-cover" />
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-[#181818] leading-[18px] line-clamp-2">{product.name}</p>
-                            <p className="text-sm font-bold text-[#FF6701] mt-1">{product.price}</p>
+                          <div className="flex-1 min-w-0 flex flex-col gap-1">
+                            <p className="text-[16px] font-semibold text-[#181818] leading-[22px] line-clamp-2">{product.name}</p>
+                            <p className="text-[14px] text-[#7E7E7E] leading-5">{product.price}</p>
                           </div>
                         </Link>
                       ))}
@@ -165,7 +165,7 @@ export default function Header() {
                   <Link
                     href={`/search?q=${encodeURIComponent(searchQuery)}`}
                     onClick={() => setSearchFocused(false)}
-                    className="flex items-center justify-center w-full h-[44px] bg-[#181818] hover:bg-[#333333] text-white text-sm font-semibold rounded-[8px] mt-3 transition-colors"
+                    className="flex items-center justify-center w-full h-[52px] bg-[#181818] hover:bg-[#333333] text-white text-[14px] font-semibold rounded-[8px] mt-3 transition-colors"
                   >
                     See All
                   </Link>
@@ -214,7 +214,7 @@ export default function Header() {
         </div>
         <div className="flex items-center gap-[24px] shrink-0">
           <button onClick={() => setVerifyOpen(true)} className="flex items-center gap-2 h-[44px] cursor-pointer">
-            <Image src="/images/shop/verify-icon.svg" alt="" width={20} height={20} />
+            <Image src="/images/shop/verify-icon.svg" alt="" width={24} height={24} className="w-6 h-6" />
             <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors">Verify Authenticity</span>
           </button>
           <div className="relative" ref={helpRef}>
