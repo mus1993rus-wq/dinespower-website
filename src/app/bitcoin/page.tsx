@@ -5,124 +5,184 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+function InfoBox({ children, variant = "info" }: { children: React.ReactNode; variant?: "info" | "warning" | "error" }) {
+  const colors = {
+    info: { bg: "#FFF8F0", border: "#FFD9A8", icon: "#FF8C38", text: "#8B6914" },
+    warning: { bg: "#FFF8F0", border: "#FFD9A8", icon: "#FF8C38", text: "#8B6914" },
+    error: { bg: "#FFF0F0", border: "#FFD0D0", icon: "#FF3B30", text: "#8B2020" },
+  }[variant];
+  return (
+    <div className="flex items-start gap-4 rounded-[12px] px-6 py-4 my-4" style={{ backgroundColor: colors.bg, border: `1px solid ${colors.border}` }}>
+      <div className="shrink-0 mt-0.5">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" fill={colors.icon} />
+          <path d="M12 7v5M12 16h.01" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
+      </div>
+      <div className="flex-1 text-[16px] leading-[24px]" style={{ color: colors.text }}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function ScreenshotPlaceholder({ label }: { label: string }) {
+  return (
+    <div className="mt-4 w-full h-[418px] rounded-[16px] bg-gradient-to-br from-[#F7F7F7] to-[#EDEDED] border border-[#E7E7E7] flex items-center justify-center relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "repeating-linear-gradient(45deg, #000 0 2px, transparent 2px 20px)" }} />
+      <div className="relative z-10 flex flex-col items-center gap-3 text-center px-8">
+        <div className="w-16 h-16 rounded-full bg-[#FF6701]/10 flex items-center justify-center">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="2" stroke="#FF6701" strokeWidth="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5" fill="#FF6701"/>
+            <path d="M21 15l-5-5L5 21" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+        <p className="text-[14px] text-[#7E7E7E] font-medium">{label}</p>
+      </div>
+    </div>
+  );
+}
+
 const steps = [
   {
     number: 1,
     title: "Place your order",
     content: (
-      <p className="text-[15px] text-[#4A4A4A] leading-[24px]">
-        After selecting your preferred products, you need to select Bitcoin (BTC) as your payment method, complete the order &mdash; address, delivery terms, and all the payment information.
+      <p className="text-[16px] text-[#1E1E1E] leading-[24px]">
+        Add products to cart, proceed to checkout, and select Bitcoin (BTC) as your payment method. Complete the order &mdash; payment instructions will be generated immediately.
       </p>
     ),
   },
   {
     number: 2,
-    title: "Checkout payment details",
+    title: "Receive payment details",
     content: (
-      <div>
-        <p className="text-[15px] text-[#4A4A4A] leading-[24px] mb-3">
+      <>
+        <p className="text-[16px] text-[#1E1E1E] leading-[24px] mb-2">
           After placing the order, you will receive an email with:
         </p>
-        <ul className="list-disc pl-5 text-[15px] text-[#4A4A4A] leading-[28px] mb-4">
-          <li>Order number</li>
-          <li>Order total (sum in &euro;)</li>
-          <li>USDT BTC Address</li>
-          <li>Copy ID reference</li>
+        <ul className="list-disc pl-5 text-[16px] text-[#1E1E1E] leading-[28px]">
+          <li>Bitcoin wallet address</li>
+          <li>Exact amount to send (in BTC)</li>
+          <li>Order ID / reference</li>
         </ul>
-        <div className="bg-[#FFF8F0] border border-[#FFD9A8] rounded-[10px] p-4 flex gap-3">
-          <div className="shrink-0 mt-0.5">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" fill="#FF8C38"/>
-              <path d="M10 6v5M10 13.5v.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-          </div>
-          <p className="text-[14px] text-[#8B6914] leading-[20px]">
-            The amounts in Euro/USD is a mirrored 1 to based on The current Exchange Rate.
-          </p>
-        </div>
-      </div>
+        <InfoBox variant="info">
+          The amount is fixed for a limited time based on the current exchange rate.
+        </InfoBox>
+        <ScreenshotPlaceholder label="Example of payment details email" />
+      </>
     ),
   },
   {
     number: 3,
     title: "Open your crypto wallet",
     content: (
-      <div>
-        <p className="text-[15px] text-[#4A4A4A] leading-[24px] mb-3">
-          Use a trusted exchange or wallet app such as:
+      <>
+        <p className="text-[16px] text-[#1E1E1E] leading-[24px] mb-2">
+          Use any crypto wallet or exchange, such as:
         </p>
-        <ul className="list-disc pl-5 text-[15px] text-[#4A4A4A] leading-[28px] mb-3">
+        <ul className="list-disc pl-5 text-[16px] text-[#1E1E1E] leading-[28px]">
+          <li>Trust Wallet</li>
           <li>Binance</li>
           <li>Coinbase</li>
-          <li>Trust Wallet</li>
-          <li>Kraken</li>
+          <li>OKX</li>
         </ul>
-        <p className="text-[15px] text-[#4A4A4A] leading-[24px]">
-          Or use a hard / offline crypto wallet.
+        <p className="text-[16px] text-[#1E1E1E] leading-[24px] mt-2">
+          Go to <strong>Send / Withdraw BTC</strong>.
         </p>
-      </div>
+        <ScreenshotPlaceholder label="Example: Send / Withdraw BTC screen" />
+      </>
     ),
   },
   {
     number: 4,
-    title: "Setup payment information",
+    title: "Enter payment information",
     content: (
-      <div>
-        <p className="text-[15px] text-[#4A4A4A] leading-[24px] mb-3">
-          Follow these steps:
+      <>
+        <p className="text-[16px] text-[#1E1E1E] leading-[24px] mb-2">
+          In your wallet:
         </p>
-        <ul className="list-disc pl-5 text-[15px] text-[#4A4A4A] leading-[28px]">
-          <li>Open your crypto wallet</li>
+        <ul className="list-disc pl-5 text-[16px] text-[#1E1E1E] leading-[28px]">
           <li>Paste the wallet address</li>
-          <li>Enter the exact BTC amount pointed</li>
+          <li>Enter the exact BTC amount provided</li>
         </ul>
-      </div>
+        <InfoBox variant="warning">
+          <strong>Important:</strong> Do not round the amount. Do not subtract network fees. Send the exact value shown in your instructions.
+        </InfoBox>
+        <ScreenshotPlaceholder label="Example: Paste address and enter amount" />
+      </>
     ),
   },
   {
     number: 5,
     title: "Select the correct network",
     content: (
-      <p className="text-[15px] text-[#4A4A4A] leading-[24px]">
-        Make sure you select the <strong>Bitcoin (BTC)</strong> network when sending. Using a wrong network (e.g. BEP20, ERC20) may result in permanent loss of funds. Always double-check the network before confirming.
-      </p>
+      <>
+        <p className="text-[16px] text-[#1E1E1E] leading-[24px] mb-2">
+          Make sure you are sending via:
+        </p>
+        <ul className="list-disc pl-5 text-[16px] text-[#1E1E1E] leading-[28px]">
+          <li><strong>Bitcoin network (BTC)</strong></li>
+        </ul>
+        <InfoBox variant="error">
+          ❌ Do <strong>NOT</strong> use: BEP20 (BSC), ERC20 (Ethereum), TRC20 (Tron). Sending via the wrong network may result in loss of funds.
+        </InfoBox>
+      </>
     ),
   },
   {
     number: 6,
-    title: "Confirm the payment",
+    title: "Confirm and send payment",
     content: (
-      <p className="text-[15px] text-[#4A4A4A] leading-[24px]">
-        Review all payment details carefully &mdash; wallet address, amount, and network. Once everything is correct, confirm and send the transaction from your wallet.
-      </p>
+      <>
+        <p className="text-[16px] text-[#1E1E1E] leading-[24px]">
+          Double-check all details, then click <strong>Send / Confirm</strong> in your wallet. Your transaction will be broadcast to the blockchain.
+        </p>
+        <ScreenshotPlaceholder label="Example: Confirmation screen" />
+      </>
     ),
   },
   {
     number: 7,
-    title: "Wait for blockchain confirmation",
+    title: "Wait for confirmation",
     content: (
-      <p className="text-[15px] text-[#4A4A4A] leading-[24px]">
-        Bitcoin transactions typically require 1-3 network confirmations. This can take anywhere from 10 minutes to 1 hour depending on network congestion. You can track the status using your transaction hash (TXID).
-      </p>
+      <>
+        <p className="text-[16px] text-[#1E1E1E] leading-[24px] mb-2">
+          The payment is confirmed after network confirmations.
+        </p>
+        <ul className="list-disc pl-5 text-[16px] text-[#1E1E1E] leading-[28px]">
+          <li>Typical time: 10&ndash;30 minutes</li>
+          <li>May take longer depending on network load</li>
+        </ul>
+        <ScreenshotPlaceholder label="Example: Transaction confirmation" />
+      </>
     ),
   },
   {
     number: 8,
     title: "Order processing",
     content: (
-      <p className="text-[15px] text-[#4A4A4A] leading-[24px]">
-        Once the payment is confirmed on the blockchain, your order will be processed and prepared for shipment. You will receive an email confirmation with tracking information.
-      </p>
+      <>
+        <p className="text-[16px] text-[#1E1E1E] leading-[24px] mb-2">
+          Once the payment is confirmed:
+        </p>
+        <ul className="list-disc pl-5 text-[16px] text-[#1E1E1E] leading-[28px]">
+          <li>Your order is marked as paid</li>
+          <li>Processing starts within 1&ndash;3 business days</li>
+          <li>You will receive status updates via email</li>
+        </ul>
+        <ScreenshotPlaceholder label="Example: Order status update email" />
+      </>
     ),
   },
 ];
 
 const commonMistakes = [
-  "Sending the wrong amount (always send the exact amount specified)",
-  "Using the wrong network (always use BTC network, not BEP20 or ERC20)",
-  "Sending to the wrong wallet address (always copy-paste, never type manually)",
-  "Not including the reference ID in the transaction memo when required",
-  "Waiting too long to send payment (exchange rates may change)",
+  "Sending a different cryptocurrency (e.g. USDT instead of BTC)",
+  "Sending the wrong amount",
+  "Using the wrong network",
+  "Delaying payment (exchange rate may expire)",
 ];
 
 export default function BitcoinPaymentPage() {
@@ -134,6 +194,8 @@ export default function BitcoinPaymentPage() {
         <div className="max-w-[1340px] mx-auto py-3">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/delivery-payment" className="hover:text-[#181818] transition-colors">Shipping &amp; Payment</Link>
             <span>/</span>
             <span className="text-[#181818] font-semibold">Bitcoin Payment</span>
           </div>
@@ -147,16 +209,14 @@ export default function BitcoinPaymentPage() {
             </h1>
 
             {/* Steps */}
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-10">
               {steps.map((step) => (
                 <div key={step.number} className="flex gap-5">
-                  {/* Step number */}
-                  <div className="w-[40px] h-[40px] rounded-full bg-[#FF6701] flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-10 h-10 rounded-full bg-[#FF6701] flex items-center justify-center shrink-0 mt-1">
                     <span className="text-white text-[16px] font-bold">{step.number}</span>
                   </div>
-                  {/* Step content */}
                   <div className="flex-1">
-                    <h3 className="text-[20px] font-bold text-[#181818] leading-[28px] mb-2">
+                    <h3 className="text-[20px] font-extrabold text-[#181818] leading-[28px] mb-3">
                       {step.title}
                     </h3>
                     {step.content}
@@ -165,83 +225,77 @@ export default function BitcoinPaymentPage() {
               ))}
             </div>
 
-            {/* Common Mistakes */}
-            <div className="mt-12 bg-[#FFF5F5] border border-[#FFD4D4] rounded-[12px] p-6">
-              <h2 className="text-[22px] font-bold text-[#181818] leading-[28px] mb-4 flex items-center gap-3">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" fill="#FF3B30"/>
-                  <path d="M12 8v4M12 16h.01" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
+            {/* Common Mistakes to Avoid */}
+            <div className="mt-12 pt-8 border-t border-[#E7E7E7]">
+              <h2 className="text-[20px] font-extrabold text-[#181818] leading-[28px] mb-4">
                 Common Mistakes to Avoid
               </h2>
-              <ul className="flex flex-col gap-3">
+              <ul className="list-disc pl-5 text-[16px] text-[#1E1E1E] leading-[28px]">
                 {commonMistakes.map((mistake, i) => (
-                  <li key={i} className="flex items-start gap-3 text-[15px] text-[#4A4A4A] leading-[22px]">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 mt-0.5">
-                      <path d="M13.5 4.5L4.5 13.5M4.5 4.5l9 9" stroke="#FF3B30" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    {mistake}
-                  </li>
+                  <li key={i}>{mistake}</li>
                 ))}
               </ul>
             </div>
           </div>
 
           {/* Right sidebar */}
-          <div className="w-[440px] shrink-0">
-            {/* Still Have Questions card */}
-            <div className="bg-[#F7F7F7] rounded-[12px] p-4 mb-4">
-              <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-5 flex flex-col items-center gap-4">
-                <Image src="/images/shop/faq-help-icon.png" alt="Help" width={64} height={64} className="object-contain" unoptimized />
-                <h3 className="text-[16px] font-semibold text-black text-center">Still Have Questions?</h3>
-                <p className="text-[14px] text-[#1E1E1E] text-center leading-[20px]">
+          <div className="w-[440px] shrink-0 flex flex-col gap-4">
+            {/* Still Have Questions card — Figma style */}
+            <div className="bg-[#F7F7F7] rounded-[12px] p-4">
+              <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
+                <div className="w-12 h-12 relative shrink-0">
+                  <Image src="/icons/question-bubble.png" alt="" fill className="object-contain" unoptimized />
+                </div>
+                <p className="text-[16px] font-semibold text-black leading-6 capitalize">Still have questions?</p>
+                <p className="text-[14px] text-[#1E1E1E] leading-5 text-center">
                   Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.
                 </p>
-                <button className="bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:border-[#FF6701] transition-colors">
+                <button className="cursor-pointer flex items-center justify-center h-11 w-full bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
                   Ask a Question
                 </button>
-                <div className="flex gap-4">
-                  <a href="#" className="w-[48px] h-[48px] rounded-full bg-[#00A9DE] flex items-center justify-center">
-                    <Image src="/images/shop/telegram.svg" alt="Telegram" width={22} height={22} unoptimized />
+                <div className="flex gap-4 items-center">
+                  <a href="https://t.me/dinespower" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full bg-[#00A9DE] flex items-center justify-center hover:opacity-90 transition-opacity">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M3.32168 11.8714L18.7484 5.92338C19.4644 5.66472 20.0897 6.09805 19.8577 7.18072L19.859 7.17938L17.2323 19.5541C17.0377 20.4314 16.5164 20.6447 15.787 20.2314L11.787 17.2834L9.85768 19.1421C9.64435 19.3554 9.46435 19.5354 9.05102 19.5354L9.33502 15.4647L16.7483 8.76738C17.071 8.48338 16.6763 8.32338 16.251 8.60605L7.08968 14.374L3.14035 13.1421C2.28302 12.8701 2.26435 12.2847 3.32168 11.8714Z" fill="white"/>
+                    </svg>
                   </a>
-                  <a href="#" className="w-[48px] h-[48px] rounded-full bg-[#00D43F] flex items-center justify-center">
-                    <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={22} height={22} unoptimized />
+                  <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full bg-[#00D43F] flex items-center justify-center hover:opacity-90 transition-opacity">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M15.25 13.2808C15.0625 13.1558 14.875 13.0933 14.6875 13.3433L13.9375 14.3433C13.75 14.4683 13.625 14.5308 13.375 14.4058C12.4375 13.9058 11.125 13.3433 10 11.4683C9.93753 11.2183 10.0625 11.0933 10.1875 10.9683L10.75 10.0933C10.875 9.96832 10.8125 9.84332 10.75 9.71832L10 7.90582C9.81253 7.40582 9.62503 7.46832 9.43753 7.46832H8.93753C8.81253 7.46832 8.56253 7.53082 8.31253 7.78082C6.93753 9.15582 7.50003 11.0933 8.50003 12.3433C8.68753 12.5933 9.93753 14.8433 12.625 16.0308C14.625 16.9058 15.0625 16.7808 15.625 16.6558C16.3125 16.5933 17 16.0308 17.3125 15.4683C17.375 15.2808 17.6875 14.4683 17.4375 14.3433" fill="white"/>
+                      <path d="M12.5 20.2183C9.9375 20.2183 8 18.8433 8 18.8433L4.9375 19.6558L5.6875 16.6558C5.6875 16.6558 4.4375 14.7183 4.4375 12.2808C4.4375 7.78076 8.125 4.03076 12.6875 4.03076C16.9375 4.03076 20.5625 7.34326 20.5625 11.9683C20.5625 16.4683 16.9375 20.1558 12.5 20.2183ZM2.5625 22.0308L7.75 20.5933C9.25239 21.3624 10.9268 21.7336 12.6135 21.6715C14.3002 21.6094 15.9428 21.116 17.3846 20.2384C18.8263 19.3608 20.019 18.1284 20.8489 16.6587C21.6788 15.189 22.1182 13.5311 22.125 11.8433C22.125 6.46826 17.875 2.15576 12.5 2.15576C10.7748 2.16018 9.08091 2.61647 7.58694 3.4792C6.09297 4.34194 4.85109 5.58101 3.98497 7.07301C3.11884 8.56502 2.65871 10.2579 2.65038 11.9831C2.64205 13.7082 3.08582 15.4055 3.9375 16.9058" fill="white"/>
+                    </svg>
                   </a>
                 </div>
               </div>
             </div>
 
             {/* 100% Secure Payment badge */}
-            <div className="bg-[#F7F7F7] rounded-[12px] p-4 mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-[44px] h-[44px] rounded-full bg-[#00B638] flex items-center justify-center shrink-0">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                    <path d="M11 1L3 5v5c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V5l-8-4z" fill="white"/>
-                    <path d="M8 11l2.5 2.5L14.5 9" stroke="#00B638" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-[#181818] leading-[18px]">100% Secure Payment</p>
-                  <p className="text-[12px] text-[#7E7E7E] leading-[16px] mt-0.5">Your transactions are protected</p>
-                </div>
+            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-5 flex items-center gap-4">
+              <div className="w-14 h-14 rounded-full bg-[#E8F7EE] flex items-center justify-center shrink-0">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L4 5v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V5l-8-3z" fill="#00B638"/>
+                  <path d="M9 12l2 2 4-4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <p className="text-[16px] font-extrabold text-[#181818] leading-6">100% Secure Payment</p>
+                <p className="text-[13px] text-[#7E7E7E] leading-5 mt-0.5">Your transactions are protected</p>
               </div>
             </div>
 
             {/* Fast & Discreet Delivery badge */}
-            <div className="bg-[#F7F7F7] rounded-[12px] p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-[44px] h-[44px] rounded-full bg-[#FF6701] flex items-center justify-center shrink-0">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                    <path d="M14 3H3v11h11V3z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M14 8h3l3 3v3h-6V8z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <circle cx="7" cy="16.5" r="1.5" stroke="white" strokeWidth="1.5"/>
-                    <circle cx="17.5" cy="16.5" r="1.5" stroke="white" strokeWidth="1.5"/>
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-[#181818] leading-[18px]">Fast &amp; Discreet Delivery</p>
-                  <p className="text-[12px] text-[#7E7E7E] leading-[16px] mt-0.5">Shipped quickly and privately</p>
-                </div>
+            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-5 flex items-center gap-4">
+              <div className="w-14 h-14 rounded-full bg-[#FFF0E6] flex items-center justify-center shrink-0">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path d="M16 3H1v13h15V3z" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M16 8h4l3 3v5h-7V8z" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="5.5" cy="18.5" r="2.5" stroke="#FF6701" strokeWidth="2"/>
+                  <circle cx="18.5" cy="18.5" r="2.5" stroke="#FF6701" strokeWidth="2"/>
+                </svg>
+              </div>
+              <div>
+                <p className="text-[16px] font-extrabold text-[#181818] leading-6">Fast &amp; Discreet Delivery</p>
+                <p className="text-[13px] text-[#7E7E7E] leading-5 mt-0.5">Shipped quickly and privately</p>
               </div>
             </div>
           </div>

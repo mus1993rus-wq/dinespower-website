@@ -152,37 +152,14 @@ const productData: Category[] = [
 
 function TestReportThumbnail() {
   return (
-    <div className="w-full h-full bg-white border border-[#E0E0E0] rounded flex flex-col p-3 select-none">
-      <div className="text-[8px] font-bold tracking-[0.15em] uppercase text-[#333] mb-2 text-center border-b border-[#E0E0E0] pb-1.5">
-        TEST REPORT
-      </div>
-      <div className="flex-1 flex flex-col gap-[5px] mt-1.5">
-        <div className="h-[3px] bg-[#E8E8E8] rounded-full w-full" />
-        <div className="h-[3px] bg-[#E8E8E8] rounded-full w-[85%]" />
-        <div className="h-[3px] bg-[#E8E8E8] rounded-full w-[90%]" />
-        <div className="mt-1.5 border border-[#EBEBEB] rounded">
-          <div className="flex border-b border-[#EBEBEB]">
-            <div className="flex-1 h-[6px] bg-[#F5F5F5] border-r border-[#EBEBEB]" />
-            <div className="flex-1 h-[6px] bg-[#F5F5F5] border-r border-[#EBEBEB]" />
-            <div className="flex-1 h-[6px] bg-[#F5F5F5]" />
-          </div>
-          {[0, 1, 2, 3].map((i) => (
-            <div key={i} className="flex border-b border-[#EBEBEB] last:border-b-0">
-              <div className="flex-1 h-[5px] border-r border-[#EBEBEB]" />
-              <div className="flex-1 h-[5px] border-r border-[#EBEBEB]" />
-              <div className="flex-1 h-[5px]" />
-            </div>
-          ))}
-        </div>
-        <div className="mt-1 h-[3px] bg-[#E8E8E8] rounded-full w-[70%]" />
-        <div className="h-[3px] bg-[#E8E8E8] rounded-full w-[60%]" />
-        <div className="mt-auto flex justify-between items-end">
-          <div className="h-[3px] bg-[#D0D0D0] rounded-full w-[40%]" />
-          <div className="w-[14px] h-[14px] rounded-full border border-[#D0D0D0] flex items-center justify-center">
-            <div className="w-[6px] h-[6px] rounded-full bg-[#D0D0D0]" />
-          </div>
-        </div>
-      </div>
+    <div className="relative w-full h-full overflow-hidden rounded-[8px] bg-white select-none">
+      <Image
+        src="/images/shop/lab-test-report.png"
+        alt="Lab Test Report"
+        fill
+        className="object-cover"
+        unoptimized
+      />
     </div>
   );
 }
@@ -324,8 +301,11 @@ export default function LabTestsPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // Track global index offset per category section for clicking
-  let globalIndex = 0;
+  // Precompute starting index offset for each category (no mutation during render)
+  const categoryOffsets = productData.reduce<number[]>((acc, cat, i) => {
+    acc.push(i === 0 ? 0 : acc[i - 1] + productData[i - 1].products.length);
+    return acc;
+  }, []);
 
   return (
     <>
@@ -403,8 +383,8 @@ export default function LabTestsPage() {
 
             {/* Main Content — categories with 5-column grid */}
             <div className="flex-1 min-w-0">
-              {productData.map((category) => {
-                const startIndex = globalIndex;
+              {productData.map((category, catIdx) => {
+                const startIndex = categoryOffsets[catIdx];
                 const items = category.products.map((product, idx) => {
                   const thisIndex = startIndex + idx;
                   return (
@@ -425,7 +405,6 @@ export default function LabTestsPage() {
                     </div>
                   );
                 });
-                globalIndex += category.products.length;
 
                 const sectionId = `lab-section-${category.title.replace(/\s+/g, '-').replace(/&/g, 'and')}`;
 

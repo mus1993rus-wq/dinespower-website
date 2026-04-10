@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
@@ -117,27 +116,24 @@ const relatedArticles = [
 ];
 
 export default function BlogArticlePage() {
-  const [copied, setCopied] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("");
-  const [pageUrl, setPageUrl] = useState("");
-
-  useEffect(() => {
-    setPageUrl(window.location.href);
-  }, []);
-
-  const handleCopyLink = () => {
-    if (typeof window !== "undefined") {
-      navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
-
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+  };
+
+  const handleShare = (platform: "facebook" | "twitter" | "telegram" | "email") => {
+    if (typeof window === "undefined") return;
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(articleData.title);
+    const urls: Record<string, string> = {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+      twitter: `https://twitter.com/intent/tweet?text=${title}`,
+      telegram: `https://t.me/share/url?url=${url}`,
+      email: `mailto:?subject=${title}&body=${url}`,
+    };
+    window.open(urls[platform], "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -596,12 +592,9 @@ export default function BlogArticlePage() {
                 <div className="mt-8 pt-8 border-t border-[#E7E7E7]">
                   <p className="text-[14px] text-[#7E7E7E] mb-3">Share:</p>
                   <div className="grid grid-cols-4 gap-3">
-                    {/* Facebook */}
-                    <a
-                      href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      suppressHydrationWarning
+                    <button
+                      type="button"
+                      onClick={() => handleShare("facebook")}
                       className="cursor-pointer flex items-center justify-center gap-3 h-14 px-4 bg-white border border-[#E7E7E7] rounded-[12px] hover:bg-[#F7F7F7] hover:border-transparent transition-colors"
                     >
                       <span className="w-8 h-8 rounded-full bg-[#1877F2] flex items-center justify-center shrink-0">
@@ -610,12 +603,10 @@ export default function BlogArticlePage() {
                         </svg>
                       </span>
                       <span className="text-[14px] font-semibold text-[#181818]">Facebook</span>
-                    </a>
-                    {/* Twitter / X */}
-                    <a
-                      href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(articleData.title)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleShare("twitter")}
                       className="cursor-pointer flex items-center justify-center gap-3 h-14 px-4 bg-white border border-[#E7E7E7] rounded-[12px] hover:bg-[#F7F7F7] hover:border-transparent transition-colors"
                     >
                       <span className="w-8 h-8 rounded-full bg-black flex items-center justify-center shrink-0">
@@ -624,13 +615,10 @@ export default function BlogArticlePage() {
                         </svg>
                       </span>
                       <span className="text-[14px] font-semibold text-[#181818]">Twitter</span>
-                    </a>
-                    {/* Telegram */}
-                    <a
-                      href={`https://t.me/share/url?url=${encodeURIComponent(pageUrl)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      suppressHydrationWarning
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleShare("telegram")}
                       className="cursor-pointer flex items-center justify-center gap-3 h-14 px-4 bg-white border border-[#E7E7E7] rounded-[12px] hover:bg-[#F7F7F7] hover:border-transparent transition-colors"
                     >
                       <span className="w-8 h-8 rounded-full bg-[#00A9DE] flex items-center justify-center shrink-0">
@@ -639,12 +627,11 @@ export default function BlogArticlePage() {
                         </svg>
                       </span>
                       <span className="text-[14px] font-semibold text-[#181818]">Telegram</span>
-                    </a>
-                    {/* Email */}
-                    <a
-                      href={`mailto:?subject=${encodeURIComponent(articleData.title)}&body=${encodeURIComponent(pageUrl)}`}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleShare("email")}
                       className="cursor-pointer flex items-center justify-center gap-3 h-14 px-4 bg-white border border-[#E7E7E7] rounded-[12px] hover:bg-[#F7F7F7] hover:border-transparent transition-colors"
-                      suppressHydrationWarning
                     >
                       <span className="w-8 h-8 rounded-full bg-[#FF6701] flex items-center justify-center shrink-0">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -653,11 +640,8 @@ export default function BlogArticlePage() {
                         </svg>
                       </span>
                       <span className="text-[14px] font-semibold text-[#181818]">Email</span>
-                    </a>
+                    </button>
                   </div>
-                  {copied && (
-                    <p className="text-[13px] text-[#FF6701] font-semibold mt-2">Link copied!</p>
-                  )}
                 </div>
               </article>
 

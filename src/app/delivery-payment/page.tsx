@@ -137,7 +137,7 @@ export default function DeliveryPaymentPage() {
                         </div>
                       </button>
                       {openFAQ === 100 + i && (
-                        <div className="pb-5 pl-[40px] text-sm text-[#7E7E7E] leading-6">
+                        <div className="pb-5 pl-[36px] pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
                           {faq.a}
                         </div>
                       )}
@@ -226,7 +226,7 @@ export default function DeliveryPaymentPage() {
                         </div>
                       </button>
                       {openFAQ === i && (
-                        <div className="pb-5 pl-[40px] text-sm text-[#7E7E7E] leading-6">
+                        <div className="pb-5 pl-[36px] pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
                           {faq.a}
                         </div>
                       )}

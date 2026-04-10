@@ -6,11 +6,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const stats = [
-  { value: "5+", label: "Years of experience in the European sports nutrition and pharmacology market" },
-  { value: "50k+", label: "Orders successfully delivered across Europe and beyond" },
-  { value: "EU/USA+", label: "We ship to most European countries and selected international destinations" },
-  { value: "100+", label: "Products in our catalog from verified pharmaceutical manufacturers" },
-  { value: "3+", label: "Brands we officially represent as an authorized distributor" },
+  { value: "5+ years", label: "Proven experience delivering quality products to customers" },
+  { value: "50k+", label: "Thousands of customers trust us for quality and fast delivery" },
+  { value: "EU/USA+", label: "We deliver to Europe, USA, worldwide and islands" },
+  { value: "100+ products", label: "Wide range of injectables, orals, SARMs and peptides" },
+  { value: "3+ brands", label: "Direct partnerships with trusted pharmaceutical manufacturers" },
 ];
 
 const checkItems = [
@@ -27,7 +27,7 @@ const brands = [
     badge: "Pharmaceutical Grade",
     description: "Largest line of injectable and oral preparations. Official representative in Europe.",
     gradient: "from-[#FF6701] to-[#FF8C3A]",
-    image: "/images/shop/product-1.webp",
+    image: "/images/shop/winimed-50.png",
   },
   {
     name: "BIAXOL",
@@ -35,7 +35,7 @@ const brands = [
     badge: "Lab Testing",
     description: "SARMS and fat burner specialist. All products with laboratory quality tests.",
     gradient: "from-[#00A9DE] to-[#5BC4F0]",
-    image: "/images/shop/product-2.webp",
+    image: "/images/shop/eca-xtreme.png",
   },
   {
     name: "ASTERA LABS",
@@ -43,7 +43,7 @@ const brands = [
     badge: "Premium Injectables & Orals",
     description: "Premium peptide and health line. Innovative formulas for athletes.",
     gradient: "from-[#FF8A6C] to-[#FFB199]",
-    image: "/images/shop/product-3.jpg",
+    image: "/images/shop/andarine-s4.png",
   },
 ];
 
@@ -105,21 +105,21 @@ export default function AboutPage() {
         {/* Expert Section */}
         <div className="max-w-[1340px] mx-auto mt-16">
           <div className="flex gap-10 items-center">
-            {/* Left - Expert photo placeholder */}
-            <div className="w-[520px] h-[460px] shrink-0 rounded-[16px] relative overflow-hidden">
-              <Image src="/images/shop/expert-photo.png" alt="Expert Support" fill className="object-cover" unoptimized />
+            {/* Left - Manager photo */}
+            <div className="w-[520px] h-[460px] shrink-0 rounded-[16px] relative overflow-hidden bg-[#F7F7F7]">
+              <Image src="/images/shop/manager.png" alt="Expert Support" fill className="object-cover object-top" unoptimized />
             </div>
 
             {/* Right - Content */}
             <div className="flex-1">
-              <p className="text-[14px] text-[#FF6701] font-semibold uppercase tracking-wider mb-2">
-                Europe&apos;s trusted distributor of pharmaceutical-grade products
+              <p className="text-[14px] text-[#FF6701] font-semibold mb-2">
+                Europe&apos;s trusted distributor of premium sports supplements
               </p>
               <h2 className="text-[28px] font-extrabold text-[#181818] leading-[36px] mb-4">
                 Expert Support & Verified Quality
               </h2>
               <p className="text-[14px] text-[#7E7E7E] leading-6 mb-6">
-                Our team works directly with manufacturers to ensure every product meets strict quality standards. We provide full transparency through lab testing, batch verification, and official authentication codes. When you buy from DinesPower, you buy with confidence.
+                We help you choose the right product, delivery, and payment method before you order. Every item is sourced directly from official manufacturers and verified before it reaches you.
               </p>
 
               <div className="flex flex-col gap-3">

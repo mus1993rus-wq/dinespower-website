@@ -231,7 +231,7 @@ export default function FAQsPage() {
                           </div>
                         </button>
                         {openIndices[section] === i && (
-                          <div className="pb-5 pl-[40px] text-sm text-[#7E7E7E] leading-6">{faq.a}</div>
+                          <div className="pb-5 pl-[36px] pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">{faq.a}</div>
                         )}
                       </div>
                     ))}

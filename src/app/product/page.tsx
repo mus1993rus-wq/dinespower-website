@@ -715,10 +715,8 @@ export default function ProductPage() {
                       </div>
                     </button>
                     {openFAQ === i && (
-                      <div className="pb-5 pl-[40px] text-sm text-[#7E7E7E] leading-6">
-                        These boots provide good water resistance for light rain, wet grass, and damp trails, helping keep your feet dry in everyday hiking conditions. However, they are not fully waterproof and do not include a waterproof membrane like GORE-TEX.
-                        <br/><br/>
-                        They are best suited for dry to moderately wet environments. For heavy rain or very wet terrain, a fully waterproof model would be a better choice.
+                      <div className="pb-5 pl-[36px] pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
+                        These boots provide good water resistance for light rain, wet grass, and damp trails, helping keep your feet dry in everyday hiking conditions. However, they are not fully waterproof and do not include a waterproof membrane like GORE-TEX. They are best suited for dry to moderately wet environments. For heavy rain or very wet terrain, a fully waterproof model would be a better choice.
                       </div>
                     )}
                   </div>
