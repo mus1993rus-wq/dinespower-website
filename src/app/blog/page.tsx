@@ -253,7 +253,7 @@ function BlogContent() {
         </div>
 
         <div className="max-w-[1340px] mx-auto pb-16">
-          <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">
+          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-6">
             {categoryParam ? `Category: ${categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1)}` : "Blog Dines Power"}
           </h1>
 

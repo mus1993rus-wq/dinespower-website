@@ -72,7 +72,7 @@ export default function AboutPage() {
             />
             <div className="relative z-10 py-20 px-8 text-center flex flex-col items-center gap-4">
               <p className="text-[14px] text-white/80 leading-5">Who we are</p>
-              <h1 className="font-extrabold italic uppercase leading-[52px] text-[42px]">
+              <h1 className="font-extrabold italic uppercase leading-[48px] text-[40px]">
                 <span className="text-white">Official Distributor</span>
                 <br />
                 <span className="text-[#FF6701]">Of Trusted Brands In Europe</span>

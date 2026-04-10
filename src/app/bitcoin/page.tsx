@@ -194,7 +194,7 @@ export default function BitcoinPaymentPage() {
         <div className="max-w-[1340px] mx-auto flex gap-[80px] pb-16">
           {/* Main content */}
           <div className="flex-1 max-w-[820px]">
-            <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">
+            <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-6">
               Bitcoin payment guideline
             </h1>
 

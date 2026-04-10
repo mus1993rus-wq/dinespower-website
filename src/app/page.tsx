@@ -141,10 +141,10 @@ function CategoriesRow() {
         {categories.map((cat) => (
           <Link key={cat.name} href={`/catalog?category=${cat.name.toLowerCase().replace(/ & /g, '-')}`}>
             <ScrollAnimation animation="animate-fade-in-up" className="flex flex-col items-center gap-2 cursor-pointer group">
-              <div className="w-[116px] h-[116px] rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center group-hover:bg-[#EDEDED] transition-all duration-300">
-                <Image src={cat.img} alt={cat.name} width={116} height={116} className="object-cover" />
+              <div className="w-[116px] h-[116px] rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center transition-colors duration-300">
+                <Image src={cat.img} alt={cat.name} width={116} height={116} className="object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
               </div>
-              <span className="text-[14px] font-semibold text-[#181818] leading-5 group-hover:text-[#FF6701] transition-colors">{cat.name}</span>
+              <span className="text-[14px] font-semibold text-[#181818] leading-5">{cat.name}</span>
             </ScrollAnimation>
           </Link>
         ))}

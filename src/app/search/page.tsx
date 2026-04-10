@@ -209,7 +209,7 @@ export default function SearchPage() {
               </div>
             ) : (
               <>
-                <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-2">
+                <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-2">
                   Search Results &lsquo;{query}&rsquo;
                 </h1>
                 <p className="text-sm text-[#7E7E7E] mb-6">{results.length} result{results.length !== 1 ? "s" : ""} found</p>

@@ -227,14 +227,14 @@ export default function ProductPage() {
         {/* Product Detail: Two Columns */}
         <div className="max-w-[1340px] mx-auto flex gap-[60px] pb-10">
           {/* LEFT COLUMN - Thumbnails + Main Image */}
-          <div className="w-[560px] shrink-0 flex gap-3 sticky top-[24px] self-start">
-            {/* Vertical thumbnails */}
+          <div className="w-[560px] shrink-0 flex gap-4 sticky top-[24px] self-start">
+            {/* Vertical thumbnails — 64px column */}
             <div className="flex flex-col gap-2 w-[64px] shrink-0">
               {thumbnails.map((src, i) => (
                 <button
                   key={i}
                   onClick={() => setSelectedImage(i)}
-                  className={`w-[64px] h-[64px] rounded-[8px] bg-white border-2 transition-colors flex items-center justify-center overflow-hidden ${
+                  className={`w-[64px] h-[64px] rounded-[8px] bg-white border-2 transition-colors flex items-center justify-center overflow-hidden cursor-pointer ${
                     selectedImage === i ? "border-[#FF6701]" : "border-[#E7E7E7]"
                   }`}
                 >
@@ -243,19 +243,19 @@ export default function ProductPage() {
               ))}
             </div>
 
-            {/* Main image */}
-            <div className="flex-1 h-[500px] bg-white rounded-[16px] flex items-center justify-center relative overflow-hidden border border-[#E7E7E7]">
+            {/* Main image — 480x480 per Figma, no search button */}
+            <div className="w-[480px] h-[480px] bg-white rounded-[16px] flex items-center justify-center relative overflow-hidden border border-[#E7E7E7]">
               <Image
                 src={thumbnails[selectedImage]}
                 alt="Methenolone Enanthate 200"
-                width={380}
-                height={380}
+                width={416}
+                height={416}
                 className="object-contain"
-               
               />
-              <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-lg shadow flex items-center justify-center hover:bg-[#F7F7F7] transition-colors">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#181818" strokeWidth="1.5"/><path d="M21 21L16.65 16.65" stroke="#181818" strokeWidth="1.5" strokeLinecap="round"/><path d="M11 8V14M8 11H14" stroke="#181818" strokeWidth="1.5" strokeLinecap="round"/></svg>
-              </button>
+              {/* Sale tag overlay */}
+              <div className="absolute top-4 left-4 bg-[#FF3B30] text-white text-xs font-bold px-2.5 py-1 rounded-[4px]">
+                Sale -14%
+              </div>
             </div>
           </div>
 
@@ -272,7 +272,7 @@ export default function ProductPage() {
             </div>
 
             {/* 2. Title */}
-            <h1 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-4">
+            <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-4">
               Methenolone Enanthate 200 Injectable Steroid In Vials
             </h1>
 
@@ -313,14 +313,24 @@ export default function ProductPage() {
               </div>
               <button
                 onClick={handleAddToCart}
-                className="w-[280px] bg-[#FF6701] hover:bg-[#E65D00] text-white font-semibold rounded-[8px] h-[48px] flex items-center justify-center gap-2 transition-colors text-base"
+                className="group cursor-pointer relative w-[280px] bg-[#FF6701] hover:bg-[#E65D00] text-white font-semibold rounded-[8px] h-[48px] flex items-center justify-center gap-2 overflow-hidden transition-colors text-base"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                Add To Cart
+                <span className="flex items-center gap-2 transition-all duration-300 ease-out group-hover:-translate-y-[200%]">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  Add To Cart
+                </span>
+                <span className="absolute flex items-center gap-2 translate-y-[200%] transition-all duration-300 ease-out group-hover:translate-y-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  Add To Cart
+                </span>
               </button>
             </div>
 

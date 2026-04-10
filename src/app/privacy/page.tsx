@@ -62,7 +62,7 @@ export default function PrivacyPage() {
         </div>
 
         <div className="max-w-[1340px] mx-auto py-8 pb-16">
-          <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">
+          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-6">
             Privacy Policy
           </h1>
           <p className="text-[14px] text-[#7E7E7E] mb-10">Last updated: April 1, 2026</p>

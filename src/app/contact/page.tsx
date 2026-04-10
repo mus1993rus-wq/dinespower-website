@@ -28,7 +28,7 @@ export default function ContactPage() {
         </div>
 
         <div className="max-w-[1340px] mx-auto pb-16">
-          <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">Contact Us</h1>
+          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-6">Contact Us</h1>
 
           <div className="flex gap-[80px]">
             {/* LEFT sidebar - Contact Info (Figma style) */}
