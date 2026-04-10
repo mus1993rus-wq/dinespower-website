@@ -481,26 +481,38 @@ function CatalogContent() {
         <div className="max-w-[1340px] mx-auto flex gap-6 pb-16">
           {/* Sidebar Filters — Figma 1249:5311 card style */}
           <aside className="w-[256px] shrink-0 flex flex-col gap-4">
-            {/* Brands card */}
-            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4">
-              <h4 className="text-[12px] text-[#7E7E7E] leading-4 mb-3">Brands</h4>
-              <div className="flex flex-col gap-1">
-                {brandsForCategory.map((b) => {
-                  const isActive = brandSlug === brandLabelToSlug[b];
-                  return (
-                    <Link
-                      key={b}
-                      href={`/catalog?category=${categorySlug}&brand=${brandLabelToSlug[b]}`}
-                      className={`flex items-center gap-3 px-2 py-2 rounded-[8px] transition-colors ${
-                        isActive ? "bg-[#F7F7F7]" : "hover:bg-[#F7F7F7]"
-                      }`}
-                    >
-                      <BrandBadge brand={b} />
-                      <span className="text-[14px] font-semibold text-[#181818] leading-5">{b}</span>
-                    </Link>
-                  );
-                })}
-              </div>
+            {/* Brands card — Figma: simple list, chevron on active, See All */}
+            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col">
+              {brandsForCategory.map((b) => {
+                const isActive = brandSlug === brandLabelToSlug[b];
+                return (
+                  <Link
+                    key={b}
+                    href={`/catalog?category=${categorySlug}&brand=${brandLabelToSlug[b]}`}
+                    className={`flex items-center justify-between px-4 py-3 rounded-[8px] transition-colors ${
+                      isActive ? "bg-[#F7F7F7]" : "hover:bg-[#F7F7F7]"
+                    }`}
+                  >
+                    <span className="text-[14px] font-semibold text-[#181818] leading-5">{b}</span>
+                    {isActive && (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 6l6 6-6 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    )}
+                  </Link>
+                );
+              })}
+              {currentBrandLabel && (
+                <>
+                  <div className="h-px bg-[#E7E7E7] mx-4 my-1" />
+                  <Link
+                    href={`/catalog?category=${categorySlug}`}
+                    className="flex items-center px-4 py-3 rounded-[8px] text-[14px] font-semibold text-[#181818] leading-5 hover:bg-[#F7F7F7] transition-colors"
+                  >
+                    See All
+                  </Link>
+                </>
+              )}
             </div>
 
             {/* Availability card */}
