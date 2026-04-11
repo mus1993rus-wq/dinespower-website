@@ -96,19 +96,19 @@ export default function CheckoutPage() {
             <div className="flex flex-col gap-3">
               <h2 className="text-[18px] font-semibold text-black leading-[26px]">Personal Info</h2>
               <div className="flex gap-2">
-                <input type="text" placeholder="First Name *" value={firstName} onChange={(e) => setFirstName(e.target.value)} className={inputClass} />
-                <input type="text" placeholder="Last Name *" value={lastName} onChange={(e) => setLastName(e.target.value)} className={inputClass} />
+                <input type="text" placeholder="First Name *" value={firstName} onChange={(e) => setFirstName(e.target.value)} className={`${inputClass} flex-1 min-w-0`} />
+                <input type="text" placeholder="Last Name *" value={lastName} onChange={(e) => setLastName(e.target.value)} className={`${inputClass} flex-1 min-w-0`} />
               </div>
               <div className="flex gap-2">
-                <div className="flex-1 flex items-center bg-white border border-[#E0E0E0] rounded-[8px] h-[53px] pl-4 pr-2 gap-3">
-                  <div className="flex items-center gap-1.5">
+                <div className="flex-1 min-w-0 flex items-center bg-white border border-[#E0E0E0] rounded-[8px] h-[53px] pl-4 pr-2 gap-3">
+                  <div className="flex items-center gap-1.5 shrink-0">
                     <span className="text-[16px]">🇺🇸</span>
                     <span className="text-[14px] text-[#181818]">US (+1)</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </div>
-                  <input type="tel" placeholder="Phone number" value={phone} onChange={(e) => setPhone(e.target.value)} className="flex-1 text-[14px] text-[#181818] placeholder:text-[#8A8A8A] outline-none bg-transparent" />
+                  <input type="tel" placeholder="Phone number" value={phone} onChange={(e) => setPhone(e.target.value)} className="flex-1 min-w-0 text-[14px] text-[#181818] placeholder:text-[#8A8A8A] outline-none bg-transparent" />
                 </div>
-                <input type="email" placeholder="E-mail address*" value={email} onChange={(e) => setEmail(e.target.value)} className={inputClass} />
+                <input type="email" placeholder="E-mail address*" value={email} onChange={(e) => setEmail(e.target.value)} className={`${inputClass} flex-1 min-w-0`} />
               </div>
             </div>
 
@@ -116,9 +116,13 @@ export default function CheckoutPage() {
             <div className="flex flex-col gap-3">
               <h2 className="text-[18px] font-semibold text-black leading-[26px]">Delivery</h2>
               <div className="flex gap-2">
-                <div className="flex-1 relative">
-                  <select value={country} onChange={(e) => setCountry(e.target.value)} className={`${inputClass} appearance-none cursor-pointer pr-10`}>
-                    <option value="">Select Country / Region *</option>
+                <div className="flex-1 min-w-0 relative">
+                  <select
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                    className={`${inputClass} appearance-none cursor-pointer pr-10 ${country ? "text-[#181818]" : "text-[#8A8A8A]"}`}
+                  >
+                    <option value="" disabled>Select Country / Region *</option>
                     <option value="France">France</option>
                     <option value="Germany">Germany</option>
                     <option value="Italy">Italy</option>
@@ -130,12 +134,12 @@ export default function CheckoutPage() {
                   </select>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
-                <input type="text" placeholder="Town / City *" value={city} onChange={(e) => setCity(e.target.value)} className={inputClass} />
+                <input type="text" placeholder="Town / City *" value={city} onChange={(e) => setCity(e.target.value)} className={`${inputClass} flex-1`} />
               </div>
               <div className="flex gap-2">
-                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} flex-1`} />
-                <input type="text" placeholder="State / County (Optional)" value={stateRegion} onChange={(e) => setStateRegion(e.target.value)} className={`${inputClass} w-[258px]`} />
-                <input type="text" placeholder="Post Code / ZIP *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} w-[140px]`} />
+                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} flex-1 min-w-0`} />
+                <input type="text" placeholder="State / County (Optional)" value={stateRegion} onChange={(e) => setStateRegion(e.target.value)} className={`${inputClass} w-[200px] shrink-0`} />
+                <input type="text" placeholder="Post Code / ZIP *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} w-[140px] shrink-0`} />
               </div>
             </div>
 
