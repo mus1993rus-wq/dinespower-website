@@ -136,3 +136,35 @@
   background: transparent;
 }
 .dual-range:focus { outline: none; }
+
+/* Slide-up label animation for white buttons — label translates up on hover without color change */
+.btn-slide-up {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-slide-up > .btn-slide-up__label {
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.btn-slide-up::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -100%;
+  text-align: center;
+  transition: bottom 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+  pointer-events: none;
+  font: inherit;
+  color: inherit;
+}
+.btn-slide-up:hover > .btn-slide-up__label {
+  transform: translateY(-150%);
+}
+.btn-slide-up:hover::after {
+  bottom: 50%;
+  transform: translateY(50%);
+}

@@ -127,15 +127,15 @@ export default function CartPage() {
                           </svg>
                         </button>
                         {/* Image */}
-                        <div className="w-[120px] h-[120px] bg-[#F7F7F7] rounded-[8px] shrink-0 overflow-hidden p-2">
+                        <Link href="/product" className="w-[120px] h-[120px] bg-white border border-[#E7E7E7] rounded-[8px] shrink-0 overflow-hidden p-2 hover:border-[#181818] transition-colors">
                           <Image src={item.image} alt={item.name} width={100} height={100} className="object-contain w-full h-full" />
-                        </div>
+                        </Link>
                         {/* Info */}
                         <div className="flex-1 flex flex-col gap-4 justify-center">
-                          <div>
+                          <Link href="/product" className="hover:[&_p:last-child]:text-[#FF6701] transition-colors">
                             <p className="text-[12px] text-[#7E7E7E] leading-4">{item.brand}</p>
-                            <p className="text-[16px] font-semibold text-[#181818] leading-6 capitalize mt-1">{item.name}</p>
-                          </div>
+                            <p className="text-[16px] font-semibold text-[#181818] leading-6 capitalize mt-1 transition-colors">{item.name}</p>
+                          </Link>
                           <div className="flex items-center justify-between">
                             {/* Qty */}
                             <div className="flex items-center border border-[#E7E7E7] rounded-[8px] h-9 w-[111px] px-2 justify-between">
@@ -174,13 +174,13 @@ export default function CartPage() {
                   {suggestedProducts.map((p, i) => (
                     <div key={i}>
                       <div className="flex items-center gap-4">
-                        <div className="w-[120px] h-[120px] bg-[#F7F7F7] rounded-[8px] shrink-0 overflow-hidden p-2">
+                        <Link href="/product" className="w-[120px] h-[120px] bg-white border border-[#E7E7E7] rounded-[8px] shrink-0 overflow-hidden p-2 hover:border-[#181818] transition-colors">
                           <Image src={p.image} alt={p.name} width={100} height={100} className="object-contain w-full h-full" />
-                        </div>
-                        <div className="flex-1 flex flex-col gap-1.5 justify-center">
+                        </Link>
+                        <Link href="/product" className="flex-1 flex flex-col gap-1.5 justify-center group">
                           <p className="text-[12px] text-[#7E7E7E] leading-4">{p.brand}</p>
-                          <p className="text-[16px] font-semibold text-[#181818] leading-6 capitalize">{p.name}</p>
-                        </div>
+                          <p className="text-[16px] font-semibold text-[#181818] leading-6 capitalize group-hover:text-[#FF6701] transition-colors">{p.name}</p>
+                        </Link>
                         <div className="flex items-center justify-center h-9 w-[140px] bg-[#F7F7F7] rounded-[8px]">
                           <span className="text-[14px] font-semibold text-[#181818]">{p.price}€</span>
                         </div>
@@ -207,10 +207,7 @@ export default function CartPage() {
                     {/* Promo code */}
                     <div className="bg-white border border-[#EDEDED] rounded-[12px] p-4 flex flex-col gap-2">
                       <div className="flex items-center gap-3">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                          <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          <circle cx="7" cy="7" r="1" fill="#181818" />
-                        </svg>
+                        <Image src="/images/shop/icon-promo.svg" alt="" width={24} height={24} className="shrink-0" />
                         <p className="flex-1 text-[16px] font-semibold text-[#181818] leading-6 capitalize">Do you have a Promo Code?</p>
                       </div>
                       <div className="flex gap-2">

@@ -43,9 +43,17 @@ const brandVerifyUrls: Record<string, { partner: string; product: string }> = {
   },
 };
 
+// Brand-specific verify banner (phone + QR illustration)
+const brandVerifyBanner: Record<string, string> = {
+  "Deus Medical": "/images/shop/verify-popup/verify-deus.png",
+  "Astera Labs": "/images/shop/verify-popup/verify-astera.png",
+  "Biaxol": "/images/shop/verify-popup/verify-biaxol.png",
+};
+
 // Current product brand (would come from product data in real app)
 const productBrand = "Deus Medical";
 const verifyUrls = brandVerifyUrls[productBrand] || brandVerifyUrls["Deus Medical"];
+const verifyBanner = brandVerifyBanner[productBrand] || brandVerifyBanner["Deus Medical"];
 
 const trustBadges = [
   {
@@ -66,7 +74,7 @@ const trustBadges = [
     external: true,
   },
   {
-    icon: "/images/shop/product-icons/icon-3.png",
+    icon: verifyBanner,
     title: "Verify Authenticity",
     desc: `Enter your code to confirm the product on ${productBrand}`,
     button: "Verify Product",
@@ -429,16 +437,18 @@ export default function ProductPage() {
                       href={badge.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 flex items-center text-[#181818] hover:bg-[#E7E7E7] hover:border-transparent transition-colors"
+                      data-label={badge.button}
+                      className="btn-slide-up cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 text-[#181818] hover:border-[#181818] transition-colors"
                     >
-                      {badge.button}
+                      <span className="btn-slide-up__label">{badge.button}</span>
                     </a>
                   ) : (
                     <Link
                       href={badge.href || "#"}
-                      className="cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 flex items-center text-[#181818] hover:bg-[#E7E7E7] hover:border-transparent transition-colors"
+                      data-label={badge.button}
+                      className="btn-slide-up cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 text-[#181818] hover:border-[#181818] transition-colors"
                     >
-                      {badge.button}
+                      <span className="btn-slide-up__label">{badge.button}</span>
                     </Link>
                   )}
                 </div>

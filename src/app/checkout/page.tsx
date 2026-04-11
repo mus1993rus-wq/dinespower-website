@@ -182,14 +182,7 @@ export default function CheckoutPage() {
                   }`}
                 >
                   <div className="w-16 h-16 rounded-[4px] flex items-center justify-center shrink-0">
-                    <svg width="46" height="46" viewBox="0 0 48 48" fill="none">
-                      <rect x="4" y="14" width="40" height="24" rx="3" stroke="#181818" strokeWidth="2" />
-                      <rect x="4" y="18" width="40" height="5" fill="#181818" />
-                      <rect x="9" y="28" width="10" height="2" rx="1" fill="#181818" />
-                      <rect x="9" y="32" width="6" height="2" rx="1" fill="#181818" />
-                      <path d="M32 27L40 27M40 27L37 24M40 27L37 30" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M40 33L32 33M32 33L35 30M32 33L35 36" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                    <Image src="/images/shop/delivery-bank.png" alt="Bank transfer" width={64} height={64} className="object-contain" />
                   </div>
                   <div className="flex-1 flex flex-col gap-1 text-left">
                     <p className="text-[16px] font-semibold text-[#181818] leading-6">Bank transfer</p>
@@ -206,11 +199,7 @@ export default function CheckoutPage() {
                   }`}
                 >
                   <div className="w-16 h-16 rounded-[4px] flex items-center justify-center shrink-0">
-                    <div className="w-[46px] h-[46px] rounded-full bg-[#F7931A] flex items-center justify-center">
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-                        <path d="M17.06 11.57c.84-.57 1.34-1.48 1.2-2.83-.17-1.85-1.77-2.47-3.79-2.65l-.01-2.57h-1.57l-.01 2.5c-.41 0-.83.01-1.25.02l.01-2.52H10.1l.01 2.57c-.34 0-.67.01-1 .01v-.01H7v1.68s1.18-.02 1.16 0c.65 0 .86.38.92.71L9.07 11.6l.01 4.09c-.03.19-.14.5-.57.5.02.02-1.16 0-1.16 0l-.32 1.87h2c.37 0 .73.01 1.09.01l.01 2.6h1.57l-.01-2.57h1.25l.01 2.57h1.57v-2.59c2.64-.15 4.49-.81 4.72-3.28.19-1.99-.75-2.88-2.18-3.24zM12.38 8.13c1 0 4.15-.32 4.15 1.5 0 1.75-3.15 1.55-4.15 1.55V8.13zm0 8.8v-3.4c1.21 0 4.9-.34 4.9 1.7 0 1.97-3.69 1.7-4.9 1.7z" />
-                      </svg>
-                    </div>
+                    <Image src="/images/shop/delivery-bitcoin.png" alt="Bitcoin" width={64} height={64} className="object-contain" />
                   </div>
                   <div className="flex-1 flex flex-col gap-1 text-left">
                     <p className="text-[16px] font-semibold text-[#181818] leading-6">Bitcoin</p>
@@ -239,41 +228,41 @@ export default function CheckoutPage() {
           {/* RIGHT — 440px sidebar */}
           <div className="w-[440px] shrink-0">
             <div className="sticky top-4 flex flex-col gap-4">
-              {/* You might also like — single-item slider with prev/next */}
-              <div className="flex flex-col gap-3 px-4 py-2">
-                <div className="flex items-center justify-between">
-                  <p className="text-[18px] font-semibold text-black leading-[26px]">You might also like</p>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => setSuggestIdx((p) => (p - 1 + suggestedProducts.length) % suggestedProducts.length)}
-                      className="cursor-pointer w-8 h-8 rounded-full bg-white border border-[#CBCBCB] hover:bg-[#F7F7F7] flex items-center justify-center transition-colors"
-                      aria-label="Previous"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                    </button>
-                    <button
-                      onClick={() => setSuggestIdx((p) => (p + 1) % suggestedProducts.length)}
-                      className="cursor-pointer w-8 h-8 rounded-full bg-white border border-[#CBCBCB] hover:bg-[#F7F7F7] flex items-center justify-center transition-colors"
-                      aria-label="Next"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                    </button>
-                  </div>
+              {/* You might also like — Figma 1442:11703 */}
+              <div className="flex flex-col gap-3 px-4 py-2 rounded-[12px]">
+                <div className="flex items-center gap-2">
+                  <p className="flex-1 text-[18px] font-semibold text-black leading-normal">You might also like</p>
+                  <button
+                    onClick={() => setSuggestIdx((p) => (p - 1 + suggestedProducts.length) % suggestedProducts.length)}
+                    className="cursor-pointer w-10 h-10 rounded-[8px] bg-[#F7F7F7] border border-[#E7E7E7] hover:bg-white flex items-center justify-center transition-colors"
+                    aria-label="Previous"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  </button>
+                  <button
+                    onClick={() => setSuggestIdx((p) => (p + 1) % suggestedProducts.length)}
+                    className="cursor-pointer w-10 h-10 rounded-[8px] bg-[#F7F7F7] border border-[#E7E7E7] hover:bg-white flex items-center justify-center transition-colors"
+                    aria-label="Next"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  </button>
                 </div>
                 {(() => {
                   const p = suggestedProducts[suggestIdx];
                   return (
-                    <div className="flex items-center gap-4 py-3">
-                      <div className="w-20 h-20 bg-[#F7F7F7] rounded-[8px] shrink-0 p-1.5 flex items-center justify-center">
-                        <Image src={p.image} alt={p.name} width={68} height={68} className="object-contain" />
+                    <div className="flex items-center gap-4 bg-white">
+                      <div className="w-[120px] h-[120px] rounded-[8px] shrink-0 p-2 flex items-center justify-center bg-[#F7F7F7]">
+                        <Image src={p.image} alt={p.name} width={104} height={104} className="object-contain" />
                       </div>
-                      <div className="flex-1 flex flex-col gap-1 min-w-0">
+                      <div className="flex-1 min-w-0 flex flex-col gap-1.5 justify-center">
                         <p className="text-[12px] text-[#7E7E7E] leading-4">{p.brand}</p>
-                        <p className="text-[14px] font-semibold text-[#181818] leading-5 line-clamp-2">{p.name}</p>
-                        <div className="flex items-center justify-between mt-1 gap-2">
-                          <span className="text-[14px] font-semibold text-[#181818]">{p.price}€</span>
-                          <button className="cursor-pointer h-8 px-3 bg-[#FF6701] hover:bg-[#E65D00] rounded-[6px] flex items-center justify-center transition-colors shrink-0">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <p className="text-[16px] font-semibold text-[#181818] leading-6 line-clamp-2 capitalize">{p.name}</p>
+                        <div className="flex items-center gap-2 w-full">
+                          <div className="flex-1 bg-[#F7F7F7] rounded-[8px] h-9 flex items-center justify-center">
+                            <span className="text-[14px] font-semibold text-[#181818] leading-5">{p.price}€</span>
+                          </div>
+                          <button className="cursor-pointer flex-1 h-9 bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center transition-colors">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                               <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                               <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                               <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -292,11 +281,12 @@ export default function CheckoutPage() {
                 <div className="bg-white rounded-[12px] p-4 flex flex-col gap-4">
                   <div className="flex items-center justify-between">
                     <p className="text-[16px] font-semibold text-[#181818] leading-6 capitalize">Order Summary</p>
-                    <Link href="/cart" className="cursor-pointer flex items-center gap-2 bg-white border border-[#CBCBCB] hover:bg-[#E7E7E7] hover:border-transparent px-4 py-2 rounded-[8px] transition-colors">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 20h9M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <Link href="/cart" className="cursor-pointer flex items-center gap-2 bg-white border border-[#CBCBCB] hover:border-[#181818] px-4 py-2 rounded-[8px] transition-colors">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="#181818">
+                        <path d="M21.28 6.4l-9.54 9.54c-.95.95-3.77 1.39-4.4.76-.63-.63-.2-3.45.75-4.4l9.55-9.55a2.58 2.58 0 113.64 3.65z" />
+                        <path d="M11 4H6a4 4 0 00-4 4v10a4 4 0 004 4h11c2.21 0 3-1.8 3-4v-5" stroke="#181818" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                      <span className="text-[14px] font-semibold text-black">Edit</span>
+                      <span className="text-[14px] font-semibold text-black leading-5">Edit</span>
                     </Link>
                   </div>
                   <div className="flex flex-col">
@@ -335,10 +325,7 @@ export default function CheckoutPage() {
                 {/* Promo code */}
                 <div className="bg-white border border-[#EDEDED] rounded-[12px] p-4 flex flex-col gap-2">
                   <div className="flex items-center gap-3">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      <circle cx="7" cy="7" r="1" fill="#181818" />
-                    </svg>
+                    <Image src="/images/shop/icon-promo.svg" alt="" width={24} height={24} className="shrink-0" />
                     <p className="flex-1 text-[16px] font-semibold text-[#181818] leading-6 capitalize">Do you have a Promo Code?</p>
                   </div>
                   <div className="flex gap-1">
