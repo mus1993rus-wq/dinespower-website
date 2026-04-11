@@ -174,8 +174,8 @@ export default function Header() {
           </span>
         </div>
         <div className="flex-1 h-[44px] relative" ref={searchRef}>
-          <div className={`bg-[#F7F7F7] border rounded-lg flex items-center gap-3 px-4 h-full transition-colors ${searchFocused ? "border-[#FF6701] bg-white" : "border-[#E7E7E7]"}`}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="opacity-30 shrink-0">
+          <div className={`border rounded-lg flex items-center gap-3 px-4 h-full transition-colors ${searchFocused ? "bg-white border-[#E0E0E0]" : "bg-[#F7F7F7] border-[#E7E7E7]"}`}>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className={`shrink-0 ${searchFocused ? "opacity-60" : "opacity-30"}`}>
               <circle cx="9.17" cy="9.17" r="6.67" stroke="#181818" strokeWidth="1.5"/>
               <path d="M16.67 16.67L14.17 14.17" stroke="#181818" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>

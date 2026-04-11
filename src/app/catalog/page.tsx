@@ -332,6 +332,14 @@ const allProducts: Product[] = [
   { category: "injectable", brand: "Deus Medical", name: "Testomed E 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 35, oldPrice: 45, image: "/images/shop/products/injectable-testomed-e-250.jpg", badges: ["sale", "top"], inStock: true },
   { category: "injectable", brand: "Deus Medical", name: "Testomed P 100 Injectable Steroid In Ampoules", dosage: "100 mg/ml", price: 29, oldPrice: 33, image: "/images/shop/products/injectable-testomed-p-100.jpg", badges: ["sale"], inStock: true },
 
+  // Injectable — Astera Labs
+  { category: "injectable", brand: "Astera Labs", name: "Methenolone Enanthate 200 Injectable Steroid In Vials", dosage: "200 mg/ml", price: 44, oldPrice: 56, image: "/images/shop/products/injectable-primomed-100.jpg", badges: ["sale", "top"], inStock: true },
+  { category: "injectable", brand: "Astera Labs", name: "Trenbolone Enanthate Injectable Steroid In Vials", dosage: "200 mg/ml", price: 55, oldPrice: 65, image: "/images/shop/products/injectable-trenbomed-150.jpg", badges: ["sale"], inStock: true },
+  { category: "injectable", brand: "Astera Labs", name: "Nandrolone Phenylpropionate (NPP) Injectable Steroid", dosage: "100 mg/ml", price: 34, oldPrice: 44, image: "/images/shop/products/injectable-decamed-pp-100.jpg", badges: ["sale", "new"], inStock: true },
+  { category: "injectable", brand: "Astera Labs", name: "Testosterone Enanthate Injectable Steroid In Vials", dosage: "250 mg/ml", price: 40, oldPrice: 50, image: "/images/shop/products/injectable-testomed-e-250.jpg", badges: ["sale"], inStock: true },
+  { category: "injectable", brand: "Astera Labs", name: "Boldenone Undecylenate Injectable Steroid In Vials", dosage: "250 mg/ml", price: 45, oldPrice: 55, image: "/images/shop/products/injectable-equimed-250.jpg", badges: ["new"], inStock: true },
+  { category: "injectable", brand: "Astera Labs", name: "Sustanon 250 Injectable Testosterone Blend In Vials", dosage: "250 mg/ml", price: 38, oldPrice: 46, image: "/images/shop/products/injectable-sustamed-250.jpg", badges: ["sale", "top"], inStock: true },
+
   // Oral — Deus Medical
   { category: "oral", brand: "Deus Medical", name: "Anadromed 50 Oral Steroid In Tablets", dosage: "50 mg/tab", price: 30, oldPrice: 38, image: "/images/shop/products/oral-anadromed-50.jpg", badges: ["sale", "top"], inStock: true },
   { category: "oral", brand: "Deus Medical", name: "Anavamed 10 Oral Steroid In Tablets", dosage: "10 mg/tab", price: 25, oldPrice: 34, image: "/images/shop/products/oral-anavamed-10.jpg", badges: ["sale", "top"], inStock: true },
@@ -343,6 +351,12 @@ const allProducts: Product[] = [
   { category: "oral", brand: "Deus Medical", name: "Nebimed 5 Oral Steroid In Tablets", dosage: "5 mg/tab", price: 17, oldPrice: 22, image: "/images/shop/products/oral-nebimed-5.png", badges: ["sale"], inStock: true },
   { category: "oral", brand: "Deus Medical", name: "Primomed 25 Oral Steroid In Tablets", dosage: "25 mg/tab", price: 83, oldPrice: 92, image: "/images/shop/products/oral-primomed-25.jpg", badges: ["sale", "top"], inStock: true },
   { category: "oral", brand: "Deus Medical", name: "Provimed 25 Oral Steroid In Tablets", dosage: "25 mg/tab", price: 25, oldPrice: 29, image: "/images/shop/products/oral-provimed-25.jpg", badges: ["sale"], inStock: true },
+
+  // Oral — Astera Labs
+  { category: "oral", brand: "Astera Labs", name: "Stanozolol Oral Steroid In Tablets", dosage: "10 mg/tab", price: 28, oldPrice: 36, image: "/images/shop/products/oral-anavamed-10.jpg", badges: ["sale", "new"], inStock: true },
+  { category: "oral", brand: "Astera Labs", name: "Oxandrolone Oral Steroid In Tablets", dosage: "10 mg/tab", price: 35, oldPrice: 42, image: "/images/shop/products/oral-halomed-5.jpg", badges: ["sale"], inStock: true },
+  { category: "oral", brand: "Astera Labs", name: "Methandrostenolone Oral Steroid In Tablets", dosage: "10 mg/tab", price: 18, oldPrice: 24, image: "/images/shop/products/oral-dianamed-10.jpg", badges: ["new"], inStock: true },
+  { category: "oral", brand: "Astera Labs", name: "Methenolone Acetate Oral Steroid In Tablets", dosage: "25 mg/tab", price: 72, oldPrice: 85, image: "/images/shop/products/oral-primomed-25.jpg", badges: ["sale", "top"], inStock: true },
 
   // Fat Burn
   { category: "fat-burn", brand: "Deus Medical", name: "Clenomed 40 Sympathomimetic Amine In Tablets", dosage: "40 mcg/tab", price: 12, oldPrice: 16, image: "/images/shop/products/fat-burn-clenomed-40.jpg", badges: ["sale", "top"], inStock: true },

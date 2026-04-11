@@ -51,7 +51,7 @@ const brandVerifyBanner: Record<string, string> = {
 };
 
 // Current product brand (would come from product data in real app)
-const productBrand = "Deus Medical";
+const productBrand = "Astera Labs";
 const verifyUrls = brandVerifyUrls[productBrand] || brandVerifyUrls["Deus Medical"];
 const verifyBanner = brandVerifyBanner[productBrand] || brandVerifyBanner["Deus Medical"];
 
@@ -208,11 +208,11 @@ export default function ProductPage() {
   const handleAddToCart = () => {
     addItem(
       {
-        brand: "Deus Medical",
-        name: "3-Trenbomed 150 Injectable Steroid In Ampoules",
-        price: 57,
-        oldPrice: 65,
-        image: "/images/shop/products/injectable-trenbomed-150.jpg",
+        brand: "Astera Labs",
+        name: "Methenolone Enanthate 200 Injectable Steroid In Vials",
+        price: 44,
+        oldPrice: 56,
+        image: "/images/shop/products/injectable-primomed-100.jpg",
       },
       qty
     );
