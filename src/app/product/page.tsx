@@ -289,6 +289,7 @@ export default function ProductPage() {
                   width={107}
                   height={33}
                   className="object-contain w-full h-auto"
+                  style={{ filter: "brightness(0)" }}
                 />
               </div>
               <div className="flex flex-col gap-0.5">
@@ -381,19 +382,19 @@ export default function ProductPage() {
               </div>
             </button>
 
-            {/* 9. Trust Badges — Figma 1430:29209, each h-96; last one peach bg */}
+            {/* 9. Trust Badges — Figma 1430:29209 (gap-16 text→button, pr-16 right) */}
             <div className="flex flex-col gap-2 mb-6">
               {trustBadges.map((badge, i) => (
                 <div
                   key={i}
-                  className={`rounded-[12px] p-2 flex items-center gap-4 ${
+                  className={`rounded-[12px] p-2 pr-4 flex items-center gap-4 ${
                     badge.orangeBg ? "bg-[#F5ECE6]" : "bg-[#F7F7F7]"
                   }`}
                 >
                   <div className="w-20 h-20 shrink-0 flex items-center justify-center">
                     <Image src={badge.icon} alt={badge.title} width={80} height={80} className="w-full h-full object-contain" />
                   </div>
-                  <div className="flex-1 min-w-0 flex flex-col gap-[5px]">
+                  <div className="flex-1 min-w-0 flex flex-col gap-[5px] mr-4">
                     <p className="text-[16px] font-semibold text-black leading-6 capitalize">{badge.title}</p>
                     <p className="text-[14px] text-[#1E1E1E] leading-5">{badge.desc}</p>
                   </div>
@@ -420,32 +421,47 @@ export default function ProductPage() {
               ))}
             </div>
 
-            {/* 10. Help Cards — Figma 1430:28293: single box with dividers, 48px icons, 16px titles */}
+            {/* 10. Help Cards — Figma 1430:28293 — only bottom link is clickable */}
             <div className="bg-white border border-[#E3E3E3] rounded-[12px] flex items-stretch">
-              <button onClick={() => setHelpOpen(true)} className="cursor-pointer flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 border-r border-[#E6E6E6] hover:bg-[#F7F7F7] transition-colors rounded-l-[12px]">
+              <div className="flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 border-r border-[#E6E6E6]">
                 <div className="w-12 h-12 relative">
                   <Image src="/images/shop/product-icons/icon-5.png" alt="" fill className="object-contain" />
                 </div>
                 <p className="text-[16px] font-semibold text-black leading-6">Need Help?</p>
                 <p className="text-[14px] text-[#1E1E1E] leading-5">Ask about dosing, shipping, or verification</p>
-                <span className="text-[14px] font-semibold text-black underline leading-5">Ask a Question</span>
-              </button>
-              <button onClick={() => setShippingOpen(true)} className="cursor-pointer flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 border-r border-[#E6E6E6] hover:bg-[#F7F7F7] transition-colors">
+                <button
+                  onClick={() => setHelpOpen(true)}
+                  className="cursor-pointer text-[14px] font-semibold text-black underline leading-5 hover:text-[#FF6701] transition-colors"
+                >
+                  Ask a Question
+                </button>
+              </div>
+              <div className="flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 border-r border-[#E6E6E6]">
                 <div className="w-12 h-12 relative">
                   <Image src="/images/shop/product-icons/icon-6.png" alt="" fill className="object-contain" />
                 </div>
                 <p className="text-[16px] font-semibold text-[#1E1E1E] leading-6">Shipping Methods</p>
                 <p className="text-[14px] text-[#1E1E1E] leading-5">Delivery times, tracking, discreet packaging</p>
-                <span className="text-[14px] font-semibold text-black underline leading-5">Learn more</span>
-              </button>
-              <button onClick={() => setPaymentOpen(true)} className="cursor-pointer flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 hover:bg-[#F7F7F7] transition-colors rounded-r-[12px]">
+                <button
+                  onClick={() => setShippingOpen(true)}
+                  className="cursor-pointer text-[14px] font-semibold text-black underline leading-5 hover:text-[#FF6701] transition-colors"
+                >
+                  Learn more
+                </button>
+              </div>
+              <div className="flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4">
                 <div className="w-12 h-12 relative">
                   <Image src="/images/shop/product-icons/icon-7.png" alt="" fill className="object-contain" />
                 </div>
                 <p className="text-[16px] font-semibold text-[#1E1E1E] leading-6">Payment Methods</p>
                 <p className="text-[14px] text-[#1E1E1E] leading-5">Bitcoin, bank transfer</p>
-                <span className="text-[14px] font-semibold text-black underline leading-5">Learn more</span>
-              </button>
+                <button
+                  onClick={() => setPaymentOpen(true)}
+                  className="cursor-pointer text-[14px] font-semibold text-black underline leading-5 hover:text-[#FF6701] transition-colors"
+                >
+                  Learn more
+                </button>
+              </div>
             </div>
 
             {/* 11. Product Overview Accordion */}
