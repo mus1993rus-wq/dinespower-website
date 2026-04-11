@@ -22,40 +22,40 @@ const categories = [
 ];
 
 const popularProducts = [
-  { brand: "Deus Medical", name: "Andarine S4 - SARM for lean muscle growth", dosage: "25mg/cap", price: 44, oldPrice: 56, badges: ["sale", "top", "new"], image: "/images/shop/product-1.webp" },
-  { brand: "Astera Labs", name: "Vaso Burn - thermogenic formula for fat oxidation", dosage: "60 caps", price: 44, badges: ["new"], image: "/images/shop/product-2.webp" },
-  { brand: "Astera Labs", name: "Night Blend - recovery formula for deep sleep", dosage: "60 caps", price: 33, badges: ["top"], image: "/images/shop/product-3.jpg" },
-  { brand: "Deus Medical", name: "BPC-157 - peptide for tissue repair", dosage: "5mg/vial", price: 50, badges: ["top", "new"], image: "/images/shop/product-4.jpg" },
-  { brand: "Deus Medical", name: "Day Blend - energy, focus and performance", dosage: "60 caps", price: 44, badges: ["new"], image: "/images/shop/product-5.webp" },
-  { brand: "Deus Medical", name: "Testosterone Enanthate 250mg injectable", dosage: "250 mg/ml", price: 38, badges: ["top"], image: "/images/shop/injectable-1.jpg" },
-  { brand: "Deus Medical", name: "Boldenone Undecylenate 250mg injectable", dosage: "250 mg/ml", price: 44, oldPrice: 56, badges: ["sale", "top"], image: "/images/shop/injectable-2.jpg" },
-  { brand: "Biaxol", name: "Ostarine MK-2866 SARM capsules", dosage: "25 mg/cap", price: 44, badges: ["top"], image: "/images/shop/product-1.webp" },
-  { brand: "Biaxol", name: "RAD-140 Testolone SARM capsules", dosage: "10 mg/cap", price: 48, badges: ["new"], image: "/images/shop/product-2.webp" },
-  { brand: "Deus Medical", name: "Sustanon 250mg injectable steroid", dosage: "250 mg/ml", price: 42, badges: ["top"], image: "/images/shop/injectable-3.jpg" },
+  { brand: "Deus Medical", name: "3-Trenbomed 150 Injectable Steroid In Ampoules", dosage: "150 mg/ml", price: 57, oldPrice: 65, badges: ["sale", "top"], image: "/images/shop/products/injectable-trenbomed-150.jpg" },
+  { brand: "Deus Medical", name: "Equimed 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 42, oldPrice: 53, badges: ["sale"], image: "/images/shop/products/injectable-equimed-250.jpg" },
+  { brand: "Deus Medical", name: "Sustamed 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 37, oldPrice: 43, badges: ["sale", "top"], image: "/images/shop/products/injectable-sustamed-250.jpg" },
+  { brand: "Biaxol", name: "Yohimbine Fat Burner Capsules", dosage: "10 mg/cap", price: 24, oldPrice: 30, badges: ["sale", "top"], image: "/images/shop/products/fat-burn-yohimbine.png" },
+  { brand: "Biaxol", name: "Ibutamoren (MK677) SARM In Capsules", dosage: "10 mg/cap", price: 60, oldPrice: 65, badges: ["sale", "top"], image: "/images/shop/products/sarms-ibutamoren.png" },
+  { brand: "Deus Medical", name: "BPC-157 Peptide In Vials", dosage: "5 mg/vial", price: 39, oldPrice: 43, badges: ["sale", "top"], image: "/images/shop/products/peptides-hgh-bpc-157.jpg" },
+  { brand: "Deus Medical", name: "Viamed 100 (Sildenafil) 100mg Oral Jelly", dosage: "100 mg", price: 17, badges: ["new", "top"], image: "/images/shop/products/sex-support-viamed-100.webp" },
+  { brand: "Deus Medical", name: "MK677 10 SARM In Tablets", dosage: "10 mg/tab", price: 40, oldPrice: 60, badges: ["sale", "top"], image: "/images/shop/products/sarms-mk677-10.jpg" },
+  { brand: "Astera Labs", name: "BCAA Supplements For Muscle Recovery", dosage: "", price: 28, badges: ["new"], image: "/images/shop/products/amino-acids-bcaa.webp" },
+  { brand: "Deus Medical", name: "Anavamed 10 Oral Steroid In Tablets", dosage: "10 mg/tab", price: 25, oldPrice: 34, badges: ["sale", "top"], image: "/images/shop/products/oral-anavamed-10.jpg" },
 ];
 
 const topOralProducts = [
-  { brand: "Deus Medical", name: "Anavamed 10 oral steroid in tablets", dosage: "10 mg per tablet", price: 25, oldPrice: 56, badges: ["sale"], image: "/images/shop/oral-1.jpg" },
-  { brand: "Deus Medical", name: "Dianamed 10 oral steroid in tablets", dosage: "10 mg per tablet", price: 30, badges: ["top"], image: "/images/shop/oral-2.jpg" },
-  { brand: "Deus Medical", name: "Halomed 5 oral steroid in tablets", dosage: "5 mg per tablet", price: 28, badges: ["new"], image: "/images/shop/oral-3.jpg" },
-  { brand: "Deus Medical", name: "Winimed 10 oral steroid in tablets", dosage: "10 mg per tablet", price: 32, badges: ["top"], image: "/images/shop/oral-4.jpg" },
-  { brand: "Astera Labs", name: "Vaso Burn thermogenic formula", dosage: "60 caps", price: 44, badges: ["new"], image: "/images/shop/product-2.webp" },
+  { brand: "Deus Medical", name: "Anavamed 10 Oral Steroid In Tablets", dosage: "10 mg/tab", price: 25, oldPrice: 34, badges: ["sale", "top"], image: "/images/shop/products/oral-anavamed-10.jpg" },
+  { brand: "Deus Medical", name: "Dianamed 10 Oral Steroid In Tablets", dosage: "10 mg/tab", price: 13, oldPrice: 17, badges: ["sale", "top"], image: "/images/shop/products/oral-dianamed-10.jpg" },
+  { brand: "Deus Medical", name: "Halomed 5 Oral Steroid In Tablets", dosage: "5 mg/tab", price: 50, oldPrice: 58, badges: ["sale"], image: "/images/shop/products/oral-halomed-5.jpg" },
+  { brand: "Deus Medical", name: "Primomed 25 Oral Steroid In Tablets", dosage: "25 mg/tab", price: 83, oldPrice: 92, badges: ["sale", "top"], image: "/images/shop/products/oral-primomed-25.jpg" },
+  { brand: "Deus Medical", name: "Provimed 25 Oral Steroid In Tablets", dosage: "25 mg/tab", price: 25, oldPrice: 29, badges: ["sale"], image: "/images/shop/products/oral-provimed-25.jpg" },
 ];
 
 const topInjectableProducts = [
-  { brand: "Deus Medical", name: "Nandrolone Phenylpropionate 100mg/ml injectable", dosage: "100 mg/ml", price: 38, badges: ["top"], image: "/images/shop/injectable-1.jpg" },
-  { brand: "Deus Medical", name: "Boldenone Undecylenate 250mg/ml injectable", dosage: "250 mg/ml", price: 44, oldPrice: 56, badges: ["sale", "top"], image: "/images/shop/injectable-2.jpg" },
-  { brand: "Deus Medical", name: "Sustanon 250mg/ml injectable steroid", dosage: "250 mg/ml", price: 42, badges: ["top"], image: "/images/shop/injectable-3.jpg" },
-  { brand: "Deus Medical", name: "Trenbolone Hex 76.5mg/ml injectable", dosage: "76.5 mg/ml", price: 62, badges: ["new"], image: "/images/shop/injectable-4.jpg" },
-  { brand: "Astera Labs", name: "BPC-157 peptide in vials", dosage: "5mg/vial", price: 50, badges: ["top", "new"], image: "/images/shop/product-4.jpg" },
+  { brand: "Deus Medical", name: "3-Trenbomed 150 Injectable Steroid In Ampoules", dosage: "150 mg/ml", price: 57, oldPrice: 65, badges: ["sale", "top"], image: "/images/shop/products/injectable-trenbomed-150.jpg" },
+  { brand: "Deus Medical", name: "Decamed PP 100 Injectable Steroid In Ampoules", dosage: "100 mg/ml", price: 34, oldPrice: 44, badges: ["sale"], image: "/images/shop/products/injectable-decamed-pp-100.jpg" },
+  { brand: "Deus Medical", name: "Dianamed 100 Injectable Steroid In Ampoules", dosage: "100 mg/ml", price: 40, oldPrice: 54, badges: ["sale", "top"], image: "/images/shop/products/injectable-dianamed-100.png" },
+  { brand: "Deus Medical", name: "Equimed 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 42, oldPrice: 53, badges: ["sale"], image: "/images/shop/products/injectable-equimed-250.jpg" },
+  { brand: "Deus Medical", name: "Sustamed 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 37, oldPrice: 43, badges: ["sale", "top"], image: "/images/shop/products/injectable-sustamed-250.jpg" },
 ];
 
 const topStackProducts = [
-  { brand: "Biaxol", name: "Cutting Stack - Ostarine, Testolone, Cardarine", dosage: "3 products", price: 160, badges: ["top"], image: "/images/shop/product-1.webp" },
-  { brand: "Biaxol", name: "Beginner Stack - MK-677, PCT, RAD-140", dosage: "3 products", price: 168, badges: ["top"], image: "/images/shop/product-2.webp" },
-  { brand: "Deus Medical", name: "Cutting Stack Package for Beginners", dosage: "Testomed, Anavamed, Clomimed", price: 155, badges: ["top"], image: "/images/shop/product-3.jpg" },
-  { brand: "Deus Medical", name: "3-Trenbomed 150 injectable steroid", dosage: "1ml per ampoule", price: 57, badges: ["top"], image: "/images/shop/product-4.jpg" },
-  { brand: "Astera Labs", name: "Yohimbine Fat Burner supplement", dosage: "60 caps / 5mg", price: 35, badges: ["new"], image: "/images/shop/product-5.webp" },
+  { brand: "Biaxol", name: "Muscle Building Stack", dosage: "Bundle", price: 222, oldPrice: 242, badges: ["sale", "top"], image: "/images/shop/products/stacks-muscle-building.webp" },
+  { brand: "Biaxol", name: "Cutting Stack", dosage: "Bundle", price: 160, oldPrice: 180, badges: ["sale", "top"], image: "/images/shop/products/stacks-cutting.webp" },
+  { brand: "Biaxol", name: "Bulking Stack", dosage: "Bundle", price: 234, oldPrice: 254, badges: ["sale"], image: "/images/shop/products/stacks-bulking.webp" },
+  { brand: "Biaxol", name: "Beginner Stack", dosage: "Bundle", price: 168, oldPrice: 188, badges: ["sale", "top"], image: "/images/shop/products/stacks-beginner.webp" },
+  { brand: "Biaxol", name: "Fat Burning Stack", dosage: "Bundle", price: 216, oldPrice: 236, badges: ["sale", "top"], image: "/images/shop/products/stacks-fat-burning.webp" },
 ];
 
 const proSellerCards = [

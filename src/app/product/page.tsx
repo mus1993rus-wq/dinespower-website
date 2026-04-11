@@ -15,8 +15,8 @@ const NeedHelpPopup = dynamic(() => import("@/components/NeedHelpPopup"), { ssr:
 const VerifyPopup = dynamic(() => import("@/components/VerifyPopup"), { ssr: false });
 
 const thumbnails = [
-  "/images/shop/product-1.webp",
-  "/images/shop/product-2.webp",
+  "/images/shop/products/injectable-primomed-100.jpg",
+  "/images/shop/products/injectable-dianamed-100.png",
 ];
 
 const specs = [
@@ -44,8 +44,8 @@ const brandVerifyUrls: Record<string, { partner: string; product: string }> = {
 };
 
 // Current product brand (would come from product data in real app)
-const productBrand = "Astera Labs";
-const verifyUrls = brandVerifyUrls[productBrand] || brandVerifyUrls["Astera Labs"];
+const productBrand = "Deus Medical";
+const verifyUrls = brandVerifyUrls[productBrand] || brandVerifyUrls["Deus Medical"];
 
 const trustBadges = [
   {
@@ -114,7 +114,7 @@ const reviews = [
     stars: 5,
     timeAgo: "4d ago",
     text: "This is amazing! Tried everything and this is the best product I have used. Highly recommend for anyone looking to boost performance. The quality is outstanding and shipping was discreet.",
-    image: "/images/shop/product-1.webp",
+    image: "/images/shop/products/injectable-trenbomed-150.jpg",
   },
   {
     name: "John Doe",
@@ -133,30 +133,30 @@ const reviews = [
 ];
 
 const customerPhotos = [
-  "/images/shop/product-1.webp",
-  "/images/shop/product-2.webp",
-  "/images/shop/product-3.jpg",
-  "/images/shop/product-4.jpg",
-  "/images/shop/product-5.webp",
-  "/images/shop/product-1.webp",
-  "/images/shop/product-2.webp",
-  "/images/shop/product-3.jpg",
+  "/images/shop/products/injectable-trenbomed-150.jpg",
+  "/images/shop/products/injectable-equimed-250.jpg",
+  "/images/shop/products/injectable-sustamed-250.jpg",
+  "/images/shop/products/injectable-dianamed-100.png",
+  "/images/shop/products/oral-anavamed-10.jpg",
+  "/images/shop/products/oral-dianamed-10.jpg",
+  "/images/shop/products/peptides-hgh-bpc-157.jpg",
+  "/images/shop/products/sarms-mk677-10.jpg",
 ];
 
 const topInjectableProducts = [
-  { brand: "Deus Medical", name: "Testosterone Enanthate 250 Injectable Steroid In Vials", dosage: "250 mg/ml", price: 38, badges: ["top"], image: "/images/shop/injectable-1.jpg" },
-  { brand: "Astera Labs", name: "Nandrolone Decanoate 300 Injectable Steroid In Vials", dosage: "300 mg/ml", price: 52, badges: ["new"], image: "/images/shop/injectable-2.jpg" },
-  { brand: "Deus Medical", name: "Boldenone Undecylenate 250 Injectable Steroid In Vials", dosage: "250 mg/ml", price: 44, oldPrice: 56, badges: ["sale", "top"], image: "/images/shop/injectable-3.jpg" },
-  { brand: "Astera Labs", name: "Trenbolone Enanthate 200 Injectable Steroid In Vials", dosage: "200 mg/ml", price: 62, badges: ["top"], image: "/images/shop/injectable-4.jpg" },
-  { brand: "Deus Medical", name: "Masteron Propionate 100 Injectable Steroid In Vials", dosage: "100 mg/ml", price: 40, badges: ["new"], image: "/images/shop/product-5.webp" },
+  { brand: "Deus Medical", name: "3-Trenbomed 150 Injectable Steroid In Ampoules", dosage: "150 mg/ml", price: 57, oldPrice: 65, badges: ["sale", "top"], image: "/images/shop/products/injectable-trenbomed-150.jpg" },
+  { brand: "Deus Medical", name: "Decamed PP 100 Injectable Steroid In Ampoules", dosage: "100 mg/ml", price: 34, oldPrice: 44, badges: ["sale"], image: "/images/shop/products/injectable-decamed-pp-100.jpg" },
+  { brand: "Deus Medical", name: "Dianamed 100 Injectable Steroid In Ampoules", dosage: "100 mg/ml", price: 40, oldPrice: 54, badges: ["sale", "top"], image: "/images/shop/products/injectable-dianamed-100.png" },
+  { brand: "Deus Medical", name: "Equimed 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 42, oldPrice: 53, badges: ["sale"], image: "/images/shop/products/injectable-equimed-250.jpg" },
+  { brand: "Deus Medical", name: "Sustamed 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 37, oldPrice: 43, badges: ["sale", "top"], image: "/images/shop/products/injectable-sustamed-250.jpg" },
 ];
 
 const relatedProducts = [
-  { brand: "Deus Medical", name: "Vaso burn - thermogenic formula for fat oxidation and energy", dosage: "325 mg/ml", price: 44, oldPrice: 56, badges: ["sale", "top", "new"], image: "/images/shop/product-1.webp" },
-  { brand: "Astera Labs", name: "Dietary supplements for fat burning and energy supply", dosage: "325 mg/ml", price: 44, badges: ["new"], image: "/images/shop/product-2.webp" },
-  { brand: "Astera Labs", name: "Vaso burn - thermogenic formula for fat oxidation and energy", dosage: "295 mg/ml", price: 33, badges: ["top"], image: "/images/shop/product-3.jpg" },
-  { brand: "Deus Medical", name: "MOTS-C-Peptide (Mitochondrien-abgeleitetes Peptid MOTS-C) in...", dosage: "325 mg/ml", price: 50, badges: ["top", "new"], image: "/images/shop/product-4.jpg" },
-  { brand: "Deus Medical", name: "Daily blend for energy, focus and performance", dosage: "325 mg/ml", price: 44, badges: ["new"], image: "/images/shop/product-5.webp" },
+  { brand: "Deus Medical", name: "Primomed 100 Injectable Steroid In Ampoules", dosage: "100 mg/ml", price: 70, oldPrice: 76, badges: ["sale"], image: "/images/shop/products/injectable-primomed-100.jpg" },
+  { brand: "Deus Medical", name: "Testomed E 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 35, oldPrice: 45, badges: ["sale", "top"], image: "/images/shop/products/injectable-testomed-e-250.jpg" },
+  { brand: "Deus Medical", name: "Paramed 76.5 Injectable Steroid In Ampoules", dosage: "76.5 mg/ml", price: 55, oldPrice: 64, badges: ["new", "sale"], image: "/images/shop/products/injectable-paramed-76-5.jpg" },
+  { brand: "Deus Medical", name: "BPC-157 Peptide In Vials", dosage: "5 mg/vial", price: 39, oldPrice: 43, badges: ["sale", "top"], image: "/images/shop/products/peptides-hgh-bpc-157.jpg" },
+  { brand: "Biaxol", name: "Ibutamoren (MK677) SARM In Capsules", dosage: "10 mg/cap", price: 60, oldPrice: 65, badges: ["sale", "top"], image: "/images/shop/products/sarms-ibutamoren.png" },
 ];
 
 const faqItems = [
@@ -193,11 +193,11 @@ export default function ProductPage() {
   const handleAddToCart = () => {
     addItem(
       {
-        brand: "Astera Labs",
-        name: "Methenolone Enanthate 200 Injectable Steroid In Vials",
-        price: 44,
-        oldPrice: 56,
-        image: "/images/shop/product-1.webp",
+        brand: "Deus Medical",
+        name: "3-Trenbomed 150 Injectable Steroid In Ampoules",
+        price: 57,
+        oldPrice: 65,
+        image: "/images/shop/products/injectable-trenbomed-150.jpg",
       },
       qty
     );

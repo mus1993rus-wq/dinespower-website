@@ -24,14 +24,14 @@ const recentSearches = [
 ];
 
 const searchProducts = [
-  { name: "Methenolon Enanthat Injektionssteroid In Vials", price: "125 \u20AC", image: "/images/shop/product-1.webp" },
-  { name: "Trembolon Enanthate, Injizierbares Steroid In Ampullen", price: "55 \u20AC", image: "/images/shop/injectable-1.jpg" },
-  { name: "Bakteriostatisches Wasser In Fl\u00E4schchen", price: "11 \u20AC", image: "/images/shop/product-2.webp" },
-  { name: "L-Carnitin In Vials", price: "16 \u20AC", image: "/images/shop/product-3.jpg" },
-  { name: "Nandrolonphenylpropionat (Npp) Injizierbares Steroid In Ampullen", price: "34 \u20AC", image: "/images/shop/injectable-2.jpg" },
-  { name: "Methenolone Enanthate 100 Injektierbares Steroid In Fl\u00E4schchen", price: "65 \u20AC", image: "/images/shop/product-4.jpg" },
-  { name: "Ostarine MK-2866 Capsules", price: "44 \u20AC", image: "/images/shop/product-5.webp" },
-  { name: "Andarine S4 SARM Capsules", price: "42 \u20AC", image: "/images/shop/product-1.webp" },
+  { name: "3-Trenbomed 150 Injectable Steroid In Ampoules", price: "57 \u20AC", image: "/images/shop/products/injectable-trenbomed-150.jpg" },
+  { name: "Decamed PP 100 Injectable Steroid In Ampoules", price: "34 \u20AC", image: "/images/shop/products/injectable-decamed-pp-100.jpg" },
+  { name: "Dianamed 100 Injectable Steroid In Ampoules", price: "40 \u20AC", image: "/images/shop/products/injectable-dianamed-100.png" },
+  { name: "Equimed 250 Injectable Steroid In Ampoules", price: "42 \u20AC", image: "/images/shop/products/injectable-equimed-250.jpg" },
+  { name: "Anavamed 10 Oral Steroid In Tablets", price: "25 \u20AC", image: "/images/shop/products/oral-anavamed-10.jpg" },
+  { name: "Dianamed 10 Oral Steroid In Tablets", price: "13 \u20AC", image: "/images/shop/products/oral-dianamed-10.jpg" },
+  { name: "BPC-157 Peptide In Vials", price: "39 \u20AC", image: "/images/shop/products/peptides-hgh-bpc-157.jpg" },
+  { name: "Ibutamoren (MK677) SARM In Capsules", price: "60 \u20AC", image: "/images/shop/products/sarms-ibutamoren.png" },
 ];
 
 const topLinks = [
@@ -103,7 +103,7 @@ export default function Header() {
       </div>
 
       {/* White content wrapper — rounded top corners overlap dark top bar */}
-      <div className="w-[calc(100%+370px)] -mx-[185px] bg-white rounded-t-[16px] -mt-[16px] relative pt-4 px-[185px] flex flex-col gap-[16px] z-10">
+      <div className="w-[calc(100%+370px)] -mx-[185px] bg-white rounded-t-[16px] -mt-[16px] relative pt-4 px-[185px] flex flex-col gap-[16px] z-[40]">
 
       {/* Middle bar */}
       <div className="w-full flex items-center gap-[40px] h-[44px]">
