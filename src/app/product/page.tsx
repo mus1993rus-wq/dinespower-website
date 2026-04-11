@@ -680,8 +680,11 @@ export default function ProductPage() {
             <Link href="/catalog?category=injectable" className="w-[252px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center cursor-pointer group" style={{ minHeight: '480px' }}>
               <Image src="/images/shop/promo-injectable.png" alt="Injectable" fill className="object-cover" />
               <div className="relative z-10">
-                <span className="bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] flex items-center justify-center shadow-md group-hover:bg-[#F7F7F7] transition-colors">
-                  View All Injectable
+                <span
+                  data-label="View All Injectable"
+                  className="btn-slide-up bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] inline-flex items-center justify-center shadow-md group-hover:border-[#181818] transition-colors"
+                >
+                  <span className="btn-slide-up__label">View All Injectable</span>
                 </span>
               </div>
             </Link>
@@ -727,8 +730,12 @@ export default function ProductPage() {
                   <Image src="/images/shop/faq-help-icon.png" alt="Help" width={64} height={64} className="object-contain" />
                   <h3 className="text-[16px] font-semibold text-black text-center">Still have questions?</h3>
                   <p className="text-[14px] text-[#1E1E1E] text-center">Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.</p>
-                  <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:bg-[#F7F7F7] transition-colors">
-                    Ask a Question
+                  <button
+                    onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))}
+                    data-label="Ask a Question"
+                    className="btn-slide-up cursor-pointer bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:border-[#181818] transition-colors"
+                  >
+                    <span className="btn-slide-up__label">Ask a Question</span>
                   </button>
                   <div className="flex gap-4">
                     <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center">

@@ -247,8 +247,12 @@ export default function DeliveryPaymentPage() {
                     <p className="text-[14px] text-[#1E1E1E] text-center leading-[22px]">
                       Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.
                     </p>
-                    <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:bg-[#F7F7F7] transition-colors">
-                      Ask a Question
+                    <button
+                      onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))}
+                      data-label="Ask a Question"
+                      className="btn-slide-up cursor-pointer bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:border-[#181818] transition-colors"
+                    >
+                      <span className="btn-slide-up__label">Ask a Question</span>
                     </button>
                     <div className="flex gap-4">
                       <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center hover:opacity-90 transition-opacity">
@@ -289,8 +293,11 @@ export default function DeliveryPaymentPage() {
                       </p>
                     </div>
                   </div>
-                  <button className="relative z-10 bg-white border border-[#CBCBCB] hover:bg-[#F7F7F7] text-black text-[14px] font-semibold rounded-[8px] h-12 w-full transition-colors">
-                    Get Wholesale Prices
+                  <button
+                    data-label="Get Wholesale Prices"
+                    className="btn-slide-up relative z-10 bg-white border border-[#CBCBCB] hover:border-[#181818] text-black text-[14px] font-semibold rounded-[8px] h-12 w-full transition-colors"
+                  >
+                    <span className="btn-slide-up__label">Get Wholesale Prices</span>
                   </button>
                 </div>
               </div>

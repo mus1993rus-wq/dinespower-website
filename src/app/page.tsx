@@ -166,8 +166,11 @@ function PromoBanner({ categoryName }: { categoryName: string }) {
     <Link href={`/catalog?category=${categoryName.toLowerCase()}`} className="w-[255px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center group cursor-pointer hover:shadow-lg transition-shadow">
       <Image src={bgImage} alt={`View All ${categoryName}`} fill className="object-cover" />
       <div className="relative z-10">
-        <button className="bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] hover:bg-[#EDEDED] transition-colors shadow-md">
-          View All {categoryName}
+        <button
+          data-label={`View All ${categoryName}`}
+          className="btn-slide-up bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] hover:border-[#181818] transition-colors shadow-md"
+        >
+          <span className="btn-slide-up__label">View All {categoryName}</span>
         </button>
       </div>
     </Link>
@@ -485,8 +488,12 @@ function FAQSection() {
               <Image src="/images/shop/faq-help-icon.png" alt="Help" width={80} height={80} className="object-contain" />
               <h3 className="text-[16px] font-semibold text-black text-center">Still have questions?</h3>
               <p className="text-[14px] text-[#1E1E1E] text-center">Reach out to our manager right away — we&apos;re happy to help with any questions.</p>
-              <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="cursor-pointer bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
-                Ask a Question
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))}
+                data-label="Ask a Question"
+                className="btn-slide-up cursor-pointer bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:border-[#181818] transition-colors"
+              >
+                <span className="btn-slide-up__label">Ask a Question</span>
               </button>
               <div className="flex gap-4">
                 <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center">
