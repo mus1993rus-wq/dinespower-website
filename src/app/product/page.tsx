@@ -15,8 +15,8 @@ const NeedHelpPopup = dynamic(() => import("@/components/NeedHelpPopup"), { ssr:
 const VerifyPopup = dynamic(() => import("@/components/VerifyPopup"), { ssr: false });
 
 const thumbnails = [
-  "/images/shop/products/injectable-primomed-100.jpg",
-  "/images/shop/products/injectable-dianamed-100.png",
+  "/images/shop/products/astera/methenolone-enanthate-200.webp",
+  "/images/shop/products/astera/methenolone-enanthate-100.webp",
 ];
 
 const specs = [
@@ -205,7 +205,7 @@ export default function ProductPage() {
         name: "Methenolone Enanthate 200 Injectable Steroid In Vials",
         price: 44,
         oldPrice: 56,
-        image: "/images/shop/products/injectable-primomed-100.jpg",
+        image: "/images/shop/products/astera/methenolone-enanthate-200.webp",
       },
       qty
     );
@@ -282,8 +282,14 @@ export default function ProductPage() {
 
             {/* 3. Brand badge — Figma 1875:19159, Astera = peach bg */}
             <div className="flex items-center gap-[17px] bg-[#F5ECE6] rounded-[8px] px-6 py-3 mb-5 w-fit">
-              <div className="w-[107px] h-[42px] relative shrink-0">
-                <Image src="/images/shop/verify-popup/logo-astera.png" alt="Astera Labs" fill className="object-contain" />
+              <div className="w-[107px] h-[42px] relative shrink-0 flex items-center">
+                <Image
+                  src="/images/brand-astera-logo.png"
+                  alt="Astera Labs"
+                  width={107}
+                  height={33}
+                  className="object-contain w-full h-auto"
+                />
               </div>
               <div className="flex flex-col gap-0.5">
                 <p className="text-[14px] font-semibold text-black leading-5">Official Astera Labs Product</p>
