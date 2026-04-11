@@ -42,16 +42,16 @@ const topLinks = [
 ];
 
 const languages: { code: string; label: string; flag: string }[] = [
-  { code: "de", label: "Deutsch", flag: "🇩🇪" },
-  { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "fr", label: "Français", flag: "🇫🇷" },
-  { code: "es", label: "Español", flag: "🇪🇸" },
-  { code: "it", label: "Italiano", flag: "🇮🇹" },
-  { code: "sv", label: "Svenska", flag: "🇸🇪" },
-  { code: "cs", label: "Čeština", flag: "🇨🇿" },
-  { code: "nl", label: "Nederlands", flag: "🇳🇱" },
-  { code: "ru", label: "Русский", flag: "🇷🇺" },
-  { code: "uk", label: "Українська", flag: "🇺🇦" },
+  { code: "de", label: "Deutsch", flag: "/images/flags/de.svg" },
+  { code: "en", label: "English", flag: "/images/flags/gb.svg" },
+  { code: "fr", label: "Français", flag: "/images/flags/fr.svg" },
+  { code: "es", label: "Español", flag: "/images/flags/es.svg" },
+  { code: "it", label: "Italiano", flag: "/images/flags/it.svg" },
+  { code: "sv", label: "Svenska", flag: "/images/flags/se.svg" },
+  { code: "cs", label: "Čeština", flag: "/images/flags/cz.svg" },
+  { code: "nl", label: "Nederlands", flag: "/images/flags/nl.svg" },
+  { code: "ru", label: "Русский", flag: "/images/flags/ru.svg" },
+  { code: "uk", label: "Українська", flag: "/images/flags/ua.svg" },
 ];
 
 const categoryData: { name: string; slug: string; brands: string[] }[] = [
@@ -122,7 +122,7 @@ export default function Header() {
                 className="cursor-pointer flex items-center gap-1.5 py-1 px-2 rounded hover:bg-white/[0.06] transition-colors"
                 aria-label="Select language"
               >
-                <span className="text-[16px] leading-none">{selectedLang.flag}</span>
+                <Image src={selectedLang.flag} alt="" width={20} height={12} className="object-cover rounded-[2px]" />
                 <span className="text-xs text-[#F7F7F7] leading-4">{selectedLang.label}</span>
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className={`transition-transform ${langOpen ? "rotate-180" : ""}`}>
                   <path d="M3 4.5L6 7.5L9 4.5" stroke="#F7F7F7" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -141,7 +141,7 @@ export default function Header() {
                         currentLang === lang.code ? "bg-[#F7F7F7]" : "hover:bg-[#F7F7F7]"
                       }`}
                     >
-                      <span className="text-[18px] leading-none shrink-0">{lang.flag}</span>
+                      <Image src={lang.flag} alt="" width={24} height={16} className="object-cover rounded-[2px] shrink-0" />
                       <span className="text-[14px] font-medium text-[#181818] leading-5">{lang.label}</span>
                     </button>
                   ))}
