@@ -122,10 +122,8 @@ export default function AccountSidebar() {
           href="https://t.me/+eFl6hboMcbxlNDI0"
           target="_blank"
           rel="noopener noreferrer"
-          className="h-11 flex items-center justify-center bg-white border border-[#E7E7E7] hover:border-[#181818] rounded-[8px] text-[14px] font-semibold text-[#181818] transition-colors"
-        >
-          Join Channel
-        </a>
+          className="btn-slide-up h-11 flex items-center justify-center bg-white border border-[#E7E7E7] hover:border-[#181818] rounded-[8px] text-[14px] font-semibold text-[#181818] transition-colors"
+         data-label="Join Channel"><span className="btn-slide-up__label">Join Channel</span></a>
       </div>
     </aside>
   );

@@ -527,10 +527,8 @@ export default function BlogArticlePage() {
                     <p className="text-[16px] text-[#F7F7F7] leading-6">Non-steroidal selective androgen receptor modulator</p>
                     <Link
                       href="/shop"
-                      className="cursor-pointer inline-flex items-center justify-center h-11 px-8 bg-white border border-[#E7E7E7] rounded-[8px] text-[14px] font-semibold text-black self-start hover:bg-[#E7E7E7] hover:border-transparent transition-colors mt-1"
-                    >
-                      Shop Now
-                    </Link>
+                      className="btn-slide-up cursor-pointer inline-flex items-center justify-center h-11 px-8 bg-white border border-[#E7E7E7] rounded-[8px] text-[14px] font-semibold text-black self-start hover:border-[#181818] transition-colors mt-1"
+                     data-label="Shop Now"><span className="btn-slide-up__label">Shop Now</span></Link>
                   </div>
                   {/* Right: Andarine S4 bottle + 3 quality badges — Figma composite asset */}
                   <div className="absolute right-0 top-0 h-[260px] w-[400px] z-0 pointer-events-none">
@@ -685,9 +683,7 @@ export default function BlogArticlePage() {
                       Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.
                     </p>
                   </div>
-                  <button className="cursor-pointer inline-flex items-center justify-center h-11 px-4 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black shrink-0 hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
-                    Ask a Question
-                  </button>
+                  <button className="btn-slide-up cursor-pointer inline-flex items-center justify-center h-11 px-4 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black shrink-0 hover:border-[#181818] transition-colors" data-label="Ask a Question"><span className="btn-slide-up__label">Ask a Question</span></button>
                 </div>
               </div>
 
@@ -809,10 +805,8 @@ export default function BlogArticlePage() {
                       href="https://t.me/+eFl6hboMcbxlNDI0"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="cursor-pointer flex items-center justify-center w-full h-11 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black hover:bg-[#E7E7E7] hover:border-transparent transition-colors"
-                    >
-                      Join Channel
-                    </a>
+                      className="btn-slide-up cursor-pointer flex items-center justify-center w-full h-11 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black hover:border-[#181818] transition-colors"
+                     data-label="Join Channel"><span className="btn-slide-up__label">Join Channel</span></a>
                   </div>
                 </div>
               </div>
