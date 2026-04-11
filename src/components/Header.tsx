@@ -25,14 +25,21 @@ const popularProducts = [
 ];
 
 const searchProducts = [
-  { name: "3-Trenbomed 150 Injectable Steroid In Ampoules", price: "57 \u20AC", image: "/images/shop/products/injectable-trenbomed-150.jpg" },
-  { name: "Decamed PP 100 Injectable Steroid In Ampoules", price: "34 \u20AC", image: "/images/shop/products/injectable-decamed-pp-100.jpg" },
-  { name: "Dianamed 100 Injectable Steroid In Ampoules", price: "40 \u20AC", image: "/images/shop/products/injectable-dianamed-100.png" },
-  { name: "Equimed 250 Injectable Steroid In Ampoules", price: "42 \u20AC", image: "/images/shop/products/injectable-equimed-250.jpg" },
-  { name: "Anavamed 10 Oral Steroid In Tablets", price: "25 \u20AC", image: "/images/shop/products/oral-anavamed-10.jpg" },
-  { name: "Dianamed 10 Oral Steroid In Tablets", price: "13 \u20AC", image: "/images/shop/products/oral-dianamed-10.jpg" },
-  { name: "BPC-157 Peptide In Vials", price: "39 \u20AC", image: "/images/shop/products/peptides-hgh-bpc-157.jpg" },
-  { name: "Ibutamoren (MK677) SARM In Capsules", price: "60 \u20AC", image: "/images/shop/products/sarms-ibutamoren.png" },
+  { name: "3-Trenbomed 150 Injectable Steroid In Ampoules", price: "57 \u20AC", image: "/images/shop/products/injectable-trenbomed-150.jpg", brand: "Deus Medical" },
+  { name: "Decamed PP 100 Injectable Steroid In Ampoules", price: "34 \u20AC", image: "/images/shop/products/injectable-decamed-pp-100.jpg", brand: "Deus Medical" },
+  { name: "Dianamed 100 Injectable Steroid In Ampoules", price: "40 \u20AC", image: "/images/shop/products/injectable-dianamed-100.png", brand: "Deus Medical" },
+  { name: "Equimed 250 Injectable Steroid In Ampoules", price: "42 \u20AC", image: "/images/shop/products/injectable-equimed-250.jpg", brand: "Deus Medical" },
+  { name: "Anavamed 10 Oral Steroid In Tablets", price: "25 \u20AC", image: "/images/shop/products/oral-anavamed-10.jpg", brand: "Deus Medical" },
+  { name: "Dianamed 10 Oral Steroid In Tablets", price: "13 \u20AC", image: "/images/shop/products/oral-dianamed-10.jpg", brand: "Deus Medical" },
+  { name: "BPC-157 Peptide In Vials", price: "39 \u20AC", image: "/images/shop/products/peptides-hgh-bpc-157.jpg", brand: "Deus Medical" },
+  { name: "Ibutamoren (MK677) SARM In Capsules", price: "60 \u20AC", image: "/images/shop/products/sarms-ibutamoren.png", brand: "Biaxol" },
+  // Astera Labs
+  { name: "Astera Methenolone Enanthate Injectable Steroid In Vials", price: "125 \u20AC", image: "/images/shop/products/injectable-primomed-100.jpg", brand: "Astera Labs" },
+  { name: "Astera Trenbolone Enanthate Injectable Steroid In Ampoules", price: "55 \u20AC", image: "/images/shop/products/injectable-trenbomed-150.jpg", brand: "Astera Labs" },
+  { name: "Astera Bacteriostatic Water In Vials", price: "11 \u20AC", image: "/images/shop/products/peptides-hgh-bpc-157.jpg", brand: "Astera Labs" },
+  { name: "Astera L-Carnitine In Vials", price: "16 \u20AC", image: "/images/shop/products/fat-burn-yohimbine.png", brand: "Astera Labs" },
+  { name: "Astera Nandrolone Phenylpropionate (NPP) Injectable Steroid", price: "34 \u20AC", image: "/images/shop/products/injectable-decamed-pp-100.jpg", brand: "Astera Labs" },
+  { name: "Astera Methenolone Enanthate 100 Injectable Steroid In Vials", price: "65 \u20AC", image: "/images/shop/products/injectable-primomed-100.jpg", brand: "Astera Labs" },
 ];
 
 const topLinks = [
@@ -189,61 +196,85 @@ export default function Header() {
           {/* Search dropdown — Figma style: popular tags + popular products list */}
           {searchFocused && (
             <div className="absolute top-full left-0 right-0 mt-2 bg-[#F7F7F7] border border-[#E7E7E7] rounded-[12px] shadow-lg z-50 p-4 flex flex-col gap-4">
-              {/* Popular Searches tags */}
-              <div className="flex flex-col gap-3">
-                <span className="text-[14px] text-[#7E7E7E] leading-5">Popular Searches</span>
-                <div className="flex flex-wrap gap-2">
-                  {popularSearches.map((term) => (
-                    <button
-                      key={term}
-                      onClick={() => setSearchQuery(term)}
-                      className="cursor-pointer px-4 h-9 rounded-full bg-white border border-[#E7E7E7] text-[14px] font-semibold text-[#181818] hover:border-[#181818] transition-colors"
-                    >
-                      {term}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Popular Products list */}
-              <div className="flex flex-col gap-3">
-                <span className="text-[14px] text-[#7E7E7E] leading-5">Popular Products</span>
-                <div className="bg-white rounded-[12px] flex flex-col">
-                  {(searchQuery.trim()
-                    ? searchProducts
-                        .filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase()))
-                        .slice(0, 6)
-                    : popularProducts
-                  ).map((product, i, arr) => (
-                    <Link
-                      key={i}
-                      href="/product"
-                      onClick={() => setSearchFocused(false)}
-                      className={`flex items-center gap-4 px-4 py-3 hover:bg-[#F7F7F7] transition-colors ${i < arr.length - 1 ? "border-b border-[#E7E7E7]" : ""} ${i === 0 ? "rounded-t-[12px]" : ""} ${i === arr.length - 1 ? "rounded-b-[12px]" : ""}`}
-                    >
-                      <div className="w-[48px] h-[48px] bg-[#F7F7F7] rounded-[8px] shrink-0 relative overflow-hidden p-1">
-                        <Image src={product.image} alt={product.name} fill className="object-contain p-1" />
+              {searchQuery.trim() ? (
+                <>
+                  {/* Search results — only product list + See All */}
+                  {(() => {
+                    const results = searchProducts.filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase())).slice(0, 7);
+                    if (results.length === 0) {
+                      return (
+                        <div className="bg-white rounded-[12px] py-8 text-center text-[14px] text-[#7E7E7E]">No products found</div>
+                      );
+                    }
+                    return (
+                      <div className="bg-white rounded-[12px] flex flex-col">
+                        {results.map((product, i) => (
+                          <Link
+                            key={i}
+                            href="/product"
+                            onClick={() => setSearchFocused(false)}
+                            className={`flex items-center gap-4 px-4 py-3 hover:bg-[#F7F7F7] transition-colors ${i < results.length - 1 ? "border-b border-[#E7E7E7]" : ""} ${i === 0 ? "rounded-t-[12px]" : ""} ${i === results.length - 1 ? "rounded-b-[12px]" : ""}`}
+                          >
+                            <div className="w-[48px] h-[48px] bg-[#F7F7F7] rounded-[8px] shrink-0 relative overflow-hidden p-1">
+                              <Image src={product.image} alt={product.name} fill className="object-contain p-1" />
+                            </div>
+                            <div className="flex-1 min-w-0 flex flex-col gap-1">
+                              <p className="text-[14px] font-semibold text-[#181818] leading-5 line-clamp-2">{product.name}</p>
+                              <p className="text-[14px] text-[#7E7E7E] leading-5">{product.price}</p>
+                            </div>
+                          </Link>
+                        ))}
                       </div>
-                      <div className="flex-1 min-w-0 flex flex-col gap-1">
-                        <p className="text-[14px] font-semibold text-[#181818] leading-5 line-clamp-2">{product.name}</p>
-                        <p className="text-[14px] text-[#7E7E7E] leading-5">{product.price}</p>
-                      </div>
-                    </Link>
-                  ))}
-                  {searchQuery.trim() && searchProducts.filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
-                    <p className="text-sm text-[#7E7E7E] py-6 text-center">No products found</p>
-                  )}
-                </div>
-              </div>
+                    );
+                  })()}
+                  <Link
+                    href={`/search?q=${encodeURIComponent(searchQuery)}`}
+                    onClick={() => setSearchFocused(false)}
+                    className="flex items-center justify-center w-full h-[52px] bg-[#181818] hover:bg-[#333] text-white text-[16px] font-semibold rounded-[12px] transition-colors"
+                  >
+                    See All
+                  </Link>
+                </>
+              ) : (
+                <>
+                  {/* Idle state: popular tags + popular products */}
+                  <div className="flex flex-col gap-3">
+                    <span className="text-[14px] text-[#7E7E7E] leading-5">Popular Searches</span>
+                    <div className="flex flex-wrap gap-2">
+                      {popularSearches.map((term) => (
+                        <button
+                          key={term}
+                          onClick={() => setSearchQuery(term)}
+                          className="cursor-pointer px-4 h-9 rounded-full bg-white border border-[#E7E7E7] text-[14px] font-semibold text-[#181818] hover:border-[#181818] transition-colors"
+                        >
+                          {term}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
 
-              {searchQuery.trim() && (
-                <Link
-                  href={`/search?q=${encodeURIComponent(searchQuery)}`}
-                  onClick={() => setSearchFocused(false)}
-                  className="flex items-center justify-center w-full h-[48px] bg-[#181818] hover:bg-[#333] text-white text-[14px] font-semibold rounded-[8px] transition-colors"
-                >
-                  See All
-                </Link>
+                  <div className="flex flex-col gap-3">
+                    <span className="text-[14px] text-[#7E7E7E] leading-5">Popular Products</span>
+                    <div className="bg-white rounded-[12px] flex flex-col">
+                      {popularProducts.map((product, i) => (
+                        <Link
+                          key={i}
+                          href="/product"
+                          onClick={() => setSearchFocused(false)}
+                          className={`flex items-center gap-4 px-4 py-3 hover:bg-[#F7F7F7] transition-colors ${i < popularProducts.length - 1 ? "border-b border-[#E7E7E7]" : ""} ${i === 0 ? "rounded-t-[12px]" : ""} ${i === popularProducts.length - 1 ? "rounded-b-[12px]" : ""}`}
+                        >
+                          <div className="w-[48px] h-[48px] bg-[#F7F7F7] rounded-[8px] shrink-0 relative overflow-hidden p-1">
+                            <Image src={product.image} alt={product.name} fill className="object-contain p-1" />
+                          </div>
+                          <div className="flex-1 min-w-0 flex flex-col gap-1">
+                            <p className="text-[14px] font-semibold text-[#181818] leading-5 line-clamp-2">{product.name}</p>
+                            <p className="text-[14px] text-[#7E7E7E] leading-5">{product.price}</p>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </>
               )}
             </div>
           )}
