@@ -215,13 +215,7 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
               <div className="px-6 border-t border-[#E7E7E7]">
                 <button onClick={() => setPromoOpen(!promoOpen)} className="cursor-pointer w-full flex items-center justify-between py-4 text-[16px] font-semibold text-[#181818]">
                   <div className="flex items-center gap-3">
-                    {/* Figma promo seal icon */}
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#181818">
-                      <path d="M20.89 10.31l-1.05-1.22c-.2-.23-.36-.66-.36-.97V6.8c0-.82-.67-1.49-1.49-1.49h-1.32c-.3 0-.74-.16-.97-.36l-1.22-1.05c-.53-.45-1.4-.45-1.94 0l-1.21 1.06c-.23.19-.67.35-.97.35H8.01c-.82 0-1.49.67-1.49 1.49v1.33c0 .3-.16.73-.35.96l-1.04 1.23c-.44.53-.44 1.39 0 1.92l1.04 1.23c.19.23.35.66.35.96v1.33c0 .82.67 1.49 1.49 1.49h1.34c.3 0 .74.16.97.36l1.22 1.05c.53.45 1.4.45 1.94 0l1.22-1.05c.23-.2.66-.36.97-.36h1.32c.82 0 1.49-.67 1.49-1.49v-1.32c0-.3.16-.74.36-.97l1.05-1.22c.44-.54.44-1.42-.01-1.96z" />
-                      <path d="M9.17 15.58a.95.95 0 01-.67-.28.97.97 0 010-1.34l5.66-5.66c.37-.37.97-.37 1.34 0 .37.37.37.97 0 1.34l-5.66 5.66a.96.96 0 01-.67.28z" fill="white" />
-                      <circle cx="9.5" cy="9.5" r="1.25" fill="white" />
-                      <circle cx="14.5" cy="14.5" r="1.25" fill="white" />
-                    </svg>
+                    <Image src="/images/shop/icon-promo.svg" alt="" width={24} height={24} />
                     Do you have a Promo Code?
                   </div>
                   <span className="text-[20px] leading-none">{promoOpen ? "−" : "+"}</span>
@@ -261,8 +255,8 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
               <div className="px-6 border-t border-[#E7E7E7]">
                 <button onClick={() => setShippingOpen(!shippingOpen)} className="cursor-pointer w-full flex items-center justify-between py-4 text-[16px] font-semibold text-[#181818]">
                   <div className="flex items-center gap-3">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      <path d="M16 3h5v5M8 21H3v-5M21 3l-7 7M3 21l7-7" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#181818">
+                      <path d="M16 3H4a2 2 0 00-2 2v10a2 2 0 002 2h1a3 3 0 006 0h4a3 3 0 006 0h1a2 2 0 002-2v-5l-3-4h-5V3zm-8 16a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm8-11h3.5L22 11h-6V8zm2 11a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" />
                     </svg>
                     Calculate shipping rate
                   </div>

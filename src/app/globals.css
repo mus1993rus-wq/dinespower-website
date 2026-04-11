@@ -88,8 +88,10 @@
   .animate-slide-in-right { animation: slideInRight 0.6s ease-out forwards; }
   .animate-scale-in { animation: scaleIn 0.4s ease-out forwards; }
 
-  .scroll-animate { opacity: 0; }
-  .scroll-animate.is-visible { opacity: 1; }
+  /* scroll-animate: content visible by default, animation class plays
+     when IntersectionObserver adds .is-visible. Prevents invisible
+     content if observer fails to fire. */
+  .scroll-animate { opacity: 1; }
 
   /* Hide scrollbar for carousels */
   .scrollbar-hide::-webkit-scrollbar { display: none; }

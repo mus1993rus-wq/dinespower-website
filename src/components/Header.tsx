@@ -228,7 +228,7 @@ export default function Header() {
             {helpDropdownOpen && (
               <div className="absolute top-full right-0 mt-2 bg-white border border-[#E7E7E7] rounded-[12px] shadow-lg p-2 min-w-[240px] z-50">
                 <a
-                  href="https://t.me/dinespower"
+                  href="https://t.me/+eFl6hboMcbxlNDI0"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 px-3 py-2.5 rounded-[8px] text-[16px] font-semibold text-[#181818] hover:bg-[#F7F7F7] transition-colors"
