@@ -168,9 +168,9 @@ function PromoBanner({ categoryName }: { categoryName: string }) {
       <div className="relative z-10">
         <button
           data-label={`View All ${categoryName}`}
-          className="btn-slide-up bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] hover:border-[#181818] transition-colors shadow-md"
+          className="bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] hover:border-[#181818] transition-colors shadow-md"
         >
-          <span className="btn-slide-up__label">View All {categoryName}</span>
+          View All {categoryName}
         </button>
       </div>
     </Link>
@@ -490,10 +490,9 @@ function FAQSection() {
               <p className="text-[14px] text-[#1E1E1E] text-center">Reach out to our manager right away — we&apos;re happy to help with any questions.</p>
               <button
                 onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))}
-                data-label="Ask a Question"
-                className="btn-slide-up cursor-pointer bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:border-[#181818] transition-colors"
+                className="cursor-pointer bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:border-[#181818] transition-colors"
               >
-                <span className="btn-slide-up__label">Ask a Question</span>
+                Ask a Question
               </button>
               <div className="flex gap-4">
                 <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center">

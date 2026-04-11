@@ -107,8 +107,8 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full flex flex-col items-center px-[185px] sticky top-0 z-50">
-      {/* Top bar — full width dark, extra pb-6 so rounded overlap is more visible */}
+    <header className="w-full flex flex-col items-center px-[185px] relative z-50">
+      {/* Top bar — full width dark, NOT sticky (scrolls away) */}
       <div className="w-[calc(100%+370px)] -mx-[185px] bg-[#181818] pb-6">
         <div className="flex items-center justify-between h-[40px] px-[185px]">
           <div className="flex-1 flex gap-5 items-center">

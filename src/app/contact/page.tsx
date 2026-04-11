@@ -80,7 +80,7 @@ export default function ContactPage() {
                     </div>
                     <div className="flex flex-col">
                       <p className="text-[14px] font-semibold text-[#181818] leading-5">Dinespower</p>
-                      <p className="text-[12px] text-[#7E7E7E] leading-4">For Instant Support</p>
+                      <p className="text-[12px] text-[#7E7E7E] leading-4">Official Channel</p>
                     </div>
                   </a>
                 </div>

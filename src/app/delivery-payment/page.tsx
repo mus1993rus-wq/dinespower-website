@@ -249,10 +249,9 @@ export default function DeliveryPaymentPage() {
                     </p>
                     <button
                       onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))}
-                      data-label="Ask a Question"
-                      className="btn-slide-up cursor-pointer bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:border-[#181818] transition-colors"
+                      className="cursor-pointer bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:border-[#181818] transition-colors"
                     >
-                      <span className="btn-slide-up__label">Ask a Question</span>
+                      Ask a Question
                     </button>
                     <div className="flex gap-4">
                       <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center hover:opacity-90 transition-opacity">
@@ -294,10 +293,9 @@ export default function DeliveryPaymentPage() {
                     </div>
                   </div>
                   <button
-                    data-label="Get Wholesale Prices"
-                    className="btn-slide-up relative z-10 bg-white border border-[#CBCBCB] hover:border-[#181818] text-black text-[14px] font-semibold rounded-[8px] h-12 w-full transition-colors"
+                    className="relative z-10 bg-white border border-[#CBCBCB] hover:border-[#181818] text-black text-[14px] font-semibold rounded-[8px] h-12 w-full transition-colors"
                   >
-                    <span className="btn-slide-up__label">Get Wholesale Prices</span>
+                    Get Wholesale Prices
                   </button>
                 </div>
               </div>

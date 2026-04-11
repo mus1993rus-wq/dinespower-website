@@ -83,8 +83,8 @@ export default function CheckoutPage() {
                   <p className="text-[14px] text-[#7E7E7E] leading-5">Sign In to Your Account</p>
                 </div>
                 <div className="flex gap-2">
-                  <button className="btn-slide-up cursor-pointer bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors" data-label="Sign In to Your Account"><span className="btn-slide-up__label">Sign In to Your Account</span></button>
-                  <button className="btn-slide-up cursor-pointer bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors" data-label="Sign Up"><span className="btn-slide-up__label">Sign Up</span></button>
+                  <button className="cursor-pointer bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors">Sign In to Your Account</button>
+                  <button className="cursor-pointer bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors">Sign Up</button>
                 </div>
               </div>
             </div>

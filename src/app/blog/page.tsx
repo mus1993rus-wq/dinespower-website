@@ -389,8 +389,7 @@ function BlogContent() {
                               href="https://t.me/+eFl6hboMcbxlNDI0"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="btn-slide-up cursor-pointer flex items-center justify-center h-11 px-5 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black shrink-0 hover:border-[#181818] transition-colors"
-                             data-label="Join Channel"><span className="btn-slide-up__label">Join Channel</span></a>
+                              className="cursor-pointer flex items-center justify-center h-11 px-5 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black shrink-0 hover:border-[#181818] transition-colors">Join Channel</a>
                           </div>
                         </div>
                       </>
@@ -595,8 +594,7 @@ function BlogContent() {
                       href="https://t.me/+eFl6hboMcbxlNDI0"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-slide-up cursor-pointer flex items-center justify-center w-full h-11 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black hover:border-[#181818] transition-colors"
-                     data-label="Join Channel"><span className="btn-slide-up__label">Join Channel</span></a>
+                      className="cursor-pointer flex items-center justify-center w-full h-11 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black hover:border-[#181818] transition-colors">Join Channel</a>
                   </div>
                 </div>
               </div>

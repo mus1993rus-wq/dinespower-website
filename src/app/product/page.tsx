@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -190,14 +190,7 @@ export default function ProductPage() {
   const [helpOpen, setHelpOpen] = useState(false);
   const [verifyOpen, setVerifyOpen] = useState(false);
   const [overviewExpanded, setOverviewExpanded] = useState(false);
-  const [showScrollBar, setShowScrollBar] = useState(false);
   const { addItem } = useCart();
-
-  useEffect(() => {
-    const onScroll = () => setShowScrollBar(window.scrollY > 600);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const handleCopy = () => {
     navigator.clipboard.writeText("DINES2026");
@@ -225,40 +218,6 @@ export default function ProductPage() {
   return (
     <>
       <Header />
-      {/* Scroll Header — sticky bar appears on scroll, Figma 1996:19073 */}
-      <div
-        className={`fixed top-0 left-0 right-0 z-[45] bg-white border-b border-[#E7E7E7] transition-transform duration-300 ${
-          showScrollBar ? "translate-y-0" : "-translate-y-full"
-        }`}
-      >
-        <div className="max-w-[1340px] mx-auto h-[64px] flex items-center gap-4 px-4">
-          <div className="w-[48px] h-[48px] rounded-[8px] bg-[#F7F7F7] shrink-0 flex items-center justify-center p-1">
-            <Image src={thumbnails[selectedImage]} alt="Product" width={40} height={40} className="object-contain" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-[14px] font-semibold text-[#181818] leading-5 truncate">
-              Methenolone Enanthate 200 Injectable Steroid In Vials
-            </p>
-            <p className="text-[12px] text-[#7E7E7E] leading-4">200 mg/mL · 10 mL vial</p>
-          </div>
-          <div className="flex items-center gap-2 shrink-0">
-            <span className="text-[18px] font-extrabold text-[#FB2F2F] leading-none">44 €</span>
-            <span className="text-[14px] text-[#7E7E7E] line-through leading-none">56 €</span>
-            <span className="bg-[#FB2F2F] text-white text-[11px] font-semibold px-2 py-[2px] rounded-[6px]">Sale -14%</span>
-          </div>
-          <button
-            onClick={handleAddToCart}
-            className="cursor-pointer h-9 px-4 bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center gap-2 transition-colors shrink-0"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span className="text-[14px] font-semibold text-white">Add to Cart</span>
-          </button>
-        </div>
-      </div>
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
         <div className="max-w-[1340px] mx-auto py-3">
@@ -438,17 +397,17 @@ export default function ProductPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       data-label={badge.button}
-                      className="btn-slide-up cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 text-[#181818] hover:border-[#181818] transition-colors"
+                      className="cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 text-[#181818] hover:border-[#181818] transition-colors"
                     >
-                      <span className="btn-slide-up__label">{badge.button}</span>
+                      {badge.button}
                     </a>
                   ) : (
                     <Link
                       href={badge.href || "#"}
                       data-label={badge.button}
-                      className="btn-slide-up cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 text-[#181818] hover:border-[#181818] transition-colors"
+                      className="cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 text-[#181818] hover:border-[#181818] transition-colors"
                     >
-                      <span className="btn-slide-up__label">{badge.button}</span>
+                      {badge.button}
                     </Link>
                   )}
                 </div>
@@ -681,10 +640,9 @@ export default function ProductPage() {
               <Image src="/images/shop/promo-injectable.png" alt="Injectable" fill className="object-cover" />
               <div className="relative z-10">
                 <span
-                  data-label="View All Injectable"
-                  className="btn-slide-up bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] inline-flex items-center justify-center shadow-md group-hover:border-[#181818] transition-colors"
+                  className="bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] inline-flex items-center justify-center shadow-md group-hover:border-[#181818] transition-colors"
                 >
-                  <span className="btn-slide-up__label">View All Injectable</span>
+                  View All Injectable
                 </span>
               </div>
             </Link>
@@ -732,10 +690,9 @@ export default function ProductPage() {
                   <p className="text-[14px] text-[#1E1E1E] text-center">Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.</p>
                   <button
                     onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))}
-                    data-label="Ask a Question"
-                    className="btn-slide-up cursor-pointer bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:border-[#181818] transition-colors"
+                    className="cursor-pointer bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:border-[#181818] transition-colors"
                   >
-                    <span className="btn-slide-up__label">Ask a Question</span>
+                    Ask a Question
                   </button>
                   <div className="flex gap-4">
                     <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center">
