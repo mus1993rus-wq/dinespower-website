@@ -174,18 +174,18 @@ export default function Header() {
                 <>
                   {recentSearches.length > 0 && (
                     <div className="mb-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-semibold text-[#7E7E7E] uppercase tracking-wider">Recent Searches</span>
-                        <button className="text-xs text-[#FF6701] hover:underline">Clear</button>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-[16px] font-semibold text-[#181818] leading-6">Recent Searches</span>
+                        <button className="text-[14px] text-[#7E7E7E] hover:text-[#FB2F2F] transition-colors">Clear</button>
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {recentSearches.map((term) => (
                           <button
                             key={term}
                             onClick={() => { setSearchQuery(term); }}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F7F7] text-sm text-[#181818] hover:bg-[#EDEDED] transition-colors"
+                            className="cursor-pointer flex items-center gap-2 px-4 h-10 rounded-[8px] border border-[#E7E7E7] bg-white text-[14px] text-[#181818] hover:bg-[#F7F7F7] transition-colors"
                           >
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="opacity-40"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-[#7E7E7E]"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                             {term}
                           </button>
                         ))}
@@ -193,15 +193,15 @@ export default function Header() {
                     </div>
                   )}
                   <div>
-                    <span className="text-xs font-semibold text-[#7E7E7E] uppercase tracking-wider mb-2 block">Popular Searches</span>
+                    <span className="text-[16px] font-semibold text-[#181818] leading-6 mb-3 block">Popular Searches</span>
                     <div className="flex flex-wrap gap-2">
                       {popularSearches.map((term) => (
                         <button
                           key={term}
                           onClick={() => { setSearchQuery(term); }}
-                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F7F7] text-sm text-[#181818] hover:bg-[#EDEDED] hover:text-[#FF6701] transition-colors"
+                          className="cursor-pointer flex items-center gap-2 px-4 h-10 rounded-[8px] bg-[#F7F7F7] text-[14px] text-[#181818] hover:bg-[#E7E7E7] transition-colors"
                         >
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="opacity-40"><path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-[#FF6701]"><path d="M8 12l8-8m0 0l5 5m-5-5v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                           {term}
                         </button>
                       ))}
