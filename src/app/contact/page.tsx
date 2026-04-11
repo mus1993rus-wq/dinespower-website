@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -10,7 +12,7 @@ export default function ContactPage() {
   const [contactMethod, setContactMethod] = useState<"telegram" | "whatsapp" | "mail">("telegram");
   const [agreed, setAgreed] = useState(false);
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState<string | undefined>("");
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState("");
 
@@ -130,109 +132,79 @@ export default function ContactPage() {
                 <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-2 text-center">Send us a message</h2>
                 <p className="text-[14px] text-[#7E7E7E] mb-8 text-center">Fill out the form &mdash; your request will be handled with priority</p>
 
-                <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
-                  {/* Name + Phone side by side */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm text-[#7E7E7E] mb-1.5 block">Your Name</label>
-                      <input
-                        type="text"
-                        placeholder="John Doe"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="w-full h-[48px] bg-white border border-[#E7E7E7] rounded-[8px] px-4 text-sm text-[#181818] placeholder:text-[#B6B6B6] outline-none focus:border-[#FF6701] transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm text-[#7E7E7E] mb-1.5 block">Phone</label>
-                      <div className="flex">
-                        <div className="h-[48px] bg-[#F7F7F7] border border-[#E7E7E7] border-r-0 rounded-l-lg px-4 flex items-center gap-2 shrink-0">
-                          <Image src="/images/shop/uk-flag.svg" alt="Flag" width={20} height={14} />
-                          <span className="text-sm text-[#181818] font-medium">+1</span>
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                        </div>
-                        <input
-                          type="tel"
-                          placeholder="(000) 000-0000"
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          className="flex-1 h-[48px] bg-[#F7F7F7] border border-[#E7E7E7] rounded-r-lg px-4 text-sm text-[#181818] placeholder:text-[#B6B6B6] outline-none focus:border-[#FF6701] transition-colors"
-                        />
-                      </div>
-                    </div>
+                <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+                  {/* Name + Phone side by side — no labels */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <input
+                      type="text"
+                      placeholder="Your Name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full h-[52px] bg-white border border-[#E7E7E7] rounded-[8px] px-4 text-[14px] text-[#181818] placeholder:text-[#8A8A8A] outline-none focus:border-[#181818] transition-colors"
+                    />
+                    <PhoneInput
+                      international
+                      defaultCountry="US"
+                      value={phone}
+                      onChange={setPhone}
+                      placeholder="Phone"
+                      className="dp-phone"
+                    />
                   </div>
 
                   {/* Email */}
-                  <div>
-                    <label className="text-sm text-[#7E7E7E] mb-1.5 block">Email *</label>
-                    <input
-                      type="email"
-                      placeholder="your@email.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full h-[48px] bg-white border border-[#E7E7E7] rounded-[8px] px-4 text-sm text-[#181818] placeholder:text-[#B6B6B6] outline-none focus:border-[#FF6701] transition-colors"
-                    />
-                  </div>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full h-[52px] bg-white border border-[#E7E7E7] rounded-[8px] px-4 text-[14px] text-[#181818] placeholder:text-[#8A8A8A] outline-none focus:border-[#181818] transition-colors"
+                  />
 
                   {/* Comment (Optional) */}
-                  <div>
-                    <label className="text-sm text-[#7E7E7E] mb-1.5 block">Comment (Optional)</label>
-                    <textarea
-                      placeholder="Write your message here..."
-                      rows={5}
-                      value={comment}
-                      onChange={(e) => setComment(e.target.value)}
-                      className="w-full bg-white border border-[#E7E7E7] rounded-[8px] px-4 py-3 text-sm text-[#181818] placeholder:text-[#B6B6B6] outline-none focus:border-[#FF6701] transition-colors resize-none"
-                    />
-                  </div>
+                  <textarea
+                    placeholder="Comment (Optional)"
+                    rows={5}
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    className="w-full bg-white border border-[#E7E7E7] rounded-[8px] px-4 py-3 text-[14px] text-[#181818] placeholder:text-[#8A8A8A] outline-none focus:border-[#181818] transition-colors resize-none"
+                  />
 
-                  {/* How can we contact you? + tabs */}
-                  <div>
-                    <label className="text-sm text-[#7E7E7E] mb-2 block">How can we contact you?</label>
-                    <div className="flex gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setContactMethod("telegram")}
-                        className={`flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold transition-colors ${
-                          contactMethod === "telegram"
-                            ? "bg-[#FF6701] text-white"
-                            : "bg-[#F7F7F7] text-[#181818] hover:bg-[#EDEDED]"
-                        }`}
-                      >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                          <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                        Telegram
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setContactMethod("whatsapp")}
-                        className={`flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold transition-colors ${
-                          contactMethod === "whatsapp"
-                            ? "bg-[#FF6701] text-white"
-                            : "bg-[#F7F7F7] text-[#181818] hover:bg-[#EDEDED]"
-                        }`}
-                      >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                          <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                        Whatsapp
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setContactMethod("mail")}
-                        className={`flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold transition-colors ${
-                          contactMethod === "mail"
-                            ? "bg-[#FF6701] text-white"
-                            : "bg-[#F7F7F7] text-[#181818] hover:bg-[#EDEDED]"
-                        }`}
-                      >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                          <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                        Mail
-                      </button>
+                  {/* How can we contact you? — segmented 3 equal tiles on gray bar */}
+                  <div className="flex flex-col gap-3">
+                    <p className="text-[14px] text-[#7E7E7E] leading-5 text-center">How can we contact you?</p>
+                    <div className="bg-[#F7F7F7] rounded-[12px] p-1 grid grid-cols-3 gap-1">
+                      {([
+                        { key: "telegram" as const, label: "Telegram", bg: "#00A9DE", icon: (
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" /></svg>
+                        ) },
+                        { key: "whatsapp" as const, label: "Whatsapp", bg: "#25D366", icon: (
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+                        ) },
+                        { key: "mail" as const, label: "Mail", bg: "#181818", icon: (
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
+                        ) },
+                      ]).map((opt) => {
+                        const active = contactMethod === opt.key;
+                        return (
+                          <button
+                            key={opt.key}
+                            type="button"
+                            onClick={() => setContactMethod(opt.key)}
+                            className={`cursor-pointer flex items-center justify-center gap-2 h-11 rounded-[10px] text-[14px] font-semibold transition-colors ${
+                              active ? "bg-[#FF6701] text-white" : "bg-transparent text-[#181818]"
+                            }`}
+                          >
+                            <span
+                              className="w-6 h-6 rounded-full flex items-center justify-center shrink-0"
+                              style={{ background: active ? "rgba(255,255,255,0.2)" : opt.bg }}
+                            >
+                              {opt.icon}
+                            </span>
+                            {opt.label}
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
 

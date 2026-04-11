@@ -222,11 +222,11 @@ export default function ProductPage() {
         {/* Breadcrumb */}
         <div className="max-w-[1340px] mx-auto py-3">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
-            <Link href="/" className="hover:text-[#181818]">Home</Link>
+            <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/catalog" className="hover:text-[#181818]">Injectable</Link>
+            <Link href="/catalog?category=injectable" className="hover:text-[#181818] transition-colors">Injectable</Link>
             <span>/</span>
-            <span className="hover:text-[#181818]">Astera Labs</span>
+            <Link href="/catalog?category=injectable&brand=astera-labs" className="hover:text-[#181818] transition-colors">Astera Labs</Link>
             <span>/</span>
             <span className="text-[#181818]">Methenolone Enanthate 200</span>
           </div>

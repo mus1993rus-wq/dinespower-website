@@ -355,19 +355,23 @@ export default function Header() {
       {/* Navigation bar with dropdowns */}
       <div className="w-full border-t border-b border-[#EDEDED]">
         <nav className="flex items-center justify-between h-[48px]">
-          {categoryData.map((cat) => (
+          {categoryData.map((cat) => {
+            const hasDropdown = cat.brands.length > 1;
+            return (
             <div key={cat.name} className="relative group h-full flex items-center">
               <Link
                 href={`/catalog?category=${cat.slug}`}
                 className="flex items-center gap-1 text-sm font-semibold text-[#181818] group-hover:text-[#FF6701] transition-colors leading-5"
               >
                 {cat.name}
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="transition-transform group-hover:rotate-180">
-                  <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                {hasDropdown && (
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="transition-transform group-hover:rotate-180">
+                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                )}
               </Link>
               {/* Dropdown - brands (only if more than 1 brand) */}
-              {cat.brands.length > 1 && (
+              {hasDropdown && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   <div className="bg-white border border-[#E7E7E7] rounded-[12px] shadow-lg p-3 min-w-[200px]">
                     {cat.brands.map((brand) => (
@@ -383,7 +387,8 @@ export default function Header() {
                 </div>
               )}
             </div>
-          ))}
+            );
+          })}
         </nav>
       </div>
       </div>
