@@ -41,6 +41,19 @@ const topLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
+const languages: { code: string; label: string; flag: string }[] = [
+  { code: "de", label: "Deutsch", flag: "🇩🇪" },
+  { code: "en", label: "English", flag: "🇬🇧" },
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "es", label: "Español", flag: "🇪🇸" },
+  { code: "it", label: "Italiano", flag: "🇮🇹" },
+  { code: "sv", label: "Svenska", flag: "🇸🇪" },
+  { code: "cs", label: "Čeština", flag: "🇨🇿" },
+  { code: "nl", label: "Nederlands", flag: "🇳🇱" },
+  { code: "ru", label: "Русский", flag: "🇷🇺" },
+  { code: "uk", label: "Українська", flag: "🇺🇦" },
+];
+
 const categoryData: { name: string; slug: string; brands: string[] }[] = [
   { name: "Injectable", slug: "injectable", brands: ["Astera Labs", "Deus Medical"] },
   { name: "Oral", slug: "oral", brands: ["Astera Labs", "Deus Medical"] },
@@ -61,8 +74,13 @@ export default function Header() {
   const { totalItems, openCart } = useCart();
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [langOpen, setLangOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState("en");
   const searchRef = useRef<HTMLDivElement>(null);
   const helpRef = useRef<HTMLDivElement>(null);
+  const langRef = useRef<HTMLDivElement>(null);
+
+  const selectedLang = languages.find((l) => l.code === currentLang) || languages[1];
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -71,6 +89,9 @@ export default function Header() {
       }
       if (helpRef.current && !helpRef.current.contains(e.target as Node)) {
         setHelpDropdownOpen(false);
+      }
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -94,10 +115,39 @@ export default function Header() {
             <span className="text-sm text-white leading-[18px]">All Products Certified & Lab Tested</span>
             <Link href="/lab-tests" className="text-sm font-semibold text-white underline leading-5 ml-1">See Lab Test</Link>
           </div>
-          <div className="flex-1 flex items-center justify-end gap-1.5">
-            <Image src="/images/shop/uk-flag.svg" alt="EN" width={20} height={12} />
-            <span className="text-xs text-[#F7F7F7] leading-4">English</span>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="#F7F7F7" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <div className="flex-1 flex items-center justify-end" ref={langRef}>
+            <div className="relative">
+              <button
+                onClick={() => setLangOpen((v) => !v)}
+                className="cursor-pointer flex items-center gap-1.5 py-1 px-2 rounded hover:bg-white/[0.06] transition-colors"
+                aria-label="Select language"
+              >
+                <span className="text-[16px] leading-none">{selectedLang.flag}</span>
+                <span className="text-xs text-[#F7F7F7] leading-4">{selectedLang.label}</span>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className={`transition-transform ${langOpen ? "rotate-180" : ""}`}>
+                  <path d="M3 4.5L6 7.5L9 4.5" stroke="#F7F7F7" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              {langOpen && (
+                <div className="absolute right-0 top-full mt-2 w-[200px] bg-white rounded-[12px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] border border-[#E7E7E7] p-2 z-[60] flex flex-col">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setCurrentLang(lang.code);
+                        setLangOpen(false);
+                      }}
+                      className={`cursor-pointer flex items-center gap-3 px-3 py-2 rounded-[8px] transition-colors text-left ${
+                        currentLang === lang.code ? "bg-[#F7F7F7]" : "hover:bg-[#F7F7F7]"
+                      }`}
+                    >
+                      <span className="text-[18px] leading-none shrink-0">{lang.flag}</span>
+                      <span className="text-[14px] font-medium text-[#181818] leading-5">{lang.label}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
