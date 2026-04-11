@@ -45,6 +45,13 @@
     background: white;
   }
 
+  /* Rounded top corners on main, visually overlapping the Header's top dark bar */
+  body > div > main,
+  body > main {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #f7f7f7; }

@@ -78,9 +78,9 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full flex flex-col items-center gap-[16px] px-[185px]">
-      {/* Top bar */}
-      <div className="w-[calc(100%+370px)] -mx-[185px] bg-[#181818]">
+    <header className="w-full flex flex-col items-center px-[185px]">
+      {/* Top bar — full width dark, extra pb-6 so rounded overlap is more visible */}
+      <div className="w-[calc(100%+370px)] -mx-[185px] bg-[#181818] pb-6">
         <div className="flex items-center justify-between h-[40px] px-[185px]">
           <div className="flex-1 flex gap-5 items-center">
             {topLinks.map((l) => (
@@ -101,6 +101,9 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      {/* White content wrapper — rounded top corners overlap dark top bar */}
+      <div className="w-[calc(100%+370px)] -mx-[185px] bg-white rounded-t-[16px] -mt-[16px] relative pt-4 px-[185px] flex flex-col gap-[16px] z-10">
 
       {/* Middle bar */}
       <div className="w-full flex items-center gap-[40px] h-[44px]">
@@ -318,6 +321,7 @@ export default function Header() {
             </div>
           ))}
         </nav>
+      </div>
       </div>
       <VerifyPopup isOpen={verifyOpen} onClose={() => setVerifyOpen(false)} />
     </header>
