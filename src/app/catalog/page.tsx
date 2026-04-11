@@ -456,7 +456,7 @@ function CatalogContent() {
 
   const [activeSort, setActiveSort] = useState(0);
   const [sortOpen, setSortOpen] = useState(false);
-  const [priceRange, setPriceRange] = useState([0, 100000]);
+  const [priceRange, setPriceRange] = useState([0, 500]);
   const [inStockChecked, setInStockChecked] = useState(true);
   const [outOfStockChecked, setOutOfStockChecked] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(2);
@@ -731,25 +731,25 @@ function CatalogContent() {
                 <div
                   className="absolute top-1/2 -translate-y-1/2 h-1 bg-[#181818] rounded-full"
                   style={{
-                    left: `${(priceRange[0] / 100000) * 100}%`,
-                    right: `${100 - (priceRange[1] / 100000) * 100}%`,
+                    left: `${(priceRange[0] / 500) * 100}%`,
+                    right: `${100 - (priceRange[1] / 500) * 100}%`,
                   }}
                 />
                 {/* Min handle */}
                 <input
                   type="range"
                   min={0}
-                  max={100000}
+                  max={500}
                   value={priceRange[0]}
                   onChange={(e) => setPriceRange([Math.min(+e.target.value, priceRange[1]), priceRange[1]])}
                   className="dual-range absolute top-0 left-0 w-full h-6 appearance-none bg-transparent pointer-events-none"
-                  style={{ zIndex: priceRange[0] > 95000 ? 5 : 3 }}
+                  style={{ zIndex: priceRange[0] > 475 ? 5 : 3 }}
                 />
                 {/* Max handle */}
                 <input
                   type="range"
                   min={0}
-                  max={100000}
+                  max={500}
                   value={priceRange[1]}
                   onChange={(e) => setPriceRange([priceRange[0], Math.max(+e.target.value, priceRange[0])])}
                   className="dual-range absolute top-0 left-0 w-full h-6 appearance-none bg-transparent pointer-events-none"

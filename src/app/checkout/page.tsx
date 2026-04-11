@@ -30,6 +30,7 @@ export default function CheckoutPage() {
   const [stateRegion, setStateRegion] = useState("");
   const [zip, setZip] = useState("");
   const [orderNotes, setOrderNotes] = useState("");
+  const [suggestIdx, setSuggestIdx] = useState(0);
 
   const productsTotal = orderItems.reduce((sum, i) => sum + i.price * i.qty, 0);
   const discount = productsTotal >= 200 ? 11.5 : 0;
@@ -134,12 +135,39 @@ export default function CheckoutPage() {
                   </select>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
-                <input type="text" placeholder="Town / City *" value={city} onChange={(e) => setCity(e.target.value)} className={`${inputClass} flex-1`} />
+                <div className="flex-1 min-w-0 relative">
+                  <select
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    className={`${inputClass} appearance-none cursor-pointer pr-10 ${city ? "text-[#181818]" : "text-[#8A8A8A]"}`}
+                  >
+                    <option value="" disabled>Town / City *</option>
+                    <option value="Paris">Paris</option>
+                    <option value="Berlin">Berlin</option>
+                    <option value="Rome">Rome</option>
+                    <option value="Madrid">Madrid</option>
+                    <option value="Amsterdam">Amsterdam</option>
+                    <option value="Warsaw">Warsaw</option>
+                    <option value="London">London</option>
+                    <option value="New York">New York</option>
+                  </select>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </div>
               </div>
               <div className="flex gap-2">
-                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} flex-1 min-w-0`} />
-                <input type="text" placeholder="State / County (Optional)" value={stateRegion} onChange={(e) => setStateRegion(e.target.value)} className={`${inputClass} w-[200px] shrink-0`} />
-                <input type="text" placeholder="Post Code / ZIP *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} w-[140px] shrink-0`} />
+                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} w-[406px] shrink-0`} />
+                <div className="w-[240px] shrink-0 relative">
+                  <select
+                    value={stateRegion}
+                    onChange={(e) => setStateRegion(e.target.value)}
+                    className={`${inputClass} appearance-none cursor-pointer pr-10 ${stateRegion ? "text-[#181818]" : "text-[#8A8A8A]"}`}
+                  >
+                    <option value="" disabled>State / County (Optional)</option>
+                    <option value="N/A">N/A</option>
+                  </select>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </div>
+                <input type="text" placeholder="Post Code / ZIP *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} flex-1 min-w-0`} />
               </div>
             </div>
 
@@ -154,7 +182,14 @@ export default function CheckoutPage() {
                   }`}
                 >
                   <div className="w-16 h-16 rounded-[4px] flex items-center justify-center shrink-0">
-                    <Image src="/images/shop/verify-popup/logo-bank.png" alt="Bank" width={54} height={28} className="object-contain" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
+                    <svg width="46" height="46" viewBox="0 0 48 48" fill="none">
+                      <rect x="4" y="14" width="40" height="24" rx="3" stroke="#181818" strokeWidth="2" />
+                      <rect x="4" y="18" width="40" height="5" fill="#181818" />
+                      <rect x="9" y="28" width="10" height="2" rx="1" fill="#181818" />
+                      <rect x="9" y="32" width="6" height="2" rx="1" fill="#181818" />
+                      <path d="M32 27L40 27M40 27L37 24M40 27L37 30" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M40 33L32 33M32 33L35 30M32 33L35 36" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                   </div>
                   <div className="flex-1 flex flex-col gap-1 text-left">
                     <p className="text-[16px] font-semibold text-[#181818] leading-6">Bank transfer</p>
@@ -204,35 +239,51 @@ export default function CheckoutPage() {
           {/* RIGHT — 440px sidebar */}
           <div className="w-[440px] shrink-0">
             <div className="sticky top-4 flex flex-col gap-4">
-              {/* You might also like — list of products */}
+              {/* You might also like — single-item slider with prev/next */}
               <div className="flex flex-col gap-3 px-4 py-2">
-                <p className="text-[18px] font-semibold text-black leading-[26px]">You might also like</p>
-                <div className="flex flex-col">
-                  {suggestedProducts.map((p, i) => (
-                    <div key={i}>
-                      <div className="flex items-center gap-4 py-3">
-                        <div className="w-20 h-20 bg-[#F7F7F7] rounded-[8px] shrink-0 p-1.5 flex items-center justify-center">
-                          <Image src={p.image} alt={p.name} width={68} height={68} className="object-contain" />
-                        </div>
-                        <div className="flex-1 flex flex-col gap-1 min-w-0">
-                          <p className="text-[12px] text-[#7E7E7E] leading-4">{p.brand}</p>
-                          <p className="text-[14px] font-semibold text-[#181818] leading-5 line-clamp-2">{p.name}</p>
-                          <div className="flex items-center justify-between mt-1 gap-2">
-                            <span className="text-[14px] font-semibold text-[#181818]">{p.price}€</span>
-                            <button className="cursor-pointer h-8 px-3 bg-[#FF6701] hover:bg-[#E65D00] rounded-[6px] flex items-center justify-center transition-colors shrink-0">
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                              </svg>
-                            </button>
-                          </div>
+                <div className="flex items-center justify-between">
+                  <p className="text-[18px] font-semibold text-black leading-[26px]">You might also like</p>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setSuggestIdx((p) => (p - 1 + suggestedProducts.length) % suggestedProducts.length)}
+                      className="cursor-pointer w-8 h-8 rounded-full bg-white border border-[#CBCBCB] hover:bg-[#F7F7F7] flex items-center justify-center transition-colors"
+                      aria-label="Previous"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    </button>
+                    <button
+                      onClick={() => setSuggestIdx((p) => (p + 1) % suggestedProducts.length)}
+                      className="cursor-pointer w-8 h-8 rounded-full bg-white border border-[#CBCBCB] hover:bg-[#F7F7F7] flex items-center justify-center transition-colors"
+                      aria-label="Next"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    </button>
+                  </div>
+                </div>
+                {(() => {
+                  const p = suggestedProducts[suggestIdx];
+                  return (
+                    <div className="flex items-center gap-4 py-3">
+                      <div className="w-20 h-20 bg-[#F7F7F7] rounded-[8px] shrink-0 p-1.5 flex items-center justify-center">
+                        <Image src={p.image} alt={p.name} width={68} height={68} className="object-contain" />
+                      </div>
+                      <div className="flex-1 flex flex-col gap-1 min-w-0">
+                        <p className="text-[12px] text-[#7E7E7E] leading-4">{p.brand}</p>
+                        <p className="text-[14px] font-semibold text-[#181818] leading-5 line-clamp-2">{p.name}</p>
+                        <div className="flex items-center justify-between mt-1 gap-2">
+                          <span className="text-[14px] font-semibold text-[#181818]">{p.price}€</span>
+                          <button className="cursor-pointer h-8 px-3 bg-[#FF6701] hover:bg-[#E65D00] rounded-[6px] flex items-center justify-center transition-colors shrink-0">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                              <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                              <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                              <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                          </button>
                         </div>
                       </div>
-                      {i < suggestedProducts.length - 1 && <div className="h-px bg-[#E7E7E7]" />}
                     </div>
-                  ))}
-                </div>
+                  );
+                })()}
               </div>
 
               {/* Order Summary wrapper */}

@@ -106,7 +106,9 @@
   border-radius: 50%;
   background: #181818;
   cursor: pointer;
-  border: none;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 0 1px #181818;
+  margin-top: 0;
 }
 .dual-range::-moz-range-thumb {
   pointer-events: auto;
@@ -115,14 +117,22 @@
   border-radius: 50%;
   background: #181818;
   cursor: pointer;
-  border: none;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 0 1px #181818;
 }
 .dual-range::-webkit-slider-runnable-track {
   background: transparent;
   height: 24px;
+  border: none;
 }
 .dual-range::-moz-range-track {
   background: transparent;
   height: 24px;
+  border: none;
+}
+.dual-range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
 }
 .dual-range:focus { outline: none; }
