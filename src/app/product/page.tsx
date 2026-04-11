@@ -387,9 +387,9 @@ export default function ProductPage() {
                   <div className="w-20 h-20 shrink-0 flex items-center justify-center">
                     <Image src={badge.icon} alt={badge.title} width={80} height={80} className="w-full h-full object-contain" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-[16px] font-extrabold text-[#181818] leading-6">{badge.title}</p>
-                    <p className="text-[14px] text-[#7E7E7E] leading-5 mt-1">{badge.desc}</p>
+                  <div className="flex-1 min-w-0 flex flex-col gap-[5px]">
+                    <p className="text-[16px] font-semibold text-black leading-6 capitalize">{badge.title}</p>
+                    <p className="text-[14px] text-[#1E1E1E] leading-5">{badge.desc}</p>
                   </div>
                   {badge.external ? (
                     <a
@@ -397,7 +397,7 @@ export default function ProductPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       data-label={badge.button}
-                      className="cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 text-[#181818] hover:border-[#181818] transition-colors"
+                      className="cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 text-black hover:border-[#181818] transition-colors flex items-center justify-center"
                     >
                       {badge.button}
                     </a>
@@ -405,7 +405,7 @@ export default function ProductPage() {
                     <Link
                       href={badge.href || "#"}
                       data-label={badge.button}
-                      className="cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 text-[#181818] hover:border-[#181818] transition-colors"
+                      className="cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 text-black hover:border-[#181818] transition-colors flex items-center justify-center"
                     >
                       {badge.button}
                     </Link>
