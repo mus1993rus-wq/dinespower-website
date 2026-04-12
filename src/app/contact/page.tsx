@@ -71,7 +71,7 @@ export default function ContactPage() {
                     </div>
                     <div className="flex flex-col">
                       <p className="text-[14px] font-semibold text-[#181818] leading-5">Instagram</p>
-                      <p className="text-[12px] text-[#7E7E7E] leading-4">dinespower_shop</p>
+                      <p className="text-[12px] text-[#7E7E7E] leading-4">@dinespower_shop</p>
                     </div>
                   </a>
                   <a href="https://t.me/+eFl6hboMcbxlNDI0" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
@@ -81,8 +81,8 @@ export default function ContactPage() {
                       </svg>
                     </div>
                     <div className="flex flex-col">
-                      <p className="text-[14px] font-semibold text-[#181818] leading-5">Dinespower</p>
-                      <p className="text-[12px] text-[#7E7E7E] leading-4">@dinespower</p>
+                      <p className="text-[14px] font-semibold text-[#181818] leading-5">Telegram Channel</p>
+                      <p className="text-[12px] text-[#7E7E7E] leading-4">@dines_power</p>
                     </div>
                   </a>
                 </div>
@@ -191,8 +191,8 @@ export default function ContactPage() {
                             key={opt.key}
                             type="button"
                             onClick={() => setContactMethod(opt.key)}
-                            className={`cursor-pointer flex items-center justify-center gap-3 h-[52px] rounded-[10px] text-[14px] font-semibold text-[#181818] transition-colors ${
-                              active ? "bg-white border border-[#E7E7E7] shadow-sm" : "bg-transparent"
+                            className={`cursor-pointer flex items-center justify-center gap-3 h-[52px] rounded-[10px] text-[14px] font-semibold text-[#181818] border transition-[background-color,border-color,box-shadow] duration-200 ${
+                              active ? "bg-white border-[#E7E7E7] shadow-sm" : "bg-transparent border-transparent"
                             }`}
                           >
                             <span
@@ -232,7 +232,7 @@ export default function ContactPage() {
                   {/* Submit */}
                   <button
                     type="submit"
-                    className="bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold rounded-lg h-[52px] transition-colors w-full mt-2"
+                    className="bg-[#181818] hover:bg-black text-white text-sm font-semibold rounded-lg h-[52px] transition-colors w-full mt-2"
                   >
                     Send Request
                   </button>

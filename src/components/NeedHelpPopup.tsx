@@ -166,7 +166,7 @@ export default function NeedHelpPopup({ isOpen, onClose }: NeedHelpPopupProps) {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full h-[52px] bg-[#FF6701] hover:bg-[#E65D00] text-white text-[16px] font-semibold rounded-[12px] transition-colors mt-2"
+            className="w-full h-[52px] bg-[#181818] hover:bg-black text-white text-[16px] font-semibold rounded-[12px] transition-colors mt-2"
           >
             Send Request
           </button>
