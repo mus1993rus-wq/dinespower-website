@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Pagination from "@/components/Pagination";
 
 const blogCategories = ["Bodybuilding", "SARMs", "Cutting", "PCT", "Peptides", "Fat Burn", "Injectable"];
 
@@ -440,30 +441,7 @@ function BlogContent() {
 
               {/* Pagination */}
               {!categoryParam && (
-                <div className="flex items-center justify-center gap-2 mt-10">
-                  <button className="w-10 h-10 rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  </button>
-                  {[1, 2, 3, 4].map((page) => (
-                    <button
-                      key={page}
-                      onClick={() => setCurrentPage(page)}
-                      className={`w-10 h-10 rounded-lg text-sm font-semibold transition-colors ${currentPage === page ? "bg-[#FF6701] text-white" : "border border-[#E7E7E7] text-[#181818] hover:border-[#FF6701]"}`}
-                    >
-                      {page}
-                    </button>
-                  ))}
-                  <span className="w-10 h-10 flex items-center justify-center text-sm text-[#7E7E7E]">...</span>
-                  <button
-                    onClick={() => setCurrentPage(12)}
-                    className={`w-10 h-10 rounded-lg text-sm font-semibold transition-colors ${currentPage === 12 ? "bg-[#FF6701] text-white" : "border border-[#E7E7E7] text-[#181818] hover:border-[#FF6701]"}`}
-                  >
-                    12
-                  </button>
-                  <button className="w-10 h-10 rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  </button>
-                </div>
+                <Pagination currentPage={currentPage} totalPages={12} onPageChange={setCurrentPage} />
               )}
             </div>
 

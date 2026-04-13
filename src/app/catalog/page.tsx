@@ -7,6 +7,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
+import Pagination from "@/components/Pagination";
 
 const categoryBrands: Record<string, string[]> = {
   injectable: ["Astera Labs", "Deus Medical"],
@@ -879,39 +880,9 @@ function CatalogContent() {
               </div>
             )}
 
-            {/* Pagination — Figma 1249:6504 style: Prev / nums / Next */}
+            {/* Pagination — Figma 1249:6504 */}
             {filteredProducts.length > 0 && (
-              <div className="flex items-center justify-between mt-10">
-                <button className="cursor-pointer flex items-center gap-2 h-10 px-4 rounded-[8px] text-sm font-semibold text-[#181818] hover:bg-[#F7F7F7] transition-colors">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  Prev
-                </button>
-                <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4, 5, 6, 7, 8, "...", 12].map((p, i) => (
-                    <button
-                      key={i}
-                      disabled={p === "..."}
-                      className={`w-10 h-10 rounded-[8px] flex items-center justify-center text-sm font-semibold transition-colors ${
-                        p === 1
-                          ? "bg-[#181818] text-white"
-                          : p === "..."
-                            ? "text-[#7E7E7E] cursor-default"
-                            : "text-[#181818] hover:bg-[#F7F7F7] cursor-pointer"
-                      }`}
-                    >
-                      {p === "..." ? "..." : p}
-                    </button>
-                  ))}
-                </div>
-                <button className="cursor-pointer flex items-center gap-2 h-10 px-4 rounded-[8px] text-sm font-semibold text-[#181818] hover:bg-[#F7F7F7] transition-colors">
-                  Next
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-              </div>
+              <Pagination currentPage={1} totalPages={12} onPageChange={() => {}} />
             )}
 
             {/* SEO text block — inside right column (per category from dinespower.to) */}
