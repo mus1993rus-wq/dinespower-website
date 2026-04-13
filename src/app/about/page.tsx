@@ -23,27 +23,27 @@ const checkItems = [
 const brands = [
   {
     name: "ASTERA LABS",
-    origin: "India",
-    badge: "Premium Injectables & Orals",
-    description: "Premium peptide and health line. Innovative formulas for athletes.",
-    logo: "/images/brand-astera-logo.png",
-    bg: "/images/brand-astera-bg.png",
+    origin: "India · Premium Injectables & Orals",
+    description: "Premium peptide and health line. Innovative formulas for athletes",
+    bgColor: "#F5ECE6",
+    image: "/images/shop/verify-popup/Astera.png",
+    verifyPartner: "https://asteralabs.org/verify-seller/",
   },
   {
     name: "DEUS MEDICAL",
-    origin: "India",
-    badge: "Pharmaceutical Grade",
-    description: "Largest line of injectable and oral preparations. Official representative in Europe.",
-    logo: "/images/brand-deus-logo.png",
-    bg: "/images/brand-deus-bg.png",
+    origin: "India · Pharmaceutical Grade",
+    description: "Largest line of injectable and oral preparations. Official representative in Europe",
+    bgColor: "#E8EDF2",
+    image: "/images/shop/verify-popup/DM.png",
+    verifyPartner: "https://deusmedical.com/verify/verifyseller/",
   },
   {
     name: "BIAXOL",
-    origin: "Czech Republic",
-    badge: "Lab Testing",
-    description: "SARMS and fat burner specialist. All products with laboratory quality tests.",
-    logo: "/images/brand-biaxol-logo.png",
-    bg: "/images/brand-biaxol-bg.png",
+    origin: "Czech Republic · Lab Testing",
+    description: "SARMS and fat burner specialist. All products with laboratory quality tests",
+    bgColor: "#E5EEF5",
+    image: "/images/shop/verify-popup/Biaxol.png",
+    verifyPartner: "https://biaxol.com/verify-seller/",
   },
 ];
 
@@ -148,44 +148,33 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-5">
             {brands.map((brand) => (
               <div
                 key={brand.name}
-                className="bg-[#F7F7F7] rounded-[16px] p-4 hover:shadow-lg transition-shadow flex flex-col gap-4"
+                className="rounded-[16px] overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.08)] flex flex-col relative"
               >
-                {/* Top area with bg texture + centered brand logo */}
-                <div className="h-[220px] rounded-[12px] relative overflow-hidden bg-white">
-                  <Image
-                    src={brand.bg}
-                    alt=""
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="relative w-[200px] h-[60px]">
-                      <Image
-                        src={brand.logo}
-                        alt={brand.name}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
+                {/* Layer 1: bg color */}
+                <div className="absolute inset-0 rounded-[16px]" style={{ background: brand.bgColor }} />
+
+                {/* Layer 2: product image */}
+                <div className="relative h-[180px] z-[1]">
+                  <Image src={brand.image} alt={brand.name} fill className="object-cover" />
                 </div>
 
-                {/* Content */}
-                <div className="bg-white rounded-[12px] p-6 text-center flex flex-col gap-3">
-                  <h3 className="text-[20px] font-extrabold text-[#181818] leading-6">{brand.name}</h3>
-                  <p className="text-[13px] text-[#7E7E7E] leading-5">
-                    {brand.origin} &middot; {brand.badge}
-                  </p>
-                  <p className="text-[14px] text-[#181818] leading-6">
-                    {brand.description}
-                  </p>
-                  <button className="cursor-pointer w-full h-[44px] bg-[#181818] hover:bg-[#333] text-white text-[14px] font-semibold rounded-[8px] transition-colors">
+                {/* Layer 3: white text card */}
+                <div className="bg-white rounded-t-[16px] -mt-4 relative z-[2] px-5 pt-5 pb-5 flex flex-col flex-1 text-center">
+                  <h3 className="text-[18px] font-extrabold text-[#181818] tracking-wide">{brand.name}</h3>
+                  <p className="text-[11px] text-[#7E7E7E] mt-1 tracking-wide">{brand.origin}</p>
+                  <p className="text-[12px] text-[#7E7E7E] mt-3 leading-[18px] flex-1">{brand.description}</p>
+                  <a
+                    href={brand.verifyPartner}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full h-[44px] bg-[#181818] hover:bg-black text-white text-[14px] font-semibold rounded-[10px] transition-colors flex items-center justify-center mt-5"
+                  >
                     Verify Partner
-                  </button>
+                  </a>
                 </div>
               </div>
             ))}
