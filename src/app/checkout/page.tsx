@@ -151,8 +151,8 @@ export default function CheckoutPage() {
                 </div>
               </div>
               <div className="flex gap-2">
-                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} flex-[5] min-w-0`} />
-                <div className="flex-[3] min-w-0 relative">
+                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} flex-[50] min-w-0`} />
+                <div className="flex-[29] min-w-0 relative">
                   <select
                     value={stateRegion}
                     onChange={(e) => setStateRegion(e.target.value)}
@@ -163,7 +163,7 @@ export default function CheckoutPage() {
                   </select>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
-                <input type="text" placeholder="Post Code / ZIP *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} flex-1 min-w-0`} />
+                <input type="text" placeholder="Post Code / ZIP *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} flex-[21] min-w-0`} />
               </div>
             </div>
 
@@ -247,7 +247,7 @@ export default function CheckoutPage() {
                   const p = suggestedProducts[suggestIdx];
                   return (
                     <div className="flex items-center gap-4 bg-white">
-                      <div className="w-[120px] h-[120px] rounded-[8px] shrink-0 p-2 flex items-center justify-center bg-[#F7F7F7]">
+                      <div className="w-[120px] h-[120px] rounded-[8px] shrink-0 p-2 flex items-center justify-center bg-white border border-[#E7E7E7]">
                         <Image src={p.image} alt={p.name} width={104} height={104} className="object-contain" />
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col gap-1.5 justify-center">
@@ -289,7 +289,7 @@ export default function CheckoutPage() {
                     {orderItems.map((item, i) => (
                       <div key={i}>
                         <div className="flex items-start gap-4 py-2">
-                          <div className="w-14 h-14 bg-[#F7F7F7] rounded-[8px] shrink-0 p-1 flex items-center justify-center">
+                          <div className="w-14 h-14 bg-white rounded-[8px] shrink-0 p-1 flex items-center justify-center">
                             <Image src={item.image} alt={item.name} width={48} height={48} className="object-contain" />
                           </div>
                           <div className="flex-1 flex flex-col gap-2">
