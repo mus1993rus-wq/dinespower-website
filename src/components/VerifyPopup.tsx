@@ -12,7 +12,8 @@ const brands = [
     name: "ASTERA LABS",
     origin: "India · Premium Injectables & Orals",
     desc: "Premium peptide and health line. Innovative formulas for athletes",
-    bgImage: "/images/shop/verify-popup/Astera.png",
+    bgColor: "#F5ECE6",
+    image: "/images/shop/verify-popup/Astera.png",
     verifyPartner: "https://asteralabs.org/verify-seller/",
     verifyProduct: "https://asteracheck.com",
   },
@@ -20,7 +21,8 @@ const brands = [
     name: "DEUS MEDICAL",
     origin: "India · Pharmaceutical Grade",
     desc: "Largest line of injectable and oral preparations. Official representative in Europe",
-    bgImage: "/images/shop/verify-popup/DM.png",
+    bgColor: "#E8EDF2",
+    image: "/images/shop/verify-popup/DM.png",
     verifyPartner: "https://deusmedical.com/verify/verifyseller/",
     verifyProduct: "https://deusmedical.com/verify/verify-product/",
   },
@@ -28,7 +30,8 @@ const brands = [
     name: "BIAXOL",
     origin: "Czech Republic · Lab Testing",
     desc: "SARMS and fat burner specialist. All products with laboratory quality tests",
-    bgImage: "/images/shop/verify-popup/Biaxol.png",
+    bgColor: "#E5EEF5",
+    image: "/images/shop/verify-popup/Biaxol.png",
     verifyPartner: "https://biaxol.com/verify-seller/",
     verifyProduct: "https://biaxol.com/check/",
   },
@@ -60,20 +63,27 @@ export default function VerifyPopup({ isOpen, onClose }: VerifyPopupProps) {
           {brands.map((brand) => (
             <div
               key={brand.name}
-              className="rounded-[16px] overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.08)] flex flex-col"
+              className="rounded-[16px] overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.08)] flex flex-col relative"
+              style={{ minHeight: 420 }}
             >
-              {/* Banner image */}
-              <div className="relative h-[180px] overflow-hidden">
+              {/* Layer 1: bg color */}
+              <div
+                className="absolute inset-0 rounded-[16px]"
+                style={{ background: brand.bgColor }}
+              />
+
+              {/* Layer 2: product image overlay */}
+              <div className="relative h-[200px] z-[1]">
                 <Image
-                  src={brand.bgImage}
+                  src={brand.image}
                   alt={brand.name}
                   fill
                   className="object-cover"
                 />
               </div>
 
-              {/* Content card — white with rounded top overlapping banner */}
-              <div className="bg-white rounded-t-[16px] -mt-4 relative z-10 px-5 pt-5 pb-5 flex flex-col flex-1">
+              {/* Layer 3: white text card */}
+              <div className="bg-white rounded-t-[16px] -mt-4 relative z-[2] px-5 pt-5 pb-5 flex flex-col flex-1">
                 <h3 className="text-[18px] font-extrabold text-[#181818] text-center tracking-wide">{brand.name}</h3>
                 <p className="text-[11px] text-[#7E7E7E] text-center mt-1 tracking-wide">{brand.origin}</p>
                 <p className="text-[12px] text-[#7E7E7E] text-center mt-3 leading-[18px] flex-1">{brand.desc}</p>
