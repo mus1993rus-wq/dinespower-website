@@ -8,19 +8,19 @@ const cards = [
     title: "My History Orders",
     desc: "View all orders.",
     href: "/account/orders",
-    icon: "/images/shop/product-icons/icon-4.png",
+    icon: "/images/account/card-icon.png",
   },
   {
     title: "My Address",
     desc: "View and edit your addresses.",
     href: "/account/address",
-    icon: "/images/shop/product-icons/icon-4.png",
+    icon: "/images/account/card-icon.png",
   },
   {
     title: "Account Details",
     desc: "View and edit your Details.",
     href: "/account/details",
-    icon: "/images/shop/product-icons/icon-4.png",
+    icon: "/images/account/card-icon.png",
   },
 ];
 

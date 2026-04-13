@@ -9,6 +9,14 @@ interface VerifyPopupProps {
 
 const brands = [
   {
+    name: "ASTERA LABS",
+    origin: "India \u00B7 Premium Injectables & Orals",
+    desc: "Premium peptide and health line. Innovative formulas for athletes",
+    bgImage: "/images/shop/verify-popup/Astera.png",
+    verifyPartner: "https://asteralabs.org/verify-seller/",
+    verifyProduct: "https://asteracheck.com",
+  },
+  {
     name: "DEUS MEDICAL",
     origin: "India \u00B7 Pharmaceutical Grade",
     desc: "Largest line of injectable and oral preparations. Official representative in Europe",
@@ -23,14 +31,6 @@ const brands = [
     bgImage: "/images/shop/verify-popup/Biaxol.png",
     verifyPartner: "https://biaxol.com/verify-seller/",
     verifyProduct: "https://biaxol.com/check/",
-  },
-  {
-    name: "ASTERA LABS",
-    origin: "India \u00B7 Premium Injectables & Orals",
-    desc: "Premium peptide and health line. Innovative formulas for athletes",
-    bgImage: "/images/shop/verify-popup/Astera.png",
-    verifyPartner: "https://asteralabs.org/verify-seller/",
-    verifyProduct: "https://asteracheck.com",
   },
 ];
 

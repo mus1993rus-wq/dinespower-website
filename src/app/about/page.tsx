@@ -22,6 +22,14 @@ const checkItems = [
 
 const brands = [
   {
+    name: "ASTERA LABS",
+    origin: "India",
+    badge: "Premium Injectables & Orals",
+    description: "Premium peptide and health line. Innovative formulas for athletes.",
+    logo: "/images/brand-astera-logo.png",
+    bg: "/images/brand-astera-bg.png",
+  },
+  {
     name: "DEUS MEDICAL",
     origin: "India",
     badge: "Pharmaceutical Grade",
@@ -36,14 +44,6 @@ const brands = [
     description: "SARMS and fat burner specialist. All products with laboratory quality tests.",
     logo: "/images/brand-biaxol-logo.png",
     bg: "/images/brand-biaxol-bg.png",
-  },
-  {
-    name: "ASTERA LABS",
-    origin: "India",
-    badge: "Premium Injectables & Orals",
-    description: "Premium peptide and health line. Innovative formulas for athletes.",
-    logo: "/images/brand-astera-logo.png",
-    bg: "/images/brand-astera-bg.png",
   },
 ];
 
