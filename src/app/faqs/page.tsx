@@ -190,7 +190,7 @@ export default function FAQsPage() {
                   <p className="text-[14px] text-[#1E1E1E] leading-5 text-center">
                     Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.
                   </p>
-                  <button onClick={() => window.dispatchEvent(new CustomEvent(\'open-help-popup\'))} className="cursor-pointer flex items-center justify-center h-11 w-full bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black hover:border-[#181818] transition-colors">Ask a Question</button>
+                  <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="cursor-pointer flex items-center justify-center h-11 w-full bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black hover:border-[#181818] transition-colors">Ask a Question</button>
                   <div className="flex gap-4 items-center">
                     <a href="https://t.me/+eFl6hboMcbxlNDI0" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full bg-[#00A9DE] flex items-center justify-center hover:opacity-90 transition-opacity">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">

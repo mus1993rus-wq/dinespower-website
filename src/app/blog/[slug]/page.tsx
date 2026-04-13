@@ -682,7 +682,7 @@ export default function BlogArticlePage() {
                       Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.
                     </p>
                   </div>
-                  <button onClick={() => window.dispatchEvent(new CustomEvent(\'open-help-popup\'))} className="cursor-pointer inline-flex items-center justify-center h-11 px-4 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black shrink-0 hover:border-[#181818] transition-colors">Ask a Question</button>
+                  <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="cursor-pointer inline-flex items-center justify-center h-11 px-4 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black shrink-0 hover:border-[#181818] transition-colors">Ask a Question</button>
                 </div>
               </div>
 
