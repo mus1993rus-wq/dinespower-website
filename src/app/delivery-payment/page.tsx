@@ -292,11 +292,14 @@ export default function DeliveryPaymentPage() {
                       </p>
                     </div>
                   </div>
-                  <button
-                    className="relative z-10 bg-white border border-[#CBCBCB] hover:border-[#181818] text-black text-[14px] font-semibold rounded-[8px] h-12 w-full transition-colors"
+                  <a
+                    href="https://dinespower.to/partners-landing/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative z-10 bg-white border border-[#CBCBCB] hover:border-[#181818] text-black text-[14px] font-semibold rounded-[8px] h-12 w-full transition-colors flex items-center justify-center"
                   >
                     Get Wholesale Prices
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
