@@ -151,8 +151,8 @@ export default function CheckoutPage() {
                 </div>
               </div>
               <div className="flex gap-2">
-                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} w-[406px] shrink-0`} />
-                <div className="w-[240px] shrink-0 relative">
+                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} flex-[5] min-w-0`} />
+                <div className="flex-[3] min-w-0 relative">
                   <select
                     value={stateRegion}
                     onChange={(e) => setStateRegion(e.target.value)}
