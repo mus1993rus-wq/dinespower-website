@@ -86,7 +86,7 @@ export default function RootLayout({
             href="https://dinespower.to/partners-landing/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:flex fixed left-0 top-1/2 -translate-y-1/2 z-50 bg-[#FF6701] hover:bg-[#E65D00] transition-colors rounded-r-lg items-center justify-center cursor-pointer"
+            className="hidden xl:flex fixed left-0 top-1/2 -translate-y-1/2 z-50 bg-[#FF6701] hover:bg-[#E65D00] transition-colors rounded-r-lg items-center justify-center cursor-pointer"
             style={{ width: "44px", height: "237px", writingMode: "vertical-rl" }}
           >
             <span className="text-white text-xs font-bold uppercase tracking-wider" style={{ transform: "rotate(180deg)" }}>

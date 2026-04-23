@@ -109,9 +109,9 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full flex flex-col items-center md:px-[185px] relative z-50">
+    <header className="w-full flex flex-col items-center xl:px-[185px] relative z-50">
       {/* ========================= MOBILE HEADER ========================= */}
-      <div className="w-full md:hidden flex flex-col sticky top-0 z-50 bg-white">
+      <div className="w-full xl:hidden flex flex-col sticky top-0 z-50 bg-white">
         {/* Top announcement bar */}
         <div className="bg-[#181818] h-[36px] flex items-center justify-center px-4 gap-2">
           <Image src="/images/shop/shield-check.svg" alt="" width={16} height={16} className="shrink-0" />
@@ -148,9 +148,7 @@ export default function Header() {
             aria-label="Help"
             className="w-10 h-10 flex items-center justify-center shrink-0 relative"
           >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="#FF6701" strokeWidth="2" fill="#FF6701" />
-            </svg>
+            <Image src="/images/shop/help-icon-figma.svg" alt="" width={24} height={24} />
           </button>
           <button onClick={openCart} aria-label="Cart" className="w-10 h-10 flex items-center justify-center shrink-0 relative">
             <Image src="/images/shop/cart-icon.svg" alt="" width={22} height={22} />
@@ -163,7 +161,7 @@ export default function Header() {
 
       {/* ========================= DESKTOP HEADER ========================= */}
       {/* Top bar — full width dark, NOT sticky (scrolls away) */}
-      <div className="hidden md:block w-[calc(100%+370px)] -mx-[185px] bg-[#181818] pb-6">
+      <div className="hidden xl:block w-[calc(100%+370px)] -mx-[185px] bg-[#181818] pb-6">
         <div className="flex items-center justify-between h-[40px] px-[185px]">
           <div className="flex-1 flex gap-5 items-center">
             {topLinks.map((l) => (
@@ -215,7 +213,7 @@ export default function Header() {
       </div>
 
       {/* White content wrapper — rounded top corners overlap dark top bar */}
-      <div className="hidden md:flex w-[calc(100%+370px)] -mx-[185px] bg-white rounded-t-[16px] -mt-[16px] relative pt-4 px-[185px] flex-col gap-[16px] z-[40]">
+      <div className="hidden xl:flex w-[calc(100%+370px)] -mx-[185px] bg-white rounded-t-[16px] -mt-[16px] relative pt-4 px-[185px] flex-col gap-[16px] z-[40]">
 
       {/* Middle bar */}
       <div className="w-full flex items-center gap-[40px] h-[44px]">
@@ -340,9 +338,7 @@ export default function Header() {
           </button>
           <div className="relative" ref={helpRef}>
             <button onClick={() => setHelpDropdownOpen(!helpDropdownOpen)} className="flex items-center gap-2 h-[44px] cursor-pointer">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="#FF6701" strokeWidth="2" fill="#FF6701" />
-              </svg>
+              <Image src="/images/shop/help-icon-figma.svg" alt="" width={24} height={24} />
               <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors">Need Help?</span>
             </button>
             {helpDropdownOpen && (

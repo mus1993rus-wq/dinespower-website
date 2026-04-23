@@ -96,18 +96,18 @@ function HeroBanner() {
 
   return (
     <section className="max-w-[1340px] mx-auto mt-4 md:mt-6 md:px-0">
-      <div className="flex flex-col lg:flex-row gap-3 md:gap-4 lg:gap-[16px]">
+      <div className="flex flex-col xl:flex-row gap-3 md:gap-4 xl:gap-[16px]">
         {/* Main banner - clickable hero, full-width on mobile */}
-        <div className="w-full lg:w-[884px] aspect-[884/467] lg:h-[467px] relative md:rounded-[16px] overflow-hidden shrink-0 group">
+        <div className="w-full xl:w-[884px] aspect-[884/467] xl:h-[467px] relative md:rounded-[16px] overflow-hidden shrink-0 group">
           <Link href="/product" aria-label="Lean Muscle Growth" className="absolute inset-0 z-0">
             <Image src="/images/shop/hero-banner.png" alt="Weekly Bestseller - Lean Muscle Growth" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
           {/* Left arrow */}
-          <button onClick={() => setActiveSlide((activeSlide - 1 + totalSlides) % totalSlides)} className="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 w-[40px] lg:w-[48px] h-[40px] lg:h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-l-0 rounded-r-lg flex items-center justify-center z-20">
+          <button onClick={() => setActiveSlide((activeSlide - 1 + totalSlides) % totalSlides)} className="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 w-[40px] xl:w-[48px] h-[40px] xl:h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-l-0 rounded-r-lg flex items-center justify-center z-20">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
           {/* Right arrow */}
-          <button onClick={() => setActiveSlide((activeSlide + 1) % totalSlides)} className="cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 w-[40px] lg:w-[48px] h-[40px] lg:h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-r-0 rounded-l-lg flex items-center justify-center z-20">
+          <button onClick={() => setActiveSlide((activeSlide + 1) % totalSlides)} className="cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 w-[40px] xl:w-[48px] h-[40px] xl:h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-r-0 rounded-l-lg flex items-center justify-center z-20">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
           {/* Slider dots */}
@@ -116,18 +116,18 @@ function HeroBanner() {
               <div
                 key={i}
                 onClick={() => setActiveSlide(i)}
-                className={`w-[40px] lg:w-[64px] h-[4px] bg-[#F7F7F7] rounded-[4px] cursor-pointer transition-opacity duration-300 ${i === activeSlide ? 'opacity-100' : 'opacity-30'}`}
+                className={`w-[40px] xl:w-[64px] h-[4px] bg-[#F7F7F7] rounded-[4px] cursor-pointer transition-opacity duration-300 ${i === activeSlide ? 'opacity-100' : 'opacity-30'}`}
               />
             ))}
           </div>
         </div>
 
         {/* Side banners — stacked on desktop; 2-col grid on mobile */}
-        <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-[16px] lg:w-[440px] shrink-0 px-4 lg:px-0">
-          <Link href="/catalog?category=sex-support" className="aspect-[440/225] lg:h-[225px] lg:aspect-auto rounded-[16px] overflow-hidden relative group block cursor-pointer">
+        <div className="grid grid-cols-2 xl:grid-cols-1 gap-3 xl:gap-[16px] xl:w-[440px] shrink-0 px-4 xl:px-0">
+          <Link href="/catalog?category=sex-support" className="aspect-[440/225] xl:h-[225px] xl:aspect-auto rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-sexboost.png" alt="Sex Boost" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
-          <Link href="/catalog?category=health" className="aspect-[440/226] lg:h-[226px] lg:aspect-auto rounded-[16px] overflow-hidden relative group block cursor-pointer">
+          <Link href="/catalog?category=health" className="aspect-[440/226] xl:h-[226px] xl:aspect-auto rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-cbd.png" alt="CBD" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
         </div>
@@ -183,7 +183,7 @@ function PromoBanner({ categoryName }: { categoryName: string }) {
   };
   const bgImage = imageMap[categoryName] || "/images/shop/promo-oral.png";
   return (
-    <Link href={`/catalog?category=${categoryName.toLowerCase()}`} className="w-[255px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center group cursor-pointer hover:shadow-lg transition-shadow">
+    <Link href={`/catalog?category=${categoryName.toLowerCase()}`} className="w-[255px] h-full min-h-[483px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center group cursor-pointer hover:shadow-lg transition-shadow">
       <Image src={bgImage} alt={`View All ${categoryName}`} fill className="object-cover" />
       <div className="relative z-10">
         <button
@@ -222,7 +222,7 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
       </div>
       <div className="flex gap-3 md:gap-4">
         {/* Fixed promo banner - doesn't scroll (hidden on mobile) */}
-        {promoCategoryName && <div className="hidden md:block"><PromoBanner categoryName={promoCategoryName} /></div>}
+        {promoCategoryName && <div className="hidden md:block self-stretch"><PromoBanner categoryName={promoCategoryName} /></div>}
         {/* Scrollable product cards */}
         <div ref={scrollRef} className="flex gap-3 md:gap-4 overflow-x-auto scrollbar-hide pb-2 flex-1 min-w-0 -mx-4 px-4 md:mx-0 md:px-0">
           {products.map((p, i) => (
@@ -237,7 +237,7 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
 function CategoryBanners() {
   return (
     <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-[16px]">
+      <div className="flex flex-col xl:flex-row gap-4 xl:gap-[16px]">
         {/* Left banner - Recovery */}
         <div className="flex-1 h-[200px] md:h-[272px] rounded-[16px] overflow-hidden relative group">
           <Link href="/catalog?category=sarms" aria-label="Faster Muscle Recovery" className="absolute inset-0 z-0">
@@ -373,7 +373,7 @@ function BlogSection() {
           <h2 className="text-[18px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px]">Our Blogpost</h2>
         </div>
       </ScrollAnimation>
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
+      <div className="flex flex-col xl:flex-row gap-4 xl:gap-6">
         {/* Featured slider */}
         <div className="flex-1 relative h-[360px] md:h-[534px] rounded-[16px] overflow-hidden">
           {featuredSlides.map((slide, i) => (
@@ -446,7 +446,7 @@ function BlogSection() {
         </div>
 
         {/* Side posts */}
-        <div className="w-full lg:w-[440px] flex flex-col">
+        <div className="w-full xl:w-[440px] flex flex-col">
           {blogPosts.slice(1).map((post, i) => (
             <Link key={i} href={`/blog/${post.slug}`} className="flex gap-4 py-4 border-b border-[#E7E7E7] last:border-b-0 cursor-pointer group">
               <div className="w-[100px] h-[80px] bg-[#F7F7F7] rounded-lg shrink-0 relative overflow-hidden">
@@ -502,9 +502,9 @@ function FAQSection() {
 
   return (
     <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
-      <div className="flex flex-col-reverse lg:flex-row gap-6 lg:gap-[80px]">
+      <div className="flex flex-col-reverse xl:flex-row gap-6 xl:gap-[80px]">
         {/* Left column - Still Have Questions Card */}
-        <div className="w-full lg:w-[440px] shrink-0">
+        <div className="w-full xl:w-[440px] shrink-0">
           <div className="bg-[#F7F7F7] rounded-[12px] p-4">
             <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
               <Image src="/images/shop/faq-help-icon.png" alt="Help" width={80} height={80} className="object-contain" />
@@ -529,7 +529,7 @@ function FAQSection() {
         </div>
 
         {/* Right column - FAQ accordion */}
-        <div className="w-full lg:w-[820px]">
+        <div className="w-full xl:w-[820px]">
           <h2 className="text-[20px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px] mb-4 md:mb-6">Frequently Asked Questions</h2>
           <div className="flex flex-col">
             {faqItems.map((q, i) => (
