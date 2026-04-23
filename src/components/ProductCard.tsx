@@ -13,16 +13,17 @@ interface ProductCardProps {
   oldPrice?: number;
   image?: string;
   badges?: string[];
+  fullWidth?: boolean;
 }
 
-export default function ProductCard({ brand, name, dosage, price, oldPrice, image, badges = [] }: ProductCardProps) {
+export default function ProductCard({ brand, name, dosage, price, oldPrice, image, badges = [], fullWidth = false }: ProductCardProps) {
   const [qty, setQty] = useState(1);
   const { addItem } = useCart();
 
   return (
-    <div className="bg-white border border-[#E7E7E7] rounded-[16px] overflow-hidden flex flex-col w-[180px] md:w-[255px] shrink-0 hover:shadow-lg transition-shadow">
+    <div className={`bg-white border border-[#E7E7E7] rounded-[16px] overflow-hidden flex flex-col hover:shadow-lg transition-shadow ${fullWidth ? "w-full" : "w-[170px] md:w-[255px] shrink-0"}`}>
       {/* Image - WHITE background, clickable */}
-      <Link href="/product" className="relative h-[180px] md:h-[252px] bg-white flex items-center justify-center p-4 md:p-6 block">
+      <Link href="/product" className="relative aspect-square md:h-[252px] md:aspect-auto bg-white flex items-center justify-center p-4 md:p-6 block">
         {/* Tag ribbons — Figma 1249:6845: flush to left edge, right corners rounded */}
         <div className="absolute top-4 left-0 z-10 flex flex-col gap-[2px] items-start">
           {badges.includes("sale") && (

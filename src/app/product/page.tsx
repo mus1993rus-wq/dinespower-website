@@ -276,7 +276,7 @@ export default function ProductPage() {
             </div>
 
             {/* 2. Title */}
-            <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-4">
+            <h1 className="text-[22px] md:text-[28px] font-extrabold text-[#181818] leading-[28px] md:leading-[34px] mb-4">
               Methenolone Enanthate 200 Injectable Steroid In Vials
             </h1>
 

@@ -588,7 +588,7 @@ function CatalogContent() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb - Figma style: Home / Category / Brand */}
-        <div className="max-w-[1340px] mx-auto py-3">
+        <div className="max-w-[1340px] mx-auto py-3 px-4 md:px-0">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             {currentCategory && (
@@ -623,29 +623,29 @@ function CatalogContent() {
 
         {/* Banner */}
         {bannerImage ? (
-          <div className="max-w-[1340px] mx-auto mb-8">
-            <div className="relative h-[278px] rounded-[16px] overflow-hidden" style={{ backgroundColor: currentBrandLabel ? (brandBgColors[currentBrandLabel] || '#F7F7F7') : '#F7F7F7' }}>
+          <div className="max-w-[1340px] mx-auto mb-6 md:mb-8 px-4 md:px-0">
+            <div className="relative h-[180px] md:h-[278px] rounded-[16px] overflow-hidden" style={{ backgroundColor: currentBrandLabel ? (brandBgColors[currentBrandLabel] || '#F7F7F7') : '#F7F7F7' }}>
               <Image
                 src={bannerImage}
                 alt={`${currentCategory?.label || "Catalog"}${currentBrandLabel ? ` - ${currentBrandLabel}` : ""}`}
                 fill
                 className="object-cover"
-               
+
               />
-              <div className="absolute left-[60px] top-1/2 -translate-y-1/2 max-w-[50%]">
-                <h1 className="text-[40px] font-black text-[#181818] uppercase leading-[44px]">
+              <div className="absolute left-6 md:left-[60px] top-1/2 -translate-y-1/2 max-w-[60%] md:max-w-[50%]">
+                <h1 className="text-[22px] md:text-[40px] font-black text-[#181818] uppercase leading-[26px] md:leading-[44px]">
                   {currentCategory?.label || "All Products"}
                 </h1>
                 {currentBrandLabel && (
                   <h2
-                    className="text-[40px] font-extrabold italic uppercase leading-[44px] mt-1"
+                    className="text-[22px] md:text-[40px] font-extrabold italic uppercase leading-[26px] md:leading-[44px] mt-1"
                     style={{ color: brandColors[currentBrandLabel] || "#FF6701" }}
                   >
                     {currentBrandLabel}
                   </h2>
                 )}
                 {bannerDescription && (
-                  <p className="text-[16px] text-[#000000] leading-[22px] mt-3 max-w-[400px] capitalize">
+                  <p className="hidden md:block text-[16px] text-[#000000] leading-[22px] mt-3 max-w-[400px] capitalize">
                     {bannerDescription}
                   </p>
                 )}
@@ -653,10 +653,10 @@ function CatalogContent() {
             </div>
           </div>
         ) : (
-          <div className="max-w-[1340px] mx-auto mb-8">
-            <div className="relative h-[278px] rounded-[16px] overflow-hidden bg-[#F7F7F7]">
-              <div className="absolute left-[60px] top-1/2 -translate-y-1/2 max-w-[50%]">
-                <h1 className="text-[40px] font-black text-[#181818] uppercase leading-[44px]">
+          <div className="max-w-[1340px] mx-auto mb-6 md:mb-8 px-4 md:px-0">
+            <div className="relative h-[180px] md:h-[278px] rounded-[16px] overflow-hidden bg-[#F7F7F7]">
+              <div className="absolute left-6 md:left-[60px] top-1/2 -translate-y-1/2 max-w-[60%] md:max-w-[50%]">
+                <h1 className="text-[22px] md:text-[40px] font-black text-[#181818] uppercase leading-[26px] md:leading-[44px]">
                   {currentCategory?.label}
                 </h1>
                 {bannerDescription && (
@@ -669,9 +669,9 @@ function CatalogContent() {
           </div>
         )}
 
-        <div className="max-w-[1340px] mx-auto flex gap-6 pb-16">
-          {/* Sidebar Filters — Figma 1249:5311 card style */}
-          <aside className="w-[256px] shrink-0 flex flex-col gap-4">
+        <div className="max-w-[1340px] mx-auto flex gap-6 pb-16 px-4 md:px-0">
+          {/* Sidebar Filters — hidden on mobile */}
+          <aside className="hidden md:flex w-[256px] shrink-0 flex-col gap-4">
             {/* Brands card — only if more than 1 brand */}
             {brandsForCategory.length > 1 && (
               <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col">
@@ -866,10 +866,10 @@ function CatalogContent() {
               </div>
             </div>
 
-            {/* Grid */}
-            <div className="grid grid-cols-4 gap-4">
+            {/* Grid — 2 cols on mobile, 4 on desktop */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
               {filteredProducts.map((p, i) => (
-                <ProductCard key={i} {...p} />
+                <ProductCard key={i} {...p} fullWidth />
               ))}
             </div>
 
