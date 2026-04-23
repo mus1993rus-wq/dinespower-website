@@ -9,19 +9,15 @@ export default function NotFound() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white flex items-center justify-center py-12 tablet:py-20 desktop:py-24">
         <div className="max-w-[640px] mx-auto w-full px-4 flex flex-col items-center text-center gap-5 tablet:gap-6">
-          {/* 4 [logo] 4 */}
-          <div className="flex items-center gap-1 tablet:gap-3 desktop:gap-4">
-            <span className="text-[96px] tablet:text-[140px] desktop:text-[180px] font-extrabold italic text-[#181818] leading-none tracking-tight select-none">4</span>
-            <div className="w-[56px] tablet:w-[80px] desktop:w-[100px] h-[96px] tablet:h-[140px] desktop:h-[180px] relative flex items-center justify-center">
-              <Image
-                src="/images/logo-icon.png"
-                alt=""
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-            <span className="text-[96px] tablet:text-[140px] desktop:text-[180px] font-extrabold italic text-[#181818] leading-none tracking-tight select-none">4</span>
+          {/* 404 illustration */}
+          <div className="w-full max-w-[280px] tablet:max-w-[380px] desktop:max-w-[460px] aspect-[460/220] relative">
+            <Image
+              src="/images/404.svg"
+              alt="404"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
 
           <h1 className="text-[22px] tablet:text-[26px] desktop:text-[28px] font-extrabold text-[#181818] leading-[28px] tablet:leading-[32px] desktop:leading-[36px]">Page not found</h1>

@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AccountSidebar from "@/components/AccountSidebar";
+
+export const metadata: Metadata = {
+  title: "My Account",
+  description: "Manage your Dines Power account — orders, shipping address, and personal details.",
+};
 
 export default function AccountLayout({ children }: { children: React.ReactNode }) {
   return (

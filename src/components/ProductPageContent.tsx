@@ -42,8 +42,8 @@ const brandVerifyBanner: Record<string, string> = {
 // Brand-specific badge background + logo
 const brandBadge: Record<string, { bg: string; logo: string }> = {
   "Astera Labs": { bg: "#F5ECE6", logo: "/images/brand-astera-logo.png" },
-  "Deus Medical": { bg: "#F5ECE6", logo: "/images/brand-astera-logo.png" },
-  "Biaxol": { bg: "#F5ECE6", logo: "/images/brand-astera-logo.png" },
+  "Deus Medical": { bg: "#F7F3F4", logo: "/images/brand-deus-logo.png" },
+  "Biaxol": { bg: "#F2F6F7", logo: "/images/brand-biaxol-logo.png" },
 };
 
 const reviews = [
