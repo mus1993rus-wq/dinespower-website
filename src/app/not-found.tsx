@@ -7,12 +7,12 @@ export default function NotFound() {
   return (
     <>
       <Header />
-      <main className="min-h-screen relative z-10 bg-white flex items-center justify-center py-16 tablet:py-24">
-        <div className="max-w-[640px] mx-auto w-full px-4 flex flex-col items-center text-center gap-6">
+      <main className="min-h-screen relative z-10 bg-white flex items-center justify-center py-12 tablet:py-20 desktop:py-24">
+        <div className="max-w-[640px] mx-auto w-full px-4 flex flex-col items-center text-center gap-5 tablet:gap-6">
           {/* 4 [logo] 4 */}
-          <div className="flex items-center gap-2 tablet:gap-4">
-            <span className="text-[120px] tablet:text-[180px] font-extrabold italic text-[#181818] leading-none tracking-tight select-none">4</span>
-            <div className="w-[90px] tablet:w-[140px] h-[120px] tablet:h-[180px] relative flex items-center justify-center">
+          <div className="flex items-center gap-1 tablet:gap-3 desktop:gap-4">
+            <span className="text-[96px] tablet:text-[140px] desktop:text-[180px] font-extrabold italic text-[#181818] leading-none tracking-tight select-none">4</span>
+            <div className="w-[72px] tablet:w-[108px] desktop:w-[140px] h-[96px] tablet:h-[140px] desktop:h-[180px] relative flex items-center justify-center">
               <Image
                 src="/images/shop/logo.svg"
                 alt=""
@@ -21,15 +21,15 @@ export default function NotFound() {
                 priority
               />
             </div>
-            <span className="text-[120px] tablet:text-[180px] font-extrabold italic text-[#181818] leading-none tracking-tight select-none">4</span>
+            <span className="text-[96px] tablet:text-[140px] desktop:text-[180px] font-extrabold italic text-[#181818] leading-none tracking-tight select-none">4</span>
           </div>
 
-          <h1 className="text-[22px] tablet:text-[28px] font-extrabold text-[#181818] leading-[30px] tablet:leading-[36px]">Page not found</h1>
+          <h1 className="text-[22px] tablet:text-[26px] desktop:text-[28px] font-extrabold text-[#181818] leading-[28px] tablet:leading-[32px] desktop:leading-[36px]">Page not found</h1>
 
-          <p className="text-[14px] tablet:text-[16px] text-[#7E7E7E] leading-5 tablet:leading-6 max-w-[500px]">
+          <p className="text-[13px] tablet:text-[14px] desktop:text-[16px] text-[#7E7E7E] leading-5 tablet:leading-6 max-w-[500px]">
             The page at the address you entered no longer exists or has never existed.
-            <br />
-            If you know exactly what you&apos;re looking for, please use the search bar or the navigation menu.
+            <br className="hidden tablet:inline" />
+            {" "}If you know exactly what you&apos;re looking for, please use the search bar or the navigation menu.
           </p>
 
           <Link

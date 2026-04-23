@@ -103,7 +103,7 @@ export default function TermsPage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto py-4">
+        <div className="max-w-[1340px] mx-auto px-4 wide:px-0 py-4">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
@@ -111,27 +111,27 @@ export default function TermsPage() {
           </div>
         </div>
 
-        <div className="max-w-[1340px] mx-auto py-8 pb-16">
-          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-6">
+        <div className="max-w-[1340px] mx-auto px-4 wide:px-0 py-6 tablet:py-8 pb-12 tablet:pb-16">
+          <h1 className="text-[24px] tablet:text-[30px] desktop:text-[36px] font-extrabold text-[#181818] leading-[30px] tablet:leading-[38px] desktop:leading-[44px] mb-4 tablet:mb-6">
             Terms & Conditions
           </h1>
 
           {/* Disclaimer */}
-          <div className="max-w-[900px] mb-10">
-            <h2 className="text-[20px] font-extrabold text-[#181818] mb-4">Disclaimer</h2>
-            <p className="text-[14px] text-[#7E7E7E] leading-7">
+          <div className="max-w-[900px] mb-8 tablet:mb-10">
+            <h2 className="text-[18px] tablet:text-[20px] font-extrabold text-[#181818] mb-3 tablet:mb-4">Disclaimer</h2>
+            <p className="text-[13px] tablet:text-[14px] text-[#7E7E7E] leading-6 tablet:leading-7">
               The content provided on this website is intended for informational purposes only and does not constitute medical, legal, or professional advice. DinesPower is an authorized distributor of pharmaceutical-grade products and supplements. All products are intended for use in accordance with applicable local laws and regulations. Users are solely responsible for ensuring that their purchase and use of products comply with the laws of their jurisdiction. DinesPower assumes no responsibility for the misuse of any product purchased through this website.
             </p>
           </div>
 
           {/* Sections */}
-          <div className="max-w-[900px] flex flex-col gap-8">
+          <div className="max-w-[900px] flex flex-col gap-6 tablet:gap-8">
             {sections.map((section) => (
               <div key={section.title}>
-                <h2 className="text-[18px] font-extrabold text-[#181818] mb-3">
+                <h2 className="text-[16px] tablet:text-[18px] font-extrabold text-[#181818] mb-2 tablet:mb-3">
                   {section.title}
                 </h2>
-                <p className="text-[14px] text-[#7E7E7E] leading-7">
+                <p className="text-[13px] tablet:text-[14px] text-[#7E7E7E] leading-6 tablet:leading-7">
                   {section.content}
                 </p>
               </div>

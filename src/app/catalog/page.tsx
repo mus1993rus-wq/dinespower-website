@@ -805,40 +805,40 @@ function CatalogContent() {
 
           {/* Products area */}
           <div className="flex-1 min-w-0">
-            {/* Show Filters button — mobile + tablet only */}
+            {/* Filters + Sort row — mobile + tablet only — Figma 2078:29093 */}
             <div className="desktop:hidden flex items-center gap-3 mb-4">
+              {/* Filters — black button, equal half */}
               <button
                 onClick={() => setMobileFiltersOpen(true)}
-                className="cursor-pointer flex-1 h-11 bg-[#F7F7F7] border border-[#E7E7E7] rounded-[8px] flex items-center justify-center gap-2 text-[14px] font-semibold text-[#181818] hover:border-[#181818] transition-colors"
+                className="cursor-pointer flex-1 basis-0 min-w-0 bg-[#181818] hover:bg-black rounded-[8px] flex items-center justify-center gap-4 px-5 py-3 text-[14px] font-semibold text-white leading-5 transition-colors"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M3 6h18M6 12h12M10 18h4" stroke="#181818" strokeWidth="2" strokeLinecap="round" />
+                {/* vuesax/bold/candle-2 — filter sliders icon */}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                  <path d="M8 2c-.6 0-1 .4-1 1v2H5c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1H9V3c0-.6-.4-1-1-1zM16 9c-.6 0-1 .4-1 1v2h-2c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1h-2v-2c0-.6-.4-1-1-1zM8 16c-.6 0-1 .4-1 1v2H5c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1H9v-2c0-.6-.4-1-1-1z"/>
                 </svg>
-                Show Filters
+                <span>Filters</span>
                 {activeFilters.length > 0 && (
-                  <span className="bg-[#FF6701] text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center leading-none">{activeFilters.length}</span>
+                  <span className="bg-[#FF6701] text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center leading-none shrink-0">{activeFilters.length}</span>
                 )}
               </button>
-              <div className="relative">
+              {/* Sort — white button with selected value */}
+              <div className="relative flex-1 basis-0 min-w-0">
                 <button
                   onClick={() => setSortOpen(!sortOpen)}
-                  className="cursor-pointer flex items-center gap-2 h-11 px-4 bg-[#F7F7F7] border border-[#E7E7E7] rounded-[8px] text-[14px] font-semibold text-[#181818] hover:border-[#181818] transition-colors"
+                  className="cursor-pointer w-full bg-white border border-[#E7E7E7] hover:border-[#181818] rounded-[8px] flex items-center gap-2 px-5 py-3 text-[14px] font-semibold text-[#181818] leading-5 transition-colors"
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M3 6h13M3 12h9M3 18h5" stroke="#181818" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                  Sort
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className={`transition-transform ${sortOpen ? "rotate-180" : ""}`}>
-                    <path d="M3 4.5L6 7.5L9 4.5" stroke="#181818" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                  <span className="flex-1 min-w-0 text-left truncate">{sortOptions[activeSort]}</span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`shrink-0 transition-transform ${sortOpen ? "rotate-180" : ""}`}>
+                    <path d="M4 6L8 10L12 6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
                 {sortOpen && (
-                  <div className="absolute top-full right-0 mt-1 bg-white border border-[#E7E7E7] rounded-lg shadow-lg z-20 min-w-[180px]">
+                  <div className="absolute top-full right-0 mt-1 bg-white border border-[#E7E7E7] rounded-lg shadow-lg z-20 w-full min-w-[180px]">
                     {sortOptions.map((opt, i) => (
                       <button
                         key={opt}
                         onClick={() => { setActiveSort(i); setSortOpen(false); }}
-                        className={`block w-full text-left px-4 py-2.5 text-sm transition-colors ${
+                        className={`block w-full text-left px-4 py-2.5 text-[14px] transition-colors ${
                           i === activeSort ? "text-[#FF6701] font-semibold bg-[#FFF8F3]" : "text-[#181818] hover:bg-[#F7F7F7]"
                         }`}
                       >

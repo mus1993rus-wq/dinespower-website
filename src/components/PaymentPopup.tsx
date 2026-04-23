@@ -27,9 +27,9 @@ export default function PaymentPopup({ isOpen, onClose }: PaymentPopupProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[100] flex items-end tablet:items-center justify-center tablet:p-4">
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
-      <div className="relative bg-white rounded-[16px] w-full max-w-[680px] max-h-[90vh] overflow-y-auto z-10">
+      <div className="relative bg-white rounded-t-[16px] tablet:rounded-[16px] w-full tablet:max-w-[680px] max-h-[92vh] tablet:max-h-[90vh] overflow-y-auto z-10">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -40,11 +40,11 @@ export default function PaymentPopup({ isOpen, onClose }: PaymentPopupProps) {
           </svg>
         </button>
 
-        <div className="p-10 flex flex-col gap-7">
+        <div className="p-5 tablet:p-8 desktop:p-10 flex flex-col gap-5 tablet:gap-6 desktop:gap-7">
           {/* Title */}
-          <div>
-            <h2 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-2">Payment Methods</h2>
-            <p className="text-[16px] text-[#7E7E7E] leading-6">Everything you need to know before placing an order</p>
+          <div className="text-center tablet:text-left">
+            <h2 className="text-[22px] tablet:text-[26px] desktop:text-[28px] font-extrabold text-[#181818] leading-[28px] tablet:leading-[32px] desktop:leading-[34px] mb-2">Payment Methods</h2>
+            <p className="text-[14px] tablet:text-[15px] desktop:text-[16px] text-[#7E7E7E] leading-5 tablet:leading-6">Everything you need to know before placing an order</p>
           </div>
 
           {/* Payment cards */}
@@ -73,14 +73,14 @@ export default function PaymentPopup({ isOpen, onClose }: PaymentPopupProps) {
                     </svg>
                   </div>
                 </div>
-                <div className="flex-1 flex items-start justify-between gap-2">
-                  <div>
+                <div className="flex-1 min-w-0 flex flex-col gap-1">
+                  <div className="flex flex-wrap items-center gap-2">
                     <h3 className="text-[16px] font-semibold text-[#181818] leading-6">Bitcoin</h3>
-                    <p className="text-[14px] text-[#7E7E7E] leading-5 mt-1">
-                      The preferred and most reliable payment method. Fast processing, instant network confirmation
-                    </p>
+                    <span className="bg-[#FF6701]/10 text-[#FF6701] text-[11px] tablet:text-[13px] font-semibold px-2 tablet:px-3 py-0.5 tablet:py-1 rounded-full whitespace-nowrap">Recommended</span>
                   </div>
-                  <span className="bg-[#FF6701]/10 text-[#FF6701] text-[14px] font-semibold px-4 py-1 rounded-full whitespace-nowrap shrink-0">Recommended</span>
+                  <p className="text-[13px] tablet:text-[14px] text-[#7E7E7E] leading-5">
+                    The preferred and most reliable payment method. Fast processing, instant network confirmation
+                  </p>
                 </div>
               </div>
             </div>

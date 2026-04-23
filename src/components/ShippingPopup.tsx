@@ -54,9 +54,9 @@ export default function ShippingPopup({ isOpen, onClose }: ShippingPopupProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[100] flex items-end tablet:items-center justify-center tablet:p-4">
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
-      <div className="relative bg-white rounded-[16px] w-full max-w-[680px] max-h-[90vh] overflow-y-auto z-10">
+      <div className="relative bg-white rounded-t-[16px] tablet:rounded-[16px] w-full tablet:max-w-[680px] max-h-[92vh] tablet:max-h-[90vh] overflow-y-auto z-10">
         <button
           onClick={onClose}
           className="cursor-pointer absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-[#181818] hover:opacity-60 transition-opacity z-10"
@@ -66,10 +66,10 @@ export default function ShippingPopup({ isOpen, onClose }: ShippingPopupProps) {
           </svg>
         </button>
 
-        <div className="p-10 flex flex-col gap-7">
-          <div>
-            <h2 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-2">Shipping Methods</h2>
-            <p className="text-[16px] text-[#7E7E7E] leading-6">All you need to know about shipping before you order</p>
+        <div className="p-5 tablet:p-8 desktop:p-10 flex flex-col gap-5 tablet:gap-6 desktop:gap-7">
+          <div className="text-center tablet:text-left">
+            <h2 className="text-[22px] tablet:text-[26px] desktop:text-[28px] font-extrabold text-[#181818] leading-[28px] tablet:leading-[32px] desktop:leading-[34px] mb-2">Shipping Methods</h2>
+            <p className="text-[14px] tablet:text-[15px] desktop:text-[16px] text-[#7E7E7E] leading-5 tablet:leading-6">All you need to know about shipping before you order</p>
           </div>
 
           <div className="bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
@@ -77,13 +77,13 @@ export default function ShippingPopup({ isOpen, onClose }: ShippingPopupProps) {
             <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col">
               {regions.map((r, i) => (
                 <div key={r.name}>
-                  <div className="flex items-center py-2">
-                    <div className="flex items-center gap-3 flex-1">
-                      <span className="text-[20px]">{r.flag}</span>
-                      <span className="text-[16px] font-semibold text-[#181818] leading-6">{r.name}</span>
+                  <div className="flex items-center gap-3 py-2">
+                    <div className="flex items-center gap-3 flex-1 min-w-0">
+                      <span className="text-[20px] shrink-0">{r.flag}</span>
+                      <span className="text-[14px] tablet:text-[16px] font-semibold text-[#181818] leading-5 tablet:leading-6 truncate">{r.name}</span>
                     </div>
-                    <span className="text-[14px] text-[#7E7E7E] leading-5 w-[100px] text-right">{r.time}</span>
-                    <span className="text-[14px] font-semibold text-[#FF6701] leading-5 w-[110px] text-right">{r.price}</span>
+                    <span className="text-[13px] tablet:text-[14px] text-[#7E7E7E] leading-5 w-[82px] tablet:w-[100px] text-right shrink-0">{r.time}</span>
+                    <span className="text-[13px] tablet:text-[14px] font-semibold text-[#FF6701] leading-5 w-[78px] tablet:w-[110px] text-right shrink-0">{r.price}</span>
                   </div>
                   {i < regions.length - 1 && <div className="h-px bg-[#E7E7E7]" />}
                 </div>
