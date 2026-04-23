@@ -92,10 +92,10 @@ export default function CartPage() {
                 {/* Progress bar */}
                 {amountToDiscount > 0 ? (
                   <div className="rounded-[12px] py-3 flex flex-col items-center gap-2">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[14px] text-[#181818] leading-5">You&apos;re just</span>
-                      <span className="bg-[#1E1E1E] text-[#F7F7F7] text-[14px] font-semibold leading-5 px-2 py-1 rounded-[8px]">{amountToDiscount}€</span>
-                      <span className="text-[14px] text-[#181818] leading-5">away from getting a <span className="font-semibold">5% discount</span></span>
+                    <div className="flex items-center gap-2 flex-wrap justify-center text-center">
+                      <span className="text-[13px] md:text-[14px] text-[#181818] leading-5">You&apos;re just</span>
+                      <span className="bg-[#1E1E1E] text-[#F7F7F7] text-[13px] md:text-[14px] font-semibold leading-5 px-2 py-1 rounded-[8px]">{amountToDiscount}€</span>
+                      <span className="text-[13px] md:text-[14px] text-[#181818] leading-5">away from getting a <span className="font-semibold">5% discount</span></span>
                     </div>
                     <div className="w-full h-2 bg-[#E9E9E9] rounded-full overflow-hidden">
                       <div className="h-full bg-black rounded-[4px] transition-all" style={{ width: `${progressPercent}%` }} />
@@ -116,7 +116,7 @@ export default function CartPage() {
                 <div className="flex flex-col py-2">
                   {items.map((item, i) => (
                     <div key={item.id}>
-                      <div className="flex items-center gap-4 py-2">
+                      <div className="flex items-center gap-3 md:gap-4 py-2">
                         {/* Trash icon — Figma vuesax/bold/trash */}
                         <button
                           onClick={() => removeItem(item.id)}
@@ -127,18 +127,18 @@ export default function CartPage() {
                           </svg>
                         </button>
                         {/* Image */}
-                        <Link href="/product" className="w-[120px] h-[120px] bg-white border border-[#E7E7E7] rounded-[8px] shrink-0 overflow-hidden p-2 hover:border-[#181818] transition-colors">
+                        <Link href="/product" className="w-[88px] h-[88px] md:w-[120px] md:h-[120px] bg-white border border-[#E7E7E7] rounded-[8px] shrink-0 overflow-hidden p-2 hover:border-[#181818] transition-colors">
                           <Image src={item.image} alt={item.name} width={100} height={100} className="object-contain w-full h-full" />
                         </Link>
                         {/* Info */}
-                        <div className="flex-1 flex flex-col gap-4 justify-center">
+                        <div className="flex-1 min-w-0 flex flex-col gap-3 md:gap-4 justify-center">
                           <Link href="/product" className="hover:[&_p:last-child]:text-[#FF6701] transition-colors">
                             <p className="text-[12px] text-[#7E7E7E] leading-4">{item.brand}</p>
-                            <p className="text-[16px] font-semibold text-[#181818] leading-6 capitalize mt-1 transition-colors">{item.name}</p>
+                            <p className="text-[14px] md:text-[16px] font-semibold text-[#181818] leading-5 md:leading-6 capitalize mt-1 transition-colors line-clamp-2">{item.name}</p>
                           </Link>
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center justify-between gap-2">
                             {/* Qty */}
-                            <div className="flex items-center border border-[#E7E7E7] rounded-[8px] h-9 w-[111px] px-2 justify-between">
+                            <div className="flex items-center border border-[#E7E7E7] rounded-[8px] h-9 w-[100px] md:w-[111px] px-2 justify-between shrink-0">
                               <button onClick={() => updateQty(item.id, -1)} className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818]">
                                 <svg width="16" height="2" viewBox="0 0 16 2"><path d="M1 1H15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
                               </button>
@@ -148,14 +148,14 @@ export default function CartPage() {
                               </button>
                             </div>
                             {/* Price */}
-                            <div className="flex items-baseline gap-2">
+                            <div className="flex items-baseline gap-2 flex-wrap justify-end">
                               {item.oldPrice ? (
                                 <>
-                                  <span className="text-[18px] font-semibold text-[#FB2F2F] leading-[26px]">{item.price * item.qty} €</span>
+                                  <span className="text-[16px] md:text-[18px] font-semibold text-[#FB2F2F] leading-6 md:leading-[26px]">{item.price * item.qty} €</span>
                                   <span className="text-[12px] text-[#7E7E7E] line-through leading-4">{item.oldPrice * item.qty} €</span>
                                 </>
                               ) : (
-                                <span className="text-[18px] font-semibold text-black leading-[26px]">{item.price * item.qty} €</span>
+                                <span className="text-[16px] md:text-[18px] font-semibold text-black leading-6 md:leading-[26px]">{item.price * item.qty} €</span>
                               )}
                             </div>
                           </div>
@@ -173,25 +173,29 @@ export default function CartPage() {
                   </div>
                   {suggestedProducts.map((p, i) => (
                     <div key={i}>
-                      <div className="flex items-center gap-4">
-                        <Link href="/product" className="w-[120px] h-[120px] bg-white border border-[#E7E7E7] rounded-[8px] shrink-0 overflow-hidden p-2 hover:border-[#181818] transition-colors">
+                      <div className="flex items-center gap-3 md:gap-4">
+                        <Link href="/product" className="w-[88px] h-[88px] md:w-[120px] md:h-[120px] bg-white border border-[#E7E7E7] rounded-[8px] shrink-0 overflow-hidden p-2 hover:border-[#181818] transition-colors">
                           <Image src={p.image} alt={p.name} width={100} height={100} className="object-contain w-full h-full" />
                         </Link>
-                        <Link href="/product" className="flex-1 flex flex-col gap-1.5 justify-center group">
-                          <p className="text-[12px] text-[#7E7E7E] leading-4">{p.brand}</p>
-                          <p className="text-[16px] font-semibold text-[#181818] leading-6 capitalize group-hover:text-[#FF6701] transition-colors">{p.name}</p>
-                        </Link>
-                        <div className="flex items-center justify-center h-9 w-[140px] bg-[#F7F7F7] rounded-[8px]">
-                          <span className="text-[14px] font-semibold text-[#181818]">{p.price}€</span>
+                        <div className="flex-1 min-w-0 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+                          <Link href="/product" className="flex-1 min-w-0 flex flex-col gap-1 md:gap-1.5 justify-center group">
+                            <p className="text-[12px] text-[#7E7E7E] leading-4">{p.brand}</p>
+                            <p className="text-[14px] md:text-[16px] font-semibold text-[#181818] leading-5 md:leading-6 capitalize group-hover:text-[#FF6701] transition-colors line-clamp-2">{p.name}</p>
+                          </Link>
+                          <div className="flex items-center gap-2 md:gap-4 shrink-0">
+                            <div className="flex items-center justify-center h-9 w-[70px] md:w-[140px] bg-[#F7F7F7] rounded-[8px]">
+                              <span className="text-[14px] font-semibold text-[#181818]">{p.price}€</span>
+                            </div>
+                            <button className="cursor-pointer group relative h-9 w-[44px] md:w-[140px] bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center transition-colors overflow-hidden shrink-0">
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="md:transition-all md:duration-300 md:ease-out md:group-hover:translate-y-[150%] md:group-hover:opacity-0">
+                                <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
+                              <span className="hidden md:inline absolute text-[14px] font-semibold text-white whitespace-nowrap transition-all duration-300 ease-out -translate-y-[150%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100">Add to cart</span>
+                            </button>
+                          </div>
                         </div>
-                        <button className="cursor-pointer group relative h-9 w-[140px] bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center transition-colors overflow-hidden">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transition-all duration-300 ease-out group-hover:translate-y-[150%] group-hover:opacity-0">
-                            <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                          <span className="absolute text-[14px] font-semibold text-white whitespace-nowrap transition-all duration-300 ease-out -translate-y-[150%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100">Add to cart</span>
-                        </button>
                       </div>
                       {i < suggestedProducts.length - 1 && <div className="h-px bg-[#E7E7E7] mt-[10px]" />}
                     </div>

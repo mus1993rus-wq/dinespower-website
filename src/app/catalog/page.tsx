@@ -504,6 +504,7 @@ function CatalogContent() {
   const [outOfStockChecked, setOutOfStockChecked] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(2);
   const [seoExpanded, setSeoExpanded] = useState(false);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const currentCategory = categoryList.find((c) => c.slug === categorySlug);
   const currentBrandLabel = brandSlug ? brandSlugToLabel[brandSlug] : null;
@@ -588,7 +589,7 @@ function CatalogContent() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb - Figma style: Home / Category / Brand */}
-        <div className="max-w-[1340px] mx-auto py-3 px-4 md:px-0">
+        <div className="max-w-[1340px] mx-auto py-3 px-4 wide:px-0">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             {currentCategory && (
@@ -623,8 +624,8 @@ function CatalogContent() {
 
         {/* Banner */}
         {bannerImage ? (
-          <div className="max-w-[1340px] mx-auto mb-6 md:mb-8 px-4 md:px-0">
-            <div className="relative h-[180px] md:h-[278px] rounded-[16px] overflow-hidden" style={{ backgroundColor: currentBrandLabel ? (brandBgColors[currentBrandLabel] || '#F7F7F7') : '#F7F7F7' }}>
+          <div className="max-w-[1340px] mx-auto mb-6 tablet:mb-7 desktop:mb-8 px-4 wide:px-0">
+            <div className="relative h-[160px] tablet:h-[220px] desktop:h-[260px] wide:h-[278px] rounded-[16px] overflow-hidden" style={{ backgroundColor: currentBrandLabel ? (brandBgColors[currentBrandLabel] || '#F7F7F7') : '#F7F7F7' }}>
               <Image
                 src={bannerImage}
                 alt={`${currentCategory?.label || "Catalog"}${currentBrandLabel ? ` - ${currentBrandLabel}` : ""}`}
@@ -632,20 +633,20 @@ function CatalogContent() {
                 className="object-cover"
 
               />
-              <div className="absolute left-6 md:left-[60px] top-1/2 -translate-y-1/2 max-w-[60%] md:max-w-[50%]">
-                <h1 className="text-[22px] md:text-[40px] font-black text-[#181818] uppercase leading-[26px] md:leading-[44px]">
+              <div className="absolute left-5 tablet:left-8 desktop:left-[48px] wide:left-[60px] top-1/2 -translate-y-1/2 max-w-[60%] tablet:max-w-[55%] desktop:max-w-[50%]">
+                <h1 className="text-[20px] tablet:text-[28px] desktop:text-[34px] wide:text-[40px] font-black text-[#181818] uppercase leading-[24px] tablet:leading-[32px] desktop:leading-[38px] wide:leading-[44px]">
                   {currentCategory?.label || "All Products"}
                 </h1>
                 {currentBrandLabel && (
                   <h2
-                    className="text-[22px] md:text-[40px] font-extrabold italic uppercase leading-[26px] md:leading-[44px] mt-1"
+                    className="text-[20px] tablet:text-[28px] desktop:text-[34px] wide:text-[40px] font-extrabold italic uppercase leading-[24px] tablet:leading-[32px] desktop:leading-[38px] wide:leading-[44px] mt-1"
                     style={{ color: brandColors[currentBrandLabel] || "#FF6701" }}
                   >
                     {currentBrandLabel}
                   </h2>
                 )}
                 {bannerDescription && (
-                  <p className="hidden md:block text-[16px] text-[#000000] leading-[22px] mt-3 max-w-[400px] capitalize">
+                  <p className="hidden tablet:block text-[13px] desktop:text-[15px] wide:text-[16px] text-[#000000] leading-[18px] desktop:leading-[20px] wide:leading-[22px] mt-2 desktop:mt-3 max-w-[400px] capitalize">
                     {bannerDescription}
                   </p>
                 )}
@@ -653,14 +654,14 @@ function CatalogContent() {
             </div>
           </div>
         ) : (
-          <div className="max-w-[1340px] mx-auto mb-6 md:mb-8 px-4 md:px-0">
-            <div className="relative h-[180px] md:h-[278px] rounded-[16px] overflow-hidden bg-[#F7F7F7]">
-              <div className="absolute left-6 md:left-[60px] top-1/2 -translate-y-1/2 max-w-[60%] md:max-w-[50%]">
-                <h1 className="text-[22px] md:text-[40px] font-black text-[#181818] uppercase leading-[26px] md:leading-[44px]">
+          <div className="max-w-[1340px] mx-auto mb-6 tablet:mb-7 desktop:mb-8 px-4 wide:px-0">
+            <div className="relative h-[160px] tablet:h-[220px] desktop:h-[260px] wide:h-[278px] rounded-[16px] overflow-hidden bg-[#F7F7F7]">
+              <div className="absolute left-5 tablet:left-8 desktop:left-[48px] wide:left-[60px] top-1/2 -translate-y-1/2 max-w-[60%] tablet:max-w-[55%] desktop:max-w-[50%]">
+                <h1 className="text-[20px] tablet:text-[28px] desktop:text-[34px] wide:text-[40px] font-black text-[#181818] uppercase leading-[24px] tablet:leading-[32px] desktop:leading-[38px] wide:leading-[44px]">
                   {currentCategory?.label}
                 </h1>
                 {bannerDescription && (
-                  <p className="text-[16px] text-[#4A4A4A] leading-[22px] mt-2">
+                  <p className="text-[13px] desktop:text-[15px] wide:text-[16px] text-[#4A4A4A] leading-[18px] desktop:leading-[20px] wide:leading-[22px] mt-2">
                     {bannerDescription}
                   </p>
                 )}
@@ -669,9 +670,9 @@ function CatalogContent() {
           </div>
         )}
 
-        <div className="max-w-[1340px] mx-auto flex gap-6 pb-16 px-4 md:px-0">
-          {/* Sidebar Filters — hidden on mobile */}
-          <aside className="hidden md:flex w-[256px] shrink-0 flex-col gap-4">
+        <div className="max-w-[1340px] mx-auto flex gap-6 wide:gap-6 pb-16 px-4 wide:px-0">
+          {/* Sidebar Filters — visible only from desktop (≥961) */}
+          <aside className="hidden desktop:flex desktop:w-[240px] wide:w-[256px] shrink-0 flex-col gap-4">
             {/* Brands card — only if more than 1 brand */}
             {brandsForCategory.length > 1 && (
               <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col">
@@ -804,8 +805,71 @@ function CatalogContent() {
 
           {/* Products area */}
           <div className="flex-1 min-w-0">
-            {/* Active filters + Sort row */}
-            <div className="flex items-center justify-between mb-6">
+            {/* Show Filters button — mobile + tablet only */}
+            <div className="desktop:hidden flex items-center gap-3 mb-4">
+              <button
+                onClick={() => setMobileFiltersOpen(true)}
+                className="cursor-pointer flex-1 h-11 bg-[#F7F7F7] border border-[#E7E7E7] rounded-[8px] flex items-center justify-center gap-2 text-[14px] font-semibold text-[#181818] hover:border-[#181818] transition-colors"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M3 6h18M6 12h12M10 18h4" stroke="#181818" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+                Show Filters
+                {activeFilters.length > 0 && (
+                  <span className="bg-[#FF6701] text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center leading-none">{activeFilters.length}</span>
+                )}
+              </button>
+              <div className="relative">
+                <button
+                  onClick={() => setSortOpen(!sortOpen)}
+                  className="cursor-pointer flex items-center gap-2 h-11 px-4 bg-[#F7F7F7] border border-[#E7E7E7] rounded-[8px] text-[14px] font-semibold text-[#181818] hover:border-[#181818] transition-colors"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 6h13M3 12h9M3 18h5" stroke="#181818" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                  Sort
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className={`transition-transform ${sortOpen ? "rotate-180" : ""}`}>
+                    <path d="M3 4.5L6 7.5L9 4.5" stroke="#181818" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                {sortOpen && (
+                  <div className="absolute top-full right-0 mt-1 bg-white border border-[#E7E7E7] rounded-lg shadow-lg z-20 min-w-[180px]">
+                    {sortOptions.map((opt, i) => (
+                      <button
+                        key={opt}
+                        onClick={() => { setActiveSort(i); setSortOpen(false); }}
+                        className={`block w-full text-left px-4 py-2.5 text-sm transition-colors ${
+                          i === activeSort ? "text-[#FF6701] font-semibold bg-[#FFF8F3]" : "text-[#181818] hover:bg-[#F7F7F7]"
+                        }`}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Active filters (mobile+tablet): small chips row */}
+            {activeFilters.length > 0 && (
+              <div className="desktop:hidden flex items-center gap-2 flex-wrap mb-4">
+                {activeFilters.map((f) => (
+                  <button
+                    key={f.label}
+                    onClick={f.onRemove}
+                    className="flex items-center gap-1.5 bg-[#F7F7F7] border border-[#E7E7E7] rounded-lg px-3 py-1.5 text-[13px] text-[#181818] hover:border-[#FF6701] transition-colors"
+                  >
+                    {f.label}
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M9 3L3 9M3 3L9 9" stroke="#7E7E7E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Active filters + Sort row — desktop only */}
+            <div className="hidden desktop:flex items-center justify-between gap-3 mb-5 wide:mb-6">
               {/* Active filters */}
               <div className="flex items-center gap-2 flex-wrap">
                 {activeFilters.length > 0 && (
@@ -866,8 +930,8 @@ function CatalogContent() {
               </div>
             </div>
 
-            {/* Grid — 2 cols on mobile, 4 on desktop; ProductCards stretched via globals.css */}
-            <div className="catalog-grid grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            {/* Grid — 2 cols mobile, 3 tablet+desktop, 4 wide; ProductCards stretched via globals.css */}
+            <div className="catalog-grid grid grid-cols-2 tablet:grid-cols-3 wide:grid-cols-4 gap-3 tablet:gap-4">
               {filteredProducts.map((p, i) => (
                 <ProductCard key={i} {...p} />
               ))}
@@ -890,11 +954,11 @@ function CatalogContent() {
               const seo = categorySlug ? categorySEO[categorySlug] : null;
               if (!seo) return null;
               return (
-                <div className="pt-12 pb-8">
-                  <h3 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">
+                <div className="pt-8 tablet:pt-10 desktop:pt-12 pb-6 tablet:pb-8">
+                  <h3 className="text-[20px] tablet:text-[24px] desktop:text-[28px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[30px] desktop:leading-[34px] mb-4 tablet:mb-5 desktop:mb-6">
                     {seo.heading}
                   </h3>
-                  <div className={`relative text-[14px] text-[#7E7E7E] leading-[22px] flex flex-col gap-3 ${!seoExpanded ? "max-h-[72px] overflow-hidden" : ""}`}>
+                  <div className={`relative text-[13px] tablet:text-[14px] text-[#7E7E7E] leading-[20px] tablet:leading-[22px] flex flex-col gap-3 ${!seoExpanded ? "max-h-[72px] overflow-hidden" : ""}`}>
                     {seo.paragraphs.map((p, i) => (
                       <p key={i}>{p}</p>
                     ))}
@@ -911,25 +975,25 @@ function CatalogContent() {
             })()}
 
             {/* FAQ section — inside right column */}
-            <div className="pb-16">
-              <h2 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">Frequently Asked Questions</h2>
+            <div className="pb-12 tablet:pb-16">
+              <h2 className="text-[20px] tablet:text-[24px] desktop:text-[28px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[30px] desktop:leading-[34px] mb-4 tablet:mb-5 desktop:mb-6">Frequently Asked Questions</h2>
               <div className="flex flex-col">
                 {faqItems.map((item, i) => (
                   <div key={i} className="border-b border-[#E7E7E7]">
                     <button
                       onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
-                      className="w-full flex items-center justify-between py-5 cursor-pointer gap-4"
+                      className="w-full flex items-start justify-between py-4 tablet:py-5 cursor-pointer gap-3 tablet:gap-4 text-left"
                     >
-                      <div className="flex items-center gap-3">
-                        <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
-                        <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{item.q}</span>
+                      <div className="flex items-start gap-3 flex-1 min-w-0">
+                        <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0 mt-0.5" />
+                        <span className="text-[14px] tablet:text-[16px] font-semibold text-[#181818] text-left leading-5 tablet:leading-6">{item.q}</span>
                       </div>
-                      <div className={`w-[40px] h-[40px] rounded-[8px] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#E7E7E7]' : 'bg-[#F7F7F7]'}`}>
+                      <div className={`w-[36px] h-[36px] tablet:w-[40px] tablet:h-[40px] rounded-[8px] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#E7E7E7]' : 'bg-[#F7F7F7]'}`}>
                         <span className="text-[20px] leading-none text-[#181818]">{openFAQ === i ? '−' : '+'}</span>
                       </div>
                     </button>
                     {openFAQ === i && (
-                      <div className="pb-5 pl-[36px] pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
+                      <div className="pb-4 tablet:pb-5 pl-[36px] pr-2 tablet:pr-[56px] text-[13px] tablet:text-[14px] text-[#7E7E7E] leading-[20px] tablet:leading-[22px]">
                         {item.a}
                       </div>
                     )}
@@ -943,6 +1007,132 @@ function CatalogContent() {
       <div className="relative z-0">
         <Footer />
       </div>
+
+      {/* Mobile + Tablet Filters modal */}
+      {mobileFiltersOpen && (
+        <div className="fixed inset-0 z-[200] desktop:hidden">
+          <div className="absolute inset-0 bg-black/50" onClick={() => setMobileFiltersOpen(false)} />
+          <div className="absolute inset-x-0 bottom-0 tablet:inset-0 tablet:flex tablet:items-center tablet:justify-center tablet:bg-transparent">
+            <div className="bg-[#F7F7F7] rounded-t-[16px] tablet:rounded-[16px] w-full tablet:max-w-[420px] tablet:max-h-[85vh] max-h-[90vh] overflow-y-auto flex flex-col">
+              {/* Header */}
+              <div className="flex items-center justify-between px-5 py-4 border-b border-[#E7E7E7] bg-white tablet:bg-transparent tablet:border-b-0">
+                <h3 className="text-[16px] font-semibold text-[#7E7E7E]">Filters</h3>
+                <button
+                  onClick={() => setMobileFiltersOpen(false)}
+                  aria-label="Close"
+                  className="cursor-pointer w-8 h-8 flex items-center justify-center hover:bg-[#F7F7F7] rounded transition-colors"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#181818" strokeWidth="2" strokeLinecap="round"/></svg>
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-3 p-3 tablet:p-4">
+                {/* Brands */}
+                {brandsForCategory.length > 1 && (
+                  <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col">
+                    {brandsForCategory.map((b) => {
+                      const isActive = brandSlug === brandLabelToSlug[b];
+                      return (
+                        <Link
+                          key={b}
+                          href={`/catalog?category=${categorySlug}&brand=${brandLabelToSlug[b]}`}
+                          onClick={() => setMobileFiltersOpen(false)}
+                          className={`flex items-center justify-between px-4 py-3 rounded-[8px] transition-colors ${
+                            isActive ? "bg-[#F7F7F7]" : "hover:bg-[#F7F7F7]"
+                          }`}
+                        >
+                          <span className="text-[14px] font-semibold text-[#181818] leading-5">{b}</span>
+                          {isActive && (
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                          )}
+                        </Link>
+                      );
+                    })}
+                    {currentBrandLabel && (
+                      <>
+                        <div className="h-px bg-[#E7E7E7] mx-4 my-1" />
+                        <Link
+                          href={`/catalog?category=${categorySlug}`}
+                          onClick={() => setMobileFiltersOpen(false)}
+                          className="flex items-center px-4 py-3 rounded-[8px] text-[14px] font-semibold text-[#181818] leading-5 hover:bg-[#F7F7F7] transition-colors"
+                        >
+                          See All
+                        </Link>
+                      </>
+                    )}
+                  </div>
+                )}
+
+                {/* Availability */}
+                <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4">
+                  <h4 className="text-[12px] text-[#7E7E7E] leading-4 mb-3">Availability</h4>
+                  <div className="flex flex-col gap-3">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <span
+                        onClick={() => setInStockChecked(!inStockChecked)}
+                        className={`w-5 h-5 rounded-[4px] flex items-center justify-center shrink-0 transition-colors ${
+                          inStockChecked ? "bg-[#181818]" : "border border-[#CBCBCB] bg-white"
+                        }`}
+                      >
+                        {inStockChecked && (
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        )}
+                      </span>
+                      <span className="text-[14px] text-[#181818] leading-5">In Stock</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <span
+                        onClick={() => setOutOfStockChecked(!outOfStockChecked)}
+                        className={`w-5 h-5 rounded-[4px] flex items-center justify-center shrink-0 transition-colors ${
+                          outOfStockChecked ? "bg-[#181818]" : "border border-[#CBCBCB] bg-white"
+                        }`}
+                      >
+                        {outOfStockChecked && (
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        )}
+                      </span>
+                      <span className="text-[14px] text-[#181818] leading-5">Out of Stock</span>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Price */}
+                <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4">
+                  <h4 className="text-[12px] text-[#7E7E7E] leading-4 mb-3">Price</h4>
+                  <div className="flex gap-2 items-center">
+                    <div className="flex items-center border border-[#E7E7E7] rounded-[8px] h-10 flex-1 px-3">
+                      <input
+                        type="number"
+                        value={priceRange[0]}
+                        onChange={(e) => setPriceRange([Math.min(+e.target.value, priceRange[1]), priceRange[1]])}
+                        className="w-full text-[14px] text-[#181818] outline-none bg-transparent text-center"
+                      />
+                    </div>
+                    <div className="flex items-center border border-[#E7E7E7] rounded-[8px] h-10 flex-1 px-3">
+                      <input
+                        type="number"
+                        value={priceRange[1]}
+                        onChange={(e) => setPriceRange([priceRange[0], Math.max(+e.target.value, priceRange[0])])}
+                        className="w-full text-[14px] text-[#181818] outline-none bg-transparent text-center"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Apply button */}
+              <div className="px-3 tablet:px-4 pb-4 pt-2 sticky bottom-0 bg-[#F7F7F7]">
+                <button
+                  onClick={() => setMobileFiltersOpen(false)}
+                  className="cursor-pointer w-full h-12 bg-[#FF6701] hover:bg-[#E65D00] text-white text-[16px] font-semibold rounded-[8px] transition-colors"
+                >
+                  Apply
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

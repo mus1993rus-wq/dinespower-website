@@ -20,9 +20,9 @@ export default function ProductCard({ brand, name, dosage, price, oldPrice, imag
   const { addItem } = useCart();
 
   return (
-    <div className="product-card bg-white border border-[#E7E7E7] rounded-[16px] overflow-hidden flex flex-col w-[170px] md:w-[255px] shrink-0 hover:shadow-lg transition-shadow">
+    <div className="product-card bg-white border border-[#E7E7E7] rounded-[16px] overflow-hidden flex flex-col w-[170px] tablet:w-[210px] wide:w-[255px] shrink-0 hover:shadow-lg transition-shadow">
       {/* Image - WHITE background, clickable */}
-      <Link href="/product" className="relative aspect-square md:h-[252px] md:aspect-auto bg-white flex items-center justify-center p-4 md:p-6 block">
+      <Link href="/product" className="relative aspect-square wide:h-[252px] wide:aspect-auto bg-white flex items-center justify-center p-4 tablet:p-5 wide:p-6 block">
         {/* Tag ribbons — Figma 1249:6845: flush to left edge, right corners rounded */}
         <div className="absolute top-4 left-0 z-10 flex flex-col gap-[2px] items-start">
           {badges.includes("sale") && (
@@ -38,7 +38,7 @@ export default function ProductCard({ brand, name, dosage, price, oldPrice, imag
         {image ? (
           <Image src={image} alt={name} width={180} height={180} className="object-contain max-w-full max-h-full w-auto h-auto" />
         ) : (
-          <div className="w-[140px] h-[140px] md:w-[180px] md:h-[180px] bg-[#F7F7F7] rounded-lg" />
+          <div className="w-[140px] h-[140px] tablet:w-[160px] tablet:h-[160px] wide:w-[180px] wide:h-[180px] bg-[#F7F7F7] rounded-lg" />
         )}
       </Link>
 

@@ -254,7 +254,7 @@ function BlogContent() {
         </div>
 
         <div className="max-w-[1340px] mx-auto px-4 lg:px-0 pb-16">
-          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-6">
+          <h1 className="text-[24px] md:text-[36px] font-extrabold text-[#181818] leading-[30px] md:leading-[44px] mb-4 md:mb-6">
             {categoryParam ? `Category: ${categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1)}` : "Blog Dines Power"}
           </h1>
 
@@ -263,7 +263,7 @@ function BlogContent() {
             <div className="flex-1 min-w-0">
               {/* Featured slider — 820x482 */}
               {currentSlide && (
-                <div className="relative h-[482px] rounded-[16px] overflow-hidden mb-0 group">
+                <div className="relative h-[340px] md:h-[482px] rounded-[16px] overflow-hidden mb-0 group">
                   {featuredSlides.map((slide, i) => (
                     <Image
                       key={slide.id}
@@ -283,31 +283,31 @@ function BlogContent() {
                     <span className="text-[12px] font-semibold text-black leading-4 mt-0.5">{currentSlide.date.split(" ")[1]}</span>
                   </div>
                   {/* Bottom gradient overlay with content */}
-                  <div className="absolute bottom-0 left-0 right-0 pt-[100px] pb-8 px-8 z-10 bg-gradient-to-b from-transparent to-[#232323] pointer-events-none">
-                    <div className="flex flex-col gap-4">
+                  <div className="absolute bottom-0 left-0 right-0 pt-[60px] md:pt-[100px] pb-5 md:pb-8 px-4 md:px-8 z-10 bg-gradient-to-b from-transparent to-[#232323] pointer-events-none">
+                    <div className="flex flex-col gap-3 md:gap-4">
                       <div className="flex flex-wrap gap-2 pointer-events-auto">
                         {currentSlide.tags?.map((tag) => (
                           <Link
                             key={tag}
                             href={`/blog?category=${tag.toLowerCase()}`}
-                            className="backdrop-blur-[50px] bg-white/10 border border-white/20 rounded-[8px] px-3 py-1.5 text-[14px] text-white leading-5 hover:bg-white/20 hover:border-white/40 transition-colors"
+                            className="backdrop-blur-[50px] bg-white/10 border border-white/20 rounded-[8px] px-2.5 md:px-3 py-1 md:py-1.5 text-[12px] md:text-[14px] text-white leading-5 hover:bg-white/20 hover:border-white/40 transition-colors"
                           >
                             {tag}
                           </Link>
                         ))}
                       </div>
                       <Link href={`/blog/${currentSlide.id}`} className="pointer-events-auto relative z-10">
-                        <h2 className="text-[28px] font-extrabold text-white leading-[34px]">{currentSlide.title}</h2>
+                        <h2 className="text-[18px] md:text-[28px] font-extrabold text-white leading-[24px] md:leading-[34px] line-clamp-3">{currentSlide.title}</h2>
                       </Link>
                       <div className="flex items-center justify-between">
-                        <div className="flex gap-4 items-center">
-                          <div className="flex gap-2 items-center">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="opacity-50"><circle cx="12" cy="12" r="9" stroke="white" strokeWidth="1.5"/><path d="M12 7v5l3 2" stroke="white" strokeWidth="1.5" strokeLinecap="round"/></svg>
-                            <span className="text-[16px] text-white leading-6">{currentSlide.readTime}</span>
+                        <div className="flex gap-3 md:gap-4 items-center">
+                          <div className="flex gap-1.5 md:gap-2 items-center">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="opacity-50"><circle cx="12" cy="12" r="9" stroke="white" strokeWidth="1.5"/><path d="M12 7v5l3 2" stroke="white" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                            <span className="text-[13px] md:text-[16px] text-white leading-5 md:leading-6">{currentSlide.readTime}</span>
                           </div>
-                          <div className="flex gap-2 items-center">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="opacity-50"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="white" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="white" strokeWidth="1.5"/></svg>
-                            <span className="text-[16px] text-white leading-6">{currentSlide.views}</span>
+                          <div className="flex gap-1.5 md:gap-2 items-center">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="opacity-50"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="white" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="white" strokeWidth="1.5"/></svg>
+                            <span className="text-[13px] md:text-[16px] text-white leading-5 md:leading-6">{currentSlide.views}</span>
                           </div>
                         </div>
                         {/* Prev / Next arrow buttons */}
@@ -315,16 +315,16 @@ function BlogContent() {
                           <button
                             onClick={() => setSlideIndex((i) => (i - 1 + featuredSlides.length) % featuredSlides.length)}
                             aria-label="Previous slide"
-                            className="cursor-pointer w-12 h-12 rounded-[8px] bg-black border border-[#5C5C5C] flex items-center justify-center hover:bg-[#181818] transition-colors"
+                            className="cursor-pointer w-10 h-10 md:w-12 md:h-12 rounded-[8px] bg-black border border-[#5C5C5C] flex items-center justify-center hover:bg-[#181818] transition-colors"
                           >
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                           </button>
                           <button
                             onClick={() => setSlideIndex((i) => (i + 1) % featuredSlides.length)}
                             aria-label="Next slide"
-                            className="cursor-pointer w-12 h-12 rounded-[8px] bg-black border border-[#5C5C5C] flex items-center justify-center hover:bg-[#181818] transition-colors"
+                            className="cursor-pointer w-10 h-10 md:w-12 md:h-12 rounded-[8px] bg-black border border-[#5C5C5C] flex items-center justify-center hover:bg-[#181818] transition-colors"
                           >
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                           </button>
                         </div>
                       </div>
@@ -339,9 +339,9 @@ function BlogContent() {
                 {listPosts.map((post, index) => (
                   <div key={post.id}>
                     {index > 0 && <div className="h-px bg-[#E7E7E7] my-8" />}
-                    <Link href={`/blog/${post.id}`} className="flex gap-6 items-start cursor-pointer group">
-                      {/* Thumbnail 300x188 with date badge */}
-                      <div className="relative w-[300px] h-[188px] rounded-[8px] shrink-0 overflow-hidden bg-[#F7F7F7]">
+                    <Link href={`/blog/${post.id}`} className="flex flex-col md:flex-row gap-4 md:gap-6 md:items-start cursor-pointer group">
+                      {/* Thumbnail — full width on mobile, 300x188 on desktop */}
+                      <div className="relative w-full md:w-[300px] aspect-[16/10] md:aspect-auto md:h-[188px] rounded-[8px] md:shrink-0 overflow-hidden bg-[#F7F7F7]">
                         <Image src={`/images/shop/blog-${((post.id - 1) % 5) + 1}.png`} alt={post.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                         <div className="absolute top-2 left-2 bg-white rounded-[8px] w-12 h-12 flex flex-col items-center justify-center px-3 py-2">
                           <span className="text-[20px] font-extrabold text-black leading-6">{post.date.split(" ")[0]}</span>
@@ -349,21 +349,21 @@ function BlogContent() {
                         </div>
                       </div>
                       {/* Content — justify-center, gap 16 */}
-                      <div className="flex-1 flex flex-col justify-center gap-4 self-stretch min-w-0">
-                        <div className="flex flex-col gap-3">
-                          <h3 className="text-[20px] font-extrabold text-black leading-[24px] line-clamp-2 group-hover:text-[#FF6701] transition-colors">
+                      <div className="flex-1 flex flex-col justify-center gap-3 md:gap-4 self-stretch min-w-0">
+                        <div className="flex flex-col gap-2 md:gap-3">
+                          <h3 className="text-[16px] md:text-[20px] font-extrabold text-black leading-[20px] md:leading-[24px] line-clamp-2 group-hover:text-[#FF6701] transition-colors">
                             {post.title}
                           </h3>
-                          <p className="text-[14px] text-[#7E7E7E] leading-[20px] line-clamp-2">{post.description}</p>
+                          <p className="text-[13px] md:text-[14px] text-[#7E7E7E] leading-[18px] md:leading-[20px] line-clamp-2">{post.description}</p>
                         </div>
-                        <div className="flex gap-4 items-start">
-                          <div className="flex gap-2 items-center">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#7E7E7E" strokeWidth="1.5"/><path d="M12 7v5l3 2" stroke="#7E7E7E" strokeWidth="1.5" strokeLinecap="round"/></svg>
-                            <span className="text-[14px] text-[#7E7E7E] leading-5">{post.readTime}</span>
+                        <div className="flex gap-3 md:gap-4 items-start">
+                          <div className="flex gap-1.5 md:gap-2 items-center">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#7E7E7E" strokeWidth="1.5"/><path d="M12 7v5l3 2" stroke="#7E7E7E" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                            <span className="text-[13px] md:text-[14px] text-[#7E7E7E] leading-5">{post.readTime}</span>
                           </div>
-                          <div className="flex gap-2 items-center">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="#7E7E7E" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="#7E7E7E" strokeWidth="1.5"/></svg>
-                            <span className="text-[14px] text-[#7E7E7E] leading-5">{post.views}</span>
+                          <div className="flex gap-1.5 md:gap-2 items-center">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="#7E7E7E" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="#7E7E7E" strokeWidth="1.5"/></svg>
+                            <span className="text-[13px] md:text-[14px] text-[#7E7E7E] leading-5">{post.views}</span>
                           </div>
                         </div>
                       </div>
@@ -373,24 +373,24 @@ function BlogContent() {
                     {index === 4 && (
                       <>
                         <div className="h-px bg-[#E7E7E7] my-8" />
-                        <div className="bg-[#F7F7F7] rounded-[12px] p-4">
-                          <div className="bg-white border border-[#E7E7E7] rounded-[8px] px-6 py-4 flex items-center justify-center gap-4">
-                            <div className="flex-1 flex items-center gap-4 min-w-0">
-                              <div className="w-12 h-12 rounded-full bg-[#00A9DE] flex items-center justify-center shrink-0">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <div className="bg-[#F7F7F7] rounded-[12px] p-3 md:p-4">
+                          <div className="bg-white border border-[#E7E7E7] rounded-[8px] px-4 md:px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-center gap-4">
+                            <div className="flex-1 flex items-center gap-3 md:gap-4 min-w-0">
+                              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#00A9DE] flex items-center justify-center shrink-0">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                                   <path d="M3.32168 11.8714L18.7484 5.92338C19.4644 5.66472 20.0897 6.09805 19.8577 7.18072L19.859 7.17938L17.2323 19.5541C17.0377 20.4314 16.5164 20.6447 15.787 20.2314L11.787 17.2834L9.85768 19.1421C9.64435 19.3554 9.46435 19.5354 9.05102 19.5354L9.33502 15.4647L16.7483 8.76738C17.071 8.48338 16.6763 8.32338 16.251 8.60605L7.08968 14.374L3.14035 13.1421C2.28302 12.8701 2.26435 12.2847 3.32168 11.8714Z" fill="white"/>
                                 </svg>
                               </div>
                               <div className="flex-1 flex flex-col gap-1 min-w-0">
-                                <p className="text-[20px] font-extrabold text-black leading-[24px]">Official Telegram Channel</p>
-                                <p className="text-[16px] text-[#292929] leading-6">Get instant updates on new articles and limited offers</p>
+                                <p className="text-[16px] md:text-[20px] font-extrabold text-black leading-[20px] md:leading-[24px]">Official Telegram Channel</p>
+                                <p className="text-[13px] md:text-[16px] text-[#292929] leading-5 md:leading-6">Get instant updates on new articles and limited offers</p>
                               </div>
                             </div>
                             <a
                               href="https://t.me/+eFl6hboMcbxlNDI0"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="cursor-pointer flex items-center justify-center h-11 px-5 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black shrink-0 hover:border-[#181818] transition-colors">Join Channel</a>
+                              className="cursor-pointer flex items-center justify-center h-11 px-5 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black md:shrink-0 hover:border-[#181818] transition-colors">Join Channel</a>
                           </div>
                         </div>
                       </>
@@ -400,24 +400,24 @@ function BlogContent() {
                     {index === 9 && (
                       <>
                         <div className="h-px bg-[#E7E7E7] my-8" />
-                        <div className="relative bg-[#181818] rounded-[16px] h-[140px] px-8 py-6 flex items-center gap-8 overflow-hidden">
+                        <div className="relative bg-[#181818] rounded-[16px] md:h-[140px] p-5 md:px-8 md:py-6 flex flex-col md:flex-row md:items-center gap-4 md:gap-8 overflow-hidden">
                           <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
-                          <div className="flex-1 flex items-center gap-4 min-w-0 relative z-10">
-                            <div className="w-12 h-12 shrink-0 relative">
+                          <div className="flex-1 flex items-center gap-3 md:gap-4 min-w-0 relative z-10">
+                            <div className="w-10 h-10 md:w-12 md:h-12 shrink-0 relative">
                               <Image src="/icons/bell-notification.png" alt="" fill className="object-contain" />
                             </div>
                             <div className="flex-1 flex flex-col gap-1 min-w-0">
-                              <p className="text-[20px] font-extrabold text-white leading-[24px]">New articles by email</p>
-                              <p className="text-[16px] text-white leading-6">New posts, product picks, and deals</p>
+                              <p className="text-[16px] md:text-[20px] font-extrabold text-white leading-[20px] md:leading-[24px]">New articles by email</p>
+                              <p className="text-[13px] md:text-[16px] text-white leading-5 md:leading-6">New posts, product picks, and deals</p>
                             </div>
                           </div>
-                          <div className="flex-1 flex gap-2 items-start relative z-10">
+                          <div className="md:flex-1 flex gap-2 items-start relative z-10">
                             <input
                               type="email"
                               placeholder="Email address.."
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
-                              className="flex-1 h-12 bg-[#F7F7F7] border border-[#E0E0E0] rounded-[8px] px-4 text-[14px] text-[#181818] placeholder:text-[#7E7E7E] outline-none focus:border-[#FF6701] transition-colors"
+                              className="flex-1 min-w-0 h-12 bg-[#F7F7F7] border border-[#E0E0E0] rounded-[8px] px-4 text-[14px] text-[#181818] placeholder:text-[#7E7E7E] outline-none focus:border-[#FF6701] transition-colors"
                             />
                             <button className="bg-[#FF6701] hover:bg-[#E65D00] text-white text-[14px] font-semibold rounded-[8px] h-12 px-4 transition-colors shrink-0">
                               Subscribe

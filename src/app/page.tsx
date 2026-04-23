@@ -95,19 +95,19 @@ function HeroBanner() {
   }, []);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-4 md:mt-6 lg:px-4 xl:px-0">
-      <div className="flex flex-col lg:flex-row gap-3 md:gap-4 lg:gap-[16px]">
-        {/* Main banner — proportional 884/1340 ≈ 66% on lg+ */}
-        <div className="w-full lg:basis-[66%] lg:grow-0 aspect-[884/467] relative md:rounded-[16px] overflow-hidden group">
+    <section className="max-w-[1340px] mx-auto mt-4 tablet:mt-6 tablet:px-4 wide:px-0">
+      <div className="flex flex-col desktop:flex-row gap-3 tablet:gap-4 desktop:gap-[16px]">
+        {/* Main banner — 66% at desktop (961+), full width below */}
+        <div className="w-full desktop:basis-[66%] desktop:grow-0 aspect-[884/467] relative tablet:rounded-[16px] overflow-hidden group">
           <Link href="/product" aria-label="Lean Muscle Growth" className="absolute inset-0 z-0">
             <Image src="/images/shop/hero-banner.png" alt="Weekly Bestseller - Lean Muscle Growth" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
           {/* Left arrow */}
-          <button onClick={() => setActiveSlide((activeSlide - 1 + totalSlides) % totalSlides)} className="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 w-[40px] xl:w-[48px] h-[40px] xl:h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-l-0 rounded-r-lg flex items-center justify-center z-20">
+          <button onClick={() => setActiveSlide((activeSlide - 1 + totalSlides) % totalSlides)} className="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 w-[40px] wide:w-[48px] h-[40px] wide:h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-l-0 rounded-r-lg flex items-center justify-center z-20">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
           {/* Right arrow */}
-          <button onClick={() => setActiveSlide((activeSlide + 1) % totalSlides)} className="cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 w-[40px] xl:w-[48px] h-[40px] xl:h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-r-0 rounded-l-lg flex items-center justify-center z-20">
+          <button onClick={() => setActiveSlide((activeSlide + 1) % totalSlides)} className="cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 w-[40px] wide:w-[48px] h-[40px] wide:h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-r-0 rounded-l-lg flex items-center justify-center z-20">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
           {/* Slider dots */}
@@ -116,18 +116,18 @@ function HeroBanner() {
               <div
                 key={i}
                 onClick={() => setActiveSlide(i)}
-                className={`w-[40px] xl:w-[64px] h-[4px] bg-[#F7F7F7] rounded-[4px] cursor-pointer transition-opacity duration-300 ${i === activeSlide ? 'opacity-100' : 'opacity-30'}`}
+                className={`w-[40px] tablet:w-[52px] desktop:w-[58px] wide:w-[64px] h-[4px] bg-[#F7F7F7] rounded-[4px] cursor-pointer transition-opacity duration-300 ${i === activeSlide ? 'opacity-100' : 'opacity-30'}`}
               />
             ))}
           </div>
         </div>
 
-        {/* Side banners — 2-col grid on mobile; stacked flex on lg+ filling hero height */}
-        <div className="grid grid-cols-2 gap-3 px-4 lg:flex lg:flex-col lg:gap-[16px] lg:basis-[33%] lg:grow-0 lg:px-0 lg:self-stretch">
-          <Link href="/catalog?category=sex-support" className="aspect-[440/225] lg:aspect-auto lg:flex-1 rounded-[16px] overflow-hidden relative group block cursor-pointer">
+        {/* Side banners — 2-col grid on mobile/tablet; stacked flex at desktop+ filling hero height */}
+        <div className="grid grid-cols-2 gap-3 tablet:gap-4 px-4 tablet:px-0 desktop:flex desktop:flex-col desktop:gap-[16px] desktop:basis-[33%] desktop:grow-0 desktop:self-stretch">
+          <Link href="/catalog?category=sex-support" className="aspect-[440/225] desktop:aspect-auto desktop:flex-1 rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-sexboost.png" alt="Sex Boost" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
-          <Link href="/catalog?category=health" className="aspect-[440/226] lg:aspect-auto lg:flex-1 rounded-[16px] overflow-hidden relative group block cursor-pointer">
+          <Link href="/catalog?category=health" className="aspect-[440/226] desktop:aspect-auto desktop:flex-1 rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-cbd.png" alt="CBD" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
         </div>
@@ -138,9 +138,9 @@ function HeroBanner() {
 
 function CategoriesRow() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[48px] lg:px-4 xl:px-0">
-      {/* Mobile: vertical list per Figma */}
-      <div className="lg:hidden flex flex-col bg-white">
+    <section className="max-w-[1340px] mx-auto mt-8 tablet:mt-10 desktop:mt-[48px] tablet:px-4 wide:px-0">
+      {/* Mobile (≤640): vertical list per Figma */}
+      <div className="tablet:hidden flex flex-col bg-white">
         {categories.map((cat, i) => (
           <Link
             key={cat.name}
@@ -158,15 +158,29 @@ function CategoriesRow() {
         ))}
       </div>
 
-      {/* Desktop: horizontal row — proportional circles */}
-      <div className="hidden lg:flex justify-between gap-2">
+      {/* Tablet (641-960): horizontal scroll with compact circles */}
+      <div className="hidden tablet:flex desktop:hidden gap-3 overflow-x-auto scrollbar-hide -mx-4 px-4">
+        {categories.map((cat) => (
+          <Link key={cat.name} href={`/catalog?category=${cat.name.toLowerCase().replace(/ & /g, '-')}`} className="shrink-0">
+            <ScrollAnimation animation="animate-fade-in-up" className="flex flex-col items-center gap-2 cursor-pointer group w-[88px]">
+              <div className="w-[80px] h-[80px] rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center transition-colors duration-300">
+                <Image src={cat.img} alt={cat.name} width={80} height={80} className="object-cover transition-transform duration-300 group-hover:scale-[1.05]" />
+              </div>
+              <span className="text-[13px] font-semibold text-[#181818] leading-[18px] text-center">{cat.name}</span>
+            </ScrollAnimation>
+          </Link>
+        ))}
+      </div>
+
+      {/* Desktop (≥961): horizontal row — proportional circles */}
+      <div className="hidden desktop:flex justify-between gap-2">
         {categories.map((cat) => (
           <Link key={cat.name} href={`/catalog?category=${cat.name.toLowerCase().replace(/ & /g, '-')}`}>
             <ScrollAnimation animation="animate-fade-in-up" className="flex flex-col items-center gap-2 cursor-pointer group">
-              <div className="w-[116px] h-[116px] rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center transition-colors duration-300">
+              <div className="w-[96px] h-[96px] wide:w-[116px] wide:h-[116px] rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center transition-colors duration-300">
                 <Image src={cat.img} alt={cat.name} width={116} height={116} className="object-cover transition-transform duration-300 group-hover:scale-[1.05]" />
               </div>
-              <span className="text-[14px] font-semibold text-[#181818] leading-5 text-center">{cat.name}</span>
+              <span className="text-[13px] wide:text-[14px] font-semibold text-[#181818] leading-5 text-center">{cat.name}</span>
             </ScrollAnimation>
           </Link>
         ))}
@@ -213,32 +227,32 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
     : "/catalog";
 
   return (
-    <section className={`max-w-[1340px] mx-auto px-4 md:px-0 ${className}`}>
-      <div className="flex items-center justify-between mb-4 md:mb-6">
-        <h2 className="text-[18px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px]">{title}</h2>
+    <section className={`max-w-[1340px] mx-auto px-4 tablet:px-4 wide:px-0 ${className}`}>
+      <div className="flex items-center justify-between mb-4 tablet:mb-5 desktop:mb-6">
+        <h2 className="text-[18px] tablet:text-[22px] desktop:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[28px] desktop:leading-[30px]">{title}</h2>
         <div className="flex gap-2">
-          <button onClick={scrollLeft} className="cursor-pointer w-[36px] h-[36px] md:w-[40px] md:h-[40px] rounded-lg bg-[#F7F7F7] flex items-center justify-center hover:bg-[#E7E7E7] transition-colors">
+          <button onClick={scrollLeft} className="cursor-pointer w-[36px] h-[36px] tablet:w-[40px] tablet:h-[40px] rounded-lg bg-[#F7F7F7] flex items-center justify-center hover:bg-[#E7E7E7] transition-colors">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
-          <button onClick={scrollRight} className="cursor-pointer w-[36px] h-[36px] md:w-[40px] md:h-[40px] rounded-lg bg-[#F7F7F7] flex items-center justify-center hover:bg-[#E7E7E7] transition-colors">
+          <button onClick={scrollRight} className="cursor-pointer w-[36px] h-[36px] tablet:w-[40px] tablet:h-[40px] rounded-lg bg-[#F7F7F7] flex items-center justify-center hover:bg-[#E7E7E7] transition-colors">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
         </div>
       </div>
-      <div className="flex gap-3 md:gap-4">
-        {/* Fixed promo banner - doesn't scroll (hidden on mobile/tablet) */}
-        {promoCategoryName && <div className="hidden xl:block self-stretch"><PromoBanner categoryName={promoCategoryName} /></div>}
+      <div className="flex gap-3 tablet:gap-4">
+        {/* Fixed promo banner — only on wide (≥1281) to keep desktop 1 tight */}
+        {promoCategoryName && <div className="hidden wide:block self-stretch"><PromoBanner categoryName={promoCategoryName} /></div>}
         {/* Scrollable product cards */}
-        <div ref={scrollRef} className="flex gap-3 md:gap-4 overflow-x-auto scrollbar-hide pb-2 flex-1 min-w-0 -mx-4 px-4 md:mx-0 md:px-0">
+        <div ref={scrollRef} className="flex gap-3 tablet:gap-4 overflow-x-auto scrollbar-hide pb-2 flex-1 min-w-0 -mx-4 px-4 tablet:-mx-4 tablet:px-4 wide:mx-0 wide:px-0">
           {products.map((p, i) => (
             <ProductCard key={i} {...p} />
           ))}
         </div>
       </div>
-      {/* See All button — mobile/tablet only, matches Figma 2032:22864 */}
+      {/* See All button — shown everywhere except wide where promo banner handles it */}
       <Link
         href={seeAllHref}
-        className="xl:hidden mt-4 flex items-center justify-center h-[44px] bg-[#F7F7F7] rounded-[8px] text-[14px] font-semibold text-[#181818] gap-2 hover:bg-[#E7E7E7] transition-colors"
+        className="wide:hidden mt-4 flex items-center justify-center h-[44px] bg-[#F7F7F7] rounded-[8px] text-[14px] font-semibold text-[#181818] gap-2 hover:bg-[#E7E7E7] transition-colors"
       >
         {seeAllLabel}
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -251,10 +265,10 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
 
 function CategoryBanners() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-6 md:mt-[65px] px-4 md:px-0">
-      <div className="flex flex-col xl:flex-row gap-4 xl:gap-[16px]">
+    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 wide:px-0">
+      <div className="flex flex-col desktop:flex-row gap-4 desktop:gap-[16px]">
         {/* Left banner - Recovery */}
-        <div className="flex-1 h-[200px] md:h-[272px] rounded-[16px] overflow-hidden relative group">
+        <div className="flex-1 h-[200px] tablet:h-[240px] desktop:h-[272px] rounded-[16px] overflow-hidden relative group">
           <Link href="/catalog?category=sarms" aria-label="Faster Muscle Recovery" className="absolute inset-0 z-0">
             <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
           </Link>
@@ -273,7 +287,7 @@ function CategoryBanners() {
         </div>
 
         {/* Right banner - Libido */}
-        <div className="flex-1 h-[200px] md:h-[272px] rounded-[16px] overflow-hidden relative group">
+        <div className="flex-1 h-[200px] tablet:h-[240px] desktop:h-[272px] rounded-[16px] overflow-hidden relative group">
           <Link href="/catalog?category=sex-support" aria-label="Stacks For High Libido" className="absolute inset-0 z-0">
             <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
           </Link>
@@ -297,34 +311,34 @@ function CategoryBanners() {
 
 function FatBurningBanner() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-6 md:mt-[65px] px-4 md:px-0">
-      {/* Mobile: products top, text centered below */}
-      <div className="md:hidden relative rounded-[16px] overflow-hidden bg-[#2a2a2a]">
+    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 wide:px-0">
+      {/* Mobile + Tablet (≤960): products top, text centered below */}
+      <div className="desktop:hidden relative rounded-[16px] overflow-hidden bg-[#2a2a2a]">
         <Link href="/catalog?category=fat-burn" aria-label="Fat Burning Stack" className="absolute inset-0 z-0">
           <Image src="/images/shop/banner-dark-1.png" alt="" fill className="object-cover" />
         </Link>
         <div className="relative z-10 pt-6 pb-8 px-4 flex flex-col items-center">
-          <div className="w-full h-[180px] relative">
+          <div className="w-full h-[180px] tablet:h-[240px] relative">
             <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-center" />
           </div>
           <div className="flex items-baseline gap-2 mt-4">
-            <h2 className="text-[24px] font-black italic text-[#FF6701] uppercase leading-[28px]">Fat Burning</h2>
-            <h2 className="text-[24px] font-black text-white uppercase leading-[28px]">Stack</h2>
+            <h2 className="text-[24px] tablet:text-[32px] font-black italic text-[#FF6701] uppercase leading-[28px] tablet:leading-[36px]">Fat Burning</h2>
+            <h2 className="text-[24px] tablet:text-[32px] font-black text-white uppercase leading-[28px] tablet:leading-[36px]">Stack</h2>
           </div>
-          <p className="text-[13px] text-white/70 leading-5 text-center mt-2 max-w-[280px]">
+          <p className="text-[13px] tablet:text-[14px] text-white/70 leading-5 text-center mt-2 max-w-[280px] tablet:max-w-[420px]">
             This combination of powerful fat burners works synergistically.
           </p>
           <Link
             href="/catalog?category=fat-burn"
-            className="mt-4 h-[40px] px-6 rounded-[8px] bg-white text-[#181818] text-[13px] font-semibold flex items-center"
+            className="mt-4 h-[40px] tablet:h-[44px] px-6 tablet:px-8 rounded-[8px] bg-white text-[#181818] text-[13px] tablet:text-[14px] font-semibold flex items-center"
           >
             See More
           </Link>
         </div>
       </div>
 
-      {/* Desktop */}
-      <div className="hidden md:block relative h-[400px] rounded-[16px] overflow-hidden">
+      {/* Desktop (≥961) */}
+      <div className="hidden desktop:block relative h-[400px] rounded-[16px] overflow-hidden">
         <Link href="/catalog?category=fat-burn" aria-label="Fat Burning Stack" className="absolute inset-0 z-0">
           <Image src="/images/shop/banner-dark-1.png" alt="" fill className="object-cover" />
         </Link>
@@ -350,22 +364,22 @@ function FatBurningBanner() {
 
 function ProSellersSection() {
   return (
-    <section className="w-full mt-6 md:mt-[65px] relative overflow-hidden">
+    <section className="w-full mt-6 tablet:mt-10 desktop:mt-[65px] relative overflow-hidden">
       <Image src="/images/shop/pro-sellers-bg.png" alt="" fill className="object-cover" />
-      <div className="max-w-[1340px] mx-auto py-8 md:py-[80px] px-4 md:px-0 relative z-10">
+      <div className="max-w-[1340px] mx-auto py-8 tablet:py-12 desktop:py-[80px] px-4 wide:px-0 relative z-10">
         <ScrollAnimation animation="animate-fade-in-up">
-          <div className="text-center mb-8 md:mb-[60px]">
-            <p className="text-[12px] md:text-[14px] text-[#B6B6B6] uppercase tracking-[2px] mb-3 md:mb-4 font-semibold">Built to Scale</p>
-            <h2 className="text-[24px] md:text-[36px] font-extrabold text-white leading-[30px] md:leading-[44px]">Built for Professional Sellers</h2>
-            <p className="text-[13px] md:text-[14px] text-[#7E7E7E] mt-3 md:mt-4 leading-5">We support partners who need reliable supply, stable margins, and fast operations.</p>
+          <div className="text-center mb-8 tablet:mb-10 desktop:mb-[60px]">
+            <p className="text-[12px] tablet:text-[14px] text-[#B6B6B6] uppercase tracking-[2px] mb-3 tablet:mb-4 font-semibold">Built to Scale</p>
+            <h2 className="text-[24px] tablet:text-[30px] desktop:text-[36px] font-extrabold text-white leading-[30px] tablet:leading-[38px] desktop:leading-[44px]">Built for Professional Sellers</h2>
+            <p className="text-[13px] tablet:text-[14px] text-[#7E7E7E] mt-3 tablet:mt-4 leading-5">We support partners who need reliable supply, stable margins, and fast operations.</p>
           </div>
         </ScrollAnimation>
 
-        <div className="flex flex-col md:flex-row gap-3 md:gap-[16px]">
+        <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-3 tablet:gap-4 desktop:gap-[16px]">
           {proSellerCards.map((card, i) => (
-            <ScrollAnimation key={i} animation="animate-fade-in-up" className="flex-1" delay={i * 100}>
-              <div className="bg-[#212121] border border-white/[0.08] rounded-[12px] p-4 md:p-[25px] flex md:flex-col items-center gap-4 md:gap-6 h-full text-left md:text-center">
-                <div className={`shrink-0 flex items-center justify-center ${card.icon.endsWith("pro-delivery.png") ? "w-[64px] md:w-[120px] h-[48px] md:h-[80px]" : "w-[56px] md:w-[80px] h-[56px] md:h-[80px]"}`}>
+            <ScrollAnimation key={i} animation="animate-fade-in-up" delay={i * 100}>
+              <div className="bg-[#212121] border border-white/[0.08] rounded-[12px] p-4 tablet:p-5 desktop:p-[25px] flex tablet:flex-col items-center gap-4 tablet:gap-6 h-full text-left tablet:text-center">
+                <div className={`shrink-0 flex items-center justify-center ${card.icon.endsWith("pro-delivery.png") ? "w-[64px] tablet:w-[96px] desktop:w-[120px] h-[48px] tablet:h-[72px] desktop:h-[80px]" : "w-[56px] tablet:w-[64px] desktop:w-[80px] h-[56px] tablet:h-[64px] desktop:h-[80px]"}`}>
                   <Image
                     src={card.icon}
                     alt={card.title}
@@ -374,10 +388,10 @@ function ProSellersSection() {
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <div className="flex flex-col gap-1 md:gap-6 flex-1 md:flex-initial">
-                  <h3 className="text-[15px] md:text-[18px] font-extrabold text-white leading-[22px] md:leading-[24px] capitalize">{card.title}</h3>
-                  <p className="text-[13px] md:text-[14px] text-[#B6B6B6] leading-5">{card.desc}</p>
-                  <Link href="#" className="text-[13px] md:text-[14px] font-semibold text-[#FF6701] hover:underline mt-1 md:mt-auto leading-5 flex items-center gap-1">
+                <div className="flex flex-col gap-1 tablet:gap-4 desktop:gap-6 flex-1 tablet:flex-initial">
+                  <h3 className="text-[15px] tablet:text-[16px] desktop:text-[18px] font-extrabold text-white leading-[22px] desktop:leading-[24px] capitalize">{card.title}</h3>
+                  <p className="text-[13px] tablet:text-[14px] text-[#B6B6B6] leading-5">{card.desc}</p>
+                  <Link href="#" className="text-[13px] tablet:text-[14px] font-semibold text-[#FF6701] hover:underline mt-1 tablet:mt-auto leading-5 flex items-center gap-1 tablet:justify-center">
                     {card.link}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </Link>
@@ -406,15 +420,15 @@ function BlogSection() {
   }, [featuredSlides.length]);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-6 md:mt-[65px] px-4 md:px-0">
+    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 wide:px-0">
       <ScrollAnimation animation="animate-fade-in-up">
-        <div className="flex items-center justify-between mb-4 md:mb-6">
-          <h2 className="text-[18px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px]">Our Blogpost</h2>
+        <div className="flex items-center justify-between mb-4 tablet:mb-5 desktop:mb-6">
+          <h2 className="text-[18px] tablet:text-[22px] desktop:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[28px] desktop:leading-[30px]">Our Blogpost</h2>
         </div>
       </ScrollAnimation>
-      <div className="flex flex-col xl:flex-row gap-4 xl:gap-6">
+      <div className="flex flex-col desktop:flex-row gap-4 desktop:gap-6">
         {/* Featured slider */}
-        <div className="flex-1 relative h-[360px] md:h-[534px] rounded-[16px] overflow-hidden">
+        <div className="flex-1 relative h-[360px] tablet:h-[440px] desktop:h-[534px] rounded-[16px] overflow-hidden">
           {featuredSlides.map((slide, i) => (
             <Image
               key={slide.slug}
@@ -433,15 +447,15 @@ function BlogSection() {
             <span className="text-[12px] font-semibold text-black leading-4 mt-0.5">{currentSlide.date.split(" ")[1]}</span>
           </div>
           {/* Bottom gradient overlay with content */}
-          <div className="absolute bottom-0 left-0 right-0 pt-[100px] pb-8 px-8 z-10 bg-gradient-to-b from-transparent to-[#232323] pointer-events-none">
-            <div className="flex flex-col gap-4">
+          <div className="absolute bottom-0 left-0 right-0 pt-[60px] tablet:pt-[80px] desktop:pt-[100px] pb-5 tablet:pb-6 desktop:pb-8 px-4 tablet:px-6 desktop:px-8 z-10 bg-gradient-to-b from-transparent to-[#232323] pointer-events-none">
+            <div className="flex flex-col gap-3 tablet:gap-4">
               {currentSlide.tags && (
                 <div className="flex flex-wrap gap-2 pointer-events-auto">
                   {currentSlide.tags.map((tag) => (
                     <Link
                       key={tag}
                       href={`/blog?category=${tag.toLowerCase()}`}
-                      className="backdrop-blur-[50px] bg-white/10 border border-white/20 rounded-[8px] px-3 py-1.5 text-[14px] text-white leading-5 hover:bg-white/20 hover:border-white/40 transition-colors"
+                      className="backdrop-blur-[50px] bg-white/10 border border-white/20 rounded-[8px] px-2.5 tablet:px-3 py-1 tablet:py-1.5 text-[12px] tablet:text-[14px] text-white leading-5 hover:bg-white/20 hover:border-white/40 transition-colors"
                     >
                       {tag}
                     </Link>
@@ -449,17 +463,17 @@ function BlogSection() {
                 </div>
               )}
               <Link href={`/blog/${currentSlide.slug}`} className="pointer-events-auto relative z-10">
-                <h3 className="text-[18px] md:text-[28px] font-extrabold text-white leading-[24px] md:leading-[34px]">{currentSlide.title}</h3>
+                <h3 className="text-[18px] tablet:text-[22px] desktop:text-[28px] font-extrabold text-white leading-[24px] tablet:leading-[28px] desktop:leading-[34px] line-clamp-3">{currentSlide.title}</h3>
               </Link>
-              <div className="flex items-center justify-between">
-                <div className="flex gap-4 items-center">
-                  <div className="flex gap-2 items-center">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="opacity-50"><circle cx="12" cy="12" r="9" stroke="white" strokeWidth="1.5"/><path d="M12 7v5l3 2" stroke="white" strokeWidth="1.5" strokeLinecap="round"/></svg>
-                    <span className="text-[16px] text-white leading-6">{currentSlide.readTime}</span>
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex gap-3 tablet:gap-4 items-center">
+                  <div className="flex gap-1.5 tablet:gap-2 items-center">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="opacity-50"><circle cx="12" cy="12" r="9" stroke="white" strokeWidth="1.5"/><path d="M12 7v5l3 2" stroke="white" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                    <span className="text-[13px] tablet:text-[14px] desktop:text-[16px] text-white leading-5 desktop:leading-6">{currentSlide.readTime}</span>
                   </div>
-                  <div className="flex gap-2 items-center">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="opacity-50"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="white" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="white" strokeWidth="1.5"/></svg>
-                    <span className="text-[16px] text-white leading-6">{currentSlide.views}</span>
+                  <div className="flex gap-1.5 tablet:gap-2 items-center">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="opacity-50"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="white" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="white" strokeWidth="1.5"/></svg>
+                    <span className="text-[13px] tablet:text-[14px] desktop:text-[16px] text-white leading-5 desktop:leading-6">{currentSlide.views}</span>
                   </div>
                 </div>
                 {/* Prev / Next arrow buttons */}
@@ -467,16 +481,16 @@ function BlogSection() {
                   <button
                     onClick={() => setSlideIndex((i) => (i - 1 + featuredSlides.length) % featuredSlides.length)}
                     aria-label="Previous slide"
-                    className="cursor-pointer w-12 h-12 rounded-[8px] bg-black border border-[#5C5C5C] flex items-center justify-center hover:bg-[#181818] transition-colors"
+                    className="cursor-pointer w-10 h-10 tablet:w-11 tablet:h-11 desktop:w-12 desktop:h-12 rounded-[8px] bg-black border border-[#5C5C5C] flex items-center justify-center hover:bg-[#181818] transition-colors"
                   >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </button>
                   <button
                     onClick={() => setSlideIndex((i) => (i + 1) % featuredSlides.length)}
                     aria-label="Next slide"
-                    className="cursor-pointer w-12 h-12 rounded-[8px] bg-black border border-[#5C5C5C] flex items-center justify-center hover:bg-[#181818] transition-colors"
+                    className="cursor-pointer w-10 h-10 tablet:w-11 tablet:h-11 desktop:w-12 desktop:h-12 rounded-[8px] bg-black border border-[#5C5C5C] flex items-center justify-center hover:bg-[#181818] transition-colors"
                   >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </button>
                 </div>
               </div>
@@ -485,7 +499,7 @@ function BlogSection() {
         </div>
 
         {/* Side posts */}
-        <div className="w-full xl:w-[440px] flex flex-col">
+        <div className="w-full desktop:w-[440px] flex flex-col">
           {blogPosts.slice(1).map((post, i) => (
             <Link key={i} href={`/blog/${post.slug}`} className="flex gap-4 py-4 border-b border-[#E7E7E7] last:border-b-0 cursor-pointer group">
               <div className="w-[100px] h-[80px] bg-[#F7F7F7] rounded-lg shrink-0 relative overflow-hidden">
@@ -513,32 +527,32 @@ function BlogSection() {
 
 function WholesaleBanner() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-6 md:mt-[65px] px-4 md:px-0">
-      {/* Mobile: bars on top, text centered below */}
-      <div className="md:hidden relative rounded-[16px] overflow-hidden">
+    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 wide:px-0">
+      {/* Mobile + Tablet (≤960): bars on top, text centered below */}
+      <div className="desktop:hidden relative rounded-[16px] overflow-hidden">
         <Image src="/images/shop/banner-dark-2.png" alt="" fill className="object-cover" />
         <div className="relative z-10 pt-6 pb-8 px-4 flex flex-col items-center">
-          <div className="w-full h-[180px] relative">
+          <div className="w-full h-[180px] tablet:h-[240px] relative">
             <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" fill className="object-contain" />
           </div>
           <div className="text-center mt-4 px-2">
-            <span className="text-[22px] font-black italic text-[#FF6701] uppercase leading-[26px]">Save Up To 70%</span>
-            <span className="text-[22px] font-extrabold text-white uppercase leading-[26px]"> With Wholesale Pricing</span>
+            <span className="text-[22px] tablet:text-[30px] font-black italic text-[#FF6701] uppercase leading-[26px] tablet:leading-[34px]">Save Up To 70%</span>
+            <span className="text-[22px] tablet:text-[30px] font-extrabold text-white uppercase leading-[26px] tablet:leading-[34px]"> With Wholesale Pricing</span>
           </div>
-          <p className="text-[13px] text-white/70 text-center mt-2">Become a Wholesale Partner in Europe</p>
+          <p className="text-[13px] tablet:text-[14px] text-white/70 text-center mt-2">Become a Wholesale Partner in Europe</p>
           <a
             href="https://dinespower.to/partners-landing/"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 h-[40px] px-6 rounded-[8px] bg-white text-[#181818] text-[13px] font-semibold flex items-center"
+            className="mt-4 h-[40px] tablet:h-[44px] px-6 tablet:px-8 rounded-[8px] bg-white text-[#181818] text-[13px] tablet:text-[14px] font-semibold flex items-center"
           >
             Start as a Partner
           </a>
         </div>
       </div>
 
-      {/* Desktop */}
-      <div className="hidden md:block relative h-[400px] rounded-[16px] overflow-hidden">
+      {/* Desktop (≥961) */}
+      <div className="hidden desktop:block relative h-[400px] rounded-[16px] overflow-hidden">
         <Image src="/images/shop/banner-dark-2.png" alt="" fill className="object-cover" />
         <div className="absolute left-[100px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-5 w-[480px]">
           <div>
@@ -562,10 +576,10 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(2);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-6 md:mt-[65px] px-4 md:px-0">
-      <div className="flex flex-col-reverse xl:flex-row gap-6 xl:gap-[80px]">
+    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 wide:px-0">
+      <div className="flex flex-col-reverse desktop:flex-row gap-6 desktop:gap-[60px] wide:gap-[80px]">
         {/* Left column - Still Have Questions Card */}
-        <div className="w-full xl:w-[440px] shrink-0">
+        <div className="w-full desktop:w-[440px] desktop:shrink-0">
           <div className="bg-[#F7F7F7] rounded-[12px] p-4">
             <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
               <Image src="/images/shop/faq-help-icon.png" alt="Help" width={80} height={80} className="object-contain" />
@@ -590,25 +604,25 @@ function FAQSection() {
         </div>
 
         {/* Right column - FAQ accordion */}
-        <div className="w-full xl:w-[820px]">
-          <h2 className="text-[20px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px] mb-4 md:mb-6">Frequently Asked Questions</h2>
+        <div className="w-full desktop:flex-1">
+          <h2 className="text-[20px] tablet:text-[22px] desktop:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[28px] desktop:leading-[30px] mb-4 tablet:mb-5 desktop:mb-6">Frequently Asked Questions</h2>
           <div className="flex flex-col">
             {faqItems.map((q, i) => (
               <div key={i} className="border-b border-[#E7E7E7]">
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  className="w-full flex items-center justify-between py-5 cursor-pointer"
+                  className="w-full flex items-start justify-between gap-3 py-4 tablet:py-5 cursor-pointer text-left"
                 >
-                  <div className="flex items-center gap-3">
-                    <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
-                    <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{q}</span>
+                  <div className="flex items-start gap-3 flex-1 min-w-0">
+                    <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0 mt-0.5" />
+                    <span className="text-[14px] tablet:text-[16px] font-semibold text-[#181818] text-left leading-5 tablet:leading-6">{q}</span>
                   </div>
-                  <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openIndex === i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>
+                  <div className={`w-[36px] h-[36px] tablet:w-[40px] tablet:h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openIndex === i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>
                     <span className="text-[20px] leading-none">{openIndex === i ? '−' : '+'}</span>
                   </div>
                 </button>
                 {openIndex === i && (
-                  <div className="pb-5 pl-[36px] pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
+                  <div className="pb-4 tablet:pb-5 pl-[36px] pr-2 tablet:pr-[56px] text-[13px] tablet:text-[14px] text-[#7E7E7E] leading-[20px] tablet:leading-[22px]">
                     These boots provide good water resistance for light rain, wet grass, and damp trails, helping keep your feet dry in everyday hiking conditions. However, they are not fully waterproof and do not include a waterproof membrane like GORE-TEX. They are best suited for dry to moderately wet environments. For heavy rain or very wet terrain, a fully waterproof model would be a better choice.
                   </div>
                 )}
@@ -628,8 +642,8 @@ function FAQSection() {
 function SEOSection() {
   const [expanded, setExpanded] = useState(false);
   return (
-    <section className="max-w-[1340px] mx-auto mt-6 md:mt-[65px] mb-8 md:mb-[65px] px-4 md:px-0">
-      <h2 className="text-[20px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px] mb-4">
+    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] mb-8 tablet:mb-10 desktop:mb-[65px] px-4 wide:px-0">
+      <h2 className="text-[20px] tablet:text-[22px] desktop:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[28px] desktop:leading-[30px] mb-4">
         Dinespower is the best distributor of bodybuilding preparations in Europe
       </h2>
       <div className={`text-sm text-[#7E7E7E] leading-6 space-y-3 ${expanded ? '' : 'max-h-[120px] overflow-hidden relative'}`}>
@@ -658,13 +672,13 @@ export default function Home() {
       <main className="min-h-screen relative z-10 bg-white">
         <HeroBanner />
         <CategoriesRow />
-        <ProductSection title="Popular products" products={popularProducts} className="mt-[64px]" />
+        <ProductSection title="Popular products" products={popularProducts} className="mt-8 tablet:mt-10 desktop:mt-[64px]" />
         <CategoryBanners />
-        <ProductSection title="TOP Oral" products={topOralProducts} className="mt-[65px]" promoCategoryName="Orals" />
+        <ProductSection title="TOP Oral" products={topOralProducts} className="mt-6 tablet:mt-10 desktop:mt-[65px]" promoCategoryName="Orals" />
         <FatBurningBanner />
-        <ProductSection title="TOP Injectable" products={topInjectableProducts} className="mt-[65px]" promoCategoryName="Injectables" />
+        <ProductSection title="TOP Injectable" products={topInjectableProducts} className="mt-6 tablet:mt-10 desktop:mt-[65px]" promoCategoryName="Injectables" />
         <ProSellersSection />
-        <ProductSection title="TOP Stacks" products={topStackProducts} className="mt-[65px]" promoCategoryName="Stacks" />
+        <ProductSection title="TOP Stacks" products={topStackProducts} className="mt-6 tablet:mt-10 desktop:mt-[65px]" promoCategoryName="Stacks" />
         <BlogSection />
         <WholesaleBanner />
         <FAQSection />

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const orderItems = [
   { brand: "Deus Medical", name: "3-Trenbomed 150 Injectable Steroid In Ampoules", price: 57, oldPrice: 65, qty: 2, image: "/images/shop/products/injectable-trenbomed-150.jpg" },
@@ -18,6 +19,7 @@ const suggestedProducts = [
 const inputClass = "w-full h-[53px] bg-white border border-[#E7E7E7] rounded-[8px] px-4 text-[14px] text-[#181818] placeholder:text-[#8A8A8A] outline-none focus:border-[#181818] transition-colors";
 
 export default function CheckoutPage() {
+  const router = useRouter();
   const [paymentMethod, setPaymentMethod] = useState<"bank" | "bitcoin">("bitcoin");
   const [promo, setPromo] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -69,22 +71,24 @@ export default function CheckoutPage() {
           <div className="w-full lg:w-[820px] shrink-0 flex flex-col gap-6 lg:gap-8 min-w-0">
             {/* Returning customer card */}
             <div className="bg-[#F7F7F7] rounded-[16px] p-2">
-              <div className="flex items-center gap-4 pr-4">
-                <div className="w-[60px] h-[60px] relative flex items-center justify-center">
-                  <div className="w-[55px] h-[55px] bg-white border border-[#E7E7E7] rounded-[8px] flex items-center justify-center">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <circle cx="12" cy="8" r="4" stroke="#181818" strokeWidth="1.5" />
-                      <path d="M4 21c0-4 4-7 8-7s8 3 8 7" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
+              <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4 md:pr-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-[44px] h-[44px] md:w-[60px] md:h-[60px] relative flex items-center justify-center shrink-0">
+                    <div className="w-full h-full md:w-[55px] md:h-[55px] bg-white border border-[#E7E7E7] rounded-[8px] flex items-center justify-center">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="8" r="4" stroke="#181818" strokeWidth="1.5" />
+                        <path d="M4 21c0-4 4-7 8-7s8 3 8 7" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="flex-1 flex flex-col gap-0.5">
+                    <p className="text-[16px] font-semibold text-black leading-6 capitalize">Returning Customer?</p>
+                    <p className="text-[14px] text-[#7E7E7E] leading-5">Sign In to Your Account</p>
                   </div>
                 </div>
-                <div className="flex-1 flex flex-col gap-0.5">
-                  <p className="text-[16px] font-semibold text-black leading-6 capitalize">Returning Customer?</p>
-                  <p className="text-[14px] text-[#7E7E7E] leading-5">Sign In to Your Account</p>
-                </div>
-                <div className="flex gap-2">
-                  <button className="cursor-pointer bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors">Sign In to Your Account</button>
-                  <button className="cursor-pointer bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors">Sign Up</button>
+                <div className="flex gap-2 md:shrink-0">
+                  <button className="cursor-pointer flex-1 md:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors">Sign In<span className="hidden md:inline"> to Your Account</span></button>
+                  <button className="cursor-pointer flex-1 md:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors">Sign Up</button>
                 </div>
               </div>
             </div>
@@ -92,11 +96,11 @@ export default function CheckoutPage() {
             {/* Personal Info */}
             <div className="flex flex-col gap-3">
               <h2 className="text-[18px] font-semibold text-black leading-[26px]">Personal Info</h2>
-              <div className="flex gap-2">
+              <div className="flex flex-col md:flex-row gap-3 md:gap-2">
                 <input type="text" placeholder="First Name *" value={firstName} onChange={(e) => setFirstName(e.target.value)} className={`${inputClass} flex-1 min-w-0`} />
                 <input type="text" placeholder="Last Name *" value={lastName} onChange={(e) => setLastName(e.target.value)} className={`${inputClass} flex-1 min-w-0`} />
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-col md:flex-row gap-3 md:gap-2">
                 <div className="flex-1 min-w-0 flex items-center bg-white border border-[#E0E0E0] rounded-[8px] h-[53px] pl-4 pr-2 gap-3">
                   <div className="flex items-center gap-1.5 shrink-0">
                     <span className="text-[16px]">🇺🇸</span>
@@ -112,7 +116,7 @@ export default function CheckoutPage() {
             {/* Delivery */}
             <div className="flex flex-col gap-3">
               <h2 className="text-[18px] font-semibold text-black leading-[26px]">Delivery</h2>
-              <div className="flex gap-2">
+              <div className="flex flex-col md:flex-row gap-3 md:gap-2">
                 <div className="flex-1 min-w-0 relative">
                   <select
                     value={country}
@@ -150,9 +154,9 @@ export default function CheckoutPage() {
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
               </div>
-              <div className="flex gap-2">
-                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} flex-[50] min-w-0`} />
-                <div className="flex-[29] min-w-0 relative">
+              <div className="flex flex-col md:flex-row gap-3 md:gap-2">
+                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} md:flex-[50] min-w-0`} />
+                <div className="md:flex-[29] min-w-0 relative">
                   <select
                     value={stateRegion}
                     onChange={(e) => setStateRegion(e.target.value)}
@@ -163,7 +167,7 @@ export default function CheckoutPage() {
                   </select>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
-                <input type="text" placeholder="Post Code / ZIP *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} flex-[21] min-w-0`} />
+                <input type="text" placeholder="Post Code / ZIP *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} md:flex-[21] min-w-0`} />
               </div>
             </div>
 
@@ -173,15 +177,15 @@ export default function CheckoutPage() {
               <div className="flex flex-col gap-1.5">
                 <button
                   onClick={() => setPaymentMethod("bank")}
-                  className={`cursor-pointer flex items-center gap-4 pl-4 pr-6 py-2 rounded-[12px] border transition-colors ${
+                  className={`cursor-pointer flex items-center gap-3 md:gap-4 pl-3 pr-4 md:pl-4 md:pr-6 py-2 rounded-[12px] border transition-colors ${
                     paymentMethod === "bank" ? "border-[#FF6701] bg-white" : "border-[#E7E7E7] bg-white hover:border-[#B6B6B6]"
                   }`}
                 >
-                  <div className="w-16 h-16 rounded-[4px] flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-[4px] flex items-center justify-center shrink-0">
                     <Image src="/images/shop/delivery-bank.png" alt="Bank transfer" width={64} height={64} className="object-contain" />
                   </div>
-                  <div className="flex-1 flex flex-col gap-1 text-left">
-                    <p className="text-[16px] font-semibold text-[#181818] leading-6">Bank transfer</p>
+                  <div className="flex-1 min-w-0 flex flex-col gap-1 text-left">
+                    <p className="text-[14px] md:text-[16px] font-semibold text-[#181818] leading-5 md:leading-6">Bank transfer</p>
                     <p className="text-[12px] text-[#4D4D4D] leading-4">Telegraphic Transfer (wire) to company bank account</p>
                   </div>
                   <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ${paymentMethod === "bank" ? "border-[#FF6701]" : "border-[#CBCBCB]"}`}>
@@ -190,18 +194,20 @@ export default function CheckoutPage() {
                 </button>
                 <button
                   onClick={() => setPaymentMethod("bitcoin")}
-                  className={`cursor-pointer flex items-center gap-4 pl-4 pr-6 py-2 rounded-[12px] border transition-colors ${
+                  className={`cursor-pointer flex items-center gap-3 md:gap-4 pl-3 pr-4 md:pl-4 md:pr-6 py-2 rounded-[12px] border transition-colors ${
                     paymentMethod === "bitcoin" ? "border-[#FF6701] bg-white" : "border-[#E7E7E7] bg-white hover:border-[#B6B6B6]"
                   }`}
                 >
-                  <div className="w-16 h-16 rounded-[4px] flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-[4px] flex items-center justify-center shrink-0">
                     <Image src="/images/shop/delivery-bitcoin.png" alt="Bitcoin" width={64} height={64} className="object-contain" />
                   </div>
-                  <div className="flex-1 flex flex-col gap-1 text-left">
-                    <p className="text-[16px] font-semibold text-[#181818] leading-6">Bitcoin</p>
+                  <div className="flex-1 min-w-0 flex flex-col gap-1 text-left">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-[14px] md:text-[16px] font-semibold text-[#181818] leading-5 md:leading-6">Bitcoin</p>
+                      <span className="bg-[#FF6701]/10 text-[#FF6701] text-[11px] md:text-[14px] font-semibold px-2 md:px-4 py-0.5 md:py-1 rounded-full">Recommended</span>
+                    </div>
                     <p className="text-[12px] text-[#4D4D4D] leading-4">The preferred and most reliable payment method</p>
                   </div>
-                  <span className="bg-[#FF6701]/10 text-[#FF6701] text-[14px] font-semibold px-4 py-1 rounded-full">Recommended</span>
                   <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ${paymentMethod === "bitcoin" ? "border-[#FF6701]" : "border-[#CBCBCB]"}`}>
                     {paymentMethod === "bitcoin" && <div className="w-3 h-3 rounded-full bg-[#FF6701]" />}
                   </div>
@@ -358,6 +364,7 @@ export default function CheckoutPage() {
                   </div>
                   <button
                     disabled={!formValid}
+                    onClick={() => formValid && router.push(`/checkout/confirmation?method=${paymentMethod}`)}
                     className={`h-12 px-8 rounded-[8px] text-[16px] font-semibold text-center capitalize transition-colors ${
                       formValid ? "cursor-pointer bg-[#FF6701] hover:bg-[#E65D00] text-white" : "bg-[#E7E7E7] text-[#7E7E7E] cursor-not-allowed"
                     }`}
@@ -373,12 +380,12 @@ export default function CheckoutPage() {
       </div>
 
       {/* Minimal footer */}
-      <div className="bg-[#181818] h-[68px] shrink-0">
-        <div className="max-w-[1340px] mx-auto h-full flex items-center justify-between px-[185px]">
-          <p className="text-[14px] text-[#7E7E7E]">© 2026 DINESPOWER.TO is the best place to buy steroids online.</p>
+      <div className="bg-[#181818] shrink-0 py-5 md:py-0 md:h-[68px]">
+        <div className="max-w-[1340px] mx-auto h-full flex flex-col md:flex-row items-center md:justify-between gap-3 md:gap-0 px-4 md:px-[185px]">
+          <p className="text-[12px] md:text-[14px] text-[#7E7E7E] text-center md:text-left">© 2026 DINESPOWER.TO is the best place to buy steroids online.</p>
           <div className="flex gap-4">
-            <Link href="/terms" className="text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Terms &amp; Conditions</Link>
-            <Link href="/privacy" className="text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-[12px] md:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Terms &amp; Conditions</Link>
+            <Link href="/privacy" className="text-[12px] md:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>

@@ -117,7 +117,7 @@ export default function AddressPage() {
           </div>
         </div>
 
-        <div className="col-span-2 max-w-[50%]">
+        <div className="md:col-span-2 md:max-w-[50%]">
           <p className={labelClass}>Email address</p>
           <input
             type="email"

@@ -141,7 +141,7 @@ export default function BlogArticlePage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto py-4">
+        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 py-4">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">
               Home
@@ -161,11 +161,11 @@ export default function BlogArticlePage() {
         </div>
 
         {/* Title + Meta + Tags (NOT on hero image) */}
-        <div className="max-w-[1340px] mx-auto">
-          <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-4">
+        <div className="max-w-[1340px] mx-auto px-4 lg:px-0">
+          <h1 className="text-[20px] md:text-[28px] font-extrabold text-[#181818] leading-[26px] md:leading-[34px] mb-4">
             {articleData.title}
           </h1>
-          <div className="flex items-center gap-4 mb-4 text-sm text-[#7E7E7E]">
+          <div className="flex items-center gap-3 md:gap-4 mb-4 text-[12px] md:text-sm text-[#7E7E7E] flex-wrap">
             <span className="flex items-center gap-1.5">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M16 2V6M8 2V6M3 10H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
               {articleData.date}
@@ -193,13 +193,13 @@ export default function BlogArticlePage() {
         </div>
 
         {/* Article content */}
-        <div className="max-w-[1340px] mx-auto pb-10">
-          <div className="flex gap-[80px]">
+        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 pb-10">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-[80px]">
             {/* Main content - LEFT COLUMN */}
             <div className="flex-1 min-w-0 max-w-[820px]">
               <article>
                 {/* Hero image - separate, not overlay */}
-                <div className="relative h-[480px] rounded-[16px] overflow-hidden mb-8">
+                <div className="relative h-[240px] md:h-[480px] rounded-[16px] overflow-hidden mb-6 md:mb-8">
                   <Image src="/images/shop/blog-1.png" alt={articleData.title} fill className="object-cover" />
                 </div>
 
@@ -259,30 +259,32 @@ export default function BlogArticlePage() {
                   <div className="absolute top-[10px] left-0 z-10 pt-2">
                     <span className="inline-flex items-center bg-[#FB2F2F] rounded-tr-[6px] rounded-br-[6px] px-3 py-1 text-[12px] font-semibold text-white leading-4">Sale -14%</span>
                   </div>
-                  <div className="relative z-10 flex gap-4 items-center">
-                    <div className="w-[120px] h-[120px] shrink-0 relative">
-                      <Image src="/images/shop/eca-xtreme.png" alt="ECA Xtreme Fat Burner" fill className="object-contain" />
-                    </div>
-                    <div className="flex-1 flex flex-col gap-1 min-w-0">
-                      <p className="text-[14px] text-[#B6B6B6] leading-5">Biaxol</p>
-                      <p className="text-[18px] font-semibold text-white leading-[26px]">Yohimbine Fat Burner Capsules</p>
-                      <div className="flex gap-3 items-center">
-                        <div className="flex items-center">
-                          {[...Array(5)].map((_, i) => (
-                            <svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="#FF6701">
-                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                          ))}
+                  <div className="relative z-10 flex flex-col md:flex-row gap-4 md:items-center">
+                    <div className="flex gap-3 md:gap-4 items-center">
+                      <div className="w-[90px] h-[90px] md:w-[120px] md:h-[120px] shrink-0 relative">
+                        <Image src="/images/shop/eca-xtreme.png" alt="ECA Xtreme Fat Burner" fill className="object-contain" />
+                      </div>
+                      <div className="flex-1 flex flex-col gap-1 min-w-0">
+                        <p className="text-[13px] md:text-[14px] text-[#B6B6B6] leading-5">Biaxol</p>
+                        <p className="text-[16px] md:text-[18px] font-semibold text-white leading-[20px] md:leading-[26px]">Yohimbine Fat Burner Capsules</p>
+                        <div className="flex gap-2 md:gap-3 items-center flex-wrap">
+                          <div className="flex items-center">
+                            {[...Array(5)].map((_, i) => (
+                              <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="#FF6701">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                              </svg>
+                            ))}
+                          </div>
+                          <p className="text-[13px] md:text-[14px] text-white/70 leading-5">(325 Reviews)</p>
                         </div>
-                        <p className="text-[14px] text-white/70 leading-5">(325 Reviews)</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-4 shrink-0">
+                    <div className="flex items-center gap-3 md:gap-4 md:shrink-0 justify-between md:justify-start">
                       <div className="flex gap-2 items-center">
-                        <span className="text-[20px] font-extrabold text-[#FB2F2F] leading-6">24 €</span>
-                        <span className="text-[16px] text-[#7E7E7E] line-through">30 €</span>
+                        <span className="text-[18px] md:text-[20px] font-extrabold text-[#FB2F2F] leading-6">24 €</span>
+                        <span className="text-[14px] md:text-[16px] text-[#7E7E7E] line-through">30 €</span>
                       </div>
-                      <span className="inline-flex items-center justify-center bg-[#FF6701] group-hover:bg-[#E65D00] rounded-[8px] px-5 py-3 text-[14px] font-semibold text-white transition-colors">
+                      <span className="inline-flex items-center justify-center bg-[#FF6701] group-hover:bg-[#E65D00] rounded-[8px] px-4 md:px-5 py-2.5 md:py-3 text-[13px] md:text-[14px] font-semibold text-white transition-colors">
                         Learn More
                       </span>
                     </div>
@@ -353,20 +355,22 @@ export default function BlogArticlePage() {
                 {/* Read Also Card — dark Figma style */}
                 <Link
                   href="/blog/growth-hormone-secretagogues"
-                  className="relative block bg-[#181818] rounded-[16px] p-6 my-8 overflow-hidden group"
+                  className="relative block bg-[#181818] rounded-[16px] p-4 md:p-6 my-8 overflow-hidden group"
                 >
                   <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
-                  <div className="relative z-10 flex items-center gap-5">
-                    <div className="w-[120px] h-[80px] rounded-[8px] overflow-hidden shrink-0 relative">
-                      <Image src="/images/shop/blog-4.png" alt="Read Also" fill className="object-cover" />
+                  <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-4 md:gap-5">
+                    <div className="flex gap-3 md:gap-5 items-center">
+                      <div className="w-[90px] h-[60px] md:w-[120px] md:h-[80px] rounded-[8px] overflow-hidden shrink-0 relative">
+                        <Image src="/images/shop/blog-4.png" alt="Read Also" fill className="object-cover" />
+                      </div>
+                      <div className="flex-1 flex flex-col gap-1 min-w-0">
+                        <p className="text-[12px] md:text-[14px] text-white/60 leading-4 md:leading-5">Read Also:</p>
+                        <p className="text-[14px] md:text-[18px] font-extrabold text-white leading-[18px] md:leading-[24px] line-clamp-2">
+                          How Growth Hormone Secretagogues Work: CJC-1295, Ipamorelin, GHRP-2 and GHRP-6
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1 flex flex-col gap-1 min-w-0">
-                      <p className="text-[14px] text-white/60 leading-5">Read Also:</p>
-                      <p className="text-[18px] font-extrabold text-white leading-[24px]">
-                        How Growth Hormone Secretagogues Work: CJC-1295, Ipamorelin, GHRP-2 and GHRP-6
-                      </p>
-                    </div>
-                    <span className="inline-flex items-center justify-center shrink-0 h-11 px-6 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black group-hover:bg-[#E7E7E7] group-hover:border-transparent transition-colors">
+                    <span className="inline-flex items-center justify-center md:shrink-0 h-11 px-6 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black group-hover:bg-[#E7E7E7] group-hover:border-transparent transition-colors">
                       Read More
                     </span>
                   </div>
@@ -518,20 +522,20 @@ export default function BlogArticlePage() {
                 </div>
 
                 {/* Banner — WEEKLY BESTSELLER Figma 1513:15754 */}
-                <div className="relative w-full h-[260px] rounded-[16px] overflow-hidden my-10 bg-[#181818]">
+                <div className="relative w-full h-auto md:h-[260px] rounded-[16px] overflow-hidden my-8 md:my-10 bg-[#181818]">
                   <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
-                  {/* Left: text block — 340px wide at left 40 */}
-                  <div className="absolute left-10 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3 w-[340px]">
-                    <p className="text-[18px] font-semibold text-[#FF6701] leading-[26px] uppercase">Weekly bestseller</p>
-                    <h3 className="text-[28px] font-black italic text-white leading-[34px]">Lean Muscle Growth</h3>
-                    <p className="text-[16px] text-[#F7F7F7] leading-6">Non-steroidal selective androgen receptor modulator</p>
+                  {/* Right image — absolute on desktop, top-full on mobile */}
+                  <div className="relative md:absolute md:right-0 md:top-0 md:h-[260px] md:w-[400px] h-[160px] w-full z-0 pointer-events-none">
+                    <Image src="/images/shop/banner-bottle-badges.png" alt="Andarine S4 with quality badges" fill className="object-cover object-right md:object-cover" />
+                  </div>
+                  {/* Left: text block */}
+                  <div className="relative md:absolute md:left-10 md:top-1/2 md:-translate-y-1/2 z-10 flex flex-col gap-2 md:gap-3 md:w-[340px] p-5 md:p-0">
+                    <p className="text-[14px] md:text-[18px] font-semibold text-[#FF6701] leading-[20px] md:leading-[26px] uppercase">Weekly bestseller</p>
+                    <h3 className="text-[22px] md:text-[28px] font-black italic text-white leading-[28px] md:leading-[34px]">Lean Muscle Growth</h3>
+                    <p className="text-[13px] md:text-[16px] text-[#F7F7F7] leading-5 md:leading-6">Non-steroidal selective androgen receptor modulator</p>
                     <Link
                       href="/shop"
                       className="cursor-pointer inline-flex items-center justify-center h-11 px-8 bg-white border border-[#E7E7E7] rounded-[8px] text-[14px] font-semibold text-black self-start hover:border-[#181818] transition-colors mt-1">Shop Now</Link>
-                  </div>
-                  {/* Right: Andarine S4 bottle + 3 quality badges — Figma composite asset */}
-                  <div className="absolute right-0 top-0 h-[260px] w-[400px] z-0 pointer-events-none">
-                    <Image src="/images/shop/banner-bottle-badges.png" alt="Andarine S4 with quality badges" fill className="object-cover" />
                   </div>
                 </div>
 
@@ -580,7 +584,7 @@ export default function BlogArticlePage() {
                 {/* Share buttons — pill style with colored icon circles */}
                 <div className="mt-8 pt-8 border-t border-[#E7E7E7]">
                   <p className="text-[14px] text-[#7E7E7E] mb-3">Share:</p>
-                  <div className="grid grid-cols-4 gap-3">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     <button
                       type="button"
                       onClick={() => handleShare("facebook")}
@@ -637,69 +641,73 @@ export default function BlogArticlePage() {
               {/* You might also like — Figma Option 3 */}
               <div className="mt-12 bg-[#F7F7F7] rounded-[16px] p-2 flex flex-col gap-2">
                 {recommendedProducts.map((product) => (
-                  <div key={product.id} className="bg-white border border-[#E7E7E7] rounded-[16px] px-4 flex items-center gap-4">
-                    <Link href={`/shop/${product.slug}`} className="w-[120px] h-[120px] shrink-0 relative">
+                  <div key={product.id} className="bg-white border border-[#E7E7E7] rounded-[16px] px-3 md:px-4 py-2 md:py-0 flex items-center gap-3 md:gap-4">
+                    <Link href={`/shop/${product.slug}`} className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] shrink-0 relative">
                       <Image
                         src={product.image}
                         alt={product.title}
                         fill
                         className="object-contain"
-                       
+
                       />
                     </Link>
-                    <Link href={`/shop/${product.slug}`} className="flex-1 min-w-0 group flex flex-col gap-1.5">
-                      <p className="text-[12px] text-[#7E7E7E] leading-4">{product.brand}</p>
-                      <p className="text-[16px] font-semibold text-[#181818] leading-6 capitalize line-clamp-2 group-hover:text-[#FF6701] transition-colors">
-                        {product.title}
-                      </p>
-                    </Link>
-                    <div className="flex items-center justify-center py-2 w-[140px] bg-[#F7F7F7] rounded-[8px] shrink-0">
-                      <span className="text-[14px] font-semibold text-[#181818] leading-5">{product.price}€</span>
+                    <div className="flex-1 min-w-0 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+                      <Link href={`/shop/${product.slug}`} className="flex-1 min-w-0 group flex flex-col gap-1 md:gap-1.5">
+                        <p className="text-[12px] text-[#7E7E7E] leading-4">{product.brand}</p>
+                        <p className="text-[14px] md:text-[16px] font-semibold text-[#181818] leading-5 md:leading-6 capitalize line-clamp-2 group-hover:text-[#FF6701] transition-colors">
+                          {product.title}
+                        </p>
+                      </Link>
+                      <div className="flex items-center gap-2 md:gap-4 shrink-0">
+                        <div className="flex items-center justify-center h-9 md:py-2 w-[70px] md:w-[140px] bg-[#F7F7F7] rounded-[8px]">
+                          <span className="text-[14px] font-semibold text-[#181818] leading-5">{product.price}€</span>
+                        </div>
+                        <button className="group cursor-pointer relative h-9 w-[44px] md:w-[140px] bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center shrink-0 overflow-hidden transition-colors">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="md:transition-all md:duration-300 md:ease-out md:group-hover:translate-y-[150%] md:group-hover:opacity-0">
+                            <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                          <span className="hidden md:inline absolute text-[14px] font-semibold text-white whitespace-nowrap transition-all duration-300 ease-out -translate-y-[150%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+                            Add to cart
+                          </span>
+                        </button>
+                      </div>
                     </div>
-                    <button className="group cursor-pointer relative h-9 w-[140px] bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center shrink-0 overflow-hidden transition-colors">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transition-all duration-300 ease-out group-hover:translate-y-[150%] group-hover:opacity-0">
-                        <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                      <span className="absolute text-[14px] font-semibold text-white whitespace-nowrap transition-all duration-300 ease-out -translate-y-[150%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-                        Add to cart
-                      </span>
-                    </button>
                   </div>
                 ))}
               </div>
 
               {/* Still Have Questions — Figma 1504:14818 */}
               <div className="mt-12 bg-[#F7F7F7] rounded-[12px] p-2">
-                <div className="bg-white border border-[#E7E7E7] rounded-[8px] pl-6 pr-8 flex items-center gap-8 overflow-hidden">
-                  <div className="relative w-[145px] h-[150px] shrink-0 overflow-hidden">
+                <div className="bg-white border border-[#E7E7E7] rounded-[8px] md:pl-6 md:pr-8 p-4 md:p-0 flex flex-col md:flex-row md:items-center gap-4 md:gap-8 overflow-hidden">
+                  <div className="relative w-[100px] h-[100px] md:w-[145px] md:h-[150px] shrink-0 overflow-hidden mx-auto md:mx-0">
                     <Image src="/images/shop/manager.png" alt="Manager" fill className="object-cover object-top scale-110" />
                   </div>
-                  <div className="flex-1 flex flex-col gap-2 min-w-0">
-                    <p className="text-[24px] font-extrabold text-black leading-[30px]">Still have questions?</p>
-                    <p className="text-[14px] text-[#1E1E1E] leading-5">
+                  <div className="flex-1 flex flex-col gap-2 min-w-0 text-center md:text-left">
+                    <p className="text-[18px] md:text-[24px] font-extrabold text-black leading-[24px] md:leading-[30px]">Still have questions?</p>
+                    <p className="text-[13px] md:text-[14px] text-[#1E1E1E] leading-5">
                       Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.
                     </p>
                   </div>
-                  <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="cursor-pointer inline-flex items-center justify-center h-11 px-4 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black shrink-0 hover:border-[#181818] transition-colors">Ask a Question</button>
+                  <button onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))} className="cursor-pointer inline-flex items-center justify-center h-11 px-4 bg-white border border-[#CBCBCB] rounded-[8px] text-[14px] font-semibold text-black md:shrink-0 hover:border-[#181818] transition-colors">Ask a Question</button>
                 </div>
               </div>
 
               {/* Read Also — horizontal rows matching Figma News Card - Vertical */}
               <div className="mt-12 mb-4">
-                <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-6">
+                <h2 className="text-[20px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px] mb-4 md:mb-6">
                   Read Also
                 </h2>
                 <div className="flex flex-col">
                   {relatedArticles.map((article, idx) => (
                     <div key={article.id}>
-                      {idx > 0 && <div className="h-px bg-[#E7E7E7] my-8" />}
+                      {idx > 0 && <div className="h-px bg-[#E7E7E7] my-6 md:my-8" />}
                       <Link
                         href={`/blog/${article.slug}`}
-                        className="flex gap-6 items-start cursor-pointer group"
+                        className="flex flex-col md:flex-row gap-4 md:gap-6 md:items-start cursor-pointer group"
                       >
-                        <div className="relative w-[300px] h-[188px] rounded-[8px] shrink-0 overflow-hidden bg-[#F7F7F7]">
+                        <div className="relative w-full md:w-[300px] aspect-[16/10] md:aspect-auto md:h-[188px] rounded-[8px] md:shrink-0 overflow-hidden bg-[#F7F7F7]">
                           <Image
                             src={article.image}
                             alt={article.title}

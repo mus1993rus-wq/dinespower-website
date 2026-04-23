@@ -218,10 +218,10 @@ export default function ProductPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen relative z-10 bg-white pb-[80px] md:pb-0">
+      <main className="min-h-screen relative z-10 bg-white pb-[80px] desktop:pb-0">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto py-3 px-4 lg:px-0">
-          <div className="flex items-center gap-2 text-[12px] lg:text-sm text-[#7E7E7E] flex-wrap">
+        <div className="max-w-[1340px] mx-auto py-3 px-4 wide:px-0">
+          <div className="flex items-center gap-2 text-[12px] desktop:text-sm text-[#7E7E7E] flex-wrap">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
             <Link href="/catalog?category=injectable" className="hover:text-[#181818] transition-colors">Injectable</Link>
@@ -232,12 +232,12 @@ export default function ProductPage() {
           </div>
         </div>
 
-        {/* Product Detail: stacked on mobile, two columns on desktop */}
-        <div className="max-w-[1340px] mx-auto flex flex-col lg:flex-row gap-6 lg:gap-[60px] pb-10 px-4 lg:px-0">
+        {/* Product Detail: stacked on mobile+tablet, two columns on desktop+ */}
+        <div className="max-w-[1340px] mx-auto flex flex-col desktop:flex-row gap-6 desktop:gap-[40px] wide:gap-[60px] pb-10 px-4 wide:px-0">
           {/* LEFT COLUMN - Image gallery */}
-          <div className="w-full lg:w-[560px] shrink-0 lg:sticky lg:top-[24px] lg:self-start">
+          <div className="w-full desktop:w-[440px] wide:w-[560px] shrink-0 desktop:sticky desktop:top-[24px] desktop:self-start">
             {/* Mobile: swipeable single image with dots */}
-            <div className="lg:hidden flex flex-col gap-3">
+            <div className="desktop:hidden flex flex-col gap-3">
               <div className="w-full aspect-square bg-white rounded-[16px] flex items-center justify-center relative overflow-hidden border border-[#E7E7E7]">
                 <Image
                   src={thumbnails[selectedImage]}
@@ -263,7 +263,7 @@ export default function ProductPage() {
             </div>
 
             {/* Desktop: thumbnail column + main image */}
-            <div className="hidden lg:flex gap-4">
+            <div className="hidden desktop:flex gap-4">
               <div className="flex flex-col gap-2 w-[64px] shrink-0">
                 {thumbnails.map((src, i) => (
                   <button
@@ -277,7 +277,7 @@ export default function ProductPage() {
                   </button>
                 ))}
               </div>
-              <div className="w-[480px] h-[480px] bg-white rounded-[16px] flex items-center justify-center relative overflow-hidden border border-[#E7E7E7]">
+              <div className="w-[360px] h-[360px] wide:w-[480px] wide:h-[480px] bg-white rounded-[16px] flex items-center justify-center relative overflow-hidden border border-[#E7E7E7]">
                 <Image
                   src={thumbnails[selectedImage]}
                   alt="Methenolone Enanthate 200"
@@ -302,7 +302,7 @@ export default function ProductPage() {
             </div>
 
             {/* 2. Title */}
-            <h1 className="text-[22px] md:text-[28px] font-extrabold text-[#181818] leading-[28px] md:leading-[34px] mb-4">
+            <h1 className="text-[22px] tablet:text-[24px] desktop:text-[26px] wide:text-[28px] font-extrabold text-[#181818] leading-[28px] tablet:leading-[30px] desktop:leading-[32px] wide:leading-[34px] mb-4">
               Methenolone Enanthate 200 Injectable Steroid In Vials
             </h1>
 
@@ -410,7 +410,7 @@ export default function ProductPage() {
 
             {/* 9. Trust Badges — Figma 2255:31932 (mobile accordion), 1430:29209 (desktop) */}
             {/* Mobile: compact accordion cards with 48x48 icon + chevron */}
-            <div className="lg:hidden flex flex-col gap-2 mb-6">
+            <div className="desktop:hidden flex flex-col gap-2 mb-6">
               {trustBadges.map((badge, i) => {
                 const cardClass = `rounded-[12px] flex items-center gap-4 px-3 py-3 ${
                   badge.orangeBg ? "bg-[#F5ECE6]" : "bg-[#F7F7F7]"
@@ -448,7 +448,7 @@ export default function ProductPage() {
             </div>
 
             {/* Desktop: full trust badges with button */}
-            <div className="hidden lg:flex flex-col gap-2 mb-6">
+            <div className="hidden desktop:flex flex-col gap-2 mb-6">
               {trustBadges.map((badge, i) => (
                 <div
                   key={i}
@@ -488,7 +488,7 @@ export default function ProductPage() {
 
             {/* 10. Help Cards — Figma 2255:32593 mobile rows / 1430:28293 desktop 3-col */}
             {/* Mobile: stacked row layout */}
-            <div className="lg:hidden flex flex-col bg-white border border-[#E3E3E3] rounded-[12px] overflow-hidden">
+            <div className="desktop:hidden flex flex-col bg-white border border-[#E3E3E3] rounded-[12px] overflow-hidden">
               <div className="flex items-center gap-4 px-4 py-4 border-b border-[#E6E6E6]">
                 <Image src="/images/shop/product-icons/icon-5.png" alt="" width={44} height={44} className="object-contain shrink-0" />
                 <div className="flex-1 flex flex-col gap-1">
@@ -531,7 +531,7 @@ export default function ProductPage() {
             </div>
 
             {/* Desktop: 3-column help cards */}
-            <div className="hidden lg:flex bg-white border border-[#E3E3E3] rounded-[12px] items-stretch">
+            <div className="hidden desktop:flex bg-white border border-[#E3E3E3] rounded-[12px] items-stretch">
               <div className="flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 border-r border-[#E6E6E6]">
                 <div className="w-12 h-12 relative">
                   <Image src="/images/shop/product-icons/icon-5.png" alt="" fill className="object-contain" />
@@ -871,8 +871,8 @@ export default function ProductPage() {
           </div>
         </section>
       </main>
-      {/* Sticky bottom buy bar — Figma 1996:19073 (mobile only) */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#E7E7E7] shadow-[0_-4px_16px_rgba(0,0,0,0.08)]">
+      {/* Sticky bottom buy bar — Figma 1996:19073 (mobile + tablet only) */}
+      <div className="desktop:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#E7E7E7] shadow-[0_-4px_16px_rgba(0,0,0,0.08)]">
         <div className="flex items-center gap-3 px-3 py-2.5">
           <div className="w-[56px] h-[56px] rounded-[8px] bg-white border border-[#E7E7E7] p-1.5 flex items-center justify-center shrink-0">
             <Image src={thumbnails[selectedImage]} alt="" width={44} height={44} className="object-contain" />

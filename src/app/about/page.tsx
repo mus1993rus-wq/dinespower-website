@@ -70,14 +70,14 @@ export default function AboutPage() {
               fill
               className="object-cover opacity-60 mix-blend-lighten pointer-events-none"
             />
-            <div className="relative z-10 py-20 px-8 text-center flex flex-col items-center gap-4">
-              <p className="text-[14px] text-white/80 leading-5">Who we are</p>
-              <h1 className="font-extrabold italic uppercase leading-[48px] text-[40px]">
+            <div className="relative z-10 py-12 md:py-20 px-6 md:px-8 text-center flex flex-col items-center gap-3 md:gap-4">
+              <p className="text-[12px] md:text-[14px] text-white/80 leading-5">Who we are</p>
+              <h1 className="font-extrabold italic uppercase text-[24px] leading-[30px] md:text-[40px] md:leading-[48px]">
                 <span className="text-white">Official Distributor</span>
                 <br />
                 <span className="text-[#FF6701]">Of Trusted Brands In Europe</span>
               </h1>
-              <p className="text-[14px] text-white/70 max-w-[620px] leading-6">
+              <p className="text-[13px] md:text-[14px] text-white/70 max-w-[620px] leading-5 md:leading-6">
                 Dinespower is an official worldwide distributor of Astera Labs and Deus Medical — pharmaceutical manufacturers based in India.
               </p>
             </div>
@@ -85,17 +85,17 @@ export default function AboutPage() {
         </div>
 
         {/* Stats Row */}
-        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 mt-10">
-          <div className="flex flex-wrap lg:flex-nowrap gap-3 lg:gap-4">
-            {stats.map((stat) => (
+        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 mt-8 md:mt-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:flex lg:flex-nowrap gap-3 lg:gap-4">
+            {stats.map((stat, i) => (
               <div
                 key={stat.value}
-                className="flex-1 border border-[#E7E7E7] rounded-[12px] p-6 text-center"
+                className={`lg:flex-1 border border-[#E7E7E7] rounded-[12px] p-4 md:p-6 text-center ${i === stats.length - 1 && stats.length % 2 === 1 ? "col-span-2 md:col-span-1" : ""}`}
               >
-                <p className="text-[24px] font-extrabold text-[#181818] leading-[30px]">
+                <p className="text-[20px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px]">
                   {stat.value}
                 </p>
-                <p className="text-[13px] text-[#7E7E7E] mt-2 leading-5">
+                <p className="text-[12px] md:text-[13px] text-[#7E7E7E] mt-2 leading-[18px] md:leading-5">
                   {stat.label}
                 </p>
               </div>
@@ -104,22 +104,22 @@ export default function AboutPage() {
         </div>
 
         {/* Expert Section */}
-        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 mt-16">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-20 items-stretch">
+        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 mt-10 md:mt-16">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-20 items-stretch">
             {/* Left - Manager photo — equal column, 80px gap */}
-            <div className="flex-1 rounded-[16px] relative overflow-hidden bg-[#F7F7F7] self-stretch min-h-[280px] lg:min-h-[460px]">
+            <div className="flex-1 rounded-[16px] relative overflow-hidden bg-[#F7F7F7] self-stretch min-h-[240px] md:min-h-[280px] lg:min-h-[460px]">
               <Image src="/images/shop/expert-manager.png" alt="Expert Support" fill className="object-cover object-top" />
             </div>
 
             {/* Right - Content */}
             <div className="flex-1 flex flex-col justify-center">
-              <p className="text-[14px] text-[#FF6701] font-semibold mb-2">
+              <p className="text-[13px] md:text-[14px] text-[#FF6701] font-semibold mb-2">
                 Europe&apos;s trusted distributor of premium sports supplements
               </p>
-              <h2 className="text-[28px] font-extrabold text-[#181818] leading-[36px] mb-4">
+              <h2 className="text-[22px] md:text-[28px] font-extrabold text-[#181818] leading-[30px] md:leading-[36px] mb-3 md:mb-4">
                 Expert Support & Verified Quality
               </h2>
-              <p className="text-[14px] text-[#7E7E7E] leading-6 mb-6">
+              <p className="text-[13px] md:text-[14px] text-[#7E7E7E] leading-5 md:leading-6 mb-4 md:mb-6">
                 We help you choose the right product, delivery, and payment method before you order. Every item is sourced directly from official manufacturers and verified before it reaches you.
               </p>
 
@@ -138,12 +138,12 @@ export default function AboutPage() {
         </div>
 
         {/* Official Brands Section */}
-        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 mt-16 mb-16">
-          <div className="text-center mb-10">
-            <h2 className="text-[28px] font-extrabold text-[#181818] leading-[36px]">
+        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 mt-10 md:mt-16 mb-10 md:mb-16">
+          <div className="text-center mb-6 md:mb-10">
+            <h2 className="text-[22px] md:text-[28px] font-extrabold text-[#181818] leading-[30px] md:leading-[36px]">
               Official Brands We Distribute
             </h2>
-            <p className="text-[14px] text-[#7E7E7E] mt-2">
+            <p className="text-[13px] md:text-[14px] text-[#7E7E7E] mt-2">
               We Work Directly With Manufacturers, Not Resellers
             </p>
           </div>

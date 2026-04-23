@@ -197,7 +197,7 @@ function TestReportModal({
       {/* Close button — top-right of screen, white */}
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 z-20 w-11 h-11 rounded-full bg-white hover:bg-[#F0F0F0] flex items-center justify-center transition-colors shadow-md cursor-pointer"
+        className="absolute top-3 right-3 md:top-6 md:right-6 z-20 w-11 h-11 rounded-full bg-white hover:bg-[#F0F0F0] flex items-center justify-center transition-colors shadow-md cursor-pointer"
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
           <path d="M18 6L6 18" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -209,7 +209,7 @@ function TestReportModal({
       {hasPrev && (
         <button
           onClick={(e) => { e.stopPropagation(); onNavigate(currentIndex - 1); }}
-          className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white hover:bg-[#F0F0F0] shadow-md flex items-center justify-center transition-colors cursor-pointer"
+          className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white hover:bg-[#F0F0F0] shadow-md flex items-center justify-center transition-colors cursor-pointer"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
             <path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -219,7 +219,7 @@ function TestReportModal({
       {hasNext && (
         <button
           onClick={(e) => { e.stopPropagation(); onNavigate(currentIndex + 1); }}
-          className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white hover:bg-[#F0F0F0] shadow-md flex items-center justify-center transition-colors cursor-pointer"
+          className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white hover:bg-[#F0F0F0] shadow-md flex items-center justify-center transition-colors cursor-pointer"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
             <path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -231,7 +231,7 @@ function TestReportModal({
       <div
         className="relative bg-white rounded-2xl shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
-        style={{ width: "min(680px, calc(100vw - 160px))", maxHeight: "calc(100vh - 80px)" }}
+        style={{ width: "min(680px, calc(100vw - 32px))", maxHeight: "calc(100vh - 80px)" }}
       >
         {/* Large document preview — no inner border */}
         <div className="p-6">
@@ -288,14 +288,14 @@ export default function LabTestsPage() {
         </div>
 
         <div className="max-w-[1340px] mx-auto px-4 lg:px-0 pb-16">
-          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-6">
+          <h1 className="text-[24px] md:text-[36px] font-extrabold text-[#181818] leading-[30px] md:leading-[44px] mb-6">
             Lab Tests
           </h1>
 
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-[80px]">
             {/* LEFT sidebar — Figma FAQ style */}
             <div className="w-full lg:w-[440px] lg:shrink-0">
-              <div className="sticky top-4 bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
+              <div className="lg:sticky lg:top-4 bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
                 {/* Category menu card */}
                 <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col gap-2">
                   {sidebarCategories.map((cat) => {
@@ -375,10 +375,10 @@ export default function LabTestsPage() {
 
                 return (
                   <div key={category.title} id={sectionId} className="mb-10 scroll-mt-6">
-                    <h2 className="text-[22px] font-extrabold text-[#181818] leading-[28px] mb-5">
+                    <h2 className="text-[18px] md:text-[22px] font-extrabold text-[#181818] leading-[24px] md:leading-[28px] mb-5">
                       {category.title}
                     </h2>
-                    <div className="grid grid-cols-5 gap-2">
+                    <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
                       {items}
                     </div>
                   </div>
