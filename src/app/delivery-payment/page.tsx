@@ -51,7 +51,7 @@ export default function DeliveryPaymentPage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 py-4">
+        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 py-4">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
@@ -59,21 +59,21 @@ export default function DeliveryPaymentPage() {
           </div>
         </div>
 
-        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 pb-16">
-          <h1 className="text-[24px] md:text-[36px] font-extrabold text-[#181818] leading-[30px] md:leading-[44px] mb-6">Delivery &amp; Payment</h1>
+        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 pb-16">
+          <h1 className="text-[24px] tablet:text-[36px] font-extrabold text-[#181818] leading-[30px] tablet:leading-[44px] mb-6">Delivery &amp; Payment</h1>
 
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-[80px]">
+          <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-[80px]">
             {/* Left column - all content */}
-            <div className="w-full lg:w-[820px] min-w-0">
+            <div className="w-full desktop:w-[820px] min-w-0">
               {/* Payment Methods Section */}
               <section className="mb-8">
-                <h2 className="text-[20px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px] mb-2">Payment Methods</h2>
+                <h2 className="text-[20px] tablet:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[30px] mb-2">Payment Methods</h2>
                 <p className="text-sm text-[#7E7E7E] mb-8">Everything You Need To Know Before Placing An Order</p>
 
                 <div className="flex flex-col gap-6">
                   {/* Bank Transfer Card */}
-                  <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-5 md:p-8 flex items-start gap-4 md:gap-6">
-                    <Image src="/images/shop/delivery-bank.png" alt="Bank transfer" width={80} height={80} className="object-contain shrink-0 w-14 h-14 md:w-20 md:h-20" />
+                  <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-5 tablet:p-8 flex items-start gap-4 tablet:gap-6">
+                    <Image src="/images/shop/delivery-bank.png" alt="Bank transfer" width={80} height={80} className="object-contain shrink-0 w-14 h-14 tablet:w-20 tablet:h-20" />
                     <div className="flex-1">
                       <h3 className="text-[18px] font-extrabold text-[#181818] mb-3">Bank transfer</h3>
                       <ul className="flex flex-col gap-2">
@@ -93,8 +93,8 @@ export default function DeliveryPaymentPage() {
                   </div>
 
                   {/* Bitcoin Card */}
-                  <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-5 md:p-8 flex flex-col md:flex-row items-start gap-4 md:gap-6">
-                    <Image src="/images/shop/delivery-bitcoin.png" alt="Bitcoin" width={80} height={80} className="object-contain shrink-0 w-14 h-14 md:w-20 md:h-20" />
+                  <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-5 tablet:p-8 flex flex-col tablet:flex-row items-start gap-4 tablet:gap-6">
+                    <Image src="/images/shop/delivery-bitcoin.png" alt="Bitcoin" width={80} height={80} className="object-contain shrink-0 w-14 h-14 tablet:w-20 tablet:h-20" />
                     <div className="flex-1">
                       <h3 className="text-[18px] font-extrabold text-[#181818] mb-3">Bitcoin</h3>
                       <ul className="flex flex-col gap-2">
@@ -137,7 +137,7 @@ export default function DeliveryPaymentPage() {
                         </div>
                       </button>
                       {openFAQ === 100 + i && (
-                        <div className="pb-5 pl-[36px] pr-2 md:pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
+                        <div className="pb-5 pl-[36px] pr-2 tablet:pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
                           {faq.a}
                         </div>
                       )}
@@ -148,7 +148,7 @@ export default function DeliveryPaymentPage() {
 
               {/* Shipping Methods Section */}
               <section className="mb-8">
-                <h2 className="text-[20px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px] mb-6">Shipping Methods</h2>
+                <h2 className="text-[20px] tablet:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[30px] mb-6">Shipping Methods</h2>
 
                 {/* Table */}
                 <div className="bg-white border border-[#E7E7E7] rounded-[16px] overflow-x-auto mb-6">
@@ -226,7 +226,7 @@ export default function DeliveryPaymentPage() {
                         </div>
                       </button>
                       {openFAQ === i && (
-                        <div className="pb-5 pl-[36px] pr-2 md:pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
+                        <div className="pb-5 pl-[36px] pr-2 tablet:pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
                           {faq.a}
                         </div>
                       )}
@@ -237,8 +237,8 @@ export default function DeliveryPaymentPage() {
             </div>
 
             {/* Right sidebar - sticky */}
-            <div className="w-full lg:w-[440px] lg:shrink-0">
-              <div className="lg:sticky lg:top-6 flex flex-col gap-6 self-start">
+            <div className="w-full desktop:w-[440px] desktop:shrink-0">
+              <div className="desktop:sticky desktop:top-6 flex flex-col gap-6 self-start">
                 {/* Still Have Questions Card */}
                 <div className="bg-[#F7F7F7] rounded-[12px] p-4">
                   <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-6 flex flex-col items-center gap-4">

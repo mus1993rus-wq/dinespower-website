@@ -143,7 +143,7 @@ export default function FAQsPage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 py-4">
+        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 py-4">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
@@ -151,13 +151,13 @@ export default function FAQsPage() {
           </div>
         </div>
 
-        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 pb-16">
-          <h1 className="text-[24px] md:text-[36px] font-extrabold text-[#181818] leading-[30px] md:leading-[44px] mb-4 md:mb-6">Frequently Asked Questions</h1>
+        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 pb-16">
+          <h1 className="text-[24px] tablet:text-[36px] font-extrabold text-[#181818] leading-[30px] tablet:leading-[44px] mb-4 tablet:mb-6">Frequently Asked Questions</h1>
 
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-[80px]">
+          <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-[80px]">
             {/* LEFT sidebar */}
-            <div className="w-full lg:w-[440px] lg:shrink-0">
-              <div className="lg:sticky lg:top-4 bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
+            <div className="w-full desktop:w-[440px] desktop:shrink-0">
+              <div className="desktop:sticky desktop:top-4 bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
                 {/* Category menu card */}
                 <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col gap-2">
                   {categories.map((cat) => {
@@ -211,25 +211,25 @@ export default function FAQsPage() {
             {/* RIGHT main content */}
             <div className="flex-1">
               {categories.map((section) => (
-                <div key={section} id={`faq-section-${section}`} className="mb-8 md:mb-10 scroll-mt-4">
-                  <h2 className="text-[18px] md:text-[20px] font-extrabold text-[#181818] leading-[24px] md:leading-[28px] mb-3 md:mb-4">{section}</h2>
+                <div key={section} id={`faq-section-${section}`} className="mb-8 tablet:mb-10 scroll-mt-4">
+                  <h2 className="text-[18px] tablet:text-[20px] font-extrabold text-[#181818] leading-[24px] tablet:leading-[28px] mb-3 tablet:mb-4">{section}</h2>
                   <div className="flex flex-col">
                     {faqSections[section].map((faq, i) => (
                       <div key={i} className="border-b border-[#E7E7E7]">
                         <button
                           onClick={() => toggleFAQ(section, i)}
-                          className="w-full flex items-start justify-between gap-3 py-4 md:py-5 cursor-pointer text-left"
+                          className="w-full flex items-start justify-between gap-3 py-4 tablet:py-5 cursor-pointer text-left"
                         >
                           <div className="flex items-start gap-3 flex-1 min-w-0">
                             <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0 mt-0.5" />
-                            <span className="text-[14px] md:text-[16px] font-semibold text-[#181818] text-left leading-5 md:leading-6">{faq.q}</span>
+                            <span className="text-[14px] tablet:text-[16px] font-semibold text-[#181818] text-left leading-5 tablet:leading-6">{faq.q}</span>
                           </div>
-                          <div className={`w-[36px] h-[36px] md:w-[40px] md:h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openIndices[section] === i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>
+                          <div className={`w-[36px] h-[36px] tablet:w-[40px] tablet:h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openIndices[section] === i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>
                             <span className="text-[20px] leading-none">{openIndices[section] === i ? '−' : '+'}</span>
                           </div>
                         </button>
                         {openIndices[section] === i && (
-                          <div className="pb-4 md:pb-5 pl-[36px] pr-2 md:pr-[56px] text-[13px] md:text-[14px] text-[#7E7E7E] leading-[20px] md:leading-[22px]">{faq.a}</div>
+                          <div className="pb-4 tablet:pb-5 pl-[36px] pr-2 tablet:pr-[56px] text-[13px] tablet:text-[14px] text-[#7E7E7E] leading-[20px] tablet:leading-[22px]">{faq.a}</div>
                         )}
                       </div>
                     ))}

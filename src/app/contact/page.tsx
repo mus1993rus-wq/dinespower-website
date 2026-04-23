@@ -20,20 +20,20 @@ export default function ContactPage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto py-4 px-4 lg:px-0">
-          <div className="flex items-center gap-2 text-[12px] md:text-sm text-[#7E7E7E]">
+        <div className="max-w-[1340px] mx-auto py-4 px-4 desktop:px-0">
+          <div className="flex items-center gap-2 text-[12px] tablet:text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
             <span className="text-[#181818] font-semibold">Contact</span>
           </div>
         </div>
 
-        <div className="max-w-[1340px] mx-auto pb-16 px-4 lg:px-0">
-          <h1 className="text-[24px] md:text-[36px] font-extrabold text-[#181818] leading-[30px] md:leading-[44px] mb-4 md:mb-6">Contact Us</h1>
+        <div className="max-w-[1340px] mx-auto pb-16 px-4 desktop:px-0">
+          <h1 className="text-[24px] tablet:text-[36px] font-extrabold text-[#181818] leading-[30px] tablet:leading-[44px] mb-4 tablet:mb-6">Contact Us</h1>
 
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-[80px]">
+          <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-[80px]">
             {/* LEFT sidebar - Contact Info (Figma style) */}
-            <div className="w-full lg:w-[440px] lg:shrink-0">
+            <div className="w-full desktop:w-[440px] desktop:shrink-0">
               <div className="bg-[#F7F7F7] rounded-[16px] p-4 flex flex-col gap-4">
                 {/* Card 1: For Instant Support */}
                 <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col gap-3">
@@ -127,13 +127,13 @@ export default function ContactPage() {
 
             {/* RIGHT - Contact Form */}
             <div className="flex-1 min-w-0">
-              <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-5 md:p-8">
-                <h2 className="text-[20px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px] mb-2 text-center">Send us a message</h2>
+              <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-5 tablet:p-8">
+                <h2 className="text-[20px] tablet:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[30px] mb-2 text-center">Send us a message</h2>
                 <p className="text-[14px] text-[#7E7E7E] mb-8 text-center">Fill out the form &mdash; your request will be handled with priority</p>
 
                 <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
                   {/* Name + Phone side by side — no labels */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 tablet:grid-cols-2 gap-3">
                     <input
                       type="text"
                       placeholder="Your Name"
@@ -172,7 +172,7 @@ export default function ContactPage() {
                   {/* How can we contact you? — segmented 3 tiles, active = white w/ border */}
                   <div className="flex flex-col gap-3">
                     <p className="text-[14px] text-[#7E7E7E] leading-5 text-center">How can we contact you?</p>
-                    <div className="bg-[#F7F7F7] rounded-[12px] p-1 grid grid-cols-1 md:grid-cols-3 gap-1">
+                    <div className="bg-[#F7F7F7] rounded-[12px] p-1 grid grid-cols-1 tablet:grid-cols-3 gap-1">
                       {([
                         { key: "telegram" as const, label: "Telegram", bg: "#00A9DE", icon: (
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" /></svg>

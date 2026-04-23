@@ -100,23 +100,23 @@ function ConfirmationContent() {
   return (
     <div className="min-h-screen flex flex-col bg-[#181818]">
       {/* Black header bar */}
-      <div className="w-full bg-[#181818] h-[80px] md:h-[104px] shrink-0 px-4 md:px-0">
-        <div className="max-w-[1340px] mx-auto h-[60px] md:h-[76px] flex items-center justify-between gap-3">
-          <Link href="/cart" className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 md:h-11 px-3 md:w-[140px] md:px-0 rounded-[8px] justify-center text-[#B6B6B6] text-[13px] md:text-[14px] font-semibold transition-colors">
+      <div className="w-full bg-[#181818] h-[80px] tablet:h-[104px] shrink-0 px-4 tablet:px-0">
+        <div className="max-w-[1340px] mx-auto h-[60px] tablet:h-[76px] flex items-center justify-between gap-3">
+          <Link href="/cart" className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 tablet:h-11 px-3 tablet:w-[140px] tablet:px-0 rounded-[8px] justify-center text-[#B6B6B6] text-[13px] tablet:text-[14px] font-semibold transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="hidden md:inline">Back to cart</span>
+            <span className="hidden tablet:inline">Back to cart</span>
           </Link>
           <Link href="/" className="flex items-center">
-            <Image src="/images/shop/logo.svg" alt="Dines Power" width={106} height={44} className="object-contain w-[80px] md:w-[106px]" />
+            <Image src="/images/shop/logo.svg" alt="Dines Power" width={106} height={44} className="object-contain w-[80px] tablet:w-[106px]" />
           </Link>
-          <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-help-popup")); }} className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 md:h-11 px-3 md:w-[140px] md:px-0 rounded-[8px] justify-center text-[#B6B6B6] text-[13px] md:text-[14px] font-semibold transition-colors">
+          <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-help-popup")); }} className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 tablet:h-11 px-3 tablet:w-[140px] tablet:px-0 rounded-[8px] justify-center text-[#B6B6B6] text-[13px] tablet:text-[14px] font-semibold transition-colors">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
               <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="hidden md:inline">Need Help?</span>
+            <span className="hidden tablet:inline">Need Help?</span>
           </Link>
         </div>
       </div>
@@ -130,10 +130,10 @@ function ConfirmationContent() {
           className="object-cover opacity-60 mix-blend-lighten pointer-events-none select-none"
           priority={false}
         />
-        <div className="max-w-[640px] mx-auto w-full px-4 md:px-0 flex flex-col gap-4 relative z-10">
+        <div className="max-w-[640px] mx-auto w-full px-4 tablet:px-0 flex flex-col gap-4 relative z-10">
 
           {/* Order confirmed card */}
-          <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-6 md:p-8 flex flex-col items-center gap-3 text-center">
+          <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-6 tablet:p-8 flex flex-col items-center gap-3 text-center">
             <div className="w-12 h-12 rounded-full bg-[#E8F8EE] flex items-center justify-center">
               <div className="w-8 h-8 rounded-full bg-[#00B638] flex items-center justify-center">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -141,7 +141,7 @@ function ConfirmationContent() {
                 </svg>
               </div>
             </div>
-            <h1 className="text-[22px] md:text-[24px] font-extrabold text-[#181818] leading-[30px]">Order #20305 is confirmed</h1>
+            <h1 className="text-[22px] tablet:text-[24px] font-extrabold text-[#181818] leading-[30px]">Order #20305 is confirmed</h1>
             <p className="text-[14px] text-[#4D4D4D] leading-5">
               Thanks, Rustam. We&apos;ve sent the payment details to{" "}
               <span className="font-semibold text-[#181818]">mus1993rus@gmail.com</span>
@@ -150,7 +150,7 @@ function ConfirmationContent() {
           </div>
 
           {/* Order Status */}
-          <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-4 md:p-6 flex items-center justify-between">
+          <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-4 tablet:p-6 flex items-center justify-between">
             <p className="text-[16px] font-semibold text-[#181818] leading-6">Order Status</p>
             <span className="flex items-center gap-1.5 bg-[#FFF4E6] text-[#FF6701] text-[13px] font-semibold px-3 py-1.5 rounded-full">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -162,7 +162,7 @@ function ConfirmationContent() {
           </div>
 
           {/* Payment block */}
-          <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-4 md:p-6 flex flex-col gap-4">
+          <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-4 tablet:p-6 flex flex-col gap-4">
             {method === "bank" ? (
               <>
                 <p className="text-[16px] font-semibold text-[#181818] leading-6">Bank transfer</p>
@@ -170,7 +170,7 @@ function ConfirmationContent() {
                 {/* Amount to transfer — black card */}
                 <div className="relative bg-[#181818] rounded-[12px] p-6 text-center overflow-hidden">
                   <p className="text-[13px] text-white/70 leading-5">Amount to transfer</p>
-                  <p className="text-[32px] md:text-[40px] font-extrabold text-white leading-[48px] mt-1">{amount} €</p>
+                  <p className="text-[32px] tablet:text-[40px] font-extrabold text-white leading-[48px] mt-1">{amount} €</p>
                 </div>
 
                 {/* Payment Reference label */}
@@ -199,7 +199,7 @@ function ConfirmationContent() {
                   <div className="flex flex-col items-center gap-1">
                     <p className="text-[12px] text-[#7E7E7E] leading-4">Payment reference</p>
                     <div className="flex items-center gap-2">
-                      <p className="text-[28px] md:text-[32px] font-extrabold text-[#181818] leading-[40px]">{paymentRef}</p>
+                      <p className="text-[28px] tablet:text-[32px] font-extrabold text-[#181818] leading-[40px]">{paymentRef}</p>
                       <button onClick={copyRef} className="cursor-pointer w-8 h-8 flex items-center justify-center hover:bg-white rounded-[6px] transition-colors" aria-label="Copy reference">
                         {refCopied ? (
                           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -213,7 +213,7 @@ function ConfirmationContent() {
                   </div>
                   <p className="text-[13px] text-[#181818] leading-5 text-center">Use ONLY this payment reference in the transfer note/description.</p>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                  <div className="grid grid-cols-1 tablet:grid-cols-2 gap-3 mt-2">
                     <div className="flex flex-col gap-2">
                       <p className="text-[13px] font-semibold text-[#181818] leading-5">Do not write:</p>
                       {["Website name", "Any email address", "Product names or order details"].map((t) => (
@@ -259,7 +259,7 @@ function ConfirmationContent() {
                     <div className="w-8 h-8 rounded-full bg-[#F7931A] flex items-center justify-center">
                       <span className="text-white text-[18px] font-extrabold leading-none">₿</span>
                     </div>
-                    <p className="text-[28px] md:text-[36px] font-extrabold text-white leading-[44px]">{btcAmount}</p>
+                    <p className="text-[28px] tablet:text-[36px] font-extrabold text-white leading-[44px]">{btcAmount}</p>
                   </div>
                   <p className="text-[14px] text-white/70 leading-5 mt-1">= {amount.toFixed(2)} €</p>
                 </div>
@@ -319,26 +319,26 @@ function ConfirmationContent() {
 
           {/* Order Summary (collapsible) */}
           <div className="bg-white border border-[#E7E7E7] rounded-[16px] overflow-hidden">
-            <button onClick={() => setSummaryOpen((o) => !o)} className="cursor-pointer w-full flex items-center justify-between p-4 md:p-6">
+            <button onClick={() => setSummaryOpen((o) => !o)} className="cursor-pointer w-full flex items-center justify-between p-4 tablet:p-6">
               <p className="text-[16px] font-semibold text-[#181818] leading-6">Order Summary</p>
               <PlusIcon open={summaryOpen} />
             </button>
             {summaryOpen && (
-              <div className="px-4 md:px-6 pb-4 md:pb-6 flex flex-col gap-3">
+              <div className="px-4 tablet:px-6 pb-4 tablet:pb-6 flex flex-col gap-3">
                 {orderItems.map((item, i) => (
                   <div key={i} className="flex items-center gap-3 py-2 border-t border-[#E7E7E7]">
-                    <div className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-[8px] shrink-0 p-1 flex items-center justify-center border border-[#E7E7E7]">
+                    <div className="w-12 h-12 tablet:w-14 tablet:h-14 bg-white rounded-[8px] shrink-0 p-1 flex items-center justify-center border border-[#E7E7E7]">
                       <Image src={item.image} alt={item.name} width={48} height={48} className="object-contain" />
                     </div>
                     <div className="flex-1 min-w-0 flex flex-col gap-0.5">
                       <p className="text-[12px] text-[#7E7E7E] leading-4">{item.brand}</p>
                       <p className="text-[13px] font-semibold text-[#181818] leading-5 line-clamp-2">{item.name}</p>
                     </div>
-                    <div className="hidden md:flex flex-col gap-0.5 text-right shrink-0">
+                    <div className="hidden tablet:flex flex-col gap-0.5 text-right shrink-0">
                       <p className="text-[11px] text-[#7E7E7E]">Price</p>
                       <p className="text-[13px] font-semibold text-[#181818]">{item.price}€</p>
                     </div>
-                    <div className="hidden md:flex flex-col gap-0.5 text-right shrink-0">
+                    <div className="hidden tablet:flex flex-col gap-0.5 text-right shrink-0">
                       <p className="text-[11px] text-[#7E7E7E]">Quantity</p>
                       <p className="text-[13px] font-semibold text-[#181818]">{item.qty}</p>
                     </div>
@@ -364,12 +364,12 @@ function ConfirmationContent() {
 
           {/* Billing Address (collapsible) */}
           <div className="bg-white border border-[#E7E7E7] rounded-[16px] overflow-hidden">
-            <button onClick={() => setBillingOpen((o) => !o)} className="cursor-pointer w-full flex items-center justify-between p-4 md:p-6">
+            <button onClick={() => setBillingOpen((o) => !o)} className="cursor-pointer w-full flex items-center justify-between p-4 tablet:p-6">
               <p className="text-[16px] font-semibold text-[#181818] leading-6">Billing Address</p>
               <PlusIcon open={billingOpen} />
             </button>
             {billingOpen && (
-              <div className="px-4 md:px-6 pb-4 md:pb-6 border-t border-[#E7E7E7] pt-3 flex flex-col gap-1 text-[13px] leading-5">
+              <div className="px-4 tablet:px-6 pb-4 tablet:pb-6 border-t border-[#E7E7E7] pt-3 flex flex-col gap-1 text-[13px] leading-5">
                 <p className="text-[#181818] font-semibold">{billingAddress.name}</p>
                 <p className="text-[#181818]">{billingAddress.line1}</p>
                 <p className="text-[#181818]">{billingAddress.line2}</p>
@@ -383,12 +383,12 @@ function ConfirmationContent() {
           {/* FAQ */}
           <div className="flex flex-col gap-3 mt-4">
             <div className="bg-white border border-[#E7E7E7] rounded-[16px]">
-              <button onClick={() => setFaq1Open((o) => !o)} className="cursor-pointer w-full flex items-center justify-between p-4 md:p-6">
-                <p className="text-[14px] md:text-[16px] font-semibold text-[#181818] leading-6">How do I make a payment?</p>
+              <button onClick={() => setFaq1Open((o) => !o)} className="cursor-pointer w-full flex items-center justify-between p-4 tablet:p-6">
+                <p className="text-[14px] tablet:text-[16px] font-semibold text-[#181818] leading-6">How do I make a payment?</p>
                 <PlusIcon open={faq1Open} />
               </button>
               {faq1Open && (
-                <div className="px-4 md:px-6 pb-4 md:pb-6 border-t border-[#E7E7E7] pt-3">
+                <div className="px-4 tablet:px-6 pb-4 tablet:pb-6 border-t border-[#E7E7E7] pt-3">
                   <p className="text-[13px] text-[#4D4D4D] leading-5">
                     Follow the instructions above: transfer the exact amount to the provided bank details and include the payment reference in the transfer note. For Bitcoin, scan the QR code or copy the address and send the exact amount from your wallet.
                   </p>
@@ -396,12 +396,12 @@ function ConfirmationContent() {
               )}
             </div>
             <div className="bg-white border border-[#E7E7E7] rounded-[16px]">
-              <button onClick={() => setFaq2Open((o) => !o)} className="cursor-pointer w-full flex items-center justify-between p-4 md:p-6">
-                <p className="text-[14px] md:text-[16px] font-semibold text-[#181818] leading-6">I&apos;m having trouble making a payment</p>
+              <button onClick={() => setFaq2Open((o) => !o)} className="cursor-pointer w-full flex items-center justify-between p-4 tablet:p-6">
+                <p className="text-[14px] tablet:text-[16px] font-semibold text-[#181818] leading-6">I&apos;m having trouble making a payment</p>
                 <PlusIcon open={faq2Open} />
               </button>
               {faq2Open && (
-                <div className="px-4 md:px-6 pb-4 md:pb-6 border-t border-[#E7E7E7] pt-3">
+                <div className="px-4 tablet:px-6 pb-4 tablet:pb-6 border-t border-[#E7E7E7] pt-3">
                   <p className="text-[13px] text-[#4D4D4D] leading-5">
                     Contact our support via the Need Help? button at the top of the page. Reply to the payment details email with a screenshot of your transaction so we can match it faster.
                   </p>
@@ -430,12 +430,12 @@ function ConfirmationContent() {
       </div>
 
       {/* Minimal footer */}
-      <div className="bg-[#181818] shrink-0 py-5 md:py-0 md:h-[68px]">
-        <div className="max-w-[1340px] mx-auto h-full flex flex-col md:flex-row items-center md:justify-between gap-3 md:gap-0 px-4 md:px-[185px]">
-          <p className="text-[12px] md:text-[14px] text-[#7E7E7E] text-center md:text-left">© 2026 DINESPOWER.TO is the best place to buy steroids online.</p>
+      <div className="bg-[#181818] shrink-0 py-5 tablet:py-0 tablet:h-[68px]">
+        <div className="max-w-[1340px] mx-auto h-full flex flex-col tablet:flex-row items-center tablet:justify-between gap-3 tablet:gap-0 px-4 desktop:px-12 wide:px-[185px]">
+          <p className="text-[12px] tablet:text-[14px] text-[#7E7E7E] text-center tablet:text-left">© 2026 DINESPOWER.TO is the best place to buy steroids online.</p>
           <div className="flex gap-4">
-            <Link href="/terms" className="text-[12px] md:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Terms &amp; Conditions</Link>
-            <Link href="/privacy" className="text-[12px] md:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-[12px] tablet:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Terms &amp; Conditions</Link>
+            <Link href="/privacy" className="text-[12px] tablet:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>

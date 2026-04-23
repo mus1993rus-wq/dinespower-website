@@ -15,7 +15,7 @@ export default function AccountSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-full lg:w-[440px] shrink-0 flex flex-col gap-4 self-start">
+    <aside className="w-full desktop:w-[440px] shrink-0 flex flex-col gap-4 self-start">
       {/* User info */}
       <div className="bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
         <div className="flex items-center gap-4 py-1">

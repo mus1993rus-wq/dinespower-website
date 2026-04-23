@@ -12,7 +12,7 @@ function InfoBox({ children, variant = "info" }: { children: React.ReactNode; va
     error: { bg: "#FFF0F0", border: "#FFD0D0", icon: "#FF3B30", text: "#8B2020" },
   }[variant];
   return (
-    <div className="flex items-start gap-3 md:gap-4 rounded-[12px] px-4 md:px-6 py-4 my-4" style={{ backgroundColor: colors.bg, border: `1px solid ${colors.border}` }}>
+    <div className="flex items-start gap-3 tablet:gap-4 rounded-[12px] px-4 tablet:px-6 py-4 my-4" style={{ backgroundColor: colors.bg, border: `1px solid ${colors.border}` }}>
       <div className="shrink-0 mt-0.5">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="12" r="10" fill={colors.icon} />
@@ -181,7 +181,7 @@ export default function BitcoinPaymentPage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 py-3">
+        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 py-3">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
@@ -191,10 +191,10 @@ export default function BitcoinPaymentPage() {
           </div>
         </div>
 
-        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 flex flex-col lg:flex-row gap-6 lg:gap-[80px] pb-16">
+        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 flex flex-col desktop:flex-row gap-6 desktop:gap-[80px] pb-16">
           {/* Main content */}
           <div className="flex-1 max-w-[820px]">
-            <h1 className="text-[24px] md:text-[36px] font-extrabold text-[#181818] leading-[30px] md:leading-[44px] mb-6">
+            <h1 className="text-[24px] tablet:text-[36px] font-extrabold text-[#181818] leading-[30px] tablet:leading-[44px] mb-6">
               Bitcoin payment guideline
             </h1>
 
@@ -202,7 +202,7 @@ export default function BitcoinPaymentPage() {
             <div className="flex flex-col gap-10">
               {steps.map((step) => (
                 <div key={step.number}>
-                  <h3 className="text-[20px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px] mb-4">
+                  <h3 className="text-[20px] tablet:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[30px] mb-4">
                     {step.number}. {step.title}
                   </h3>
                   <div className="text-[16px] text-[#1E1E1E] leading-6">
@@ -226,8 +226,8 @@ export default function BitcoinPaymentPage() {
           </div>
 
           {/* Right sidebar — sticky */}
-          <div className="w-full lg:w-[440px] lg:shrink-0">
-           <div className="lg:sticky lg:top-4 flex flex-col gap-4">
+          <div className="w-full desktop:w-[440px] desktop:shrink-0">
+           <div className="desktop:sticky desktop:top-4 flex flex-col gap-4">
             {/* Still Have Questions card — Figma style */}
             <div className="bg-[#F7F7F7] rounded-[12px] p-4">
               <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">

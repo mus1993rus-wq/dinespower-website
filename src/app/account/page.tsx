@@ -45,7 +45,7 @@ export default function AccountDashboardPage() {
       </div>
 
       {/* 3 cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 tablet:grid-cols-3 gap-4">
         {cards.map((c) => (
           <Link
             key={c.href}
@@ -64,7 +64,7 @@ export default function AccountDashboardPage() {
       </div>
 
       {/* Featured product banner */}
-      <div className="bg-[#181818] rounded-[16px] p-5 md:p-6 flex flex-col md:flex-row md:items-center gap-4 md:gap-6 relative overflow-hidden">
+      <div className="bg-[#181818] rounded-[16px] p-5 tablet:p-6 flex flex-col tablet:flex-row tablet:items-center gap-4 tablet:gap-6 relative overflow-hidden">
         <div className="w-[100px] h-[100px] rounded-[8px] bg-white p-2 flex items-center justify-center shrink-0 relative">
           <Image
             src="/images/shop/products/fat-burn-yohimbine.png"
@@ -91,7 +91,7 @@ export default function AccountDashboardPage() {
             <span className="text-[12px] text-[#B6B6B6]">(325 Reviews)</span>
           </div>
         </div>
-        <div className="flex items-center justify-between md:justify-start gap-4 shrink-0 flex-wrap">
+        <div className="flex items-center justify-between tablet:justify-start gap-4 shrink-0 flex-wrap">
           <div className="flex items-baseline gap-2">
             <span className="text-[24px] font-extrabold text-[#FB2F2F] leading-[28px]">30 €</span>
             <span className="text-[14px] text-[#7E7E7E] line-through">24 €</span>

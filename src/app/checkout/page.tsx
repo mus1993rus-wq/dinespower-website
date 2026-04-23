@@ -42,39 +42,39 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#181818]">
       {/* Black header bar — content has rounded top corners that overlap it */}
-      <div className="w-full bg-[#181818] h-[80px] md:h-[104px] shrink-0 px-4 md:px-0">
-        <div className="max-w-[1340px] mx-auto h-[60px] md:h-[76px] flex items-center justify-between gap-3">
-          <Link href="/cart" className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 md:h-11 px-3 md:w-[140px] md:px-0 rounded-[8px] justify-center text-[#B6B6B6] text-[13px] md:text-[14px] font-semibold transition-colors">
+      <div className="w-full bg-[#181818] h-[80px] tablet:h-[104px] shrink-0 px-4 tablet:px-0">
+        <div className="max-w-[1340px] mx-auto h-[60px] tablet:h-[76px] flex items-center justify-between gap-3">
+          <Link href="/cart" className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 tablet:h-11 px-3 tablet:w-[140px] tablet:px-0 rounded-[8px] justify-center text-[#B6B6B6] text-[13px] tablet:text-[14px] font-semibold transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="hidden md:inline">Back to cart</span>
+            <span className="hidden tablet:inline">Back to cart</span>
           </Link>
           <Link href="/" className="flex items-center">
-            <Image src="/images/shop/logo.svg" alt="Dines Power" width={106} height={44} className="object-contain w-[80px] md:w-[106px]" />
+            <Image src="/images/shop/logo.svg" alt="Dines Power" width={106} height={44} className="object-contain w-[80px] tablet:w-[106px]" />
           </Link>
-          <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('open-help-popup')); }} className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 md:h-11 px-3 md:w-[140px] md:px-0 rounded-[8px] justify-center text-[#B6B6B6] text-[13px] md:text-[14px] font-semibold transition-colors">
+          <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('open-help-popup')); }} className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 tablet:h-11 px-3 tablet:w-[140px] tablet:px-0 rounded-[8px] justify-center text-[#B6B6B6] text-[13px] tablet:text-[14px] font-semibold transition-colors">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
               <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="hidden md:inline">Need Help?</span>
+            <span className="hidden tablet:inline">Need Help?</span>
           </Link>
         </div>
       </div>
 
       {/* White content area — full-width with rounded top corners, overlaps black header by 28px */}
       <div className="flex-1 bg-white rounded-t-[16px] -mt-[28px] relative pt-8 pb-16">
-        <div className="max-w-[1340px] mx-auto w-full px-4 lg:px-0">
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-20">
-          {/* LEFT — 820px form */}
-          <div className="w-full lg:w-[820px] shrink-0 flex flex-col gap-6 lg:gap-8 min-w-0">
+        <div className="max-w-[1340px] mx-auto w-full px-4 wide:px-0">
+        <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-8 wide:gap-20">
+          {/* LEFT — form area */}
+          <div className="w-full desktop:flex-1 wide:flex-none wide:w-[820px] desktop:shrink wide:shrink-0 flex flex-col gap-6 desktop:gap-8 min-w-0">
             {/* Returning customer card */}
             <div className="bg-[#F7F7F7] rounded-[16px] p-2">
-              <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4 md:pr-4">
+              <div className="flex flex-col tablet:flex-row tablet:items-center gap-3 tablet:gap-4 tablet:pr-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-[44px] h-[44px] md:w-[60px] md:h-[60px] relative flex items-center justify-center shrink-0">
-                    <div className="w-full h-full md:w-[55px] md:h-[55px] bg-white border border-[#E7E7E7] rounded-[8px] flex items-center justify-center">
+                  <div className="w-[44px] h-[44px] tablet:w-[60px] tablet:h-[60px] relative flex items-center justify-center shrink-0">
+                    <div className="w-full h-full tablet:w-[55px] tablet:h-[55px] bg-white border border-[#E7E7E7] rounded-[8px] flex items-center justify-center">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <circle cx="12" cy="8" r="4" stroke="#181818" strokeWidth="1.5" />
                         <path d="M4 21c0-4 4-7 8-7s8 3 8 7" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" />
@@ -86,9 +86,9 @@ export default function CheckoutPage() {
                     <p className="text-[14px] text-[#7E7E7E] leading-5">Sign In to Your Account</p>
                   </div>
                 </div>
-                <div className="flex gap-2 md:shrink-0">
-                  <button className="cursor-pointer flex-1 md:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors">Sign In<span className="hidden md:inline"> to Your Account</span></button>
-                  <button className="cursor-pointer flex-1 md:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors">Sign Up</button>
+                <div className="flex gap-2 tablet:shrink-0">
+                  <button className="cursor-pointer flex-1 tablet:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors">Sign In<span className="hidden tablet:inline"> to Your Account</span></button>
+                  <button className="cursor-pointer flex-1 tablet:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors">Sign Up</button>
                 </div>
               </div>
             </div>
@@ -96,11 +96,11 @@ export default function CheckoutPage() {
             {/* Personal Info */}
             <div className="flex flex-col gap-3">
               <h2 className="text-[18px] font-semibold text-black leading-[26px]">Personal Info</h2>
-              <div className="flex flex-col md:flex-row gap-3 md:gap-2">
+              <div className="flex flex-col tablet:flex-row gap-3 tablet:gap-2">
                 <input type="text" placeholder="First Name *" value={firstName} onChange={(e) => setFirstName(e.target.value)} className={`${inputClass} flex-1 min-w-0`} />
                 <input type="text" placeholder="Last Name *" value={lastName} onChange={(e) => setLastName(e.target.value)} className={`${inputClass} flex-1 min-w-0`} />
               </div>
-              <div className="flex flex-col md:flex-row gap-3 md:gap-2">
+              <div className="flex flex-col tablet:flex-row gap-3 tablet:gap-2">
                 <div className="flex-1 min-w-0 flex items-center bg-white border border-[#E0E0E0] rounded-[8px] h-[53px] pl-4 pr-2 gap-3">
                   <div className="flex items-center gap-1.5 shrink-0">
                     <span className="text-[16px]">🇺🇸</span>
@@ -116,7 +116,7 @@ export default function CheckoutPage() {
             {/* Delivery */}
             <div className="flex flex-col gap-3">
               <h2 className="text-[18px] font-semibold text-black leading-[26px]">Delivery</h2>
-              <div className="flex flex-col md:flex-row gap-3 md:gap-2">
+              <div className="flex flex-col tablet:flex-row gap-3 tablet:gap-2">
                 <div className="flex-1 min-w-0 relative">
                   <select
                     value={country}
@@ -154,9 +154,9 @@ export default function CheckoutPage() {
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
               </div>
-              <div className="flex flex-col md:flex-row gap-3 md:gap-2">
-                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} md:flex-[50] min-w-0`} />
-                <div className="md:flex-[29] min-w-0 relative">
+              <div className="flex flex-col tablet:flex-row gap-3 tablet:gap-2">
+                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} tablet:flex-[50] min-w-0`} />
+                <div className="tablet:flex-[29] min-w-0 relative">
                   <select
                     value={stateRegion}
                     onChange={(e) => setStateRegion(e.target.value)}
@@ -167,7 +167,7 @@ export default function CheckoutPage() {
                   </select>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
-                <input type="text" placeholder="Post Code / ZIP *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} md:flex-[21] min-w-0`} />
+                <input type="text" placeholder="Post Code / ZIP *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} tablet:flex-[21] min-w-0`} />
               </div>
             </div>
 
@@ -177,15 +177,15 @@ export default function CheckoutPage() {
               <div className="flex flex-col gap-1.5">
                 <button
                   onClick={() => setPaymentMethod("bank")}
-                  className={`cursor-pointer flex items-center gap-3 md:gap-4 pl-3 pr-4 md:pl-4 md:pr-6 py-2 rounded-[12px] border transition-colors ${
+                  className={`cursor-pointer flex items-center gap-3 tablet:gap-4 pl-3 pr-4 tablet:pl-4 tablet:pr-6 py-2 rounded-[12px] border transition-colors ${
                     paymentMethod === "bank" ? "border-[#FF6701] bg-white" : "border-[#E7E7E7] bg-white hover:border-[#B6B6B6]"
                   }`}
                 >
-                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-[4px] flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 tablet:w-16 tablet:h-16 rounded-[4px] flex items-center justify-center shrink-0">
                     <Image src="/images/shop/delivery-bank.png" alt="Bank transfer" width={64} height={64} className="object-contain" />
                   </div>
                   <div className="flex-1 min-w-0 flex flex-col gap-1 text-left">
-                    <p className="text-[14px] md:text-[16px] font-semibold text-[#181818] leading-5 md:leading-6">Bank transfer</p>
+                    <p className="text-[14px] tablet:text-[16px] font-semibold text-[#181818] leading-5 tablet:leading-6">Bank transfer</p>
                     <p className="text-[12px] text-[#4D4D4D] leading-4">Telegraphic Transfer (wire) to company bank account</p>
                   </div>
                   <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ${paymentMethod === "bank" ? "border-[#FF6701]" : "border-[#CBCBCB]"}`}>
@@ -194,17 +194,17 @@ export default function CheckoutPage() {
                 </button>
                 <button
                   onClick={() => setPaymentMethod("bitcoin")}
-                  className={`cursor-pointer flex items-center gap-3 md:gap-4 pl-3 pr-4 md:pl-4 md:pr-6 py-2 rounded-[12px] border transition-colors ${
+                  className={`cursor-pointer flex items-center gap-3 tablet:gap-4 pl-3 pr-4 tablet:pl-4 tablet:pr-6 py-2 rounded-[12px] border transition-colors ${
                     paymentMethod === "bitcoin" ? "border-[#FF6701] bg-white" : "border-[#E7E7E7] bg-white hover:border-[#B6B6B6]"
                   }`}
                 >
-                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-[4px] flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 tablet:w-16 tablet:h-16 rounded-[4px] flex items-center justify-center shrink-0">
                     <Image src="/images/shop/delivery-bitcoin.png" alt="Bitcoin" width={64} height={64} className="object-contain" />
                   </div>
                   <div className="flex-1 min-w-0 flex flex-col gap-1 text-left">
                     <div className="flex flex-wrap items-center gap-2">
-                      <p className="text-[14px] md:text-[16px] font-semibold text-[#181818] leading-5 md:leading-6">Bitcoin</p>
-                      <span className="bg-[#FF6701]/10 text-[#FF6701] text-[11px] md:text-[14px] font-semibold px-2 md:px-4 py-0.5 md:py-1 rounded-full">Recommended</span>
+                      <p className="text-[14px] tablet:text-[16px] font-semibold text-[#181818] leading-5 tablet:leading-6">Bitcoin</p>
+                      <span className="bg-[#FF6701]/10 text-[#FF6701] text-[11px] tablet:text-[14px] font-semibold px-2 tablet:px-4 py-0.5 tablet:py-1 rounded-full">Recommended</span>
                     </div>
                     <p className="text-[12px] text-[#4D4D4D] leading-4">The preferred and most reliable payment method</p>
                   </div>
@@ -227,8 +227,8 @@ export default function CheckoutPage() {
             </div>
           </div>
 
-          {/* RIGHT — 440px sidebar */}
-          <div className="w-full lg:w-[440px] shrink-0">
+          {/* RIGHT — sidebar */}
+          <div className="w-full desktop:w-[360px] wide:w-[440px] shrink-0">
             <div className="sticky top-4 flex flex-col gap-4">
               {/* You might also like — Figma 1442:11703 */}
               <div className="flex flex-col gap-3 px-4 py-2 rounded-[12px]">
@@ -380,12 +380,12 @@ export default function CheckoutPage() {
       </div>
 
       {/* Minimal footer */}
-      <div className="bg-[#181818] shrink-0 py-5 md:py-0 md:h-[68px]">
-        <div className="max-w-[1340px] mx-auto h-full flex flex-col md:flex-row items-center md:justify-between gap-3 md:gap-0 px-4 md:px-[185px]">
-          <p className="text-[12px] md:text-[14px] text-[#7E7E7E] text-center md:text-left">© 2026 DINESPOWER.TO is the best place to buy steroids online.</p>
+      <div className="bg-[#181818] shrink-0 py-5 tablet:py-0 tablet:h-[68px]">
+        <div className="max-w-[1340px] mx-auto h-full flex flex-col tablet:flex-row items-center tablet:justify-between gap-3 tablet:gap-0 px-4 desktop:px-12 wide:px-[185px]">
+          <p className="text-[12px] tablet:text-[14px] text-[#7E7E7E] text-center tablet:text-left">© 2026 DINESPOWER.TO is the best place to buy steroids online.</p>
           <div className="flex gap-4">
-            <Link href="/terms" className="text-[12px] md:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Terms &amp; Conditions</Link>
-            <Link href="/privacy" className="text-[12px] md:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-[12px] tablet:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Terms &amp; Conditions</Link>
+            <Link href="/privacy" className="text-[12px] tablet:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>
