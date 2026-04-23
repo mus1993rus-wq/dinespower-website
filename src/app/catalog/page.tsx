@@ -803,7 +803,7 @@ function CatalogContent() {
           </aside>
 
           {/* Products area */}
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             {/* Active filters + Sort row */}
             <div className="flex items-center justify-between mb-6">
               {/* Active filters */}
@@ -866,8 +866,8 @@ function CatalogContent() {
               </div>
             </div>
 
-            {/* Grid — 2 cols on mobile, 4 on desktop; override ProductCard width */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 [&>.product-card]:!w-full">
+            {/* Grid — 2 cols on mobile, 4 on desktop; ProductCards stretched via globals.css */}
+            <div className="catalog-grid grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
               {filteredProducts.map((p, i) => (
                 <ProductCard key={i} {...p} />
               ))}

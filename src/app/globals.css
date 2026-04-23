@@ -98,6 +98,9 @@
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
+/* Catalog grid — override ProductCard fixed width so cards fill grid cells */
+.catalog-grid > .product-card { width: 100% !important; min-width: 0 !important; }
+
 /* Dual-range slider — independent min/max thumbs overlaid on same track */
 .dual-range::-webkit-slider-thumb {
   pointer-events: auto;
