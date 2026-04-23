@@ -126,8 +126,8 @@ export default function HistoryOrdersPage() {
     <div className="flex flex-col gap-4">
       <h2 className="text-[18px] font-semibold text-[#181818] leading-[26px]">History Orders</h2>
       <div className="bg-white border border-[#E7E7E7] rounded-[12px] overflow-hidden">
-        {/* Header row */}
-        <div className="grid grid-cols-[1.2fr_1.2fr_1fr_0.8fr_1fr_40px] items-center bg-[#F7F7F7] px-6 py-3 text-[12px] text-[#7E7E7E] leading-4">
+        {/* Header row — desktop only */}
+        <div className="hidden md:grid grid-cols-[1.2fr_1.2fr_1fr_0.8fr_1fr_40px] items-center bg-[#F7F7F7] px-6 py-3 text-[12px] text-[#7E7E7E] leading-4">
           <span>Order Number:</span>
           <span>Status</span>
           <span>Order Date:</span>
@@ -141,8 +141,9 @@ export default function HistoryOrdersPage() {
           const isOpen = expanded === i;
           const canExpand = !!order.items;
           return (
-            <div key={i} className="border-t border-[#E7E7E7]">
-              <div className="grid grid-cols-[1.2fr_1.2fr_1fr_0.8fr_1fr_40px] items-center px-6 py-4 text-[14px] text-[#181818]">
+            <div key={i} className="border-t border-[#E7E7E7] first:border-t-0 md:first:border-t">
+              {/* Desktop row */}
+              <div className="hidden md:grid grid-cols-[1.2fr_1.2fr_1fr_0.8fr_1fr_40px] items-center px-6 py-4 text-[14px] text-[#181818]">
                 <span className="font-semibold">{order.number}</span>
                 <span>
                   <span className={`inline-flex items-center gap-1.5 ${badge.bg} ${badge.text} text-[12px] font-semibold px-3 py-1 rounded-[20px]`}>
@@ -171,11 +172,53 @@ export default function HistoryOrdersPage() {
                   <span />
                 )}
               </div>
+
+              {/* Mobile card row */}
+              <div className="md:hidden px-4 py-4 flex flex-col gap-3">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-[14px] font-semibold text-[#181818]">{order.number}</span>
+                  <span className={`inline-flex items-center gap-1.5 ${badge.bg} ${badge.text} text-[11px] font-semibold px-2 py-1 rounded-[20px] shrink-0`}>
+                    {badge.icon}
+                    {badge.label}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between gap-3 text-[13px]">
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-[11px] text-[#7E7E7E]">Date</span>
+                    <span className="text-[#181818]">{order.date}</span>
+                  </div>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-[11px] text-[#7E7E7E]">Qty</span>
+                    <span className="text-[#181818]">{order.qty}</span>
+                  </div>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-[11px] text-[#7E7E7E]">Total</span>
+                    <span className="text-[#181818] font-semibold">{order.total.toFixed(2)} €</span>
+                  </div>
+                  {canExpand ? (
+                    <button
+                      onClick={() => setExpanded(isOpen ? null : i)}
+                      className="cursor-pointer w-8 h-8 rounded-full bg-[#F7F7F7] flex items-center justify-center shrink-0"
+                      aria-label={isOpen ? "Collapse" : "Expand"}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                        {isOpen ? (
+                          <path d="M5 12h14" stroke="#181818" strokeWidth="2.5" strokeLinecap="round" />
+                        ) : (
+                          <path d="M12 5v14M5 12h14" stroke="#181818" strokeWidth="2.5" strokeLinecap="round" />
+                        )}
+                      </svg>
+                    </button>
+                  ) : (
+                    <span className="w-8 shrink-0" />
+                  )}
+                </div>
+              </div>
               {isOpen && canExpand && (
-                <div className="bg-[#FAFAFA] border-t border-[#E7E7E7] px-6 py-6 flex flex-col gap-6">
+                <div className="bg-[#FAFAFA] border-t border-[#E7E7E7] px-4 md:px-6 py-4 md:py-6 flex flex-col gap-4 md:gap-6">
                   {/* Items list */}
                   <div className="flex flex-col">
-                    <div className="grid grid-cols-[auto_1fr_100px_100px_120px] items-center gap-4 text-[12px] text-[#7E7E7E] pb-2 border-b border-[#E7E7E7]">
+                    <div className="hidden md:grid grid-cols-[auto_1fr_100px_100px_120px] items-center gap-4 text-[12px] text-[#7E7E7E] pb-2 border-b border-[#E7E7E7]">
                       <span className="w-[60px]"></span>
                       <span></span>
                       <span>Price</span>
@@ -183,23 +226,28 @@ export default function HistoryOrdersPage() {
                       <span>Total Price</span>
                     </div>
                     {order.items!.map((item, j) => (
-                      <div key={j} className="grid grid-cols-[auto_1fr_100px_100px_120px] items-center gap-4 py-4 border-b border-[#E7E7E7]">
-                        <div className="w-[60px] h-[60px] bg-white border border-[#E7E7E7] rounded-[8px] p-1 flex items-center justify-center">
+                      <div key={j} className="md:grid md:grid-cols-[auto_1fr_100px_100px_120px] flex items-start gap-3 md:gap-4 py-3 md:py-4 border-b border-[#E7E7E7] last:border-b-0">
+                        <div className="w-12 h-12 md:w-[60px] md:h-[60px] bg-white border border-[#E7E7E7] rounded-[8px] p-1 flex items-center justify-center shrink-0">
                           <Image src={item.image} alt={item.name} width={52} height={52} className="object-contain" />
                         </div>
-                        <div className="flex flex-col gap-0.5">
-                          <p className="text-[12px] text-[#7E7E7E] leading-4">{item.brand}</p>
-                          <p className="text-[14px] font-semibold text-[#181818] leading-5">{item.name}</p>
+                        <div className="flex-1 md:flex-initial flex flex-col gap-0.5 min-w-0">
+                          <p className="text-[11px] md:text-[12px] text-[#7E7E7E] leading-4">{item.brand}</p>
+                          <p className="text-[13px] md:text-[14px] font-semibold text-[#181818] leading-5">{item.name}</p>
+                          <div className="flex md:hidden gap-3 text-[11px] text-[#7E7E7E] mt-1">
+                            <span>Price: <span className="text-[#181818] font-semibold">{item.price}€</span></span>
+                            <span>Qty: <span className="text-[#181818] font-semibold">{item.qty}</span></span>
+                            <span>Total: <span className="text-[#181818] font-semibold">{item.total}€</span></span>
+                          </div>
                         </div>
-                        <span className="text-[14px] font-semibold text-[#181818]">{item.price}€</span>
-                        <span className="text-[14px] font-semibold text-[#181818]">{item.qty}</span>
-                        <span className="text-[14px] font-semibold text-[#181818]">{item.total}€</span>
+                        <span className="hidden md:block text-[14px] font-semibold text-[#181818]">{item.price}€</span>
+                        <span className="hidden md:block text-[14px] font-semibold text-[#181818]">{item.qty}</span>
+                        <span className="hidden md:block text-[14px] font-semibold text-[#181818]">{item.total}€</span>
                       </div>
                     ))}
                   </div>
 
                   {/* Billing + Shipping */}
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     {[
                       { title: "Billing Address", data: order.billing! },
                       { title: "Shipping Address", data: order.shipping! },
