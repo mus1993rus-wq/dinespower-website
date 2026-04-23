@@ -7,22 +7,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getBlogPostBySlug, defaultBlogPost } from "@/data/blog-posts";
 
-const tocItems = [
-  {
-    id: "mechanism",
-    text: "Mechanism of Interaction Between RAD-140 and Androgen Receptors",
-  },
-  { id: "anabolic-activity", text: "Anabolic Activity of Testolone" },
-  {
-    id: "comparison",
-    text: "Comparison of RAD-140 with Other Popular SARMs",
-  },
-  {
-    id: "catalog",
-    text: "Testolone (RAD-140) and Other SARMs in the Dinespower Catalog",
-  },
-];
-
 const comparisonData = [
   {
     compound: "RAD-140",
@@ -213,7 +197,7 @@ export default function BlogArticlePage() {
                       <p className="text-[16px] text-[#7E7E7E] leading-6 capitalize">What&apos;s Inside?</p>
                     </div>
                     <ol className="flex flex-col list-decimal list-inside">
-                      {tocItems.map((item, i) => (
+                      {post.toc.map((item, i) => (
                         <li key={i} className="px-3 py-2 rounded-[8px]">
                           <button
                             onClick={() => scrollToSection(item.id)}
@@ -227,33 +211,9 @@ export default function BlogArticlePage() {
                   </div>
                 </div>
 
-                {/* Intro paragraphs */}
+                {/* Intro */}
                 <p className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">
-                  RAD-140 is a powerful selective androgen receptor modulator
-                  that is widely used by bodybuilders. This compound is
-                  considered one of the most thoroughly studied SARMs due to
-                  extensive laboratory testing. The primary goal of early
-                  research was to develop an alternative to traditional
-                  testosterone replacement therapy. As early as 2014, scientists
-                  from the University of Los Angeles concluded that RAD-140
-                  demonstrates a favorable safety profile.
-                </p>
-
-                <p className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">
-                  The effect of Testolone is based on the stimulation of
-                  endogenous testosterone production and an increase in its
-                  physiological levels in the body. Thanks to this mechanism of
-                  action, users experience muscle mass growth, increased strength
-                  and endurance, as well as an acceleration of metabolic
-                  processes.
-                </p>
-
-                <p className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">
-                  Choosing the right supplementation strategy becomes easier with
-                  an expert review of RAD-140 provided by Dinespower
-                  specialists. This SARM has already proven its effectiveness,
-                  and the laboratory analysis of Testolone available at the
-                  Dinespower store confirms the safety of the compound.
+                  {post.intro}
                 </p>
 
                 {/* Product Card — horizontal Figma layout */}
@@ -295,45 +255,26 @@ export default function BlogArticlePage() {
                 </Link>
 
                 {/* Section 1 */}
-                <h2
-                  id="mechanism"
-                  className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
-                >
-                  Mechanism of Interaction Between RAD-140 and Androgen Receptors
-                </h2>
-
-                <div className="relative w-full h-[320px] rounded-[12px] overflow-hidden my-8">
-                  <Image
-                    src="/images/shop/blog-2.png"
-                    alt="RAD-140 mechanism of action"
-                    fill
-                    className="object-cover"
-                   
-                  />
-                </div>
-
-                <p className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">
-                  This review of RAD-140&apos;s mechanism of action focuses on
-                  selectivity, binding strength and its influence on muscle
-                  tissue. The compound demonstrates tissue-specific activation of
-                  androgen receptors, which contributes to the following
-                  benefits:
-                </p>
-
-                <ul className="list-disc pl-6 mb-6 space-y-2">
-                  <li className="text-[15px] text-[#4A4A4A] leading-[26px]">
-                    Faster muscle recovery
-                  </li>
-                  <li className="text-[15px] text-[#4A4A4A] leading-[26px]">
-                    Increased lean muscle mass
-                  </li>
-                  <li className="text-[15px] text-[#4A4A4A] leading-[26px]">
-                    Improved endurance and strength
-                  </li>
-                  <li className="text-[15px] text-[#4A4A4A] leading-[26px]">
-                    Enhanced muscle definition
-                  </li>
-                </ul>
+                {post.sections[0] && (
+                  <>
+                    <h2
+                      id={post.sections[0].id}
+                      className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
+                    >
+                      {post.sections[0].title}
+                    </h2>
+                    {post.sections[0].paragraphs.map((p, i) => (
+                      <p key={i} className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">{p}</p>
+                    ))}
+                    {post.sections[0].bullets && (
+                      <ul className="list-disc pl-6 mb-6 space-y-2">
+                        {post.sections[0].bullets.map((b, i) => (
+                          <li key={i} className="text-[15px] text-[#4A4A4A] leading-[26px]">{b}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                )}
 
                 {/* Quote — Light wrapped */}
                 <div className="bg-[#F7F7F7] rounded-[16px] p-4 my-8">
@@ -380,35 +321,26 @@ export default function BlogArticlePage() {
                 </Link>
 
                 {/* Section 2 */}
-                <h2
-                  id="anabolic-activity"
-                  className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
-                >
-                  Anabolic Activity of Testolone
-                </h2>
-
-                <p className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">
-                  Studies on effectiveness of RAD-140 have demonstrated
-                  significant anabolic potential with favorable safety markers. A
-                  dosage of 10 mg is generally sufficient for most users. Typical
-                  cycle duration ranges from 6 to 12 weeks depending on
-                  individual goals and experience level.
-                </p>
-
-                <ul className="list-disc pl-6 mb-6 space-y-2">
-                  <li className="text-[15px] text-[#4A4A4A] leading-[26px]">
-                    Faster muscle recovery
-                  </li>
-                  <li className="text-[15px] text-[#4A4A4A] leading-[26px]">
-                    Increased lean muscle mass
-                  </li>
-                  <li className="text-[15px] text-[#4A4A4A] leading-[26px]">
-                    Improved endurance and strength
-                  </li>
-                  <li className="text-[15px] text-[#4A4A4A] leading-[26px]">
-                    Enhanced muscle definition
-                  </li>
-                </ul>
+                {post.sections[1] && (
+                  <>
+                    <h2
+                      id={post.sections[1].id}
+                      className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
+                    >
+                      {post.sections[1].title}
+                    </h2>
+                    {post.sections[1].paragraphs.map((p, i) => (
+                      <p key={i} className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">{p}</p>
+                    ))}
+                    {post.sections[1].bullets && (
+                      <ul className="list-disc pl-6 mb-6 space-y-2">
+                        {post.sections[1].bullets.map((b, i) => (
+                          <li key={i} className="text-[15px] text-[#4A4A4A] leading-[26px]">{b}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                )}
 
                 {/* Comparison Table */}
                 <div className="bg-white border border-[#E7E7E7] rounded-[16px] overflow-hidden my-8">
@@ -467,48 +399,26 @@ export default function BlogArticlePage() {
                 </div>
 
                 {/* Section 3 */}
-                <h2
-                  id="comparison"
-                  className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
-                >
-                  Comparison of RAD-140 with Other Popular SARMs
-                </h2>
-
-                <p className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">
-                  In professional bodybuilding, precision and optimization are
-                  key factors in compound selection. Understanding how different
-                  SARMs compare allows athletes to make informed decisions based
-                  on their specific goals and experience level.
-                </p>
-
-                <p className="text-[15px] text-[#4A4A4A] leading-[26px] mb-2 font-semibold">
-                  How popular SARMs work:
-                </p>
-
-                <ul className="list-disc pl-6 mb-6 space-y-2">
-                  <li className="text-[15px] text-[#4A4A4A] leading-[26px]">
-                    <strong>Testolone (RAD-140)</strong> &mdash; targets androgen
-                    receptors in muscle and bone tissue with high binding
-                    affinity, delivering potent anabolic effects with minimal
-                    androgenic side effects.
-                  </li>
-                  <li className="text-[15px] text-[#4A4A4A] leading-[26px]">
-                    <strong>Ligandrol (LGD-4033)</strong> &mdash; known for
-                    strong muscle-building properties, particularly effective
-                    during bulking phases with dose-dependent increases in lean
-                    mass.
-                  </li>
-                  <li className="text-[15px] text-[#4A4A4A] leading-[26px]">
-                    <strong>YK-11</strong> &mdash; acts as both a SARM and a
-                    myostatin inhibitor, offering very high anabolic potential
-                    suited for advanced users.
-                  </li>
-                  <li className="text-[15px] text-[#4A4A4A] leading-[26px]">
-                    <strong>Ostarine (MK-2866)</strong> &mdash; the mildest SARM
-                    with a very favorable safety profile, ideal for cutting
-                    cycles and first-time users.
-                  </li>
-                </ul>
+                {post.sections[2] && (
+                  <>
+                    <h2
+                      id={post.sections[2].id}
+                      className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
+                    >
+                      {post.sections[2].title}
+                    </h2>
+                    {post.sections[2].paragraphs.map((p, i) => (
+                      <p key={i} className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">{p}</p>
+                    ))}
+                    {post.sections[2].bullets && (
+                      <ul className="list-disc pl-6 mb-6 space-y-2">
+                        {post.sections[2].bullets.map((b, i) => (
+                          <li key={i} className="text-[15px] text-[#4A4A4A] leading-[26px]">{b}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                )}
 
                 {/* Quote */}
                 {/* Quote — Light wrapped */}
@@ -543,30 +453,26 @@ export default function BlogArticlePage() {
                 </div>
 
                 {/* Section 4 */}
-                <h2
-                  id="catalog"
-                  className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
-                >
-                  Testolone (RAD-140) and Other SARMs in the Dinespower Catalog
-                </h2>
-
-                <p className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">
-                  The Dinespower website features safe and laboratory-tested
-                  sports pharmacology products for athletes at every level. Our
-                  catalog includes a carefully curated selection of SARMs,
-                  peptides, and performance compounds with full quality
-                  certification.
-                </p>
-
-                <p className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">
-                  Among the most popular products you will find:{" "}
-                  <strong>Ostarine MK2866</strong> for cutting and
-                  recomposition, <strong>Ligandrol LGD4033</strong> for lean
-                  bulking, <strong>Testolone RAD140</strong> for maximum
-                  anabolic potential, and{" "}
-                  <strong>Ibutamoren MK677</strong> for growth hormone
-                  optimization and recovery support.
-                </p>
+                {post.sections[3] && (
+                  <>
+                    <h2
+                      id={post.sections[3].id}
+                      className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
+                    >
+                      {post.sections[3].title}
+                    </h2>
+                    {post.sections[3].paragraphs.map((p, i) => (
+                      <p key={i} className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">{p}</p>
+                    ))}
+                    {post.sections[3].bullets && (
+                      <ul className="list-disc pl-6 mb-6 space-y-2">
+                        {post.sections[3].bullets.map((b, i) => (
+                          <li key={i} className="text-[15px] text-[#4A4A4A] leading-[26px]">{b}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                )}
 
                 {/* Popular Categories */}
                 <div className="mt-10 pt-8 border-t border-[#E7E7E7]">
