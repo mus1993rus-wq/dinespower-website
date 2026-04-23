@@ -21,20 +21,20 @@ export default function ContactPage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto py-4">
-          <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
+        <div className="max-w-[1340px] mx-auto py-4 px-4 lg:px-0">
+          <div className="flex items-center gap-2 text-[12px] md:text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
             <span className="text-[#181818] font-semibold">Contact</span>
           </div>
         </div>
 
-        <div className="max-w-[1340px] mx-auto pb-16">
-          <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-6">Contact Us</h1>
+        <div className="max-w-[1340px] mx-auto pb-16 px-4 lg:px-0">
+          <h1 className="text-[24px] md:text-[36px] font-extrabold text-[#181818] leading-[30px] md:leading-[44px] mb-4 md:mb-6">Contact Us</h1>
 
-          <div className="flex gap-[80px]">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-[80px]">
             {/* LEFT sidebar - Contact Info (Figma style) */}
-            <div className="w-[440px] shrink-0">
+            <div className="w-full lg:w-[440px] shrink-0">
               <div className="bg-[#F7F7F7] rounded-[16px] p-4 flex flex-col gap-4">
                 {/* Card 1: For Instant Support */}
                 <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col gap-3">

@@ -62,7 +62,7 @@ export default function CartPage() {
     <>
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
-        <div className="max-w-[1340px] mx-auto pt-8 pb-16">
+        <div className="max-w-[1340px] mx-auto pt-4 md:pt-8 pb-16 px-4 lg:px-0">
           {items.length === 0 ? (
             <div className="text-center py-20">
               <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">My Cart</h1>
@@ -80,9 +80,9 @@ export default function CartPage() {
               </Link>
             </div>
           ) : (
-            <div className="flex gap-20">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-20">
               {/* LEFT - 820px */}
-              <div className="w-[820px] shrink-0 flex flex-col gap-4">
+              <div className="w-full lg:w-[820px] shrink-0 flex flex-col gap-4 min-w-0">
                 {/* Title */}
                 <div className="flex items-baseline gap-2">
                   <h1 className="text-[18px] font-semibold text-black leading-[26px]">My Cart</h1>
@@ -200,8 +200,8 @@ export default function CartPage() {
               </div>
 
               {/* RIGHT - 440px sticky sidebar */}
-              <div className="w-[440px] shrink-0">
-                <div className="sticky top-4 flex flex-col gap-4">
+              <div className="w-full lg:w-[440px] shrink-0">
+                <div className="lg:sticky lg:top-4 flex flex-col gap-4">
                   {/* Promo + Total card wrapper */}
                   <div className="bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
                     {/* Promo code */}

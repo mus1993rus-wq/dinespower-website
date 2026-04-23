@@ -40,33 +40,33 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#181818]">
       {/* Black header bar — content has rounded top corners that overlap it */}
-      <div className="w-full bg-[#181818] h-[104px] shrink-0">
-        <div className="max-w-[1340px] mx-auto h-[76px] flex items-center justify-between">
-          <Link href="/cart" className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-11 w-[140px] rounded-[8px] justify-center text-[#B6B6B6] text-[14px] font-semibold transition-colors">
+      <div className="w-full bg-[#181818] h-[80px] md:h-[104px] shrink-0 px-4 md:px-0">
+        <div className="max-w-[1340px] mx-auto h-[60px] md:h-[76px] flex items-center justify-between gap-3">
+          <Link href="/cart" className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 md:h-11 px-3 md:w-[140px] md:px-0 rounded-[8px] justify-center text-[#B6B6B6] text-[13px] md:text-[14px] font-semibold transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Back to cart
+            <span className="hidden md:inline">Back to cart</span>
           </Link>
           <Link href="/" className="flex items-center">
-            <Image src="/images/shop/logo.svg" alt="Dines Power" width={106} height={44} className="object-contain" />
+            <Image src="/images/shop/logo.svg" alt="Dines Power" width={106} height={44} className="object-contain w-[80px] md:w-[106px]" />
           </Link>
-          <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('open-help-popup')); }} className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-11 w-[140px] rounded-[8px] justify-center text-[#B6B6B6] text-[14px] font-semibold transition-colors">
+          <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('open-help-popup')); }} className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 md:h-11 px-3 md:w-[140px] md:px-0 rounded-[8px] justify-center text-[#B6B6B6] text-[13px] md:text-[14px] font-semibold transition-colors">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
               <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Need Help?
+            <span className="hidden md:inline">Need Help?</span>
           </Link>
         </div>
       </div>
 
       {/* White content area — full-width with rounded top corners, overlaps black header by 28px */}
       <div className="flex-1 bg-white rounded-t-[16px] -mt-[28px] relative pt-8 pb-16">
-        <div className="max-w-[1340px] mx-auto w-full">
-        <div className="flex gap-20">
+        <div className="max-w-[1340px] mx-auto w-full px-4 lg:px-0">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-20">
           {/* LEFT — 820px form */}
-          <div className="w-[820px] shrink-0 flex flex-col gap-8">
+          <div className="w-full lg:w-[820px] shrink-0 flex flex-col gap-6 lg:gap-8 min-w-0">
             {/* Returning customer card */}
             <div className="bg-[#F7F7F7] rounded-[16px] p-2">
               <div className="flex items-center gap-4 pr-4">
@@ -222,7 +222,7 @@ export default function CheckoutPage() {
           </div>
 
           {/* RIGHT — 440px sidebar */}
-          <div className="w-[440px] shrink-0">
+          <div className="w-full lg:w-[440px] shrink-0">
             <div className="sticky top-4 flex flex-col gap-4">
               {/* You might also like — Figma 1442:11703 */}
               <div className="flex flex-col gap-3 px-4 py-2 rounded-[12px]">

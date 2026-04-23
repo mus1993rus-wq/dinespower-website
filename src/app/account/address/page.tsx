@@ -24,7 +24,7 @@ export default function AddressPage() {
     >
       <h2 className="text-[18px] font-semibold text-[#181818] leading-[26px]">Billing address</h2>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <p className={labelClass}>First name</p>
           <input value={firstName} onChange={(e) => setFirstName(e.target.value)} className={inputClass} />

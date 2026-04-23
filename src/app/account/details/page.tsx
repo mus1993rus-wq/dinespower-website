@@ -20,7 +20,7 @@ export default function AccountDetailsPage() {
       {/* Account Details */}
       <div className="flex flex-col gap-4">
         <h2 className="text-[18px] font-semibold text-[#181818] leading-[26px]">Account Details</h2>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <p className={labelClass}>First name</p>
             <input value={firstName} onChange={(e) => setFirstName(e.target.value)} className={inputClass} />
@@ -50,7 +50,7 @@ export default function AccountDetailsPage() {
       {/* Password Change */}
       <div className="flex flex-col gap-4">
         <h2 className="text-[18px] font-semibold text-[#181818] leading-[26px]">Password Change</h2>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <p className={labelClass}>
               Current password <span className="text-[#7E7E7E]">(leave blank to leave unchanged)</span>
