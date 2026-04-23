@@ -122,12 +122,12 @@ function HeroBanner() {
           </div>
         </div>
 
-        {/* Side banners — 2-col grid on mobile, stacked proportional 440/1340 ≈ 33% on lg+ */}
-        <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-[16px] lg:basis-[33%] lg:grow-0 px-4 lg:px-0">
-          <Link href="/catalog?category=sex-support" className="aspect-[440/225] rounded-[16px] overflow-hidden relative group block cursor-pointer">
+        {/* Side banners — 2-col grid on mobile; stacked flex on lg+ filling hero height */}
+        <div className="grid grid-cols-2 gap-3 px-4 lg:flex lg:flex-col lg:gap-[16px] lg:basis-[33%] lg:grow-0 lg:px-0 lg:self-stretch">
+          <Link href="/catalog?category=sex-support" className="aspect-[440/225] lg:aspect-auto lg:flex-1 rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-sexboost.png" alt="Sex Boost" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
-          <Link href="/catalog?category=health" className="aspect-[440/226] rounded-[16px] overflow-hidden relative group block cursor-pointer">
+          <Link href="/catalog?category=health" className="aspect-[440/226] lg:aspect-auto lg:flex-1 rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-cbd.png" alt="CBD" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
         </div>
