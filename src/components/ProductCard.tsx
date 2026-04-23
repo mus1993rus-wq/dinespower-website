@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { products as productDetails } from "@/data/products";
 
 interface ProductCardProps {
   brand: string;
@@ -13,16 +14,25 @@ interface ProductCardProps {
   oldPrice?: number;
   image?: string;
   badges?: string[];
+  slug?: string;
 }
 
-export default function ProductCard({ brand, name, dosage, price, oldPrice, image, badges = [] }: ProductCardProps) {
+// Map known product names to detail-page slugs. Falls back to default product.
+function resolveProductHref(name: string, slug?: string): string {
+  if (slug) return `/product/${slug}`;
+  const match = productDetails.find((p) => p.name === name);
+  return match ? `/product/${match.slug}` : "/product";
+}
+
+export default function ProductCard({ brand, name, dosage, price, oldPrice, image, badges = [], slug }: ProductCardProps) {
   const [qty, setQty] = useState(1);
   const { addItem } = useCart();
+  const href = resolveProductHref(name, slug);
 
   return (
     <div className="product-card bg-white border border-[#E7E7E7] rounded-[16px] overflow-hidden flex flex-col w-[170px] tablet:w-[210px] wide:w-[255px] shrink-0 hover:shadow-lg transition-shadow">
       {/* Image - WHITE background, clickable */}
-      <Link href="/product" className="relative aspect-square wide:h-[252px] wide:aspect-auto bg-white flex items-center justify-center p-4 tablet:p-5 wide:p-6 block">
+      <Link href={href} className="relative aspect-square wide:h-[252px] wide:aspect-auto bg-white flex items-center justify-center p-4 tablet:p-5 wide:p-6 block">
         {/* Tag ribbons — Figma 1249:6845: flush to left edge, right corners rounded */}
         <div className="absolute top-4 left-0 z-10 flex flex-col gap-[2px] items-start">
           {badges.includes("sale") && (
@@ -44,8 +54,8 @@ export default function ProductCard({ brand, name, dosage, price, oldPrice, imag
 
       {/* Info */}
       <div className="p-4 flex flex-col gap-1.5 flex-1">
-        <Link href="/product" className="text-xs text-[#7E7E7E] leading-[18px] hover:text-[#FF6701] transition-colors">{brand}</Link>
-        <Link href="/product" className="text-sm font-medium text-[#181818] leading-[18px] line-clamp-2 min-h-[36px] hover:text-[#FF6701] transition-colors">{name}</Link>
+        <Link href={href} className="text-xs text-[#7E7E7E] leading-[18px] hover:text-[#FF6701] transition-colors">{brand}</Link>
+        <Link href={href} className="text-sm font-medium text-[#181818] leading-[18px] line-clamp-2 min-h-[36px] hover:text-[#FF6701] transition-colors">{name}</Link>
         <p className="text-xs text-[#B6B6B6] leading-[18px]">{dosage}</p>
 
         {/* Price badge */}

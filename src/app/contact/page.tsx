@@ -14,6 +14,22 @@ export default function ContactPage() {
   const [phone, setPhone] = useState<string | undefined>("");
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !email.trim() || !agreed) return;
+    // Mock submission — in production would POST to /api/contact
+    setSubmitted(true);
+    setTimeout(() => {
+      setName("");
+      setPhone("");
+      setEmail("");
+      setComment("");
+      setAgreed(false);
+      setSubmitted(false);
+    }, 5000);
+  };
 
   return (
     <>
@@ -131,7 +147,7 @@ export default function ContactPage() {
                 <h2 className="text-[20px] tablet:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[30px] mb-2 text-center">Send us a message</h2>
                 <p className="text-[14px] text-[#7E7E7E] mb-8 text-center">Fill out the form &mdash; your request will be handled with priority</p>
 
-                <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+                <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                   {/* Name + Phone side by side — no labels */}
                   <div className="grid grid-cols-1 tablet:grid-cols-2 gap-3">
                     <input
@@ -228,12 +244,24 @@ export default function ContactPage() {
                     </span>
                   </label>
 
+                  {/* Success state */}
+                  {submitted && (
+                    <div className="bg-[#E8F8EE] border border-[#00B638] text-[#00B638] rounded-[8px] px-4 py-3 text-[13px] font-semibold" role="status">
+                      ✓ Thank you! We&apos;ll get back to you soon.
+                    </div>
+                  )}
+
                   {/* Submit */}
                   <button
                     type="submit"
-                    className="bg-[#181818] hover:bg-black text-white text-sm font-semibold rounded-lg h-[52px] transition-colors w-full mt-2"
+                    disabled={!name.trim() || !email.trim() || !agreed || submitted}
+                    className={`text-sm font-semibold rounded-lg h-[52px] transition-colors w-full mt-2 ${
+                      !name.trim() || !email.trim() || !agreed || submitted
+                        ? "bg-[#E7E7E7] text-[#7E7E7E] cursor-not-allowed"
+                        : "cursor-pointer bg-[#181818] hover:bg-black text-white"
+                    }`}
                   >
-                    Send Request
+                    {submitted ? "Sent" : "Send Request"}
                   </button>
                 </form>
               </div>

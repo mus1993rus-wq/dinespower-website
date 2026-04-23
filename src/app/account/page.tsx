@@ -117,7 +117,7 @@ export default function AccountDashboardPage() {
             <span className="text-[14px] text-[#7E7E7E] line-through">24 €</span>
           </div>
           <Link
-            href="/product"
+            href="/catalog?category=fat-burn"
             className="h-11 px-6 bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center text-[14px] font-semibold text-white transition-colors"
           >
             Learn More

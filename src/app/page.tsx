@@ -59,10 +59,10 @@ const topStackProducts = [
 ];
 
 const proSellerCards = [
-  { icon: "/images/shop/pro-partner.svg", title: "Official Brand Partner", desc: "We are an authorized partner of Astera, Deus Medical & Biaxol", link: "View Verification" },
-  { icon: "/images/shop/pro-labtest.png", title: "Lab Tests & Verification", desc: "Browse lab reports, batch checks, and product verification details.", link: "See All Lab Tests" },
-  { icon: "/images/shop/pro-support.png", title: "Delivery & Payment", desc: "Shipping options, delivery times, tracking, and payment methods", link: "View Details" },
-  { icon: "/images/shop/pro-delivery.png", title: "Customer Support 24/7", desc: "Get help with orders, shipping, payments, and product questions", link: "Contact Us" },
+  { icon: "/images/shop/pro-partner.svg", title: "Official Brand Partner", desc: "We are an authorized partner of Astera, Deus Medical & Biaxol", link: "View Verification", href: "/about" },
+  { icon: "/images/shop/pro-labtest.png", title: "Lab Tests & Verification", desc: "Browse lab reports, batch checks, and product verification details.", link: "See All Lab Tests", href: "/lab-tests" },
+  { icon: "/images/shop/pro-support.png", title: "Delivery & Payment", desc: "Shipping options, delivery times, tracking, and payment methods", link: "View Details", href: "/delivery-payment" },
+  { icon: "/images/shop/pro-delivery.png", title: "Customer Support 24/7", desc: "Get help with orders, shipping, payments, and product questions", link: "Contact Us", href: "/contact" },
 ];
 
 const blogPosts = [
@@ -391,7 +391,7 @@ function ProSellersSection() {
                 <div className="flex flex-col gap-1 tablet:gap-4 desktop:gap-6 flex-1 tablet:flex-initial">
                   <h3 className="text-[15px] tablet:text-[16px] desktop:text-[18px] font-extrabold text-white leading-[22px] desktop:leading-[24px] capitalize">{card.title}</h3>
                   <p className="text-[13px] tablet:text-[14px] text-[#B6B6B6] leading-5">{card.desc}</p>
-                  <Link href="#" className="text-[13px] tablet:text-[14px] font-semibold text-[#FF6701] hover:underline mt-1 tablet:mt-auto leading-5 flex items-center gap-1 tablet:justify-center">
+                  <Link href={card.href} className="text-[13px] tablet:text-[14px] font-semibold text-[#FF6701] hover:underline mt-1 tablet:mt-auto leading-5 flex items-center gap-1 tablet:justify-center">
                     {card.link}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </Link>
@@ -542,7 +542,7 @@ function WholesaleBanner() {
           </div>
           <p className="text-[13px] tablet:text-[14px] text-white/70 text-center mt-2">Become a Wholesale Partner in Europe</p>
           <a
-            href="https://dinespower.to/partners-landing/"
+            href="https://dinespower.to/partners-landing-en/"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 h-[40px] tablet:h-[44px] px-6 tablet:px-8 rounded-[8px] bg-white text-[#181818] text-[13px] tablet:text-[14px] font-semibold flex items-center"
@@ -561,7 +561,7 @@ function WholesaleBanner() {
             <h2 className="text-[48px] font-extrabold text-white uppercase leading-[56px]">With Wholesale<br/>Pricing</h2>
           </div>
           <p className="text-[16px] text-white/80">Become a Wholesale Partner in Europe</p>
-          <a href="https://dinespower.to/partners-landing/" target="_blank" rel="noopener noreferrer" className="cursor-pointer h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[14px] font-semibold w-fit flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+          <a href="https://dinespower.to/partners-landing-en/" target="_blank" rel="noopener noreferrer" className="cursor-pointer h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[14px] font-semibold w-fit flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
             Start as a Partner
           </a>
         </div>
@@ -593,10 +593,10 @@ function FAQSection() {
                 Ask a Question
               </button>
               <div className="flex gap-4">
-                <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center">
+                <a href="https://t.me/+eFl6hboMcbxlNDI0" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center">
                   <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} />
                 </a>
-                <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00D43F] flex items-center justify-center">
+                <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-[56px] h-[56px] rounded-full bg-[#00D43F] flex items-center justify-center">
                   <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
                 </a>
               </div>

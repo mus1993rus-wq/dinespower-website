@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useLocale } from "@/context/LocaleContext";
+import type { Locale } from "@/i18n/dictionary";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -109,7 +111,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const [level, setLevel] = useState<"main" | "shop" | "brands">("main");
   const [selectedCategory, setSelectedCategory] = useState<typeof categories[0] | null>(null);
   const [langOpen, setLangOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState("en");
+  const { locale: currentLang, setLocale } = useLocale();
+  const setCurrentLang = (code: string) => setLocale(code as Locale);
 
   if (!isOpen) return null;
 
@@ -235,7 +238,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   </div>
                 </div>
                 <a
-                  href="https://dinespower.to/partners-landing/"
+                  href="https://dinespower.to/partners-landing-en/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-white text-[#181818] h-10 rounded-[8px] flex items-center justify-center text-[13px] font-semibold"

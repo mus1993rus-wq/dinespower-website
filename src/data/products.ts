@@ -140,4 +140,12 @@ export function getProductBySlug(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);
 }
 
+// Resolve detail-page href for a product name. Falls back to /product (default)
+// when there's no dedicated detail page for that name yet.
+export function resolveProductHref(name: string, slug?: string): string {
+  if (slug) return `/product/${slug}`;
+  const match = products.find((p) => p.name === name);
+  return match ? `/product/${match.slug}` : "/product";
+}
+
 export const defaultProduct = products[0];

@@ -25,8 +25,17 @@ const menuLinks: { label: string; href: string; external?: boolean }[] = [
 ];
 
 const categoryLinks = [
-  "Injectable", "Oral", "Fat Burn", "Peptides & HGH", "SARMs",
-  "PCT", "Energy", "Sex Support", "Health", "Stacks", "Amino Acids",
+  { label: "Injectable", slug: "injectable" },
+  { label: "Oral", slug: "oral" },
+  { label: "Fat Burn", slug: "fat-burn" },
+  { label: "Peptides & HGH", slug: "peptides-hgh" },
+  { label: "SARMs", slug: "sarms" },
+  { label: "PCT", slug: "pct" },
+  { label: "Energy", slug: "energy" },
+  { label: "Sex Support", slug: "sex-support" },
+  { label: "Health", slug: "health" },
+  { label: "Stacks", slug: "stacks" },
+  { label: "Amino Acids", slug: "amino-acids" },
 ];
 
 function AccordionSection({ title, children }: { title: string; children: React.ReactNode }) {
@@ -107,8 +116,8 @@ export default function Footer() {
           <div className="desktop:w-[220px] wide:w-[305px] flex flex-col desktop:gap-6">
             <AccordionSection title="Categories">
               {categoryLinks.map((cat) => (
-                <Link key={cat} href="/catalog" className="text-sm text-[#B6B6B6] hover:text-white transition-colors leading-5">
-                  {cat}
+                <Link key={cat.slug} href={`/catalog?category=${cat.slug}`} className="text-sm text-[#B6B6B6] hover:text-white transition-colors leading-5">
+                  {cat.label}
                 </Link>
               ))}
             </AccordionSection>
@@ -122,13 +131,13 @@ export default function Footer() {
             </div>
             {/* Social */}
             <div className="flex gap-2">
-              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)" }}>
+              <a href="https://instagram.com/dinespower_shop" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)" }}>
                 <Image src="/images/shop/instagram.svg" alt="" width={24} height={24} />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="w-14 h-14 rounded-full bg-[#00A9DE] flex items-center justify-center">
+              <a href="https://t.me/+eFl6hboMcbxlNDI0" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="w-14 h-14 rounded-full bg-[#00A9DE] flex items-center justify-center">
                 <Image src="/images/shop/telegram.svg" alt="" width={24} height={24} />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-14 h-14 rounded-full bg-[#00D43F] flex items-center justify-center">
+              <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-14 h-14 rounded-full bg-[#00D43F] flex items-center justify-center">
                 <Image src="/images/shop/whatsapp.svg" alt="" width={24} height={24} />
               </a>
             </div>

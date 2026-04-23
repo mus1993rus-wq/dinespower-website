@@ -447,7 +447,7 @@ export default function BlogArticlePage() {
                     <h3 className="text-[22px] tablet:text-[28px] font-black italic text-white leading-[28px] tablet:leading-[34px]">Lean Muscle Growth</h3>
                     <p className="text-[13px] tablet:text-[16px] text-[#F7F7F7] leading-5 tablet:leading-6">Non-steroidal selective androgen receptor modulator</p>
                     <Link
-                      href="/shop"
+                      href="/catalog"
                       className="cursor-pointer inline-flex items-center justify-center h-11 px-8 bg-white border border-[#E7E7E7] rounded-[8px] text-[14px] font-semibold text-black self-start hover:border-[#181818] transition-colors mt-1">Shop Now</Link>
                   </div>
                 </div>
@@ -551,7 +551,7 @@ export default function BlogArticlePage() {
               <div className="mt-12 bg-[#F7F7F7] rounded-[16px] p-2 flex flex-col gap-2">
                 {recommendedProducts.map((product) => (
                   <div key={product.id} className="bg-white border border-[#E7E7E7] rounded-[16px] px-3 tablet:px-4 py-2 tablet:py-0 flex items-center gap-3 tablet:gap-4">
-                    <Link href={`/shop/${product.slug}`} className="w-[80px] h-[80px] tablet:w-[120px] tablet:h-[120px] shrink-0 relative">
+                    <Link href={`/product/`} className="w-[80px] h-[80px] tablet:w-[120px] tablet:h-[120px] shrink-0 relative">
                       <Image
                         src={product.image}
                         alt={product.title}
@@ -561,7 +561,7 @@ export default function BlogArticlePage() {
                       />
                     </Link>
                     <div className="flex-1 min-w-0 flex flex-col tablet:flex-row tablet:items-center gap-2 tablet:gap-4">
-                      <Link href={`/shop/${product.slug}`} className="flex-1 min-w-0 group flex flex-col gap-1 tablet:gap-1.5">
+                      <Link href={`/product/`} className="flex-1 min-w-0 group flex flex-col gap-1 tablet:gap-1.5">
                         <p className="text-[12px] text-[#7E7E7E] leading-4">{product.brand}</p>
                         <p className="text-[14px] tablet:text-[16px] font-semibold text-[#181818] leading-5 tablet:leading-6 capitalize line-clamp-2 group-hover:text-[#FF6701] transition-colors">
                           {product.title}

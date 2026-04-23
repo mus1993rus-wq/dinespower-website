@@ -153,7 +153,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
       desc: "Tiered discounts for partner orders from \u20AC1,500+",
       button: "Read More",
       orangeBg: true,
-      href: "https://dinespower.to/partners-landing/",
+      href: "https://dinespower.to/partners-landing-en/",
       external: true,
     },
   ];
@@ -751,10 +751,10 @@ export default function ProductPageContent({ product }: { product: Product }) {
                     Ask a Question
                   </button>
                   <div className="flex gap-4">
-                    <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center">
+                    <a href="https://t.me/+eFl6hboMcbxlNDI0" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center">
                       <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} />
                     </a>
-                    <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00D43F] flex items-center justify-center">
+                    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-[56px] h-[56px] rounded-full bg-[#00D43F] flex items-center justify-center">
                       <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
                     </a>
                   </div>

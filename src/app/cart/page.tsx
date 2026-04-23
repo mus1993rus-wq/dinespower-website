@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { resolveProductHref } from "@/data/products";
 
 interface CartItem {
   id: number;
@@ -128,12 +129,12 @@ export default function CartPage() {
                           </svg>
                         </button>
                         {/* Image */}
-                        <Link href="/product" className="w-[88px] h-[88px] tablet:w-[120px] tablet:h-[120px] bg-white border border-[#E7E7E7] rounded-[8px] shrink-0 overflow-hidden p-2 hover:border-[#181818] transition-colors">
+                        <Link href={resolveProductHref(item.name)} className="w-[88px] h-[88px] tablet:w-[120px] tablet:h-[120px] bg-white border border-[#E7E7E7] rounded-[8px] shrink-0 overflow-hidden p-2 hover:border-[#181818] transition-colors">
                           <Image src={item.image} alt={item.name} width={100} height={100} className="object-contain w-full h-full" />
                         </Link>
                         {/* Info */}
                         <div className="flex-1 min-w-0 flex flex-col gap-3 tablet:gap-4 justify-center">
-                          <Link href="/product" className="hover:[&_p:last-child]:text-[#FF6701] transition-colors">
+                          <Link href={resolveProductHref(item.name)} className="hover:[&_p:last-child]:text-[#FF6701] transition-colors">
                             <p className="text-[12px] text-[#7E7E7E] leading-4">{item.brand}</p>
                             <p className="text-[14px] tablet:text-[16px] font-semibold text-[#181818] leading-5 tablet:leading-6 capitalize mt-1 transition-colors line-clamp-2">{item.name}</p>
                           </Link>
@@ -175,11 +176,11 @@ export default function CartPage() {
                   {suggestedProducts.map((p, i) => (
                     <div key={i}>
                       <div className="flex items-center gap-3 tablet:gap-4">
-                        <Link href="/product" className="w-[88px] h-[88px] tablet:w-[120px] tablet:h-[120px] bg-white border border-[#E7E7E7] rounded-[8px] shrink-0 overflow-hidden p-2 hover:border-[#181818] transition-colors">
+                        <Link href={resolveProductHref(p.name)} className="w-[88px] h-[88px] tablet:w-[120px] tablet:h-[120px] bg-white border border-[#E7E7E7] rounded-[8px] shrink-0 overflow-hidden p-2 hover:border-[#181818] transition-colors">
                           <Image src={p.image} alt={p.name} width={100} height={100} className="object-contain w-full h-full" />
                         </Link>
                         <div className="flex-1 min-w-0 flex flex-col tablet:flex-row tablet:items-center gap-2 tablet:gap-4">
-                          <Link href="/product" className="flex-1 min-w-0 flex flex-col gap-1 tablet:gap-1.5 justify-center group">
+                          <Link href={resolveProductHref(p.name)} className="flex-1 min-w-0 flex flex-col gap-1 tablet:gap-1.5 justify-center group">
                             <p className="text-[12px] text-[#7E7E7E] leading-4">{p.brand}</p>
                             <p className="text-[14px] tablet:text-[16px] font-semibold text-[#181818] leading-5 tablet:leading-6 capitalize group-hover:text-[#FF6701] transition-colors line-clamp-2">{p.name}</p>
                           </Link>

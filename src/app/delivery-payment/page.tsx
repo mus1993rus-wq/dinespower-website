@@ -254,10 +254,10 @@ export default function DeliveryPaymentPage() {
                       Ask a Question
                     </button>
                     <div className="flex gap-4">
-                      <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center hover:opacity-90 transition-opacity">
+                      <a href="https://t.me/+eFl6hboMcbxlNDI0" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center hover:opacity-90 transition-opacity">
                         <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} />
                       </a>
-                      <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00D43F] flex items-center justify-center hover:opacity-90 transition-opacity">
+                      <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-[56px] h-[56px] rounded-full bg-[#00D43F] flex items-center justify-center hover:opacity-90 transition-opacity">
                         <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
                       </a>
                     </div>
@@ -293,7 +293,7 @@ export default function DeliveryPaymentPage() {
                     </div>
                   </div>
                   <a
-                    href="https://dinespower.to/partners-landing/"
+                    href="https://dinespower.to/partners-landing-en/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="relative z-10 bg-white border border-[#CBCBCB] hover:border-[#181818] text-black text-[14px] font-semibold rounded-[8px] h-12 w-full transition-colors flex items-center justify-center"

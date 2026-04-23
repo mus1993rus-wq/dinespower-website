@@ -13,6 +13,7 @@ const blogCategories = ["Bodybuilding", "SARMs", "Cutting", "PCT", "Peptides", "
 const blogArticles = [
   {
     id: 1,
+    slug: "how-to-prepare-body-before-sports-pharmacology-cycle",
     title: "How to Prepare Your Body Before a Sports Pharmacology Cycle",
     description: "Proper preparation minimizes risks when using anabolic compounds, helps avoid side effects, and ensures steady progress on cycle.",
     date: "9 Apr 2025",
@@ -23,6 +24,7 @@ const blogArticles = [
   },
   {
     id: 2,
+    slug: "igf-1-muscle-growth-growth-hormone-anabolism",
     title: "IGF-1 and Muscle Growth: How Growth Hormone Triggers Anabolism",
     description: "IGF-1 is a polypeptide hormone with pronounced anabolic effects that increases protein synthesis and drives real lean mass gains.",
     date: "6 Apr 2025",
@@ -68,6 +70,7 @@ const blogArticles = [
   },
   {
     id: 7,
+    slug: "peptides-vs-sarms-cutting",
     title: "Peptides vs SARMs for Cutting: Which Is More Effective for Preserving Muscle Mass",
     description: "A head-to-head look at peptides and SARMs when the goal is maximum fat loss without sacrificing hard-earned muscle.",
     date: "20 Mar 2025",
@@ -167,6 +170,7 @@ const blogArticles = [
   },
   {
     id: 18,
+    slug: "rad-140-testolone-laboratory-analysis",
     title: "RAD-140 (Testolone): Laboratory Analysis of Its Impact on Anabolism, Androgen Receptors and Safety Markers",
     description: "A full lab breakdown of Testolone — receptor binding, anabolic effect, and what the safety markers actually show.",
     date: "26 Jan 2025",
@@ -194,8 +198,8 @@ const blogArticles = [
   },
 ];
 
-const popularPosts = [
-  { id: 18, title: "RAD-140 (Testolone): Laboratory Analysis of Its Impact", date: "26 Jan 2025", views: "6.1k" },
+const popularPosts: { id: number; slug?: string; title: string; date: string; views: string }[] = [
+  { id: 18, slug: "rad-140-testolone-laboratory-analysis", title: "RAD-140 (Testolone): Laboratory Analysis of Its Impact", date: "26 Jan 2025", views: "6.1k" },
   { id: 4, title: "Pharmacology in Professional Bodybuilding: Scientific Breakdown", date: "30 Mar 2025", views: "5.6k" },
   { id: 16, title: "RAD-140 vs LGD-4033: Anabolic Activity and Safety Profile", date: "10 Feb 2025", views: "5.8k" },
   { id: 11, title: "TOP-5 Most Studied Compounds in Bodybuilding", date: "6 Mar 2025", views: "5.2k" },
@@ -276,7 +280,7 @@ function BlogContent() {
                     />
                   ))}
                   {/* Full-card click target (under chips) */}
-                  <Link href={`/blog/${currentSlide.id}`} aria-label={currentSlide.title} className="absolute inset-0 z-0" />
+                  <Link href={`/blog/${currentSlide.slug ?? currentSlide.id}`} aria-label={currentSlide.title} className="absolute inset-0 z-0" />
                   {/* Date badge — 72x72 top-left */}
                   <div className="absolute top-2 left-2 z-20 bg-white rounded-[8px] w-[72px] h-[72px] flex flex-col items-center justify-center px-3 py-2 pointer-events-none">
                     <span className="text-[24px] font-extrabold text-black leading-none">{currentSlide.date.split(" ")[0]}</span>
@@ -296,7 +300,7 @@ function BlogContent() {
                           </Link>
                         ))}
                       </div>
-                      <Link href={`/blog/${currentSlide.id}`} className="pointer-events-auto relative z-10">
+                      <Link href={`/blog/${currentSlide.slug ?? currentSlide.id}`} className="pointer-events-auto relative z-10">
                         <h2 className="text-[18px] tablet:text-[28px] font-extrabold text-white leading-[24px] tablet:leading-[34px] line-clamp-3">{currentSlide.title}</h2>
                       </Link>
                       <div className="flex items-center justify-between">
@@ -339,7 +343,7 @@ function BlogContent() {
                 {listPosts.map((post, index) => (
                   <div key={post.id}>
                     {index > 0 && <div className="h-px bg-[#E7E7E7] my-8" />}
-                    <Link href={`/blog/${post.id}`} className="flex flex-col tablet:flex-row gap-4 tablet:gap-6 tablet:items-start cursor-pointer group">
+                    <Link href={`/blog/${post.slug ?? post.id}`} className="flex flex-col tablet:flex-row gap-4 tablet:gap-6 tablet:items-start cursor-pointer group">
                       {/* Thumbnail — full width on mobile, 300x188 on desktop */}
                       <div className="relative w-full tablet:w-[300px] aspect-[16/10] tablet:aspect-auto tablet:h-[188px] rounded-[8px] tablet:shrink-0 overflow-hidden bg-[#F7F7F7]">
                         <Image src={`/images/shop/blog-${((post.id - 1) % 5) + 1}.png`} alt={post.title} fill sizes="(max-width: 640px) 100vw, 300px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -479,7 +483,7 @@ function BlogContent() {
                     {popularPosts.map((post, i) => (
                       <div key={post.id} className="flex flex-col gap-4">
                         <div className="h-px bg-[#E7E7E7]" />
-                        <Link href={`/blog/${post.id}`} className="flex gap-4 items-start cursor-pointer group">
+                        <Link href={`/blog/${post.slug ?? post.id}`} className="flex gap-4 items-start cursor-pointer group">
                           <div className="w-[100px] h-[72px] bg-[#F7F7F7] rounded-[8px] shrink-0 relative overflow-hidden">
                             <Image src={`/images/shop/blog-${(i % 5) + 1}.png`} alt={post.title} fill sizes="(max-width: 960px) 50vw, 300px" className="object-cover" />
                           </div>

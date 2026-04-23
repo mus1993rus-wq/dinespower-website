@@ -6,6 +6,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useCart } from "@/context/CartContext";
 import { useLocale } from "@/context/LocaleContext";
+import { resolveProductHref } from "@/data/products";
 import type { Locale } from "@/i18n/dictionary";
 
 const VerifyPopup = dynamic(() => import("@/components/VerifyPopup"), { ssr: false });
@@ -252,7 +253,7 @@ export default function Header() {
                       return (
                         <div className="bg-white rounded-[12px] flex flex-col">
                           {results.map((product, i) => (
-                            <Link key={i} href="/product" onClick={() => setSearchFocused(false)}
+                            <Link key={i} href={resolveProductHref(product.name)} onClick={() => setSearchFocused(false)}
                               className={`flex items-center gap-3 px-3 py-2.5 hover:bg-[#F7F7F7] transition-colors ${i < results.length - 1 ? "border-b border-[#E7E7E7]" : ""}`}>
                               <div className="w-[44px] h-[44px] bg-[#F7F7F7] rounded-[8px] shrink-0 relative overflow-hidden p-1">
                                 <Image src={product.image} alt={product.name} fill sizes="48px" className="object-contain p-1" />
@@ -447,7 +448,7 @@ export default function Header() {
                         {results.map((product, i) => (
                           <Link
                             key={i}
-                            href="/product"
+                            href={resolveProductHref(product.name)}
                             onClick={() => setSearchFocused(false)}
                             className={`flex items-center gap-4 px-4 py-3 hover:bg-[#F7F7F7] transition-colors ${i < results.length - 1 ? "border-b border-[#E7E7E7]" : ""} ${i === 0 ? "rounded-t-[12px]" : ""} ${i === results.length - 1 ? "rounded-b-[12px]" : ""}`}
                           >
@@ -495,7 +496,7 @@ export default function Header() {
                       {popularProducts.map((product, i) => (
                         <Link
                           key={i}
-                          href="/product"
+                          href={resolveProductHref(product.name)}
                           onClick={() => setSearchFocused(false)}
                           className={`flex items-center gap-4 px-4 py-3 hover:bg-[#F7F7F7] transition-colors ${i < popularProducts.length - 1 ? "border-b border-[#E7E7E7]" : ""} ${i === 0 ? "rounded-t-[12px]" : ""} ${i === popularProducts.length - 1 ? "rounded-b-[12px]" : ""}`}
                         >
