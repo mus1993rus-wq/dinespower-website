@@ -65,7 +65,7 @@ export default function CheckoutPage() {
 
       {/* White content area — full-width with rounded top corners, overlaps black header by 28px */}
       <div className="flex-1 bg-white rounded-t-[16px] -mt-[28px] relative pt-8 pb-16">
-        <div className="max-w-[1340px] mx-auto w-full px-4 wide:px-0">
+        <div className="max-w-[1340px] mx-auto w-full px-4 ">
         <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-8 wide:gap-20">
           {/* LEFT — form area */}
           <div className="w-full desktop:flex-1 wide:flex-none wide:w-[820px] desktop:shrink wide:shrink-0 flex flex-col gap-6 desktop:gap-8 min-w-0">

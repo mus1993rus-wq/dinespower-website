@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -25,7 +24,7 @@ export default function ForgotPasswordPage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto px-4 wide:px-0 py-4">
+        <div className="max-w-[1340px] mx-auto px-4  py-4">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
@@ -35,7 +34,7 @@ export default function ForgotPasswordPage() {
           </div>
         </div>
 
-        <div className="max-w-[500px] mx-auto px-4 wide:px-0 pb-12 tablet:pb-16">
+        <div className="max-w-[500px] mx-auto px-4  pb-12 tablet:pb-16">
           <h1 className="text-[24px] tablet:text-[30px] font-extrabold text-[#181818] leading-[30px] tablet:leading-[36px] mb-4 tablet:mb-6">My Account</h1>
 
           <div className="bg-[#F7F7F7] rounded-[16px] p-2">

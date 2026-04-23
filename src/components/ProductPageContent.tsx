@@ -1,0 +1,840 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ProductCard from "@/components/ProductCard";
+import { useCart } from "@/context/CartContext";
+import type { Product } from "@/data/products";
+
+const PaymentPopup = dynamic(() => import("@/components/PaymentPopup"), { ssr: false });
+const ShippingPopup = dynamic(() => import("@/components/ShippingPopup"), { ssr: false });
+const NeedHelpPopup = dynamic(() => import("@/components/NeedHelpPopup"), { ssr: false });
+const VerifyPopup = dynamic(() => import("@/components/VerifyPopup"), { ssr: false });
+const ReviewPopup = dynamic(() => import("@/components/ReviewPopup"), { ssr: false });
+
+// Brand-specific verification URLs
+const brandVerifyUrls: Record<string, { partner: string; product: string }> = {
+  "Deus Medical": {
+    partner: "https://deusmedical.com/verify/verifyseller/",
+    product: "https://deusmedical.com/verify/verify-product/",
+  },
+  "Astera Labs": {
+    partner: "https://asteralabs.org/verify-seller/",
+    product: "https://asteracheck.com",
+  },
+  "Biaxol": {
+    partner: "https://biaxol.com/verify-seller/",
+    product: "https://biaxol.com/check/",
+  },
+};
+
+// Brand-specific verify banner (phone + QR illustration)
+const brandVerifyBanner: Record<string, string> = {
+  "Deus Medical": "/images/shop/verify-popup/verify-deus.png",
+  "Astera Labs": "/images/shop/verify-popup/verify-astera.png",
+  "Biaxol": "/images/shop/verify-popup/verify-biaxol.png",
+};
+
+// Brand-specific badge background + logo
+const brandBadge: Record<string, { bg: string; logo: string }> = {
+  "Astera Labs": { bg: "#F5ECE6", logo: "/images/brand-astera-logo.png" },
+  "Deus Medical": { bg: "#F5ECE6", logo: "/images/brand-astera-logo.png" },
+  "Biaxol": { bg: "#F5ECE6", logo: "/images/brand-astera-logo.png" },
+};
+
+const reviews = [
+  {
+    name: "Mary Ellen",
+    stars: 5,
+    timeAgo: "4d ago",
+    text: "This is amazing! Tried everything and this is the best product I have used. Highly recommend for anyone looking to boost performance. The quality is outstanding and shipping was discreet.",
+    image: "/images/shop/products/injectable-trenbomed-150.jpg",
+  },
+  {
+    name: "John Doe",
+    stars: 5,
+    timeAgo: "1w ago",
+    text: "Great quality. The delivery was fast and the results speak for themselves. Will order again.",
+    image: null,
+  },
+  {
+    name: "Alex Meier",
+    stars: 4,
+    timeAgo: "2w ago",
+    text: "Good product overall. Packaging was discreet and arrived on time. The quality is noticeably better than competitors.",
+    image: null,
+  },
+];
+
+const topInjectableProducts = [
+  { brand: "Deus Medical", name: "3-Trenbomed 150 Injectable Steroid In Ampoules", dosage: "150 mg/ml", price: 57, oldPrice: 65, badges: ["sale", "top"], image: "/images/shop/products/injectable-trenbomed-150.jpg" },
+  { brand: "Deus Medical", name: "Decamed PP 100 Injectable Steroid In Ampoules", dosage: "100 mg/ml", price: 34, oldPrice: 44, badges: ["sale"], image: "/images/shop/products/injectable-decamed-pp-100.jpg" },
+  { brand: "Deus Medical", name: "Dianamed 100 Injectable Steroid In Ampoules", dosage: "100 mg/ml", price: 40, oldPrice: 54, badges: ["sale", "top"], image: "/images/shop/products/injectable-dianamed-100.png" },
+  { brand: "Deus Medical", name: "Equimed 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 42, oldPrice: 53, badges: ["sale"], image: "/images/shop/products/injectable-equimed-250.jpg" },
+  { brand: "Deus Medical", name: "Sustamed 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 37, oldPrice: 43, badges: ["sale", "top"], image: "/images/shop/products/injectable-sustamed-250.jpg" },
+];
+
+const relatedProducts = [
+  { brand: "Deus Medical", name: "Primomed 100 Injectable Steroid In Ampoules", dosage: "100 mg/ml", price: 70, oldPrice: 76, badges: ["sale"], image: "/images/shop/products/injectable-primomed-100.jpg" },
+  { brand: "Deus Medical", name: "Testomed E 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 35, oldPrice: 45, badges: ["sale", "top"], image: "/images/shop/products/injectable-testomed-e-250.jpg" },
+  { brand: "Deus Medical", name: "Paramed 76.5 Injectable Steroid In Ampoules", dosage: "76.5 mg/ml", price: 55, oldPrice: 64, badges: ["new", "sale"], image: "/images/shop/products/injectable-paramed-76-5.jpg" },
+  { brand: "Deus Medical", name: "BPC-157 Peptide In Vials", dosage: "5 mg/vial", price: 39, oldPrice: 43, badges: ["sale", "top"], image: "/images/shop/products/peptides-hgh-bpc-157.jpg" },
+  { brand: "Biaxol", name: "Ibutamoren (MK677) SARM In Capsules", dosage: "10 mg/cap", price: 60, oldPrice: 65, badges: ["sale", "top"], image: "/images/shop/products/sarms-ibutamoren.png" },
+];
+
+const faqItems = [
+  "What is the minimum amount for the first order?",
+  "How long does delivery take?",
+  "How do we know that these products are genuine?",
+  "What if the package is lost or damaged?",
+  "Are all products really tested in laboratories?",
+];
+
+export default function ProductPageContent({ product }: { product: Product }) {
+  const [qty, setQty] = useState(1);
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [openAccordions, setOpenAccordions] = useState<Record<string, boolean>>({
+    overview: true,
+    reviews: true,
+  });
+  const [openFAQ, setOpenFAQ] = useState<number | null>(2);
+  const [copied, setCopied] = useState(false);
+  const [paymentOpen, setPaymentOpen] = useState(false);
+  const [shippingOpen, setShippingOpen] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
+  const [verifyOpen, setVerifyOpen] = useState(false);
+  const [overviewExpanded, setOverviewExpanded] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const { addItem } = useCart();
+
+  const thumbnails = product.thumbnails;
+  const specs = product.specs;
+  const productBrand = product.brand;
+  const verifyUrls = brandVerifyUrls[productBrand] || brandVerifyUrls["Deus Medical"];
+  const verifyBanner = brandVerifyBanner[productBrand] || brandVerifyBanner["Deus Medical"];
+  const badgeStyle = brandBadge[productBrand] || brandBadge["Astera Labs"];
+  const brandSlug = productBrand.toLowerCase().replace(/ /g, "-");
+  const discountPct =
+    product.oldPrice && product.oldPrice > product.price
+      ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
+      : 0;
+
+  const trustBadges = [
+    {
+      icon: "/images/shop/product-icons/icon-1.png",
+      title: "Certified & Lab Tested",
+      desc: "Third-party lab test + batch authenticity code WHO-GMP / EU-GMP / UK-MHRA",
+      button: "See Lab Test",
+      orangeBg: false,
+      href: "/lab-tests",
+    },
+    {
+      icon: "/images/shop/product-icons/icon-2.png",
+      title: "Official Brand Partner",
+      desc: `Dinespower.com is an official ${productBrand} reseller (since 2019)`,
+      button: "Verify Partner",
+      orangeBg: false,
+      href: verifyUrls.partner,
+      external: true,
+    },
+    {
+      icon: verifyBanner,
+      title: "Verify Authenticity",
+      desc: `Enter your code to confirm the product on ${productBrand}`,
+      button: "Verify Product",
+      orangeBg: false,
+      href: verifyUrls.product,
+      external: true,
+    },
+    {
+      icon: "/images/shop/product-icons/icon-4.png",
+      title: "Wholesale Prices (B2B)",
+      desc: "Tiered discounts for partner orders from \u20AC1,500+",
+      button: "Read More",
+      orangeBg: true,
+      href: "https://dinespower.to/partners-landing/",
+      external: true,
+    },
+  ];
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText("DINES2026");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleAddToCart = () => {
+    addItem(
+      {
+        brand: product.brand,
+        name: product.name,
+        price: product.price,
+        oldPrice: product.oldPrice,
+        image: product.thumbnails[0],
+      },
+      qty
+    );
+  };
+
+  const toggleAccordion = (key: string) => {
+    setOpenAccordions((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  // Dosage for the sticky buy bar — derived from Concentration spec if available
+  const dosageSpec = specs.find((s) => s.label === "Concentration");
+  const dosageText = dosageSpec ? dosageSpec.value.replace(" mg/mL", " mg/ml") : "";
+
+  return (
+    <>
+      <Header />
+      <main className="min-h-screen relative z-10 bg-white pb-[80px] desktop:pb-0">
+        {/* Breadcrumb */}
+        <div className="max-w-[1340px] mx-auto py-3 px-4 ">
+          <div className="flex items-center gap-2 text-[12px] desktop:text-sm text-[#7E7E7E] flex-wrap">
+            <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
+            <span>/</span>
+            <Link href={`/catalog?category=${product.category}`} className="hover:text-[#181818] transition-colors">{product.categoryLabel}</Link>
+            <span>/</span>
+            <Link href={`/catalog?category=${product.category}&brand=${brandSlug}`} className="hover:text-[#181818] transition-colors">{product.brand}</Link>
+            <span>/</span>
+            <span className="text-[#181818]">{product.name}</span>
+          </div>
+        </div>
+
+        {/* Product Detail: stacked on mobile+tablet, two columns on desktop+ */}
+        <div className="max-w-[1340px] mx-auto flex flex-col desktop:flex-row gap-6 desktop:gap-[40px] wide:gap-[60px] pb-10 px-4 ">
+          {/* LEFT COLUMN - Image gallery */}
+          <div className="w-full desktop:w-[440px] wide:w-[560px] shrink-0 desktop:sticky desktop:top-[24px] desktop:self-start">
+            {/* Mobile: swipeable single image with dots */}
+            <div className="desktop:hidden flex flex-col gap-3">
+              <div className="w-full aspect-square bg-white rounded-[16px] flex items-center justify-center relative overflow-hidden border border-[#E7E7E7]">
+                <Image
+                  src={thumbnails[selectedImage]}
+                  alt={product.name}
+                  width={303}
+                  height={303}
+                  className="object-contain max-w-[85%] max-h-[85%]"
+                />
+              </div>
+              {/* Pagination dots */}
+              <div className="flex justify-center gap-2">
+                {thumbnails.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSelectedImage(i)}
+                    aria-label={`Image ${i + 1}`}
+                    className={`h-[4px] rounded-[4px] transition-all ${
+                      selectedImage === i ? "w-[28px] bg-[#181818]" : "w-[28px] bg-[#E7E7E7]"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop: thumbnail column + main image */}
+            <div className="hidden desktop:flex gap-4">
+              <div className="flex flex-col gap-2 w-[64px] shrink-0">
+                {thumbnails.map((src, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSelectedImage(i)}
+                    className={`w-[64px] h-[64px] rounded-[8px] bg-white border-2 transition-colors flex items-center justify-center overflow-hidden cursor-pointer shrink-0 ${
+                      selectedImage === i ? "border-[#FF6701]" : "border-[#E7E7E7]"
+                    }`}
+                  >
+                    <Image src={src} alt={`Thumbnail ${i + 1}`} width={56} height={56} className="object-contain" />
+                  </button>
+                ))}
+              </div>
+              <div className="w-[360px] h-[360px] wide:w-[480px] wide:h-[480px] bg-white rounded-[16px] flex items-center justify-center relative overflow-hidden border border-[#E7E7E7]">
+                <Image
+                  src={thumbnails[selectedImage]}
+                  alt={product.name}
+                  width={416}
+                  height={416}
+                  className="object-contain"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN - Product Info */}
+          <div className="flex-1 min-w-0">
+            {/* 1. Rating row */}
+            <div className="flex items-center gap-2 mb-3">
+              <div className="flex">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <svg key={s} width="18" height="18" viewBox="0 0 24 24" fill={s <= product.rating ? "#FF6701" : "#E7E7E7"}><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                ))}
+              </div>
+              <span className="text-sm text-[#7E7E7E]">({product.reviews} Reviews)</span>
+            </div>
+
+            {/* 2. Title */}
+            <h1 className="text-[22px] tablet:text-[24px] desktop:text-[26px] wide:text-[28px] font-extrabold text-[#181818] leading-[28px] tablet:leading-[30px] desktop:leading-[32px] wide:leading-[34px] mb-4">
+              {product.name}
+            </h1>
+
+            {/* 3. Brand badge */}
+            <div className="flex items-center gap-[17px] rounded-[8px] px-6 py-3 mb-5 w-fit" style={{ backgroundColor: badgeStyle.bg }}>
+              <div className="w-[107px] h-[42px] relative shrink-0 flex items-center">
+                <Image
+                  src={badgeStyle.logo}
+                  alt={product.brand}
+                  width={107}
+                  height={33}
+                  className="object-contain w-full h-auto"
+                  style={{ filter: "brightness(0)" }}
+                />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <p className="text-[14px] font-semibold text-black leading-5">Official {product.brand} Product</p>
+                <p className="text-[14px] text-black leading-5">Certified &amp; Lab Tested</p>
+              </div>
+            </div>
+
+            {/* 4. Specs bullet list */}
+            <ul className="flex flex-col gap-2 mb-6">
+              {specs.map((spec) => (
+                <li key={spec.label} className="flex items-start gap-2 text-sm">
+                  <span className="text-[#7E7E7E] mt-[2px]">&bull;</span>
+                  <span className="text-[#7E7E7E]">{spec.label}: <span className="font-bold text-[#181818]">{spec.value}</span></span>
+                </li>
+              ))}
+            </ul>
+
+            {/* 5. Price row */}
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-[28px] font-extrabold text-[#FB2F2F] leading-[34px]">{product.price} &euro;</span>
+              {product.oldPrice && (
+                <span className="text-[22px] text-[#7E7E7E] line-through leading-none">{product.oldPrice} &euro;</span>
+              )}
+              {discountPct > 0 && (
+                <span className="bg-[#FB2F2F] text-white text-[12px] font-semibold px-3 py-1 rounded-[6px] leading-4">Sale -{discountPct}%</span>
+              )}
+            </div>
+
+            {/* 6. Qty + Add To Cart */}
+            <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center border border-[#C3C3C3] rounded-[12px] h-[48px] w-[140px] px-3 justify-between">
+                <button onClick={() => setQty(Math.max(1, qty - 1))} className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818] transition-colors">
+                  <svg width="20" height="2" viewBox="0 0 20 2"><path d="M1 1H19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                </button>
+                <span className="text-[16px] font-semibold text-[#181818] leading-6">{qty}</span>
+                <button onClick={() => setQty(qty + 1)} className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818] transition-colors">
+                  <svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2V18M2 10H18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                </button>
+              </div>
+              <button
+                onClick={handleAddToCart}
+                className="group cursor-pointer relative w-[266px] bg-[#FF6701] hover:bg-[#E65D00] text-white font-semibold rounded-[8px] h-[48px] flex items-center justify-center gap-3 overflow-hidden transition-colors text-[16px]"
+              >
+                <span className="flex items-center gap-3 transition-all duration-300 ease-out group-hover:translate-y-[200%]">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  Add to cart
+                </span>
+                <span className="absolute flex items-center gap-3 -translate-y-[200%] transition-all duration-300 ease-out group-hover:translate-y-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  Add to cart
+                </span>
+              </button>
+            </div>
+
+            {/* 7. In Stock */}
+            <div className="flex items-center gap-3 mb-6">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M3 12L8 17L21 4" stroke="#00B638" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M8 12L13 17" stroke="#00B638" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span className="text-[14px] text-black leading-5">In Stock ({product.inStockDays})</span>
+            </div>
+
+            {/* 8. Promo code block */}
+            <button onClick={handleCopy} className="cursor-pointer bg-black rounded-[12px] p-2 mb-6 flex items-center gap-2 relative overflow-hidden w-full text-left">
+              <Image src="/images/shop/product-icons/bg.png" alt="" fill className="object-cover opacity-50 mix-blend-lighten absolute inset-0 pointer-events-none" />
+              <div className="flex-1 flex items-center gap-4 relative z-10 pr-2">
+                <div className="w-[80px] h-[80px] shrink-0 rounded-[9px] overflow-hidden">
+                  <Image src="/images/shop/product-icons/discount.png" alt="" width={80} height={80} className="object-contain" />
+                </div>
+                <div className="flex-1 flex flex-col gap-1">
+                  <p className="text-[20px] font-extrabold text-[#FECA37] leading-6">Get 5% Off Your First Order</p>
+                  <p className="text-[14px] text-white leading-5">
+                    Use Code <span className="font-bold">&ldquo;DINES2026&rdquo;</span> for get 5% Discount
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 bg-[#292929] hover:bg-[#383838] rounded-[8px] px-4 h-11 shrink-0 relative z-10 transition-colors">
+                <span className="text-[18px] font-semibold text-white leading-[26px]">DINES2026</span>
+                {copied ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" stroke="white" strokeWidth="1.5"/><path d="M5 15H4C2.89543 15 2 14.1046 2 13V4C2 2.89543 2.89543 2 4 2H13C14.1046 2 15 2.89543 15 4V5" stroke="white" strokeWidth="1.5"/></svg>
+                )}
+              </div>
+            </button>
+
+            {/* 9. Trust Badges */}
+            <div className="desktop:hidden flex flex-col gap-2 mb-6">
+              {trustBadges.map((badge, i) => {
+                const cardClass = `rounded-[12px] flex items-center gap-4 px-3 py-3 ${
+                  badge.orangeBg ? "bg-[#F5ECE6]" : "bg-[#F7F7F7]"
+                }`;
+                const inner = (
+                  <>
+                    <div className="w-12 h-12 shrink-0 flex items-center justify-center">
+                      <Image src={badge.icon} alt={badge.title} width={48} height={48} className="w-full h-full object-contain" />
+                    </div>
+                    <div className="flex-1 min-w-0 flex flex-col gap-1">
+                      <p className="text-[14px] font-semibold text-black leading-5 capitalize">{badge.title}</p>
+                      <p className="text-[12px] text-[#1E1E1E] leading-4 line-clamp-2">{badge.desc}</p>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                      <path d="M9 18l6-6-6-6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </>
+                );
+                return badge.external ? (
+                  <a
+                    key={i}
+                    href={badge.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cardClass}
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <Link key={i} href={badge.href || "#"} className={cardClass}>
+                    {inner}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Desktop: full trust badges with button */}
+            <div className="hidden desktop:flex flex-col gap-2 mb-6">
+              {trustBadges.map((badge, i) => (
+                <div
+                  key={i}
+                  className={`rounded-[12px] p-2 pr-4 flex items-center gap-4 ${
+                    badge.orangeBg ? "bg-[#F5ECE6]" : "bg-[#F7F7F7]"
+                  }`}
+                >
+                  <div className="w-20 h-20 shrink-0 flex items-center justify-center">
+                    <Image src={badge.icon} alt={badge.title} width={80} height={80} className="w-full h-full object-contain" />
+                  </div>
+                  <div className="flex-1 min-w-0 flex flex-col gap-[5px] mr-4">
+                    <p className="text-[16px] font-semibold text-black leading-6 capitalize">{badge.title}</p>
+                    <p className="text-[14px] text-[#1E1E1E] leading-5">{badge.desc}</p>
+                  </div>
+                  {badge.external ? (
+                    <a
+                      href={badge.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-label={badge.button}
+                      className="cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 text-black hover:border-[#181818] transition-colors flex items-center justify-center"
+                    >
+                      {badge.button}
+                    </a>
+                  ) : (
+                    <Link
+                      href={badge.href || "#"}
+                      data-label={badge.button}
+                      className="cursor-pointer text-[14px] font-semibold whitespace-nowrap shrink-0 bg-white border border-[#CBCBCB] rounded-[8px] h-11 px-5 text-black hover:border-[#181818] transition-colors flex items-center justify-center"
+                    >
+                      {badge.button}
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* 10. Help Cards */}
+            <div className="desktop:hidden flex flex-col bg-white border border-[#E3E3E3] rounded-[12px] overflow-hidden">
+              <div className="flex items-center gap-4 px-4 py-4 border-b border-[#E6E6E6]">
+                <Image src="/images/shop/product-icons/icon-5.png" alt="" width={44} height={44} className="object-contain shrink-0" />
+                <div className="flex-1 flex flex-col gap-1">
+                  <p className="text-[14px] font-semibold text-black leading-5">Need help?</p>
+                  <p className="text-[12px] text-[#1E1E1E] leading-4">Ask about dosing, shipping, or verification</p>
+                  <button
+                    onClick={() => setHelpOpen(true)}
+                    className="cursor-pointer text-[13px] font-semibold text-black underline leading-5 text-left hover:text-[#FF6701] transition-colors self-start"
+                  >
+                    Ask a Question
+                  </button>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 px-4 py-4 border-b border-[#E6E6E6]">
+                <Image src="/images/shop/product-icons/icon-6.png" alt="" width={44} height={44} className="object-contain shrink-0" />
+                <div className="flex-1 flex flex-col gap-1">
+                  <p className="text-[14px] font-semibold text-black leading-5">Shipping Methods</p>
+                  <p className="text-[12px] text-[#1E1E1E] leading-4">Delivery times, tracking, discreet packaging</p>
+                  <button
+                    onClick={() => setShippingOpen(true)}
+                    className="cursor-pointer text-[13px] font-semibold text-black underline leading-5 text-left hover:text-[#FF6701] transition-colors self-start"
+                  >
+                    Learn more
+                  </button>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 px-4 py-4">
+                <Image src="/images/shop/product-icons/icon-7.png" alt="" width={44} height={44} className="object-contain shrink-0" />
+                <div className="flex-1 flex flex-col gap-1">
+                  <p className="text-[14px] font-semibold text-black leading-5">Payment Methods</p>
+                  <p className="text-[12px] text-[#1E1E1E] leading-4">Bitcoin, bank transfer</p>
+                  <button
+                    onClick={() => setPaymentOpen(true)}
+                    className="cursor-pointer text-[13px] font-semibold text-black underline leading-5 text-left hover:text-[#FF6701] transition-colors self-start"
+                  >
+                    Learn more
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop: 3-column help cards */}
+            <div className="hidden desktop:flex bg-white border border-[#E3E3E3] rounded-[12px] items-stretch">
+              <div className="flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 border-r border-[#E6E6E6]">
+                <div className="w-12 h-12 relative">
+                  <Image src="/images/shop/product-icons/icon-5.png" alt="" fill className="object-contain" />
+                </div>
+                <p className="text-[16px] font-semibold text-black leading-6">Need Help?</p>
+                <p className="text-[14px] text-[#1E1E1E] leading-5">Ask about dosing, shipping, or verification</p>
+                <button
+                  onClick={() => setHelpOpen(true)}
+                  className="cursor-pointer text-[14px] font-semibold text-black underline leading-5 hover:text-[#FF6701] transition-colors"
+                >
+                  Ask a Question
+                </button>
+              </div>
+              <div className="flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 border-r border-[#E6E6E6]">
+                <div className="w-12 h-12 relative">
+                  <Image src="/images/shop/product-icons/icon-6.png" alt="" fill className="object-contain" />
+                </div>
+                <p className="text-[16px] font-semibold text-[#1E1E1E] leading-6">Shipping Methods</p>
+                <p className="text-[14px] text-[#1E1E1E] leading-5">Delivery times, tracking, discreet packaging</p>
+                <button
+                  onClick={() => setShippingOpen(true)}
+                  className="cursor-pointer text-[14px] font-semibold text-black underline leading-5 hover:text-[#FF6701] transition-colors"
+                >
+                  Learn more
+                </button>
+              </div>
+              <div className="flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4">
+                <div className="w-12 h-12 relative">
+                  <Image src="/images/shop/product-icons/icon-7.png" alt="" fill className="object-contain" />
+                </div>
+                <p className="text-[16px] font-semibold text-[#1E1E1E] leading-6">Payment Methods</p>
+                <p className="text-[14px] text-[#1E1E1E] leading-5">Bitcoin, bank transfer</p>
+                <button
+                  onClick={() => setPaymentOpen(true)}
+                  className="cursor-pointer text-[14px] font-semibold text-black underline leading-5 hover:text-[#FF6701] transition-colors"
+                >
+                  Learn more
+                </button>
+              </div>
+            </div>
+
+            {/* 11. Product Overview Accordion */}
+            <div className="mt-6">
+              <div className="border-b border-[#E7E7E7]">
+                <button
+                  onClick={() => toggleAccordion("overview")}
+                  className="w-full flex items-center justify-between py-5 cursor-pointer"
+                >
+                  <span className="text-base font-semibold text-[#181818]">Product overview</span>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className={`transition-transform ${openAccordions.overview ? "rotate-180" : ""}`}
+                  >
+                    <path d="M6 9L12 15L18 9" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                {openAccordions.overview && (
+                  <div className="pb-6">
+                    <div className={`text-sm text-[#7E7E7E] leading-6 space-y-3 ${!overviewExpanded ? "max-h-[180px] overflow-hidden relative" : ""}`}>
+                      <p>{product.overview}</p>
+                      {product.overviewSections.map((section, idx) => (
+                        <div key={idx}>
+                          <h3 className="text-base font-bold text-[#181818] mb-2 mt-3">{section.title}</h3>
+                          <p>{section.body}</p>
+                        </div>
+                      ))}
+                      {!overviewExpanded && (
+                        <div className="absolute bottom-0 left-0 right-0 h-[60px] bg-gradient-to-t from-white to-transparent" />
+                      )}
+                    </div>
+                    <button
+                      onClick={() => setOverviewExpanded(!overviewExpanded)}
+                      className="w-full bg-[#F7F7F7] rounded-[8px] py-3 text-center text-sm font-semibold text-[#181818] hover:bg-[#EDEDED] transition-colors mt-4 flex items-center justify-center gap-2"
+                    >
+                      {overviewExpanded ? "Show less" : "Read more"}
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        className={`transition-transform ${overviewExpanded ? "rotate-180" : ""}`}
+                      >
+                        <path d="M6 9L12 15L18 9" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+
+
+            {/* 13. Reviews Accordion */}
+            <div className="pb-4">
+              <div className="border-b border-[#E7E7E7]">
+                <button
+                  onClick={() => toggleAccordion("reviews")}
+                  className="w-full flex items-center justify-between py-5 cursor-pointer"
+                >
+                  <span className="text-base font-semibold text-[#181818]">Reviews ({product.reviews} Reviews)</span>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className={`transition-transform ${openAccordions.reviews ? "rotate-180" : ""}`}
+                  >
+                    <path d="M6 9L12 15L18 9" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                {openAccordions.reviews && (
+                  <div className="pb-6">
+                    {/* Large stars */}
+                    <div className="flex items-center gap-1 mb-6">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <svg key={s} width="32" height="32" viewBox="0 0 24 24" fill={s <= product.rating ? "#FF6701" : "#E7E7E7"}><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      ))}
+                    </div>
+
+                    {/* Review This Product */}
+                    <div className="mb-6 flex flex-col tablet:flex-row tablet:items-center tablet:justify-between gap-3 tablet:gap-6">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base font-bold text-[#181818] mb-1">Review This Product</h3>
+                        <p className="text-sm text-[#7E7E7E]">Share your thoughts with other customers</p>
+                      </div>
+                      <button
+                        onClick={() => setReviewOpen(true)}
+                        className="cursor-pointer bg-[#181818] hover:bg-[#333] text-white text-sm font-semibold px-6 py-3 rounded-[8px] transition-colors self-start tablet:self-auto shrink-0"
+                      >
+                        Write a customer review
+                      </button>
+                    </div>
+
+                    {/* Review Cards */}
+                    {reviews.map((r, i) => (
+                      <div key={i} className="border-b border-[#E7E7E7] py-5">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-10 h-10 rounded-full bg-[#F7F7F7] flex items-center justify-center text-sm font-semibold text-[#181818]">
+                            {r.name.charAt(0)}
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-semibold text-[#181818]">{r.name}</span>
+                              <span className="text-xs text-[#7E7E7E]">{r.timeAgo}</span>
+                            </div>
+                            <div className="flex mt-0.5">
+                              {[1, 2, 3, 4, 5].map((s) => (
+                                <svg key={s} width="14" height="14" viewBox="0 0 24 24" fill={s <= r.stars ? "#FF6701" : "#E7E7E7"}><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                        <p className="text-sm text-[#7E7E7E] leading-6">{r.text}</p>
+                        {r.image && (
+                          <div className="mt-3 w-[80px] h-[80px] rounded-[8px] overflow-hidden border border-[#E7E7E7]">
+                            <Image src={r.image} alt="Review" width={80} height={80} className="object-cover w-full h-full" />
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 14. TOP Injectable */}
+        <div className="max-w-[1340px] mx-auto pb-10">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">TOP Injectable</h2>
+            <div className="flex gap-2">
+              <button onClick={() => { const el = document.getElementById('top-injectable-scroll'); if (el) el.scrollBy({ left: -280, behavior: 'smooth' }); }} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors cursor-pointer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </button>
+              <button onClick={() => { const el = document.getElementById('top-injectable-scroll'); if (el) el.scrollBy({ left: 280, behavior: 'smooth' }); }} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors cursor-pointer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+          <div id="top-injectable-scroll" className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
+            <Link href="/catalog?category=injectable" className="w-[252px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center cursor-pointer group" style={{ minHeight: '480px' }}>
+              <Image src="/images/shop/promo-injectable.png" alt="Injectable" fill className="object-cover" />
+              <div className="relative z-10">
+                <span
+                  className="bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] inline-flex items-center justify-center shadow-md group-hover:border-[#181818] transition-colors"
+                >
+                  View All Injectable
+                </span>
+              </div>
+            </Link>
+            {topInjectableProducts.map((p, i) => (
+              <ProductCard key={i} {...p} />
+            ))}
+          </div>
+        </div>
+
+        {/* 15. Related Products */}
+        <div className="max-w-[1340px] mx-auto pb-10">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">Related products</h2>
+            <div className="flex gap-2">
+              <button onClick={() => { const el = document.getElementById('related-scroll'); if (el) el.scrollBy({ left: -220, behavior: 'smooth' }); }} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors cursor-pointer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </button>
+              <button onClick={() => { const el = document.getElementById('related-scroll'); if (el) el.scrollBy({ left: 220, behavior: 'smooth' }); }} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors cursor-pointer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+          <div id="related-scroll" className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
+            {relatedProducts.map((p, i) => (
+              <div key={i} className="w-[200px] shrink-0 cursor-pointer group">
+                <div className="h-[200px] bg-white rounded-[12px] border border-[#E7E7E7] flex items-center justify-center p-3 mb-3 overflow-hidden">
+                  <Image src={p.image} alt={p.name} width={160} height={160} className="object-contain" />
+                </div>
+                <p className="text-xs text-[#7E7E7E]">{p.brand}</p>
+                <p className="text-sm font-semibold text-[#181818] line-clamp-2 group-hover:text-[#FF6701] transition-colors">{p.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 16. FAQ Section */}
+        <section className="max-w-[1340px] mx-auto pb-16">
+          <div className="flex gap-[80px]">
+            <div className="w-[440px] shrink-0">
+              <div className="bg-[#F7F7F7] rounded-[12px] p-4">
+                <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
+                  <Image src="/images/shop/faq-help-icon.png" alt="Help" width={64} height={64} className="object-contain" />
+                  <h3 className="text-[16px] font-semibold text-black text-center">Still have questions?</h3>
+                  <p className="text-[14px] text-[#1E1E1E] text-center">Reach out to our manager right away &mdash; we&apos;re happy to help with any questions.</p>
+                  <button
+                    onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))}
+                    className="cursor-pointer bg-white border border-[#CBCBCB] rounded-[8px] h-[44px] w-full text-[14px] font-semibold text-black text-center hover:border-[#181818] transition-colors"
+                  >
+                    Ask a Question
+                  </button>
+                  <div className="flex gap-4">
+                    <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00A9DE] flex items-center justify-center">
+                      <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} />
+                    </a>
+                    <a href="#" className="w-[56px] h-[56px] rounded-full bg-[#00D43F] flex items-center justify-center">
+                      <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex-1">
+              <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-6">Frequently Asked Questions</h2>
+              <div className="flex flex-col">
+                {faqItems.map((q, i) => (
+                  <div key={i} className="border-b border-[#E7E7E7]">
+                    <button
+                      onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
+                      className="w-full flex items-center justify-between py-5 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Image src="/images/shop/faq-question-icon.svg" alt="?" width={24} height={24} className="shrink-0" />
+                        <span className="text-[16px] font-semibold text-[#181818] text-left leading-6">{q}</span>
+                      </div>
+                      <div className={`w-[40px] h-[40px] rounded-[8px] bg-[#F7F7F7] flex items-center justify-center shrink-0 transition-colors ${openFAQ === i ? 'bg-[#E7E7E7] text-[#181818]' : 'text-[#181818]'}`}>
+                        <span className="text-[20px] leading-none">{openFAQ === i ? '−' : '+'}</span>
+                      </div>
+                    </button>
+                    {openFAQ === i && (
+                      <div className="pb-5 pl-[36px] pr-[56px] text-[14px] text-[#7E7E7E] leading-[22px]">
+                        These boots provide good water resistance for light rain, wet grass, and damp trails, helping keep your feet dry in everyday hiking conditions. However, they are not fully waterproof and do not include a waterproof membrane like GORE-TEX. They are best suited for dry to moderately wet environments. For heavy rain or very wet terrain, a fully waterproof model would be a better choice.
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <Link href="/faqs" className="bg-[#F7F7F7] rounded-xl py-4 text-center text-sm font-semibold text-[#181818] hover:bg-[#EDEDED] transition-colors mt-6 flex items-center justify-center gap-2 w-full">
+                See All Questions And Answers
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+      {/* Sticky bottom buy bar — mobile + tablet only */}
+      <div className="desktop:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#E7E7E7] shadow-[0_-4px_16px_rgba(0,0,0,0.08)]">
+        <div className="flex items-center gap-3 px-3 py-2.5">
+          <div className="w-[56px] h-[56px] rounded-[8px] bg-white border border-[#E7E7E7] p-1.5 flex items-center justify-center shrink-0">
+            <Image src={thumbnails[selectedImage]} alt="" width={44} height={44} className="object-contain" />
+          </div>
+          <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+            <p className="text-[12px] font-semibold text-[#181818] leading-[15px] line-clamp-2">
+              {product.name}
+            </p>
+            {dosageText && <p className="text-[11px] text-[#7E7E7E] leading-4">{dosageText}</p>}
+          </div>
+          <div className="flex flex-col items-end shrink-0">
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-[16px] font-extrabold text-[#FB2F2F] leading-none">{product.price}€</span>
+              {product.oldPrice && (
+                <span className="text-[12px] text-[#7E7E7E] line-through leading-none">{product.oldPrice}€</span>
+              )}
+            </div>
+            {discountPct > 0 && (
+              <span className="bg-[#FB2F2F] text-white text-[10px] font-semibold leading-none px-1.5 py-0.5 rounded-[4px] mt-0.5">Sale -{discountPct}%</span>
+            )}
+          </div>
+          <button
+            onClick={handleAddToCart}
+            className="cursor-pointer w-[48px] h-[48px] bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center transition-colors shrink-0"
+            aria-label="Add to cart"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M6 2L3 6V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M3 6H21M16 10C16 11.06 15.58 12.08 14.83 12.83C14.08 13.58 13.06 14 12 14C10.94 14 9.92 13.58 9.17 12.83C8.42 12.08 8 11.06 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div className="relative z-0">
+        <Footer />
+      </div>
+      <PaymentPopup isOpen={paymentOpen} onClose={() => setPaymentOpen(false)} />
+      <ShippingPopup isOpen={shippingOpen} onClose={() => setShippingOpen(false)} />
+      <NeedHelpPopup isOpen={helpOpen} onClose={() => setHelpOpen(false)} />
+      <VerifyPopup isOpen={verifyOpen} onClose={() => setVerifyOpen(false)} />
+      <ReviewPopup isOpen={reviewOpen} onClose={() => setReviewOpen(false)} productName={product.name} />
+    </>
+  );
+}

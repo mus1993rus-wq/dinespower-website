@@ -62,7 +62,7 @@ export default function CartPage() {
     <>
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
-        <div className="max-w-[1340px] mx-auto pt-4 tablet:pt-6 desktop:pt-8 pb-12 tablet:pb-16 px-4 wide:px-0">
+        <div className="max-w-[1340px] mx-auto pt-4 tablet:pt-6 desktop:pt-8 pb-12 tablet:pb-16 px-4 ">
           {items.length === 0 ? (
             <div className="text-center py-20">
               <h1 className="text-[28px] font-extrabold text-[#181818] leading-[34px] mb-6">My Cart</h1>

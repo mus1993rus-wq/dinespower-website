@@ -53,7 +53,7 @@ export default function AboutPage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 py-4">
+        <div className="max-w-[1340px] mx-auto px-4  py-4">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
@@ -62,7 +62,7 @@ export default function AboutPage() {
         </div>
 
         {/* Hero Banner — rounded card, Figma style */}
-        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0">
+        <div className="max-w-[1340px] mx-auto px-4 ">
           <div className="relative bg-[#181818] rounded-[16px] overflow-hidden">
             <Image
               src="/images/shop/wholesale-banner-bg.png"
@@ -85,7 +85,7 @@ export default function AboutPage() {
         </div>
 
         {/* Stats Row */}
-        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 mt-8 tablet:mt-10">
+        <div className="max-w-[1340px] mx-auto px-4  mt-8 tablet:mt-10">
           <div className="grid grid-cols-2 tablet:grid-cols-3 desktop:flex desktop:flex-nowrap gap-3 desktop:gap-4">
             {stats.map((stat, i) => (
               <div
@@ -104,7 +104,7 @@ export default function AboutPage() {
         </div>
 
         {/* Expert Section */}
-        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 mt-10 tablet:mt-16">
+        <div className="max-w-[1340px] mx-auto px-4  mt-10 tablet:mt-16">
           <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-20 items-stretch">
             {/* Left - Manager photo — equal column, 80px gap */}
             <div className="flex-1 rounded-[16px] relative overflow-hidden bg-[#F7F7F7] self-stretch min-h-[240px] tablet:min-h-[280px] desktop:min-h-[460px]">
@@ -138,7 +138,7 @@ export default function AboutPage() {
         </div>
 
         {/* Official Brands Section */}
-        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 mt-10 tablet:mt-16 mb-10 tablet:mb-16">
+        <div className="max-w-[1340px] mx-auto px-4  mt-10 tablet:mt-16 mb-10 tablet:mb-16">
           <div className="text-center mb-6 tablet:mb-10">
             <h2 className="text-[22px] tablet:text-[28px] font-extrabold text-[#181818] leading-[30px] tablet:leading-[36px]">
               Official Brands We Distribute

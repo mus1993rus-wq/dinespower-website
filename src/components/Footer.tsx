@@ -55,7 +55,7 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#181818] mt-auto">
       {/* Partner logos bar */}
-      <div className="bg-[#F6F6F6] rounded-bl-2xl rounded-br-2xl px-4 desktop:px-4 wide:px-0">
+      <div className="bg-[#F6F6F6] rounded-bl-2xl rounded-br-2xl px-4 desktop:px-4 ">
         <div className="max-w-[1340px] mx-auto flex items-center justify-between gap-4 py-4 tablet:py-5 desktop:py-0 desktop:h-[80px] overflow-x-auto scrollbar-hide">
           {partnerLogos.map((logo) => (
             <div key={logo.alt} className="h-8 tablet:h-12 desktop:h-16 w-[80px] tablet:w-[110px] desktop:w-[140px] wide:w-[164px] relative flex items-center justify-center shrink-0">
@@ -66,7 +66,7 @@ export default function Footer() {
       </div>
 
       {/* Main footer */}
-      <div className="max-w-[1340px] mx-auto pt-10 desktop:pt-[100px] pb-[25px] px-4 wide:px-0">
+      <div className="max-w-[1340px] mx-auto pt-10 desktop:pt-[100px] pb-[25px] px-4 ">
         <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-10 wide:gap-16">
           {/* Logo column — hidden on mobile+tablet per Figma 2236:38551 */}
           <div className="hidden desktop:flex desktop:w-[240px] wide:w-[305px] shrink-0 flex-col gap-5 desktop:gap-7">

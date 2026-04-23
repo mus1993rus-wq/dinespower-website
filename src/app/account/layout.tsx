@@ -8,7 +8,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
     <>
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
-        <div className="max-w-[1340px] mx-auto pt-4 pb-16 px-4 desktop:px-0">
+        <div className="max-w-[1340px] mx-auto pt-4 pb-16 px-4 ">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-[12px] tablet:text-[14px] text-[#7E7E7E] mb-4">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>

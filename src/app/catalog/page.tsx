@@ -589,7 +589,7 @@ function CatalogContent() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb - Figma style: Home / Category / Brand */}
-        <div className="max-w-[1340px] mx-auto py-3 px-4 wide:px-0">
+        <div className="max-w-[1340px] mx-auto py-3 px-4 ">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             {currentCategory && (
@@ -624,7 +624,7 @@ function CatalogContent() {
 
         {/* Banner */}
         {bannerImage ? (
-          <div className="max-w-[1340px] mx-auto mb-6 tablet:mb-7 desktop:mb-8 px-4 wide:px-0">
+          <div className="max-w-[1340px] mx-auto mb-6 tablet:mb-7 desktop:mb-8 px-4 ">
             <div className="relative h-[160px] tablet:h-[220px] desktop:h-[260px] wide:h-[278px] rounded-[16px] overflow-hidden" style={{ backgroundColor: currentBrandLabel ? (brandBgColors[currentBrandLabel] || '#F7F7F7') : '#F7F7F7' }}>
               <Image
                 src={bannerImage}
@@ -654,7 +654,7 @@ function CatalogContent() {
             </div>
           </div>
         ) : (
-          <div className="max-w-[1340px] mx-auto mb-6 tablet:mb-7 desktop:mb-8 px-4 wide:px-0">
+          <div className="max-w-[1340px] mx-auto mb-6 tablet:mb-7 desktop:mb-8 px-4 ">
             <div className="relative h-[160px] tablet:h-[220px] desktop:h-[260px] wide:h-[278px] rounded-[16px] overflow-hidden bg-[#F7F7F7]">
               <div className="absolute left-5 tablet:left-8 desktop:left-[48px] wide:left-[60px] top-1/2 -translate-y-1/2 max-w-[60%] tablet:max-w-[55%] desktop:max-w-[50%]">
                 <h1 className="text-[20px] tablet:text-[28px] desktop:text-[34px] wide:text-[40px] font-black text-[#181818] uppercase leading-[24px] tablet:leading-[32px] desktop:leading-[38px] wide:leading-[44px]">
@@ -670,7 +670,7 @@ function CatalogContent() {
           </div>
         )}
 
-        <div className="max-w-[1340px] mx-auto flex gap-6 wide:gap-6 pb-16 px-4 wide:px-0">
+        <div className="max-w-[1340px] mx-auto flex gap-6 wide:gap-6 pb-16 px-4 ">
           {/* Sidebar Filters — visible only from desktop (≥961) */}
           <aside className="hidden desktop:flex desktop:w-[240px] wide:w-[256px] shrink-0 flex-col gap-4">
             {/* Brands card — only if more than 1 brand */}

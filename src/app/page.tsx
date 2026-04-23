@@ -95,7 +95,7 @@ function HeroBanner() {
   }, []);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-4 tablet:mt-6 tablet:px-4 wide:px-0">
+    <section className="max-w-[1340px] mx-auto mt-4 tablet:mt-6 tablet:px-4 ">
       <div className="flex flex-col desktop:flex-row gap-3 tablet:gap-4 desktop:gap-[16px]">
         {/* Main banner — 66% at desktop (961+), full width below */}
         <div className="w-full desktop:basis-[66%] desktop:grow-0 aspect-[884/467] relative tablet:rounded-[16px] overflow-hidden group">
@@ -138,7 +138,7 @@ function HeroBanner() {
 
 function CategoriesRow() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-8 tablet:mt-10 desktop:mt-[48px] tablet:px-4 wide:px-0">
+    <section className="max-w-[1340px] mx-auto mt-8 tablet:mt-10 desktop:mt-[48px] tablet:px-4 ">
       {/* Mobile (≤640): vertical list per Figma */}
       <div className="tablet:hidden flex flex-col bg-white">
         {categories.map((cat, i) => (
@@ -227,7 +227,7 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
     : "/catalog";
 
   return (
-    <section className={`max-w-[1340px] mx-auto px-4 tablet:px-4 wide:px-0 ${className}`}>
+    <section className={`max-w-[1340px] mx-auto px-4 tablet:px-4  ${className}`}>
       <div className="flex items-center justify-between mb-4 tablet:mb-5 desktop:mb-6">
         <h2 className="text-[18px] tablet:text-[22px] desktop:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[28px] desktop:leading-[30px]">{title}</h2>
         <div className="flex gap-2">
@@ -243,7 +243,7 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
         {/* Fixed promo banner — only on wide (≥1281) to keep desktop 1 tight */}
         {promoCategoryName && <div className="hidden wide:block self-stretch"><PromoBanner categoryName={promoCategoryName} /></div>}
         {/* Scrollable product cards */}
-        <div ref={scrollRef} className="flex gap-3 tablet:gap-4 overflow-x-auto scrollbar-hide pb-2 flex-1 min-w-0 -mx-4 px-4 tablet:-mx-4 tablet:px-4 wide:mx-0 wide:px-0">
+        <div ref={scrollRef} className="flex gap-3 tablet:gap-4 overflow-x-auto scrollbar-hide pb-2 flex-1 min-w-0 -mx-4 px-4 tablet:-mx-4 tablet:px-4 wide:mx-0 ">
           {products.map((p, i) => (
             <ProductCard key={i} {...p} />
           ))}
@@ -265,7 +265,7 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
 
 function CategoryBanners() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 wide:px-0">
+    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 ">
       <div className="flex flex-col desktop:flex-row gap-4 desktop:gap-[16px]">
         {/* Left banner - Recovery */}
         <div className="flex-1 h-[200px] tablet:h-[240px] desktop:h-[272px] rounded-[16px] overflow-hidden relative group">
@@ -311,7 +311,7 @@ function CategoryBanners() {
 
 function FatBurningBanner() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 wide:px-0">
+    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 ">
       {/* Mobile + Tablet (≤960): products top, text centered below */}
       <div className="desktop:hidden relative rounded-[16px] overflow-hidden bg-[#2a2a2a]">
         <Link href="/catalog?category=fat-burn" aria-label="Fat Burning Stack" className="absolute inset-0 z-0">
@@ -366,7 +366,7 @@ function ProSellersSection() {
   return (
     <section className="w-full mt-6 tablet:mt-10 desktop:mt-[65px] relative overflow-hidden">
       <Image src="/images/shop/pro-sellers-bg.png" alt="" fill className="object-cover" />
-      <div className="max-w-[1340px] mx-auto py-8 tablet:py-12 desktop:py-[80px] px-4 wide:px-0 relative z-10">
+      <div className="max-w-[1340px] mx-auto py-8 tablet:py-12 desktop:py-[80px] px-4  relative z-10">
         <ScrollAnimation animation="animate-fade-in-up">
           <div className="text-center mb-8 tablet:mb-10 desktop:mb-[60px]">
             <p className="text-[12px] tablet:text-[14px] text-[#B6B6B6] uppercase tracking-[2px] mb-3 tablet:mb-4 font-semibold">Built to Scale</p>
@@ -420,7 +420,7 @@ function BlogSection() {
   }, [featuredSlides.length]);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 wide:px-0">
+    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 ">
       <ScrollAnimation animation="animate-fade-in-up">
         <div className="flex items-center justify-between mb-4 tablet:mb-5 desktop:mb-6">
           <h2 className="text-[18px] tablet:text-[22px] desktop:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[28px] desktop:leading-[30px]">Our Blogpost</h2>
@@ -527,7 +527,7 @@ function BlogSection() {
 
 function WholesaleBanner() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 wide:px-0">
+    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 ">
       {/* Mobile + Tablet (≤960): bars on top, text centered below */}
       <div className="desktop:hidden relative rounded-[16px] overflow-hidden">
         <Image src="/images/shop/banner-dark-2.png" alt="" fill className="object-cover" />
@@ -576,7 +576,7 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(2);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 wide:px-0">
+    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 ">
       <div className="flex flex-col-reverse desktop:flex-row gap-6 desktop:gap-[60px] wide:gap-[80px]">
         {/* Left column - Still Have Questions Card */}
         <div className="w-full desktop:w-[440px] desktop:shrink-0">
@@ -642,7 +642,7 @@ function FAQSection() {
 function SEOSection() {
   const [expanded, setExpanded] = useState(false);
   return (
-    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] mb-8 tablet:mb-10 desktop:mb-[65px] px-4 wide:px-0">
+    <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] mb-8 tablet:mb-10 desktop:mb-[65px] px-4 ">
       <h2 className="text-[20px] tablet:text-[22px] desktop:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[28px] desktop:leading-[30px] mb-4">
         Dinespower is the best distributor of bodybuilding preparations in Europe
       </h2>

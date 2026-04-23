@@ -181,7 +181,7 @@ export default function BitcoinPaymentPage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 py-3">
+        <div className="max-w-[1340px] mx-auto px-4  py-3">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
@@ -191,7 +191,7 @@ export default function BitcoinPaymentPage() {
           </div>
         </div>
 
-        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 flex flex-col desktop:flex-row gap-6 desktop:gap-[80px] pb-16">
+        <div className="max-w-[1340px] mx-auto px-4  flex flex-col desktop:flex-row gap-6 desktop:gap-[80px] pb-16">
           {/* Main content */}
           <div className="flex-1 max-w-[820px]">
             <h1 className="text-[24px] tablet:text-[36px] font-extrabold text-[#181818] leading-[30px] tablet:leading-[44px] mb-6">

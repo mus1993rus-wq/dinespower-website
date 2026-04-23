@@ -53,7 +53,7 @@ export default function PrivacyPage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto px-4 wide:px-0 py-4">
+        <div className="max-w-[1340px] mx-auto px-4  py-4">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
@@ -61,7 +61,7 @@ export default function PrivacyPage() {
           </div>
         </div>
 
-        <div className="max-w-[1340px] mx-auto px-4 wide:px-0 py-6 tablet:py-8 pb-12 tablet:pb-16">
+        <div className="max-w-[1340px] mx-auto px-4  py-6 tablet:py-8 pb-12 tablet:pb-16">
           <h1 className="text-[24px] tablet:text-[30px] desktop:text-[36px] font-extrabold text-[#181818] leading-[30px] tablet:leading-[38px] desktop:leading-[44px] mb-3 tablet:mb-6">
             Privacy Policy
           </h1>

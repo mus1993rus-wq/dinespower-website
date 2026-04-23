@@ -141,7 +141,7 @@ export default function BlogArticlePage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 py-4">
+        <div className="max-w-[1340px] mx-auto px-4  py-4">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">
               Home
@@ -161,7 +161,7 @@ export default function BlogArticlePage() {
         </div>
 
         {/* Title + Meta + Tags (NOT on hero image) */}
-        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0">
+        <div className="max-w-[1340px] mx-auto px-4 ">
           <h1 className="text-[20px] tablet:text-[28px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[34px] mb-4">
             {articleData.title}
           </h1>
@@ -193,7 +193,7 @@ export default function BlogArticlePage() {
         </div>
 
         {/* Article content */}
-        <div className="max-w-[1340px] mx-auto px-4 desktop:px-0 pb-10">
+        <div className="max-w-[1340px] mx-auto px-4  pb-10">
           <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-[80px]">
             {/* Main content - LEFT COLUMN */}
             <div className="flex-1 min-w-0 max-w-[820px]">
