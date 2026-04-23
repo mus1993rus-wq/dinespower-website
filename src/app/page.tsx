@@ -251,7 +251,7 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
 
 function CategoryBanners() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
+    <section className="max-w-[1340px] mx-auto mt-6 md:mt-[65px] px-4 md:px-0">
       <div className="flex flex-col xl:flex-row gap-4 xl:gap-[16px]">
         {/* Left banner - Recovery */}
         <div className="flex-1 h-[200px] md:h-[272px] rounded-[16px] overflow-hidden relative group">
@@ -297,7 +297,7 @@ function CategoryBanners() {
 
 function FatBurningBanner() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
+    <section className="max-w-[1340px] mx-auto mt-6 md:mt-[65px] px-4 md:px-0">
       {/* Mobile: products top, text centered below */}
       <div className="md:hidden relative rounded-[16px] overflow-hidden bg-[#2a2a2a]">
         <Link href="/catalog?category=fat-burn" aria-label="Fat Burning Stack" className="absolute inset-0 z-0">
@@ -350,9 +350,9 @@ function FatBurningBanner() {
 
 function ProSellersSection() {
   return (
-    <section className="w-full mt-8 md:mt-[65px] relative overflow-hidden">
+    <section className="w-full mt-6 md:mt-[65px] relative overflow-hidden">
       <Image src="/images/shop/pro-sellers-bg.png" alt="" fill className="object-cover" />
-      <div className="max-w-[1340px] mx-auto py-10 md:py-[80px] px-4 md:px-0 relative z-10">
+      <div className="max-w-[1340px] mx-auto py-8 md:py-[80px] px-4 md:px-0 relative z-10">
         <ScrollAnimation animation="animate-fade-in-up">
           <div className="text-center mb-8 md:mb-[60px]">
             <p className="text-[12px] md:text-[14px] text-[#B6B6B6] uppercase tracking-[2px] mb-3 md:mb-4 font-semibold">Built to Scale</p>
@@ -406,7 +406,7 @@ function BlogSection() {
   }, [featuredSlides.length]);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
+    <section className="max-w-[1340px] mx-auto mt-6 md:mt-[65px] px-4 md:px-0">
       <ScrollAnimation animation="animate-fade-in-up">
         <div className="flex items-center justify-between mb-4 md:mb-6">
           <h2 className="text-[18px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px]">Our Blogpost</h2>
@@ -513,7 +513,7 @@ function BlogSection() {
 
 function WholesaleBanner() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
+    <section className="max-w-[1340px] mx-auto mt-6 md:mt-[65px] px-4 md:px-0">
       {/* Mobile: bars on top, text centered below */}
       <div className="md:hidden relative rounded-[16px] overflow-hidden">
         <Image src="/images/shop/banner-dark-2.png" alt="" fill className="object-cover" />
@@ -562,7 +562,7 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(2);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
+    <section className="max-w-[1340px] mx-auto mt-6 md:mt-[65px] px-4 md:px-0">
       <div className="flex flex-col-reverse xl:flex-row gap-6 xl:gap-[80px]">
         {/* Left column - Still Have Questions Card */}
         <div className="w-full xl:w-[440px] shrink-0">
@@ -628,7 +628,7 @@ function FAQSection() {
 function SEOSection() {
   const [expanded, setExpanded] = useState(false);
   return (
-    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] mb-8 md:mb-[65px] px-4 md:px-0">
+    <section className="max-w-[1340px] mx-auto mt-6 md:mt-[65px] mb-8 md:mb-[65px] px-4 md:px-0">
       <h2 className="text-[20px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px] mb-4">
         Dinespower is the best distributor of bodybuilding preparations in Europe
       </h2>
