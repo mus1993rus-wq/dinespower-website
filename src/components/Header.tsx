@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useCart } from "@/context/CartContext";
+import { useLocale } from "@/context/LocaleContext";
+import type { Locale } from "@/i18n/dictionary";
 
 const VerifyPopup = dynamic(() => import("@/components/VerifyPopup"), { ssr: false });
 const MobileMenu = dynamic(() => import("@/components/MobileMenu"), { ssr: false });
@@ -84,7 +86,8 @@ export default function Header() {
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [langOpen, setLangOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState("en");
+  const { locale: currentLang, setLocale, t } = useLocale();
+  const setCurrentLang = (code: string) => setLocale(code as Locale);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const helpRef = useRef<HTMLDivElement>(null);
@@ -115,7 +118,7 @@ export default function Header() {
         {/* Top announcement bar */}
         <div className="bg-[#181818] h-[36px] flex items-center justify-center px-4 gap-2">
           <Image src="/images/shop/shield-check.svg" alt="" width={16} height={16} className="shrink-0" />
-          <span className="text-[11px] text-white leading-none">All Products Certified &amp; Lab Tested</span>
+          <span className="text-[11px] text-white leading-none">{t("header.allProductsTested")}</span>
           <Link href="/lab-tests" className="text-[11px] font-semibold text-white underline leading-none ml-1">See Lab Test</Link>
         </div>
         {/* Main mobile bar */}
@@ -166,7 +169,7 @@ export default function Header() {
         {/* Top announcement bar */}
         <div className="bg-[#181818] h-[36px] flex items-center justify-center px-6 gap-2">
           <Image src="/images/shop/shield-check.svg" alt="" width={16} height={16} className="shrink-0" />
-          <span className="text-[12px] text-white leading-none">All Products Certified &amp; Lab Tested</span>
+          <span className="text-[12px] text-white leading-none">{t("header.allProductsTested")}</span>
           <Link href="/lab-tests" className="text-[12px] font-semibold text-white underline leading-none ml-1">See Lab Test</Link>
           <div className="flex-1" />
           <div className="relative" ref={langRef}>
@@ -352,7 +355,7 @@ export default function Header() {
           </div>
           <div className="flex items-center gap-2">
             <Image src="/images/shop/shield-check.svg" alt="" width={24} height={24} />
-            <span className="text-sm text-white leading-[18px]">All Products Certified & Lab Tested</span>
+            <span className="text-sm text-white leading-[18px]">{t("header.allProductsTested")}</span>
             <Link href="/lab-tests" className="text-sm font-semibold text-white underline leading-5 ml-1">See Lab Test</Link>
           </div>
           <div className="flex-1 flex items-center justify-end" ref={langRef}>
@@ -403,7 +406,7 @@ export default function Header() {
             <Image src="/images/shop/logo-header.svg" alt="Dines Power" width={106} height={44} />
           </Link>
           <span className="hidden wide:inline text-xs text-[#7E7E7E] leading-4">
-            Official Representative Of<br/>Deus Medical, Biaxol, Astera Labs
+            {t("header.officialRep")}<br/>{t("header.officialRepBrands")}
           </span>
         </div>
         <div className="flex-1 h-[44px] relative" ref={searchRef}>
@@ -414,7 +417,7 @@ export default function Header() {
             </svg>
             <input
               type="text"
-              placeholder="What are you looking for?"
+              placeholder={t("header.searchPlaceholder")}
               className="bg-transparent flex-1 text-sm text-[#181818] placeholder:text-[#7E7E7E] outline-none leading-5"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -515,14 +518,14 @@ export default function Header() {
         <div className="flex items-center gap-4 wide:gap-[24px] shrink-0">
           <button onClick={() => setVerifyOpen(true)} className="flex items-center gap-2 h-[44px] cursor-pointer">
             <Image src="/images/shop/verify-icon.svg" alt="" width={24} height={24} className="w-6 h-6" />
-            <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors whitespace-nowrap">Verify Authenticity</span>
+            <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors whitespace-nowrap">{t("header.verifyAuthenticity")}</span>
           </button>
           <div className="relative" ref={helpRef}>
             <button onClick={() => setHelpDropdownOpen(!helpDropdownOpen)} className="flex items-center gap-2 h-[44px] cursor-pointer">
               <svg width="24" height="24" viewBox="0 0 20 17.3293" fill="#FF6701" xmlns="http://www.w3.org/2000/svg">
               <path d="M19.0259 17.2494L14.4957 14.6615L3.39174 14.6655C1.45393 14.6664 -0.00179552 13.1482 1.66224e-06 11.2225L0.00763971 3.34591C0.0089876 1.48942 1.48178 0 3.34277 0L16.6945 0.00179719C18.5128 0.00179719 19.9982 1.47953 19.9982 3.30008L20 16.6487C20 16.8972 19.8751 17.093 19.7196 17.1991C19.526 17.3312 19.2667 17.3873 19.0255 17.2494H19.0259ZM6.2933 6.09336C5.61711 6.22006 5.22982 6.86885 5.37269 7.49652C5.51108 8.10172 6.1046 8.49396 6.72418 8.37939C7.3478 8.26437 7.7652 7.65557 7.65377 7.03644C7.54145 6.41326 6.95961 5.96846 6.2933 6.09336ZM9.79198 6.09291C9.11309 6.22096 8.72984 6.8684 8.87092 7.49697C9.00705 8.10217 9.60282 8.49575 10.2255 8.37804C10.8483 8.26032 11.2625 7.65647 11.152 7.03689C11.041 6.41506 10.4565 5.96801 9.79198 6.09336V6.09291ZM13.2889 6.09381C12.6127 6.22096 12.2263 6.86975 12.3687 7.49652C12.5066 8.10262 13.1028 8.4962 13.7229 8.37894C14.3429 8.26167 14.7607 7.65512 14.6498 7.03689C14.5388 6.41865 13.957 5.96846 13.2884 6.09426L13.2889 6.09381Z" />
             </svg>
-              <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors whitespace-nowrap">Need Help?</span>
+              <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors whitespace-nowrap">{t("header.needHelp")}</span>
             </button>
             {helpDropdownOpen && (
               <div className="absolute top-full right-0 mt-2 bg-white border border-[#E7E7E7] rounded-[12px] shadow-lg p-2 min-w-[240px] z-50">
@@ -573,7 +576,7 @@ export default function Header() {
           </div>
           <Link href="/login" className="flex items-center gap-2 h-[44px]">
             <Image src="/images/shop/user-icon.svg" alt="" width={20} height={20} />
-            <span className="text-sm font-semibold text-[#181818] leading-5 whitespace-nowrap">Login</span>
+            <span className="text-sm font-semibold text-[#181818] leading-5 whitespace-nowrap">{t("header.login")}</span>
           </Link>
           <button onClick={openCart} className="flex items-center gap-2 h-[44px] cursor-pointer">
             <div className="relative">
@@ -582,7 +585,7 @@ export default function Header() {
                 <span className="absolute -top-1.5 -right-2 bg-[#FF6701] text-white text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center leading-none">{totalItems}</span>
               )}
             </div>
-            <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors whitespace-nowrap">Cart</span>
+            <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors whitespace-nowrap">{t("header.cart")}</span>
           </button>
         </div>
       </div>

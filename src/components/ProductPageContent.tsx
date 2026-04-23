@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { useCart } from "@/context/CartContext";
 import type { Product } from "@/data/products";
+import { catalogProducts } from "@/data/catalog-products";
 
 const PaymentPopup = dynamic(() => import("@/components/PaymentPopup"), { ssr: false });
 const ShippingPopup = dynamic(() => import("@/components/ShippingPopup"), { ssr: false });
@@ -70,21 +71,8 @@ const reviews = [
   },
 ];
 
-const topInjectableProducts = [
-  { brand: "Deus Medical", name: "3-Trenbomed 150 Injectable Steroid In Ampoules", dosage: "150 mg/ml", price: 57, oldPrice: 65, badges: ["sale", "top"], image: "/images/shop/products/injectable-trenbomed-150.jpg" },
-  { brand: "Deus Medical", name: "Decamed PP 100 Injectable Steroid In Ampoules", dosage: "100 mg/ml", price: 34, oldPrice: 44, badges: ["sale"], image: "/images/shop/products/injectable-decamed-pp-100.jpg" },
-  { brand: "Deus Medical", name: "Dianamed 100 Injectable Steroid In Ampoules", dosage: "100 mg/ml", price: 40, oldPrice: 54, badges: ["sale", "top"], image: "/images/shop/products/injectable-dianamed-100.png" },
-  { brand: "Deus Medical", name: "Equimed 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 42, oldPrice: 53, badges: ["sale"], image: "/images/shop/products/injectable-equimed-250.jpg" },
-  { brand: "Deus Medical", name: "Sustamed 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 37, oldPrice: 43, badges: ["sale", "top"], image: "/images/shop/products/injectable-sustamed-250.jpg" },
-];
-
-const relatedProducts = [
-  { brand: "Deus Medical", name: "Primomed 100 Injectable Steroid In Ampoules", dosage: "100 mg/ml", price: 70, oldPrice: 76, badges: ["sale"], image: "/images/shop/products/injectable-primomed-100.jpg" },
-  { brand: "Deus Medical", name: "Testomed E 250 Injectable Steroid In Ampoules", dosage: "250 mg/ml", price: 35, oldPrice: 45, badges: ["sale", "top"], image: "/images/shop/products/injectable-testomed-e-250.jpg" },
-  { brand: "Deus Medical", name: "Paramed 76.5 Injectable Steroid In Ampoules", dosage: "76.5 mg/ml", price: 55, oldPrice: 64, badges: ["new", "sale"], image: "/images/shop/products/injectable-paramed-76-5.jpg" },
-  { brand: "Deus Medical", name: "BPC-157 Peptide In Vials", dosage: "5 mg/vial", price: 39, oldPrice: 43, badges: ["sale", "top"], image: "/images/shop/products/peptides-hgh-bpc-157.jpg" },
-  { brand: "Biaxol", name: "Ibutamoren (MK677) SARM In Capsules", dosage: "10 mg/cap", price: 60, oldPrice: 65, badges: ["sale", "top"], image: "/images/shop/products/sarms-ibutamoren.png" },
-];
+// Related/top products now derived dynamically from catalogProducts by category.
+// See getRelatedByCategory() below.
 
 const faqItems = [
   "What is the minimum amount for the first order?",
@@ -122,6 +110,15 @@ export default function ProductPageContent({ product }: { product: Product }) {
     product.oldPrice && product.oldPrice > product.price
       ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
       : 0;
+
+  // Related products: same category, exclude current product by name, take 5
+  const sameCategory = catalogProducts.filter(
+    (p) => p.category === product.category && p.name !== product.name
+  );
+  const topInjectableProducts = sameCategory.slice(0, 5);
+  const relatedProducts = sameCategory.slice(5, 10).length > 0
+    ? sameCategory.slice(5, 10)
+    : sameCategory.slice(0, 5);
 
   const trustBadges = [
     {
@@ -685,7 +682,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
         {/* 14. TOP Injectable */}
         <div className="max-w-[1340px] mx-auto pb-10">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">TOP Injectable</h2>
+            <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">TOP {product.categoryLabel}</h2>
             <div className="flex gap-2">
               <button onClick={() => { const el = document.getElementById('top-injectable-scroll'); if (el) el.scrollBy({ left: -280, behavior: 'smooth' }); }} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors cursor-pointer">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>

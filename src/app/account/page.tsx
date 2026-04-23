@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import { SkeletonAccountDashboard } from "@/components/Skeleton";
 
 const cards = [
   {
@@ -36,7 +37,7 @@ export default function AccountDashboardPage() {
   }, [hydrated, user, router]);
 
   if (!hydrated || !user) {
-    return <div className="py-12 text-center text-[#7E7E7E]">Loading...</div>;
+    return <SkeletonAccountDashboard />;
   }
 
   const handleLogout = () => {
