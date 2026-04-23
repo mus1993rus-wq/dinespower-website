@@ -446,7 +446,7 @@ function BlogContent() {
             </div>
 
             {/* RIGHT sidebar */}
-            <div className="w-full desktop:w-[440px] desktop:shrink-0">
+            <div className="w-full desktop:w-[320px] wide:w-[440px] desktop:shrink-0">
               <div className="flex flex-col gap-8">
                 {/* Categories + Popular Post wrapped card */}
                 <div className="bg-[#F7F7F7] rounded-[16px] p-4 flex flex-col gap-4">

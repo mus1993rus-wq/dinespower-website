@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
+import { useOrders } from "@/context/OrdersContext";
 
 type OrderStatus = "delivered" | "processing" | "canceled";
 
@@ -29,7 +30,7 @@ interface Order {
   orderOverDiscount?: number;
 }
 
-const orders: Order[] = [
+const mockOrders: Order[] = [
   {
     number: "№15539622",
     status: "delivered",
@@ -120,7 +121,56 @@ const statusBadge: Record<OrderStatus, { label: string; bg: string; text: string
 };
 
 export default function HistoryOrdersPage() {
-  const [expanded, setExpanded] = useState<number | null>(1);
+  const [expanded, setExpanded] = useState<number | null>(0);
+  const { orders: realOrders, hydrated } = useOrders();
+
+  // Convert real orders from context to the local Order shape and prepend to mock list
+  const orders: Order[] = useMemo(() => {
+    if (!hydrated) return mockOrders;
+    const formattedReal: Order[] = realOrders.map((o) => {
+      const qty = o.items.reduce((sum, i) => sum + i.qty, 0);
+      const formattedDate = new Date(o.date).toLocaleDateString("en-US", {
+        month: "2-digit",
+        day: "2-digit",
+        year: "numeric",
+      });
+      const statusMap: Record<typeof o.status, OrderStatus> = {
+        Processing: "processing",
+        Shipped: "processing",
+        Delivered: "delivered",
+        Cancelled: "canceled",
+      };
+      return {
+        number: `№${o.id}`,
+        status: statusMap[o.status],
+        date: formattedDate,
+        qty,
+        total: o.total,
+        productsTotal: o.subtotal,
+        shipmentFee: o.shipping,
+        items: o.items.map((i) => ({
+          brand: i.brand,
+          name: i.name,
+          price: i.price,
+          qty: i.qty,
+          total: i.price * i.qty,
+          image: i.image || "/images/shop/products/fat-burn-yohimbine.png",
+        })),
+        shipping: {
+          name: `${o.shippingAddress.firstName} ${o.shippingAddress.lastName}`,
+          address: `${o.shippingAddress.street}\n${o.shippingAddress.city}, ${o.shippingAddress.zip}\n${o.shippingAddress.country}`,
+          phone: o.shippingAddress.phone || "—",
+        },
+        billing: {
+          name: `${o.shippingAddress.firstName} ${o.shippingAddress.lastName}`,
+          address: `${o.shippingAddress.street}\n${o.shippingAddress.city}, ${o.shippingAddress.zip}\n${o.shippingAddress.country}`,
+          phone: o.shippingAddress.phone || "—",
+        },
+      };
+    });
+    // Real orders first, then mock orders for demo
+    return [...formattedReal, ...mockOrders];
+  }, [realOrders, hydrated]);
 
   return (
     <div className="flex flex-col gap-4">

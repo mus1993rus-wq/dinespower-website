@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 const navItems = [
   { href: "/account", label: "My Account", icon: "/images/account/my-account.svg" },
@@ -13,19 +14,26 @@ const navItems = [
 
 export default function AccountSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
 
   return (
-    <aside className="w-full desktop:w-[440px] shrink-0 flex flex-col gap-4 self-start">
+    <aside className="w-full desktop:w-[320px] wide:w-[440px] shrink-0 flex flex-col gap-4 self-start">
       {/* User info */}
       <div className="bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
         <div className="flex items-center gap-4 py-1">
           <div className="w-12 h-12 rounded-full bg-[#E3E3E3] shrink-0" />
           <div className="flex-1 min-w-0 flex flex-col gap-1">
             <div className="flex items-center gap-1">
-              <span className="text-[16px] font-semibold text-black leading-6 capitalize">mus1993rus</span>
-              <span className="text-[12px] text-[#7E7E7E] leading-4">#2414</span>
+              <span className="text-[16px] font-semibold text-black leading-6 capitalize">{user?.displayName || user?.firstName || "Guest"}</span>
+              {user && <span className="text-[12px] text-[#7E7E7E] leading-4">#{user.id.slice(-4)}</span>}
             </div>
-            <span className="text-[12px] text-[#7E7E7E] leading-4">mus1993rus@gmail.com</span>
+            <span className="text-[12px] text-[#7E7E7E] leading-4 truncate">{user?.email || "not signed in"}</span>
           </div>
         </div>
 
@@ -51,13 +59,13 @@ export default function AccountSidebar() {
               </Link>
             );
           })}
-          <Link
-            href="/"
-            className="flex items-center gap-3 px-4 py-2 rounded-[8px] hover:bg-[#F7F7F7] transition-colors"
+          <button
+            onClick={handleLogout}
+            className="cursor-pointer flex items-center gap-3 px-4 py-2 rounded-[8px] hover:bg-[#F7F7F7] transition-colors text-left w-full"
           >
             <Image src="/images/account/logout.svg" alt="" width={24} height={24} className="shrink-0" />
             <span className="flex-1 text-[14px] font-semibold text-[#181818] leading-5">Logout</span>
-          </Link>
+          </button>
         </div>
 
         {/* Telegram CTA */}

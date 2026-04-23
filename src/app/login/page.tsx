@@ -2,9 +2,10 @@
 
 import { useState, Suspense } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useAuth } from "@/context/AuthContext";
 
 const inputClass =
   "w-full h-[53px] bg-white border border-[#E7E7E7] rounded-[8px] px-4 text-[14px] text-[#181818] placeholder:text-[#8A8A8A] outline-none focus:border-[#181818] transition-colors";
@@ -26,8 +27,11 @@ function EyeIcon({ open }: { open: boolean }) {
 
 function LoginContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const { login, register } = useAuth();
   const initialMode = searchParams.get("mode") === "register" ? "register" : "login";
   const [mode, setMode] = useState<"login" | "register">(initialMode);
+  const [error, setError] = useState<string | null>(null);
 
   // Login state
   const [loginEmail, setLoginEmail] = useState("");
@@ -36,14 +40,45 @@ function LoginContent() {
   const [loginRemember, setLoginRemember] = useState(true);
 
   // Register state
-  const [regFirst, setRegFirst] = useState("Rustam");
-  const [regLast, setRegLast] = useState("Musaev");
+  const [regFirst, setRegFirst] = useState("");
+  const [regLast, setRegLast] = useState("");
   const [regEmail, setRegEmail] = useState("");
   const [regPassword, setRegPassword] = useState("");
   const [regConfirm, setRegConfirm] = useState("");
   const [regShowPw, setRegShowPw] = useState(false);
   const [regShowConfirm, setRegShowConfirm] = useState(false);
   const [regRemember, setRegRemember] = useState(true);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    const res = login(loginEmail, loginPassword);
+    if (!res.ok) {
+      setError(res.error ?? "Login failed");
+      return;
+    }
+    router.push("/account");
+  };
+
+  const handleRegister = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    if (regPassword !== regConfirm) {
+      setError("Passwords do not match");
+      return;
+    }
+    const res = register({
+      firstName: regFirst,
+      lastName: regLast,
+      email: regEmail,
+      password: regPassword,
+    });
+    if (!res.ok) {
+      setError(res.error ?? "Registration failed");
+      return;
+    }
+    router.push("/account");
+  };
 
   return (
     <>
@@ -88,8 +123,13 @@ function LoginContent() {
                 {mode === "login" ? "Login" : "Register"}
               </h2>
 
+              {error && (
+                <div className="bg-[#FFE8E8] border border-[#FB2F2F] text-[#FB2F2F] rounded-[8px] px-4 py-3 text-[13px]" role="alert">
+                  {error}
+                </div>
+              )}
               {mode === "login" ? (
-                <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-4">
+                <form onSubmit={handleLogin} className="flex flex-col gap-4">
                   <div className="flex flex-col gap-2">
                     <label className="text-[14px] text-[#181818] leading-5">Email</label>
                     <input
@@ -148,7 +188,7 @@ function LoginContent() {
                   </button>
                 </form>
               ) : (
-                <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-4">
+                <form onSubmit={handleRegister} className="flex flex-col gap-4">
                   <div className="flex flex-col gap-2">
                     <label className="text-[14px] text-[#181818] leading-5">First name</label>
                     <input type="text" value={regFirst} onChange={(e) => setRegFirst(e.target.value)} className={inputClass} />
@@ -214,7 +254,7 @@ function LoginContent() {
                     type="submit"
                     className="cursor-pointer h-[55px] bg-[#181818] hover:bg-black text-white text-[16px] font-semibold rounded-[8px] transition-colors"
                   >
-                    Log In
+                    Register
                   </button>
                 </form>
               )}

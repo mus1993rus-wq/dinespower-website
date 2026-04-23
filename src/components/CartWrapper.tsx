@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { CartProvider, useCart } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext";
+import { OrdersProvider } from "@/context/OrdersContext";
 
 const CartPopup = dynamic(() => import("./CartPopup"), { ssr: false });
 const NeedHelpPopup = dynamic(() => import("./NeedHelpPopup"), { ssr: false });
@@ -27,10 +29,14 @@ function GlobalHelpPopup() {
 
 export default function CartWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <CartProvider>
-      {children}
-      <CartPopupConnected />
-      <GlobalHelpPopup />
-    </CartProvider>
+    <AuthProvider>
+      <OrdersProvider>
+        <CartProvider>
+          {children}
+          <CartPopupConnected />
+          <GlobalHelpPopup />
+        </CartProvider>
+      </OrdersProvider>
+    </AuthProvider>
   );
 }

@@ -739,9 +739,9 @@ export default function ProductPageContent({ product }: { product: Product }) {
         </div>
 
         {/* 16. FAQ Section */}
-        <section className="max-w-[1340px] mx-auto pb-16">
-          <div className="flex gap-[80px]">
-            <div className="w-[440px] shrink-0">
+        <section className="max-w-[1340px] mx-auto pb-16 px-4">
+          <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-[40px] wide:gap-[80px]">
+            <div className="w-full desktop:w-[320px] wide:w-[440px] shrink-0">
               <div className="bg-[#F7F7F7] rounded-[12px] p-4">
                 <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
                   <Image src="/images/shop/faq-help-icon.png" alt="Help" width={64} height={64} className="object-contain" />

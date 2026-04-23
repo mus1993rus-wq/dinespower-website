@@ -2,17 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
-const articleData = {
-  title:
-    "RAD-140 (Testolone): Laboratory Analysis of Its Impact on Anabolism, Androgen Receptors and Safety Markers",
-  date: "12 Nov 2025",
-  readTime: "7 min read",
-  views: "3.2k views",
-  tags: ["Bodybuilding", "Nutrition"],
-};
+import { getBlogPostBySlug, defaultBlogPost } from "@/data/blog-posts";
 
 const tocItems = [
   {
@@ -116,6 +109,16 @@ const relatedArticles = [
 ];
 
 export default function BlogArticlePage() {
+  const params = useParams<{ slug: string }>();
+  const post = getBlogPostBySlug(params.slug) || defaultBlogPost;
+  const articleData = {
+    title: post.title,
+    date: post.date,
+    readTime: post.readTime,
+    views: post.views,
+    tags: post.tags,
+  };
+
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -180,7 +183,7 @@ export default function BlogArticlePage() {
             </span>
           </div>
           <div className="flex flex-wrap gap-2 mb-8">
-            {["Bodybuilding", "SARMs", "Cutting"].map((tag) => (
+            {articleData.tags.map((tag) => (
               <Link
                 key={tag}
                 href={`/blog?category=${tag.toLowerCase()}`}
@@ -200,7 +203,7 @@ export default function BlogArticlePage() {
               <article>
                 {/* Hero image - separate, not overlay */}
                 <div className="relative h-[240px] tablet:h-[480px] rounded-[16px] overflow-hidden mb-6 tablet:mb-8">
-                  <Image src="/images/shop/blog-1.png" alt={articleData.title} fill className="object-cover" />
+                  <Image src={post.image} alt={articleData.title} fill className="object-cover" />
                 </div>
 
                 {/* TOC Card — What's Inside (Figma 1608:17013) */}
@@ -754,7 +757,7 @@ export default function BlogArticlePage() {
             </div>
 
             {/* RIGHT SIDEBAR */}
-            <div className="w-[440px] shrink-0 hidden desktop:block">
+            <div className="desktop:w-[320px] wide:w-[440px] shrink-0 hidden desktop:block">
               <div className="sticky top-[24px] flex flex-col gap-6">
                 {/* Product Recommendation Card — horizontal Figma layout */}
                 <Link href="/catalog" className="relative block bg-[#181818] rounded-[16px] p-6 overflow-hidden group">

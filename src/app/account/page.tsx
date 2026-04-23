@@ -1,7 +1,10 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 const cards = [
   {
@@ -25,14 +28,30 @@ const cards = [
 ];
 
 export default function AccountDashboardPage() {
+  const router = useRouter();
+  const { user, hydrated, logout } = useAuth();
+
+  useEffect(() => {
+    if (hydrated && !user) router.replace("/login");
+  }, [hydrated, user, router]);
+
+  if (!hydrated || !user) {
+    return <div className="py-12 text-center text-[#7E7E7E]">Loading...</div>;
+  }
+
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
+
   return (
     <div className="flex flex-col gap-6 pt-2">
       {/* Greeting */}
       <div className="flex flex-col gap-2">
         <p className="text-[18px] text-[#181818] leading-[26px]">
-          Hello <span className="font-semibold">mus1993rus</span>{" "}
-          <span className="text-[#7E7E7E]">(not mus1993rus? </span>
-          <Link href="/" className="text-[#FF6701] underline">Log out</Link>
+          Hello <span className="font-semibold">{user.displayName || user.firstName}</span>{" "}
+          <span className="text-[#7E7E7E]">(not {user.displayName || user.firstName}? </span>
+          <button onClick={handleLogout} className="cursor-pointer text-[#FF6701] underline bg-transparent border-0 p-0 font-[inherit]">Log out</button>
           <span className="text-[#7E7E7E]">)</span>
         </p>
         <p className="text-[14px] text-[#7E7E7E] leading-5">

@@ -4,8 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useCart } from "@/context/CartContext";
+import { useOrders } from "@/context/OrdersContext";
 
-const orderItems = [
+const fallbackItems = [
   { brand: "Deus Medical", name: "3-Trenbomed 150 Injectable Steroid In Ampoules", price: 57, oldPrice: 65, qty: 2, image: "/images/shop/products/injectable-trenbomed-150.jpg" },
   { brand: "Biaxol", name: "Yohimbine Fat Burner Capsules", price: 24, qty: 1, image: "/images/shop/products/fat-burn-yohimbine.png" },
 ];
@@ -20,6 +22,8 @@ const inputClass = "w-full h-[53px] bg-white border border-[#E7E7E7] rounded-[8p
 
 export default function CheckoutPage() {
   const router = useRouter();
+  const { items, clearCart } = useCart();
+  const { createOrder } = useOrders();
   const [paymentMethod, setPaymentMethod] = useState<"bank" | "bitcoin">("bitcoin");
   const [promo, setPromo] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -34,10 +38,37 @@ export default function CheckoutPage() {
   const [orderNotes, setOrderNotes] = useState("");
   const [suggestIdx, setSuggestIdx] = useState(0);
 
+  // Use real cart items if available, otherwise fallback demo items
+  const orderItems = items.length > 0 ? items : fallbackItems;
   const productsTotal = orderItems.reduce((sum, i) => sum + i.price * i.qty, 0);
   const discount = productsTotal >= 200 ? 11.5 : 0;
   const total = productsTotal - discount;
   const formValid = firstName && lastName && email && country && city && street && zip;
+
+  const handleConfirmAndPay = () => {
+    if (!formValid) return;
+    const order = createOrder({
+      items: orderItems.map((i) => ({ ...i })),
+      subtotal: productsTotal,
+      shipping: -discount,
+      total,
+      paymentMethod,
+      shippingAddress: {
+        firstName,
+        lastName,
+        country,
+        city,
+        street,
+        stateRegion,
+        zip,
+        phone,
+        email,
+      },
+      notes: orderNotes || undefined,
+    });
+    if (items.length > 0) clearCart();
+    router.push(`/checkout/confirmation?method=${paymentMethod}&order=${order.id}`);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#181818]">
@@ -296,7 +327,7 @@ export default function CheckoutPage() {
                       <div key={i}>
                         <div className="flex items-start gap-4 py-2">
                           <div className="w-14 h-14 bg-white rounded-[8px] shrink-0 p-1 flex items-center justify-center">
-                            <Image src={item.image} alt={item.name} width={48} height={48} className="object-contain" />
+                            {item.image && <Image src={item.image} alt={item.name} width={48} height={48} className="object-contain" />}
                           </div>
                           <div className="flex-1 flex flex-col gap-2">
                             <div className="flex flex-col gap-1">
@@ -364,7 +395,7 @@ export default function CheckoutPage() {
                   </div>
                   <button
                     disabled={!formValid}
-                    onClick={() => formValid && router.push(`/checkout/confirmation?method=${paymentMethod}`)}
+                    onClick={handleConfirmAndPay}
                     className={`h-12 px-8 rounded-[8px] text-[16px] font-semibold text-center capitalize transition-colors ${
                       formValid ? "cursor-pointer bg-[#FF6701] hover:bg-[#E65D00] text-white" : "bg-[#E7E7E7] text-[#7E7E7E] cursor-not-allowed"
                     }`}

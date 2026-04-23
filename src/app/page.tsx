@@ -500,7 +500,7 @@ function BlogSection() {
         </div>
 
         {/* Side posts */}
-        <div className="w-full desktop:w-[440px] flex flex-col">
+        <div className="w-full desktop:w-[320px] wide:w-[440px] flex flex-col">
           {blogPosts.slice(1).map((post, i) => (
             <Link key={i} href={`/blog/${post.slug}`} className="flex gap-4 py-4 border-b border-[#E7E7E7] last:border-b-0 cursor-pointer group">
               <div className="w-[100px] h-[80px] bg-[#F7F7F7] rounded-lg shrink-0 relative overflow-hidden">
@@ -580,7 +580,7 @@ function FAQSection() {
     <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 ">
       <div className="flex flex-col-reverse desktop:flex-row gap-6 desktop:gap-[60px] wide:gap-[80px]">
         {/* Left column - Still Have Questions Card */}
-        <div className="w-full desktop:w-[440px] desktop:shrink-0">
+        <div className="w-full desktop:w-[320px] wide:w-[440px] desktop:shrink-0">
           <div className="bg-[#F7F7F7] rounded-[12px] p-4">
             <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
               <Image src="/images/shop/faq-help-icon.png" alt="Help" width={80} height={80} className="object-contain" />
