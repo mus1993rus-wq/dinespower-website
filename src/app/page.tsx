@@ -298,26 +298,50 @@ function CategoryBanners() {
 function FatBurningBanner() {
   return (
     <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
-      <div className="relative h-[280px] md:h-[400px] rounded-[16px] overflow-hidden">
+      {/* Mobile: products top, text centered below */}
+      <div className="md:hidden relative rounded-[16px] overflow-hidden bg-[#2a2a2a]">
         <Link href="/catalog?category=fat-burn" aria-label="Fat Burning Stack" className="absolute inset-0 z-0">
           <Image src="/images/shop/banner-dark-1.png" alt="" fill className="object-cover" />
         </Link>
-        {/* Text block */}
-        <div className="absolute left-6 md:left-[100px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3 md:gap-6 w-[55%] md:w-[480px] pointer-events-none">
-          <div>
-            <h2 className="text-[28px] md:text-[48px] font-black italic text-[#FF6701] uppercase leading-[32px] md:leading-[56px]">Fat Burning</h2>
-            <h2 className="text-[28px] md:text-[48px] font-black text-white uppercase leading-[32px] md:leading-[56px]">Stack</h2>
+        <div className="relative z-10 pt-6 pb-8 px-4 flex flex-col items-center">
+          <div className="w-full h-[180px] relative">
+            <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-center" />
           </div>
-          <p className="hidden md:block text-[16px] text-white/80 leading-[24px]">
+          <div className="flex items-baseline gap-2 mt-4">
+            <h2 className="text-[24px] font-black italic text-[#FF6701] uppercase leading-[28px]">Fat Burning</h2>
+            <h2 className="text-[24px] font-black text-white uppercase leading-[28px]">Stack</h2>
+          </div>
+          <p className="text-[13px] text-white/70 leading-5 text-center mt-2 max-w-[280px]">
             This combination of powerful fat burners works synergistically.
           </p>
-          <Link href="/catalog?category=fat-burn" className="pointer-events-auto cursor-pointer h-[40px] md:h-[44px] px-5 md:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[13px] md:text-[14px] font-semibold w-fit flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+          <Link
+            href="/catalog?category=fat-burn"
+            className="mt-4 h-[40px] px-6 rounded-[8px] bg-white text-[#181818] text-[13px] font-semibold flex items-center"
+          >
             See More
           </Link>
         </div>
-        {/* Image */}
-        <div className="absolute right-0 md:right-[100px] top-0 h-full w-[180px] md:w-[600px] z-[5] pointer-events-none">
-          <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-right md:object-center" />
+      </div>
+
+      {/* Desktop */}
+      <div className="hidden md:block relative h-[400px] rounded-[16px] overflow-hidden">
+        <Link href="/catalog?category=fat-burn" aria-label="Fat Burning Stack" className="absolute inset-0 z-0">
+          <Image src="/images/shop/banner-dark-1.png" alt="" fill className="object-cover" />
+        </Link>
+        <div className="absolute left-[100px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-6 w-[480px] pointer-events-none">
+          <div>
+            <h2 className="text-[48px] font-black italic text-[#FF6701] uppercase leading-[56px]">Fat Burning</h2>
+            <h2 className="text-[48px] font-black text-white uppercase leading-[56px]">Stack</h2>
+          </div>
+          <p className="text-[16px] text-white/80 leading-[24px]">
+            This combination of powerful fat burners works synergistically.
+          </p>
+          <Link href="/catalog?category=fat-burn" className="pointer-events-auto cursor-pointer h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[14px] font-semibold w-fit flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+            See More
+          </Link>
+        </div>
+        <div className="absolute right-[100px] top-0 h-full w-[600px] z-[5] pointer-events-none">
+          <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-center" />
         </div>
       </div>
     </section>
@@ -490,22 +514,44 @@ function BlogSection() {
 function WholesaleBanner() {
   return (
     <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
-      <div className="relative h-[360px] md:h-[400px] rounded-[16px] overflow-hidden">
+      {/* Mobile: bars on top, text centered below */}
+      <div className="md:hidden relative rounded-[16px] overflow-hidden">
         <Image src="/images/shop/banner-dark-2.png" alt="" fill className="object-cover" />
-        {/* Text block */}
-        <div className="absolute left-6 md:left-[100px] top-6 md:top-1/2 md:-translate-y-1/2 z-10 flex flex-col gap-3 md:gap-5 w-[calc(100%-48px)] md:w-[480px]">
-          <div>
-            <h2 className="text-[28px] md:text-[48px] font-black italic text-[#FF6701] uppercase leading-[32px] md:leading-[56px]">Save Up To 70%</h2>
-            <h2 className="text-[24px] md:text-[48px] font-extrabold text-white uppercase leading-[28px] md:leading-[56px]">With Wholesale<br/>Pricing</h2>
+        <div className="relative z-10 pt-6 pb-8 px-4 flex flex-col items-center">
+          <div className="w-full h-[180px] relative">
+            <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" fill className="object-contain" />
           </div>
-          <p className="text-[13px] md:text-[16px] text-white/80">Become a Wholesale Partner in Europe</p>
-          <a href="https://dinespower.to/partners-landing/" target="_blank" rel="noopener noreferrer" className="cursor-pointer h-[40px] md:h-[44px] px-5 md:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[13px] md:text-[14px] font-semibold w-fit flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+          <div className="text-center mt-4 px-2">
+            <span className="text-[22px] font-black italic text-[#FF6701] uppercase leading-[26px]">Save Up To 70%</span>
+            <span className="text-[22px] font-extrabold text-white uppercase leading-[26px]"> With Wholesale Pricing</span>
+          </div>
+          <p className="text-[13px] text-white/70 text-center mt-2">Become a Wholesale Partner in Europe</p>
+          <a
+            href="https://dinespower.to/partners-landing/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 h-[40px] px-6 rounded-[8px] bg-white text-[#181818] text-[13px] font-semibold flex items-center"
+          >
             Start as a Partner
           </a>
         </div>
-        {/* Image */}
-        <div className="absolute right-0 md:right-[100px] bottom-0 md:top-0 h-[160px] md:h-full w-full md:w-[600px] z-[5]">
-          <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" fill className="object-contain object-bottom md:object-center" />
+      </div>
+
+      {/* Desktop */}
+      <div className="hidden md:block relative h-[400px] rounded-[16px] overflow-hidden">
+        <Image src="/images/shop/banner-dark-2.png" alt="" fill className="object-cover" />
+        <div className="absolute left-[100px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-5 w-[480px]">
+          <div>
+            <h2 className="text-[48px] font-black italic text-[#FF6701] uppercase leading-[56px]">Save Up To 70%</h2>
+            <h2 className="text-[48px] font-extrabold text-white uppercase leading-[56px]">With Wholesale<br/>Pricing</h2>
+          </div>
+          <p className="text-[16px] text-white/80">Become a Wholesale Partner in Europe</p>
+          <a href="https://dinespower.to/partners-landing/" target="_blank" rel="noopener noreferrer" className="cursor-pointer h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[14px] font-semibold w-fit flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+            Start as a Partner
+          </a>
+        </div>
+        <div className="absolute right-[100px] top-0 h-full w-[600px] z-[5]">
+          <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" fill className="object-contain object-center" />
         </div>
       </div>
     </section>
