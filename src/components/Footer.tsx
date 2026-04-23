@@ -30,21 +30,21 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#181818] mt-auto">
       {/* Partner logos bar */}
-      <div className="bg-[#F6F6F6] rounded-bl-2xl rounded-br-2xl">
-        <div className="max-w-[1340px] mx-auto flex items-center justify-between h-[80px]">
+      <div className="bg-[#F6F6F6] rounded-bl-2xl rounded-br-2xl px-4 md:px-0">
+        <div className="max-w-[1340px] mx-auto grid grid-cols-3 md:flex items-center justify-between gap-4 py-6 md:py-0 md:h-[80px]">
           {partnerLogos.map((logo) => (
-            <div key={logo.alt} className="h-16 w-[164px] relative flex items-center justify-center">
-              <Image src={logo.src} alt={logo.alt} width={164} height={64} className="object-contain" />
+            <div key={logo.alt} className="h-10 md:h-16 md:w-[164px] relative flex items-center justify-center">
+              <Image src={logo.src} alt={logo.alt} width={164} height={64} className="object-contain w-full h-full" />
             </div>
           ))}
         </div>
       </div>
 
       {/* Main footer */}
-      <div className="max-w-[1340px] mx-auto pt-[100px] pb-[25px]">
-        <div className="flex gap-16">
+      <div className="max-w-[1340px] mx-auto pt-10 md:pt-[100px] pb-[25px] px-4 md:px-0">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-16">
           {/* Logo column */}
-          <div className="w-[305px] shrink-0 flex flex-col gap-7">
+          <div className="md:w-[305px] shrink-0 flex flex-col gap-5 md:gap-7">
             <Link href="/" className="block">
               <Image src="/images/shop/logo-footer.svg" alt="Dines Power" width={226} height={94} />
             </Link>
@@ -55,7 +55,7 @@ export default function Footer() {
           </div>
 
           {/* Menu */}
-          <div className="w-[305px] flex flex-col gap-6">
+          <div className="md:w-[305px] flex flex-col gap-4 md:gap-6">
             <h4 className="text-lg font-semibold text-white uppercase">Menu</h4>
             <div className="flex flex-col gap-2">
               {menuLinks.map((l) =>
@@ -79,7 +79,7 @@ export default function Footer() {
           </div>
 
           {/* Categories */}
-          <div className="w-[305px] flex flex-col gap-6">
+          <div className="md:w-[305px] flex flex-col gap-4 md:gap-6">
             <h4 className="text-lg font-semibold text-white uppercase">Categories</h4>
             <div className="flex flex-col gap-2">
               {categoryLinks.map((cat) => (
@@ -91,7 +91,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="w-[305px] flex flex-col gap-6">
+          <div className="md:w-[305px] flex flex-col gap-4 md:gap-6">
             <div>
               <h4 className="text-lg font-semibold text-white uppercase">Write to us</h4>
               <p className="text-sm text-[#7E7E7E] mt-3 leading-5">Still have questions? Ask via social media</p>
@@ -130,13 +130,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[#292929] mt-[100px] pt-6 flex items-center justify-between">
-          <p className="text-sm text-[#7E7E7E] leading-[18px]">
+        <div className="border-t border-[#292929] mt-8 md:mt-[100px] pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+          <p className="text-xs md:text-sm text-[#7E7E7E] leading-[18px]">
             © 2026 DINESPOWER.TO is the best place to buy steroids online. We are authorized distributor of brand DEUSMEDICAL (INDIA).
           </p>
-          <div className="flex gap-4">
-            <Link href="/terms" className="text-sm text-[#7E7E7E] hover:text-white transition-colors leading-[18px]">Terms & Conditions</Link>
-            <Link href="/privacy" className="text-sm text-[#7E7E7E] hover:text-white transition-colors leading-[18px]">Privacy Policy</Link>
+          <div className="flex gap-4 shrink-0">
+            <Link href="/terms" className="text-xs md:text-sm text-[#7E7E7E] hover:text-white transition-colors leading-[18px]">Terms & Conditions</Link>
+            <Link href="/privacy" className="text-xs md:text-sm text-[#7E7E7E] hover:text-white transition-colors leading-[18px]">Privacy Policy</Link>
           </div>
         </div>
       </div>

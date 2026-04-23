@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import { useCart } from "@/context/CartContext";
 
 const VerifyPopup = dynamic(() => import("@/components/VerifyPopup"), { ssr: false });
+const MobileMenu = dynamic(() => import("@/components/MobileMenu"), { ssr: false });
 
 const popularSearches = [
   "Astera Oral",
@@ -84,6 +85,7 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const [langOpen, setLangOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState("en");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const helpRef = useRef<HTMLDivElement>(null);
   const langRef = useRef<HTMLDivElement>(null);
@@ -107,9 +109,61 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full flex flex-col items-center px-[185px] relative z-50">
+    <header className="w-full flex flex-col items-center md:px-[185px] relative z-50">
+      {/* ========================= MOBILE HEADER ========================= */}
+      <div className="w-full md:hidden flex flex-col">
+        {/* Top announcement bar */}
+        <div className="bg-[#181818] h-[36px] flex items-center justify-center px-4 gap-2">
+          <Image src="/images/shop/shield-check.svg" alt="" width={16} height={16} className="shrink-0" />
+          <span className="text-[11px] text-white leading-none">All Products Certified &amp; Lab Tested</span>
+          <Link href="/lab-tests" className="text-[11px] font-semibold text-white underline leading-none ml-1">See Lab Test</Link>
+        </div>
+        {/* Main mobile bar */}
+        <div className="bg-white h-[68px] flex items-center justify-between px-4 gap-3 border-b border-[#F0F0F0]">
+          <button
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Menu"
+            className="w-10 h-10 flex items-center justify-center shrink-0"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M3 6h18M3 12h18M3 18h18" stroke="#181818" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </button>
+          <Link href="/" className="shrink-0">
+            <Image src="/images/shop/logo-header.svg" alt="Dines Power" width={90} height={38} />
+          </Link>
+          <div className="flex-1" />
+          <button
+            onClick={() => setSearchFocused(true)}
+            aria-label="Search"
+            className="w-10 h-10 flex items-center justify-center shrink-0"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="11" cy="11" r="8" stroke="#181818" strokeWidth="2" />
+              <path d="M21 21l-4.3-4.3" stroke="#181818" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </button>
+          <button
+            onClick={() => setHelpDropdownOpen(!helpDropdownOpen)}
+            aria-label="Help"
+            className="w-10 h-10 flex items-center justify-center shrink-0 relative"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="#FF6701" strokeWidth="2" fill="#FF6701" />
+            </svg>
+          </button>
+          <button onClick={openCart} aria-label="Cart" className="w-10 h-10 flex items-center justify-center shrink-0 relative">
+            <Image src="/images/shop/cart-icon.svg" alt="" width={22} height={22} />
+            {totalItems > 0 && (
+              <span className="absolute top-1 right-1 bg-[#FF6701] text-white text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center leading-none">{totalItems}</span>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* ========================= DESKTOP HEADER ========================= */}
       {/* Top bar — full width dark, NOT sticky (scrolls away) */}
-      <div className="w-[calc(100%+370px)] -mx-[185px] bg-[#181818] pb-6">
+      <div className="hidden md:block w-[calc(100%+370px)] -mx-[185px] bg-[#181818] pb-6">
         <div className="flex items-center justify-between h-[40px] px-[185px]">
           <div className="flex-1 flex gap-5 items-center">
             {topLinks.map((l) => (
@@ -161,7 +215,7 @@ export default function Header() {
       </div>
 
       {/* White content wrapper — rounded top corners overlap dark top bar */}
-      <div className="w-[calc(100%+370px)] -mx-[185px] bg-white rounded-t-[16px] -mt-[16px] relative pt-4 px-[185px] flex flex-col gap-[16px] z-[40]">
+      <div className="hidden md:flex w-[calc(100%+370px)] -mx-[185px] bg-white rounded-t-[16px] -mt-[16px] relative pt-4 px-[185px] flex-col gap-[16px] z-[40]">
 
       {/* Middle bar */}
       <div className="w-full flex items-center gap-[40px] h-[44px]">
@@ -393,6 +447,7 @@ export default function Header() {
       </div>
       </div>
       <VerifyPopup isOpen={verifyOpen} onClose={() => setVerifyOpen(false)} />
+      <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
     </header>
   );
 }

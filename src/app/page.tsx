@@ -95,20 +95,20 @@ function HeroBanner() {
   }, []);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-6">
-      <div className="flex gap-[16px]">
+    <section className="max-w-[1340px] mx-auto mt-4 md:mt-6 px-4 md:px-0">
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-[16px]">
         {/* Main banner - clickable hero, links to product */}
-        <div className="w-[884px] h-[467px] relative rounded-[16px] overflow-hidden shrink-0 group">
+        <div className="w-full lg:w-[884px] aspect-[884/467] lg:h-[467px] relative rounded-[16px] overflow-hidden shrink-0 group">
           <Link href="/product" aria-label="Lean Muscle Growth" className="absolute inset-0 z-0">
             <Image src="/images/shop/hero-banner.png" alt="Weekly Bestseller - Lean Muscle Growth" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
           {/* Left arrow */}
-          <button onClick={() => setActiveSlide((activeSlide - 1 + totalSlides) % totalSlides)} className="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 w-[48px] h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-l-0 rounded-r-lg flex items-center justify-center z-20">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <button onClick={() => setActiveSlide((activeSlide - 1 + totalSlides) % totalSlides)} className="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 w-[40px] lg:w-[48px] h-[40px] lg:h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-l-0 rounded-r-lg flex items-center justify-center z-20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
           {/* Right arrow */}
-          <button onClick={() => setActiveSlide((activeSlide + 1) % totalSlides)} className="cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 w-[48px] h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-r-0 rounded-l-lg flex items-center justify-center z-20">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <button onClick={() => setActiveSlide((activeSlide + 1) % totalSlides)} className="cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 w-[40px] lg:w-[48px] h-[40px] lg:h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-r-0 rounded-l-lg flex items-center justify-center z-20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
           {/* Slider dots */}
           <div className="absolute bottom-[16px] left-1/2 -translate-x-1/2 flex gap-[8px] z-20">
@@ -116,18 +116,18 @@ function HeroBanner() {
               <div
                 key={i}
                 onClick={() => setActiveSlide(i)}
-                className={`w-[64px] h-[4px] bg-[#F7F7F7] rounded-[4px] cursor-pointer transition-opacity duration-300 ${i === activeSlide ? 'opacity-100' : 'opacity-30'}`}
+                className={`w-[40px] lg:w-[64px] h-[4px] bg-[#F7F7F7] rounded-[4px] cursor-pointer transition-opacity duration-300 ${i === activeSlide ? 'opacity-100' : 'opacity-30'}`}
               />
             ))}
           </div>
         </div>
 
-        {/* Side banners - clickable, 440px wide */}
-        <div className="w-[440px] flex flex-col gap-[16px] shrink-0">
-          <Link href="/catalog?category=sex-support" className="h-[225px] rounded-[16px] overflow-hidden relative group block cursor-pointer">
+        {/* Side banners — stacked on desktop; 2-col grid on mobile */}
+        <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-[16px] lg:w-[440px] shrink-0">
+          <Link href="/catalog?category=sex-support" className="aspect-[440/225] lg:h-[225px] lg:aspect-auto rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-sexboost.png" alt="Sex Boost" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
-          <Link href="/catalog?category=health" className="h-[226px] rounded-[16px] overflow-hidden relative group block cursor-pointer">
+          <Link href="/catalog?category=health" className="aspect-[440/226] lg:h-[226px] lg:aspect-auto rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-cbd.png" alt="CBD" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
         </div>
@@ -138,15 +138,15 @@ function HeroBanner() {
 
 function CategoriesRow() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-[48px]">
-      <div className="flex justify-between">
+    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[48px] px-4 md:px-0">
+      <div className="grid grid-cols-4 lg:flex lg:justify-between gap-y-4 gap-x-2">
         {categories.map((cat) => (
           <Link key={cat.name} href={`/catalog?category=${cat.name.toLowerCase().replace(/ & /g, '-')}`}>
             <ScrollAnimation animation="animate-fade-in-up" className="flex flex-col items-center gap-2 cursor-pointer group">
-              <div className="w-[116px] h-[116px] rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center transition-colors duration-300">
+              <div className="w-[72px] h-[72px] lg:w-[116px] lg:h-[116px] rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center transition-colors duration-300">
                 <Image src={cat.img} alt={cat.name} width={116} height={116} className="object-cover transition-transform duration-300 group-hover:scale-[1.05]" />
               </div>
-              <span className="text-[14px] font-semibold text-[#181818] leading-5">{cat.name}</span>
+              <span className="text-[12px] lg:text-[14px] font-semibold text-[#181818] leading-5 text-center">{cat.name}</span>
             </ScrollAnimation>
           </Link>
         ))}
@@ -188,23 +188,23 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
   };
 
   return (
-    <section className={`max-w-[1340px] mx-auto ${className}`}>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">{title}</h2>
+    <section className={`max-w-[1340px] mx-auto px-4 md:px-0 ${className}`}>
+      <div className="flex items-center justify-between mb-4 md:mb-6">
+        <h2 className="text-[18px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px]">{title}</h2>
         <div className="flex gap-2">
-          <button onClick={scrollLeft} className="cursor-pointer w-[40px] h-[40px] rounded-lg bg-[#F7F7F7] flex items-center justify-center hover:bg-[#E7E7E7] transition-colors">
+          <button onClick={scrollLeft} className="cursor-pointer w-[36px] h-[36px] md:w-[40px] md:h-[40px] rounded-lg bg-[#F7F7F7] flex items-center justify-center hover:bg-[#E7E7E7] transition-colors">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
-          <button onClick={scrollRight} className="cursor-pointer w-[40px] h-[40px] rounded-lg bg-[#F7F7F7] flex items-center justify-center hover:bg-[#E7E7E7] transition-colors">
+          <button onClick={scrollRight} className="cursor-pointer w-[36px] h-[36px] md:w-[40px] md:h-[40px] rounded-lg bg-[#F7F7F7] flex items-center justify-center hover:bg-[#E7E7E7] transition-colors">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
         </div>
       </div>
-      <div className="flex gap-4">
-        {/* Fixed promo banner - doesn't scroll */}
-        {promoCategoryName && <PromoBanner categoryName={promoCategoryName} />}
+      <div className="flex gap-3 md:gap-4">
+        {/* Fixed promo banner - doesn't scroll (hidden on mobile) */}
+        {promoCategoryName && <div className="hidden md:block"><PromoBanner categoryName={promoCategoryName} /></div>}
         {/* Scrollable product cards */}
-        <div ref={scrollRef} className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 flex-1 min-w-0">
+        <div ref={scrollRef} className="flex gap-3 md:gap-4 overflow-x-auto scrollbar-hide pb-2 flex-1 min-w-0 -mx-4 px-4 md:mx-0 md:px-0">
           {products.map((p, i) => (
             <ProductCard key={i} {...p} />
           ))}
@@ -216,42 +216,42 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
 
 function CategoryBanners() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-[65px]">
-      <div className="flex gap-[16px]">
+    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-[16px]">
         {/* Left banner - Recovery */}
-        <div className="flex-1 h-[272px] rounded-[16px] overflow-hidden relative group">
+        <div className="flex-1 h-[200px] md:h-[272px] rounded-[16px] overflow-hidden relative group">
           <Link href="/catalog?category=sarms" aria-label="Faster Muscle Recovery" className="absolute inset-0 z-0">
             <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
           </Link>
-          <div className="absolute left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-[32px] w-[250px] pointer-events-none">
-            <h3 className="text-[28px] font-extrabold italic leading-[1.22] capitalize">
+          <div className="absolute left-6 md:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-4 md:gap-[32px] w-[60%] md:w-[250px] pointer-events-none">
+            <h3 className="text-[18px] md:text-[28px] font-extrabold italic leading-[1.22] capitalize">
               <span className="text-[#FF6701]">Faster Muscle<br />Recovery &</span>{" "}
               <span className="text-white">Reduced Body Fat</span>
             </h3>
-            <Link href="/catalog?category=sarms" className="pointer-events-auto cursor-pointer w-fit h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+            <Link href="/catalog?category=sarms" className="pointer-events-auto cursor-pointer w-fit h-[40px] md:h-[44px] px-5 md:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[13px] md:text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
               See More
             </Link>
           </div>
-          <div className="absolute right-0 top-0 h-full w-[350px] z-10 pointer-events-none">
+          <div className="absolute right-0 top-0 h-full w-[160px] md:w-[350px] z-10 pointer-events-none">
             <Image src="/images/shop/banner-product-recovery.png" alt="Recovery products" fill className="object-contain object-right-bottom" />
           </div>
         </div>
 
         {/* Right banner - Libido */}
-        <div className="flex-1 h-[272px] rounded-[16px] overflow-hidden relative group">
+        <div className="flex-1 h-[200px] md:h-[272px] rounded-[16px] overflow-hidden relative group">
           <Link href="/catalog?category=sex-support" aria-label="Stacks For High Libido" className="absolute inset-0 z-0">
             <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
           </Link>
-          <div className="absolute left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-[32px] w-[250px] pointer-events-none">
-            <h3 className="text-[28px] font-extrabold italic leading-[1.22] capitalize">
+          <div className="absolute left-6 md:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-4 md:gap-[32px] w-[60%] md:w-[250px] pointer-events-none">
+            <h3 className="text-[18px] md:text-[28px] font-extrabold italic leading-[1.22] capitalize">
               <span className="text-[#FF6701]">Stacks For<br />High Libido </span>
               <span className="text-white">And Fat Burning</span>
             </h3>
-            <Link href="/catalog?category=sex-support" className="pointer-events-auto cursor-pointer w-fit h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+            <Link href="/catalog?category=sex-support" className="pointer-events-auto cursor-pointer w-fit h-[40px] md:h-[44px] px-5 md:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[13px] md:text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
               See More
             </Link>
           </div>
-          <div className="absolute right-0 top-0 h-full w-[350px] z-10 pointer-events-none">
+          <div className="absolute right-0 top-0 h-full w-[160px] md:w-[350px] z-10 pointer-events-none">
             <Image src="/images/shop/banner-product-libido.png" alt="Libido products" fill className="object-contain object-right-bottom" />
           </div>
         </div>
@@ -262,27 +262,27 @@ function CategoryBanners() {
 
 function FatBurningBanner() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-[65px]">
-      <div className="relative h-[400px] rounded-[16px] overflow-hidden">
+    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
+      <div className="relative h-[280px] md:h-[400px] rounded-[16px] overflow-hidden">
         <Link href="/catalog?category=fat-burn" aria-label="Fat Burning Stack" className="absolute inset-0 z-0">
           <Image src="/images/shop/banner-dark-1.png" alt="" fill className="object-cover" />
         </Link>
-        {/* Text block: 100px left pad, 480px wide */}
-        <div className="absolute left-[100px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-6 w-[480px] pointer-events-none">
+        {/* Text block */}
+        <div className="absolute left-6 md:left-[100px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3 md:gap-6 w-[55%] md:w-[480px] pointer-events-none">
           <div>
-            <h2 className="text-[48px] font-black italic text-[#FF6701] uppercase leading-[56px]">Fat Burning</h2>
-            <h2 className="text-[48px] font-black text-white uppercase leading-[56px]">Stack</h2>
+            <h2 className="text-[28px] md:text-[48px] font-black italic text-[#FF6701] uppercase leading-[32px] md:leading-[56px]">Fat Burning</h2>
+            <h2 className="text-[28px] md:text-[48px] font-black text-white uppercase leading-[32px] md:leading-[56px]">Stack</h2>
           </div>
-          <p className="text-[16px] text-white/80 leading-[24px]">
+          <p className="hidden md:block text-[16px] text-white/80 leading-[24px]">
             This combination of powerful fat burners works synergistically.
           </p>
-          <Link href="/catalog?category=fat-burn" className="pointer-events-auto cursor-pointer h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[14px] font-semibold w-fit flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+          <Link href="/catalog?category=fat-burn" className="pointer-events-auto cursor-pointer h-[40px] md:h-[44px] px-5 md:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[13px] md:text-[14px] font-semibold w-fit flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
             See More
           </Link>
         </div>
-        {/* Image: 100px right pad, 600px wide */}
-        <div className="absolute right-[100px] top-0 h-full w-[600px] z-[5] pointer-events-none">
-          <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-center" />
+        {/* Image */}
+        <div className="absolute right-0 md:right-[100px] top-0 h-full w-[180px] md:w-[600px] z-[5] pointer-events-none">
+          <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-right md:object-center" />
         </div>
       </div>
     </section>
@@ -291,22 +291,22 @@ function FatBurningBanner() {
 
 function ProSellersSection() {
   return (
-    <section className="w-full mt-[65px] relative overflow-hidden">
+    <section className="w-full mt-8 md:mt-[65px] relative overflow-hidden">
       <Image src="/images/shop/pro-sellers-bg.png" alt="" fill className="object-cover" />
-      <div className="max-w-[1340px] mx-auto py-[80px] relative z-10">
+      <div className="max-w-[1340px] mx-auto py-10 md:py-[80px] px-4 md:px-0 relative z-10">
         <ScrollAnimation animation="animate-fade-in-up">
-          <div className="text-center mb-[60px]">
-            <p className="text-[14px] text-[#B6B6B6] uppercase tracking-[2px] mb-4 font-semibold">Built to Scale</p>
-            <h2 className="text-[36px] font-extrabold text-white leading-[44px]">Built for Professional Sellers</h2>
-            <p className="text-[14px] text-[#7E7E7E] mt-4 leading-5">We support partners who need reliable supply, stable margins, and fast operations.</p>
+          <div className="text-center mb-8 md:mb-[60px]">
+            <p className="text-[12px] md:text-[14px] text-[#B6B6B6] uppercase tracking-[2px] mb-3 md:mb-4 font-semibold">Built to Scale</p>
+            <h2 className="text-[24px] md:text-[36px] font-extrabold text-white leading-[30px] md:leading-[44px]">Built for Professional Sellers</h2>
+            <p className="text-[13px] md:text-[14px] text-[#7E7E7E] mt-3 md:mt-4 leading-5">We support partners who need reliable supply, stable margins, and fast operations.</p>
           </div>
         </ScrollAnimation>
 
-        <div className="flex gap-[16px]">
+        <div className="flex flex-col md:flex-row gap-3 md:gap-[16px]">
           {proSellerCards.map((card, i) => (
             <ScrollAnimation key={i} animation="animate-fade-in-up" className="flex-1" delay={i * 100}>
-              <div className="bg-[#212121] border border-white/[0.08] rounded-[12px] p-[25px] flex flex-col items-center gap-6 h-full text-center">
-                <div className={`shrink-0 flex items-center justify-center ${card.icon.endsWith("pro-delivery.png") ? "w-[120px] h-[80px]" : "w-[80px] h-[80px]"}`}>
+              <div className="bg-[#212121] border border-white/[0.08] rounded-[12px] p-4 md:p-[25px] flex md:flex-col items-center gap-4 md:gap-6 h-full text-left md:text-center">
+                <div className={`shrink-0 flex items-center justify-center ${card.icon.endsWith("pro-delivery.png") ? "w-[64px] md:w-[120px] h-[48px] md:h-[80px]" : "w-[56px] md:w-[80px] h-[56px] md:h-[80px]"}`}>
                   <Image
                     src={card.icon}
                     alt={card.title}
@@ -315,12 +315,14 @@ function ProSellersSection() {
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <h3 className="text-[18px] font-extrabold text-white leading-[24px] capitalize">{card.title}</h3>
-                <p className="text-[14px] text-[#B6B6B6] leading-5">{card.desc}</p>
-                <Link href="#" className="text-[14px] font-semibold text-[#FF6701] hover:underline mt-auto leading-5 flex items-center gap-1">
-                  {card.link}
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </Link>
+                <div className="flex flex-col gap-1 md:gap-6 flex-1 md:flex-initial">
+                  <h3 className="text-[15px] md:text-[18px] font-extrabold text-white leading-[22px] md:leading-[24px] capitalize">{card.title}</h3>
+                  <p className="text-[13px] md:text-[14px] text-[#B6B6B6] leading-5">{card.desc}</p>
+                  <Link href="#" className="text-[13px] md:text-[14px] font-semibold text-[#FF6701] hover:underline mt-1 md:mt-auto leading-5 flex items-center gap-1">
+                    {card.link}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </Link>
+                </div>
               </div>
             </ScrollAnimation>
           ))}
@@ -345,15 +347,15 @@ function BlogSection() {
   }, [featuredSlides.length]);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-[65px]">
+    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
       <ScrollAnimation animation="animate-fade-in-up">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">Our Blogpost</h2>
+        <div className="flex items-center justify-between mb-4 md:mb-6">
+          <h2 className="text-[18px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px]">Our Blogpost</h2>
         </div>
       </ScrollAnimation>
-      <div className="flex gap-6">
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
         {/* Featured slider */}
-        <div className="flex-1 relative h-[534px] rounded-[16px] overflow-hidden">
+        <div className="flex-1 relative h-[360px] md:h-[534px] rounded-[16px] overflow-hidden">
           {featuredSlides.map((slide, i) => (
             <Image
               key={slide.slug}
@@ -388,7 +390,7 @@ function BlogSection() {
                 </div>
               )}
               <Link href={`/blog/${currentSlide.slug}`} className="pointer-events-auto relative z-10">
-                <h3 className="text-[28px] font-extrabold text-white leading-[34px]">{currentSlide.title}</h3>
+                <h3 className="text-[18px] md:text-[28px] font-extrabold text-white leading-[24px] md:leading-[34px]">{currentSlide.title}</h3>
               </Link>
               <div className="flex items-center justify-between">
                 <div className="flex gap-4 items-center">
@@ -424,7 +426,7 @@ function BlogSection() {
         </div>
 
         {/* Side posts */}
-        <div className="w-[440px] flex flex-col">
+        <div className="w-full lg:w-[440px] flex flex-col">
           {blogPosts.slice(1).map((post, i) => (
             <Link key={i} href={`/blog/${post.slug}`} className="flex gap-4 py-4 border-b border-[#E7E7E7] last:border-b-0 cursor-pointer group">
               <div className="w-[100px] h-[80px] bg-[#F7F7F7] rounded-lg shrink-0 relative overflow-hidden">
@@ -452,23 +454,23 @@ function BlogSection() {
 
 function WholesaleBanner() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-[65px]">
-      <div className="relative h-[400px] rounded-[16px] overflow-hidden">
+    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
+      <div className="relative h-[360px] md:h-[400px] rounded-[16px] overflow-hidden">
         <Image src="/images/shop/banner-dark-2.png" alt="" fill className="object-cover" />
-        {/* Text block: 100px left pad, 480px wide */}
-        <div className="absolute left-[100px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-5 w-[480px]">
+        {/* Text block */}
+        <div className="absolute left-6 md:left-[100px] top-6 md:top-1/2 md:-translate-y-1/2 z-10 flex flex-col gap-3 md:gap-5 w-[calc(100%-48px)] md:w-[480px]">
           <div>
-            <h2 className="text-[48px] font-black italic text-[#FF6701] uppercase leading-[56px]">Save Up To 70%</h2>
-            <h2 className="text-[48px] font-extrabold text-white uppercase leading-[56px]">With Wholesale<br/>Pricing</h2>
+            <h2 className="text-[28px] md:text-[48px] font-black italic text-[#FF6701] uppercase leading-[32px] md:leading-[56px]">Save Up To 70%</h2>
+            <h2 className="text-[24px] md:text-[48px] font-extrabold text-white uppercase leading-[28px] md:leading-[56px]">With Wholesale<br/>Pricing</h2>
           </div>
-          <p className="text-[16px] text-white/80">Become a Wholesale Partner in Europe</p>
-          <a href="https://dinespower.to/partners-landing/" target="_blank" rel="noopener noreferrer" className="cursor-pointer h-[44px] px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[14px] font-semibold w-fit flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+          <p className="text-[13px] md:text-[16px] text-white/80">Become a Wholesale Partner in Europe</p>
+          <a href="https://dinespower.to/partners-landing/" target="_blank" rel="noopener noreferrer" className="cursor-pointer h-[40px] md:h-[44px] px-5 md:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-[#181818] text-[13px] md:text-[14px] font-semibold w-fit flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
             Start as a Partner
           </a>
         </div>
-        {/* Image: 100px right pad, 600px wide */}
-        <div className="absolute right-[100px] top-0 h-full w-[600px] z-[5]">
-          <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" fill className="object-contain object-center" />
+        {/* Image */}
+        <div className="absolute right-0 md:right-[100px] bottom-0 md:top-0 h-[160px] md:h-full w-full md:w-[600px] z-[5]">
+          <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" fill className="object-contain object-bottom md:object-center" />
         </div>
       </div>
     </section>
@@ -479,10 +481,10 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(2);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-[65px]">
-      <div className="flex gap-[80px]">
+    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] px-4 md:px-0">
+      <div className="flex flex-col-reverse lg:flex-row gap-6 lg:gap-[80px]">
         {/* Left column - Still Have Questions Card */}
-        <div className="w-[440px] shrink-0">
+        <div className="w-full lg:w-[440px] shrink-0">
           <div className="bg-[#F7F7F7] rounded-[12px] p-4">
             <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
               <Image src="/images/shop/faq-help-icon.png" alt="Help" width={80} height={80} className="object-contain" />
@@ -507,8 +509,8 @@ function FAQSection() {
         </div>
 
         {/* Right column - FAQ accordion */}
-        <div className="w-[820px]">
-          <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-6">Frequently Asked Questions</h2>
+        <div className="w-full lg:w-[820px]">
+          <h2 className="text-[20px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px] mb-4 md:mb-6">Frequently Asked Questions</h2>
           <div className="flex flex-col">
             {faqItems.map((q, i) => (
               <div key={i} className="border-b border-[#E7E7E7]">
@@ -545,8 +547,8 @@ function FAQSection() {
 function SEOSection() {
   const [expanded, setExpanded] = useState(false);
   return (
-    <section className="max-w-[1340px] mx-auto mt-[65px] mb-[65px]">
-      <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px] mb-4">
+    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[65px] mb-8 md:mb-[65px] px-4 md:px-0">
+      <h2 className="text-[20px] md:text-[24px] font-extrabold text-[#181818] leading-[26px] md:leading-[30px] mb-4">
         Dinespower is the best distributor of bodybuilding preparations in Europe
       </h2>
       <div className={`text-sm text-[#7E7E7E] leading-6 space-y-3 ${expanded ? '' : 'max-h-[120px] overflow-hidden relative'}`}>
