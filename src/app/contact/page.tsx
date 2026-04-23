@@ -33,7 +33,7 @@ export default function ContactPage() {
 
           <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-[80px]">
             {/* LEFT sidebar - Contact Info (Figma style) */}
-            <div className="w-full desktop:w-[440px] desktop:shrink-0">
+            <div className="w-full desktop:w-[320px] wide:w-[440px] desktop:shrink-0">
               <div className="bg-[#F7F7F7] rounded-[16px] p-4 flex flex-col gap-4">
                 {/* Card 1: For Instant Support */}
                 <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col gap-3">
@@ -172,7 +172,7 @@ export default function ContactPage() {
                   {/* How can we contact you? — segmented 3 tiles, active = white w/ border */}
                   <div className="flex flex-col gap-3">
                     <p className="text-[14px] text-[#7E7E7E] leading-5 text-center">How can we contact you?</p>
-                    <div className="bg-[#F7F7F7] rounded-[12px] p-1 grid grid-cols-1 tablet:grid-cols-3 gap-1">
+                    <div className="bg-[#F7F7F7] rounded-[12px] p-1 grid grid-cols-3 gap-1">
                       {([
                         { key: "telegram" as const, label: "Telegram", bg: "#00A9DE", icon: (
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" /></svg>
@@ -190,7 +190,7 @@ export default function ContactPage() {
                             key={opt.key}
                             type="button"
                             onClick={() => setContactMethod(opt.key)}
-                            className={`cursor-pointer flex items-center justify-center gap-3 h-[52px] rounded-[10px] text-[14px] font-semibold text-[#181818] border transition-[background-color,border-color,box-shadow] duration-200 ${
+                            className={`cursor-pointer flex flex-col desktop:flex-row items-center justify-center gap-2 desktop:gap-3 py-3 desktop:py-0 desktop:h-[52px] rounded-[10px] text-[12px] desktop:text-[14px] font-semibold text-[#181818] border transition-[background-color,border-color,box-shadow] duration-200 ${
                               active ? "bg-white border-[#E7E7E7] shadow-sm" : "bg-transparent border-transparent"
                             }`}
                           >

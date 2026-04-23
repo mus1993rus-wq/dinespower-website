@@ -226,7 +226,7 @@ export default function BitcoinPaymentPage() {
           </div>
 
           {/* Right sidebar — sticky */}
-          <div className="w-full desktop:w-[440px] desktop:shrink-0">
+          <div className="w-full desktop:w-[320px] wide:w-[440px] desktop:shrink-0">
            <div className="desktop:sticky desktop:top-4 flex flex-col gap-4">
             {/* Still Have Questions card — Figma style */}
             <div className="bg-[#F7F7F7] rounded-[12px] p-4">

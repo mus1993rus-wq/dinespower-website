@@ -20,7 +20,7 @@ const menuLinks: { label: string; href: string; external?: boolean }[] = [
   { label: "Payment in Bitcoin", href: "/bitcoin" },
   { label: "Blog", href: "/blog" },
   { label: "FAQs", href: "/faqs" },
-  { label: "Wholesale & Dropshipping", href: "https://dinespower.to/partners-landing/", external: true },
+  { label: "Wholesale & Dropshipping", href: "https://dinespower.to/partners-landing-en/", external: true },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -32,10 +32,10 @@ const categoryLinks = [
 function AccordionSection({ title, children }: { title: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="tablet:contents border-b border-[#292929] tablet:border-0 py-2 tablet:py-0">
+    <div className="desktop:contents border-b border-[#292929] desktop:border-0 py-2 desktop:py-0">
       <button
         onClick={() => setOpen(!open)}
-        className="tablet:hidden w-full flex items-center justify-between py-3 text-left"
+        className="desktop:hidden w-full flex items-center justify-between py-3 text-left"
         type="button"
       >
         <h4 className="text-lg font-semibold text-white uppercase">{title}</h4>
@@ -43,8 +43,8 @@ function AccordionSection({ title, children }: { title: string; children: React.
           <path d="M6 9l6 6 6-6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
-      <h4 className="hidden tablet:block text-lg font-semibold text-white uppercase">{title}</h4>
-      <div className={`${open ? "flex" : "hidden"} tablet:flex flex-col gap-2 tablet:mt-0 pb-3 tablet:pb-0`}>
+      <h4 className="hidden desktop:block text-lg font-semibold text-white uppercase">{title}</h4>
+      <div className={`${open ? "flex" : "hidden"} desktop:flex flex-col gap-2 desktop:mt-0 pb-3 desktop:pb-0`}>
         {children}
       </div>
     </div>
@@ -55,10 +55,10 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#181818] mt-auto">
       {/* Partner logos bar */}
-      <div className="bg-[#F6F6F6] rounded-bl-2xl rounded-br-2xl px-4 tablet:px-0">
-        <div className="max-w-[1340px] mx-auto grid grid-cols-3 tablet:flex items-center justify-between gap-4 py-6 tablet:py-0 tablet:h-[80px]">
+      <div className="bg-[#F6F6F6] rounded-bl-2xl rounded-br-2xl px-4 desktop:px-4 wide:px-0">
+        <div className="max-w-[1340px] mx-auto flex items-center justify-between gap-4 py-4 tablet:py-5 desktop:py-0 desktop:h-[80px] overflow-x-auto scrollbar-hide">
           {partnerLogos.map((logo) => (
-            <div key={logo.alt} className="h-10 tablet:h-16 tablet:w-[164px] relative flex items-center justify-center">
+            <div key={logo.alt} className="h-8 tablet:h-12 desktop:h-16 w-[80px] tablet:w-[110px] desktop:w-[140px] wide:w-[164px] relative flex items-center justify-center shrink-0">
               <Image src={logo.src} alt={logo.alt} width={164} height={64} className="object-contain w-full h-full" />
             </div>
           ))}
@@ -66,10 +66,10 @@ export default function Footer() {
       </div>
 
       {/* Main footer */}
-      <div className="max-w-[1340px] mx-auto pt-10 tablet:pt-[100px] pb-[25px] px-4 tablet:px-0">
-        <div className="flex flex-col tablet:flex-row gap-8 tablet:gap-16">
-          {/* Logo column — hidden on mobile per Figma 2236:38551 */}
-          <div className="hidden tablet:flex tablet:w-[305px] shrink-0 flex-col gap-5 tablet:gap-7">
+      <div className="max-w-[1340px] mx-auto pt-10 desktop:pt-[100px] pb-[25px] px-4 wide:px-0">
+        <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-10 wide:gap-16">
+          {/* Logo column — hidden on mobile+tablet per Figma 2236:38551 */}
+          <div className="hidden desktop:flex desktop:w-[240px] wide:w-[305px] shrink-0 flex-col gap-5 desktop:gap-7">
             <Link href="/" className="block">
               <Image src="/images/shop/logo-footer.svg" alt="Dines Power" width={226} height={94} />
             </Link>
@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
 
           {/* Menu */}
-          <div className="tablet:w-[305px] flex flex-col tablet:gap-6">
+          <div className="desktop:w-[220px] wide:w-[305px] flex flex-col desktop:gap-6">
             <AccordionSection title="Menu">
               {menuLinks.map((l) =>
                 l.external ? (
@@ -103,7 +103,7 @@ export default function Footer() {
           </div>
 
           {/* Categories */}
-          <div className="tablet:w-[305px] flex flex-col tablet:gap-6">
+          <div className="desktop:w-[220px] wide:w-[305px] flex flex-col desktop:gap-6">
             <AccordionSection title="Categories">
               {categoryLinks.map((cat) => (
                 <Link key={cat} href="/catalog" className="text-sm text-[#B6B6B6] hover:text-white transition-colors leading-5">
@@ -114,7 +114,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="tablet:w-[305px] flex flex-col gap-4 tablet:gap-6">
+          <div className="desktop:w-[220px] wide:w-[305px] flex flex-col gap-4 desktop:gap-6">
             <div>
               <h4 className="text-lg font-semibold text-white uppercase">Write to us</h4>
               <p className="text-sm text-[#7E7E7E] mt-3 leading-5">Still have questions? Ask via social media</p>
@@ -153,13 +153,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[#292929] mt-8 tablet:mt-[100px] pt-6 flex flex-col tablet:flex-row items-start tablet:items-center justify-between gap-3">
-          <p className="text-xs tablet:text-sm text-[#7E7E7E] leading-[18px]">
+        <div className="border-t border-[#292929] mt-8 desktop:mt-[100px] pt-6 flex flex-col-reverse desktop:flex-row items-center tablet:items-center tablet:justify-between gap-4 tablet:gap-3">
+          <p className="text-[12px] tablet:text-sm text-[#7E7E7E] leading-[18px] text-center tablet:text-left">
             © 2026 DINESPOWER.TO is the best place to buy steroids online. We are authorized distributor of brand DEUSMEDICAL (INDIA).
           </p>
-          <div className="flex gap-4 shrink-0">
-            <Link href="/terms" className="text-xs tablet:text-sm text-[#7E7E7E] hover:text-white transition-colors leading-[18px]">Terms & Conditions</Link>
-            <Link href="/privacy" className="text-xs tablet:text-sm text-[#7E7E7E] hover:text-white transition-colors leading-[18px]">Privacy Policy</Link>
+          <div className="flex gap-6 tablet:gap-4 shrink-0">
+            <Link href="/terms" className="text-[12px] tablet:text-sm text-[#7E7E7E] hover:text-white transition-colors leading-[18px]">Terms & Conditions</Link>
+            <Link href="/privacy" className="text-[12px] tablet:text-sm text-[#7E7E7E] hover:text-white transition-colors leading-[18px]">Privacy Policy</Link>
           </div>
         </div>
       </div>

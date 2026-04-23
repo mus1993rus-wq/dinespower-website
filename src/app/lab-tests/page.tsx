@@ -294,7 +294,7 @@ export default function LabTestsPage() {
 
           <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-[80px]">
             {/* LEFT sidebar — Figma FAQ style */}
-            <div className="w-full desktop:w-[440px] desktop:shrink-0">
+            <div className="w-full desktop:w-[320px] wide:w-[440px] desktop:shrink-0">
               <div className="desktop:sticky desktop:top-4 bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
                 {/* Category menu card */}
                 <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col gap-2">
@@ -378,7 +378,7 @@ export default function LabTestsPage() {
                     <h2 className="text-[18px] tablet:text-[22px] font-extrabold text-[#181818] leading-[24px] tablet:leading-[28px] mb-5">
                       {category.title}
                     </h2>
-                    <div className="grid grid-cols-3 tablet:grid-cols-4 desktop:grid-cols-5 gap-2">
+                    <div className="grid grid-cols-3 tablet:grid-cols-4 desktop:grid-cols-3 wide:grid-cols-5 gap-2">
                       {items}
                     </div>
                   </div>

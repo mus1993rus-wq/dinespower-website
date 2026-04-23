@@ -12,9 +12,9 @@ export default function NotFound() {
           {/* 4 [logo] 4 */}
           <div className="flex items-center gap-1 tablet:gap-3 desktop:gap-4">
             <span className="text-[96px] tablet:text-[140px] desktop:text-[180px] font-extrabold italic text-[#181818] leading-none tracking-tight select-none">4</span>
-            <div className="w-[72px] tablet:w-[108px] desktop:w-[140px] h-[96px] tablet:h-[140px] desktop:h-[180px] relative flex items-center justify-center">
+            <div className="w-[56px] tablet:w-[80px] desktop:w-[100px] h-[96px] tablet:h-[140px] desktop:h-[180px] relative flex items-center justify-center">
               <Image
-                src="/images/shop/logo.svg"
+                src="/images/logo-icon.png"
                 alt=""
                 fill
                 className="object-contain"

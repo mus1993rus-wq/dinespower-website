@@ -156,7 +156,7 @@ export default function FAQsPage() {
 
           <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-[80px]">
             {/* LEFT sidebar */}
-            <div className="w-full desktop:w-[440px] desktop:shrink-0">
+            <div className="w-full desktop:w-[320px] wide:w-[440px] desktop:shrink-0">
               <div className="desktop:sticky desktop:top-4 bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
                 {/* Category menu card */}
                 <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col gap-2">

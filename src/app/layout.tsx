@@ -83,7 +83,7 @@ export default function RootLayout({
           {children}
           {/* Wholesale sidebar button - fixed left, all pages */}
           <a
-            href="https://dinespower.to/partners-landing/"
+            href="https://dinespower.to/partners-landing-en/"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden xl:flex fixed left-0 top-1/2 -translate-y-1/2 z-50 bg-[#FF6701] hover:bg-[#E65D00] transition-colors rounded-r-lg items-center justify-center cursor-pointer"

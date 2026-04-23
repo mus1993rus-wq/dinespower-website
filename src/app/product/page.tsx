@@ -13,6 +13,7 @@ const PaymentPopup = dynamic(() => import("@/components/PaymentPopup"), { ssr: f
 const ShippingPopup = dynamic(() => import("@/components/ShippingPopup"), { ssr: false });
 const NeedHelpPopup = dynamic(() => import("@/components/NeedHelpPopup"), { ssr: false });
 const VerifyPopup = dynamic(() => import("@/components/VerifyPopup"), { ssr: false });
+const ReviewPopup = dynamic(() => import("@/components/ReviewPopup"), { ssr: false });
 
 const thumbnails = [
   "/images/shop/products/astera/methenolone-enanthate-200.webp",
@@ -93,29 +94,6 @@ const trustBadges = [
   },
 ];
 
-const benefitsData = [
-  {
-    title: "Muscle Growth",
-    desc: "Promotes lean muscle gains without significant water retention, making it ideal for quality mass building.",
-    color: "#FF6701",
-  },
-  {
-    title: "Increased Strength",
-    desc: "Improves overall strength and physical performance through enhanced protein synthesis.",
-    color: "#00B638",
-  },
-  {
-    title: "Improved Recovery",
-    desc: "Accelerates recovery between training sessions, reducing muscle soreness and fatigue.",
-    color: "#00A9DE",
-  },
-  {
-    title: "Hormone Replacement",
-    desc: "Used in hormone replacement therapy to maintain healthy testosterone levels and well-being.",
-    color: "#FF6701",
-  },
-];
-
 const reviews = [
   {
     name: "Mary Ellen",
@@ -180,7 +158,6 @@ export default function ProductPage() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [openAccordions, setOpenAccordions] = useState<Record<string, boolean>>({
     overview: true,
-    benefits: true,
     reviews: true,
   });
   const [openFAQ, setOpenFAQ] = useState<number | null>(2);
@@ -190,6 +167,7 @@ export default function ProductPage() {
   const [helpOpen, setHelpOpen] = useState(false);
   const [verifyOpen, setVerifyOpen] = useState(false);
   const [overviewExpanded, setOverviewExpanded] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
   const { addItem } = useCart();
 
   const handleCopy = () => {
@@ -624,48 +602,6 @@ export default function ProductPage() {
               </div>
             </div>
 
-            {/* 12. Benefits Accordion */}
-            <div>
-              <div className="border-b border-[#E7E7E7]">
-                <button
-                  onClick={() => toggleAccordion("benefits")}
-                  className="w-full flex items-center justify-between py-5 cursor-pointer"
-                >
-                  <span className="text-base font-semibold text-[#181818]">Benefits</span>
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className={`transition-transform ${openAccordions.benefits ? "rotate-180" : ""}`}
-                  >
-                    <path d="M6 9L12 15L18 9" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-                {openAccordions.benefits && (
-                  <div className="pb-6">
-                    <div className="flex flex-col gap-4">
-                      {benefitsData.map((benefit, i) => (
-                        <div key={i} className="flex items-start gap-3">
-                          <div
-                            className="w-[28px] h-[28px] rounded-full flex items-center justify-center shrink-0 mt-0.5"
-                            style={{ backgroundColor: `${benefit.color}15` }}
-                          >
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                              <path d="M20 6L9 17L4 12" stroke={benefit.color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </div>
-                          <div>
-                            <p className="text-sm font-bold text-[#181818]">{benefit.title}</p>
-                            <p className="text-sm text-[#7E7E7E] mt-0.5">{benefit.desc}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
 
             {/* 13. Reviews Accordion */}
             <div className="pb-4">
@@ -695,27 +631,17 @@ export default function ProductPage() {
                     </div>
 
                     {/* Review This Product */}
-                    <div className="mb-6">
-                      <h3 className="text-base font-bold text-[#181818] mb-1">Review This Product</h3>
-                      <p className="text-sm text-[#7E7E7E] mb-3">Share your thoughts with other customers</p>
-                      <button className="bg-[#181818] hover:bg-[#333] text-white text-sm font-semibold px-6 py-3 rounded-[8px] transition-colors">
+                    <div className="mb-6 flex flex-col tablet:flex-row tablet:items-center tablet:justify-between gap-3 tablet:gap-6">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base font-bold text-[#181818] mb-1">Review This Product</h3>
+                        <p className="text-sm text-[#7E7E7E]">Share your thoughts with other customers</p>
+                      </div>
+                      <button
+                        onClick={() => setReviewOpen(true)}
+                        className="cursor-pointer bg-[#181818] hover:bg-[#333] text-white text-sm font-semibold px-6 py-3 rounded-[8px] transition-colors self-start tablet:self-auto shrink-0"
+                      >
                         Write a customer review
                       </button>
-                    </div>
-
-                    {/* Photos And Videos From Customers */}
-                    <div className="mb-6">
-                      <h3 className="text-base font-bold text-[#181818] mb-3">Photos And Videos From Customers</h3>
-                      <div className="flex gap-2 flex-wrap">
-                        {customerPhotos.map((photo, i) => (
-                          <div key={i} className="w-[72px] h-[72px] rounded-[8px] overflow-hidden border border-[#E7E7E7] shrink-0">
-                            <Image src={photo} alt={`Customer photo ${i + 1}`} width={72} height={72} className="object-cover w-full h-full" />
-                          </div>
-                        ))}
-                        <div className="w-[72px] h-[72px] rounded-[8px] bg-[#F7F7F7] border border-[#E7E7E7] flex items-center justify-center shrink-0">
-                          <span className="text-sm font-semibold text-[#7E7E7E]">+24</span>
-                        </div>
-                      </div>
                     </div>
 
                     {/* Review Cards */}
@@ -909,6 +835,7 @@ export default function ProductPage() {
       <ShippingPopup isOpen={shippingOpen} onClose={() => setShippingOpen(false)} />
       <NeedHelpPopup isOpen={helpOpen} onClose={() => setHelpOpen(false)} />
       <VerifyPopup isOpen={verifyOpen} onClose={() => setVerifyOpen(false)} />
+      <ReviewPopup isOpen={reviewOpen} onClose={() => setReviewOpen(false)} productName="Methenolone Enanthate 200" />
     </>
   );
 }
