@@ -412,18 +412,11 @@ export default function ProductPage() {
             {/* Mobile: compact accordion cards with 48x48 icon + chevron */}
             <div className="lg:hidden flex flex-col gap-2 mb-6">
               {trustBadges.map((badge, i) => {
-                const WrapperTag = badge.external ? "a" : (Link as unknown as "a");
-                const wrapperProps = badge.external
-                  ? { href: badge.href, target: "_blank", rel: "noopener noreferrer" }
-                  : { href: badge.href || "#" };
-                return (
-                  <WrapperTag
-                    key={i}
-                    {...wrapperProps}
-                    className={`rounded-[12px] flex items-center gap-4 px-3 py-3 ${
-                      badge.orangeBg ? "bg-[#F5ECE6]" : "bg-[#F7F7F7]"
-                    }`}
-                  >
+                const cardClass = `rounded-[12px] flex items-center gap-4 px-3 py-3 ${
+                  badge.orangeBg ? "bg-[#F5ECE6]" : "bg-[#F7F7F7]"
+                }`;
+                const inner = (
+                  <>
                     <div className="w-12 h-12 shrink-0 flex items-center justify-center">
                       <Image src={badge.icon} alt={badge.title} width={48} height={48} className="w-full h-full object-contain" />
                     </div>
@@ -434,7 +427,22 @@ export default function ProductPage() {
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="shrink-0">
                       <path d="M9 18l6-6-6-6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                  </WrapperTag>
+                  </>
+                );
+                return badge.external ? (
+                  <a
+                    key={i}
+                    href={badge.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cardClass}
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <Link key={i} href={badge.href || "#"} className={cardClass}>
+                    {inner}
+                  </Link>
                 );
               })}
             </div>
