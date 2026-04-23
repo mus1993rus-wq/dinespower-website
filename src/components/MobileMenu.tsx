@@ -123,7 +123,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] md:hidden">
+    <div className="fixed inset-0 z-[100] lg:hidden">
       <div className="absolute inset-0 bg-black/50" onClick={close} />
       <div className="absolute left-0 top-0 bottom-0 w-[90%] max-w-[375px] bg-[#F7F7F7] overflow-y-auto">
         {level === "main" && (
