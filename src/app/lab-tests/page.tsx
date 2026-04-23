@@ -157,8 +157,8 @@ function TestReportThumbnail() {
         src="/images/shop/lab-test-report.png"
         alt="Lab Test Report"
         fill
+        sizes="(max-width: 960px) 100vw, 340px"
         className="object-cover"
-       
       />
     </div>
   );
@@ -322,7 +322,7 @@ export default function LabTestsPage() {
                 {/* Still Have Questions Card */}
                 <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
                   <div className="w-12 h-12 relative shrink-0">
-                    <Image src="/icons/question-bubble.png" alt="" fill className="object-contain" />
+                    <Image src="/icons/question-bubble.png" alt="" fill sizes="48px" className="object-contain" />
                   </div>
                   <p className="text-[16px] font-semibold text-black leading-6 capitalize">Still have questions?</p>
                   <p className="text-[14px] text-[#1E1E1E] leading-5 text-center">

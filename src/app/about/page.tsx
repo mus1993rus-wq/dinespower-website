@@ -66,6 +66,7 @@ export default function AboutPage() {
               src="/images/shop/wholesale-banner-bg.png"
               alt=""
               fill
+              sizes="(max-width: 1340px) 100vw, 1340px"
               className="object-cover opacity-60 mix-blend-lighten pointer-events-none"
             />
             <div className="relative z-10 py-12 tablet:py-20 px-6 tablet:px-8 text-center flex flex-col items-center gap-3 tablet:gap-4">
@@ -106,7 +107,7 @@ export default function AboutPage() {
           <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-20 items-stretch">
             {/* Left - Manager photo — equal column, 80px gap */}
             <div className="flex-1 rounded-[16px] relative overflow-hidden bg-[#F7F7F7] self-stretch min-h-[240px] tablet:min-h-[280px] desktop:min-h-[460px]">
-              <Image src="/images/shop/expert-manager.png" alt="Expert Support" fill className="object-cover object-top" />
+              <Image src="/images/shop/expert-manager.png" alt="Expert Support" fill sizes="(max-width: 960px) 100vw, 660px" className="object-cover object-top" />
             </div>
 
             {/* Right - Content */}

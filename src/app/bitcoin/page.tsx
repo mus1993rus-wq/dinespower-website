@@ -29,7 +29,7 @@ function InfoBox({ children, variant = "info" }: { children: React.ReactNode; va
 function StepScreenshot({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="mt-4 w-full rounded-[16px] overflow-hidden border border-[#E7E7E7] relative bg-[#F7F7F7]" style={{ aspectRatio: "820/418" }}>
-      <Image src={src} alt={alt} fill className="object-contain" />
+      <Image src={src} alt={alt} fill sizes="(max-width: 960px) 100vw, 820px" className="object-contain" />
     </div>
   );
 }
@@ -232,7 +232,7 @@ export default function BitcoinPaymentPage() {
             <div className="bg-[#F7F7F7] rounded-[12px] p-4">
               <div className="bg-white border border-[#E7E7E7] rounded-[8px] p-4 flex flex-col items-center gap-4">
                 <div className="w-12 h-12 relative shrink-0">
-                  <Image src="/icons/question-bubble.png" alt="" fill className="object-contain" />
+                  <Image src="/icons/question-bubble.png" alt="" fill sizes="48px" className="object-contain" />
                 </div>
                 <p className="text-[16px] font-semibold text-black leading-6 capitalize">Still have questions?</p>
                 <p className="text-[14px] text-[#1E1E1E] leading-5 text-center">
@@ -258,7 +258,7 @@ export default function BitcoinPaymentPage() {
             {/* 100% Secure Payment badge */}
             <div className="bg-[#F7F7F7] rounded-[12px] px-6 py-5 flex items-center gap-6">
               <div className="w-14 h-14 relative shrink-0">
-                <Image src="/images/shop/bitcoin/badge-secure.png" alt="" fill className="object-contain" />
+                <Image src="/images/shop/bitcoin/badge-secure.png" alt="" fill sizes="56px" className="object-contain" />
               </div>
               <div className="flex-1 flex flex-col gap-2">
                 <p className="text-[16px] font-semibold text-[#181818] leading-6">100% Secure Payment</p>
@@ -269,7 +269,7 @@ export default function BitcoinPaymentPage() {
             {/* Fast & Discreet Delivery badge */}
             <div className="bg-[#F7F7F7] rounded-[12px] px-6 py-5 flex items-center gap-6">
               <div className="w-14 h-14 relative shrink-0">
-                <Image src="/images/shop/bitcoin/badge-delivery.png" alt="" fill className="object-contain" />
+                <Image src="/images/shop/bitcoin/badge-delivery.png" alt="" fill sizes="56px" className="object-contain" />
               </div>
               <div className="flex-1 flex flex-col gap-2">
                 <p className="text-[16px] font-semibold text-[#181818] leading-6">Fast &amp; Discreet Delivery</p>

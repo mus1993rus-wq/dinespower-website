@@ -274,8 +274,8 @@ function BlogContent() {
                       src={`/images/shop/blog-${((slide.id - 1) % 5) + 1}.png`}
                       alt={slide.title}
                       fill
+                      sizes="(max-width: 960px) 100vw, 1340px"
                       className={`object-cover transition-opacity duration-700 ${i === slideIndex ? "opacity-100" : "opacity-0"}`}
-                     
                       priority={i === 0}
                     />
                   ))}
@@ -521,7 +521,7 @@ function BlogContent() {
 
                 {/* Product Card — horizontal Figma layout (1680:34022) */}
                 <Link href="/catalog" className="relative block bg-[#181818] rounded-[16px] p-6 overflow-hidden group">
-                  <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
+                  <Image src="/icons/newsletter-bg.jpg" alt="" fill sizes="(max-width: 960px) 100vw, 800px" className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
                   {/* Sale badge — absolute top-left */}
                   <div className="absolute top-[10px] left-0 z-10 pt-2">
                     <span className="inline-flex items-center bg-[#FB2F2F] rounded-tr-[6px] rounded-br-[6px] px-3 py-1 text-[12px] font-semibold text-white leading-4">Sale -14%</span>
