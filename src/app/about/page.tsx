@@ -150,18 +150,21 @@ export default function AboutPage() {
             {brands.map((brand) => (
               <div
                 key={brand.name}
-                className="rounded-[16px] overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.08)] flex flex-col relative"
+                className="rounded-[16px] overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.08)] flex flex-col"
               >
-                {/* Layer 1: bg color */}
-                <div className="absolute inset-0 rounded-[16px]" style={{ background: brand.bgColor }} />
-
-                {/* Layer 2: product image */}
-                <div className="relative h-[180px] z-[1]">
-                  <Image src={brand.image} alt={brand.name} fill className="object-cover" />
+                {/* Top: tinted image area with full-width product photo */}
+                <div className="relative h-[220px] flex items-center justify-center overflow-hidden" style={{ background: brand.bgColor }}>
+                  <Image
+                    src={brand.image}
+                    alt={brand.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
+                    className="object-cover object-center"
+                  />
                 </div>
 
-                {/* Layer 3: white text card */}
-                <div className="bg-white rounded-t-[16px] -mt-4 relative z-[2] px-5 pt-5 pb-5 flex flex-col flex-1 text-center">
+                {/* Bottom: white text card (no overlap) */}
+                <div className="bg-white px-5 pt-5 pb-5 flex flex-col flex-1 text-center">
                   <h3 className="text-[18px] font-extrabold text-[#181818] tracking-wide">{brand.name}</h3>
                   <p className="text-[11px] text-[#7E7E7E] mt-1 tracking-wide">{brand.origin}</p>
                   <p className="text-[12px] text-[#7E7E7E] mt-3 leading-[18px] flex-1">{brand.description}</p>

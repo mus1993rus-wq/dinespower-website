@@ -593,7 +593,7 @@ export default function Header() {
 
       {/* Navigation bar with dropdowns */}
       <div className="w-full border-t border-b border-[#EDEDED]">
-        <nav className="flex items-center wide:justify-between gap-4 wide:gap-0 h-[48px] overflow-x-auto scrollbar-hide">
+        <nav className="flex items-center wide:justify-between gap-4 wide:gap-0 h-[48px]">
           {categoryData.map((cat) => {
             const hasDropdown = cat.brands.length > 1;
             return (

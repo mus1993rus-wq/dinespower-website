@@ -198,14 +198,77 @@ export default function SearchPage() {
           {/* Results */}
           {submitted && query.length >= 2 ? (
             results.length === 0 ? (
-              <div className="text-center py-16">
-                <h2 className="text-xl font-bold text-[#181818] mb-2">No Results Found</h2>
-                <p className="text-sm text-[#7E7E7E] mb-6">
-                  We couldn&apos;t find any products matching &ldquo;{query}&rdquo;. Try a different search term.
-                </p>
-                <Link href="/" className="inline-flex items-center gap-2 bg-[#FF6701] hover:bg-[#E65D00] text-white text-sm font-semibold px-8 py-3 rounded-lg transition-colors">
-                  Browse All Products
-                </Link>
+              <div className="max-w-[720px] mx-auto py-10 tablet:py-16">
+                {/* Illustration */}
+                <div className="flex justify-center mb-6 tablet:mb-8">
+                  <div className="relative w-[120px] h-[120px] tablet:w-[160px] tablet:h-[160px] rounded-full bg-[#F7F7F7] flex items-center justify-center">
+                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" className="tablet:w-[88px] tablet:h-[88px]">
+                      <circle cx="28" cy="28" r="18" stroke="#181818" strokeWidth="3" />
+                      <path d="M42 42L54 54" stroke="#181818" strokeWidth="3" strokeLinecap="round" />
+                      <path d="M22 28L34 28M28 22L28 34" stroke="#FF6701" strokeWidth="3" strokeLinecap="round" transform="rotate(45 28 28)" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Title */}
+                <div className="text-center mb-8 tablet:mb-10">
+                  <h2 className="text-[24px] tablet:text-[32px] font-extrabold text-[#181818] leading-[30px] tablet:leading-[40px] mb-3">
+                    Nothing Found For <span className="text-[#FF6701]">&ldquo;{query}&rdquo;</span>
+                  </h2>
+                  <p className="text-[14px] tablet:text-[15px] text-[#7E7E7E] leading-[22px] max-w-[480px] mx-auto">
+                    Try a different keyword, check spelling, or explore popular categories below.
+                  </p>
+                </div>
+
+                {/* Popular searches chips */}
+                <div className="mb-8 tablet:mb-10">
+                  <p className="text-[12px] font-semibold text-[#7E7E7E] uppercase tracking-wide mb-3 text-center">Popular Searches</p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {popularSearches.map((s) => (
+                      <button
+                        key={s}
+                        onClick={() => handleSuggestionClick(s)}
+                        className="text-[13px] tablet:text-[14px] text-[#181818] bg-[#F7F7F7] hover:bg-[#EFEFEF] border border-[#E7E7E7] px-4 py-2 rounded-[10px] transition-colors"
+                      >
+                        {s}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Category tiles */}
+                <div className="grid grid-cols-2 tablet:grid-cols-4 gap-3 mb-8">
+                  {[
+                    { label: "Injectables", slug: "injectable" },
+                    { label: "Oral", slug: "oral" },
+                    { label: "SARMs", slug: "sarms" },
+                    { label: "Peptides", slug: "peptides" },
+                  ].map((cat) => (
+                    <Link
+                      key={cat.slug}
+                      href={`/catalog?category=${cat.slug}`}
+                      className="border border-[#E7E7E7] hover:border-[#181818] rounded-[12px] px-4 py-4 text-center text-[13px] tablet:text-[14px] font-semibold text-[#181818] transition-colors"
+                    >
+                      {cat.label}
+                    </Link>
+                  ))}
+                </div>
+
+                {/* CTAs */}
+                <div className="flex flex-col tablet:flex-row gap-3 justify-center">
+                  <button
+                    onClick={() => { setQuery(""); setSubmitted(false); inputRef.current?.focus(); }}
+                    className="h-[48px] px-6 rounded-[12px] border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-[#181818] transition-colors"
+                  >
+                    Clear Search
+                  </button>
+                  <Link
+                    href="/catalog"
+                    className="h-[48px] px-8 rounded-[12px] bg-[#FF6701] hover:bg-[#E65D00] text-white text-[14px] font-semibold flex items-center justify-center transition-colors"
+                  >
+                    Browse All Products
+                  </Link>
+                </div>
               </div>
             ) : (
               <>

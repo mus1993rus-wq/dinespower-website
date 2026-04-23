@@ -272,17 +272,17 @@ function CategoryBanners() {
           <Link href="/catalog?category=sarms" aria-label="Faster Muscle Recovery" className="absolute inset-0 z-0">
             <Image src="/images/shop/banner-bg-dark.png" alt="" fill sizes="(max-width: 960px) 100vw, 50vw" className="object-cover" />
           </Link>
-          <div className="absolute left-6 md:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-4 md:gap-[32px] w-[60%] md:w-[250px] pointer-events-none">
-            <h3 className="text-[18px] md:text-[28px] font-extrabold italic leading-[1.22] capitalize">
+          <div className="absolute left-5 tablet:left-8 desktop:left-6 wide:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3 tablet:gap-5 desktop:gap-4 wide:gap-[32px] w-[55%] tablet:w-[58%] desktop:w-[48%] wide:w-[250px] pointer-events-none">
+            <h3 className="text-[16px] tablet:text-[24px] desktop:text-[20px] wide:text-[28px] font-extrabold italic leading-[1.22] capitalize">
               <span className="text-[#FF6701]">Faster Muscle<br />Recovery &</span>{" "}
               <span className="text-white">Reduced Body Fat</span>
             </h3>
-            <Link href="/catalog?category=sarms" className="pointer-events-auto cursor-pointer w-fit h-[40px] md:h-[44px] px-5 md:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[13px] md:text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+            <Link href="/catalog?category=sarms" className="pointer-events-auto cursor-pointer w-fit h-[36px] tablet:h-[40px] wide:h-[44px] px-4 tablet:px-5 wide:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[12px] tablet:text-[13px] wide:text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
               See More
             </Link>
           </div>
-          <div className="absolute right-0 top-0 h-full w-[160px] md:w-[350px] z-10 pointer-events-none">
-            <Image src="/images/shop/banner-product-recovery.png" alt="Recovery products" fill sizes="(max-width: 768px) 160px, 350px" className="object-contain object-right-bottom" />
+          <div className="absolute right-0 top-0 h-full w-[150px] tablet:w-[280px] desktop:w-[220px] wide:w-[350px] z-[5] pointer-events-none">
+            <Image src="/images/shop/banner-product-recovery.png" alt="Recovery products" fill sizes="(max-width: 640px) 150px, (max-width: 1280px) 280px, 350px" className="object-contain object-right-bottom" />
           </div>
         </div>
 
@@ -291,17 +291,17 @@ function CategoryBanners() {
           <Link href="/catalog?category=sex-support" aria-label="Stacks For High Libido" className="absolute inset-0 z-0">
             <Image src="/images/shop/banner-bg-dark.png" alt="" fill sizes="(max-width: 960px) 100vw, 50vw" className="object-cover" />
           </Link>
-          <div className="absolute left-6 md:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-4 md:gap-[32px] w-[60%] md:w-[250px] pointer-events-none">
-            <h3 className="text-[18px] md:text-[28px] font-extrabold italic leading-[1.22] capitalize">
+          <div className="absolute left-5 tablet:left-8 desktop:left-6 wide:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3 tablet:gap-5 desktop:gap-4 wide:gap-[32px] w-[55%] tablet:w-[58%] desktop:w-[48%] wide:w-[250px] pointer-events-none">
+            <h3 className="text-[16px] tablet:text-[24px] desktop:text-[20px] wide:text-[28px] font-extrabold italic leading-[1.22] capitalize">
               <span className="text-[#FF6701]">Stacks For<br />High Libido </span>
               <span className="text-white">And Fat Burning</span>
             </h3>
-            <Link href="/catalog?category=sex-support" className="pointer-events-auto cursor-pointer w-fit h-[40px] md:h-[44px] px-5 md:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[13px] md:text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+            <Link href="/catalog?category=sex-support" className="pointer-events-auto cursor-pointer w-fit h-[36px] tablet:h-[40px] wide:h-[44px] px-4 tablet:px-5 wide:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[12px] tablet:text-[13px] wide:text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
               See More
             </Link>
           </div>
-          <div className="absolute right-0 top-0 h-full w-[160px] md:w-[350px] z-10 pointer-events-none">
-            <Image src="/images/shop/banner-product-libido.png" alt="Libido products" fill sizes="(max-width: 768px) 160px, 350px" className="object-contain object-right-bottom" />
+          <div className="absolute right-0 top-0 h-full w-[150px] tablet:w-[280px] desktop:w-[220px] wide:w-[350px] z-[5] pointer-events-none">
+            <Image src="/images/shop/banner-product-libido.png" alt="Libido products" fill sizes="(max-width: 640px) 150px, (max-width: 1280px) 280px, 350px" className="object-contain object-right-bottom" />
           </div>
         </div>
       </div>
