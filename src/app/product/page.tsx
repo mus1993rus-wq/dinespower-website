@@ -234,32 +234,58 @@ export default function ProductPage() {
 
         {/* Product Detail: stacked on mobile, two columns on desktop */}
         <div className="max-w-[1340px] mx-auto flex flex-col lg:flex-row gap-6 lg:gap-[60px] pb-10 px-4 lg:px-0">
-          {/* LEFT COLUMN - Thumbnails + Main Image */}
-          <div className="w-full lg:w-[560px] shrink-0 flex flex-col-reverse lg:flex-row gap-3 lg:gap-4 lg:sticky lg:top-[24px] lg:self-start">
-            {/* Thumbnails — horizontal row on mobile, vertical column on desktop */}
-            <div className="flex lg:flex-col gap-2 lg:w-[64px] shrink-0">
-              {thumbnails.map((src, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSelectedImage(i)}
-                  className={`w-[56px] h-[56px] lg:w-[64px] lg:h-[64px] rounded-[8px] bg-white border-2 transition-colors flex items-center justify-center overflow-hidden cursor-pointer shrink-0 ${
-                    selectedImage === i ? "border-[#FF6701]" : "border-[#E7E7E7]"
-                  }`}
-                >
-                  <Image src={src} alt={`Thumbnail ${i + 1}`} width={56} height={56} className="object-contain" />
-                </button>
-              ))}
+          {/* LEFT COLUMN - Image gallery */}
+          <div className="w-full lg:w-[560px] shrink-0 lg:sticky lg:top-[24px] lg:self-start">
+            {/* Mobile: swipeable single image with dots */}
+            <div className="lg:hidden flex flex-col gap-3">
+              <div className="w-full aspect-square bg-white rounded-[16px] flex items-center justify-center relative overflow-hidden border border-[#E7E7E7]">
+                <Image
+                  src={thumbnails[selectedImage]}
+                  alt="Methenolone Enanthate 200"
+                  width={303}
+                  height={303}
+                  className="object-contain max-w-[85%] max-h-[85%]"
+                />
+              </div>
+              {/* Pagination dots */}
+              <div className="flex justify-center gap-2">
+                {thumbnails.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSelectedImage(i)}
+                    aria-label={`Image ${i + 1}`}
+                    className={`h-[4px] rounded-[4px] transition-all ${
+                      selectedImage === i ? "w-[28px] bg-[#181818]" : "w-[28px] bg-[#E7E7E7]"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
 
-            {/* Main image — full-width square on mobile, 480x480 on desktop */}
-            <div className="w-full aspect-square lg:w-[480px] lg:h-[480px] lg:aspect-auto bg-white rounded-[16px] flex items-center justify-center relative overflow-hidden border border-[#E7E7E7]">
-              <Image
-                src={thumbnails[selectedImage]}
-                alt="Methenolone Enanthate 200"
-                width={416}
-                height={416}
-                className="object-contain max-w-[85%] max-h-[85%] lg:max-w-none lg:max-h-none"
-              />
+            {/* Desktop: thumbnail column + main image */}
+            <div className="hidden lg:flex gap-4">
+              <div className="flex flex-col gap-2 w-[64px] shrink-0">
+                {thumbnails.map((src, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSelectedImage(i)}
+                    className={`w-[64px] h-[64px] rounded-[8px] bg-white border-2 transition-colors flex items-center justify-center overflow-hidden cursor-pointer shrink-0 ${
+                      selectedImage === i ? "border-[#FF6701]" : "border-[#E7E7E7]"
+                    }`}
+                  >
+                    <Image src={src} alt={`Thumbnail ${i + 1}`} width={56} height={56} className="object-contain" />
+                  </button>
+                ))}
+              </div>
+              <div className="w-[480px] h-[480px] bg-white rounded-[16px] flex items-center justify-center relative overflow-hidden border border-[#E7E7E7]">
+                <Image
+                  src={thumbnails[selectedImage]}
+                  alt="Methenolone Enanthate 200"
+                  width={416}
+                  height={416}
+                  className="object-contain"
+                />
+              </div>
             </div>
           </div>
 
@@ -382,8 +408,39 @@ export default function ProductPage() {
               </div>
             </button>
 
-            {/* 9. Trust Badges — Figma 1430:29209 (gap-16 text→button, pr-16 right) */}
-            <div className="flex flex-col gap-2 mb-6">
+            {/* 9. Trust Badges — Figma 2255:31932 (mobile accordion), 1430:29209 (desktop) */}
+            {/* Mobile: compact accordion cards with 48x48 icon + chevron */}
+            <div className="lg:hidden flex flex-col gap-2 mb-6">
+              {trustBadges.map((badge, i) => {
+                const WrapperTag = badge.external ? "a" : (Link as unknown as "a");
+                const wrapperProps = badge.external
+                  ? { href: badge.href, target: "_blank", rel: "noopener noreferrer" }
+                  : { href: badge.href || "#" };
+                return (
+                  <WrapperTag
+                    key={i}
+                    {...wrapperProps}
+                    className={`rounded-[12px] flex items-center gap-4 px-3 py-3 ${
+                      badge.orangeBg ? "bg-[#F5ECE6]" : "bg-[#F7F7F7]"
+                    }`}
+                  >
+                    <div className="w-12 h-12 shrink-0 flex items-center justify-center">
+                      <Image src={badge.icon} alt={badge.title} width={48} height={48} className="w-full h-full object-contain" />
+                    </div>
+                    <div className="flex-1 min-w-0 flex flex-col gap-1">
+                      <p className="text-[14px] font-semibold text-black leading-5 capitalize">{badge.title}</p>
+                      <p className="text-[12px] text-[#1E1E1E] leading-4 line-clamp-2">{badge.desc}</p>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                      <path d="M9 18l6-6-6-6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </WrapperTag>
+                );
+              })}
+            </div>
+
+            {/* Desktop: full trust badges with button */}
+            <div className="hidden lg:flex flex-col gap-2 mb-6">
               {trustBadges.map((badge, i) => (
                 <div
                   key={i}
@@ -421,8 +478,52 @@ export default function ProductPage() {
               ))}
             </div>
 
-            {/* 10. Help Cards — Figma 1430:28293 — only bottom link is clickable */}
-            <div className="bg-white border border-[#E3E3E3] rounded-[12px] flex items-stretch">
+            {/* 10. Help Cards — Figma 2255:32593 mobile rows / 1430:28293 desktop 3-col */}
+            {/* Mobile: stacked row layout */}
+            <div className="lg:hidden flex flex-col bg-white border border-[#E3E3E3] rounded-[12px] overflow-hidden">
+              <div className="flex items-center gap-4 px-4 py-4 border-b border-[#E6E6E6]">
+                <Image src="/images/shop/product-icons/icon-5.png" alt="" width={44} height={44} className="object-contain shrink-0" />
+                <div className="flex-1 flex flex-col gap-1">
+                  <p className="text-[14px] font-semibold text-black leading-5">Need help?</p>
+                  <p className="text-[12px] text-[#1E1E1E] leading-4">Ask about dosing, shipping, or verification</p>
+                  <button
+                    onClick={() => setHelpOpen(true)}
+                    className="cursor-pointer text-[13px] font-semibold text-black underline leading-5 text-left hover:text-[#FF6701] transition-colors self-start"
+                  >
+                    Ask a Question
+                  </button>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 px-4 py-4 border-b border-[#E6E6E6]">
+                <Image src="/images/shop/product-icons/icon-6.png" alt="" width={44} height={44} className="object-contain shrink-0" />
+                <div className="flex-1 flex flex-col gap-1">
+                  <p className="text-[14px] font-semibold text-black leading-5">Shipping Methods</p>
+                  <p className="text-[12px] text-[#1E1E1E] leading-4">Delivery times, tracking, discreet packaging</p>
+                  <button
+                    onClick={() => setShippingOpen(true)}
+                    className="cursor-pointer text-[13px] font-semibold text-black underline leading-5 text-left hover:text-[#FF6701] transition-colors self-start"
+                  >
+                    Learn more
+                  </button>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 px-4 py-4">
+                <Image src="/images/shop/product-icons/icon-7.png" alt="" width={44} height={44} className="object-contain shrink-0" />
+                <div className="flex-1 flex flex-col gap-1">
+                  <p className="text-[14px] font-semibold text-black leading-5">Payment Methods</p>
+                  <p className="text-[12px] text-[#1E1E1E] leading-4">Bitcoin, bank transfer</p>
+                  <button
+                    onClick={() => setPaymentOpen(true)}
+                    className="cursor-pointer text-[13px] font-semibold text-black underline leading-5 text-left hover:text-[#FF6701] transition-colors self-start"
+                  >
+                    Learn more
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop: 3-column help cards */}
+            <div className="hidden lg:flex bg-white border border-[#E3E3E3] rounded-[12px] items-stretch">
               <div className="flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 border-r border-[#E6E6E6]">
                 <div className="w-12 h-12 relative">
                   <Image src="/images/shop/product-icons/icon-5.png" alt="" fill className="object-contain" />
