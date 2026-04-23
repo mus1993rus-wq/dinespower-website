@@ -109,7 +109,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full flex flex-col items-center xl:px-[185px] relative z-50">
+    <header className="w-full flex flex-col relative z-50">
       {/* ========================= MOBILE HEADER ========================= */}
       <div className="w-full xl:hidden flex flex-col sticky top-0 z-50 bg-white">
         {/* Top announcement bar */}
@@ -160,9 +160,9 @@ export default function Header() {
       </div>
 
       {/* ========================= DESKTOP HEADER ========================= */}
-      {/* Top bar — full width dark, NOT sticky (scrolls away) */}
-      <div className="hidden xl:block w-[calc(100%+370px)] -mx-[185px] bg-[#181818] pb-6">
-        <div className="flex items-center justify-between h-[40px] px-[185px]">
+      {/* Top bar — full width dark */}
+      <div className="hidden xl:block w-full bg-[#181818] pb-6">
+        <div className="max-w-[1340px] mx-auto flex items-center justify-between h-[40px]">
           <div className="flex-1 flex gap-5 items-center">
             {topLinks.map((l) => (
               <Link key={l.label} href={l.href} className="text-xs text-[#B6B6B6] hover:text-white transition-colors leading-4">
@@ -213,7 +213,8 @@ export default function Header() {
       </div>
 
       {/* White content wrapper — rounded top corners overlap dark top bar */}
-      <div className="hidden xl:flex w-[calc(100%+370px)] -mx-[185px] bg-white rounded-t-[16px] -mt-[16px] relative pt-4 px-[185px] flex-col gap-[16px] z-[40]">
+      <div className="hidden xl:flex w-full bg-white rounded-t-[16px] -mt-[16px] relative pt-4 flex-col gap-[16px] z-[40]">
+      <div className="max-w-[1340px] mx-auto w-full flex flex-col gap-[16px]">
 
       {/* Middle bar */}
       <div className="w-full flex items-center gap-[40px] h-[44px]">
@@ -442,6 +443,7 @@ export default function Header() {
             );
           })}
         </nav>
+      </div>
       </div>
       </div>
       <VerifyPopup isOpen={verifyOpen} onClose={() => setVerifyOpen(false)} />
