@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { useLocale } from "@/context/LocaleContext";
 import { products as productDetails } from "@/data/products";
 
 interface ProductCardProps {
@@ -27,6 +28,7 @@ function resolveProductHref(name: string, slug?: string): string {
 export default function ProductCard({ brand, name, dosage, price, oldPrice, image, badges = [], slug }: ProductCardProps) {
   const [qty, setQty] = useState(1);
   const { addItem } = useCart();
+  const { t } = useLocale();
   const href = resolveProductHref(name, slug);
 
   return (
@@ -90,7 +92,7 @@ export default function ProductCard({ brand, name, dosage, price, oldPrice, imag
               <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             <span className="absolute text-[13px] font-semibold text-white whitespace-nowrap transition-all duration-300 ease-out -translate-y-[150%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-              Add to cart
+              {t("cta.addToCart")}
             </span>
           </button>
         </div>
@@ -99,7 +101,7 @@ export default function ProductCard({ brand, name, dosage, price, oldPrice, imag
           onClick={() => window.dispatchEvent(new CustomEvent('open-help-popup'))}
           className="text-[13px] text-[#7E7E7E] hover:text-[#FF6701] transition-colors mt-2 text-center leading-5 cursor-pointer"
         >
-          Ask a Question
+          {t("cta.askQuestion")}
         </button>
       </div>
     </div>

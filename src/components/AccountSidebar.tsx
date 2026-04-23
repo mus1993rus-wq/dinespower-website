@@ -27,7 +27,9 @@ export default function AccountSidebar() {
       {/* User info */}
       <div className="bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
         <div className="flex items-center gap-4 py-1">
-          <div className="w-12 h-12 rounded-full bg-[#E3E3E3] shrink-0" />
+          <div className="w-12 h-12 rounded-full bg-[#FF6701] shrink-0 flex items-center justify-center text-white text-[16px] font-extrabold uppercase">
+            {(user?.firstName?.[0] ?? user?.email?.[0] ?? "?") + (user?.lastName?.[0] ?? "")}
+          </div>
           <div className="flex-1 min-w-0 flex flex-col gap-1">
             <div className="flex items-center gap-1">
               <span className="text-[16px] font-semibold text-black leading-6 capitalize">{user?.displayName || user?.firstName || "Guest"}</span>

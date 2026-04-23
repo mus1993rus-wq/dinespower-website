@@ -59,15 +59,28 @@ export const metadata: Metadata = {
     title: "Dines Power — Official Distributor of Deus Medical, Biaxol, Astera Labs",
     description:
       "Buy SARMs, peptides, injectables and supplements online. Official European distributor — lab-tested, fast shipping.",
+    images: [
+      {
+        url: "/images/shop/logo.svg",
+        width: 1200,
+        height: 630,
+        alt: "Dines Power",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Dines Power — Lab-Tested SARMs, Peptides & Supplements",
     description:
       "Official European distributor of Deus Medical, Biaxol, Astera Labs. Fast shipping, verified products.",
+    images: ["/images/shop/logo.svg"],
   },
   icons: {
     icon: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 
@@ -78,6 +91,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} antialiased`}>
+      <head>
+        {/* Preconnect to analytics origin for faster first GA script load (when user accepts cookies) */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+      </head>
       <body className="min-h-screen bg-white text-[#181818] font-[var(--font-inter)]">
         <CartWrapper>
           {children}
