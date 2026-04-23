@@ -218,10 +218,10 @@ export default function ProductPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen relative z-10 bg-white">
+      <main className="min-h-screen relative z-10 bg-white pb-[80px] md:pb-0">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto py-3">
-          <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
+        <div className="max-w-[1340px] mx-auto py-3 px-4 lg:px-0">
+          <div className="flex items-center gap-2 text-[12px] lg:text-sm text-[#7E7E7E] flex-wrap">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
             <Link href="/catalog?category=injectable" className="hover:text-[#181818] transition-colors">Injectable</Link>
@@ -232,17 +232,17 @@ export default function ProductPage() {
           </div>
         </div>
 
-        {/* Product Detail: Two Columns */}
-        <div className="max-w-[1340px] mx-auto flex gap-[60px] pb-10">
+        {/* Product Detail: stacked on mobile, two columns on desktop */}
+        <div className="max-w-[1340px] mx-auto flex flex-col lg:flex-row gap-6 lg:gap-[60px] pb-10 px-4 lg:px-0">
           {/* LEFT COLUMN - Thumbnails + Main Image */}
-          <div className="w-[560px] shrink-0 flex gap-4 sticky top-[24px] self-start">
-            {/* Vertical thumbnails — 64px column */}
-            <div className="flex flex-col gap-2 w-[64px] shrink-0">
+          <div className="w-full lg:w-[560px] shrink-0 flex flex-col-reverse lg:flex-row gap-3 lg:gap-4 lg:sticky lg:top-[24px] lg:self-start">
+            {/* Thumbnails — horizontal row on mobile, vertical column on desktop */}
+            <div className="flex lg:flex-col gap-2 lg:w-[64px] shrink-0">
               {thumbnails.map((src, i) => (
                 <button
                   key={i}
                   onClick={() => setSelectedImage(i)}
-                  className={`w-[64px] h-[64px] rounded-[8px] bg-white border-2 transition-colors flex items-center justify-center overflow-hidden cursor-pointer ${
+                  className={`w-[56px] h-[56px] lg:w-[64px] lg:h-[64px] rounded-[8px] bg-white border-2 transition-colors flex items-center justify-center overflow-hidden cursor-pointer shrink-0 ${
                     selectedImage === i ? "border-[#FF6701]" : "border-[#E7E7E7]"
                   }`}
                 >
@@ -251,20 +251,20 @@ export default function ProductPage() {
               ))}
             </div>
 
-            {/* Main image — 480x480 per Figma, no search button, no sale tag overlay */}
-            <div className="w-[480px] h-[480px] bg-white rounded-[16px] flex items-center justify-center relative overflow-hidden border border-[#E7E7E7]">
+            {/* Main image — full-width square on mobile, 480x480 on desktop */}
+            <div className="w-full aspect-square lg:w-[480px] lg:h-[480px] lg:aspect-auto bg-white rounded-[16px] flex items-center justify-center relative overflow-hidden border border-[#E7E7E7]">
               <Image
                 src={thumbnails[selectedImage]}
                 alt="Methenolone Enanthate 200"
                 width={416}
                 height={416}
-                className="object-contain"
+                className="object-contain max-w-[85%] max-h-[85%] lg:max-w-none lg:max-h-none"
               />
             </div>
           </div>
 
           {/* RIGHT COLUMN - Product Info */}
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             {/* 1. Rating row - 5 orange stars + (325 Reviews) */}
             <div className="flex items-center gap-2 mb-3">
               <div className="flex">
@@ -762,6 +762,37 @@ export default function ProductPage() {
           </div>
         </section>
       </main>
+      {/* Sticky bottom buy bar — Figma 1996:19073 (mobile only) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#E7E7E7] shadow-[0_-4px_16px_rgba(0,0,0,0.08)]">
+        <div className="flex items-center gap-3 px-3 py-2.5">
+          <div className="w-[56px] h-[56px] rounded-[8px] bg-white border border-[#E7E7E7] p-1.5 flex items-center justify-center shrink-0">
+            <Image src={thumbnails[selectedImage]} alt="" width={44} height={44} className="object-contain" />
+          </div>
+          <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+            <p className="text-[12px] font-semibold text-[#181818] leading-[15px] line-clamp-2">
+              Methenolone Enanthate 200 Injectable Steroid In Vials
+            </p>
+            <p className="text-[11px] text-[#7E7E7E] leading-4">200 mg/ml</p>
+          </div>
+          <div className="flex flex-col items-end shrink-0">
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-[16px] font-extrabold text-[#FB2F2F] leading-none">44€</span>
+              <span className="text-[12px] text-[#7E7E7E] line-through leading-none">56€</span>
+            </div>
+            <span className="bg-[#FB2F2F] text-white text-[10px] font-semibold leading-none px-1.5 py-0.5 rounded-[4px] mt-0.5">Sale -14%</span>
+          </div>
+          <button
+            onClick={handleAddToCart}
+            className="cursor-pointer w-[48px] h-[48px] bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center transition-colors shrink-0"
+            aria-label="Add to cart"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M6 2L3 6V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M3 6H21M16 10C16 11.06 15.58 12.08 14.83 12.83C14.08 13.58 13.06 14 12 14C10.94 14 9.92 13.58 9.17 12.83C8.42 12.08 8 11.06 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
       <div className="relative z-0">
         <Footer />
       </div>

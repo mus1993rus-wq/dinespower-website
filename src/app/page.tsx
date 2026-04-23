@@ -138,15 +138,35 @@ function HeroBanner() {
 
 function CategoriesRow() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[48px] px-4 md:px-0">
-      <div className="grid grid-cols-4 lg:flex lg:justify-between gap-y-4 gap-x-2">
+    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[48px] md:px-0">
+      {/* Mobile: vertical list per Figma */}
+      <div className="md:hidden flex flex-col bg-white">
+        {categories.map((cat, i) => (
+          <Link
+            key={cat.name}
+            href={`/catalog?category=${cat.name.toLowerCase().replace(/ & /g, '-')}`}
+            className={`flex items-center gap-4 px-4 py-3 ${i < categories.length - 1 ? "border-b border-[#F0F0F0]" : ""}`}
+          >
+            <div className="w-10 h-10 rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center shrink-0">
+              <Image src={cat.img} alt={cat.name} width={40} height={40} className="object-cover" />
+            </div>
+            <span className="flex-1 text-[14px] font-semibold text-[#181818] leading-5">{cat.name}</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+        ))}
+      </div>
+
+      {/* Desktop: horizontal row */}
+      <div className="hidden md:flex justify-between">
         {categories.map((cat) => (
           <Link key={cat.name} href={`/catalog?category=${cat.name.toLowerCase().replace(/ & /g, '-')}`}>
             <ScrollAnimation animation="animate-fade-in-up" className="flex flex-col items-center gap-2 cursor-pointer group">
-              <div className="w-[72px] h-[72px] lg:w-[116px] lg:h-[116px] rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center transition-colors duration-300">
+              <div className="w-[116px] h-[116px] rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center transition-colors duration-300">
                 <Image src={cat.img} alt={cat.name} width={116} height={116} className="object-cover transition-transform duration-300 group-hover:scale-[1.05]" />
               </div>
-              <span className="text-[12px] lg:text-[14px] font-semibold text-[#181818] leading-5 text-center">{cat.name}</span>
+              <span className="text-[14px] font-semibold text-[#181818] leading-5 text-center">{cat.name}</span>
             </ScrollAnimation>
           </Link>
         ))}
