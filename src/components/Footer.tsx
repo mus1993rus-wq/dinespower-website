@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -25,6 +28,28 @@ const categoryLinks = [
   "Injectable", "Oral", "Fat Burn", "Peptides & HGH", "SARMs",
   "PCT", "Energy", "Sex Support", "Health", "Stacks", "Amino Acids",
 ];
+
+function AccordionSection({ title, children }: { title: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="md:contents border-b border-[#292929] md:border-0 py-2 md:py-0">
+      <button
+        onClick={() => setOpen(!open)}
+        className="md:hidden w-full flex items-center justify-between py-3 text-left"
+        type="button"
+      >
+        <h4 className="text-lg font-semibold text-white uppercase">{title}</h4>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className={`transition-transform ${open ? "rotate-180" : ""}`}>
+          <path d="M6 9l6 6 6-6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+      <h4 className="hidden md:block text-lg font-semibold text-white uppercase">{title}</h4>
+      <div className={`${open ? "flex" : "hidden"} md:flex flex-col gap-2 md:mt-0 pb-3 md:pb-0`}>
+        {children}
+      </div>
+    </div>
+  );
+}
 
 export default function Footer() {
   return (
@@ -55,9 +80,8 @@ export default function Footer() {
           </div>
 
           {/* Menu */}
-          <div className="md:w-[305px] flex flex-col gap-4 md:gap-6">
-            <h4 className="text-lg font-semibold text-white uppercase">Menu</h4>
-            <div className="flex flex-col gap-2">
+          <div className="md:w-[305px] flex flex-col md:gap-6">
+            <AccordionSection title="Menu">
               {menuLinks.map((l) =>
                 l.external ? (
                   <a
@@ -75,19 +99,18 @@ export default function Footer() {
                   </Link>
                 )
               )}
-            </div>
+            </AccordionSection>
           </div>
 
           {/* Categories */}
-          <div className="md:w-[305px] flex flex-col gap-4 md:gap-6">
-            <h4 className="text-lg font-semibold text-white uppercase">Categories</h4>
-            <div className="flex flex-col gap-2">
+          <div className="md:w-[305px] flex flex-col md:gap-6">
+            <AccordionSection title="Categories">
               {categoryLinks.map((cat) => (
                 <Link key={cat} href="/catalog" className="text-sm text-[#B6B6B6] hover:text-white transition-colors leading-5">
                   {cat}
                 </Link>
               ))}
-            </div>
+            </AccordionSection>
           </div>
 
           {/* Contact */}

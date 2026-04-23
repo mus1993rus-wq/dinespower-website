@@ -207,6 +207,11 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
     scrollRef.current?.scrollBy({ left: 280, behavior: "smooth" });
   };
 
+  const seeAllLabel = promoCategoryName ? `See All ${promoCategoryName}` : "See All";
+  const seeAllHref = promoCategoryName
+    ? `/catalog?category=${promoCategoryName.toLowerCase()}`
+    : "/catalog";
+
   return (
     <section className={`max-w-[1340px] mx-auto px-4 md:px-0 ${className}`}>
       <div className="flex items-center justify-between mb-4 md:mb-6">
@@ -221,8 +226,8 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
         </div>
       </div>
       <div className="flex gap-3 md:gap-4">
-        {/* Fixed promo banner - doesn't scroll (hidden on mobile) */}
-        {promoCategoryName && <div className="hidden md:block self-stretch"><PromoBanner categoryName={promoCategoryName} /></div>}
+        {/* Fixed promo banner - doesn't scroll (hidden on mobile/tablet) */}
+        {promoCategoryName && <div className="hidden xl:block self-stretch"><PromoBanner categoryName={promoCategoryName} /></div>}
         {/* Scrollable product cards */}
         <div ref={scrollRef} className="flex gap-3 md:gap-4 overflow-x-auto scrollbar-hide pb-2 flex-1 min-w-0 -mx-4 px-4 md:mx-0 md:px-0">
           {products.map((p, i) => (
@@ -230,6 +235,16 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
           ))}
         </div>
       </div>
+      {/* See All button — mobile/tablet only, matches Figma 2032:22864 */}
+      <Link
+        href={seeAllHref}
+        className="xl:hidden mt-4 flex items-center justify-center h-[44px] bg-[#F7F7F7] rounded-[8px] text-[14px] font-semibold text-[#181818] gap-2 hover:bg-[#E7E7E7] transition-colors"
+      >
+        {seeAllLabel}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18l6-6-6-6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </Link>
     </section>
   );
 }
