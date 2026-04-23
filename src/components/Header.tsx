@@ -111,7 +111,7 @@ export default function Header() {
   return (
     <header className="w-full flex flex-col relative z-50">
       {/* ========================= MOBILE HEADER ========================= */}
-      <div className="w-full xl:hidden flex flex-col sticky top-0 z-50 bg-white">
+      <div className="w-full lg:hidden flex flex-col sticky top-0 z-50 bg-white">
         {/* Top announcement bar */}
         <div className="bg-[#181818] h-[36px] flex items-center justify-center px-4 gap-2">
           <Image src="/images/shop/shield-check.svg" alt="" width={16} height={16} className="shrink-0" />
@@ -161,11 +161,15 @@ export default function Header() {
 
       {/* ========================= DESKTOP HEADER ========================= */}
       {/* Top bar — full width dark */}
-      <div className="hidden xl:block w-full bg-[#181818] pb-6">
-        <div className="max-w-[1340px] mx-auto flex items-center justify-between h-[40px]">
+      <div className="hidden lg:block w-full bg-[#181818] pb-6">
+        <div className="max-w-[1340px] mx-auto w-full px-4 flex items-center justify-between h-[40px]">
           <div className="flex-1 flex gap-5 items-center">
-            {topLinks.map((l) => (
-              <Link key={l.label} href={l.href} className="text-xs text-[#B6B6B6] hover:text-white transition-colors leading-4">
+            {topLinks.map((l, i) => (
+              <Link
+                key={l.label}
+                href={l.href}
+                className={`text-xs text-[#B6B6B6] hover:text-white transition-colors leading-4 ${i >= 2 ? "hidden xl:inline" : ""}`}
+              >
                 {l.label}
               </Link>
             ))}
@@ -213,8 +217,8 @@ export default function Header() {
       </div>
 
       {/* White content wrapper — rounded top corners overlap dark top bar */}
-      <div className="hidden xl:flex w-full bg-white rounded-t-[16px] -mt-[16px] relative pt-4 flex-col gap-[16px] z-[40]">
-      <div className="max-w-[1340px] mx-auto w-full flex flex-col gap-[16px]">
+      <div className="hidden lg:flex w-full bg-white rounded-t-[16px] -mt-[16px] relative pt-4 flex-col gap-[16px] z-[40]">
+      <div className="max-w-[1340px] mx-auto w-full px-4 flex flex-col gap-[16px]">
 
       {/* Middle bar */}
       <div className="w-full flex items-center gap-[40px] h-[44px]">
@@ -222,7 +226,7 @@ export default function Header() {
           <Link href="/" className="shrink-0">
             <Image src="/images/shop/logo-header.svg" alt="Dines Power" width={106} height={44} />
           </Link>
-          <span className="text-xs text-[#7E7E7E] leading-4">
+          <span className="hidden xl:inline text-xs text-[#7E7E7E] leading-4">
             Official Representative Of<br/>Deus Medical, Biaxol, Astera Labs
           </span>
         </div>
@@ -340,7 +344,7 @@ export default function Header() {
           <div className="relative" ref={helpRef}>
             <button onClick={() => setHelpDropdownOpen(!helpDropdownOpen)} className="flex items-center gap-2 h-[44px] cursor-pointer">
               <Image src="/images/shop/help-icon-figma.svg" alt="" width={24} height={24} />
-              <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors">Need Help?</span>
+              <span className="hidden xl:inline text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors">Need Help?</span>
             </button>
             {helpDropdownOpen && (
               <div className="absolute top-full right-0 mt-2 bg-white border border-[#E7E7E7] rounded-[12px] shadow-lg p-2 min-w-[240px] z-50">
@@ -391,7 +395,7 @@ export default function Header() {
           </div>
           <Link href="/login" className="flex items-center gap-2 h-[44px]">
             <Image src="/images/shop/user-icon.svg" alt="" width={20} height={20} />
-            <span className="text-sm font-semibold text-[#181818] leading-5">Login</span>
+            <span className="hidden xl:inline text-sm font-semibold text-[#181818] leading-5">Login</span>
           </Link>
           <button onClick={openCart} className="flex items-center gap-2 h-[44px] cursor-pointer">
             <div className="relative">
@@ -400,7 +404,7 @@ export default function Header() {
                 <span className="absolute -top-1.5 -right-2 bg-[#FF6701] text-white text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center leading-none">{totalItems}</span>
               )}
             </div>
-            <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors">Cart</span>
+            <span className="hidden xl:inline text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors">Cart</span>
           </button>
         </div>
       </div>
@@ -418,7 +422,7 @@ export default function Header() {
               >
                 {cat.name}
                 {hasDropdown && (
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="transition-transform group-hover:rotate-180">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="hidden xl:block transition-transform group-hover:rotate-180">
                     <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 )}

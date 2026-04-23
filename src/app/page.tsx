@@ -95,10 +95,10 @@ function HeroBanner() {
   }, []);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-4 md:mt-6 md:px-0">
-      <div className="flex flex-col xl:flex-row gap-3 md:gap-4 xl:gap-[16px]">
-        {/* Main banner - clickable hero, full-width on mobile */}
-        <div className="w-full xl:w-[884px] aspect-[884/467] xl:h-[467px] relative md:rounded-[16px] overflow-hidden shrink-0 group">
+    <section className="max-w-[1340px] mx-auto mt-4 md:mt-6 lg:px-4 xl:px-0">
+      <div className="flex flex-col lg:flex-row gap-3 md:gap-4 lg:gap-[16px]">
+        {/* Main banner — proportional 884/1340 ≈ 66% on lg+ */}
+        <div className="w-full lg:basis-[66%] lg:grow-0 aspect-[884/467] relative md:rounded-[16px] overflow-hidden group">
           <Link href="/product" aria-label="Lean Muscle Growth" className="absolute inset-0 z-0">
             <Image src="/images/shop/hero-banner.png" alt="Weekly Bestseller - Lean Muscle Growth" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
@@ -122,12 +122,12 @@ function HeroBanner() {
           </div>
         </div>
 
-        {/* Side banners — stacked on desktop; 2-col grid on mobile */}
-        <div className="grid grid-cols-2 xl:grid-cols-1 gap-3 xl:gap-[16px] xl:w-[440px] shrink-0 px-4 xl:px-0">
-          <Link href="/catalog?category=sex-support" className="aspect-[440/225] xl:h-[225px] xl:aspect-auto rounded-[16px] overflow-hidden relative group block cursor-pointer">
+        {/* Side banners — 2-col grid on mobile, stacked proportional 440/1340 ≈ 33% on lg+ */}
+        <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-[16px] lg:basis-[33%] lg:grow-0 px-4 lg:px-0">
+          <Link href="/catalog?category=sex-support" className="aspect-[440/225] rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-sexboost.png" alt="Sex Boost" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
-          <Link href="/catalog?category=health" className="aspect-[440/226] xl:h-[226px] xl:aspect-auto rounded-[16px] overflow-hidden relative group block cursor-pointer">
+          <Link href="/catalog?category=health" className="aspect-[440/226] rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-cbd.png" alt="CBD" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
         </div>
@@ -138,9 +138,9 @@ function HeroBanner() {
 
 function CategoriesRow() {
   return (
-    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[48px] md:px-0">
+    <section className="max-w-[1340px] mx-auto mt-8 md:mt-[48px] lg:px-4 xl:px-0">
       {/* Mobile: vertical list per Figma */}
-      <div className="md:hidden flex flex-col bg-white">
+      <div className="lg:hidden flex flex-col bg-white">
         {categories.map((cat, i) => (
           <Link
             key={cat.name}
@@ -158,8 +158,8 @@ function CategoriesRow() {
         ))}
       </div>
 
-      {/* Desktop: horizontal row */}
-      <div className="hidden md:flex justify-between">
+      {/* Desktop: horizontal row — proportional circles */}
+      <div className="hidden lg:flex justify-between gap-2">
         {categories.map((cat) => (
           <Link key={cat.name} href={`/catalog?category=${cat.name.toLowerCase().replace(/ & /g, '-')}`}>
             <ScrollAnimation animation="animate-fade-in-up" className="flex flex-col items-center gap-2 cursor-pointer group">
