@@ -95,10 +95,10 @@ function HeroBanner() {
   }, []);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-4 md:mt-6 px-4 md:px-0">
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-[16px]">
-        {/* Main banner - clickable hero, links to product */}
-        <div className="w-full lg:w-[884px] aspect-[884/467] lg:h-[467px] relative rounded-[16px] overflow-hidden shrink-0 group">
+    <section className="max-w-[1340px] mx-auto mt-4 md:mt-6 md:px-0">
+      <div className="flex flex-col lg:flex-row gap-3 md:gap-4 lg:gap-[16px]">
+        {/* Main banner - clickable hero, full-width on mobile */}
+        <div className="w-full lg:w-[884px] aspect-[884/467] lg:h-[467px] relative md:rounded-[16px] overflow-hidden shrink-0 group">
           <Link href="/product" aria-label="Lean Muscle Growth" className="absolute inset-0 z-0">
             <Image src="/images/shop/hero-banner.png" alt="Weekly Bestseller - Lean Muscle Growth" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
@@ -123,7 +123,7 @@ function HeroBanner() {
         </div>
 
         {/* Side banners — stacked on desktop; 2-col grid on mobile */}
-        <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-[16px] lg:w-[440px] shrink-0">
+        <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-[16px] lg:w-[440px] shrink-0 px-4 lg:px-0">
           <Link href="/catalog?category=sex-support" className="aspect-[440/225] lg:h-[225px] lg:aspect-auto rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-sexboost.png" alt="Sex Boost" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>

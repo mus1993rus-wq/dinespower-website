@@ -111,7 +111,7 @@ export default function Header() {
   return (
     <header className="w-full flex flex-col items-center md:px-[185px] relative z-50">
       {/* ========================= MOBILE HEADER ========================= */}
-      <div className="w-full md:hidden flex flex-col">
+      <div className="w-full md:hidden flex flex-col sticky top-0 z-50 bg-white">
         {/* Top announcement bar */}
         <div className="bg-[#181818] h-[36px] flex items-center justify-center px-4 gap-2">
           <Image src="/images/shop/shield-check.svg" alt="" width={16} height={16} className="shrink-0" />
@@ -340,7 +340,9 @@ export default function Header() {
           </button>
           <div className="relative" ref={helpRef}>
             <button onClick={() => setHelpDropdownOpen(!helpDropdownOpen)} className="flex items-center gap-2 h-[44px] cursor-pointer">
-              <Image src="/images/shop/help-icon.svg" alt="" width={20} height={20} />
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="#FF6701" strokeWidth="2" fill="#FF6701" />
+              </svg>
               <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors">Need Help?</span>
             </button>
             {helpDropdownOpen && (
