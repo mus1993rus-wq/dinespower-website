@@ -94,7 +94,7 @@ export default function RootLayout({
             </span>
           </a>
         </CartWrapper>
-        {process.env.NODE_ENV === "development" && <Agentation />}
+        <Agentation />
       </body>
     </html>
   );
