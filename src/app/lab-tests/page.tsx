@@ -279,7 +279,7 @@ export default function LabTestsPage() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto py-4">
+        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 py-4">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
@@ -287,14 +287,14 @@ export default function LabTestsPage() {
           </div>
         </div>
 
-        <div className="max-w-[1340px] mx-auto pb-16">
+        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 pb-16">
           <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-6">
             Lab Tests
           </h1>
 
-          <div className="flex gap-[80px]">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-[80px]">
             {/* LEFT sidebar — Figma FAQ style */}
-            <div className="w-[440px] shrink-0">
+            <div className="w-full lg:w-[440px] lg:shrink-0">
               <div className="sticky top-4 bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
                 {/* Category menu card */}
                 <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col gap-2">

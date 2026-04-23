@@ -237,7 +237,7 @@ function BlogContent() {
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
         {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto py-4">
+        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 py-4">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
@@ -253,12 +253,12 @@ function BlogContent() {
           </div>
         </div>
 
-        <div className="max-w-[1340px] mx-auto pb-16">
+        <div className="max-w-[1340px] mx-auto px-4 lg:px-0 pb-16">
           <h1 className="text-[36px] font-extrabold text-[#181818] leading-[44px] mb-6">
             {categoryParam ? `Category: ${categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1)}` : "Blog Dines Power"}
           </h1>
 
-          <div className="flex gap-[80px]">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-[80px]">
             {/* LEFT main column */}
             <div className="flex-1 min-w-0">
               {/* Featured slider — 820x482 */}
@@ -446,7 +446,7 @@ function BlogContent() {
             </div>
 
             {/* RIGHT sidebar */}
-            <div className="w-[440px] shrink-0">
+            <div className="w-full lg:w-[440px] lg:shrink-0">
               <div className="flex flex-col gap-8">
                 {/* Categories + Popular Post wrapped card */}
                 <div className="bg-[#F7F7F7] rounded-[16px] p-4 flex flex-col gap-4">
@@ -593,7 +593,7 @@ export default function BlogPage() {
       <>
         <Header />
         <main className="min-h-screen relative z-10 bg-white">
-          <div className="max-w-[1340px] mx-auto py-16 text-center">
+          <div className="max-w-[1340px] mx-auto px-4 lg:px-0 py-16 text-center">
             <p className="text-[#7E7E7E]">Loading...</p>
           </div>
         </main>
