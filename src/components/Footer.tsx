@@ -68,8 +68,8 @@ export default function Footer() {
       {/* Main footer */}
       <div className="max-w-[1340px] mx-auto pt-10 md:pt-[100px] pb-[25px] px-4 md:px-0">
         <div className="flex flex-col md:flex-row gap-8 md:gap-16">
-          {/* Logo column */}
-          <div className="md:w-[305px] shrink-0 flex flex-col gap-5 md:gap-7">
+          {/* Logo column — hidden on mobile per Figma 2236:38551 */}
+          <div className="hidden md:flex md:w-[305px] shrink-0 flex-col gap-5 md:gap-7">
             <Link href="/" className="block">
               <Image src="/images/shop/logo-footer.svg" alt="Dines Power" width={226} height={94} />
             </Link>
