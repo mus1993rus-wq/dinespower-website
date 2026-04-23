@@ -217,6 +217,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
                   alt={product.name}
                   width={303}
                   height={303}
+                  priority
                   className="object-contain max-w-[85%] max-h-[85%]"
                 />
               </div>
@@ -242,6 +243,8 @@ export default function ProductPageContent({ product }: { product: Product }) {
                   <button
                     key={i}
                     onClick={() => setSelectedImage(i)}
+                    aria-label={`View image ${i + 1}`}
+                    aria-pressed={selectedImage === i}
                     className={`w-[64px] h-[64px] rounded-[8px] bg-white border-2 transition-colors flex items-center justify-center overflow-hidden cursor-pointer shrink-0 ${
                       selectedImage === i ? "border-[#FF6701]" : "border-[#E7E7E7]"
                     }`}
@@ -256,6 +259,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
                   alt={product.name}
                   width={416}
                   height={416}
+                  priority
                   className="object-contain"
                 />
               </div>
@@ -321,17 +325,17 @@ export default function ProductPageContent({ product }: { product: Product }) {
             {/* 6. Qty + Add To Cart */}
             <div className="flex items-center gap-4 mb-4">
               <div className="flex items-center border border-[#C3C3C3] rounded-[12px] h-[48px] w-[140px] px-3 justify-between">
-                <button onClick={() => setQty(Math.max(1, qty - 1))} className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818] transition-colors">
+                <button onClick={() => setQty(Math.max(1, qty - 1))} aria-label="Decrease quantity" className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818] transition-colors">
                   <svg width="20" height="2" viewBox="0 0 20 2"><path d="M1 1H19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
                 </button>
                 <span className="text-[16px] font-semibold text-[#181818] leading-6">{qty}</span>
-                <button onClick={() => setQty(qty + 1)} className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818] transition-colors">
+                <button onClick={() => setQty(qty + 1)} aria-label="Increase quantity" className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818] transition-colors">
                   <svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2V18M2 10H18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
                 </button>
               </div>
               <button
                 onClick={handleAddToCart}
-                className="group cursor-pointer relative w-[266px] bg-[#FF6701] hover:bg-[#E65D00] text-white font-semibold rounded-[8px] h-[48px] flex items-center justify-center gap-3 overflow-hidden transition-colors text-[16px]"
+                className="group cursor-pointer relative w-[266px] bg-[#FF6701] hover:bg-[#E65D00] text-white font-semibold rounded-[8px] h-[48px] flex items-center justify-center gap-3 overflow-hidden transition-colors text-[16px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6701] focus-visible:ring-offset-2"
               >
                 <span className="flex items-center gap-3 transition-all duration-300 ease-out group-hover:translate-y-[200%]">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -362,8 +366,8 @@ export default function ProductPageContent({ product }: { product: Product }) {
             </div>
 
             {/* 8. Promo code block */}
-            <button onClick={handleCopy} className="cursor-pointer bg-black rounded-[12px] p-2 mb-6 flex items-center gap-2 relative overflow-hidden w-full text-left">
-              <Image src="/images/shop/product-icons/bg.png" alt="" fill className="object-cover opacity-50 mix-blend-lighten absolute inset-0 pointer-events-none" />
+            <button onClick={handleCopy} aria-label="Copy promo code DINES2026" className="cursor-pointer bg-black rounded-[12px] p-2 mb-6 flex items-center gap-2 relative overflow-hidden w-full text-left">
+              <Image src="/images/shop/product-icons/bg.png" alt="" fill sizes="(max-width: 960px) 100vw, 560px" className="object-cover opacity-50 mix-blend-lighten absolute inset-0 pointer-events-none" />
               <div className="flex-1 flex items-center gap-4 relative z-10 pr-2">
                 <div className="w-[80px] h-[80px] shrink-0 rounded-[9px] overflow-hidden">
                   <Image src="/images/shop/product-icons/discount.png" alt="" width={80} height={80} className="object-contain" />
@@ -509,7 +513,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
             <div className="hidden desktop:flex bg-white border border-[#E3E3E3] rounded-[12px] items-stretch">
               <div className="flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 border-r border-[#E6E6E6]">
                 <div className="w-12 h-12 relative">
-                  <Image src="/images/shop/product-icons/icon-5.png" alt="" fill className="object-contain" />
+                  <Image src="/images/shop/product-icons/icon-5.png" alt="" fill sizes="48px" className="object-contain" />
                 </div>
                 <p className="text-[16px] font-semibold text-black leading-6">Need Help?</p>
                 <p className="text-[14px] text-[#1E1E1E] leading-5">Ask about dosing, shipping, or verification</p>
@@ -522,7 +526,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
               </div>
               <div className="flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4 border-r border-[#E6E6E6]">
                 <div className="w-12 h-12 relative">
-                  <Image src="/images/shop/product-icons/icon-6.png" alt="" fill className="object-contain" />
+                  <Image src="/images/shop/product-icons/icon-6.png" alt="" fill sizes="48px" className="object-contain" />
                 </div>
                 <p className="text-[16px] font-semibold text-[#1E1E1E] leading-6">Shipping Methods</p>
                 <p className="text-[14px] text-[#1E1E1E] leading-5">Delivery times, tracking, discreet packaging</p>
@@ -535,7 +539,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
               </div>
               <div className="flex-1 flex flex-col items-center justify-center text-center gap-2 pt-4 pb-6 px-4">
                 <div className="w-12 h-12 relative">
-                  <Image src="/images/shop/product-icons/icon-7.png" alt="" fill className="object-contain" />
+                  <Image src="/images/shop/product-icons/icon-7.png" alt="" fill sizes="48px" className="object-contain" />
                 </div>
                 <p className="text-[16px] font-semibold text-[#1E1E1E] leading-6">Payment Methods</p>
                 <p className="text-[14px] text-[#1E1E1E] leading-5">Bitcoin, bank transfer</p>
@@ -553,6 +557,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
               <div className="border-b border-[#E7E7E7]">
                 <button
                   onClick={() => toggleAccordion("overview")}
+                  aria-expanded={openAccordions.overview}
                   className="w-full flex items-center justify-between py-5 cursor-pointer"
                 >
                   <span className="text-base font-semibold text-[#181818]">Product overview</span>
@@ -606,6 +611,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
               <div className="border-b border-[#E7E7E7]">
                 <button
                   onClick={() => toggleAccordion("reviews")}
+                  aria-expanded={openAccordions.reviews}
                   className="w-full flex items-center justify-between py-5 cursor-pointer"
                 >
                   <span className="text-base font-semibold text-[#181818]">Reviews ({product.reviews} Reviews)</span>
@@ -691,7 +697,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
           </div>
           <div id="top-injectable-scroll" className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
             <Link href="/catalog?category=injectable" className="w-[252px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center cursor-pointer group" style={{ minHeight: '480px' }}>
-              <Image src="/images/shop/promo-injectable.png" alt="Injectable" fill className="object-cover" />
+              <Image src="/images/shop/promo-injectable.png" alt="Injectable" fill sizes="252px" className="object-cover" />
               <div className="relative z-10">
                 <span
                   className="bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] inline-flex items-center justify-center shadow-md group-hover:border-[#181818] transition-colors"
@@ -766,6 +772,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
                   <div key={i} className="border-b border-[#E7E7E7]">
                     <button
                       onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
+                      aria-expanded={openFAQ === i}
                       className="w-full flex items-center justify-between py-5 cursor-pointer"
                     >
                       <div className="flex items-center gap-3">

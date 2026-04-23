@@ -630,6 +630,8 @@ function CatalogContent() {
                 src={bannerImage}
                 alt={`${currentCategory?.label || "Catalog"}${currentBrandLabel ? ` - ${currentBrandLabel}` : ""}`}
                 fill
+                priority
+                sizes="100vw"
                 className="object-cover"
 
               />

@@ -120,6 +120,7 @@ export default function CartPage() {
                         {/* Trash icon — Figma vuesax/bold/trash */}
                         <button
                           onClick={() => removeItem(item.id)}
+                          aria-label={`Remove ${item.name} from cart`}
                           className="cursor-pointer w-6 h-6 flex items-center justify-center text-[#7E7E7E] hover:text-[#FB2F2F] transition-colors shrink-0"
                         >
                           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -139,11 +140,11 @@ export default function CartPage() {
                           <div className="flex items-center justify-between gap-2">
                             {/* Qty */}
                             <div className="flex items-center border border-[#E7E7E7] rounded-[8px] h-9 w-[100px] tablet:w-[111px] px-2 justify-between shrink-0">
-                              <button onClick={() => updateQty(item.id, -1)} className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818]">
+                              <button onClick={() => updateQty(item.id, -1)} aria-label="Decrease quantity" className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818]">
                                 <svg width="16" height="2" viewBox="0 0 16 2"><path d="M1 1H15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
                               </button>
                               <span className="text-[14px] font-semibold text-[#181818]">{item.qty}</span>
-                              <button onClick={() => updateQty(item.id, 1)} className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818]">
+                              <button onClick={() => updateQty(item.id, 1)} aria-label="Increase quantity" className="cursor-pointer w-5 h-5 flex items-center justify-center text-[#181818]">
                                 <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 2V14M2 8H14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
                               </button>
                             </div>

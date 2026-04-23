@@ -342,7 +342,7 @@ function BlogContent() {
                     <Link href={`/blog/${post.id}`} className="flex flex-col tablet:flex-row gap-4 tablet:gap-6 tablet:items-start cursor-pointer group">
                       {/* Thumbnail — full width on mobile, 300x188 on desktop */}
                       <div className="relative w-full tablet:w-[300px] aspect-[16/10] tablet:aspect-auto tablet:h-[188px] rounded-[8px] tablet:shrink-0 overflow-hidden bg-[#F7F7F7]">
-                        <Image src={`/images/shop/blog-${((post.id - 1) % 5) + 1}.png`} alt={post.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <Image src={`/images/shop/blog-${((post.id - 1) % 5) + 1}.png`} alt={post.title} fill sizes="(max-width: 640px) 100vw, 300px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                         <div className="absolute top-2 left-2 bg-white rounded-[8px] w-12 h-12 flex flex-col items-center justify-center px-3 py-2">
                           <span className="text-[20px] font-extrabold text-black leading-6">{post.date.split(" ")[0]}</span>
                           <span className="text-[12px] font-semibold text-black leading-4">{post.date.split(" ")[1]}</span>
@@ -401,10 +401,10 @@ function BlogContent() {
                       <>
                         <div className="h-px bg-[#E7E7E7] my-8" />
                         <div className="relative bg-[#181818] rounded-[16px] tablet:h-[140px] p-5 tablet:px-8 tablet:py-6 flex flex-col tablet:flex-row tablet:items-center gap-4 tablet:gap-8 overflow-hidden">
-                          <Image src="/icons/newsletter-bg.jpg" alt="" fill className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
+                          <Image src="/icons/newsletter-bg.jpg" alt="" fill sizes="100vw" className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
                           <div className="flex-1 flex items-center gap-3 tablet:gap-4 min-w-0 relative z-10">
                             <div className="w-10 h-10 tablet:w-12 tablet:h-12 shrink-0 relative">
-                              <Image src="/icons/bell-notification.png" alt="" fill className="object-contain" />
+                              <Image src="/icons/bell-notification.png" alt="" fill sizes="48px" className="object-contain" />
                             </div>
                             <div className="flex-1 flex flex-col gap-1 min-w-0">
                               <p className="text-[16px] tablet:text-[20px] font-extrabold text-white leading-[20px] tablet:leading-[24px]">New articles by email</p>
@@ -481,7 +481,7 @@ function BlogContent() {
                         <div className="h-px bg-[#E7E7E7]" />
                         <Link href={`/blog/${post.id}`} className="flex gap-4 items-start cursor-pointer group">
                           <div className="w-[100px] h-[72px] bg-[#F7F7F7] rounded-[8px] shrink-0 relative overflow-hidden">
-                            <Image src={`/images/shop/blog-${(i % 5) + 1}.png`} alt={post.title} fill className="object-cover" />
+                            <Image src={`/images/shop/blog-${(i % 5) + 1}.png`} alt={post.title} fill sizes="(max-width: 960px) 50vw, 300px" className="object-cover" />
                           </div>
                           <div className="flex-1 flex flex-col gap-2 min-w-0">
                             <p className="text-[14px] text-[#7E7E7E] leading-5">{post.date}</p>
@@ -524,7 +524,7 @@ function BlogContent() {
                   </div>
                   <div className="relative z-10 flex gap-4 items-center">
                     <div className="w-[120px] h-[120px] shrink-0 relative">
-                      <Image src="/images/shop/eca-xtreme.png" alt="ECA Xtreme Fat Burner" fill className="object-contain" />
+                      <Image src="/images/shop/eca-xtreme.png" alt="ECA Xtreme Fat Burner" fill sizes="(max-width: 960px) 100vw, 300px" className="object-contain" />
                     </div>
                     <div className="flex-1 flex flex-col gap-3 min-w-0">
                       <div className="flex flex-col gap-1">

@@ -100,7 +100,7 @@ function HeroBanner() {
         {/* Main banner — 66% at desktop (961+), full width below */}
         <div className="w-full desktop:basis-[66%] desktop:grow-0 aspect-[884/467] relative tablet:rounded-[16px] overflow-hidden group">
           <Link href="/product" aria-label="Lean Muscle Growth" className="absolute inset-0 z-0">
-            <Image src="/images/shop/hero-banner.png" alt="Weekly Bestseller - Lean Muscle Growth" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
+            <Image src="/images/shop/hero-banner.png" alt="Weekly Bestseller - Lean Muscle Growth" fill priority sizes="(max-width: 960px) 100vw, 66vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
           {/* Left arrow */}
           <button onClick={() => setActiveSlide((activeSlide - 1 + totalSlides) % totalSlides)} className="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 w-[40px] wide:w-[48px] h-[40px] wide:h-[48px] bg-black hover:bg-[#333] transition-colors border border-[#5C5C5C] border-l-0 rounded-r-lg flex items-center justify-center z-20">
@@ -125,10 +125,10 @@ function HeroBanner() {
         {/* Side banners — 2-col grid on mobile/tablet; stacked flex at desktop+ filling hero height */}
         <div className="grid grid-cols-2 gap-3 tablet:gap-4 px-4 tablet:px-0 desktop:flex desktop:flex-col desktop:gap-[16px] desktop:basis-[33%] desktop:grow-0 desktop:self-stretch">
           <Link href="/catalog?category=sex-support" className="aspect-[440/225] desktop:aspect-auto desktop:flex-1 rounded-[16px] overflow-hidden relative group block cursor-pointer">
-            <Image src="/images/shop/side-sexboost.png" alt="Sex Boost" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
+            <Image src="/images/shop/side-sexboost.png" alt="Sex Boost" fill sizes="(max-width: 960px) 50vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
           <Link href="/catalog?category=health" className="aspect-[440/226] desktop:aspect-auto desktop:flex-1 rounded-[16px] overflow-hidden relative group block cursor-pointer">
-            <Image src="/images/shop/side-cbd.png" alt="CBD" fill className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
+            <Image src="/images/shop/side-cbd.png" alt="CBD" fill sizes="(max-width: 960px) 50vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
         </div>
       </div>
@@ -198,7 +198,7 @@ function PromoBanner({ categoryName }: { categoryName: string }) {
   const bgImage = imageMap[categoryName] || "/images/shop/promo-oral.png";
   return (
     <Link href={`/catalog?category=${categoryName.toLowerCase()}`} className="w-[255px] h-full min-h-[483px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center group cursor-pointer hover:shadow-lg transition-shadow">
-      <Image src={bgImage} alt={`View All ${categoryName}`} fill className="object-cover" />
+      <Image src={bgImage} alt={`View All ${categoryName}`} fill sizes="255px" className="object-cover" />
       <div className="relative z-10">
         <button
           data-label={`View All ${categoryName}`}
@@ -270,7 +270,7 @@ function CategoryBanners() {
         {/* Left banner - Recovery */}
         <div className="flex-1 h-[200px] tablet:h-[240px] desktop:h-[272px] rounded-[16px] overflow-hidden relative group">
           <Link href="/catalog?category=sarms" aria-label="Faster Muscle Recovery" className="absolute inset-0 z-0">
-            <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
+            <Image src="/images/shop/banner-bg-dark.png" alt="" fill sizes="(max-width: 960px) 100vw, 50vw" className="object-cover" />
           </Link>
           <div className="absolute left-6 md:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-4 md:gap-[32px] w-[60%] md:w-[250px] pointer-events-none">
             <h3 className="text-[18px] md:text-[28px] font-extrabold italic leading-[1.22] capitalize">
@@ -282,14 +282,14 @@ function CategoryBanners() {
             </Link>
           </div>
           <div className="absolute right-0 top-0 h-full w-[160px] md:w-[350px] z-10 pointer-events-none">
-            <Image src="/images/shop/banner-product-recovery.png" alt="Recovery products" fill className="object-contain object-right-bottom" />
+            <Image src="/images/shop/banner-product-recovery.png" alt="Recovery products" fill sizes="(max-width: 768px) 160px, 350px" className="object-contain object-right-bottom" />
           </div>
         </div>
 
         {/* Right banner - Libido */}
         <div className="flex-1 h-[200px] tablet:h-[240px] desktop:h-[272px] rounded-[16px] overflow-hidden relative group">
           <Link href="/catalog?category=sex-support" aria-label="Stacks For High Libido" className="absolute inset-0 z-0">
-            <Image src="/images/shop/banner-bg-dark.png" alt="" fill className="object-cover" />
+            <Image src="/images/shop/banner-bg-dark.png" alt="" fill sizes="(max-width: 960px) 100vw, 50vw" className="object-cover" />
           </Link>
           <div className="absolute left-6 md:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-4 md:gap-[32px] w-[60%] md:w-[250px] pointer-events-none">
             <h3 className="text-[18px] md:text-[28px] font-extrabold italic leading-[1.22] capitalize">
@@ -301,7 +301,7 @@ function CategoryBanners() {
             </Link>
           </div>
           <div className="absolute right-0 top-0 h-full w-[160px] md:w-[350px] z-10 pointer-events-none">
-            <Image src="/images/shop/banner-product-libido.png" alt="Libido products" fill className="object-contain object-right-bottom" />
+            <Image src="/images/shop/banner-product-libido.png" alt="Libido products" fill sizes="(max-width: 768px) 160px, 350px" className="object-contain object-right-bottom" />
           </div>
         </div>
       </div>
@@ -315,11 +315,11 @@ function FatBurningBanner() {
       {/* Mobile + Tablet (≤960): products top, text centered below */}
       <div className="desktop:hidden relative rounded-[16px] overflow-hidden bg-[#2a2a2a]">
         <Link href="/catalog?category=fat-burn" aria-label="Fat Burning Stack" className="absolute inset-0 z-0">
-          <Image src="/images/shop/banner-dark-1.png" alt="" fill className="object-cover" />
+          <Image src="/images/shop/banner-dark-1.png" alt="" fill sizes="100vw" className="object-cover" />
         </Link>
         <div className="relative z-10 pt-6 pb-8 px-4 flex flex-col items-center">
           <div className="w-full h-[180px] tablet:h-[240px] relative">
-            <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-center" />
+            <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill sizes="(max-width: 960px) 100vw, 600px" className="object-contain object-center" />
           </div>
           <div className="flex items-baseline gap-2 mt-4">
             <h2 className="text-[24px] tablet:text-[32px] font-black italic text-[#FF6701] uppercase leading-[28px] tablet:leading-[36px]">Fat Burning</h2>
@@ -340,7 +340,7 @@ function FatBurningBanner() {
       {/* Desktop (≥961) */}
       <div className="hidden desktop:block relative h-[400px] rounded-[16px] overflow-hidden">
         <Link href="/catalog?category=fat-burn" aria-label="Fat Burning Stack" className="absolute inset-0 z-0">
-          <Image src="/images/shop/banner-dark-1.png" alt="" fill className="object-cover" />
+          <Image src="/images/shop/banner-dark-1.png" alt="" fill sizes="100vw" className="object-cover" />
         </Link>
         <div className="absolute left-[100px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-6 w-[480px] pointer-events-none">
           <div>
@@ -355,7 +355,7 @@ function FatBurningBanner() {
           </Link>
         </div>
         <div className="absolute right-[100px] top-0 h-full w-[600px] z-[5] pointer-events-none">
-          <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill className="object-contain object-center" />
+          <Image src="/images/shop/fatburn-products.png" alt="Fat Burning Products" fill sizes="600px" className="object-contain object-center" />
         </div>
       </div>
     </section>
@@ -365,7 +365,7 @@ function FatBurningBanner() {
 function ProSellersSection() {
   return (
     <section className="w-full mt-6 tablet:mt-10 desktop:mt-[65px] relative overflow-hidden">
-      <Image src="/images/shop/pro-sellers-bg.png" alt="" fill className="object-cover" />
+      <Image src="/images/shop/pro-sellers-bg.png" alt="" fill sizes="100vw" className="object-cover" />
       <div className="max-w-[1340px] mx-auto py-8 tablet:py-12 desktop:py-[80px] px-4  relative z-10">
         <ScrollAnimation animation="animate-fade-in-up">
           <div className="text-center mb-8 tablet:mb-10 desktop:mb-[60px]">
@@ -437,6 +437,7 @@ function BlogSection() {
               fill
               className={`object-cover transition-opacity duration-700 ${i === slideIndex ? "opacity-100" : "opacity-0"}`}
               priority={i === 0}
+              sizes="(max-width: 960px) 100vw, 820px"
             />
           ))}
           {/* Full-card click target */}
@@ -503,7 +504,7 @@ function BlogSection() {
           {blogPosts.slice(1).map((post, i) => (
             <Link key={i} href={`/blog/${post.slug}`} className="flex gap-4 py-4 border-b border-[#E7E7E7] last:border-b-0 cursor-pointer group">
               <div className="w-[100px] h-[80px] bg-[#F7F7F7] rounded-lg shrink-0 relative overflow-hidden">
-                <Image src={`/images/shop/blog-${i + 2}.png`} alt="" fill className="object-cover" />
+                <Image src={`/images/shop/blog-${i + 2}.png`} alt="" fill sizes="100px" className="object-cover" />
               </div>
               <div className="flex-1 flex flex-col gap-1">
                 <p className="text-xs text-[#7E7E7E]">{post.date}</p>
@@ -530,10 +531,10 @@ function WholesaleBanner() {
     <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 ">
       {/* Mobile + Tablet (≤960): bars on top, text centered below */}
       <div className="desktop:hidden relative rounded-[16px] overflow-hidden">
-        <Image src="/images/shop/banner-dark-2.png" alt="" fill className="object-cover" />
+        <Image src="/images/shop/banner-dark-2.png" alt="" fill sizes="100vw" className="object-cover" />
         <div className="relative z-10 pt-6 pb-8 px-4 flex flex-col items-center">
           <div className="w-full h-[180px] tablet:h-[240px] relative">
-            <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" fill className="object-contain" />
+            <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" fill sizes="(max-width: 960px) 100vw, 600px" className="object-contain" />
           </div>
           <div className="text-center mt-4 px-2">
             <span className="text-[22px] tablet:text-[30px] font-black italic text-[#FF6701] uppercase leading-[26px] tablet:leading-[34px]">Save Up To 70%</span>
@@ -553,7 +554,7 @@ function WholesaleBanner() {
 
       {/* Desktop (≥961) */}
       <div className="hidden desktop:block relative h-[400px] rounded-[16px] overflow-hidden">
-        <Image src="/images/shop/banner-dark-2.png" alt="" fill className="object-cover" />
+        <Image src="/images/shop/banner-dark-2.png" alt="" fill sizes="100vw" className="object-cover" />
         <div className="absolute left-[100px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-5 w-[480px]">
           <div>
             <h2 className="text-[48px] font-black italic text-[#FF6701] uppercase leading-[56px]">Save Up To 70%</h2>
@@ -565,7 +566,7 @@ function WholesaleBanner() {
           </a>
         </div>
         <div className="absolute right-[100px] top-0 h-full w-[600px] z-[5]">
-          <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" fill className="object-contain object-center" />
+          <Image src="/images/shop/wholesale-bars.png" alt="Wholesale tiers" fill sizes="600px" className="object-contain object-center" />
         </div>
       </div>
     </section>
@@ -611,6 +612,7 @@ function FAQSection() {
               <div key={i} className="border-b border-[#E7E7E7]">
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  aria-expanded={openIndex === i}
                   className="w-full flex items-start justify-between gap-3 py-4 tablet:py-5 cursor-pointer text-left"
                 >
                   <div className="flex items-start gap-3 flex-1 min-w-0">
@@ -653,7 +655,7 @@ function SEOSection() {
         <p>Whether you are a professional athlete, bodybuilder, or fitness enthusiast, DinesPower offers competitive wholesale pricing with discounts up to 70% for bulk orders. Contact our team to learn more about partnership opportunities.</p>
         {!expanded && <div className="absolute bottom-0 left-0 right-0 h-[60px] bg-gradient-to-t from-white to-transparent" />}
       </div>
-      <button onClick={() => setExpanded(!expanded)} className="cursor-pointer flex items-center gap-1 text-[14px] font-semibold text-[#181818] mt-4 hover:underline">
+      <button onClick={() => setExpanded(!expanded)} aria-expanded={expanded} className="cursor-pointer flex items-center gap-1 text-[14px] font-semibold text-[#181818] mt-4 hover:underline">
         {expanded ? 'Show Less' : 'Read More'}
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`transition-transform duration-200 ${expanded ? 'rotate-180' : ''}`}>
           <path d="M4 6L8 10L12 6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

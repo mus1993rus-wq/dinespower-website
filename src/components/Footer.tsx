@@ -35,6 +35,7 @@ function AccordionSection({ title, children }: { title: string; children: React.
     <div className="desktop:contents border-b border-[#292929] desktop:border-0 py-2 desktop:py-0">
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
         className="desktop:hidden w-full flex items-center justify-between py-3 text-left"
         type="button"
       >
@@ -121,14 +122,14 @@ export default function Footer() {
             </div>
             {/* Social */}
             <div className="flex gap-2">
-              <a href="#" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)" }}>
-                <Image src="/images/shop/instagram.svg" alt="Instagram" width={24} height={24} />
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)" }}>
+                <Image src="/images/shop/instagram.svg" alt="" width={24} height={24} />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full bg-[#00A9DE] flex items-center justify-center">
-                <Image src="/images/shop/telegram.svg" alt="Telegram" width={24} height={24} />
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="w-14 h-14 rounded-full bg-[#00A9DE] flex items-center justify-center">
+                <Image src="/images/shop/telegram.svg" alt="" width={24} height={24} />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full bg-[#00D43F] flex items-center justify-center">
-                <Image src="/images/shop/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-14 h-14 rounded-full bg-[#00D43F] flex items-center justify-center">
+                <Image src="/images/shop/whatsapp.svg" alt="" width={24} height={24} />
               </a>
             </div>
             <p className="text-sm text-[#7E7E7E] leading-5">Or write to us by emails</p>
