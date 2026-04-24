@@ -692,7 +692,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
               </button>
             </div>
           </div>
-          <div id="top-injectable-scroll" className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
+          <div id="top-injectable-scroll" className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 -mx-4 px-4 tablet:mx-0 tablet:px-0">
             <Link href="/catalog?category=injectable" className="w-[252px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center cursor-pointer group" style={{ minHeight: '480px' }}>
               <Image src="/images/shop/promo-injectable.png" alt="Injectable" fill sizes="252px" className="object-cover" />
               <div className="relative z-10">
@@ -722,7 +722,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
               </button>
             </div>
           </div>
-          <div id="related-scroll" className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
+          <div id="related-scroll" className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 -mx-4 px-4 tablet:mx-0 tablet:px-0">
             {relatedProducts.map((p, i) => (
               <ProductCard key={i} {...p} />
             ))}

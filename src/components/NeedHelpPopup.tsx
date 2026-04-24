@@ -54,9 +54,9 @@ export default function NeedHelpPopup({ isOpen, onClose }: NeedHelpPopupProps) {
   ];
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <div className="relative bg-white rounded-[16px] p-10 max-w-[680px] w-full z-10 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-[100] flex items-stretch tablet:items-center justify-center tablet:p-4">
+      <div className="absolute inset-0 bg-black/50 hidden tablet:block" onClick={onClose} />
+      <div className="relative bg-white tablet:rounded-[16px] p-4 tablet:p-10 max-w-none tablet:max-w-[680px] w-full z-10 max-h-screen tablet:max-h-[90vh] overflow-y-auto">
         {/* Close button */}
         <button
           onClick={onClose}

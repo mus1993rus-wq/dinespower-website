@@ -70,11 +70,11 @@ export default function ProductCard({ brand, name, dosage, price, oldPrice, imag
 
         {/* Quantity + Cart */}
         <div className="flex items-center gap-2 mt-3">
-          <div className="flex items-center border border-[#E7E7E7] rounded-[8px] h-[40px]">
+          <div className="flex-1 flex items-center justify-between border border-[#E7E7E7] rounded-[8px] h-[36px] tablet:h-[40px]">
             <button onClick={() => setQty(Math.max(1, qty - 1))} aria-label="Decrease quantity" className="w-9 h-full flex items-center justify-center text-[#B6B6B6] hover:text-[#181818] transition-colors">
               <svg width="14" height="2" viewBox="0 0 14 2"><path d="M1 1H13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
             </button>
-            <span className="w-6 text-center text-sm font-semibold">{qty}</span>
+            <span className="flex-1 text-center text-sm font-semibold">{qty}</span>
             <button onClick={() => setQty(qty + 1)} aria-label="Increase quantity" className="w-9 h-full flex items-center justify-center text-[#B6B6B6] hover:text-[#181818] transition-colors">
               <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1V13M1 7H13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
             </button>
@@ -84,7 +84,7 @@ export default function ProductCard({ brand, name, dosage, price, oldPrice, imag
               addItem({ brand, name, price, oldPrice, image }, qty);
             }}
             aria-label={`Add ${name} to cart`}
-            className="group cursor-pointer flex-1 relative bg-[#FF6701] hover:bg-[#E65D00] transition-colors rounded-[10px] h-[40px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6701] focus-visible:ring-offset-2 flex items-center justify-center overflow-hidden"
+            className="group cursor-pointer relative bg-[#FF6701] hover:bg-[#E65D00] transition-colors rounded-[10px] w-[52px] h-[36px] tablet:w-auto tablet:h-[40px] tablet:flex-1 tablet:px-4 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6701] focus-visible:ring-offset-2 flex items-center justify-center overflow-hidden"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transition-all duration-300 ease-out group-hover:translate-y-[150%] group-hover:opacity-0">
               <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
