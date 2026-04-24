@@ -724,13 +724,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
           </div>
           <div id="related-scroll" className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
             {relatedProducts.map((p, i) => (
-              <div key={i} className="w-[200px] shrink-0 cursor-pointer group">
-                <div className="h-[200px] bg-white rounded-[12px] border border-[#E7E7E7] flex items-center justify-center p-3 mb-3 overflow-hidden">
-                  <Image src={p.image} alt={p.name} width={160} height={160} className="object-contain" />
-                </div>
-                <p className="text-xs text-[#7E7E7E]">{p.brand}</p>
-                <p className="text-sm font-semibold text-[#181818] line-clamp-2 group-hover:text-[#FF6701] transition-colors">{p.name}</p>
-              </div>
+              <ProductCard key={i} {...p} />
             ))}
           </div>
         </div>
