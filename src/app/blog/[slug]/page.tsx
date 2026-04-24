@@ -65,32 +65,16 @@ const recommendedProducts = [
   },
 ];
 
-const relatedArticles = [
-  {
-    id: 1,
-    title:
-      "How Growth Hormone Secretagogues Work: CJC-1295, Ipamorelin, GHRP-2 and GHRP-6",
-    description:
-      "The issue with most startups is that too many resources are spent on ideas that don't work. How can you deliver a product with minimum risk and receive max...",
-    date: "12 Nov",
-    readTime: "7 min read",
-    views: "3.2k views",
-    slug: "growth-hormone-secretagogues",
-    image: "/images/shop/blog-4.png",
-  },
-  {
-    id: 2,
-    title:
-      "Peptides vs SARMs for Cutting: Which Is More Effective for Preserving Muscle Mass",
-    description:
-      "The issue with most startups is that too many resources are spent on ideas that don't work. How can you deliver a product with minimum risk and receive max...",
-    date: "12 Nov",
-    readTime: "7 min read",
-    views: "3.2k views",
-    slug: "peptides-vs-sarms-cutting",
-    image: "/images/shop/blog-5.png",
-  },
-];
+const relatedArticles: Array<{
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  readTime: string;
+  views: string;
+  slug: string;
+  image: string;
+}> = [];
 
 export default function BlogArticlePage() {
   const params = useParams<{ slug: string }>();
@@ -604,6 +588,7 @@ export default function BlogArticlePage() {
               </div>
 
               {/* Read Also — horizontal rows matching Figma News Card - Vertical */}
+              {relatedArticles.length > 0 && (
               <div className="mt-12 mb-4">
                 <h2 className="text-[20px] tablet:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[30px] mb-4 tablet:mb-6">
                   Read Also
@@ -660,6 +645,7 @@ export default function BlogArticlePage() {
                   ))}
                 </div>
               </div>
+              )}
             </div>
 
             {/* RIGHT SIDEBAR */}

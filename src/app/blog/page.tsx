@@ -24,7 +24,6 @@ const blogArticles = [
   },
   {
     id: 2,
-    slug: "igf-1-muscle-growth-growth-hormone-anabolism",
     title: "IGF-1 and Muscle Growth: How Growth Hormone Triggers Anabolism",
     description: "IGF-1 is a polypeptide hormone with pronounced anabolic effects that increases protein synthesis and drives real lean mass gains.",
     date: "6 Apr 2025",
@@ -70,7 +69,6 @@ const blogArticles = [
   },
   {
     id: 7,
-    slug: "peptides-vs-sarms-cutting",
     title: "Peptides vs SARMs for Cutting: Which Is More Effective for Preserving Muscle Mass",
     description: "A head-to-head look at peptides and SARMs when the goal is maximum fat loss without sacrificing hard-earned muscle.",
     date: "20 Mar 2025",
@@ -170,7 +168,6 @@ const blogArticles = [
   },
   {
     id: 18,
-    slug: "rad-140-testolone-laboratory-analysis",
     title: "RAD-140 (Testolone): Laboratory Analysis of Its Impact on Anabolism, Androgen Receptors and Safety Markers",
     description: "A full lab breakdown of Testolone — receptor binding, anabolic effect, and what the safety markers actually show.",
     date: "26 Jan 2025",
@@ -199,7 +196,7 @@ const blogArticles = [
 ];
 
 const popularPosts: { id: number; slug?: string; title: string; date: string; views: string }[] = [
-  { id: 18, slug: "rad-140-testolone-laboratory-analysis", title: "RAD-140 (Testolone): Laboratory Analysis of Its Impact", date: "26 Jan 2025", views: "6.1k" },
+  { id: 18, title: "RAD-140 (Testolone): Laboratory Analysis of Its Impact", date: "26 Jan 2025", views: "6.1k" },
   { id: 4, title: "Pharmacology in Professional Bodybuilding: Scientific Breakdown", date: "30 Mar 2025", views: "5.6k" },
   { id: 16, title: "RAD-140 vs LGD-4033: Anabolic Activity and Safety Profile", date: "10 Feb 2025", views: "5.8k" },
   { id: 11, title: "TOP-5 Most Studied Compounds in Bodybuilding", date: "6 Mar 2025", views: "5.2k" },
