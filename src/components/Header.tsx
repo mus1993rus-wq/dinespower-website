@@ -115,17 +115,15 @@ export default function Header() {
   return (
     <header className="w-full flex flex-col relative z-50">
       {/* ========================= MOBILE HEADER (≤640) ========================= */}
-      {/* Spacer that reserves layout space for the fixed bar below so content doesn't slide under it */}
-      <div className="tablet:hidden h-[106px] shrink-0" aria-hidden />
-      <div className="w-full tablet:hidden flex flex-col fixed top-0 left-0 right-0 z-50 bg-white">
-        {/* Top announcement bar */}
-        <div className="bg-[#181818] flex items-center justify-center px-4 pt-2 pb-5 -mb-4 gap-2">
-          <Image src="/images/shop/shield-check.svg" alt="" width={20} height={20} className="shrink-0" />
-          <span className="text-[12px] text-white leading-4">{t("header.allProductsTested")}</span>
-          <Link href="/lab-tests" className="text-[10px] font-semibold text-white underline leading-[14px] ml-1">See Lab Test</Link>
-        </div>
-        {/* Main mobile bar */}
-        <div className="bg-white h-[68px] flex items-center justify-between px-5 gap-3 border-b border-[#EDEDED] rounded-tl-[12px] rounded-tr-[12px] relative z-10">
+      {/* Top announcement bar — scrolls away naturally */}
+      <div className="tablet:hidden bg-[#181818] flex items-center justify-center px-4 pt-2 pb-5 -mb-4 gap-2 relative z-10">
+        <Image src="/images/shop/shield-check.svg" alt="" width={20} height={20} className="shrink-0" />
+        <span className="text-[12px] text-white leading-4">{t("header.allProductsTested")}</span>
+        <Link href="/lab-tests" className="text-[10px] font-semibold text-white underline leading-[14px] ml-1">See Lab Test</Link>
+      </div>
+      {/* Main mobile bar — sticks to viewport top once announcement scrolls past */}
+      <div className="tablet:hidden sticky top-0 z-50 bg-white">
+        <div className="h-[68px] flex items-center justify-between px-5 gap-3 border-b border-[#EDEDED] rounded-tl-[12px] rounded-tr-[12px] relative z-10">
           <button
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Menu"
