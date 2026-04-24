@@ -90,6 +90,8 @@ export default function Header() {
   const { locale: currentLang, setLocale, t } = useLocale();
   const setCurrentLang = (code: string) => setLocale(code as Locale);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [mobileSearchQuery, setMobileSearchQuery] = useState("");
   const searchRef = useRef<HTMLDivElement>(null);
   const helpRef = useRef<HTMLDivElement>(null);
   const langRef = useRef<HTMLDivElement>(null);
@@ -137,16 +139,16 @@ export default function Header() {
             <Image src="/images/shop/logo-header.svg" alt="Dines Power" width={90} height={38} />
           </Link>
           <div className="flex-1" />
-          <Link
-            href="/search"
+          <button
+            onClick={() => setMobileSearchOpen(true)}
             aria-label="Search"
-            className="w-10 h-10 flex items-center justify-center shrink-0"
+            className="w-10 h-10 flex items-center justify-center shrink-0 cursor-pointer"
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
               <circle cx="11" cy="11" r="8" stroke="#181818" strokeWidth="2" />
               <path d="M21 21l-4.3-4.3" stroke="#181818" strokeWidth="2" strokeLinecap="round" />
             </svg>
-          </Link>
+          </button>
           <button
             onClick={() => window.dispatchEvent(new CustomEvent("open-help-popup"))}
             aria-label="Help"
@@ -163,6 +165,74 @@ export default function Header() {
             )}
           </button>
         </div>
+        {/* Mobile search overlay — Figma 2040:27209 — opens in place of the header row */}
+        {mobileSearchOpen && (
+          <div className="absolute inset-x-0 top-0 bg-white p-2 z-[60]" role="dialog" aria-label="Search">
+            <div className="flex flex-col gap-2">
+              <div className="bg-[#F7F7F7] border border-[#989898] rounded-[8px] flex items-center gap-3 px-4 h-11">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="opacity-30 shrink-0">
+                  <circle cx="9.17" cy="9.17" r="6.67" stroke="#181818" strokeWidth="1.5" />
+                  <path d="M16.67 16.67L14.17 14.17" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+                <input
+                  autoFocus
+                  type="text"
+                  placeholder="Search products"
+                  value={mobileSearchQuery}
+                  onChange={(e) => setMobileSearchQuery(e.target.value)}
+                  className="bg-transparent flex-1 min-w-0 text-[14px] font-semibold text-black placeholder:text-[#7E7E7E] outline-none"
+                />
+                <button
+                  onClick={() => { setMobileSearchOpen(false); setMobileSearchQuery(""); }}
+                  aria-label="Close search"
+                  className="shrink-0 text-[#7E7E7E] hover:text-[#181818] cursor-pointer"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </button>
+              </div>
+              <div className="bg-[#F7F7F7] rounded-[8px] p-4 flex flex-col gap-6">
+                <div className="flex flex-col gap-2">
+                  <p className="text-[16px] text-[#7E7E7E] leading-6">Popular searches</p>
+                  <div className="flex flex-wrap gap-1">
+                    {["Astera Oral", "DM Injectable", "Gardarine"].map((s) => (
+                      <Link
+                        key={s}
+                        href={`/search?q=${encodeURIComponent(s)}`}
+                        onClick={() => setMobileSearchOpen(false)}
+                        className="bg-white border border-[#E7E7E7] rounded-[8px] px-3 py-1.5 text-[14px] font-semibold text-[#181818] leading-5"
+                      >
+                        {s}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <p className="text-[16px] text-[#7E7E7E] leading-6">Popular Products</p>
+                  <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col gap-3">
+                    {popularProducts.slice(0, 3).map((p, i) => (
+                      <div key={i}>
+                        <Link
+                          href={resolveProductHref(p.name)}
+                          onClick={() => setMobileSearchOpen(false)}
+                          className="flex gap-4 items-center"
+                        >
+                          <div className="w-16 h-16 bg-[#F7F7F7] rounded-[8px] shrink-0 overflow-hidden flex items-center justify-center">
+                            <Image src={p.image} alt={p.name} width={56} height={56} className="object-contain" />
+                          </div>
+                          <div className="flex-1 min-w-0 flex flex-col gap-1.5">
+                            <p className="text-[16px] font-semibold text-[#181818] leading-6 line-clamp-2 capitalize">{p.name}</p>
+                            <p className="text-[16px] font-semibold text-[#7E7E7E] leading-6">{p.price}</p>
+                          </div>
+                        </Link>
+                        {i < Math.min(popularProducts.length, 3) - 1 && <div className="h-px bg-[#E7E7E7] mt-3" />}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* ========================= TABLET HEADER (641-960) ========================= */}
