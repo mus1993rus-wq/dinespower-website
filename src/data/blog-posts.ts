@@ -18,7 +18,7 @@ export interface BlogPost {
   image: string;
   toc: { id: string; text: string }[];
   intro: string;
-  sections: { id: string; title: string; paragraphs: string[]; bullets?: string[]; image?: string }[];
+  sections: { id: string; title: string; paragraphs: string[]; bullets?: string[]; image?: string; imageCaption?: string }[];
   featured?: boolean;
 }
 
@@ -61,6 +61,8 @@ export const blogPosts: BlogPost[] = [
           "Improved endurance and strength",
           "Enhanced muscle definition",
         ],
+        image: "/images/shop/blog-1.png",
+        imageCaption: "Name Image",
       },
       {
         id: "anabolic-activity",
@@ -68,6 +70,8 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "Studies have demonstrated significant anabolic potential with favorable safety markers. A dosage of 10 mg is generally sufficient for most users. Typical cycle duration ranges from 6 to 12 weeks depending on individual goals and experience level.",
         ],
+        image: "/images/shop/blog-2.png",
+        imageCaption: "Name Image",
       },
       {
         id: "comparison",

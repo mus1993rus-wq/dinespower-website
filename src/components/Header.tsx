@@ -152,10 +152,10 @@ export default function Header() {
           <button
             onClick={() => setHelpDropdownOpen(!helpDropdownOpen)}
             aria-label="Help"
-            className="w-10 h-10 flex items-center justify-center shrink-0 relative"
+            className="w-10 h-10 flex items-center justify-center shrink-0 relative text-[#181818]"
           >
-            <svg width="24" height="24" viewBox="0 0 20 17.3293" fill="#FF6701" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19.0259 17.2494L14.4957 14.6615L3.39174 14.6655C1.45393 14.6664 -0.00179552 13.1482 1.66224e-06 11.2225L0.00763971 3.34591C0.0089876 1.48942 1.48178 0 3.34277 0L16.6945 0.00179719C18.5128 0.00179719 19.9982 1.47953 19.9982 3.30008L20 16.6487C20 16.8972 19.8751 17.093 19.7196 17.1991C19.526 17.3312 19.2667 17.3873 19.0255 17.2494H19.0259ZM6.2933 6.09336C5.61711 6.22006 5.22982 6.86885 5.37269 7.49652C5.51108 8.10172 6.1046 8.49396 6.72418 8.37939C7.3478 8.26437 7.7652 7.65557 7.65377 7.03644C7.54145 6.41326 6.95961 5.96846 6.2933 6.09336ZM9.79198 6.09291C9.11309 6.22096 8.72984 6.8684 8.87092 7.49697C9.00705 8.10217 9.60282 8.49575 10.2255 8.37804C10.8483 8.26032 11.2625 7.65647 11.152 7.03689C11.041 6.41506 10.4565 5.96801 9.79198 6.09336V6.09291ZM13.2889 6.09381C12.6127 6.22096 12.2263 6.86975 12.3687 7.49652C12.5066 8.10262 13.1028 8.4962 13.7229 8.37894C14.3429 8.26167 14.7607 7.65512 14.6498 7.03689C14.5388 6.41865 13.957 5.96846 13.2884 6.09426L13.2889 6.09381Z" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.75 12V20.26C21.75 20.68 21.54 21.06 21.2 21.3C20.99 21.44 20.74 21.52 20.5 21.52C20.34 21.52 20.18 21.49 20.04 21.43L16.94 19.79C16.68 19.77 16 19.75 15.81 19.75H11C9.48 19.75 8.25 18.52 8.25 17V15.92H15.25C17.49 15.92 19.25 13.76 19.25 11V9.26C20.65 9.39 21.75 10.56 21.75 12ZM17.75 5.666V10.999C17.75 12.915 16.652 14.416 15.25 14.416H6.84L4.265 17.359C4.041 17.614 3.745 17.751 3.441 17.751C3.317 17.751 3.193 17.729 3.071 17.683C2.573 17.495 2.251 16.965 2.251 16.332V5.666C2.251 3.751 3.349 2.25 4.751 2.25H15.251C16.653 2.25 17.75 3.751 17.75 5.666ZM11.75 10C11.75 9.586 11.414 9.25 11 9.25H6C5.586 9.25 5.25 9.586 5.25 10C5.25 10.414 5.586 10.75 6 10.75H11C11.414 10.75 11.75 10.414 11.75 10ZM14.75 7C14.75 6.586 14.414 6.25 14 6.25H6C5.586 6.25 5.25 6.586 5.25 7C5.25 7.414 5.586 7.75 6 7.75H14C14.414 7.75 14.75 7.414 14.75 7Z" fill="currentColor"/>
             </svg>
           </button>
           <button onClick={openCart} aria-label="Cart" className="w-10 h-10 flex items-center justify-center shrink-0 relative">
@@ -299,8 +299,10 @@ export default function Header() {
               <Image src="/images/shop/verify-icon.svg" alt="" width={22} height={22} />
             </button>
             <div className="relative" ref={helpRef}>
-              <button onClick={() => setHelpDropdownOpen(!helpDropdownOpen)} aria-label="Need Help?" className="w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-[#F7F7F7] rounded-lg transition-colors">
-                <Image src="/images/shop/need-help-icon.svg" alt="" width={22} height={22} />
+              <button onClick={() => setHelpDropdownOpen(!helpDropdownOpen)} aria-label="Need Help?" className="w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-[#F7F7F7] rounded-lg transition-colors text-[#181818]">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M21.75 12V20.26C21.75 20.68 21.54 21.06 21.2 21.3C20.99 21.44 20.74 21.52 20.5 21.52C20.34 21.52 20.18 21.49 20.04 21.43L16.94 19.79C16.68 19.77 16 19.75 15.81 19.75H11C9.48 19.75 8.25 18.52 8.25 17V15.92H15.25C17.49 15.92 19.25 13.76 19.25 11V9.26C20.65 9.39 21.75 10.56 21.75 12ZM17.75 5.666V10.999C17.75 12.915 16.652 14.416 15.25 14.416H6.84L4.265 17.359C4.041 17.614 3.745 17.751 3.441 17.751C3.317 17.751 3.193 17.729 3.071 17.683C2.573 17.495 2.251 16.965 2.251 16.332V5.666C2.251 3.751 3.349 2.25 4.751 2.25H15.251C16.653 2.25 17.75 3.751 17.75 5.666ZM11.75 10C11.75 9.586 11.414 9.25 11 9.25H6C5.586 9.25 5.25 9.586 5.25 10C5.25 10.414 5.586 10.75 6 10.75H11C11.414 10.75 11.75 10.414 11.75 10ZM14.75 7C14.75 6.586 14.414 6.25 14 6.25H6C5.586 6.25 5.25 6.586 5.25 7C5.25 7.414 5.586 7.75 6 7.75H14C14.414 7.75 14.75 7.414 14.75 7Z" fill="currentColor"/>
+                </svg>
               </button>
               {helpDropdownOpen && (
                 <div className="absolute top-full right-0 mt-2 bg-white border border-[#E7E7E7] rounded-[12px] shadow-lg p-2 min-w-[220px] z-50">

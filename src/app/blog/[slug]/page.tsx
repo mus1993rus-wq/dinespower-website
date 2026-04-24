@@ -257,6 +257,16 @@ export default function BlogArticlePage() {
                         ))}
                       </ul>
                     )}
+                    {post.sections[0].image && (
+                      <figure className="my-6 tablet:my-8">
+                        <div className="relative w-full aspect-[16/10] rounded-[12px] overflow-hidden bg-[#F7F7F7]">
+                          <Image src={post.sections[0].image} alt={post.sections[0].imageCaption || post.sections[0].title} fill sizes="(max-width: 960px) 100vw, 800px" className="object-cover" />
+                        </div>
+                        {post.sections[0].imageCaption && (
+                          <figcaption className="text-[13px] text-[#7E7E7E] text-center mt-3 leading-5">{post.sections[0].imageCaption}</figcaption>
+                        )}
+                      </figure>
+                    )}
                   </>
                 )}
 
@@ -316,6 +326,16 @@ export default function BlogArticlePage() {
                     {post.sections[1].paragraphs.map((p, i) => (
                       <p key={i} className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">{p}</p>
                     ))}
+                    {post.sections[1].image && (
+                      <figure className="my-6 tablet:my-8">
+                        <div className="relative w-full aspect-[16/10] rounded-[12px] overflow-hidden bg-[#F7F7F7]">
+                          <Image src={post.sections[1].image} alt={post.sections[1].imageCaption || post.sections[1].title} fill sizes="(max-width: 960px) 100vw, 800px" className="object-cover" />
+                        </div>
+                        {post.sections[1].imageCaption && (
+                          <figcaption className="text-[13px] text-[#7E7E7E] text-center mt-3 leading-5">{post.sections[1].imageCaption}</figcaption>
+                        )}
+                      </figure>
+                    )}
                     {post.sections[1].bullets && (
                       <ul className="list-disc pl-6 mb-6 space-y-2">
                         {post.sections[1].bullets.map((b, i) => (
