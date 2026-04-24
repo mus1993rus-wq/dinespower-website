@@ -80,6 +80,9 @@ const mockOrders: Order[] = [
     orderOverDiscount: -11.5,
     promo: { code: "Dines2026", discount: -12.1 },
     shipmentFee: 28,
+    notes: "Lorem ipsum is simply dummy text of the printing and typesetting industry.",
+    paymentMethod: "bank",
+    paymentReference: "0-15539622",
   },
   {
     number: "№15539622",
@@ -136,7 +139,7 @@ const statusBadge: Record<OrderStatus, { label: string; bg: string; text: string
 };
 
 export default function HistoryOrdersPage() {
-  const [expanded, setExpanded] = useState<number | null>(0);
+  const [expanded, setExpanded] = useState<number | null>(1);
   const { orders: realOrders, hydrated } = useOrders();
 
   // Convert real orders from context to the local Order shape and prepend to mock list
