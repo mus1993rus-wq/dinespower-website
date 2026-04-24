@@ -98,11 +98,11 @@ function ConfirmationContent() {
   const total = 152;
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#181818]">
-      {/* Black header bar */}
-      <div className="w-full bg-[#181818] h-[80px] tablet:h-[104px] shrink-0 px-4 tablet:px-0">
-        <div className="max-w-[1340px] mx-auto h-[60px] tablet:h-[76px] flex items-center justify-between gap-3">
-          <Link href="/cart" className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 tablet:h-11 px-3 tablet:w-[140px] tablet:px-0 rounded-[8px] justify-center text-[#B6B6B6] text-[13px] tablet:text-[14px] font-semibold transition-colors">
+    <div className="min-h-screen flex flex-col bg-white">
+      {/* Header bar */}
+      <div className="w-full bg-white border-b border-[#E7E7E7] h-[80px] tablet:h-[104px] shrink-0 px-4 tablet:px-0">
+        <div className="max-w-[1340px] mx-auto h-[60px] tablet:h-[76px] flex items-center justify-between gap-3 pt-2 tablet:pt-4">
+          <Link href="/cart" className="cursor-pointer flex items-center gap-2 bg-[#F7F7F7] hover:bg-[#EFEFEF] h-10 tablet:h-11 px-3 tablet:w-[140px] tablet:px-0 rounded-[8px] justify-center text-[#7E7E7E] hover:text-[#181818] text-[13px] tablet:text-[14px] font-semibold transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -111,7 +111,7 @@ function ConfirmationContent() {
           <Link href="/" className="flex items-center">
             <Image src="/images/shop/logo.svg" alt="Dines Power" width={106} height={44} className="object-contain w-[80px] tablet:w-[106px]" />
           </Link>
-          <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-help-popup")); }} className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 tablet:h-11 px-3 tablet:w-[140px] tablet:px-0 rounded-[8px] justify-center text-[#B6B6B6] text-[13px] tablet:text-[14px] font-semibold transition-colors">
+          <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-help-popup")); }} className="cursor-pointer flex items-center gap-2 bg-[#F7F7F7] hover:bg-[#EFEFEF] h-10 tablet:h-11 px-3 tablet:w-[140px] tablet:px-0 rounded-[8px] justify-center text-[#7E7E7E] hover:text-[#181818] text-[13px] tablet:text-[14px] font-semibold transition-colors">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
               <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -121,15 +121,8 @@ function ConfirmationContent() {
         </div>
       </div>
 
-      {/* Dark textured content area — cards sit on this background */}
-      <div className="flex-1 relative pt-8 pb-16 bg-[#181818]">
-        <Image
-          src="/images/shop/wholesale-banner-bg.png"
-          alt=""
-          fill
-          className="object-cover opacity-60 mix-blend-lighten pointer-events-none select-none"
-          priority={false}
-        />
+      {/* Content area — cards sit on white background */}
+      <div className="flex-1 relative pt-8 pb-16 bg-white">
         <div className="max-w-[640px] mx-auto w-full px-4 tablet:px-0 flex flex-col gap-4 relative z-10">
 
           {/* Order confirmed card */}
@@ -430,12 +423,12 @@ function ConfirmationContent() {
       </div>
 
       {/* Minimal footer */}
-      <div className="bg-[#181818] shrink-0 py-5 tablet:py-0 tablet:h-[68px]">
+      <div className="bg-white border-t border-[#E7E7E7] shrink-0 py-5 tablet:py-0 tablet:h-[68px]">
         <div className="max-w-[1340px] mx-auto h-full flex flex-col tablet:flex-row items-center tablet:justify-between gap-3 tablet:gap-0 px-4 desktop:px-12 wide:px-[185px]">
           <p className="text-[12px] tablet:text-[14px] text-[#7E7E7E] text-center tablet:text-left">© 2026 DINESPOWER.TO is the best place to buy steroids online.</p>
           <div className="flex gap-4">
-            <Link href="/terms" className="text-[12px] tablet:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Terms &amp; Conditions</Link>
-            <Link href="/privacy" className="text-[12px] tablet:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-[12px] tablet:text-[14px] text-[#7E7E7E] hover:text-[#181818] transition-colors">Terms &amp; Conditions</Link>
+            <Link href="/privacy" className="text-[12px] tablet:text-[14px] text-[#7E7E7E] hover:text-[#181818] transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>
@@ -445,7 +438,7 @@ function ConfirmationContent() {
 
 export default function ConfirmationPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#181818]" />}>
+    <Suspense fallback={<div className="min-h-screen bg-white" />}>
       <ConfirmationContent />
     </Suspense>
   );
