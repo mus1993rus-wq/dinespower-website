@@ -272,7 +272,7 @@ function CategoryBanners() {
           <Link href="/catalog?category=sarms" aria-label="Faster Muscle Recovery" className="absolute inset-0 z-0">
             <Image src="/images/shop/banner-bg-dark.png" alt="" fill sizes="(max-width: 960px) 100vw, 50vw" className="object-cover" />
           </Link>
-          <div className="absolute left-5 tablet:left-8 desktop:left-6 wide:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3 tablet:gap-5 desktop:gap-4 wide:gap-[32px] w-[55%] tablet:w-[58%] desktop:w-[48%] wide:w-[250px] pointer-events-none">
+          <div className="absolute left-5 tablet:left-8 desktop:left-6 wide:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3 tablet:gap-5 desktop:gap-4 wide:gap-[32px] w-[55%] tablet:w-[58%] desktop:w-[60%] wide:w-[250px] pointer-events-none">
             <h3 className="text-[16px] tablet:text-[24px] desktop:text-[20px] wide:text-[28px] font-extrabold italic leading-[1.22] capitalize">
               <span className="text-[#FF6701]">Faster Muscle<br />Recovery &</span>{" "}
               <span className="text-white">Reduced Body Fat</span>
@@ -281,7 +281,7 @@ function CategoryBanners() {
               See More
             </Link>
           </div>
-          <div className="absolute right-0 top-0 h-full w-[150px] tablet:w-[280px] desktop:w-[220px] wide:w-[350px] z-[5] pointer-events-none">
+          <div className="absolute right-0 top-0 h-full w-[150px] tablet:w-[280px] desktop:w-[180px] wide:w-[350px] z-[5] pointer-events-none">
             <Image src="/images/shop/banner-product-recovery.png" alt="Recovery products" fill sizes="(max-width: 640px) 150px, (max-width: 1280px) 280px, 350px" className="object-contain object-right-bottom" />
           </div>
         </div>
@@ -291,7 +291,7 @@ function CategoryBanners() {
           <Link href="/catalog?category=sex-support" aria-label="Stacks For High Libido" className="absolute inset-0 z-0">
             <Image src="/images/shop/banner-bg-dark.png" alt="" fill sizes="(max-width: 960px) 100vw, 50vw" className="object-cover" />
           </Link>
-          <div className="absolute left-5 tablet:left-8 desktop:left-6 wide:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3 tablet:gap-5 desktop:gap-4 wide:gap-[32px] w-[55%] tablet:w-[58%] desktop:w-[48%] wide:w-[250px] pointer-events-none">
+          <div className="absolute left-5 tablet:left-8 desktop:left-6 wide:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3 tablet:gap-5 desktop:gap-4 wide:gap-[32px] w-[55%] tablet:w-[58%] desktop:w-[60%] wide:w-[250px] pointer-events-none">
             <h3 className="text-[16px] tablet:text-[24px] desktop:text-[20px] wide:text-[28px] font-extrabold italic leading-[1.22] capitalize">
               <span className="text-[#FF6701]">Stacks For<br />High Libido </span>
               <span className="text-white">And Fat Burning</span>
@@ -300,7 +300,7 @@ function CategoryBanners() {
               See More
             </Link>
           </div>
-          <div className="absolute right-0 top-0 h-full w-[150px] tablet:w-[280px] desktop:w-[220px] wide:w-[350px] z-[5] pointer-events-none">
+          <div className="absolute right-0 top-0 h-full w-[150px] tablet:w-[280px] desktop:w-[180px] wide:w-[350px] z-[5] pointer-events-none">
             <Image src="/images/shop/banner-product-libido.png" alt="Libido products" fill sizes="(max-width: 640px) 150px, (max-width: 1280px) 280px, 350px" className="object-contain object-right-bottom" />
           </div>
         </div>
