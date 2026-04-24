@@ -125,12 +125,12 @@ export default function NeedHelpPopup({ isOpen, onClose }: NeedHelpPopupProps) {
                     key={opt.key}
                     type="button"
                     onClick={() => setContactMethod(opt.key)}
-                    className={`cursor-pointer flex items-center justify-center gap-3 h-[56px] rounded-[10px] text-[16px] font-semibold text-[#181818] transition-colors ${
+                    className={`cursor-pointer flex flex-col tablet:flex-row items-center justify-center gap-1 tablet:gap-3 min-h-[72px] tablet:min-h-[56px] px-1 py-2 rounded-[10px] text-[12px] tablet:text-[16px] font-semibold text-[#181818] transition-colors ${
                       active ? "bg-white border border-[#E7E7E7] shadow-sm" : "bg-transparent"
                     }`}
                   >
                     <span
-                      className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+                      className="w-8 h-8 tablet:w-10 tablet:h-10 rounded-full flex items-center justify-center shrink-0"
                       style={{ background: opt.bg }}
                     >
                       {opt.icon}

@@ -1,15 +1,34 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
 }
 
+function useMaxVisible() {
+  // Responsive count: desktop 8, tablet 5, mobile 2 per feedback.
+  const [maxVisible, setMaxVisible] = useState(8);
+  useEffect(() => {
+    const compute = () => {
+      const w = window.innerWidth;
+      if (w <= 640) setMaxVisible(2);
+      else if (w <= 960) setMaxVisible(5);
+      else setMaxVisible(8);
+    };
+    compute();
+    window.addEventListener("resize", compute);
+    return () => window.removeEventListener("resize", compute);
+  }, []);
+  return maxVisible;
+}
+
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-  // Build page numbers: 1 2 3 4 5 6 7 8 ... last
+  const maxVisible = useMaxVisible();
+  // Build page numbers: 1 2 3 ... last (count of 1..maxVisible adapts by viewport)
   const pages: (number | "...")[] = [];
-  const maxVisible = 8;
   if (totalPages <= maxVisible + 2) {
     for (let i = 1; i <= totalPages; i++) pages.push(i);
   } else {

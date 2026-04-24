@@ -139,8 +139,8 @@ export default function Header() {
             <Image src="/images/shop/logo-header.svg" alt="Dines Power" width={90} height={38} />
           </Link>
           <div className="flex-1" />
-          <button
-            onClick={() => setSearchFocused(true)}
+          <Link
+            href="/search"
             aria-label="Search"
             className="w-10 h-10 flex items-center justify-center shrink-0"
           >
@@ -148,9 +148,9 @@ export default function Header() {
               <circle cx="11" cy="11" r="8" stroke="#181818" strokeWidth="2" />
               <path d="M21 21l-4.3-4.3" stroke="#181818" strokeWidth="2" strokeLinecap="round" />
             </svg>
-          </button>
+          </Link>
           <button
-            onClick={() => setHelpDropdownOpen(!helpDropdownOpen)}
+            onClick={() => window.dispatchEvent(new CustomEvent("open-help-popup"))}
             aria-label="Help"
             className="w-10 h-10 flex items-center justify-center shrink-0 relative text-[#181818]"
           >
