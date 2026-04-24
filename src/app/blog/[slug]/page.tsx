@@ -245,7 +245,7 @@ export default function BlogArticlePage() {
                       id={post.sections[0].id}
                       className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
                     >
-                      {post.sections[0].title}
+                      1. {post.sections[0].title}
                     </h2>
                     {post.sections[0].paragraphs.map((p, i) => (
                       <p key={i} className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">{p}</p>
@@ -311,7 +311,7 @@ export default function BlogArticlePage() {
                       id={post.sections[1].id}
                       className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
                     >
-                      {post.sections[1].title}
+                      2. {post.sections[1].title}
                     </h2>
                     {post.sections[1].paragraphs.map((p, i) => (
                       <p key={i} className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">{p}</p>
@@ -389,7 +389,7 @@ export default function BlogArticlePage() {
                       id={post.sections[2].id}
                       className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
                     >
-                      {post.sections[2].title}
+                      3. {post.sections[2].title}
                     </h2>
                     {post.sections[2].paragraphs.map((p, i) => (
                       <p key={i} className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">{p}</p>
@@ -443,7 +443,7 @@ export default function BlogArticlePage() {
                       id={post.sections[3].id}
                       className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
                     >
-                      {post.sections[3].title}
+                      4. {post.sections[3].title}
                     </h2>
                     {post.sections[3].paragraphs.map((p, i) => (
                       <p key={i} className="text-[15px] text-[#4A4A4A] leading-[26px] mb-4">{p}</p>
