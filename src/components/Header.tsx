@@ -115,7 +115,9 @@ export default function Header() {
   return (
     <header className="w-full flex flex-col relative z-50">
       {/* ========================= MOBILE HEADER (≤640) ========================= */}
-      <div className="w-full tablet:hidden flex flex-col sticky top-0 z-50 bg-white">
+      {/* Spacer that reserves layout space for the fixed bar below so content doesn't slide under it */}
+      <div className="tablet:hidden h-[106px] shrink-0" aria-hidden />
+      <div className="w-full tablet:hidden flex flex-col fixed top-0 left-0 right-0 z-50 bg-white">
         {/* Top announcement bar */}
         <div className="bg-[#181818] flex items-center justify-center px-4 pt-2 pb-5 -mb-4 gap-2">
           <Image src="/images/shop/shield-check.svg" alt="" width={20} height={20} className="shrink-0" />
