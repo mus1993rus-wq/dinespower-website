@@ -34,6 +34,40 @@ interface Order {
   paymentReference?: string;
 }
 
+const demoDetails = {
+  items: [
+    {
+      brand: "Astera Labs",
+      name: "Dietary supplements for fat burning and energy supply",
+      price: 44,
+      qty: 2,
+      total: 88,
+      image: "/images/shop/products/fat-burn-yohimbine.png",
+    },
+    {
+      brand: "Astera Labs",
+      name: "Dietary supplements for fat burning and energy supply",
+      price: 44,
+      qty: 2,
+      total: 88,
+      image: "/images/shop/products/fat-burn-yohimbine.png",
+    },
+  ],
+  billing: {
+    name: "Test Test\nTest Name",
+    address: "Test\nDenver, CO 80202",
+    phone: "(099) 780-1655",
+  },
+  shipping: {
+    name: "Test Test\nTest Name",
+    address: "Test\nDenver, CO 80202",
+    phone: "(099) 780-1655",
+  },
+  productsTotal: 220,
+  shipmentFee: 28,
+  paymentReference: "0-15539622",
+};
+
 const mockOrders: Order[] = [
   {
     number: "№15539622",
@@ -41,6 +75,9 @@ const mockOrders: Order[] = [
     date: "01/23/2024",
     qty: 2,
     total: 152,
+    ...demoDetails,
+    paymentMethod: "bank",
+    notes: "Please leave the parcel at reception if I'm not at home.",
   },
   {
     number: "№15539622",
@@ -48,41 +85,9 @@ const mockOrders: Order[] = [
     date: "01/23/2024",
     qty: 2,
     total: 152,
-    items: [
-      {
-        brand: "Astera Labs",
-        name: "Dietary supplements for fat burning and energy supply",
-        price: 44,
-        qty: 2,
-        total: 88,
-        image: "/images/shop/products/fat-burn-yohimbine.png",
-      },
-      {
-        brand: "Astera Labs",
-        name: "Dietary supplements for fat burning and energy supply",
-        price: 44,
-        qty: 2,
-        total: 88,
-        image: "/images/shop/products/fat-burn-yohimbine.png",
-      },
-    ],
-    billing: {
-      name: "Test Test\nTest Name",
-      address: "Test\nDenver, CO 80202",
-      phone: "(099) 780-1655",
-    },
-    shipping: {
-      name: "Test Test\nTest Name",
-      address: "Test\nDenver, CO 80202",
-      phone: "(099) 780-1655",
-    },
-    productsTotal: 220,
-    orderOverDiscount: -11.5,
-    promo: { code: "Dines2026", discount: -12.1 },
-    shipmentFee: 28,
+    ...demoDetails,
     notes: "Lorem ipsum is simply dummy text of the printing and typesetting industry.",
     paymentMethod: "bank",
-    paymentReference: "0-15539622",
   },
   {
     number: "№15539622",
@@ -90,6 +95,8 @@ const mockOrders: Order[] = [
     date: "01/23/2024",
     qty: 2,
     total: 152,
+    ...demoDetails,
+    paymentMethod: "bitcoin",
   },
 ];
 
