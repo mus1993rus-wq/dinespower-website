@@ -28,6 +28,9 @@ interface Order {
   shipmentFee?: number;
   productsTotal?: number;
   orderOverDiscount?: number;
+  notes?: string;
+  paymentMethod?: "bank" | "bitcoin";
+  paymentReference?: string;
 }
 
 const mockOrders: Order[] = [
@@ -166,6 +169,9 @@ export default function HistoryOrdersPage() {
           address: `${o.shippingAddress.street}\n${o.shippingAddress.city}, ${o.shippingAddress.zip}\n${o.shippingAddress.country}`,
           phone: o.shippingAddress.phone || "—",
         },
+        notes: o.notes,
+        paymentMethod: o.paymentMethod,
+        paymentReference: `0-${o.id}`,
       };
     });
     // Real orders first, then mock orders for demo
@@ -347,6 +353,67 @@ export default function HistoryOrdersPage() {
                       <span className="text-[16px] font-semibold text-[#181818]">{order.total.toFixed(2)} €</span>
                     </div>
                   </div>
+
+                  {/* Customer note */}
+                  {order.notes && (
+                    <div className="flex flex-col gap-1.5 bg-white border border-[#E7E7E7] rounded-[10px] p-4">
+                      <p className="text-[12px] text-[#7E7E7E] leading-4">Order note</p>
+                      <p className="text-[14px] text-[#181818] leading-5 whitespace-pre-line">{order.notes}</p>
+                    </div>
+                  )}
+
+                  {/* Payment details */}
+                  {order.paymentMethod && (
+                    <div className="flex flex-col gap-3 bg-white border border-[#E7E7E7] rounded-[10px] p-4">
+                      <div className="flex items-center justify-between">
+                        <p className="text-[14px] font-semibold text-[#181818] leading-5">Payment details</p>
+                        <span className="text-[11px] text-[#7E7E7E] leading-4">
+                          {order.paymentMethod === "bitcoin" ? "Bitcoin" : "Bank transfer"}
+                        </span>
+                      </div>
+                      {order.paymentMethod === "bank" ? (
+                        <div className="flex flex-col gap-2 text-[13px]">
+                          {[
+                            { label: "Beneficiary", value: "Dressmar LTD" },
+                            { label: "IBAN", value: "MT27CFTE28004000000000005416247" },
+                            { label: "BIC", value: "CFTEMTM1" },
+                            { label: "Bank Name", value: "OpenPayd Financial Services Malta Limited" },
+                            { label: "Country", value: "Malta" },
+                            { label: "Payment Methods", value: "SEPA, SEPA Instant, Internal" },
+                            { label: "Payment Reference", value: order.paymentReference ?? "—" },
+                          ].map((r) => (
+                            <div key={r.label} className="flex items-start justify-between gap-3 border-b border-[#F0F0F0] pb-2 last:border-b-0 last:pb-0">
+                              <span className="text-[#7E7E7E] shrink-0">{r.label}</span>
+                              <span className="text-[#181818] font-semibold text-right break-all">{r.value}</span>
+                            </div>
+                          ))}
+                          <p className="text-[11px] text-[#7E7E7E] leading-4 mt-1">
+                            Use ONLY this payment reference in the transfer note. Do not include website name, email, or product names.
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col gap-2 text-[13px]">
+                          <div className="flex items-start justify-between gap-3 border-b border-[#F0F0F0] pb-2">
+                            <span className="text-[#7E7E7E]">Network</span>
+                            <span className="text-[#181818] font-semibold">Bitcoin (BTC)</span>
+                          </div>
+                          <div className="flex items-start justify-between gap-3 border-b border-[#F0F0F0] pb-2">
+                            <span className="text-[#7E7E7E] shrink-0">BTC Address</span>
+                            <span className="text-[#181818] font-semibold font-mono break-all text-right">
+                              3456pGjwv9cijehLts6KRhPaXmrAfRshNj
+                            </span>
+                          </div>
+                          <div className="flex items-start justify-between gap-3">
+                            <span className="text-[#7E7E7E]">Amount (EUR)</span>
+                            <span className="text-[#181818] font-semibold">{order.total.toFixed(2)} €</span>
+                          </div>
+                          <p className="text-[11px] text-[#7E7E7E] leading-4 mt-1">
+                            Send exactly the equivalent BTC amount to the address above. The transaction confirms automatically.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
