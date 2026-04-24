@@ -85,12 +85,73 @@ export default function SearchPage() {
 
   const showDropdown = isFocused && !submitted;
 
+  const topResults = allProducts.slice(0, 3);
+
   return (
     <>
       <Header />
       <main className="min-h-screen relative z-10 bg-white">
-        {/* Breadcrumb */}
-        <div className="max-w-[1340px] mx-auto px-4 py-4">
+        {/* Mobile overlay — Figma 2040:27209: search input + popular chips + popular products, all visible */}
+        <div className="tablet:hidden bg-white p-2">
+          <div className="flex flex-col gap-2">
+            <div className="bg-[#F7F7F7] border border-[#989898] rounded-[8px] flex items-center gap-3 px-4 h-11">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="opacity-30 shrink-0">
+                <circle cx="9.17" cy="9.17" r="6.67" stroke="#181818" strokeWidth="1.5" />
+                <path d="M16.67 16.67L14.17 14.17" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search products"
+                value={query}
+                onChange={(e) => handleQueryChange(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="bg-transparent flex-1 text-[14px] font-semibold text-black placeholder:text-[#7E7E7E] outline-none min-w-0"
+              />
+              {query && (
+                <button onClick={() => { setQuery(""); setSubmitted(false); }} className="text-[#7E7E7E] shrink-0" aria-label="Clear">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </button>
+              )}
+            </div>
+
+            <div className="bg-[#F7F7F7] rounded-[8px] p-4 flex flex-col gap-6">
+              <div className="flex flex-col gap-2">
+                <p className="text-[16px] text-[#7E7E7E] leading-6">Popular searches</p>
+                <div className="flex flex-wrap gap-1">
+                  {popularSearches.map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => handleSuggestionClick(s)}
+                      className="bg-white border border-[#E7E7E7] rounded-[8px] px-3 py-1.5 text-[14px] font-semibold text-[#181818] leading-5"
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <p className="text-[16px] text-[#7E7E7E] leading-6">Popular Products</p>
+                <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col gap-3">
+                  {topResults.map((p, i) => (
+                    <div key={i}>
+                      <Link href="/product" className="flex gap-4 items-center">
+                        <div className="w-16 h-16 bg-[#F7F7F7] rounded-[8px] shrink-0" />
+                        <div className="flex-1 min-w-0 flex flex-col gap-1.5">
+                          <p className="text-[16px] font-semibold text-[#181818] leading-6 line-clamp-2 capitalize">{p.name}</p>
+                          <p className="text-[16px] font-semibold text-[#7E7E7E] leading-6">{p.price}€</p>
+                        </div>
+                      </Link>
+                      {i < topResults.length - 1 && <div className="h-px bg-[#E7E7E7] mt-3" />}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Breadcrumb — tablet+ only */}
+        <div className="hidden tablet:block max-w-[1340px] mx-auto px-4 py-4">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
             <Link href="/" className="hover:text-[#181818] transition-colors">Home</Link>
             <span>/</span>
@@ -98,7 +159,7 @@ export default function SearchPage() {
           </div>
         </div>
 
-        <div className="max-w-[1340px] mx-auto px-4 pb-16">
+        <div className="hidden tablet:block max-w-[1340px] mx-auto px-4 pb-16">
           {/* Search input */}
           <div className="relative max-w-[700px] mb-8">
             <div className="flex gap-3">
