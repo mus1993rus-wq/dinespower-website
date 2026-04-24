@@ -115,7 +115,7 @@ export default function TermsPage() {
           </h1>
 
           {/* Disclaimer */}
-          <div className="max-w-[900px] mb-8 tablet:mb-10">
+          <div className="max-w-none mb-8 tablet:mb-10">
             <h2 className="text-[18px] tablet:text-[20px] font-extrabold text-[#181818] mb-3 tablet:mb-4">Disclaimer</h2>
             <p className="text-[13px] tablet:text-[14px] text-[#7E7E7E] leading-6 tablet:leading-7">
               The content provided on this website is intended for informational purposes only and does not constitute medical, legal, or professional advice. DinesPower is an authorized distributor of pharmaceutical-grade products and supplements. All products are intended for use in accordance with applicable local laws and regulations. Users are solely responsible for ensuring that their purchase and use of products comply with the laws of their jurisdiction. DinesPower assumes no responsibility for the misuse of any product purchased through this website.
@@ -123,7 +123,7 @@ export default function TermsPage() {
           </div>
 
           {/* Sections */}
-          <div className="max-w-[900px] flex flex-col gap-6 tablet:gap-8">
+          <div className="max-w-none flex flex-col gap-6 tablet:gap-8">
             {sections.map((section) => (
               <div key={section.title}>
                 <h2 className="text-[16px] tablet:text-[18px] font-extrabold text-[#181818] mb-2 tablet:mb-3">

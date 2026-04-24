@@ -363,20 +363,20 @@ export default function ProductPageContent({ product }: { product: Product }) {
             </div>
 
             {/* 8. Promo code block */}
-            <button onClick={handleCopy} aria-label="Copy promo code DINES2026" className="cursor-pointer bg-black rounded-[12px] p-2 mb-6 flex items-center gap-2 relative overflow-hidden w-full text-left">
+            <button onClick={handleCopy} aria-label="Copy promo code DINES2026" className="cursor-pointer bg-black rounded-[12px] p-2 mb-6 flex flex-col desktop:flex-row items-stretch desktop:items-center gap-2 relative overflow-hidden w-full text-left">
               <Image src="/images/shop/product-icons/bg.png" alt="" fill sizes="(max-width: 960px) 100vw, 560px" className="object-cover opacity-50 mix-blend-lighten absolute inset-0 pointer-events-none" />
               <div className="flex-1 flex items-center gap-4 relative z-10 pr-2">
-                <div className="w-[80px] h-[80px] shrink-0 rounded-[9px] overflow-hidden">
+                <div className="w-[72px] h-[72px] tablet:w-[80px] tablet:h-[80px] shrink-0 rounded-[9px] overflow-hidden">
                   <Image src="/images/shop/product-icons/discount.png" alt="" width={80} height={80} className="object-contain" />
                 </div>
                 <div className="flex-1 flex flex-col gap-1">
-                  <p className="text-[20px] font-extrabold text-[#FECA37] leading-6">Get 5% Off Your First Order</p>
-                  <p className="text-[14px] text-white leading-5">
+                  <p className="text-[16px] tablet:text-[18px] desktop:text-[20px] font-extrabold text-[#FECA37] leading-6">Get 5% Off Your First Order</p>
+                  <p className="text-[13px] tablet:text-[14px] text-white leading-5">
                     Use Code <span className="font-bold">&ldquo;DINES2026&rdquo;</span> for get 5% Discount
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 bg-[#292929] hover:bg-[#383838] rounded-[8px] px-4 h-11 shrink-0 relative z-10 transition-colors">
+              <div className="flex items-center justify-center gap-3 bg-[#292929] hover:bg-[#383838] rounded-[8px] px-4 h-11 shrink-0 relative z-10 transition-colors self-stretch desktop:self-auto">
                 <span className="text-[18px] font-semibold text-white leading-[26px]">DINES2026</span>
                 {copied ? (
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -680,7 +680,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
         </div>
 
         {/* 14. TOP Injectable */}
-        <div className="max-w-[1340px] mx-auto pb-10">
+        <div className="max-w-[1340px] mx-auto pb-10 px-4">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">TOP {product.categoryLabel}</h2>
             <div className="flex gap-2">
@@ -710,7 +710,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
         </div>
 
         {/* 15. Related Products */}
-        <div className="max-w-[1340px] mx-auto pb-10">
+        <div className="max-w-[1340px] mx-auto pb-10 px-4">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">Related products</h2>
             <div className="flex gap-2">

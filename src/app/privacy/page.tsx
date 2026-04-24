@@ -65,7 +65,7 @@ export default function PrivacyPage() {
           </h1>
           <p className="text-[13px] tablet:text-[14px] text-[#7E7E7E] mb-8 tablet:mb-10">Last updated: April 1, 2026</p>
 
-          <div className="max-w-[900px] flex flex-col gap-6 tablet:gap-8">
+          <div className="max-w-none flex flex-col gap-6 tablet:gap-8">
             {sections.map((section) => (
               <div key={section.title}>
                 <h2 className="text-[16px] tablet:text-[18px] font-extrabold text-[#181818] mb-2 tablet:mb-3">
