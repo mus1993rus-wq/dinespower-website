@@ -145,13 +145,13 @@ function CategoriesRow() {
           <Link
             key={cat.name}
             href={`/catalog?category=${cat.name.toLowerCase().replace(/ & /g, '-')}`}
-            className={`flex items-center gap-4 px-4 py-3 ${i < categories.length - 1 ? "border-b border-[#F0F0F0]" : ""}`}
+            className={`flex items-center gap-4 px-4 py-4 ${i < categories.length - 1 ? "border-b border-[#F0F0F0]" : ""}`}
           >
-            <div className="w-10 h-10 rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center shrink-0">
-              <Image src={cat.img} alt={cat.name} width={40} height={40} className="object-cover" />
+            <div className="w-14 h-14 rounded-full bg-[#F7F7F7] overflow-hidden flex items-center justify-center shrink-0">
+              <Image src={cat.img} alt={cat.name} width={48} height={48} className="object-cover" />
             </div>
-            <span className="flex-1 text-[14px] font-semibold text-[#181818] leading-5">{cat.name}</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+            <span className="flex-1 text-[16px] font-semibold text-[#181818] leading-6">{cat.name}</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M9 18l6-6-6-6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </Link>
