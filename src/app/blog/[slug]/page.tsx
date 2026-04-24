@@ -243,7 +243,7 @@ export default function BlogArticlePage() {
                   <>
                     <h2
                       id={post.sections[0].id}
-                      className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
+                      className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-32"
                     >
                       1. {post.sections[0].title}
                     </h2>
@@ -319,7 +319,7 @@ export default function BlogArticlePage() {
                   <>
                     <h2
                       id={post.sections[1].id}
-                      className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
+                      className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-32"
                     >
                       2. {post.sections[1].title}
                     </h2>
@@ -407,7 +407,7 @@ export default function BlogArticlePage() {
                   <>
                     <h2
                       id={post.sections[2].id}
-                      className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
+                      className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-32"
                     >
                       3. {post.sections[2].title}
                     </h2>
@@ -461,7 +461,7 @@ export default function BlogArticlePage() {
                   <>
                     <h2
                       id={post.sections[3].id}
-                      className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-24"
+                      className="text-[22px] font-extrabold text-[#181818] leading-[30px] mt-10 mb-3 scroll-mt-32"
                     >
                       4. {post.sections[3].title}
                     </h2>
