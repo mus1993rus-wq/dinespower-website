@@ -13,7 +13,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
   return (
     <>
       <Header />
-      <main className="min-h-screen relative z-10 bg-white">
+      <main className="relative z-10 bg-white">
         <div className="max-w-[1340px] mx-auto pt-4 pb-16 px-4 ">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-[12px] tablet:text-[14px] text-[#7E7E7E] mb-4">
