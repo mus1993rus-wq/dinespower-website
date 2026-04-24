@@ -30,8 +30,8 @@ const billingAddress = {
 
 const CopyIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="shrink-0">
-    <rect x="9" y="9" width="11" height="11" rx="2" stroke="#7E7E7E" strokeWidth="1.5" />
-    <path d="M5 15V5a2 2 0 012-2h10" stroke="#7E7E7E" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z" stroke="#7E7E7E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M22 6.9V11.1C22 14.6 20.6 16 17.1 16H16V12.9C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2H17.1C20.6 2 22 3.4 22 6.9Z" stroke="#7E7E7E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
@@ -56,9 +56,9 @@ function CopyField({ label, value, showCopy = true }: { label: string; value: st
         <p className="text-[14px] font-semibold text-[#181818] leading-5 break-all">{value}</p>
       </div>
       {showCopy && (
-        <button onClick={onCopy} className="cursor-pointer w-8 h-8 flex items-center justify-center hover:bg-[#F7F7F7] rounded-[6px] transition-colors shrink-0" aria-label={`Copy ${label}`}>
+        <button onClick={onCopy} className="cursor-pointer shrink-0 opacity-80 hover:opacity-100 transition-opacity" aria-label={`Copy ${label}`}>
           {copied ? (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path d="M20 6L9 17L4 12" stroke="#00B638" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           ) : (
@@ -99,31 +99,29 @@ function ConfirmationContent() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      {/* Header bar */}
-      <div className="w-full bg-white border-b border-[#E7E7E7] h-[80px] tablet:h-[104px] shrink-0 px-4 tablet:px-0">
-        <div className="max-w-[1340px] mx-auto h-[60px] tablet:h-[76px] flex items-center justify-between gap-3 pt-2 tablet:pt-4">
-          <Link href="/cart" className="cursor-pointer flex items-center gap-2 bg-[#F7F7F7] hover:bg-[#EFEFEF] h-10 tablet:h-11 px-3 tablet:w-[140px] tablet:px-0 rounded-[8px] justify-center text-[#7E7E7E] hover:text-[#181818] text-[13px] tablet:text-[14px] font-semibold transition-colors">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+      {/* Black header bar, flat, full-width per Figma */}
+      <div className="w-full bg-[#181818] h-[88px] tablet:h-[104px] shrink-0 px-4 tablet:px-0">
+        <div className="max-w-[1340px] mx-auto h-[56px] tablet:h-[76px] flex items-center justify-between gap-3 pt-4 tablet:pt-0">
+          <Link href="/cart" className="cursor-pointer flex items-center justify-center gap-2 w-11 h-11 tablet:w-[140px] tablet:h-11 tablet:px-0 bg-[#292929] tablet:bg-white/[0.04] hover:bg-[#3a3a3a] tablet:hover:bg-white/[0.08] rounded-[8px] text-[#B6B6B6] text-[13px] tablet:text-[14px] font-semibold transition-colors">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="tablet:w-4 tablet:h-4">
               <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span className="hidden tablet:inline">Back to cart</span>
           </Link>
           <Link href="/" className="flex items-center">
-            <Image src="/images/shop/logo.svg" alt="Dines Power" width={106} height={44} className="object-contain w-[80px] tablet:w-[106px]" />
+            <Image src="/images/shop/logo.svg" alt="Dines Power" width={106} height={44} className="object-contain w-[106px]" />
           </Link>
-          <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-help-popup")); }} className="cursor-pointer flex items-center gap-2 bg-[#F7F7F7] hover:bg-[#EFEFEF] h-10 tablet:h-11 px-3 tablet:w-[140px] tablet:px-0 rounded-[8px] justify-center text-[#7E7E7E] hover:text-[#181818] text-[13px] tablet:text-[14px] font-semibold transition-colors">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+          <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-help-popup")); }} className="cursor-pointer flex items-center justify-center gap-2 w-11 h-11 tablet:w-[140px] tablet:h-11 tablet:px-0 bg-[#292929] tablet:bg-white/[0.04] hover:bg-[#3a3a3a] tablet:hover:bg-white/[0.08] rounded-[8px] text-[#B6B6B6] text-[13px] tablet:text-[14px] font-semibold transition-colors">
+            <Image src="/images/shop/need-help-icon.svg" alt="" width={24} height={24} className="tablet:w-[18px] tablet:h-[18px] brightness-0 invert opacity-70" />
             <span className="hidden tablet:inline">Need Help?</span>
           </Link>
         </div>
       </div>
 
-      {/* Content area — cards sit on white background */}
-      <div className="flex-1 relative pt-8 pb-16 bg-white">
-        <div className="max-w-[640px] mx-auto w-full px-4 tablet:px-0 flex flex-col gap-4 relative z-10">
+      {/* White content area — flat, full-width per Figma */}
+      <div className="flex-1 bg-white relative pt-6 pb-12 tablet:pt-12 tablet:pb-20">
+        <div className="max-w-[640px] mx-auto w-full px-4 tablet:px-0 flex flex-col gap-4 tablet:gap-6 relative z-10">
+        <div className="flex flex-col gap-4 bg-[#F7F7F7] rounded-[16px] p-4">
 
           {/* Order confirmed card */}
           <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-6 tablet:p-8 flex flex-col items-center gap-3 text-center">
@@ -160,10 +158,17 @@ function ConfirmationContent() {
               <>
                 <p className="text-[16px] font-semibold text-[#181818] leading-6">Bank transfer</p>
 
-                {/* Amount to transfer — black card */}
-                <div className="relative bg-[#181818] rounded-[12px] p-6 text-center overflow-hidden">
-                  <p className="text-[13px] text-white/70 leading-5">Amount to transfer</p>
-                  <p className="text-[32px] tablet:text-[40px] font-extrabold text-white leading-[48px] mt-1">{amount} €</p>
+                {/* Amount to transfer — black card with textured overlay */}
+                <div className="relative bg-black rounded-[12px] p-6 text-center overflow-hidden">
+                  <Image
+                    src="/images/shop/wholesale-banner-bg.png"
+                    alt=""
+                    fill
+                    sizes="560px"
+                    className="object-cover opacity-50 mix-blend-lighten pointer-events-none select-none"
+                  />
+                  <p className="relative z-10 text-[13px] text-white/70 leading-5">Amount to transfer</p>
+                  <p className="relative z-10 text-[32px] tablet:text-[40px] font-extrabold text-white leading-[48px] mt-1">{amount} €</p>
                 </div>
 
                 {/* Payment Reference label */}
@@ -193,9 +198,9 @@ function ConfirmationContent() {
                     <p className="text-[12px] text-[#7E7E7E] leading-4">Payment reference</p>
                     <div className="flex items-center gap-2">
                       <p className="text-[28px] tablet:text-[32px] font-extrabold text-[#181818] leading-[40px]">{paymentRef}</p>
-                      <button onClick={copyRef} className="cursor-pointer w-8 h-8 flex items-center justify-center hover:bg-white rounded-[6px] transition-colors" aria-label="Copy reference">
+                      <button onClick={copyRef} className="cursor-pointer shrink-0 opacity-80 hover:opacity-100 transition-opacity" aria-label="Copy reference">
                         {refCopied ? (
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                             <path d="M20 6L9 17L4 12" stroke="#00B638" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         ) : (
@@ -245,16 +250,23 @@ function ConfirmationContent() {
                   <p className="text-[12px] text-[#7E7E7E] leading-4">1 BTC = € {btcRate.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 </div>
 
-                {/* Amount to send — black card */}
-                <div className="relative bg-[#181818] rounded-[12px] p-6 text-center overflow-hidden">
-                  <p className="text-[13px] text-white/70 leading-5">Amount to send</p>
-                  <div className="flex items-center justify-center gap-2 mt-1">
+                {/* Amount to send — black card with textured overlay */}
+                <div className="relative bg-black rounded-[12px] p-6 text-center overflow-hidden">
+                  <Image
+                    src="/images/shop/wholesale-banner-bg.png"
+                    alt=""
+                    fill
+                    sizes="560px"
+                    className="object-cover opacity-50 mix-blend-lighten pointer-events-none select-none"
+                  />
+                  <p className="relative z-10 text-[13px] text-white/70 leading-5">Amount to send</p>
+                  <div className="relative z-10 flex items-center justify-center gap-2 mt-1">
                     <div className="w-8 h-8 rounded-full bg-[#F7931A] flex items-center justify-center">
                       <span className="text-white text-[18px] font-extrabold leading-none">₿</span>
                     </div>
                     <p className="text-[28px] tablet:text-[36px] font-extrabold text-white leading-[44px]">{btcAmount}</p>
                   </div>
-                  <p className="text-[14px] text-white/70 leading-5 mt-1">= {amount.toFixed(2)} €</p>
+                  <p className="relative z-10 text-[14px] text-white/70 leading-5 mt-1">= {amount.toFixed(2)} €</p>
                 </div>
 
                 {/* Bitcoin Address label */}
@@ -373,8 +385,10 @@ function ConfirmationContent() {
             )}
           </div>
 
-          {/* FAQ */}
-          <div className="flex flex-col gap-3 mt-4">
+          </div>
+
+          {/* FAQ — separate gray wrapper per Figma */}
+          <div className="flex flex-col gap-3 bg-[#F7F7F7] rounded-[16px] p-4">
             <div className="bg-white border border-[#E7E7E7] rounded-[16px]">
               <button onClick={() => setFaq1Open((o) => !o)} className="cursor-pointer w-full flex items-center justify-between p-4 tablet:p-6">
                 <p className="text-[14px] tablet:text-[16px] font-semibold text-[#181818] leading-6">How do I make a payment?</p>
@@ -422,13 +436,13 @@ function ConfirmationContent() {
         </div>
       </div>
 
-      {/* Minimal footer */}
-      <div className="bg-white border-t border-[#E7E7E7] shrink-0 py-5 tablet:py-0 tablet:h-[68px]">
+      {/* Minimal footer — flat, full-width per Figma */}
+      <div className="bg-[#181818] shrink-0 py-5 tablet:py-0 tablet:h-[68px]">
         <div className="max-w-[1340px] mx-auto h-full flex flex-col tablet:flex-row items-center tablet:justify-between gap-3 tablet:gap-0 px-4 desktop:px-12 wide:px-[185px]">
           <p className="text-[12px] tablet:text-[14px] text-[#7E7E7E] text-center tablet:text-left">© 2026 DINESPOWER.TO is the best place to buy steroids online.</p>
           <div className="flex gap-4">
-            <Link href="/terms" className="text-[12px] tablet:text-[14px] text-[#7E7E7E] hover:text-[#181818] transition-colors">Terms &amp; Conditions</Link>
-            <Link href="/privacy" className="text-[12px] tablet:text-[14px] text-[#7E7E7E] hover:text-[#181818] transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-[12px] tablet:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Terms &amp; Conditions</Link>
+            <Link href="/privacy" className="text-[12px] tablet:text-[14px] text-[#7E7E7E] hover:text-white transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>
@@ -438,7 +452,7 @@ function ConfirmationContent() {
 
 export default function ConfirmationPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-white" />}>
+    <Suspense fallback={<div className="min-h-screen bg-[#181818]" />}>
       <ConfirmationContent />
     </Suspense>
   );
