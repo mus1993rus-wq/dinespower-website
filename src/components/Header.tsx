@@ -117,13 +117,13 @@ export default function Header() {
       {/* ========================= MOBILE HEADER (≤640) ========================= */}
       <div className="w-full tablet:hidden flex flex-col sticky top-0 z-50 bg-white">
         {/* Top announcement bar */}
-        <div className="bg-[#181818] h-[44px] flex items-center justify-center px-4 gap-2">
+        <div className="bg-[#181818] flex items-center justify-center px-4 pt-2 pb-5 -mb-4 gap-2">
           <Image src="/images/shop/shield-check.svg" alt="" width={20} height={20} className="shrink-0" />
-          <span className="text-[13px] text-white leading-none">{t("header.allProductsTested")}</span>
-          <Link href="/lab-tests" className="text-[13px] font-semibold text-white underline leading-none ml-1">See Lab Test</Link>
+          <span className="text-[12px] text-white leading-4">{t("header.allProductsTested")}</span>
+          <Link href="/lab-tests" className="text-[10px] font-semibold text-white underline leading-[14px] ml-1">See Lab Test</Link>
         </div>
         {/* Main mobile bar */}
-        <div className="bg-white h-[68px] flex items-center justify-between px-4 gap-3 border-b border-[#F0F0F0]">
+        <div className="bg-white h-[68px] flex items-center justify-between px-5 gap-3 border-b border-[#EDEDED] rounded-tl-[12px] rounded-tr-[12px] relative z-10">
           <button
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Menu"
