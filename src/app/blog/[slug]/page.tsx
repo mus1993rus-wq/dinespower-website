@@ -203,15 +203,15 @@ export default function BlogArticlePage() {
                 {/* Product Card — horizontal Figma layout */}
                 <Link href="/catalog" className="relative block bg-[#181818] rounded-[16px] p-6 my-10 overflow-hidden group">
                   <Image src="/icons/newsletter-bg.jpg" alt="" fill sizes="(max-width: 960px) 100vw, 800px" className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
-                  <div className="absolute top-[10px] left-0 z-10 pt-2">
+                  <div className="absolute top-[10px] left-0 z-20 pt-2">
                     <span className="inline-flex items-center bg-[#FB2F2F] rounded-tr-[6px] rounded-br-[6px] px-3 py-1 text-[12px] font-semibold text-white leading-4">Sale -14%</span>
                   </div>
                   <div className="relative z-10 flex flex-col tablet:flex-row gap-4 tablet:items-center">
-                    <div className="flex gap-3 tablet:gap-4 items-center">
-                      <div className="w-[90px] h-[90px] tablet:w-[120px] tablet:h-[120px] shrink-0 relative">
-                        <Image src="/images/shop/eca-xtreme.png" alt="ECA Xtreme Fat Burner" fill sizes="(max-width: 960px) 90px, 120px" className="object-contain" />
+                    <div className="flex flex-col-reverse tablet:flex-row gap-3 tablet:gap-4 tablet:items-center flex-1 min-w-0">
+                      <div className="w-full h-[140px] tablet:w-[120px] tablet:h-[120px] shrink-0 relative">
+                        <Image src="/images/shop/eca-xtreme.png" alt="ECA Xtreme Fat Burner" fill sizes="(max-width: 960px) 100vw, 120px" className="object-contain" />
                       </div>
-                      <div className="flex-1 flex flex-col gap-1 min-w-0">
+                      <div className="flex-1 flex flex-col gap-1 min-w-0 mt-6 tablet:mt-0">
                         <p className="text-[13px] tablet:text-[14px] text-[#B6B6B6] leading-5">Biaxol</p>
                         <p className="text-[16px] tablet:text-[18px] font-semibold text-white leading-[20px] tablet:leading-[26px]">Yohimbine Fat Burner Capsules</p>
                         <div className="flex gap-2 tablet:gap-3 items-center flex-wrap">
@@ -226,7 +226,7 @@ export default function BlogArticlePage() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 tablet:gap-4 tablet:shrink-0 justify-between tablet:justify-start">
+                    <div className="flex items-center gap-3 tablet:gap-4 tablet:shrink-0 justify-between tablet:ml-auto">
                       <div className="flex gap-2 items-center">
                         <span className="text-[18px] tablet:text-[20px] font-extrabold text-[#FB2F2F] leading-6">24 €</span>
                         <span className="text-[14px] tablet:text-[16px] text-[#7E7E7E] line-through">30 €</span>
@@ -674,7 +674,7 @@ export default function BlogArticlePage() {
                 {/* Product Recommendation Card — horizontal Figma layout */}
                 <Link href="/catalog" className="relative block bg-[#181818] rounded-[16px] p-6 overflow-hidden group">
                   <Image src="/icons/newsletter-bg.jpg" alt="" fill sizes="(max-width: 960px) 100vw, 800px" className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
-                  <div className="absolute top-[10px] left-0 z-10 pt-2">
+                  <div className="absolute top-[10px] left-0 z-20 pt-2">
                     <span className="inline-flex items-center bg-[#FB2F2F] rounded-tr-[6px] rounded-br-[6px] px-3 py-1 text-[12px] font-semibold text-white leading-4">Sale -14%</span>
                   </div>
                   <div className="relative z-10 flex gap-4 items-center">
