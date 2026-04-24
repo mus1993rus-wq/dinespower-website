@@ -24,7 +24,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
           {/* Title */}
           <h1 className="text-[24px] tablet:text-[32px] font-extrabold text-[#181818] leading-[30px] tablet:leading-[44px] mb-6 tablet:mb-8">My Account</h1>
           {/* Layout: sidebar + content */}
-          <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-[80px]">
+          <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-10 wide:gap-[80px]">
             <AccountSidebar />
             <section className="flex-1 min-w-0">{children}</section>
           </div>

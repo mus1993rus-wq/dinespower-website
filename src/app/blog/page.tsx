@@ -260,7 +260,7 @@ function BlogContent() {
             {categoryParam ? `Category: ${categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1)}` : "Blog Dines Power"}
           </h1>
 
-          <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-[80px]">
+          <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-10 wide:gap-[80px]">
             {/* LEFT main column */}
             <div className="flex-1 min-w-0">
               {/* Featured slider — 820x482 */}
@@ -402,18 +402,18 @@ function BlogContent() {
                     {index === 9 && (
                       <>
                         <div className="h-px bg-[#E7E7E7] my-8" />
-                        <div className="relative bg-[#181818] rounded-[16px] tablet:h-[140px] p-5 tablet:px-8 tablet:py-6 flex flex-col tablet:flex-row tablet:items-center gap-4 tablet:gap-8 overflow-hidden">
+                        <div className="relative bg-[#181818] rounded-[16px] desktop:h-[140px] p-5 desktop:px-8 desktop:py-6 flex flex-col desktop:flex-row desktop:items-center gap-4 desktop:gap-8 overflow-hidden">
                           <Image src="/icons/newsletter-bg.jpg" alt="" fill sizes="100vw" className="object-cover opacity-50 mix-blend-lighten pointer-events-none" />
-                          <div className="flex-1 flex items-center gap-3 tablet:gap-4 min-w-0 relative z-10">
-                            <div className="w-10 h-10 tablet:w-12 tablet:h-12 shrink-0 relative">
+                          <div className="flex-1 flex items-center gap-3 desktop:gap-4 min-w-0 relative z-10">
+                            <div className="w-10 h-10 desktop:w-12 desktop:h-12 shrink-0 relative">
                               <Image src="/icons/bell-notification.png" alt="" fill sizes="48px" className="object-contain" />
                             </div>
                             <div className="flex-1 flex flex-col gap-1 min-w-0">
-                              <p className="text-[16px] tablet:text-[20px] font-extrabold text-white leading-[20px] tablet:leading-[24px]">New articles by email</p>
-                              <p className="text-[13px] tablet:text-[16px] text-white leading-5 tablet:leading-6">New posts, product picks, and deals</p>
+                              <p className="text-[16px] desktop:text-[20px] font-extrabold text-white leading-[20px] desktop:leading-[24px]">New articles by email</p>
+                              <p className="text-[13px] desktop:text-[16px] text-white leading-5 desktop:leading-6">New posts, product picks, and deals</p>
                             </div>
                           </div>
-                          <div className="tablet:flex-1 flex gap-2 items-start relative z-10">
+                          <div className="desktop:flex-1 flex gap-2 items-start relative z-10">
                             <input
                               type="email"
                               placeholder="Email address.."

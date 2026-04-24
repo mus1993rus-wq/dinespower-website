@@ -165,7 +165,7 @@ export default function BlogArticlePage() {
 
         {/* Article content */}
         <div className="max-w-[1340px] mx-auto px-4  pb-10">
-          <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-[80px]">
+          <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-10 wide:gap-[80px]">
             {/* Main content - LEFT COLUMN */}
             <div className="flex-1 min-w-0 max-w-[820px]">
               <article>

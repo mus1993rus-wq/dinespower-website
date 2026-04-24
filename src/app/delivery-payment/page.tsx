@@ -195,14 +195,14 @@ export default function DeliveryPaymentPage() {
                   </table>
                 </div>
 
-                {/* Shipping logos */}
-                <div className="flex items-center gap-4 py-6 flex-wrap">
+                {/* Shipping logos — 3 per row on mobile (108x42), 4 on tablet, wrap on desktop */}
+                <div className="grid grid-cols-3 tablet:flex tablet:flex-wrap gap-2 tablet:gap-4 py-6">
                   {shippingLogos.map((logo) => (
                     <div
                       key={logo.name}
-                      className="h-[88px] px-8 rounded-[12px] border border-[#E7E7E7] flex items-center justify-center min-w-[160px]"
+                      className="h-[42px] tablet:h-[88px] px-2 tablet:px-8 rounded-[12px] border border-[#E7E7E7] flex items-center justify-center tablet:min-w-[160px]"
                     >
-                      <Image src={logo.image} alt={logo.name} width={140} height={64} className="object-contain h-[64px] w-auto" />
+                      <Image src={logo.image} alt={logo.name} width={140} height={64} className="object-contain h-[28px] tablet:h-[64px] w-auto" />
                     </div>
                   ))}
                 </div>

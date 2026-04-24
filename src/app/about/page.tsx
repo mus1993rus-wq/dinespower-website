@@ -104,9 +104,9 @@ export default function AboutPage() {
 
         {/* Expert Section */}
         <div className="max-w-[1340px] mx-auto px-4  mt-10 tablet:mt-16">
-          <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-20 items-stretch">
-            {/* Left - Manager photo — equal column, 80px gap */}
-            <div className="flex-1 rounded-[16px] relative overflow-hidden bg-[#F7F7F7] self-stretch min-h-[240px] tablet:min-h-[280px] desktop:min-h-[460px]">
+          <div className="flex flex-col tablet:flex-row gap-6 tablet:gap-8 desktop:gap-20 items-stretch">
+            {/* Left - Manager photo — keep desktop side-by-side at tablet; taller minHeight so the model is not cropped at the head */}
+            <div className="flex-1 rounded-[16px] relative overflow-hidden bg-[#F7F7F7] self-stretch min-h-[240px] tablet:min-h-[420px] desktop:min-h-[460px]">
               <Image src="/images/shop/expert-manager.png" alt="Expert Support" fill sizes="(max-width: 960px) 100vw, 660px" className="object-cover object-top" />
             </div>
 
