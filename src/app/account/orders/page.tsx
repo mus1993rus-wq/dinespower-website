@@ -2,9 +2,10 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useOrders } from "@/context/OrdersContext";
 
-type OrderStatus = "delivered" | "processing" | "canceled";
+type OrderStatus = "delivered" | "processing" | "pending" | "canceled";
 
 interface OrderItem {
   brand: string;
@@ -101,7 +102,18 @@ const statusBadge: Record<OrderStatus, { label: string; bg: string; text: string
     ),
   },
   processing: {
-    label: "In processing",
+    label: "Processing",
+    bg: "bg-[#FFF4E6]",
+    text: "text-[#FF6701]",
+    icon: (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="9" stroke="#FF6701" strokeWidth="2" />
+        <path d="M12 7v5l3 3" stroke="#FF6701" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  pending: {
+    label: "Pending payment",
     bg: "bg-[#FFF4E6]",
     text: "text-[#FF6701]",
     icon: (
@@ -181,14 +193,13 @@ export default function HistoryOrdersPage() {
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-[18px] font-semibold text-[#181818] leading-[26px]">History Orders</h2>
-      <div className="bg-white border border-[#E7E7E7] rounded-[12px] overflow-hidden">
+      <div className="bg-[#F7F7F7] rounded-[12px] p-2 flex flex-col gap-2">
         {/* Header row — desktop only */}
-        <div className="hidden tablet:grid grid-cols-[1.2fr_1.2fr_1fr_0.8fr_1fr_40px] items-center bg-[#F7F7F7] px-6 py-3 text-[12px] text-[#7E7E7E] leading-4">
+        <div className="hidden tablet:grid grid-cols-[1.4fr_1fr_1fr_1.2fr_40px] items-center px-6 py-3 text-[12px] text-[#7E7E7E] leading-4">
           <span>Order Number:</span>
-          <span>Status</span>
           <span>Order Date:</span>
-          <span>Quantity</span>
           <span>Order Total:</span>
+          <span>Status</span>
           <span />
         </div>
 
@@ -197,23 +208,22 @@ export default function HistoryOrdersPage() {
           const isOpen = expanded === i;
           const canExpand = !!order.items;
           return (
-            <div key={i} className="border-t border-[#E7E7E7] first:border-t-0 tablet:first:border-t">
+            <div key={i} className="bg-white border border-[#E7E7E7] rounded-[12px] overflow-hidden">
               {/* Desktop row */}
-              <div className="hidden tablet:grid grid-cols-[1.2fr_1.2fr_1fr_0.8fr_1fr_40px] items-center px-6 py-4 text-[14px] text-[#181818]">
+              <div className="hidden tablet:grid grid-cols-[1.4fr_1fr_1fr_1.2fr_40px] items-center px-6 py-4 text-[14px] text-[#181818]">
                 <span className="font-semibold">{order.number}</span>
+                <span>{order.date}</span>
+                <span className="font-semibold">{order.total.toFixed(2)} €</span>
                 <span>
                   <span className={`inline-flex items-center gap-1.5 ${badge.bg} ${badge.text} text-[12px] font-semibold px-3 py-1 rounded-[20px]`}>
                     {badge.icon}
                     {badge.label}
                   </span>
                 </span>
-                <span>{order.date}</span>
-                <span>{order.qty}</span>
-                <span className="font-semibold">{order.total.toFixed(2)} €</span>
                 {canExpand ? (
                   <button
                     onClick={() => setExpanded(isOpen ? null : i)}
-                    className="cursor-pointer w-8 h-8 rounded-full bg-[#F7F7F7] hover:bg-[#E7E7E7] flex items-center justify-center transition-colors"
+                    className="cursor-pointer w-9 h-9 rounded-[8px] border border-[#E7E7E7] bg-white hover:bg-[#F7F7F7] flex items-center justify-center transition-colors"
                     aria-label={isOpen ? "Collapse" : "Expand"}
                   >
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
@@ -254,7 +264,7 @@ export default function HistoryOrdersPage() {
                   {canExpand ? (
                     <button
                       onClick={() => setExpanded(isOpen ? null : i)}
-                      className="cursor-pointer w-8 h-8 rounded-full bg-[#F7F7F7] flex items-center justify-center shrink-0"
+                      className="cursor-pointer w-9 h-9 rounded-[8px] border border-[#E7E7E7] bg-white flex items-center justify-center shrink-0"
                       aria-label={isOpen ? "Collapse" : "Expand"}
                     >
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
@@ -266,12 +276,12 @@ export default function HistoryOrdersPage() {
                       </svg>
                     </button>
                   ) : (
-                    <span className="w-8 shrink-0" />
+                    <span className="w-9 shrink-0" />
                   )}
                 </div>
               </div>
               {isOpen && canExpand && (
-                <div className="bg-[#FAFAFA] border-t border-[#E7E7E7] px-4 tablet:px-6 py-4 tablet:py-6 flex flex-col gap-4 tablet:gap-6">
+                <div className="bg-white border-t border-[#E7E7E7] px-4 tablet:px-6 py-4 tablet:py-6 flex flex-col gap-4 tablet:gap-6">
                   {/* Items list */}
                   <div className="flex flex-col">
                     <div className="hidden tablet:grid grid-cols-[auto_1fr_100px_100px_120px] items-center gap-4 text-[12px] text-[#7E7E7E] pb-2 border-b border-[#E7E7E7]">
@@ -321,98 +331,47 @@ export default function HistoryOrdersPage() {
                     ))}
                   </div>
 
-                  {/* Order information */}
-                  <div className="flex flex-col gap-2">
+                  {/* Customer note — inline, top/bottom dividers */}
+                  {order.notes && (
+                    <div className="flex flex-col gap-1 border-t border-[#E7E7E7] pt-4">
+                      <p className="text-[12px] text-[#7E7E7E] leading-4">Note</p>
+                      <p className="text-[14px] text-[#181818] leading-5 whitespace-pre-line">{order.notes}</p>
+                    </div>
+                  )}
+
+                  {/* Order information — simplified per Figma */}
+                  <div className="flex flex-col gap-2 border-t border-[#E7E7E7] pt-4">
                     <p className="text-[14px] font-semibold text-[#181818] leading-5 mb-1">Order information</p>
                     <div className="flex items-center justify-between text-[14px]">
-                      <span className="text-[#7E7E7E]">Products</span>
+                      <span className="text-[#7E7E7E]">Subtotal:</span>
                       <span className="text-[#181818]">{order.productsTotal?.toFixed(2)} €</span>
                     </div>
-                    <div className="flex items-center justify-between text-[14px]">
-                      <span className="text-[#7E7E7E]">Order over 200€</span>
-                      <span className="text-[#FB2F2F]">{order.orderOverDiscount?.toFixed(2)} €</span>
-                    </div>
-                    <div className="flex items-center justify-between text-[14px]">
-                      <span className="text-[#7E7E7E] flex items-center gap-2">
-                        Promocode
-                        <span className="bg-[#FFF4E6] text-[#FF6701] px-2 py-[2px] rounded-[6px] text-[12px] font-semibold inline-flex items-center gap-1">
-                          {order.promo?.code}
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
-                            <path d="M18 6L6 18M6 6l12 12" stroke="#FF6701" strokeWidth="3" strokeLinecap="round" />
-                          </svg>
-                        </span>
-                      </span>
-                      <span className="text-[#FB2F2F]">{order.promo?.discount.toFixed(2)} €</span>
-                    </div>
-                    <div className="flex items-center justify-between text-[14px]">
-                      <span className="text-[#7E7E7E]">Shipment (Shipping outside EU)</span>
-                      <span className="text-[#181818]">{order.shipmentFee?.toFixed(2)} €</span>
-                    </div>
+                    {typeof order.shipmentFee === "number" && (
+                      <div className="flex items-center justify-between text-[14px]">
+                        <span className="text-[#7E7E7E]">Shipping:</span>
+                        <span className={order.shipmentFee < 0 ? "text-[#FB2F2F]" : "text-[#181818]"}>{order.shipmentFee.toFixed(2)} €</span>
+                      </div>
+                    )}
+                    {order.paymentMethod && (
+                      <div className="flex items-center justify-between text-[14px]">
+                        <span className="text-[#7E7E7E]">Payment method:</span>
+                        <span className="text-[#181818] capitalize">{order.paymentMethod === "bitcoin" ? "Bitcoin" : "Bank transfer"}</span>
+                      </div>
+                    )}
                     <div className="flex items-center justify-between pt-2 border-t border-[#E7E7E7] mt-2">
                       <span className="text-[16px] font-semibold text-[#181818]">Total</span>
                       <span className="text-[16px] font-semibold text-[#181818]">{order.total.toFixed(2)} €</span>
                     </div>
                   </div>
 
-                  {/* Customer note */}
-                  {order.notes && (
-                    <div className="flex flex-col gap-1.5 bg-white border border-[#E7E7E7] rounded-[10px] p-4">
-                      <p className="text-[12px] text-[#7E7E7E] leading-4">Order note</p>
-                      <p className="text-[14px] text-[#181818] leading-5 whitespace-pre-line">{order.notes}</p>
-                    </div>
-                  )}
-
-                  {/* Payment details */}
+                  {/* See Payment Details CTA */}
                   {order.paymentMethod && (
-                    <div className="flex flex-col gap-3 bg-white border border-[#E7E7E7] rounded-[10px] p-4">
-                      <div className="flex items-center justify-between">
-                        <p className="text-[14px] font-semibold text-[#181818] leading-5">Payment details</p>
-                        <span className="text-[11px] text-[#7E7E7E] leading-4">
-                          {order.paymentMethod === "bitcoin" ? "Bitcoin" : "Bank transfer"}
-                        </span>
-                      </div>
-                      {order.paymentMethod === "bank" ? (
-                        <div className="flex flex-col gap-2 text-[13px]">
-                          {[
-                            { label: "Beneficiary", value: "Dressmar LTD" },
-                            { label: "IBAN", value: "MT27CFTE28004000000000005416247" },
-                            { label: "BIC", value: "CFTEMTM1" },
-                            { label: "Bank Name", value: "OpenPayd Financial Services Malta Limited" },
-                            { label: "Country", value: "Malta" },
-                            { label: "Payment Methods", value: "SEPA, SEPA Instant, Internal" },
-                            { label: "Payment Reference", value: order.paymentReference ?? "—" },
-                          ].map((r) => (
-                            <div key={r.label} className="flex items-start justify-between gap-3 border-b border-[#F0F0F0] pb-2 last:border-b-0 last:pb-0">
-                              <span className="text-[#7E7E7E] shrink-0">{r.label}</span>
-                              <span className="text-[#181818] font-semibold text-right break-all">{r.value}</span>
-                            </div>
-                          ))}
-                          <p className="text-[11px] text-[#7E7E7E] leading-4 mt-1">
-                            Use ONLY this payment reference in the transfer note. Do not include website name, email, or product names.
-                          </p>
-                        </div>
-                      ) : (
-                        <div className="flex flex-col gap-2 text-[13px]">
-                          <div className="flex items-start justify-between gap-3 border-b border-[#F0F0F0] pb-2">
-                            <span className="text-[#7E7E7E]">Network</span>
-                            <span className="text-[#181818] font-semibold">Bitcoin (BTC)</span>
-                          </div>
-                          <div className="flex items-start justify-between gap-3 border-b border-[#F0F0F0] pb-2">
-                            <span className="text-[#7E7E7E] shrink-0">BTC Address</span>
-                            <span className="text-[#181818] font-semibold font-mono break-all text-right">
-                              3456pGjwv9cijehLts6KRhPaXmrAfRshNj
-                            </span>
-                          </div>
-                          <div className="flex items-start justify-between gap-3">
-                            <span className="text-[#7E7E7E]">Amount (EUR)</span>
-                            <span className="text-[#181818] font-semibold">{order.total.toFixed(2)} €</span>
-                          </div>
-                          <p className="text-[11px] text-[#7E7E7E] leading-4 mt-1">
-                            Send exactly the equivalent BTC amount to the address above. The transaction confirms automatically.
-                          </p>
-                        </div>
-                      )}
-                    </div>
+                    <Link
+                      href={`/checkout/confirmation?method=${order.paymentMethod}&order=${order.number.replace(/^№/, "")}`}
+                      className="self-start h-11 px-6 rounded-[10px] bg-[#181818] hover:bg-black text-white text-[14px] font-semibold flex items-center justify-center transition-colors"
+                    >
+                      See Payment Details
+                    </Link>
                   )}
                 </div>
               )}
