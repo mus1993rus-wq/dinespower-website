@@ -340,7 +340,7 @@ export default function Header() {
       </div>
 
       {/* ========================= DESKTOP HEADER (≥961) ========================= */}
-      {/* Top bar — full width dark */}
+      {/* Top bar — full width dark. pb-6 is the overlap zone for the rounded white bar below (-mt-[16px]). */}
       <div className="hidden desktop:block w-full bg-[#181818] pb-6">
         <div className="max-w-[1340px] mx-auto w-full px-4 flex items-center justify-between h-[40px]">
           <div className="flex-1 flex gap-5 items-center">
@@ -522,9 +522,11 @@ export default function Header() {
             <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors whitespace-nowrap">{t("header.verifyAuthenticity")}</span>
           </button>
           <div className="relative" ref={helpRef}>
-            <button onClick={() => setHelpDropdownOpen(!helpDropdownOpen)} className="flex items-center gap-2 h-[44px] cursor-pointer">
-              <Image src="/images/shop/need-help-icon.svg" alt="" width={24} height={24} className="w-6 h-6" />
-              <span className="text-sm font-semibold text-[#181818] leading-5 hover:text-[#FF6701] transition-colors whitespace-nowrap">{t("header.needHelp")}</span>
+            <button onClick={() => setHelpDropdownOpen(!helpDropdownOpen)} className="flex items-center gap-2 h-[44px] cursor-pointer group">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="shrink-0 text-[#181818] group-hover:text-[#FF6701] transition-colors">
+                <path d="M21.75 12V20.26C21.75 20.68 21.54 21.06 21.2 21.3C20.99 21.44 20.74 21.52 20.5 21.52C20.34 21.52 20.18 21.49 20.04 21.43L16.94 19.79C16.68 19.77 16 19.75 15.81 19.75H11C9.48 19.75 8.25 18.52 8.25 17V15.92H15.25C17.49 15.92 19.25 13.76 19.25 11V9.26C20.65 9.39 21.75 10.56 21.75 12ZM17.75 5.666V10.999C17.75 12.915 16.652 14.416 15.25 14.416H6.84L4.265 17.359C4.041 17.614 3.745 17.751 3.441 17.751C3.317 17.751 3.193 17.729 3.071 17.683C2.573 17.495 2.251 16.965 2.251 16.332V5.666C2.251 3.751 3.349 2.25 4.751 2.25H15.251C16.653 2.25 17.75 3.751 17.75 5.666ZM11.75 10C11.75 9.586 11.414 9.25 11 9.25H6C5.586 9.25 5.25 9.586 5.25 10C5.25 10.414 5.586 10.75 6 10.75H11C11.414 10.75 11.75 10.414 11.75 10ZM14.75 7C14.75 6.586 14.414 6.25 14 6.25H6C5.586 6.25 5.25 6.586 5.25 7C5.25 7.414 5.586 7.75 6 7.75H14C14.414 7.75 14.75 7.414 14.75 7Z" fill="currentColor"/>
+              </svg>
+              <span className="text-sm font-semibold text-[#181818] leading-5 group-hover:text-[#FF6701] transition-colors whitespace-nowrap">{t("header.needHelp")}</span>
             </button>
             {helpDropdownOpen && (
               <div className="absolute top-full right-0 mt-2 bg-white border border-[#E7E7E7] rounded-[12px] shadow-lg p-2 min-w-[240px] z-50">

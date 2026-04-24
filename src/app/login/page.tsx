@@ -83,7 +83,7 @@ function LoginContent() {
   return (
     <>
       <Header />
-      <main className="min-h-screen relative z-10 bg-white">
+      <main className="relative z-10 bg-white">
         {/* Breadcrumb */}
         <div className="max-w-[1340px] mx-auto px-4  py-4">
           <div className="flex items-center gap-2 text-sm text-[#7E7E7E]">
