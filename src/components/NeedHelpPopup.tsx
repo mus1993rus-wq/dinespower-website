@@ -17,8 +17,19 @@ export default function NeedHelpPopup({ isOpen, onClose }: NeedHelpPopupProps) {
   const [phone, setPhone] = useState<string | undefined>("");
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   if (!isOpen) return null;
+
+  const resetAndClose = () => {
+    setSubmitted(false);
+    setName("");
+    setPhone("");
+    setEmail("");
+    setComment("");
+    setAgreed(false);
+    onClose();
+  };
 
   const options = [
     {
@@ -55,11 +66,11 @@ export default function NeedHelpPopup({ isOpen, onClose }: NeedHelpPopupProps) {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-stretch tablet:items-center justify-center tablet:p-4">
-      <div className="absolute inset-0 bg-black/50 hidden tablet:block" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/50 hidden tablet:block" onClick={resetAndClose} />
       <div className="relative bg-white tablet:rounded-[16px] p-4 tablet:p-10 max-w-none tablet:max-w-[680px] w-full z-10 max-h-screen tablet:max-h-[90vh] overflow-y-auto">
         {/* Close button */}
         <button
-          onClick={onClose}
+          onClick={resetAndClose}
           className="cursor-pointer absolute top-5 right-5 text-[#7E7E7E] hover:text-[#181818] transition-colors"
           aria-label="Close"
         >
@@ -68,6 +79,34 @@ export default function NeedHelpPopup({ isOpen, onClose }: NeedHelpPopupProps) {
           </svg>
         </button>
 
+        {submitted ? (
+          /* Success state — Figma 2483:37777 */
+          <div className="flex flex-col items-center text-center gap-6 py-8 tablet:py-10">
+            <div className="relative w-16 h-16 flex items-center justify-center">
+              <div className="absolute inset-0 rounded-full bg-[#E8F8EE]" />
+              <div className="absolute inset-2 rounded-full bg-[#00B638] flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            </div>
+            <div className="flex flex-col gap-3 max-w-[480px]">
+              <h2 className="text-[22px] tablet:text-[24px] font-extrabold text-[#181818] leading-[30px]">
+                The message was sent successfully
+              </h2>
+              <p className="text-[14px] text-[#7E7E7E] leading-5">
+                Thank you. Our managers will process your message as soon as possible.
+              </p>
+            </div>
+            <button
+              onClick={resetAndClose}
+              className="cursor-pointer h-[52px] px-10 bg-[#181818] hover:bg-black text-white text-[16px] font-semibold rounded-[12px] transition-colors"
+            >
+              Got It
+            </button>
+          </div>
+        ) : (
+        <>
         {/* Title + subtitle */}
         <div className="flex flex-col gap-2 mb-6">
           <h2 className="text-[28px] font-extrabold text-center text-[#181818] leading-[34px]">Need Help?</h2>
@@ -76,7 +115,7 @@ export default function NeedHelpPopup({ isOpen, onClose }: NeedHelpPopupProps) {
           </p>
         </div>
 
-        <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+        <form className="flex flex-col gap-4" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
           {/* Name + Phone */}
           <div className="grid grid-cols-2 gap-3">
             <input
@@ -171,6 +210,8 @@ export default function NeedHelpPopup({ isOpen, onClose }: NeedHelpPopupProps) {
             Send Request
           </button>
         </form>
+        </>
+        )}
       </div>
     </div>
   );
