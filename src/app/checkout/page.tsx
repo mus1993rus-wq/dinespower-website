@@ -46,7 +46,7 @@ export default function CheckoutPage() {
   const productsTotal = orderItems.reduce((sum, i) => sum + i.price * i.qty, 0);
   const discount = productsTotal >= 200 ? 11.5 : 0;
   const total = productsTotal - discount;
-  const formValid = firstName && lastName && email && country && street && zip;
+  const formValid = firstName && lastName && email && country && city && street && zip;
 
   const handleConfirmAndPay = () => {
     if (!formValid) return;
@@ -250,8 +250,11 @@ export default function CheckoutPage() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </div>
               <div className="flex flex-col tablet:flex-row gap-3 tablet:gap-2">
-                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} tablet:flex-[50] min-w-0`} />
-                <div className="tablet:flex-[29] min-w-0 relative">
+                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} tablet:flex-[60] min-w-0`} />
+                <input type="text" placeholder="Town / City *" value={city} onChange={(e) => setCity(e.target.value)} className={`${inputClass} tablet:flex-[40] min-w-0`} />
+              </div>
+              <div className="flex flex-col tablet:flex-row gap-3 tablet:gap-2">
+                <div className="tablet:flex-[60] min-w-0 relative">
                   <select
                     value={stateRegion}
                     onChange={(e) => setStateRegion(e.target.value)}
@@ -262,7 +265,7 @@ export default function CheckoutPage() {
                   </select>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
-                <input type="text" placeholder="Post Code / ZIP *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} tablet:flex-[21] min-w-0`} />
+                <input type="text" placeholder="Post Code / ZIP *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} tablet:flex-[40] min-w-0`} />
               </div>
             </div>
 

@@ -24,7 +24,8 @@ const brands = [
     origin: "India · Premium Injectables & Orals",
     description: "Premium peptide and health line. Innovative formulas for athletes",
     bgColor: "#F5ECE6",
-    image: "/images/shop/verify-popup/Astera.png",
+    bgImage: "/images/shop/verify-popup/Astera.png",
+    logo: "/images/shop/verify-popup/logo-astera.png",
     verifyPartner: "https://asteralabs.org/verify-seller/",
   },
   {
@@ -32,7 +33,8 @@ const brands = [
     origin: "India · Pharmaceutical Grade",
     description: "Largest line of injectable and oral preparations. Official representative in Europe",
     bgColor: "#E8EDF2",
-    image: "/images/shop/verify-popup/DM.png",
+    bgImage: "/images/shop/verify-popup/DM.png",
+    logo: "/images/shop/verify-popup/logo-dm.png",
     verifyPartner: "https://deusmedical.com/verify/verifyseller/",
   },
   {
@@ -40,7 +42,8 @@ const brands = [
     origin: "Czech Republic · Lab Testing",
     description: "SARMS and fat burner specialist. All products with laboratory quality tests",
     bgColor: "#E5EEF5",
-    image: "/images/shop/verify-popup/Biaxol.png",
+    bgImage: "/images/shop/verify-popup/Biaxol.png",
+    logo: "/images/shop/verify-popup/logo-biaxol.png",
     verifyPartner: "https://biaxol.com/verify-seller/",
   },
 ];
@@ -150,18 +153,28 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 tablet:grid-cols-3 gap-6">
             {brands.map((brand) => (
               <div key={brand.name} className="flex flex-col">
-                {/* Top: tinted area with the brand logo centered */}
+                {/* Top: tinted area — scattered-product bg + centered brand logo per Figma */}
                 <div
-                  className="relative h-[200px] rounded-[16px] flex items-center justify-center overflow-hidden"
+                  className="relative h-[200px] rounded-[16px] overflow-hidden"
                   style={{ background: brand.bgColor }}
                 >
                   <Image
-                    src={brand.image}
-                    alt={brand.name}
+                    src={brand.bgImage}
+                    alt=""
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
-                    className="object-contain object-center p-6"
+                    className="object-cover object-center pointer-events-none"
+                    aria-hidden
                   />
+                  <div className="absolute inset-0 flex items-center justify-center px-6">
+                    <Image
+                      src={brand.logo}
+                      alt={brand.name}
+                      width={240}
+                      height={80}
+                      className="object-contain max-w-[70%] max-h-[60%] drop-shadow-sm"
+                    />
+                  </div>
                 </div>
 
                 {/* Bottom: white text card */}
