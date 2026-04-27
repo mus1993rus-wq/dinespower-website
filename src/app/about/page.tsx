@@ -23,27 +23,21 @@ const brands = [
     name: "ASTERA LABS",
     origin: "India · Premium Injectables & Orals",
     description: "Premium peptide and health line. Innovative formulas for athletes",
-    bgColor: "#F5ECE6",
-    bgImage: "/images/shop/verify-popup/Astera.png",
-    logo: "/images/shop/verify-popup/logo-astera.png",
+    banner: "/images/shop/about/brand-astera.png",
     verifyPartner: "https://asteralabs.org/verify-seller/",
   },
   {
     name: "DEUS MEDICAL",
     origin: "India · Pharmaceutical Grade",
     description: "Largest line of injectable and oral preparations. Official representative in Europe",
-    bgColor: "#E8EDF2",
-    bgImage: "/images/shop/verify-popup/DM.png",
-    logo: "/images/shop/verify-popup/logo-dm.png",
+    banner: "/images/shop/about/brand-dm.png",
     verifyPartner: "https://deusmedical.com/verify/verifyseller/",
   },
   {
     name: "BIAXOL",
     origin: "Czech Republic · Lab Testing",
     description: "SARMS and fat burner specialist. All products with laboratory quality tests",
-    bgColor: "#E5EEF5",
-    bgImage: "/images/shop/verify-popup/Biaxol.png",
-    logo: "/images/shop/verify-popup/logo-biaxol.png",
+    banner: "/images/shop/about/brand-biaxol.png",
     verifyPartner: "https://biaxol.com/verify-seller/",
   },
 ];
@@ -74,7 +68,7 @@ export default function AboutPage() {
             />
             <div className="relative z-10 py-12 tablet:py-20 px-6 tablet:px-8 text-center flex flex-col items-center gap-3 tablet:gap-4">
               <p className="text-[12px] tablet:text-[14px] text-white/80 leading-5">Who we are</p>
-              <h1 className="font-extrabold italic uppercase text-[24px] leading-[30px] tablet:text-[40px] tablet:leading-[48px]">
+              <h1 className="font-extrabold uppercase text-[24px] leading-[30px] tablet:text-[40px] tablet:leading-[48px]">
                 <span className="text-white">Official Distributor</span>
                 <br />
                 <span className="text-[#FF6701]">Of Trusted Brands In Europe</span>
@@ -153,28 +147,15 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 tablet:grid-cols-3 gap-6">
             {brands.map((brand) => (
               <div key={brand.name} className="flex flex-col">
-                {/* Top: tinted area — scattered-product bg + centered brand logo per Figma */}
-                <div
-                  className="relative h-[200px] rounded-[16px] overflow-hidden"
-                  style={{ background: brand.bgColor }}
-                >
+                {/* Composite brand banner (logo + scattered products baked in) */}
+                <div className="relative aspect-[2/1] rounded-[16px] overflow-hidden">
                   <Image
-                    src={brand.bgImage}
-                    alt=""
+                    src={brand.banner}
+                    alt={brand.name}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
                     className="object-cover object-center pointer-events-none"
-                    aria-hidden
                   />
-                  <div className="absolute inset-0 flex items-center justify-center px-6">
-                    <Image
-                      src={brand.logo}
-                      alt={brand.name}
-                      width={240}
-                      height={80}
-                      className="object-contain max-w-[70%] max-h-[60%] drop-shadow-sm"
-                    />
-                  </div>
                 </div>
 
                 {/* Bottom: white text card */}

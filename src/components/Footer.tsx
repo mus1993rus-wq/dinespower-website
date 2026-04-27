@@ -145,14 +145,14 @@ export default function Footer() {
             {/* Emails */}
             <div className="flex flex-col gap-4">
               <div className="flex gap-3 items-start">
-                <Image src="/images/shop/email-icon.svg" alt="" width={20} height={20} className="mt-0.5" />
+                <Image src="/images/shop/email-icon.svg" alt="" width={20} height={15} className="mt-1 shrink-0" />
                 <div>
                   <a href="mailto:info@dinespower.info" className="text-sm text-white leading-5 hover:text-[#FF6701] transition-colors">info@dinespower.info</a>
                   <p className="text-sm text-[#7E7E7E] leading-5">For All Questions</p>
                 </div>
               </div>
               <div className="flex gap-3 items-start">
-                <Image src="/images/shop/email-sales.svg" alt="" width={20} height={20} className="mt-0.5" />
+                <Image src="/images/shop/email-sales.svg" alt="" width={20} height={15} className="mt-1 shrink-0" />
                 <div>
                   <a href="mailto:sales@dinespower.info" className="text-sm text-white leading-5 hover:text-[#FF6701] transition-colors">sales@dinespower.info</a>
                   <p className="text-sm text-[#7E7E7E] leading-5">Wholesale orders</p>

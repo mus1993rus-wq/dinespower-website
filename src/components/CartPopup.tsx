@@ -63,7 +63,7 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
   return (
     <div className="fixed inset-0 z-[100]">
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <div className="absolute right-0 top-0 h-full w-[484px] bg-white shadow-xl flex flex-col">
+      <div className="absolute right-0 top-0 h-full w-full tablet:w-[484px] bg-white shadow-xl flex flex-col">
         {/* Header */}
         <div className="shrink-0 border-b border-[#E7E7E7]">
           <div className="flex items-center justify-between px-8 pt-8 pb-4">

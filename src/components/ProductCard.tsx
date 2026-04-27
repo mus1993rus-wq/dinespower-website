@@ -86,12 +86,12 @@ export default function ProductCard({ brand, name, dosage, price, oldPrice, imag
             aria-label={`Add ${name} to cart`}
             className="group cursor-pointer relative bg-[#FF6701] hover:bg-[#E65D00] transition-colors rounded-[10px] w-[52px] h-[36px] tablet:w-auto tablet:h-[40px] tablet:flex-1 tablet:px-4 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6701] focus-visible:ring-offset-2 flex items-center justify-center overflow-hidden"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transition-all duration-300 ease-out group-hover:translate-y-[150%] group-hover:opacity-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="transition-all duration-300 ease-out tablet:group-hover:translate-y-[150%] tablet:group-hover:opacity-0">
               <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M3 6H21" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            <span className="absolute text-[13px] font-semibold text-white whitespace-nowrap transition-all duration-300 ease-out -translate-y-[150%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+            <span className="hidden tablet:inline absolute text-[13px] font-semibold text-white whitespace-nowrap transition-all duration-300 ease-out -translate-y-[150%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
               {t("cta.addToCart")}
             </span>
           </button>

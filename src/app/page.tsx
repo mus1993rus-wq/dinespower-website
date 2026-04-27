@@ -95,7 +95,7 @@ function HeroBanner() {
   }, []);
 
   return (
-    <section className="max-w-[1340px] mx-auto mt-4 tablet:mt-6 tablet:px-4 ">
+    <section className="max-w-[1340px] mx-auto tablet:mt-6 tablet:px-4 ">
       <div className="flex flex-col desktop:flex-row gap-3 tablet:gap-4 desktop:gap-[16px]">
         {/* Main banner — 66% at desktop (961+), full width below */}
         <div className="w-full desktop:basis-[66%] desktop:grow-0 aspect-[884/467] relative tablet:rounded-[16px] overflow-hidden group">
@@ -124,10 +124,10 @@ function HeroBanner() {
 
         {/* Side banners — 2-col grid on mobile/tablet; stacked flex at desktop+ filling hero height */}
         <div className="grid grid-cols-2 gap-3 tablet:gap-4 px-4 tablet:px-0 desktop:flex desktop:flex-col desktop:gap-[16px] desktop:basis-[33%] desktop:grow-0 desktop:self-stretch">
-          <Link href="/catalog?category=sex-support" className="aspect-[440/225] desktop:aspect-auto desktop:flex-1 rounded-[16px] overflow-hidden relative group block cursor-pointer">
+          <Link href="/catalog?category=sex-support" className="aspect-[440/225] desktop:aspect-auto desktop:flex-1 rounded-[10px] tablet:rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-sexboost.png" alt="Sex Boost" fill sizes="(max-width: 960px) 50vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
-          <Link href="/catalog?category=health" className="aspect-[440/226] desktop:aspect-auto desktop:flex-1 rounded-[16px] overflow-hidden relative group block cursor-pointer">
+          <Link href="/catalog?category=health" className="aspect-[440/226] desktop:aspect-auto desktop:flex-1 rounded-[10px] tablet:rounded-[16px] overflow-hidden relative group block cursor-pointer">
             <Image src="/images/shop/side-cbd.png" alt="CBD" fill sizes="(max-width: 960px) 50vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
           </Link>
         </div>
@@ -266,42 +266,79 @@ function ProductSection({ title, products, className = "", promoCategoryName }: 
 function CategoryBanners() {
   return (
     <section className="max-w-[1340px] mx-auto mt-6 tablet:mt-10 desktop:mt-[65px] px-4 ">
-      <div className="flex flex-col desktop:flex-row gap-4 desktop:gap-[16px]">
+      {/* Mobile (≤640): stacked layout per Figma 2047:22469 */}
+      <div className="tablet:hidden flex flex-col gap-3">
+        {/* Recovery */}
+        <Link href="/catalog?category=sarms" className="rounded-[16px] overflow-hidden relative flex flex-col items-center bg-[#181818]">
+          <Image src="/images/shop/banner-bg-dark.png" alt="" fill sizes="100vw" className="object-cover pointer-events-none" />
+          <div className="relative z-10 h-[180px] w-full flex items-center justify-center">
+            <Image src="/images/shop/banner-product-recovery.png" alt="Recovery products" width={233} height={180} className="object-contain max-h-[180px] w-auto" />
+          </div>
+          <div className="relative z-10 w-full flex flex-col items-center gap-4 px-4 pb-4">
+            <h3 className="text-[18px] font-extrabold italic leading-[22px] text-center capitalize">
+              <span className="text-[#FF6701]">Faster muscle recovery &</span>{" "}
+              <span className="text-white">reduced body fat</span>
+            </h3>
+            <span className="bg-white border border-[#E7E7E7] rounded-[8px] h-10 px-6 text-[14px] font-semibold text-black inline-flex items-center justify-center">
+              See More
+            </span>
+          </div>
+        </Link>
+        {/* Libido */}
+        <Link href="/catalog?category=sex-support" className="rounded-[16px] overflow-hidden relative flex flex-col items-center bg-[#181818]">
+          <Image src="/images/shop/banner-bg-dark.png" alt="" fill sizes="100vw" className="object-cover pointer-events-none" />
+          <div className="relative z-10 h-[180px] w-full flex items-center justify-center">
+            <Image src="/images/shop/banner-product-libido.png" alt="Libido products" width={233} height={180} className="object-contain max-h-[180px] w-auto" />
+          </div>
+          <div className="relative z-10 w-full flex flex-col items-center gap-4 px-4 pb-4">
+            <h3 className="text-[18px] font-extrabold italic leading-[22px] text-center capitalize">
+              <span className="text-[#FF6701]">Stacks for high libido</span>{" "}
+              <span className="text-white">and fat burning</span>
+            </h3>
+            <span className="bg-white border border-[#E7E7E7] rounded-[8px] h-10 px-6 text-[14px] font-semibold text-black inline-flex items-center justify-center">
+              See More
+            </span>
+          </div>
+        </Link>
+      </div>
+
+      {/* Tablet+ (≥641): original side-by-side layout */}
+      <div className="hidden tablet:flex flex-col desktop:flex-row gap-4 desktop:gap-[16px]">
         {/* Left banner - Recovery */}
-        <div className="flex-1 h-[200px] tablet:h-[240px] desktop:h-[272px] rounded-[16px] overflow-hidden relative group">
+        <div className="desktop:flex-1 h-[240px] desktop:h-[272px] rounded-[16px] overflow-hidden relative group">
           <Link href="/catalog?category=sarms" aria-label="Faster Muscle Recovery" className="absolute inset-0 z-0">
             <Image src="/images/shop/banner-bg-dark.png" alt="" fill sizes="(max-width: 960px) 100vw, 50vw" className="object-cover" />
           </Link>
-          <div className="absolute left-5 tablet:left-8 desktop:left-6 wide:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3 tablet:gap-5 desktop:gap-4 wide:gap-[32px] w-[55%] tablet:w-[58%] desktop:w-[60%] wide:w-[250px] pointer-events-none">
-            <h3 className="text-[16px] tablet:text-[24px] desktop:text-[20px] wide:text-[28px] font-extrabold italic leading-[1.22] capitalize">
+          <div className="absolute left-8 desktop:left-6 wide:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-5 desktop:gap-4 wide:gap-[32px] w-[58%] desktop:w-[60%] wide:w-[250px] pointer-events-none">
+            <h3 className="text-[24px] desktop:text-[20px] wide:text-[28px] font-extrabold italic leading-[1.22] capitalize">
               <span className="text-[#FF6701]">Faster Muscle<br />Recovery &</span>{" "}
               <span className="text-white">Reduced Body Fat</span>
             </h3>
-            <Link href="/catalog?category=sarms" className="pointer-events-auto cursor-pointer w-fit h-[36px] tablet:h-[40px] wide:h-[44px] px-4 tablet:px-5 wide:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[12px] tablet:text-[13px] wide:text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+            <Link href="/catalog?category=sarms" className="pointer-events-auto cursor-pointer w-fit h-[40px] wide:h-[44px] px-5 wide:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[13px] wide:text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
               See More
             </Link>
           </div>
-          <div className="absolute right-0 top-0 h-full w-[150px] tablet:w-[280px] desktop:w-[180px] wide:w-[350px] z-[5] pointer-events-none">
-            <Image src="/images/shop/banner-product-recovery.png" alt="Recovery products" fill sizes="(max-width: 640px) 150px, (max-width: 1280px) 280px, 350px" className="object-contain object-right-bottom" />
+          <div className="absolute right-0 top-0 h-full w-[280px] desktop:w-[180px] wide:w-[350px] z-[5] pointer-events-none">
+            <Image src="/images/shop/banner-product-recovery.png" alt="Recovery products" fill sizes="(max-width: 1280px) 280px, 350px" className="object-contain object-right-bottom" />
           </div>
         </div>
 
         {/* Right banner - Libido */}
-        <div className="flex-1 h-[200px] tablet:h-[240px] desktop:h-[272px] rounded-[16px] overflow-hidden relative group">
+        <div className="desktop:flex-1 h-[240px] desktop:h-[272px] rounded-[16px] overflow-hidden relative group">
           <Link href="/catalog?category=sex-support" aria-label="Stacks For High Libido" className="absolute inset-0 z-0">
             <Image src="/images/shop/banner-bg-dark.png" alt="" fill sizes="(max-width: 960px) 100vw, 50vw" className="object-cover" />
           </Link>
-          <div className="absolute left-5 tablet:left-8 desktop:left-6 wide:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3 tablet:gap-5 desktop:gap-4 wide:gap-[32px] w-[55%] tablet:w-[58%] desktop:w-[60%] wide:w-[250px] pointer-events-none">
-            <h3 className="text-[16px] tablet:text-[24px] desktop:text-[20px] wide:text-[28px] font-extrabold italic leading-[1.22] capitalize">
+          <div className="absolute left-8 desktop:left-6 wide:left-[48px] top-1/2 -translate-y-1/2 z-10 flex flex-col gap-5 desktop:gap-4 wide:gap-[32px] w-[58%] desktop:w-[60%] wide:w-[250px] pointer-events-none">
+            <h3 className="text-[24px] desktop:text-[20px] wide:text-[28px] font-extrabold italic leading-[1.22] capitalize">
               <span className="text-[#FF6701]">Stacks For<br />High Libido </span>
               <span className="text-white">And Fat Burning</span>
             </h3>
-            <Link href="/catalog?category=sex-support" className="pointer-events-auto cursor-pointer w-fit h-[36px] tablet:h-[40px] wide:h-[44px] px-4 tablet:px-5 wide:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[12px] tablet:text-[13px] wide:text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
+            <Link href="/catalog?category=sex-support" className="pointer-events-auto cursor-pointer w-fit h-[40px] wide:h-[44px] px-5 wide:px-[32px] rounded-[8px] border border-[#CBCBCB] bg-white text-black text-[13px] wide:text-[14px] font-semibold flex items-center hover:bg-[#E7E7E7] hover:border-transparent transition-colors">
               See More
             </Link>
           </div>
-          <div className="absolute right-0 top-0 h-full w-[150px] tablet:w-[280px] desktop:w-[180px] wide:w-[350px] z-[5] pointer-events-none">
-            <Image src="/images/shop/banner-product-libido.png" alt="Libido products" fill sizes="(max-width: 640px) 150px, (max-width: 1280px) 280px, 350px" className="object-contain object-right-bottom" />
+          <div className="absolute right-0 top-0 h-full w-[280px] desktop:w-[180px] wide:w-[350px] z-[5] pointer-events-none">
+            <Image src="/images/shop/banner-product-libido.png" alt="Libido products" fill sizes="(max-width: 1280px) 280px, 350px" className="object-contain object-right-bottom" />
           </div>
         </div>
       </div>

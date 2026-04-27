@@ -12,9 +12,7 @@ const brands = [
     name: "ASTERA LABS",
     origin: "India · Premium Injectables & Orals",
     desc: "Premium peptide and health line. Innovative formulas for athletes",
-    bgColor: "#F5ECE6",
-    bgImage: "/images/shop/verify-popup/Astera.png",
-    logo: "/images/shop/verify-popup/logo-astera.png",
+    banner: "/images/shop/verify-popup/banner-astera.png",
     verifyPartner: "https://asteralabs.org/verify-seller/",
     verifyProduct: "https://asteracheck.com",
   },
@@ -22,9 +20,7 @@ const brands = [
     name: "DEUS MEDICAL",
     origin: "India · Pharmaceutical Grade",
     desc: "Largest line of injectable and oral preparations. Official representative in Europe",
-    bgColor: "#E8EDF2",
-    bgImage: "/images/shop/verify-popup/DM.png",
-    logo: "/images/shop/verify-popup/logo-dm.png",
+    banner: "/images/shop/verify-popup/banner-dm.png",
     verifyPartner: "https://deusmedical.com/verify/verifyseller/",
     verifyProduct: "https://deusmedical.com/verify/verify-product/",
   },
@@ -32,9 +28,7 @@ const brands = [
     name: "BIAXOL",
     origin: "Czech Republic · Lab Testing",
     desc: "SARMS and fat burner specialist. All products with laboratory quality tests",
-    bgColor: "#E5EEF5",
-    bgImage: "/images/shop/verify-popup/Biaxol.png",
-    logo: "/images/shop/verify-popup/logo-biaxol.png",
+    banner: "/images/shop/verify-popup/banner-biaxol.png",
     verifyPartner: "https://biaxol.com/verify-seller/",
     verifyProduct: "https://biaxol.com/check/",
   },
@@ -66,28 +60,15 @@ export default function VerifyPopup({ isOpen, onClose }: VerifyPopupProps) {
         <div className="grid grid-cols-1 tablet:grid-cols-3 gap-6">
           {brands.map((brand) => (
             <div key={brand.name} className="flex flex-col">
-              {/* Top: tinted area — scattered-product bg + centered brand logo per Figma */}
-              <div
-                className="relative h-[200px] rounded-[16px] overflow-hidden"
-                style={{ background: brand.bgColor }}
-              >
+              {/* Composite brand banner (logo + scattered products baked in) */}
+              <div className="relative aspect-[16/10] rounded-[16px] overflow-hidden">
                 <Image
-                  src={brand.bgImage}
-                  alt=""
+                  src={brand.banner}
+                  alt={brand.name}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 280px"
                   className="object-cover object-center pointer-events-none"
-                  aria-hidden
                 />
-                <div className="absolute inset-0 flex items-center justify-center px-6">
-                  <Image
-                    src={brand.logo}
-                    alt={brand.name}
-                    width={240}
-                    height={80}
-                    className="object-contain max-w-[70%] max-h-[60%] drop-shadow-sm"
-                  />
-                </div>
               </div>
 
               {/* Bottom: white text card + 2 buttons */}

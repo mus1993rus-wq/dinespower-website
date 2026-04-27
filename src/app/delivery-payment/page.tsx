@@ -70,47 +70,43 @@ export default function DeliveryPaymentPage() {
                 <h2 className="text-[20px] tablet:text-[24px] font-extrabold text-[#181818] leading-[26px] tablet:leading-[30px] mb-2">Payment Methods</h2>
                 <p className="text-sm text-[#7E7E7E] mb-8">Everything You Need To Know Before Placing An Order</p>
 
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-4">
                   {/* Bank Transfer Card */}
-                  <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-5 tablet:p-8 flex items-start gap-4 tablet:gap-6">
-                    <Image src="/images/shop/delivery-bank.png" alt="Bank transfer" width={80} height={80} className="object-contain shrink-0 w-14 h-14 tablet:w-20 tablet:h-20" />
-                    <div className="flex-1">
-                      <h3 className="text-[18px] font-extrabold text-[#181818] mb-3">Bank transfer</h3>
-                      <ul className="flex flex-col gap-2">
-                        {[
-                          "The preferred and most reliable payment method",
-                          "Always available \u2013 never suspended or restricted",
-                          "Fast processing with instant network confirmation",
-                          "Contact your manager for the wallet address and assistance",
-                        ].map((item, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <div className="w-[5px] h-[5px] rounded-full bg-[#181818] mt-[8px] shrink-0" />
-                            <span className="text-[14px] text-[#7E7E7E] leading-[22px]">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                  <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-3 tablet:p-4">
+                    <div className="flex items-center gap-4">
+                      <Image src="/images/shop/delivery-bank.png" alt="Bank Transfer" width={64} height={64} className="object-contain shrink-0 w-16 h-16" />
+                      <h3 className="text-[16px] font-semibold text-black leading-6">Bank Transfer</h3>
                     </div>
+                    <ul className="list-disc mt-3 ps-[18px] text-[12px] text-[#4D4D4D] leading-4 flex flex-col gap-0">
+                      {[
+                        "The preferred and most reliable payment method",
+                        "Always available \u2013 never suspended or restricted",
+                        "Fast processing with instant network confirmation",
+                        "Contact your manager for the wallet address and assistance",
+                      ].map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
                   </div>
 
                   {/* Bitcoin Card */}
-                  <div className="bg-white border border-[#E7E7E7] rounded-[16px] p-5 tablet:p-8 flex flex-col tablet:flex-row items-start gap-4 tablet:gap-6">
-                    <Image src="/images/shop/delivery-bitcoin.png" alt="Bitcoin" width={80} height={80} className="object-contain shrink-0 w-14 h-14 tablet:w-20 tablet:h-20" />
-                    <div className="flex-1">
-                      <h3 className="text-[18px] font-extrabold text-[#181818] mb-3">Bitcoin</h3>
-                      <ul className="flex flex-col gap-2">
-                        {[
-                          "Telegraphic Transfer (wire) to company bank account",
-                          "Processing time: 1\u20133 business days",
-                          "Note: may be temporarily suspended without prior notice",
-                        ].map((item, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <div className="w-[5px] h-[5px] rounded-full bg-[#181818] mt-[8px] shrink-0" />
-                            <span className="text-[14px] text-[#7E7E7E] leading-[22px]">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                  <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-3 tablet:p-4">
+                    <div className="flex items-center gap-4">
+                      <Image src="/images/shop/delivery-bitcoin.png" alt="Bitcoin" width={64} height={64} className="object-contain shrink-0 w-16 h-16" />
+                      <div className="flex items-center gap-[11px]">
+                        <h3 className="text-[16px] font-semibold text-black leading-6">Bitcoin</h3>
+                        <span className="bg-[#FF6701]/10 text-[#FF6701] text-[12px] leading-4 px-4 py-1 rounded-[28px] whitespace-nowrap">Recommended</span>
+                      </div>
                     </div>
-                    <span className="bg-[#FFF3EB] text-[#FF6701] text-[13px] font-semibold px-4 py-2 rounded-full shrink-0 whitespace-nowrap">We recommend</span>
+                    <ul className="list-disc mt-3 ps-[18px] text-[12px] text-[#4D4D4D] leading-4 flex flex-col gap-0">
+                      {[
+                        "Telegraphic Transfer (wire) to company bank account",
+                        "Processing time: 1\u20133 business days",
+                        "Note: may be temporarily suspended without prior notice",
+                      ].map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </section>

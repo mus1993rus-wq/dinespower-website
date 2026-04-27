@@ -114,6 +114,12 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const onOpenVerify = () => setVerifyOpen(true);
+    window.addEventListener("open-verify-popup", onOpenVerify);
+    return () => window.removeEventListener("open-verify-popup", onOpenVerify);
+  }, []);
+
   return (
     <header className="w-full flex flex-col relative z-50">
       {/* ========================= MOBILE HEADER (≤640) ========================= */}

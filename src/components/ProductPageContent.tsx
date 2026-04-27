@@ -101,15 +101,20 @@ export default function ProductPageContent({ product }: { product: Product }) {
   useEffect(() => {
     const target = buyButtonRef.current;
     if (!target) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Show sticky bar (on desktop) once the main Add-to-Cart is fully out of view
-        setStickyVisible(!entry.isIntersecting);
-      },
-      { threshold: 0, rootMargin: "0px 0px -32px 0px" }
-    );
-    observer.observe(target);
-    return () => observer.disconnect();
+    const update = () => {
+      // Show sticky only after the main Add-to-Cart has scrolled fully
+      // above the viewport. While it's visible or still below (first
+      // screen on mobile), keep the bar hidden.
+      const rect = target.getBoundingClientRect();
+      setStickyVisible(rect.bottom < 0);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
   }, []);
   const [overviewExpanded, setOverviewExpanded] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
@@ -710,13 +715,14 @@ export default function ProductPageContent({ product }: { product: Product }) {
             </div>
           </div>
           <div id="top-injectable-scroll" className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 -mx-4 px-4 tablet:mx-0 tablet:px-0">
-            <Link href="/catalog?category=injectable" className="w-[252px] shrink-0 rounded-[16px] overflow-hidden relative flex items-center justify-center cursor-pointer group" style={{ minHeight: '480px' }}>
-              <Image src="/images/shop/promo-injectable.png" alt="Injectable" fill sizes="252px" className="object-cover" />
+            {/* Promo banner — only on wide (≥1281), hidden below to match homepage pattern */}
+            <Link href={`/catalog?category=${product.categoryLabel.toLowerCase()}`} className="hidden wide:flex w-[252px] shrink-0 rounded-[16px] overflow-hidden relative items-center justify-center cursor-pointer group" style={{ minHeight: '480px' }}>
+              <Image src="/images/shop/promo-injectable.png" alt={product.categoryLabel} fill sizes="252px" className="object-cover" />
               <div className="relative z-10">
                 <span
                   className="bg-white border border-[#E7E7E7] rounded-[8px] h-[44px] px-8 text-[14px] font-semibold text-[#181818] inline-flex items-center justify-center shadow-md group-hover:border-[#181818] transition-colors"
                 >
-                  View All Injectable
+                  View All {product.categoryLabel}
                 </span>
               </div>
             </Link>
@@ -724,18 +730,28 @@ export default function ProductPageContent({ product }: { product: Product }) {
               <ProductCard key={i} {...p} />
             ))}
           </div>
+          {/* See All button — shown everywhere except wide where promo banner handles it */}
+          <Link
+            href={`/catalog?category=${product.categoryLabel.toLowerCase()}`}
+            className="wide:hidden mt-4 flex items-center justify-center h-[44px] bg-[#F7F7F7] rounded-[8px] text-[14px] font-semibold text-[#181818] gap-2 hover:bg-[#E7E7E7] transition-colors"
+          >
+            See All {product.categoryLabel}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
         </div>
 
-        {/* 15. Related Products */}
+        {/* 15. Related Products — Figma 1430:28311 */}
         <div className="max-w-[1340px] mx-auto pb-10 px-4">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-[24px] font-extrabold text-[#181818] leading-[30px]">Related products</h2>
+            <h2 className="text-[22px] tablet:text-[28px] font-extrabold text-black leading-[28px] tablet:leading-[34px]">Related products</h2>
             <div className="flex gap-2">
-              <button onClick={() => { const el = document.getElementById('related-scroll'); if (el) el.scrollBy({ left: -220, behavior: 'smooth' }); }} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors cursor-pointer">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <button onClick={() => { const el = document.getElementById('related-scroll'); if (el) el.scrollBy({ left: -220, behavior: 'smooth' }); }} className="w-[40px] h-[40px] tablet:w-[48px] tablet:h-[48px] rounded-[8px] bg-[#F7F7F7] border border-[#E7E7E7] flex items-center justify-center hover:bg-[#E7E7E7] transition-colors cursor-pointer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
-              <button onClick={() => { const el = document.getElementById('related-scroll'); if (el) el.scrollBy({ left: 220, behavior: 'smooth' }); }} className="w-[40px] h-[40px] rounded-lg border border-[#E7E7E7] flex items-center justify-center hover:border-[#FF6701] transition-colors cursor-pointer">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <button onClick={() => { const el = document.getElementById('related-scroll'); if (el) el.scrollBy({ left: 220, behavior: 'smooth' }); }} className="w-[40px] h-[40px] tablet:w-[48px] tablet:h-[48px] rounded-[8px] bg-[#F7F7F7] border border-[#E7E7E7] flex items-center justify-center hover:bg-[#E7E7E7] transition-colors cursor-pointer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
             </div>
           </div>
@@ -807,8 +823,8 @@ export default function ProductPageContent({ product }: { product: Product }) {
           </div>
         </section>
       </main>
-      {/* Sticky bottom buy bar — always on mobile/tablet; on desktop only after main Add-to-Cart scrolls out of view */}
-      <div className={`fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#E7E7E7] shadow-[0_-4px_16px_rgba(0,0,0,0.08)] transition-transform duration-300 ${stickyVisible ? "" : "desktop:translate-y-full"}`}>
+      {/* Sticky bottom buy bar — only after main Add-to-Cart scrolls out of view (all viewports) */}
+      <div className={`fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#E7E7E7] shadow-[0_-4px_16px_rgba(0,0,0,0.08)] transition-transform duration-300 ${stickyVisible ? "translate-y-0" : "translate-y-full"}`}>
         <div className="max-w-[1340px] mx-auto flex items-center gap-3 desktop:gap-6 px-3 desktop:px-4 py-2.5 desktop:py-4">
           <div className="w-[56px] h-[56px] desktop:w-[64px] desktop:h-[64px] rounded-[8px] bg-white border border-[#E7E7E7] p-1.5 flex items-center justify-center shrink-0">
             <Image src={thumbnails[selectedImage]} alt="" width={48} height={48} className="object-contain" />
