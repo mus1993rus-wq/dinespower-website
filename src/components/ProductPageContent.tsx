@@ -647,7 +647,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
 
                     {/* Review Cards */}
                     {reviews.map((r, i) => (
-                      <div key={i} className="border-b border-[#E7E7E7] py-5">
+                      <div key={i} className="border-b border-[#E7E7E7] last:border-b-0 py-5">
                         <div className="flex items-center gap-3 mb-3">
                           <div className="w-10 h-10 rounded-full bg-[#F7F7F7] flex items-center justify-center text-sm font-semibold text-[#181818]">
                             {r.name.charAt(0)}
