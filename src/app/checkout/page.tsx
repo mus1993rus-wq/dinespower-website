@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { useOrders } from "@/context/OrdersContext";
+import { useAuth } from "@/context/AuthContext";
 
 const fallbackItems = [
   { brand: "Deus Medical", name: "3-Trenbomed 150 Injectable Steroid In Ampoules", price: 57, oldPrice: 65, qty: 2, image: "/images/shop/products/injectable-trenbomed-150.jpg" },
@@ -24,6 +25,8 @@ export default function CheckoutPage() {
   const router = useRouter();
   const { items, clearCart } = useCart();
   const { createOrder } = useOrders();
+  const { user, logout } = useAuth();
+  const [helpOpen, setHelpOpen] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<"bank" | "bitcoin">("bitcoin");
   const [promo, setPromo] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -84,13 +87,59 @@ export default function CheckoutPage() {
           <Link href="/" className="flex items-center">
             <Image src="/images/shop/logo.svg" alt="Dines Power" width={106} height={44} className="object-contain w-[80px] tablet:w-[106px]" />
           </Link>
-          <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('open-help-popup')); }} className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 tablet:h-11 px-3 tablet:w-[140px] tablet:px-0 rounded-[8px] justify-center text-[#B6B6B6] text-[13px] tablet:text-[14px] font-semibold transition-colors">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span className="hidden tablet:inline">Need Help?</span>
-          </Link>
+          <div className="relative">
+            <button
+              onClick={() => setHelpOpen((v) => !v)}
+              className="cursor-pointer flex items-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] h-10 tablet:h-11 px-3 tablet:w-[140px] tablet:px-0 rounded-[8px] justify-center text-[#B6B6B6] hover:text-white text-[13px] tablet:text-[14px] font-semibold transition-colors"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span className="hidden tablet:inline">Need Help?</span>
+            </button>
+            {helpOpen && (
+              <>
+                <div className="fixed inset-0 z-30" onClick={() => setHelpOpen(false)} aria-hidden />
+                <div className="absolute top-full right-0 mt-2 bg-white border border-[#E7E7E7] rounded-[12px] shadow-lg p-2 min-w-[220px] z-40">
+                  <a
+                    href="https://t.me/+eFl6hboMcbxlNDI0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setHelpOpen(false)}
+                    className="flex items-center gap-3 px-3 py-2 rounded-[8px] text-[14px] font-semibold text-[#181818] hover:bg-[#F7F7F7] transition-colors"
+                  >
+                    <span className="w-8 h-8 rounded-full bg-[#00A9DE] flex items-center justify-center shrink-0">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3.32 11.87 18.75 5.92c.72-.26 1.34.17 1.11 1.26L17.23 19.55c-.19.88-.71 1.09-1.44.68l-4-2.95-1.93 1.86c-.21.21-.39.39-.81.39l.29-4.07 7.41-6.7c.32-.28-.07-.44-.5-.16l-9.16 5.77-3.95-1.23c-.86-.27-.88-.86.18-1.27z" fill="white"/></svg>
+                    </span>
+                    Telegram
+                  </a>
+                  <a
+                    href="https://wa.me/dinespower"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setHelpOpen(false)}
+                    className="flex items-center gap-3 px-3 py-2 rounded-[8px] text-[14px] font-semibold text-[#181818] hover:bg-[#F7F7F7] transition-colors"
+                  >
+                    <span className="w-8 h-8 rounded-full bg-[#00D43F] flex items-center justify-center shrink-0">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.1-.6.1l-.9 1c-.1.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.4.8-1.4.1-.2 0-.3 0-.5l-.9-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-1 1.1-1.2 2.4-1.2 2.6 0 .2.6 4 4.1 5.5 2.3 1 3.2.9 4.1.8.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.2-.2-.4-.2zM12 2C6.5 2 2 6.5 2 12c0 1.7.4 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+                    </span>
+                    WhatsApp
+                  </a>
+                  <a
+                    href="mailto:support@dinespower.com"
+                    onClick={() => setHelpOpen(false)}
+                    className="flex items-center gap-3 px-3 py-2 rounded-[8px] text-[14px] font-semibold text-[#181818] hover:bg-[#F7F7F7] transition-colors"
+                  >
+                    <span className="w-8 h-8 rounded-full bg-[#181818] flex items-center justify-center shrink-0">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 6h18v12H3z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M3 7l9 6 9-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </span>
+                    Mail
+                  </a>
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
 
@@ -102,36 +151,61 @@ export default function CheckoutPage() {
           <div className="w-full desktop:flex-1 wide:flex-none wide:w-[820px] desktop:shrink wide:shrink-0 flex flex-col gap-6 desktop:gap-8 min-w-0">
             {/* Returning customer card */}
             <div className="bg-[#F7F7F7] rounded-[16px] p-2">
-              <div className="flex flex-col tablet:flex-row tablet:items-center gap-3 tablet:gap-4 tablet:pr-4">
-                <div className="flex items-center gap-3 tablet:flex-1 min-w-0">
+              {user ? (
+                /* Authenticated state — Figma 2482:37761 */
+                <div className="flex items-center gap-3 tablet:gap-4 px-2 tablet:pr-4">
                   <div className="w-[44px] h-[44px] tablet:w-[60px] tablet:h-[60px] relative flex items-center justify-center shrink-0">
                     <div className="w-full h-full tablet:w-[55px] tablet:h-[55px] bg-white border border-[#E7E7E7] rounded-[8px] flex items-center justify-center">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="8" r="4" stroke="#181818" strokeWidth="1.5" />
-                        <path d="M4 21c0-4 4-7 8-7s8 3 8 7" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" />
+                        <circle cx="12" cy="8" r="4" fill="#181818" />
+                        <path d="M4 21c0-4 4-7 8-7s8 3 8 7" fill="#181818" />
                       </svg>
                     </div>
                   </div>
-                  <div className="flex-1 min-w-0 flex flex-col gap-0.5">
-                    <p className="text-[16px] font-semibold text-black leading-6 capitalize">Returning Customer?</p>
-                    <p className="text-[14px] text-[#7E7E7E] leading-5">Sign In to Your Account</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[16px] font-semibold text-black leading-6 capitalize truncate">
+                      {user.displayName || `${user.firstName ?? ""}${user.lastName ? "_" + user.lastName : ""}`.trim() || user.email?.split("@")[0]}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => logout()}
+                    className="cursor-pointer shrink-0 bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors"
+                  >
+                    Log Out
+                  </button>
+                </div>
+              ) : (
+                <div className="flex flex-col tablet:flex-row tablet:items-center gap-3 tablet:gap-4 tablet:pr-4">
+                  <div className="flex items-center gap-3 tablet:flex-1 min-w-0">
+                    <div className="w-[44px] h-[44px] tablet:w-[60px] tablet:h-[60px] relative flex items-center justify-center shrink-0">
+                      <div className="w-full h-full tablet:w-[55px] tablet:h-[55px] bg-white border border-[#E7E7E7] rounded-[8px] flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                          <circle cx="12" cy="8" r="4" stroke="#181818" strokeWidth="1.5" />
+                          <path d="M4 21c0-4 4-7 8-7s8 3 8 7" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+                      <p className="text-[16px] font-semibold text-black leading-6 capitalize">Returning Customer?</p>
+                      <p className="text-[14px] text-[#7E7E7E] leading-5">Sign In to Your Account</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-2 tablet:shrink-0">
+                    <button
+                      onClick={() => window.dispatchEvent(new CustomEvent("open-auth-popup", { detail: { mode: "login" } }))}
+                      className="cursor-pointer flex-1 tablet:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors"
+                    >
+                      Sign In<span className="hidden tablet:inline"> to Your Account</span>
+                    </button>
+                    <button
+                      onClick={() => window.dispatchEvent(new CustomEvent("open-auth-popup", { detail: { mode: "register" } }))}
+                      className="cursor-pointer flex-1 tablet:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors"
+                    >
+                      Sign Up
+                    </button>
                   </div>
                 </div>
-                <div className="flex gap-2 tablet:shrink-0">
-                  <button
-                    onClick={() => window.dispatchEvent(new CustomEvent("open-auth-popup", { detail: { mode: "login" } }))}
-                    className="cursor-pointer flex-1 tablet:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors"
-                  >
-                    Sign In<span className="hidden tablet:inline"> to Your Account</span>
-                  </button>
-                  <button
-                    onClick={() => window.dispatchEvent(new CustomEvent("open-auth-popup", { detail: { mode: "register" } }))}
-                    className="cursor-pointer flex-1 tablet:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors"
-                  >
-                    Sign Up
-                  </button>
-                </div>
-              </div>
+              )}
             </div>
 
             {/* Personal Info */}
@@ -305,9 +379,9 @@ export default function CheckoutPage() {
                   <div className="flex items-center justify-between">
                     <p className="text-[16px] font-semibold text-[#181818] leading-6 capitalize">Order Summary</p>
                     <Link href="/cart" className="cursor-pointer flex items-center gap-2 bg-white border border-[#CBCBCB] hover:border-[#181818] px-4 py-2 rounded-[8px] transition-colors">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="#181818">
-                        <path d="M21.28 6.4l-9.54 9.54c-.95.95-3.77 1.39-4.4.76-.63-.63-.2-3.45.75-4.4l9.55-9.55a2.58 2.58 0 113.64 3.65z" />
-                        <path d="M11 4H6a4 4 0 00-4 4v10a4 4 0 004 4h11c2.21 0 3-1.8 3-4v-5" stroke="#181818" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                       <span className="text-[14px] font-semibold text-black leading-5">Edit</span>
                     </Link>
