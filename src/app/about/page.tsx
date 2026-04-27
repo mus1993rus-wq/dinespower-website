@@ -147,33 +147,35 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 tablet:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 tablet:grid-cols-3 gap-6">
             {brands.map((brand) => (
-              <div
-                key={brand.name}
-                className="rounded-[16px] overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.08)] flex flex-col"
-              >
-                {/* Top: tinted image area with full-width product photo */}
-                <div className="relative h-[220px] flex items-center justify-center overflow-hidden" style={{ background: brand.bgColor }}>
+              <div key={brand.name} className="flex flex-col">
+                {/* Top: tinted area with the brand logo centered */}
+                <div
+                  className="relative h-[200px] rounded-[16px] flex items-center justify-center overflow-hidden"
+                  style={{ background: brand.bgColor }}
+                >
                   <Image
                     src={brand.image}
                     alt={brand.name}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
-                    className="object-cover object-center"
+                    className="object-contain object-center p-6"
                   />
                 </div>
 
-                {/* Bottom: white text card (no overlap) */}
-                <div className="bg-white px-5 pt-5 pb-5 flex flex-col flex-1 text-center">
-                  <h3 className="text-[18px] font-extrabold text-[#181818] tracking-wide">{brand.name}</h3>
-                  <p className="text-[11px] text-[#7E7E7E] mt-1 tracking-wide">{brand.origin}</p>
-                  <p className="text-[12px] text-[#7E7E7E] mt-3 leading-[18px] flex-1">{brand.description}</p>
+                {/* Bottom: white text card */}
+                <div className="bg-white px-6 pt-6 pb-0 flex flex-col gap-4 items-center text-center">
+                  <div className="flex flex-col gap-2 w-full">
+                    <h3 className="text-[20px] font-extrabold text-black leading-6 uppercase">{brand.name}</h3>
+                    <p className="text-[12px] text-[#989898] leading-4">{brand.origin}</p>
+                    <p className="text-[14px] text-[#292929] leading-5">{brand.description}</p>
+                  </div>
                   <a
                     href={brand.verifyPartner}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full h-[44px] bg-[#181818] hover:bg-black text-white text-[14px] font-semibold rounded-[10px] transition-colors flex items-center justify-center mt-5"
+                    className="inline-flex items-center justify-center bg-black hover:bg-[#181818] text-white text-[14px] font-semibold rounded-[8px] h-11 px-16 transition-colors"
                   >
                     Verify Partner
                   </a>
