@@ -367,17 +367,15 @@ function ProSellersSection() {
     <section className="w-full mt-6 tablet:mt-10 desktop:mt-[65px] relative overflow-hidden">
       <Image src="/images/shop/pro-sellers-bg.png" alt="" fill sizes="100vw" className="object-cover" />
       <div className="max-w-[1340px] mx-auto py-8 tablet:py-12 desktop:py-[80px] px-4  relative z-10">
-        <ScrollAnimation animation="animate-fade-in-up">
-          <div className="text-center mb-8 tablet:mb-10 desktop:mb-[60px]">
-            <p className="text-[12px] tablet:text-[14px] text-[#B6B6B6] uppercase tracking-[2px] mb-3 tablet:mb-4 font-semibold">Built to Scale</p>
-            <h2 className="text-[24px] tablet:text-[30px] desktop:text-[36px] font-extrabold text-white leading-[30px] tablet:leading-[38px] desktop:leading-[44px]">Built for Professional Sellers</h2>
-            <p className="text-[13px] tablet:text-[14px] text-[#7E7E7E] mt-3 tablet:mt-4 leading-5">We support partners who need reliable supply, stable margins, and fast operations.</p>
-          </div>
-        </ScrollAnimation>
+        <div className="text-center mb-8 tablet:mb-10 desktop:mb-[60px]">
+          <p className="text-[12px] tablet:text-[14px] text-[#B6B6B6] uppercase tracking-[2px] mb-3 tablet:mb-4 font-semibold">Built to Scale</p>
+          <h2 className="text-[24px] tablet:text-[30px] desktop:text-[36px] font-extrabold text-white leading-[30px] tablet:leading-[38px] desktop:leading-[44px]">Built for Professional Sellers</h2>
+          <p className="text-[13px] tablet:text-[14px] text-[#7E7E7E] mt-3 tablet:mt-4 leading-5">We support partners who need reliable supply, stable margins, and fast operations.</p>
+        </div>
 
         <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-3 tablet:gap-4 desktop:gap-[16px]">
           {proSellerCards.map((card, i) => (
-            <ScrollAnimation key={i} animation="animate-fade-in-up" delay={i * 100}>
+            <div key={i}>
               <div className="bg-[#212121] border border-white/[0.08] rounded-[12px] p-4 tablet:p-5 desktop:p-[25px] flex tablet:flex-col items-center gap-4 tablet:gap-6 h-full text-left tablet:text-center">
                 <div className={`shrink-0 flex items-center justify-center ${card.icon.endsWith("pro-delivery.png") ? "w-[64px] tablet:w-[96px] desktop:w-[120px] h-[48px] tablet:h-[72px] desktop:h-[80px]" : "w-[56px] tablet:w-[64px] desktop:w-[80px] h-[56px] tablet:h-[64px] desktop:h-[80px]"}`}>
                   <Image
@@ -397,7 +395,7 @@ function ProSellersSection() {
                   </Link>
                 </div>
               </div>
-            </ScrollAnimation>
+            </div>
           ))}
         </div>
       </div>
