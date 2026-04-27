@@ -105,7 +105,7 @@ export default function SearchPage() {
                 value={query}
                 onChange={(e) => handleQueryChange(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="bg-transparent flex-1 text-[14px] font-semibold text-black placeholder:text-[#7E7E7E] outline-none min-w-0"
+                className="bg-transparent flex-1 text-[16px] font-semibold text-black placeholder:text-[#7E7E7E] outline-none min-w-0"
               />
               {query && (
                 <button onClick={() => { setQuery(""); setSubmitted(false); }} className="text-[#7E7E7E] shrink-0" aria-label="Clear">

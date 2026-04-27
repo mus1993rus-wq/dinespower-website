@@ -292,9 +292,29 @@ export default function LabTestsPage() {
             Lab Tests
           </h1>
 
+          {/* Mobile chip strip — Figma 2246:30453 */}
+          <div className="desktop:hidden sticky top-0 z-40 bg-white -mx-4 px-4 py-1.5 mb-4 overflow-x-auto scrollbar-hide">
+            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex gap-2 w-max">
+              {sidebarCategories.map((cat) => {
+                const active = activeCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => scrollToCategory(cat)}
+                    className={`shrink-0 cursor-pointer flex items-center justify-center rounded-[8px] py-2 text-[14px] font-semibold text-[#181818] leading-5 whitespace-nowrap transition-colors ${
+                      active ? "bg-[#F7F7F7] px-4" : "px-3"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
           <div className="flex flex-col desktop:flex-row gap-6 desktop:gap-10 wide:gap-[80px]">
-            {/* LEFT sidebar — Figma FAQ style */}
-            <div className="w-full desktop:w-[320px] wide:w-[440px] desktop:shrink-0">
+            {/* LEFT sidebar — Figma FAQ style (desktop only) */}
+            <div className="hidden desktop:block desktop:w-[320px] wide:w-[440px] desktop:shrink-0">
               <div className="desktop:sticky desktop:top-4 bg-[#F7F7F7] rounded-[12px] p-4 flex flex-col gap-4">
                 {/* Category menu card */}
                 <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-2 flex flex-col gap-2">

@@ -186,7 +186,7 @@ export default function Header() {
                   placeholder="Search products"
                   value={mobileSearchQuery}
                   onChange={(e) => setMobileSearchQuery(e.target.value)}
-                  className="bg-transparent flex-1 min-w-0 text-[14px] font-semibold text-black placeholder:text-[#7E7E7E] outline-none"
+                  className="bg-transparent flex-1 min-w-0 text-[16px] font-semibold text-black placeholder:text-[#7E7E7E] outline-none"
                 />
                 <button
                   onClick={() => { setMobileSearchOpen(false); setMobileSearchQuery(""); }}

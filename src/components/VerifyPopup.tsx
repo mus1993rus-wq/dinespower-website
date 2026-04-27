@@ -40,11 +40,11 @@ export default function VerifyPopup({ isOpen, onClose }: VerifyPopupProps) {
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center tablet:p-4">
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <div className="relative bg-white tablet:rounded-[24px] px-4 tablet:px-10 pt-10 pb-8 max-w-none tablet:max-w-[920px] w-full max-h-screen tablet:max-h-[92vh] overflow-y-auto z-10">
-        {/* Close */}
+      <div className="relative bg-white tablet:rounded-[24px] max-w-none tablet:max-w-[920px] w-full max-h-screen tablet:max-h-[92vh] flex flex-col z-10">
+        {/* Close — stays pinned even when content scrolls */}
         <button
           onClick={onClose}
-          className="cursor-pointer absolute top-5 right-5 text-[#7E7E7E] hover:text-[#181818] transition-colors"
+          className="cursor-pointer absolute top-5 right-5 z-10 text-[#7E7E7E] hover:text-[#181818] transition-colors"
           aria-label="Close"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -52,12 +52,13 @@ export default function VerifyPopup({ isOpen, onClose }: VerifyPopupProps) {
           </svg>
         </button>
 
-        <h2 className="text-[24px] tablet:text-[28px] font-extrabold text-center text-[#181818] leading-[30px] tablet:leading-[34px] mb-2">Verify Authenticity</h2>
-        <p className="text-[14px] text-[#7E7E7E] text-center mb-8">
-          We work directly with manufacturers, not resellers
-        </p>
+        <div className="overflow-y-auto px-4 tablet:px-10 pt-10 pb-8">
+          <h2 className="text-[24px] tablet:text-[28px] font-extrabold text-center text-[#181818] leading-[30px] tablet:leading-[34px] mb-2">Verify Authenticity</h2>
+          <p className="text-[14px] text-[#7E7E7E] text-center mb-8">
+            We work directly with manufacturers, not resellers
+          </p>
 
-        <div className="grid grid-cols-1 tablet:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 tablet:grid-cols-3 gap-6">
           {brands.map((brand) => (
             <div key={brand.name} className="flex flex-col">
               {/* Composite brand banner (logo + scattered products baked in) */}
@@ -100,6 +101,7 @@ export default function VerifyPopup({ isOpen, onClose }: VerifyPopupProps) {
               </div>
             </div>
           ))}
+          </div>
         </div>
       </div>
     </div>

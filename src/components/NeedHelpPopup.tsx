@@ -117,7 +117,7 @@ export default function NeedHelpPopup({ isOpen, onClose }: NeedHelpPopupProps) {
 
         <form className="flex flex-col gap-4" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
           {/* Name + Phone */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 tablet:grid-cols-2 gap-3">
             <input
               type="text"
               placeholder="Your Name"
