@@ -12,19 +12,19 @@ const cards = [
     title: "My History Orders",
     desc: "View all orders.",
     href: "/account/orders",
-    icon: "/images/account/card-icon.png",
+    icon: "/images/account/card-box-time.svg",
   },
   {
     title: "My Address",
     desc: "View and edit your addresses.",
     href: "/account/address",
-    icon: "/images/account/card-icon.png",
+    icon: "/images/account/card-location.svg",
   },
   {
     title: "Account Details",
     desc: "View and edit your Details.",
     href: "/account/details",
-    icon: "/images/account/card-icon.png",
+    icon: "/images/account/card-user.svg",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function AccountDashboardPage() {
             className="bg-white border border-[#E7E7E7] rounded-[12px] p-6 flex flex-col items-center gap-3 hover:border-[#181818] transition-colors text-center"
           >
             <div className="w-14 h-14 relative">
-              <Image src={c.icon} alt="" fill className="object-contain" />
+              <Image src={c.icon} alt="" fill sizes="56px" className="object-contain" />
             </div>
             <div className="flex flex-col gap-1">
               <p className="text-[16px] font-semibold text-[#181818] leading-6">{c.title}</p>
