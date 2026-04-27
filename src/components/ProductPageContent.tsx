@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -95,6 +95,22 @@ export default function ProductPageContent({ product }: { product: Product }) {
   const [shippingOpen, setShippingOpen] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
   const [verifyOpen, setVerifyOpen] = useState(false);
+  const buyButtonRef = useRef<HTMLButtonElement>(null);
+  const [stickyVisible, setStickyVisible] = useState(false);
+
+  useEffect(() => {
+    const target = buyButtonRef.current;
+    if (!target) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Show sticky bar (on desktop) once the main Add-to-Cart is fully out of view
+        setStickyVisible(!entry.isIntersecting);
+      },
+      { threshold: 0, rootMargin: "0px 0px -32px 0px" }
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
   const [overviewExpanded, setOverviewExpanded] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
   const { addItem } = useCart();
@@ -331,6 +347,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
                 </button>
               </div>
               <button
+                ref={buyButtonRef}
                 onClick={handleAddToCart}
                 className="group cursor-pointer relative w-[266px] bg-[#FF6701] hover:bg-[#E65D00] text-white font-semibold rounded-[8px] h-[48px] flex items-center justify-center gap-3 overflow-hidden transition-colors text-[16px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6701] focus-visible:ring-offset-2"
               >
@@ -790,38 +807,39 @@ export default function ProductPageContent({ product }: { product: Product }) {
           </div>
         </section>
       </main>
-      {/* Sticky bottom buy bar — mobile + tablet only */}
-      <div className="desktop:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#E7E7E7] shadow-[0_-4px_16px_rgba(0,0,0,0.08)]">
-        <div className="flex items-center gap-3 px-3 py-2.5">
-          <div className="w-[56px] h-[56px] rounded-[8px] bg-white border border-[#E7E7E7] p-1.5 flex items-center justify-center shrink-0">
-            <Image src={thumbnails[selectedImage]} alt="" width={44} height={44} className="object-contain" />
+      {/* Sticky bottom buy bar — always on mobile/tablet; on desktop only after main Add-to-Cart scrolls out of view */}
+      <div className={`fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#E7E7E7] shadow-[0_-4px_16px_rgba(0,0,0,0.08)] transition-transform duration-300 ${stickyVisible ? "" : "desktop:translate-y-full"}`}>
+        <div className="max-w-[1340px] mx-auto flex items-center gap-3 desktop:gap-6 px-3 desktop:px-4 py-2.5 desktop:py-4">
+          <div className="w-[56px] h-[56px] desktop:w-[64px] desktop:h-[64px] rounded-[8px] bg-white border border-[#E7E7E7] p-1.5 flex items-center justify-center shrink-0">
+            <Image src={thumbnails[selectedImage]} alt="" width={48} height={48} className="object-contain" />
           </div>
           <div className="flex-1 min-w-0 flex flex-col gap-0.5">
-            <p className="text-[12px] font-semibold text-[#181818] leading-[15px] line-clamp-2">
+            <p className="text-[12px] desktop:text-[16px] font-semibold text-[#181818] leading-[15px] desktop:leading-6 line-clamp-2">
               {product.name}
             </p>
-            {dosageText && <p className="text-[11px] text-[#7E7E7E] leading-4">{dosageText}</p>}
+            {dosageText && <p className="text-[11px] desktop:text-[13px] text-[#7E7E7E] leading-4 desktop:leading-5">{dosageText}</p>}
           </div>
-          <div className="flex flex-col items-end shrink-0">
+          <div className="flex flex-col items-end shrink-0 desktop:flex-row desktop:items-center desktop:gap-3">
             <div className="flex items-baseline gap-1.5">
-              <span className="text-[16px] font-extrabold text-[#FB2F2F] leading-none">{product.price}€</span>
+              <span className="text-[16px] desktop:text-[20px] font-extrabold text-[#FB2F2F] leading-none">{product.price}€</span>
               {product.oldPrice && (
-                <span className="text-[12px] text-[#7E7E7E] line-through leading-none">{product.oldPrice}€</span>
+                <span className="text-[12px] desktop:text-[14px] text-[#7E7E7E] line-through leading-none">{product.oldPrice}€</span>
               )}
             </div>
             {discountPct > 0 && (
-              <span className="bg-[#FB2F2F] text-white text-[10px] font-semibold leading-none px-1.5 py-0.5 rounded-[4px] mt-0.5">Sale -{discountPct}%</span>
+              <span className="bg-[#FB2F2F] text-white text-[10px] font-semibold leading-none px-1.5 py-0.5 rounded-[4px] mt-0.5 desktop:mt-0">Sale -{discountPct}%</span>
             )}
           </div>
           <button
             onClick={handleAddToCart}
-            className="cursor-pointer w-[48px] h-[48px] bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center transition-colors shrink-0"
+            className="cursor-pointer w-[48px] h-[48px] desktop:w-auto desktop:h-12 desktop:px-8 bg-[#FF6701] hover:bg-[#E65D00] rounded-[8px] flex items-center justify-center desktop:gap-3 transition-colors shrink-0"
             aria-label="Add to cart"
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
               <path d="M6 2L3 6V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V6L18 2H6Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M3 6H21M16 10C16 11.06 15.58 12.08 14.83 12.83C14.08 13.58 13.06 14 12 14C10.94 14 9.92 13.58 9.17 12.83C8.42 12.08 8 11.06 8 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
+            <span className="hidden desktop:inline text-[14px] font-semibold text-white">Add to cart</span>
           </button>
         </div>
       </div>
