@@ -43,7 +43,7 @@ export default function CheckoutPage() {
   const productsTotal = orderItems.reduce((sum, i) => sum + i.price * i.qty, 0);
   const discount = productsTotal >= 200 ? 11.5 : 0;
   const total = productsTotal - discount;
-  const formValid = firstName && lastName && email && country && city && street && zip;
+  const formValid = firstName && lastName && email && country && street && zip;
 
   const handleConfirmAndPay = () => {
     if (!formValid) return;
@@ -103,7 +103,7 @@ export default function CheckoutPage() {
             {/* Returning customer card */}
             <div className="bg-[#F7F7F7] rounded-[16px] p-2">
               <div className="flex flex-col tablet:flex-row tablet:items-center gap-3 tablet:gap-4 tablet:pr-4">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 tablet:flex-1 min-w-0">
                   <div className="w-[44px] h-[44px] tablet:w-[60px] tablet:h-[60px] relative flex items-center justify-center shrink-0">
                     <div className="w-full h-full tablet:w-[55px] tablet:h-[55px] bg-white border border-[#E7E7E7] rounded-[8px] flex items-center justify-center">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -112,14 +112,24 @@ export default function CheckoutPage() {
                       </svg>
                     </div>
                   </div>
-                  <div className="flex-1 flex flex-col gap-0.5">
+                  <div className="flex-1 min-w-0 flex flex-col gap-0.5">
                     <p className="text-[16px] font-semibold text-black leading-6 capitalize">Returning Customer?</p>
                     <p className="text-[14px] text-[#7E7E7E] leading-5">Sign In to Your Account</p>
                   </div>
                 </div>
                 <div className="flex gap-2 tablet:shrink-0">
-                  <button className="cursor-pointer flex-1 tablet:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors">Sign In<span className="hidden tablet:inline"> to Your Account</span></button>
-                  <button className="cursor-pointer flex-1 tablet:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors">Sign Up</button>
+                  <button
+                    onClick={() => window.dispatchEvent(new CustomEvent("open-auth-popup", { detail: { mode: "login" } }))}
+                    className="cursor-pointer flex-1 tablet:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors"
+                  >
+                    Sign In<span className="hidden tablet:inline"> to Your Account</span>
+                  </button>
+                  <button
+                    onClick={() => window.dispatchEvent(new CustomEvent("open-auth-popup", { detail: { mode: "register" } }))}
+                    className="cursor-pointer flex-1 tablet:flex-none bg-white border border-[#E7E7E7] hover:border-[#181818] text-[14px] font-semibold text-black h-11 px-6 rounded-[8px] transition-colors"
+                  >
+                    Sign Up
+                  </button>
                 </div>
               </div>
             </div>
@@ -147,43 +157,23 @@ export default function CheckoutPage() {
             {/* Delivery */}
             <div className="flex flex-col gap-3">
               <h2 className="text-[18px] font-semibold text-black leading-[26px]">Delivery</h2>
-              <div className="flex flex-col tablet:flex-row gap-3 tablet:gap-2">
-                <div className="tablet:flex-1 min-w-0 shrink-0 relative">
-                  <select
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
-                    className={`${inputClass} appearance-none cursor-pointer pr-10 ${country ? "text-[#181818]" : "text-[#8A8A8A]"}`}
-                  >
-                    <option value="" disabled>Select Country / Region *</option>
-                    <option value="France">France</option>
-                    <option value="Germany">Germany</option>
-                    <option value="Italy">Italy</option>
-                    <option value="Spain">Spain</option>
-                    <option value="Netherlands">Netherlands</option>
-                    <option value="Poland">Poland</option>
-                    <option value="UK">United Kingdom</option>
-                    <option value="USA">USA</option>
-                  </select>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </div>
-                <div className="tablet:flex-1 min-w-0 shrink-0 relative">
-                  <select
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                    className={`${inputClass} appearance-none cursor-pointer pr-10 ${city ? "text-[#181818]" : "text-[#8A8A8A]"}`}
-                  >
-                    <option value="" disabled>Town / City *</option>
-                    <option value="Paris">Paris</option>
-                    <option value="Berlin">Berlin</option>
-                    <option value="Rome">Rome</option>
-                    <option value="Madrid">Madrid</option>
-                    <option value="Amsterdam">Amsterdam</option>
-                    <option value="Warsaw">Warsaw</option>
-                    <option value="London">London</option>
-                    <option value="New York">New York</option>
-                  </select>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </div>
+              <div className="relative">
+                <select
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  className={`${inputClass} appearance-none cursor-pointer pr-10 ${country ? "text-[#181818]" : "text-[#8A8A8A]"}`}
+                >
+                  <option value="" disabled>Select Country / Region *</option>
+                  <option value="France">France</option>
+                  <option value="Germany">Germany</option>
+                  <option value="Italy">Italy</option>
+                  <option value="Spain">Spain</option>
+                  <option value="Netherlands">Netherlands</option>
+                  <option value="Poland">Poland</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="USA">USA</option>
+                </select>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </div>
               <div className="flex flex-col tablet:flex-row gap-3 tablet:gap-2">
                 <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} tablet:flex-[50] min-w-0`} />

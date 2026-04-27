@@ -10,6 +10,7 @@ const CartPopup = dynamic(() => import("./CartPopup"), { ssr: false });
 const NeedHelpPopup = dynamic(() => import("./NeedHelpPopup"), { ssr: false });
 const CookieConsent = dynamic(() => import("./CookieConsent"), { ssr: false });
 const Analytics = dynamic(() => import("./Analytics"), { ssr: false });
+const AuthPopup = dynamic(() => import("./AuthPopup"), { ssr: false });
 
 function CartPopupConnected() {
   const { isOpen, closeCart } = useCart();
@@ -39,6 +40,7 @@ export default function CartWrapper({ children }: { children: React.ReactNode })
             {children}
             <CartPopupConnected />
             <GlobalHelpPopup />
+            <AuthPopup />
             <CookieConsent />
             <Analytics />
           </CartProvider>
