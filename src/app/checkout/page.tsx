@@ -228,44 +228,63 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            {/* Delivery */}
+            {/* Delivery — Figma 1421:111024 */}
             <div className="flex flex-col gap-3">
               <h2 className="text-[18px] font-semibold text-black leading-[26px]">Delivery</h2>
-              <div className="relative">
-                <select
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  className={`${inputClass} appearance-none cursor-pointer pr-10 ${country ? "text-[#181818]" : "text-[#8A8A8A]"}`}
-                >
-                  <option value="" disabled>Select Country / Region *</option>
-                  <option value="France">France</option>
-                  <option value="Germany">Germany</option>
-                  <option value="Italy">Italy</option>
-                  <option value="Spain">Spain</option>
-                  <option value="Netherlands">Netherlands</option>
-                  <option value="Poland">Poland</option>
-                  <option value="UK">United Kingdom</option>
-                  <option value="USA">USA</option>
-                </select>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </div>
+              {/* Row 1: Country | City — 50/50 selects */}
               <div className="flex flex-col tablet:flex-row gap-3 tablet:gap-2">
-                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} tablet:flex-[60] min-w-0`} />
-                <input type="text" placeholder="Town / City *" value={city} onChange={(e) => setCity(e.target.value)} className={`${inputClass} tablet:flex-[40] min-w-0`} />
+                <div className="tablet:flex-1 min-w-0 relative">
+                  <select
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                    className={`${inputClass} appearance-none cursor-pointer pr-10 ${country ? "text-[#181818]" : "text-[#8A8A8A]"}`}
+                  >
+                    <option value="" disabled>Select Country *</option>
+                    <option value="France">France</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="Poland">Poland</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="USA">USA</option>
+                  </select>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </div>
+                <div className="tablet:flex-1 min-w-0 relative">
+                  <select
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    className={`${inputClass} appearance-none cursor-pointer pr-10 ${city ? "text-[#181818]" : "text-[#8A8A8A]"}`}
+                  >
+                    <option value="" disabled>Town / City *</option>
+                    <option value="Paris">Paris</option>
+                    <option value="Berlin">Berlin</option>
+                    <option value="Rome">Rome</option>
+                    <option value="Madrid">Madrid</option>
+                    <option value="Amsterdam">Amsterdam</option>
+                    <option value="Warsaw">Warsaw</option>
+                    <option value="London">London</option>
+                    <option value="New York">New York</option>
+                  </select>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </div>
               </div>
+              {/* Row 2: Street | State | ZIP — wider Street, then State+ZIP */}
               <div className="flex flex-col tablet:flex-row gap-3 tablet:gap-2">
-                <div className="tablet:flex-[60] min-w-0 relative">
+                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} tablet:flex-[50] min-w-0`} />
+                <div className="tablet:flex-[29] min-w-0 relative">
                   <select
                     value={stateRegion}
                     onChange={(e) => setStateRegion(e.target.value)}
                     className={`${inputClass} appearance-none cursor-pointer pr-10 ${stateRegion ? "text-[#181818]" : "text-[#8A8A8A]"}`}
                   >
-                    <option value="" disabled>State / County (Optional)</option>
+                    <option value="" disabled>State (Optional)</option>
                     <option value="N/A">N/A</option>
                   </select>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
-                <input type="text" placeholder="Post Code / ZIP *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} tablet:flex-[40] min-w-0`} />
+                <input type="text" placeholder="ZIP Code *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} tablet:flex-[21] min-w-0`} />
               </div>
             </div>
 
