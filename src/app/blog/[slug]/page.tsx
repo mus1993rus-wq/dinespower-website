@@ -74,7 +74,30 @@ const relatedArticles: Array<{
   views: string;
   slug: string;
   image: string;
-}> = [];
+}> = [
+  {
+    id: 1,
+    title: "Getting Ready for Summer: How to Build a Cutting Phase Properly and Preserve Muscle Mass",
+    description:
+      "The issue with most startups is that too many resources are spent on ideas that don't work. How can you deliver a product with minimum risk and receive max...",
+    date: "12 Nov",
+    readTime: "7 min read",
+    views: "3.2k views",
+    slug: "rad-140-testolone-laboratory-analysis",
+    image: "/images/shop/blog-1.png",
+  },
+  {
+    id: 2,
+    title: "Getting Ready for Summer: How to Build a Cutting Phase Properly and Preserve Muscle Mass",
+    description:
+      "The issue with most startups is that too many resources are spent on ideas that don't work. How can you deliver a product with minimum risk and receive max...",
+    date: "12 Nov",
+    readTime: "7 min read",
+    views: "3.2k views",
+    slug: "rad-140-testolone-laboratory-analysis",
+    image: "/images/shop/blog-2.png",
+  },
+];
 
 export default function BlogArticlePage() {
   const params = useParams<{ slug: string }>();
