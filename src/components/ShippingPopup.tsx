@@ -90,11 +90,11 @@ export default function ShippingPopup({ isOpen, onClose }: ShippingPopupProps) {
               ))}
             </div>
 
-            {/* Carrier logos */}
-            <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex items-center justify-between gap-2 flex-wrap">
+            {/* Carrier logos — single row, evenly distributed (Figma 1723:19611) */}
+            <div className="bg-white border border-[#E7E7E7] rounded-[12px] px-3 tablet:px-4 py-3 flex items-center justify-between gap-1 tablet:gap-2">
               {carriers.map((c) => (
-                <div key={c.alt} className="h-[42px] w-[70px] flex items-center justify-center">
-                  <Image src={c.src} alt={c.alt} width={70} height={42} className="object-contain h-full w-auto" />
+                <div key={c.alt} className="flex-1 min-w-0 h-[36px] tablet:h-[40px] flex items-center justify-center">
+                  <Image src={c.src} alt={c.alt} width={96} height={40} className="object-contain max-h-full w-auto max-w-full" />
                 </div>
               ))}
             </div>
