@@ -53,8 +53,8 @@ export default function PaymentPopup({ isOpen, onClose }: PaymentPopupProps) {
             <div className="bg-white border border-[#E7E7E7] rounded-[12px] p-4 flex flex-col">
               {/* Bank transfer */}
               <div className="flex items-start gap-4 pb-3">
-                <div className="w-16 h-16 rounded-[8px] overflow-hidden shrink-0 bg-[#F7F7F7] flex items-center justify-center">
-                  <Image src="/images/shop/popup-icons/bank-transfer.png" alt="Bank" width={54} height={28} className="object-contain" />
+                <div className="w-16 h-16 rounded-[8px] shrink-0 flex items-center justify-center">
+                  <Image src="/images/shop/delivery-bank.png" alt="Bank transfer" width={64} height={64} className="object-contain w-16 h-16" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-[16px] font-semibold text-[#181818] leading-6">Bank transfer</h3>
