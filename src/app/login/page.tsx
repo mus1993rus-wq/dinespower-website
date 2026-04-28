@@ -79,7 +79,7 @@ function LoginContent() {
   const [regConfirm, setRegConfirm] = useState("");
   const [regShowPw, setRegShowPw] = useState(false);
   const [regShowConfirm, setRegShowConfirm] = useState(false);
-  const [regRemember, setRegRemember] = useState(true);
+  const [regAcceptTerms, setRegAcceptTerms] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,6 +97,10 @@ function LoginContent() {
     setError(null);
     if (regPassword !== regConfirm) {
       setError("Passwords do not match");
+      return;
+    }
+    if (!regAcceptTerms) {
+      setError("Please accept the Terms of Use and Privacy Policy to continue");
       return;
     }
     const res = register({
@@ -267,27 +271,26 @@ function LoginContent() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between gap-3">
-                    <label className="flex items-center gap-3 cursor-pointer">
-                      <span
-                        onClick={() => setRegRemember(!regRemember)}
-                        className={`w-5 h-5 rounded-[4px] flex items-center justify-center shrink-0 transition-colors ${
-                          regRemember ? "bg-[#181818]" : "border border-[#CBCBCB] bg-white"
-                        }`}
-                      >
-                        {regRemember && (
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                            <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        )}
-                      </span>
-                      <span className="text-[14px] text-[#181818] leading-5">Remember me</span>
-                    </label>
-
-                    <Link href="/login/forgot" className="text-[14px] font-semibold text-[#181818] hover:underline leading-5">
-                      Forgot your password?
-                    </Link>
-                  </div>
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <span
+                      onClick={() => setRegAcceptTerms(!regAcceptTerms)}
+                      className={`w-5 h-5 rounded-[4px] flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
+                        regAcceptTerms ? "bg-[#181818]" : "border border-[#CBCBCB] bg-white"
+                      }`}
+                    >
+                      {regAcceptTerms && (
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                          <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      )}
+                    </span>
+                    <span className="text-[14px] text-[#181818] leading-5">
+                      I accept the{" "}
+                      <Link href="/terms" className="font-semibold underline hover:text-[#FF6701]">Terms of Use</Link>
+                      {" "}and{" "}
+                      <Link href="/privacy" className="font-semibold underline hover:text-[#FF6701]">Privacy Policy</Link>
+                    </span>
+                  </label>
 
                   <button
                     type="submit"

@@ -270,21 +270,23 @@ export default function CheckoutPage() {
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
               </div>
-              {/* Row 2: Street | State | ZIP — wider Street, then State+ZIP */}
+              {/* Row 2: Street | (State + ZIP) — nested 50/50 so Street aligns with First Name / Country above */}
               <div className="flex flex-col tablet:flex-row gap-3 tablet:gap-2">
-                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} tablet:flex-[50] min-w-0`} />
-                <div className="tablet:flex-[29] min-w-0 relative">
-                  <select
-                    value={stateRegion}
-                    onChange={(e) => setStateRegion(e.target.value)}
-                    className={`${inputClass} appearance-none cursor-pointer pr-10 ${stateRegion ? "text-[#181818]" : "text-[#8A8A8A]"}`}
-                  >
-                    <option value="" disabled>State (Optional)</option>
-                    <option value="N/A">N/A</option>
-                  </select>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                <input type="text" placeholder="Street Address *" value={street} onChange={(e) => setStreet(e.target.value)} className={`${inputClass} tablet:flex-1 min-w-0`} />
+                <div className="flex flex-col tablet:flex-row tablet:flex-1 gap-3 tablet:gap-2 min-w-0">
+                  <div className="tablet:flex-[58] min-w-0 relative">
+                    <select
+                      value={stateRegion}
+                      onChange={(e) => setStateRegion(e.target.value)}
+                      className={`${inputClass} appearance-none cursor-pointer pr-10 ${stateRegion ? "text-[#181818]" : "text-[#8A8A8A]"}`}
+                    >
+                      <option value="" disabled>State (Optional)</option>
+                      <option value="N/A">N/A</option>
+                    </select>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"><path d="M6 9l6 6 6-6" stroke="#181818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  </div>
+                  <input type="text" placeholder="ZIP Code *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} tablet:flex-[42] min-w-0`} />
                 </div>
-                <input type="text" placeholder="ZIP Code *" value={zip} onChange={(e) => setZip(e.target.value)} className={`${inputClass} tablet:flex-[21] min-w-0`} />
               </div>
             </div>
 
