@@ -138,8 +138,8 @@ export default function AuthPopup() {
           {error && <p className="text-[13px] text-[#FB2F2F] leading-5">{error}</p>}
 
           {mode === "login" && (
-            <Link href="/login/forgot" onClick={() => setOpen(false)} className="text-[13px] font-semibold text-[#FF6701] hover:underline self-start">
-              Forgot your Password?
+            <Link href="/login/forgot" onClick={() => setOpen(false)} className="text-[13px] font-semibold text-[#181818] hover:underline self-end">
+              Forgot your password?
             </Link>
           )}
 

@@ -192,25 +192,27 @@ function LoginContent() {
                     </div>
                   </div>
 
-                  <label className="flex items-center gap-3 cursor-pointer">
-                    <span
-                      onClick={() => setLoginRemember(!loginRemember)}
-                      className={`w-5 h-5 rounded-[4px] flex items-center justify-center shrink-0 transition-colors ${
-                        loginRemember ? "bg-[#181818]" : "border border-[#CBCBCB] bg-white"
-                      }`}
-                    >
-                      {loginRemember && (
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                          <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      )}
-                    </span>
-                    <span className="text-[14px] text-[#181818] leading-5">Remember me</span>
-                  </label>
+                  <div className="flex items-center justify-between gap-3">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <span
+                        onClick={() => setLoginRemember(!loginRemember)}
+                        className={`w-5 h-5 rounded-[4px] flex items-center justify-center shrink-0 transition-colors ${
+                          loginRemember ? "bg-[#181818]" : "border border-[#CBCBCB] bg-white"
+                        }`}
+                      >
+                        {loginRemember && (
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        )}
+                      </span>
+                      <span className="text-[14px] text-[#181818] leading-5">Remember me</span>
+                    </label>
 
-                  <Link href="/login/forgot" className="text-[14px] font-semibold text-[#FF6701] hover:underline leading-5">
-                    Forgot your Password?
-                  </Link>
+                    <Link href="/login/forgot" className="text-[14px] font-semibold text-[#181818] hover:underline leading-5">
+                      Forgot your password?
+                    </Link>
+                  </div>
 
                   <button
                     type="submit"
@@ -265,25 +267,27 @@ function LoginContent() {
                     </div>
                   </div>
 
-                  <label className="flex items-center gap-3 cursor-pointer">
-                    <span
-                      onClick={() => setRegRemember(!regRemember)}
-                      className={`w-5 h-5 rounded-[4px] flex items-center justify-center shrink-0 transition-colors ${
-                        regRemember ? "bg-[#181818]" : "border border-[#CBCBCB] bg-white"
-                      }`}
-                    >
-                      {regRemember && (
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                          <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      )}
-                    </span>
-                    <span className="text-[14px] text-[#181818] leading-5">Remember me</span>
-                  </label>
+                  <div className="flex items-center justify-between gap-3">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <span
+                        onClick={() => setRegRemember(!regRemember)}
+                        className={`w-5 h-5 rounded-[4px] flex items-center justify-center shrink-0 transition-colors ${
+                          regRemember ? "bg-[#181818]" : "border border-[#CBCBCB] bg-white"
+                        }`}
+                      >
+                        {regRemember && (
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        )}
+                      </span>
+                      <span className="text-[14px] text-[#181818] leading-5">Remember me</span>
+                    </label>
 
-                  <Link href="/login/forgot" className="text-[14px] font-semibold text-[#FF6701] hover:underline leading-5">
-                    Forgot your Password?
-                  </Link>
+                    <Link href="/login/forgot" className="text-[14px] font-semibold text-[#181818] hover:underline leading-5">
+                      Forgot your password?
+                    </Link>
+                  </div>
 
                   <button
                     type="submit"
