@@ -85,7 +85,7 @@ export default function VerifyPopup({ isOpen, onClose }: VerifyPopupProps) {
                     href={brand.verifyPartner}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center bg-black hover:bg-[#181818] text-white text-[14px] font-semibold rounded-[8px] h-11 transition-colors"
+                    className="flex-1 tablet:flex-none inline-flex items-center justify-center bg-black hover:bg-[#181818] text-white text-[14px] font-semibold rounded-[8px] h-11 shrink-0 transition-colors"
                   >
                     Verify Partner
                   </a>
@@ -93,7 +93,7 @@ export default function VerifyPopup({ isOpen, onClose }: VerifyPopupProps) {
                     href={brand.verifyProduct}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center bg-black hover:bg-[#181818] text-white text-[14px] font-semibold rounded-[8px] h-11 transition-colors"
+                    className="flex-1 tablet:flex-none inline-flex items-center justify-center bg-black hover:bg-[#181818] text-white text-[14px] font-semibold rounded-[8px] h-11 shrink-0 transition-colors"
                   >
                     Verify Product
                   </a>
