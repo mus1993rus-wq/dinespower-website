@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
@@ -20,28 +21,42 @@ const allProducts = [
 const popularSearches = ["Ostarine", "Testosterone", "SARMs", "Peptides", "Fat Burner", "CBD"];
 const recentSearches = ["Vaso burn", "MOTS-C", "Deus Medical"];
 
+function tokenize(q: string): string[] {
+  return q.toLowerCase().split(/\s+/).filter((t) => t.length > 0);
+}
+
+function matchesQuery(p: { name: string; brand: string }, q: string): boolean {
+  const haystack = `${p.name} ${p.brand}`.toLowerCase();
+  const tokens = tokenize(q);
+  if (tokens.length === 0) return false;
+  // OR-match across tokens — chip queries like "Astera Oral" still surface
+  // brand- or category-relevant items even when no product hits both words.
+  return tokens.some((t) => haystack.includes(t));
+}
+
 export default function SearchPage() {
-  const [query, setQuery] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const searchParams = useSearchParams();
+  const initialQuery = searchParams?.get("q") ?? "";
+  const [query, setQuery] = useState(initialQuery);
+  const [submitted, setSubmitted] = useState(initialQuery.length >= 2);
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Re-run search when ?q= changes (e.g., user clicks another popular chip)
+  useEffect(() => {
+    const q = searchParams?.get("q") ?? "";
+    setQuery(q);
+    setSubmitted(q.length >= 2);
+  }, [searchParams]);
+
   const results = submitted && query.length >= 2
-    ? allProducts.filter(
-        (p) =>
-          p.name.toLowerCase().includes(query.toLowerCase()) ||
-          p.brand.toLowerCase().includes(query.toLowerCase())
-      )
+    ? allProducts.filter((p) => matchesQuery(p, query))
     : [];
 
   const suggestions = !submitted && query.length >= 1
     ? allProducts
-        .filter(
-          (p) =>
-            p.name.toLowerCase().includes(query.toLowerCase()) ||
-            p.brand.toLowerCase().includes(query.toLowerCase())
-        )
+        .filter((p) => matchesQuery(p, query))
         .map((p) => p.name)
         .slice(0, 5)
     : [];

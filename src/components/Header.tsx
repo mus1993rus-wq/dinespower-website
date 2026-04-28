@@ -317,32 +317,33 @@ export default function Header() {
                 </button>
               )}
             </div>
-            {searchFocused && (
+            {(() => {
+              if (!searchFocused) return null;
+              const trimmedQuery = searchQuery.trim();
+              const results = trimmedQuery
+                ? searchProducts.filter((p) => p.name.toLowerCase().includes(trimmedQuery.toLowerCase())).slice(0, 6)
+                : [];
+              // No query → idle popular state. Query with matches → results.
+              // Query with no matches → hide dropdown entirely (Figma 2504:35868).
+              if (trimmedQuery && results.length === 0) return null;
+              return (
               <div className="absolute top-full left-0 right-0 mt-2 bg-[#F7F7F7] border border-[#E7E7E7] rounded-[12px] shadow-lg z-50 p-4 flex flex-col gap-4">
-                {searchQuery.trim() ? (
+                {trimmedQuery ? (
                   <>
-                    {(() => {
-                      const results = searchProducts.filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase())).slice(0, 6);
-                      if (results.length === 0) {
-                        return <div className="bg-white rounded-[12px] py-8 text-center text-[14px] text-[#7E7E7E]">No products found</div>;
-                      }
-                      return (
-                        <div className="bg-white rounded-[12px] flex flex-col">
-                          {results.map((product, i) => (
-                            <Link key={i} href={resolveProductHref(product.name)} onClick={() => setSearchFocused(false)}
-                              className={`flex items-center gap-3 px-3 py-2.5 hover:bg-[#F7F7F7] transition-colors ${i < results.length - 1 ? "border-b border-[#E7E7E7]" : ""}`}>
-                              <div className="w-[44px] h-[44px] bg-[#F7F7F7] rounded-[8px] shrink-0 relative overflow-hidden p-1">
-                                <Image src={product.image} alt={product.name} fill sizes="48px" className="object-contain p-1" />
-                              </div>
-                              <div className="flex-1 min-w-0 flex flex-col gap-0.5">
-                                <p className="text-[13px] font-semibold text-[#181818] leading-[18px] line-clamp-2">{product.name}</p>
-                                <p className="text-[13px] text-[#7E7E7E] leading-4">{product.price}</p>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      );
-                    })()}
+                    <div className="bg-white rounded-[12px] flex flex-col">
+                      {results.map((product, i) => (
+                        <Link key={i} href={resolveProductHref(product.name)} onClick={() => setSearchFocused(false)}
+                          className={`flex items-center gap-3 px-3 py-2.5 hover:bg-[#F7F7F7] transition-colors ${i < results.length - 1 ? "border-b border-[#E7E7E7]" : ""}`}>
+                          <div className="w-[44px] h-[44px] bg-[#F7F7F7] rounded-[8px] shrink-0 relative overflow-hidden p-1">
+                            <Image src={product.image} alt={product.name} fill sizes="48px" className="object-contain p-1" />
+                          </div>
+                          <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+                            <p className="text-[13px] font-semibold text-[#181818] leading-[18px] line-clamp-2">{product.name}</p>
+                            <p className="text-[13px] text-[#7E7E7E] leading-4">{product.price}</p>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
                     <Link href={`/search?q=${encodeURIComponent(searchQuery)}`} onClick={() => setSearchFocused(false)}
                       className="flex items-center justify-center w-full h-[48px] bg-[#181818] hover:bg-[#333] text-white text-[15px] font-semibold rounded-[10px] transition-colors">
                       See All
@@ -354,17 +355,22 @@ export default function Header() {
                       <span className="text-[13px] text-[#7E7E7E] leading-5">Popular Searches</span>
                       <div className="flex flex-wrap gap-2">
                         {popularSearches.map((term) => (
-                          <button key={term} onClick={() => setSearchQuery(term)}
-                            className="cursor-pointer px-3 h-8 rounded-full bg-white border border-[#E7E7E7] text-[13px] font-semibold text-[#181818] hover:border-[#181818] transition-colors">
+                          <Link
+                            key={term}
+                            href={`/search?q=${encodeURIComponent(term)}`}
+                            onClick={() => { setSearchFocused(false); setSearchQuery(""); }}
+                            className="cursor-pointer px-3 h-8 inline-flex items-center rounded-full bg-white border border-[#E7E7E7] text-[13px] font-semibold text-[#181818] hover:border-[#181818] transition-colors"
+                          >
                             {term}
-                          </button>
+                          </Link>
                         ))}
                       </div>
                     </div>
                   </>
                 )}
               </div>
-            )}
+              );
+            })()}
           </div>
 
           {/* Icons cluster */}
@@ -509,39 +515,38 @@ export default function Header() {
             )}
           </div>
           {/* Search dropdown — Figma style: popular tags + popular products list */}
-          {searchFocused && (
+          {(() => {
+            if (!searchFocused) return null;
+            const trimmedQuery = searchQuery.trim();
+            const results = trimmedQuery
+              ? searchProducts.filter((p) => p.name.toLowerCase().includes(trimmedQuery.toLowerCase())).slice(0, 7)
+              : [];
+            // No query → idle popular state. Query with matches → results.
+            // Query with no matches → hide dropdown entirely (Figma 2504:35868).
+            if (trimmedQuery && results.length === 0) return null;
+            return (
             <div className="absolute top-full left-0 right-0 mt-2 bg-[#F7F7F7] border border-[#E7E7E7] rounded-[12px] shadow-lg z-50 p-4 flex flex-col gap-4">
-              {searchQuery.trim() ? (
+              {trimmedQuery ? (
                 <>
                   {/* Search results — only product list + See All */}
-                  {(() => {
-                    const results = searchProducts.filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase())).slice(0, 7);
-                    if (results.length === 0) {
-                      return (
-                        <div className="bg-white rounded-[12px] py-8 text-center text-[14px] text-[#7E7E7E]">No products found</div>
-                      );
-                    }
-                    return (
-                      <div className="bg-white rounded-[12px] flex flex-col">
-                        {results.map((product, i) => (
-                          <Link
-                            key={i}
-                            href={resolveProductHref(product.name)}
-                            onClick={() => setSearchFocused(false)}
-                            className={`flex items-center gap-4 px-4 py-3 hover:bg-[#F7F7F7] transition-colors ${i < results.length - 1 ? "border-b border-[#E7E7E7]" : ""} ${i === 0 ? "rounded-t-[12px]" : ""} ${i === results.length - 1 ? "rounded-b-[12px]" : ""}`}
-                          >
-                            <div className="w-[48px] h-[48px] bg-[#F7F7F7] rounded-[8px] shrink-0 relative overflow-hidden p-1">
-                              <Image src={product.image} alt={product.name} fill sizes="48px" className="object-contain p-1" />
-                            </div>
-                            <div className="flex-1 min-w-0 flex flex-col gap-1">
-                              <p className="text-[14px] font-semibold text-[#181818] leading-5 line-clamp-2">{product.name}</p>
-                              <p className="text-[14px] text-[#7E7E7E] leading-5">{product.price}</p>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    );
-                  })()}
+                  <div className="bg-white rounded-[12px] flex flex-col">
+                    {results.map((product, i) => (
+                      <Link
+                        key={i}
+                        href={resolveProductHref(product.name)}
+                        onClick={() => setSearchFocused(false)}
+                        className={`flex items-center gap-4 px-4 py-3 hover:bg-[#F7F7F7] transition-colors ${i < results.length - 1 ? "border-b border-[#E7E7E7]" : ""} ${i === 0 ? "rounded-t-[12px]" : ""} ${i === results.length - 1 ? "rounded-b-[12px]" : ""}`}
+                      >
+                        <div className="w-[48px] h-[48px] bg-[#F7F7F7] rounded-[8px] shrink-0 relative overflow-hidden p-1">
+                          <Image src={product.image} alt={product.name} fill sizes="48px" className="object-contain p-1" />
+                        </div>
+                        <div className="flex-1 min-w-0 flex flex-col gap-1">
+                          <p className="text-[14px] font-semibold text-[#181818] leading-5 line-clamp-2">{product.name}</p>
+                          <p className="text-[14px] text-[#7E7E7E] leading-5">{product.price}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
                   <Link
                     href={`/search?q=${encodeURIComponent(searchQuery)}`}
                     onClick={() => setSearchFocused(false)}
@@ -557,13 +562,14 @@ export default function Header() {
                     <span className="text-[14px] text-[#7E7E7E] leading-5">Popular Searches</span>
                     <div className="flex flex-wrap gap-2">
                       {popularSearches.map((term) => (
-                        <button
+                        <Link
                           key={term}
-                          onClick={() => setSearchQuery(term)}
-                          className="cursor-pointer px-4 h-9 rounded-full bg-white border border-[#E7E7E7] text-[14px] font-semibold text-[#181818] hover:border-[#181818] transition-colors"
+                          href={`/search?q=${encodeURIComponent(term)}`}
+                          onClick={() => { setSearchFocused(false); setSearchQuery(""); }}
+                          className="cursor-pointer px-4 h-9 inline-flex items-center rounded-full bg-white border border-[#E7E7E7] text-[14px] font-semibold text-[#181818] hover:border-[#181818] transition-colors"
                         >
                           {term}
-                        </button>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -592,7 +598,8 @@ export default function Header() {
                 </>
               )}
             </div>
-          )}
+            );
+          })()}
         </div>
         <div className="flex items-center gap-4 wide:gap-[24px] shrink-0">
           <button onClick={() => setVerifyOpen(true)} className="flex items-center gap-2 h-[44px] cursor-pointer">

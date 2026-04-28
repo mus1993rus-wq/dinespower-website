@@ -843,7 +843,7 @@ export default function ProductPageContent({ product }: { product: Product }) {
               )}
             </div>
             {discountPct > 0 && (
-              <span className="bg-[#FB2F2F] text-white text-[10px] font-semibold leading-none px-1.5 py-0.5 rounded-[4px] mt-0.5 desktop:mt-0">Sale -{discountPct}%</span>
+              <span className="bg-[#FB2F2F] text-white text-[10px] desktop:text-[13px] font-semibold leading-none px-1.5 desktop:px-2 py-0.5 desktop:py-1 rounded-[4px] desktop:rounded-[6px] mt-0.5 desktop:mt-0">Sale -{discountPct}%</span>
             )}
           </div>
           <button
